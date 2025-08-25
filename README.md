@@ -1,9 +1,9 @@
-Next.js and Node.js Video Web App
+Next.js + Node.js + Vite Web Application
 Overview
-A web application built with Next.js and Node.js, featuring a main file that includes the server setup for video-related functionality.
+This is a web application built using Next.js for the frontend, Node.js for the backend server, and Vite for fast development and building. The main application logic is contained within a single primary file, which includes the server setup.
 Prerequisites
 
-Node.js (>= 14.x)
+Node.js (v16 or higher)
 npm or Yarn
 
 Installation
@@ -16,56 +16,36 @@ Navigate to the project directory:cd <project-directory>
 
 Install dependencies:npm install
 
-oryarn install
 
 
+Development
+To start the development server:
+npm run dev
+
+
+Vite will serve the frontend at http://localhost:5173.
+The Node.js server will run within the main application file.
+
+Build
+To build the application for production:
+npm run build
+
+Production
+To start the production server:
+npm start
 
 Project Structure
 
-pages/: Next.js pages for frontend routes
-server.js: Main server file handling video-related backend logic
-public/: Static assets (e.g., videos, images)
-components/: Reusable React components
-styles/: CSS or styling files
+main.js: The primary file containing the Node.js server and core application logic.
+pages/: Next.js pages for the frontend.
+public/: Static assets.
+vite.config.js: Vite configuration for frontend development and build.
 
-Running the Application
+Scripts
 
-Start the development server:npm run dev
-
-oryarn dev
-
-
-Open your browser and visit http://localhost:3000.
-
-Building for Production
-
-Build the application:npm run build
-
-oryarn build
-
-
-Start the production server:npm start
-
-oryarn start
-
-
-
-Features
-
-Server-side rendering with Next.js
-Node.js backend for video processing/streaming
-Responsive design for video playback
-
-Contributing
-
-Fork the repository.
-Create a new branch (git checkout -b feature-branch).
-Commit your changes (git commit -m 'Add feature').
-Push to the branch (git push origin feature-branch).
-Open a Pull Request.
-
-License
-MIT License
+npm run dev: Runs Vite for frontend and Node.js server concurrently.
+npm run build: Builds the Next.js app with Vite.
+npm run start: Starts the production Node.js server.
 
 
 
