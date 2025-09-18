@@ -58,7 +58,7 @@ export default function HomePage({ initialProducts, error: ssrError }) {
             {/* Hero Section: Engaging introduction banner */}
             <section className="bg-gradient-to-r from-cyan-100 via-purple-100 to-pink-100 dark:from-cyan-900 dark:via-purple-900 dark:to-pink-900 text-center py-16 md:py-24 mb-12 rounded-lg shadow-md">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-100 mb-4 px-4">
-                    Discover Amazing Products
+                    Software Dorado Technology
                 </h1>
                 <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto px-4">
                     Shop the latest trends and find your next favorite item. High quality, great prices.
