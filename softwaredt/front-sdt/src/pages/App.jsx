@@ -7,11 +7,11 @@ const App = () => {
   const datas = [
     {
       "id" : 1,
-      "asset" : "1.jpg",
-      "headerStatus" : "UPCOMING LAUNCH",
-      "headerTitle" : "AX-3 MISSION",
-      "btnTarget" : "https://www.spacex.com/launches/mission/?missionId:ax-3",
-      "btnText" : "WATCH"
+      "asset" : "BogotaAir1.mp4",
+      "headerStatus" : "DORADO TECHNOLOGIES",
+      "headerTitle" : "SOFTWARE PERSONALIZADO",
+      "btnTarget" : "",
+      "btnText" : ""
     },
     {
       "id" : 2,
