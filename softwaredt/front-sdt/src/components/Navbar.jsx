@@ -77,17 +77,17 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={`flex items-center justify-center fixed top-1 left-0 w-full h-28 z-20 px-10 2xl:px-28 transition-all duration-300 ease-out
+        className={`fixed flex items-center justify-center top-1 left-0 w-full h-28 z-20 px-3 2xl:px-28 transition-all duration-300 ease-out
     ${showNavbar ? "opacity-100" : "opacity-0"}
     ${blackBackground ? "bg-black" : ""}
     `}
       >
         <nav className="flex items-center gap-14 w-full text-black text-base font-semibold font-custom justify-between xl:justify-start">
           <span className="static xl:hidden w-[60px]"></span>
-          <img src="./logo.png" alt="logo" className="h-22 mt-8 w-24 p-0" />
+          <img src="./logo.png" alt="logo" className="h-20 mt-4 w-24 p-0" />
 
           <label
-            className={`xl:hidden burger items-center ${showNavbar ? "" : "disabled"}`}
+            className={`2xl:hidden burger items-center ${showNavbar ? "" : "disabled"}`}
             htmlFor="burger"
           >
             <input

@@ -23,7 +23,7 @@ const App = () => {
     },
     {
       "id" : 3,
-      "asset" : "2.png",
+      "asset" : "softwareappweb.mp4",
       "headerStatus" : "LAS MEJORES TECHNOLOGIAS",
       "headerTitle" : "APP'S Y WEBSITES",
       "btnTarget" : "",
