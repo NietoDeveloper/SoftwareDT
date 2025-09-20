@@ -34,7 +34,7 @@ const Navbar = () => {
   const navigations = [
     {
       id: 1,
-      name: "SOFTWARE EMPRESARIAL",
+      name: "SOFTWARE EMPRESAS",
       url: "",
     },
     {
@@ -49,17 +49,17 @@ const Navbar = () => {
     },
     {
       id: 4,
-      name: "INVESTIGACION DE SOFTWARE",
+      name: "INVESTIGACION",
       url: "",
     },
     {
       id: 5,
-      name: "SOBRE NOSOTROS",
-      url: "https://www.spacex.com/humanspaceflight/",
+      name: "NOSOTROS",
+      url: "",
     },
     {
       id: 6,
-      name: "CONTACTO",
+      name: "LANZAMIENTOS",
       url: "https://www.spacex.com/rideshare/",
     },
     {
@@ -69,7 +69,7 @@ const Navbar = () => {
     },
     {
       id: 8,
-      name: "LANZAMIENTOS",
+      name: "CONTACTO",
       url: "https://www.starlink.com/",
     },
   ];
@@ -77,14 +77,14 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={`flex items-center justify-center fixed top-0 left-0 w-full h-24 z-20 px-8 2xl:px-28 transition-all duration-300 ease-out
+        className={`flex items-center justify-center fixed top-1 left-0 w-full h-28 z-20 px-10 2xl:px-28 transition-all duration-300 ease-out
     ${showNavbar ? "opacity-100" : "opacity-0"}
     ${blackBackground ? "bg-black" : ""}
     `}
       >
         <nav className="flex items-end gap-8 w-full text-white text-sm font-semibold font-custom justify-between xl:justify-start">
-          <span className="static xl:hidden w-[40px]"></span>
-          <img src="./logo.png" alt="logo" className="h-6 sm:h-8 pb-1" />
+          <span className="static xl:hidden w-[50px]"></span>
+          <img src="./logo.png" alt="logo" className="h-22 mt-8 w-24 p-0" />
 
           <label
             className={`xl:hidden burger ${showNavbar ? "" : "disabled"}`}
