@@ -60,17 +60,17 @@ const Navbar = () => {
     {
       id: 6,
       name: "LANZAMIENTOS",
-      url: "https://www.spacex.com/rideshare/",
+      url: "",
     },
     {
       id: 7,
       name: "EVENTOS",
-      url: "https://www.spacex.com/starshield/",
+      url: "",
     },
     {
       id: 8,
       name: "CONTACTO",
-      url: "https://www.starlink.com/",
+      url: "",
     },
   ];
 
@@ -82,12 +82,12 @@ const Navbar = () => {
     ${blackBackground ? "bg-black" : ""}
     `}
       >
-        <nav className="flex items-end gap-8 w-full text-white text-sm font-semibold font-custom justify-between xl:justify-start">
-          <span className="static xl:hidden w-[50px]"></span>
+        <nav className="flex items-center gap-9 w-full text-black text-base font-semibold font-custom justify-between xl:justify-start">
+          <span className="static xl:hidden w-[60px]"></span>
           <img src="./logo.png" alt="logo" className="h-22 mt-8 w-24 p-0" />
 
           <label
-            className={`xl:hidden burger ${showNavbar ? "" : "disabled"}`}
+            className={`xl:hidden burger items-center ${showNavbar ? "" : "disabled"}`}
             htmlFor="burger"
           >
             <input
