@@ -15,27 +15,27 @@ const App = () => {
     },
     {
       "id" : 2,
-      "asset" : "3.jpg",
-      "headerStatus" : "RECENT LAUNCH",
-      "headerTitle" : "STARLINK MISSION",
-      "btnTarget" : "https://www.spacex.com/launches/mission/?missionId=sl-6-37",
-      "btnText" : "REWATCH"
+      "asset" : "softwareempresas.mp4",
+      "headerStatus" : "SOFTWARE COMPETITIVO",
+      "headerTitle" : "NEGOCIOS Y EMPRESAS",
+      "btnTarget" : "",
+      "btnText" : "CONTACTO"
     },
     {
       "id" : 3,
       "asset" : "2.png",
-      "headerStatus" : "RECENT LAUNCH",
-      "headerTitle" : "STARLINK MISSION",
-      "btnTarget" : "https://www.spacex.com/launches/mission/?missionId=sl-7-10",
-      "btnText" : "REWATCH"
+      "headerStatus" : "LAS MEJORES TECHNOLOGIAS",
+      "headerTitle" : "APP'S Y WEBSITES",
+      "btnTarget" : "",
+      "btnText" : "CONTACTO"
     },
     {
       "id" : 4,
       "asset" : "MonserrateDron1.mp4",
-      "headerStatus" : "RECENT LAUNCH",
-      "headerTitle" : "STARSHIP'S SECOND FLIGHT TEST",
-      "btnTarget" : "https://www.spacex.com/launches/mission/?missionId=starship-flight-2",
-      "btnText" : "LEARN MORE"
+      "headerStatus" : "PROGRAMAMOS PARA SERVIR",
+      "headerTitle" : "TALENTO COLOMBIANO",
+      "btnTarget" : "sion/?missionId=starship-flight-2",
+      "btnText" : "SOBRE NOSOTROS"
     }
   ]
 
