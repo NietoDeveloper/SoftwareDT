@@ -9,9 +9,9 @@ const App = () => {
       "id" : 1,
       "asset" : "BogotaAir1.mp4",
       "headerStatus" : "DORADO TECHNOLOGIES",
-      "headerTitle" : "SOFTWARE PERSONALIZADO",
+      "headerTitle" : "SOFTWARE",
       "btnTarget" : "",
-      "btnText" : ""
+      "btnText" : "Conocer"
     },
     {
       "id" : 2,
