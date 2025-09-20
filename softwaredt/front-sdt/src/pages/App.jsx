@@ -15,7 +15,7 @@ const App = () => {
     },
     {
       "id" : 2,
-      "asset" : "2.jpg",
+      "asset" : "3.jpg",
       "headerStatus" : "RECENT LAUNCH",
       "headerTitle" : "STARLINK MISSION",
       "btnTarget" : "https://www.spacex.com/launches/mission/?missionId=sl-6-37",
@@ -23,7 +23,7 @@ const App = () => {
     },
     {
       "id" : 3,
-      "asset" : "3.jpg",
+      "asset" : "2.png",
       "headerStatus" : "RECENT LAUNCH",
       "headerTitle" : "STARLINK MISSION",
       "btnTarget" : "https://www.spacex.com/launches/mission/?missionId=sl-7-10",
@@ -31,7 +31,7 @@ const App = () => {
     },
     {
       "id" : 4,
-      "asset" : "4.mp4",
+      "asset" : "MonserrateDron1.mp4",
       "headerStatus" : "RECENT LAUNCH",
       "headerTitle" : "STARSHIP'S SECOND FLIGHT TEST",
       "btnTarget" : "https://www.spacex.com/launches/mission/?missionId=starship-flight-2",
