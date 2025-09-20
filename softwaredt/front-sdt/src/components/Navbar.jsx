@@ -82,7 +82,7 @@ const Navbar = () => {
     ${blackBackground ? "bg-black" : ""}
     `}
       >
-        <nav className="flex items-center gap-9 w-full text-black text-base font-semibold font-custom justify-between xl:justify-start">
+        <nav className="flex items-center gap-14 w-full text-black text-base font-semibold font-custom justify-between xl:justify-start">
           <span className="static xl:hidden w-[60px]"></span>
           <img src="./logo.png" alt="logo" className="h-22 mt-8 w-24 p-0" />
 

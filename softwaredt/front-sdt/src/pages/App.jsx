@@ -11,7 +11,7 @@ const App = () => {
       "headerStatus" : "DORADO TECHNOLOGIES",
       "headerTitle" : "SOFTWARE",
       "btnTarget" : "",
-      "btnText" : "Conocer"
+      "btnText" : "CONTACTO"
     },
     {
       "id" : 2,
