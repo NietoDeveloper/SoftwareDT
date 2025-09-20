@@ -34,42 +34,42 @@ const Navbar = () => {
   const navigations = [
     {
       id: 1,
-      name: "FALCON 9",
-      url: "https://www.spacex.com/vehicles/falcon-9/",
+      name: "SOFTWARE EMPRESARIAL",
+      url: "",
     },
     {
       id: 2,
-      name: "FALCON HEAVY",
-      url: "https://www.spacex.com/vehicles/falcon-heavy/",
+      name: "DESARROLLO WEB",
+      url: "",
     },
     {
       id: 3,
-      name: "DRAGON",
-      url: "https://www.spacex.com/vehicles/dragon/",
+      name: "SOFTWARE PERSONALIZADO",
+      url: "",
     },
     {
       id: 4,
-      name: "STARSHIP",
-      url: "https://www.spacex.com/vehicles/starship/",
+      name: "INVESTIGACION DE SOFTWARE",
+      url: "",
     },
     {
       id: 5,
-      name: "HUMAN SPACEFLIGHT",
+      name: "SOBRE NOSOTROS",
       url: "https://www.spacex.com/humanspaceflight/",
     },
     {
       id: 6,
-      name: "RIDESHARE",
+      name: "CONTACTO",
       url: "https://www.spacex.com/rideshare/",
     },
     {
       id: 7,
-      name: "STARSHIELD",
+      name: "EVENTOS",
       url: "https://www.spacex.com/starshield/",
     },
     {
       id: 8,
-      name: "STARLINK",
+      name: "LANZAMIENTOS",
       url: "https://www.starlink.com/",
     },
   ];
