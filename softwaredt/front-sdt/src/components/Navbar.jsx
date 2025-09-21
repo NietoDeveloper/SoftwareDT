@@ -82,7 +82,7 @@ const Navbar = () => {
     ${blackBackground ? "bg-black" : ""}
     `}
       >
-        <nav className="flex items-end gap-12 w-full mt-[30px] text-black text-sm font-bold font-custom justify-between ">
+        <nav className="flex items-end gap-12 w-full mt-[30px] text-black text-sm font-bold justify-between ">
           <span className="static xl:hidden w-[40px]"></span>
           <img src="./logo.png" alt="logo" className="h-20 w-30 sm:h-30 pb-1" />
 
@@ -128,7 +128,10 @@ const Navbar = () => {
           `}
           id="sidebar"
         >
-          <div className="w-full h-fit flex flex-col mt-[80px] text-white text-end gap-2 mt-4">
+
+        <img src="./logo.png" alt="logo" className="h-20 w-30 sm:h-30 pb-1" />
+        
+          <div className="w-full h-fit flex flex-col mt-[50px] text-white text-end gap-2 mt-8">
             {navigations &&
               navigations.map((navigation) => {
                 return (
