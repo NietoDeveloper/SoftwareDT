@@ -79,7 +79,7 @@ const Navbar = () => {
       <header
         className={`flex items-center justify-center fixed top-0 left-0 w-full h-24 z-20 px-10 transition-all duration-300 ease-out
     ${showNavbar ? "opacity-100" : "opacity-0"}
-    ${blackBackground ? "bg-black" : ""}
+    ${blackBackground ? "bg-transparent" : ""}
     `}
       >
         <nav className="flex items-end gap-12 w-full mt-[30px] text-black text-sm font-bold justify-between ">
