@@ -123,7 +123,7 @@ const Navbar = () => {
         ></div>
 
         <div
-          className={`fixed xl:hidden h-screen bg-blue-500 bg-opacity-30 backdrop-blur-md w-96 -right-96 top-0 transition duration-700 ease-out z-20 px-11 py-16
+          className={`fixed xl:hidden h-screen bg-blue-700 bg-opacity-35 backdrop-blur-md w-96 -right-96 top-0 transition duration-700 ease-out z-20 px-11 py-16
           ${isSidebarVisible ? "-translate-x-96" : "translate-x-0"} 
           `}
           id="sidebar"
