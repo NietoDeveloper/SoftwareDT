@@ -82,7 +82,7 @@ const Navbar = () => {
     ${blackBackground ? "bg-black" : ""}
     `}
       >
-        <nav className="flex items-end gap-10 w-full mt-[20px] text-white text-sm font-semibold font-custom justify-between xl:justify-start">
+        <nav className="flex items-end gap-10 w-full mt-[20px] text-black text-sm font-semibold font-custom justify-between xl:justify-start">
           <span className="static xl:hidden px-0 py-2.5 w-[40px]"></span>
           <img src="./logo.png" alt="logo" className="h-20 w-30 sm:h-30 pb-1" />
 
@@ -123,7 +123,7 @@ const Navbar = () => {
         ></div>
 
         <div
-          className={`fixed xl:hidden h-screen bg-blue-500 bg-opacity-50 backdrop-blur-md w-96 -right-96 top-0 transition duration-700 ease-out z-20 px-11 py-16
+          className={`fixed xl:hidden h-screen bg-blue-500 bg-opacity-30 backdrop-blur-md w-96 -right-96 top-0 transition duration-700 ease-out z-20 px-11 py-16
           ${isSidebarVisible ? "-translate-x-96" : "translate-x-0"} 
           `}
           id="sidebar"
