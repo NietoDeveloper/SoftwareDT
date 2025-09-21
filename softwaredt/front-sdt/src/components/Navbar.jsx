@@ -34,12 +34,12 @@ const Navbar = () => {
   const navigations = [
     {
       id: 1,
-      name: "SOFTWARE EMPRESAS",
+      name: "SOLUCIONES A EMPRESAS",
       url: "",
     },
     {
       id: 2,
-      name: "DESARROLLO WEB",
+      name: "DESARROLLO WEB Y APP'S",
       url: "",
     },
     {
@@ -49,20 +49,20 @@ const Navbar = () => {
     },
     {
       id: 4,
-      name: "INVESTIGACION",
+      name: "CONTACTO",
       url: "",
     },
-    {
+        {
       id: 5,
-      name: "NOSOTROS",
+      name: "EVENTOS",
       url: "",
     },
     {
       id: 6,
-      name: "LANZAMIENTOS",
+      name: "CONTACTO",
       url: "",
     },
-    {
+        {
       id: 7,
       name: "EVENTOS",
       url: "",
@@ -77,13 +77,13 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={`flex items-center justify-center fixed top-0 left-0 w-full h-24 z-20 px-8 2xl:px-28 transition-all duration-300 ease-out
+        className={`flex items-center justify-center fixed top-0 left-0 w-full h-24 z-20 px-10 transition-all duration-300 ease-out
     ${showNavbar ? "opacity-100" : "opacity-0"}
     ${blackBackground ? "bg-black" : ""}
     `}
       >
-        <nav className="flex items-end gap-10 w-full mt-[20px] text-black text-sm font-semibold font-custom justify-between xl:justify-start">
-          <span className="static xl:hidden px-0 py-2.5 w-[40px]"></span>
+        <nav className="flex items-end gap-8 w-full mt-[30px] text-black text-LG font-semibold font-custom justify-between xl:justify-start">
+          <span className="static xl:hidden w-[40px]"></span>
           <img src="./logo.png" alt="logo" className="h-20 w-30 sm:h-30 pb-1" />
 
           <label
@@ -105,7 +105,7 @@ const Navbar = () => {
             navigations.map((navigation) => {
               return (
                 <a
-                  className={`underline-custom hidden xl:block ${
+                  className={`underline-custom hidden md:block ${
                     showNavbar ? "" : "disabled"
                   }`}
                   key={navigation.id}
