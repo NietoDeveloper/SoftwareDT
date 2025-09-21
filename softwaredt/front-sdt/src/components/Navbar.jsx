@@ -77,17 +77,17 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={`fixed flex items-center justify-center top-1 left-0 w-full h-28 z-20 px-3 2xl:px-28 transition-all duration-300 ease-out
+        className={`flex items-center justify-center fixed top-0 left-0 w-full h-24 z-20 px-8 2xl:px-28 transition-all duration-300 ease-out
     ${showNavbar ? "opacity-100" : "opacity-0"}
     ${blackBackground ? "bg-black" : ""}
     `}
       >
-        <nav className="flex items-center gap-14 w-full text-black text-base font-semibold font-custom justify-between xl:justify-start">
-          <span className="static xl:hidden w-[60px]"></span>
-          <img src="./logo.png" alt="logo" className="h-20 mt-4 w-24 p-0" />
+        <nav className="flex items-end gap-10 w-full mt-[20px] text-white text-sm font-semibold font-custom justify-between xl:justify-start">
+          <span className="static xl:hidden px-0 py-2.5 w-[40px]"></span>
+          <img src="./logo.png" alt="logo" className="h-20 w-30 sm:h-30 pb-1" />
 
           <label
-            className={`2xl:hidden burger items-center ${showNavbar ? "" : "disabled"}`}
+            className={`xl:hidden burger ${showNavbar ? "" : "disabled"}`}
             htmlFor="burger"
           >
             <input
@@ -123,12 +123,12 @@ const Navbar = () => {
         ></div>
 
         <div
-          className={`fixed xl:hidden h-screen bg-black w-96 -right-96 top-0 transition duration-700 ease-out z-20 px-11 py-16
+          className={`fixed xl:hidden h-screen bg-blue-500 bg-opacity-50 backdrop-blur-md w-96 -right-96 top-0 transition duration-700 ease-out z-20 px-11 py-16
           ${isSidebarVisible ? "-translate-x-96" : "translate-x-0"} 
           `}
           id="sidebar"
         >
-          <div className="w-full h-fit flex flex-col text-white text-end gap-2 mt-4">
+          <div className="w-full h-fit flex flex-col mt-[80px] text-white text-end gap-2 mt-4">
             {navigations &&
               navigations.map((navigation) => {
                 return (

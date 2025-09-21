@@ -5,7 +5,7 @@ import Section from "../components/Section"
 const App = () => {
 
   const datas = [
-    {
+ {
       "id" : 1,
       "asset" : "BogotaAir1.mp4",
       "headerStatus" : "DORADO TECHNOLOGIES",
@@ -32,7 +32,7 @@ const App = () => {
     {
       "id" : 4,
       "asset" : "MonserrateDron1.mp4",
-      "headerStatus" : "PROGRAMAMOS PARA SERVIR",
+      "headerStatus" : "DESARROLLAMOS SOFTWARE PARA SERVIR",
       "headerTitle" : "TALENTO COLOMBIANO",
       "btnTarget" : "sion/?missionId=starship-flight-2",
       "btnText" : "SOBRE NOSOTROS"

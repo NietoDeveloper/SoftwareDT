@@ -81,12 +81,13 @@
 /* HAMBURGER ICON START */
 .burger {
   position: relative;
-  width: 60px;
-  height: 40px;
+  z-index: 30;
+  width: 40px;
+  height: 35px;
   background: transparent;
   cursor: pointer;
   display: block;
-  scale: 50%;
+  scale: 60%;
 }
 
 .burger input {
@@ -94,16 +95,16 @@
 }
 
 .burger span {
-  display: flex;
+  display: block;
   position: absolute;
-  height: 10px;
+  height: 7px;
   width: 100%;
   background: rgb(0, 0, 0);
   border-radius: 9px;
   opacity: 1;
   left: 0;
   transform: rotate(0deg);
-  transition: .2s ease-in-out;
+  transition: .25s ease-in-out;
 }
 
 .burger span:nth-of-type(1) {
