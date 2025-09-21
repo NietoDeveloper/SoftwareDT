@@ -52,14 +52,14 @@ const Navbar = () => {
       name: "CONTACTO",
       url: "",
     },
-        {
+    {
       id: 5,
-      name: "EVENTOS",
+      name: "SOBRE NOSOTROS",
       url: "",
     },
     {
       id: 6,
-      name: "CONTACTO",
+      name: "LANZAMIENTOS",
       url: "",
     },
         {
@@ -67,9 +67,9 @@ const Navbar = () => {
       name: "EVENTOS",
       url: "",
     },
-    {
+        {
       id: 8,
-      name: "CONTACTO",
+      name: "NOTICIAS",
       url: "",
     },
   ];
@@ -82,7 +82,7 @@ const Navbar = () => {
     ${blackBackground ? "bg-black" : ""}
     `}
       >
-        <nav className="flex items-end gap-8 w-full mt-[30px] text-black text-LG font-semibold font-custom justify-between xl:justify-start">
+        <nav className="flex items-end gap-12 w-full mt-[30px] text-black text-sm font-bold font-custom justify-between ">
           <span className="static xl:hidden w-[40px]"></span>
           <img src="./logo.png" alt="logo" className="h-20 w-30 sm:h-30 pb-1" />
 
