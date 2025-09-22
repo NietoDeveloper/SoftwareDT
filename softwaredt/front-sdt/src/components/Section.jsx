@@ -16,7 +16,7 @@ const Section = ({asset, headerStatus, headerTitle, btnTarget, btnText}) => {
     }, [])
 
     return (
-        <section className={`h-[110vh] w-full relative flex justify-center`}>
+        <section className={`h-[108vh] w-full relative flex justify-center`}>
             {isVideo ? (
                 <video autoPlay loop muted className="absolute w-full h-full object-cover" src={assetUrl} />
             ) : (
