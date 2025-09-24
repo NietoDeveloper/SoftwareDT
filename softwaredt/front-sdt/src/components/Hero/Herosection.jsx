@@ -1,12 +1,26 @@
 import { Link } from 'react-router-dom';
 import heroimage3 from '../../assets/images/hero-img03.png';
 import heroimage4 from '../../assets/images/feature-img.png';
+import Bog1 from '../../assets/images/softwareempresas.mp4';
 
 const Herosection = () => {
+
+
   return (
     <>
+
       {/* hero content */}
       <div>
+        
+          <section className={`h-[108vh] w-full relative flex justify-center`}>
+            <video
+              autoPlay
+              loop
+              muted
+              className="absolute w-full h-full object-cover"
+              src={Bog1}
+            />
+          </section>
         <div>
           <h1
             className="text-[36px] leading-[36px]

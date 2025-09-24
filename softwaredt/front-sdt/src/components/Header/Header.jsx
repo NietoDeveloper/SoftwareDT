@@ -1,15 +1,15 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { FaTimes, FaBars, FaHandHoldingMedical } from 'react-icons/fa';
+import { FaTimes, FaBars } from 'react-icons/fa';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext } from '../../context/UserContext';
 import { axiosusers } from '../../API/api';
 import Profile from '../../features/Profile';
 
 const navLinks = [
-  { path: "/", name: "Home" },
-  { path: "/doctors", name: "Find a doctor" },
-  { path: "/services", name: "Services" },
-  { path: "/contact", name: "Contact" },
+  { path: "/", name: "Inicio" },
+  { path: "/services", name: "Servicios" },
+  { path: "/doctors", name: "Proyectos" },
+  { path: "/contact", name: "Contacto" },
 ];
 
 const Header = () => {
@@ -56,8 +56,8 @@ const Header = () => {
       <div className="md:container flex items-center justify-between gap-4 w-full mx-4">
         {/* Logo and Site Title */}
         <Link to="/" className="max-w-full flex items-center gap-1 cursor-pointer ">
-          <FaHandHoldingMedical size={35} className="text-blue-600" />
-          <h1 className="md:text-2xl text-4xl">Software Dorado Technologies</h1>
+        <img src="./logo.png" alt="logo" className="h-20 w-30 sm:h-30 pb-1" />
+          <h1 className="md:text-2xl text-4xl">Software D T</h1>
         </Link>
         
 
