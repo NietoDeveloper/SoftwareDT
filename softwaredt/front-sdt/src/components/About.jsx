@@ -1,9 +1,18 @@
 import about1 from '../assets/images/herodoctor4.png';
 import { Link } from 'react-router-dom';
+import WebApp from '../assets/images/softwareappweb.mp4';
+
 
 const About = () => {
   return (
     <section>
+                      <video
+                autoPlay
+                loop
+                muted
+                className="absolute w-full h-full object-cover"
+                src={WebApp}
+              />
         <div className="container pb-8">
             <div className="flex justify-between gap-[50px] lg:gap-[130px] xl:gap-0 flex-col
             lg:flex-row">
