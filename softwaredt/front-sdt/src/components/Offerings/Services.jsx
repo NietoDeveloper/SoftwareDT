@@ -1,4 +1,7 @@
 import ServicesCard from './ServicesCard';
+import WebApp from '../../assets/images/softwareappweb.mp4';
+
+
 
 const servicesList = [
   {
@@ -34,9 +37,16 @@ const servicesList = [
 const Services = () => {
   return (
     <section>
+              <video
+                autoPlay
+                loop
+                muted
+                className="absolute w-full h-full object-cover"
+                src={WebApp}
+              />
       <div className="container">
         <div className="xl:w-[470px] mx-auto">
-          <h2 className="heading text-center">Our Medical Services</h2>
+          <h2 className="heading text-center">Servicios</h2>
           <p className="text_para text-center">
             We offer the following services:
           </p>
