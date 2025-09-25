@@ -57,7 +57,7 @@ const Header = () => {
         {/* Logo and Site Title */}
         <Link to="/" className="max-w-full flex items-center gap-1 cursor-pointer ">
         <img src="./logo.png" alt="logo" className="h-20 w-30 sm:h-30 pb-1" />
-          <h1 className="md:text-2xl text-4xl">Software D T</h1>
+          <h1 className="sm:text-2xl text-4xl">Software D T</h1>
         </Link>
         
 
