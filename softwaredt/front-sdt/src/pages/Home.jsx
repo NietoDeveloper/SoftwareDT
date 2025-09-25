@@ -6,6 +6,7 @@ import Questions from "../components/Faq/Questions";
 import Guide from "../components/Explainer/Guide";
 import BogotaAir1 from "../assets/images/BogotaAir1.mp4";
 import BogotaAir2 from "../assets/images/MonserrateDron1.mp4";
+import Footer from "../components/"
 
 const Home = () => {
   return (
@@ -49,6 +50,8 @@ const Home = () => {
           src={BogotaAir2}
         />
       </section>
+
+      <Footer />
 
     </>
   );
