@@ -2,16 +2,16 @@
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-400 ">
+    <footer className="bg-black ">
         <div className="container">
             <div className=" flex w-full flex-col md:flex-row flex-wrap justify-between items-center gap-[30px] lg:gap-[10px] py-6 text-white ">
 
                 <div className="flex flex-col items-center">
                     <ul>
-                        <li className="pb-1">Doctor</li>
-                        <li className="py-1">Services</li>
-                        <li className="py-1">Contact Us</li>
-                        <li className="py-1">book.appointment@yahoo.com</li>
+                        <li className="pb-1">Proyectos</li>
+                        <li className="py-1">Servicios</li>
+                        <li className="py-1">Contacto</li>
+                        <li className="py-1">doradotech@outlook.com</li>
                     </ul>
                 </div>
 
