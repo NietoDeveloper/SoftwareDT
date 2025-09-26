@@ -5,7 +5,6 @@ import Bog1 from '../../assets/images/softwareempresas.mp4';
 
 const Herosection = () => {
 
-
   return (
     <>
 
@@ -26,7 +25,7 @@ const Herosection = () => {
             className="text-[36px] leading-[36px]
                      text-gray-800  md:text-[60px] font-[600] md:leading-[70px]"
           >
-            We help patients lead a healthy, happy life
+            Construimos las soluciones para nuestros clientes
           </h1>
           <p className="text_para ">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius,
