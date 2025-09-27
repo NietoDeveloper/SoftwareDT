@@ -11,7 +11,7 @@ const Herosection = () => {
       {/* hero content */}
       <div>
         
-          <section className={`h-[108vh] w-full relative flex justify-center`}>
+          <section className={`h-[110vh] w-full relative flex justify-center`}>
             <video
               autoPlay
               loop
