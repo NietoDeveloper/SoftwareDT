@@ -71,7 +71,7 @@ const Header = () => {
                   className={({ isActive }) =>
                     isActive
                       ? "text-black font-bold text-xl leading-7"
-                      : "text-black font-semi-bold text-xl leading-7 hover:text-yellow-400"
+                      : "text-withe font-semi-bold text-xl leading-7 hover:text-yellow-400"
                   }
                 >
                   {link.name}
@@ -92,10 +92,10 @@ const Header = () => {
         {/* Log Out/Log In Button */}
         <div className="hidden md:flex items-center gap-4">
           <button
-            className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center"
+            className="bg-yellow-400 text-blue px-4 py-2 rounded-md flex items-center"
             onClick={user ? handleLogOut : () => navigate('/login')}
           >
-            {user ? "Log Out" : "Log In"}
+            {user ? "Log Out" : "Entrar"}
           </button>
         </div>
 
@@ -116,7 +116,7 @@ const Header = () => {
                 <li key={index}>
                   <NavLink
                     to={link.path}
-                    className="text-2xl font-medium text-black hover:text-yellow-400"
+                    className="text-2xl font-medium text-blue hover:text-yellow-400"
                     onClick={handleMobileMenu}
                   >
                     {link.name}
@@ -125,7 +125,7 @@ const Header = () => {
               ))}
             </ul>
             <button
-              className="bg-yellow-400 text-[24px] text-black px-6 py-2 mt-16 rounded-md flex items-center"
+              className="bg-yellow-400 text-[24px] text-withe px-6 py-2 mt-16 rounded-md flex items-center"
               onClick={user ? handleLogOut : () => navigate('/login')}
             >
               {user ? "Log Out" : "Entrar"}
