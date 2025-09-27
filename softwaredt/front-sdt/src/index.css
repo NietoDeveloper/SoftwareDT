@@ -4,7 +4,7 @@
 
 @layer components {
   .header {
-    @apply bg-[url('./assets/header-bg.png')] bg-no-repeat bg-cover bg-center w-full h-[100px];
+    @apply  bg-no-repeat bg-cover bg-center w-full h-[100px];
   }
   .container {
     @apply mx-auto px-20 max-w-full w-[1440px];
@@ -22,7 +22,7 @@
 
 @layer components {
   .header {
-    @apply bg-[url('./assets/images/header-bg.png')] bg-no-repeat bg-cover bg-center w-full h-[100px];
+    @apply  bg-no-repeat bg-cover bg-center w-full h-[100px];
   }
   .heading{
     @apply text-[44px] leading-[54px] font-[700] text-gray-700

@@ -52,7 +52,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="header bg-transparent flex items-center" ref={headerRef}>
+    <nav className="header bg-transparent flex items-center" >
       <div className="md:container flex items-center justify-between gap-4 w-full mx-4">
         {/* Logo and Site Title */}
         <Link to="/" className="max-w-full flex items-center gap-1 cursor-pointer ">

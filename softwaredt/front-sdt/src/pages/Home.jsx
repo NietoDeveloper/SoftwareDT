@@ -11,7 +11,7 @@ import Footer from "../components/Footer/Footer";
 const Home = () => {
   return (
     <>
-      <section className={`h-[108vh] w-full relative flex justify-center`}>
+      <section className={`h-[110vh] w-full relative flex justify-center`}>
         <video
           autoPlay
           loop
@@ -20,7 +20,7 @@ const Home = () => {
           src={BogotaAir1}
         />
       </section>
-      <section className="hero_section 2xl:h-[800px]">
+      <section className="hero_section 2xl:h-[110vh]">
         {/*Hero section */}
         <div className="container">
           <div className=" w-full">
