@@ -56,7 +56,7 @@ const Header = () => {
       <div className="md:container flex items-center justify-between gap-2 w-full mx-4">
         {/* Logo and Site Title */}
         <Link to="/" className="max-w-full flex items-center gap-1 cursor-pointer ">
-        <img src="./logo.png" alt="logo" className="h-15 w-20 sm:h-30 pb-1" />
+        <img src="./logo.png" alt="logo" className="h-20 w-25 sm:h-30 pb-1" />
         </Link>
         
 
@@ -100,7 +100,7 @@ const Header = () => {
         </div>
 
         {/* Mobile Menu Icon */}
-        <div onClick={handleMobileMenu} className="block md:hidden">
+        <div onClick={handleMobileMenu} className="block md:hidden cursor-pointer">
           {openMenu ? <FaTimes size={25} /> : <FaBars size={28} />}
         </div>
 
@@ -108,8 +108,8 @@ const Header = () => {
         {/* Mobile Menu */}
         {openMenu && (
           <div
-            className="fixed inset-0 bg-white bg-opacity-95 z-10 flex flex-col items-center gap-4 py-6 left-24  transition-transform transform border-t-4 border-l-2 shadow-md"
-            style={{ top: '70px' }}
+            className="fixed inset-0 bg-transparent bg-opacity-95 z-10 flex flex-col items-center gap-4 py-6 left-24  transition-transform transform shadow-md"
+            style={{ top: '100px' }}
           >
             <ul className="flex flex-col items-center justify-between gap-4 h-[20rem]">
               {navLinks.map((link, index) => (
