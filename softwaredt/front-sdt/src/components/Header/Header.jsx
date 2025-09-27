@@ -70,8 +70,8 @@ const Header = () => {
                   to={link.path}
                   className={({ isActive }) =>
                     isActive
-                      ? "text-blue-600 font-bold text-xl leading-7"
-                      : "text-gray-700 text-xl leading-7 hover:text-blue-500"
+                      ? "text-black font-bold text-xl leading-7"
+                      : "text-black font-semi-bold text-xl leading-7 hover:text-yellow-400"
                   }
                 >
                   {link.name}
