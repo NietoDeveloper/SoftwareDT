@@ -52,7 +52,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="header bg-transparent flex items-center justify-center fixed top-4 left-0 w-full h-16 z-10 px-10 2xl:px-28 transition-all duration-300 ease-out" >
+    <nav className="header bg-transparent flex items-center justify-center fixed top-4 left-0 w-full h-16 z-10 px-10 transition-all duration-300 ease-out" >
       <div className="md:container flex items-center justify-between gap-2 w-full mx-4">
         {/* Logo and Site Title */}
         <Link to="/" className="max-w-full flex items-center gap-2 cursor-pointer ">
@@ -63,7 +63,7 @@ const Header = () => {
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:block">
-          <ul className="flex items-center gap-11">
+          <ul className="flex items-center gap-2">
             {navLinks.map((link, index) => (
               <li key={index}>
                 <NavLink
