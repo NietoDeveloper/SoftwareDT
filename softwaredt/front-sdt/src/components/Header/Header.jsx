@@ -108,15 +108,15 @@ const Header = () => {
         {/* Mobile Menu */}
         {openMenu && (
           <div
-            className="fixed inset-0 bg-transparent bg-opacity-95 z-10 flex flex-col items-center gap-4 py-6 left-24  transition-transform transform shadow-md"
-            style={{ top: '100px' }}
+            className="fixed inset-0 backdrop-blur bg-opacity-80 z-10 flex flex-col items-center gap-4 py-6 left-24  transition-transform transform shadow-md"
+            style={{ top: '115px' }}
           >
-            <ul className="flex flex-col items-center justify-between gap-4 h-[20rem]">
+            <ul className="flex flex-col items-center justify-between gap-4 h-[15rem]">
               {navLinks.map((link, index) => (
                 <li key={index}>
                   <NavLink
                     to={link.path}
-                    className="text-3xl text-gray-900 hover:text-blue-200"
+                    className="text-2xl text-black-900 hover:text-yellow-400"
                     onClick={handleMobileMenu}
                   >
                     {link.name}
