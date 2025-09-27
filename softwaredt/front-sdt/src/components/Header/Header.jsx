@@ -52,7 +52,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="header bg-transparent flex items-center justify-center fixed top-5 left-0 w-full h-26 z-10 px-10 2xl:px-28 transition-all duration-300 ease-out" >
+    <nav className="header bg-transparent flex items-center justify-center fixed top-5 left-0 w-full h-20 z-10 px-10 2xl:px-28 transition-all duration-300 ease-out" >
       <div className="md:container flex items-center justify-between gap-2 w-full mx-4">
         {/* Logo and Site Title */}
         <Link to="/" className="max-w-full flex items-center gap-1 cursor-pointer ">
@@ -108,7 +108,7 @@ const Header = () => {
         {/* Mobile Menu */}
         {openMenu && (
           <div
-            className="fixed inset-0 backdrop-blur bg-opacity-80 z-10 flex flex-col items-center gap-4 py-6 left-24  transition-transform transform shadow-md"
+            className="fixed inset-0 backdrop-blur bg-opacity-90 z-10 flex flex-col items-center gap-4 py-6 left-24  transition-transform transform shadow-md"
             style={{ top: '115px' }}
           >
             <ul className="flex flex-col items-center justify-between gap-4 h-[15rem]">
@@ -116,7 +116,7 @@ const Header = () => {
                 <li key={index}>
                   <NavLink
                     to={link.path}
-                    className="text-2xl text-black-900 hover:text-yellow-400"
+                    className="text-2xl font-medium text-black hover:text-yellow-400"
                     onClick={handleMobileMenu}
                   >
                     {link.name}
@@ -125,7 +125,7 @@ const Header = () => {
               ))}
             </ul>
             <button
-              className="bg-blue-600 text-[34px] text-white px-4 py-2 mt-16 rounded-md flex items-center"
+              className="bg-blue-600 text-[24px] text-white px-4 py-2 mt-16 rounded-md flex items-center"
               onClick={user ? handleLogOut : () => navigate('/login')}
             >
               {user ? "Log Out" : "Log In"}
