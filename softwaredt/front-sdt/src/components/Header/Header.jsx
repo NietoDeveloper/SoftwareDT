@@ -102,7 +102,7 @@ const Header = () => {
 
         {/* Mobile Menu Icon */}
         <div onClick={handleMobileMenu} className="block md:hidden">
-          {openMenu ? <FaTimes size={25} /> : <FaBars size={25} />}
+          {openMenu ? <FaTimes size={25} /> : <FaBars size={28} />}
         </div>
 
 
