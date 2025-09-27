@@ -52,12 +52,11 @@ const Header = () => {
   };
 
   return (
-    <nav className="header bg-transparent flex items-center justify-center fixed top-0 left-0 w-full h-24 z-10 px-8 2xl:px-28 transition-all duration-300 ease-out" >
+    <nav className="header bg-transparent flex items-center justify-center fixed top-5 left-0 w-full h-26 z-10 px-10 2xl:px-28" >
       <div className="md:container flex items-center justify-between gap-4 w-full mx-4">
         {/* Logo and Site Title */}
         <Link to="/" className="max-w-full flex items-center gap-1 cursor-pointer ">
-        <img src="./logo.png" alt="logo" className="h-20 w-30 sm:h-30 pb-1" />
-          <h1 className="sm:text-2xl text-2xl">Software D T</h1>
+        <img src="./logo.png" alt="logo" className="h-15 w-20 sm:h-30 pb-1" />
         </Link>
         
 
