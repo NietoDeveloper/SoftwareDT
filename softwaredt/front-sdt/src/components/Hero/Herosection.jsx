@@ -2,11 +2,17 @@ import { Link } from 'react-router-dom';
 import heroimage3 from '../../assets/images/hero-img03.png';
 import heroimage4 from '../../assets/images/feature-img.png';
 import Bog1 from '../../assets/images/softwareempresas.mp4';
+import '../../App.css';
+
+  const handleButtonClick = () => {
+    alert('¡Botón Pulsado! 🚀');
+  };
 
 const Herosection = () => {
 
   return (
     <>
+    
 
       {/* hero content */}
       <div>
