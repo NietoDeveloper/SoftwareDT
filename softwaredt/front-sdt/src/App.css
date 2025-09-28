@@ -25,7 +25,7 @@ body{
 
 .modern-button {
   /* Estilo base */
-  background-color: transparent; /* Fondo transparente o muy claro/oscuro */
+  background-color: red; /* Fondo transparente o muy claro/oscuro */
   color: white; /* Texto claro para contrastar con el video/fondo oscuro */
   border: 1px solid white; /* Borde sutil */
   padding: 12px 24px;
