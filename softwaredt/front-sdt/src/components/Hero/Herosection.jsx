@@ -29,8 +29,7 @@ const Herosection = () => {
           </h1>
           <p className="text_para ">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius,
-            obcaecati minus aliquid aliquam facere accusantium atque doloribus?
-            Numquam at temporibus ipsum voluptate architecto! Quam veniam q uas
+            obcaecati minus aliquptate architecto! Quam veniam q uas
             fugiat repellat laudantium tempore?
           </p>
           <Link to="/doctors">
