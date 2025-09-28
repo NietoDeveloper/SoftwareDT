@@ -103,19 +103,20 @@ const Header = () => {
         {/* Log Out/Log In Button */}
         <div className="hidden md:flex items-center gap-4">
           <button
-  onClick={user ? handleLogOut : () => navigate('/login')}
-  className="bg-blue-700 text-white px-4 py-2 flex items-center
+            onClick={user ? handleLogOut : () => navigate("/login")}
+            className="bg-blue-700 text-white px-4 py-2 flex items-center
              rounded-full font-bold shadow-2xl 
              transition-all duration-300 ease-in-out transform
              hover:bg-yellow-400 hover:text-gray-900 hover:scale-105 hover:shadow-glow-xl
              focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
-  style={{
-    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.5)', // Sombra inicial marcada
-    '--tw-shadow-glow-xl': '0 0 25px rgba(252, 211, 77, 0.8), 0 0 50px rgba(252, 211, 77, 0.6)' // Brillo amarillo en hover
-  }}
->
-  {user ? "Log Out" : "Entrar"}
-</button>
+            style={{
+              boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)", // Sombra inicial marcada
+              "--tw-shadow-glow-xl":
+                "0 0 25px rgba(252, 211, 77, 0.8), 0 0 50px rgba(252, 211, 77, 0.6)", // Brillo amarillo en hover
+            }}
+          >
+            {user ? "Log Out" : "Entrar"}
+          </button>
         </div>
 
         {/* Mobile Menu Icon */}
