@@ -22,3 +22,32 @@ body{
     box-shadow: 3px 3px -8px 3px #e0e308;
    
 }
+
+.modern-button {
+  /* Estilo base */
+  background-color: transparent; /* Fondo transparente o muy claro/oscuro */
+  color: white; /* Texto claro para contrastar con el video/fondo oscuro */
+  border: 1px solid white; /* Borde sutil */
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600; /* Un poco más grueso */
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px; /* Bordes ligeramente redondeados */
+  
+  /* Transición suave para el efecto hover */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Efecto Hover (estilo sutil de llenado o cambio de color) */
+.modern-button:hover {
+  background-color: rgba(255, 255, 255, 0.15); /* Fondo ligeramente visible al hacer hover */
+  color: white; /* Asegura que el texto permanezca blanco */
+  border-color: rgba(255, 255, 255, 0.5); /* Borde sutilmente más visible */
+}
+
+/* Opcional: Estilo al estar presionado (activo) */
+.modern-button:active {
+  transform: scale(0.98); /* Ligera reducción para feedback */
+}
