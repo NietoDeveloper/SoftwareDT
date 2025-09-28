@@ -104,7 +104,6 @@ const Header = () => {
           {openMenu ? <FaTimes size={25} /> : <FaBars size={28} />}
         </div>
 
-
         {/* Mobile Menu */}
         {openMenu && (
           <div
