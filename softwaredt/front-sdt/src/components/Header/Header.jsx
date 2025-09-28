@@ -1,9 +1,9 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { FaTimes, FaBars } from 'react-icons/fa';
-import { useContext, useEffect, useRef, useState } from 'react';
-import { AppContext } from '../../context/UserContext';
-import { axiosusers } from '../../API/api';
-import Profile from '../../features/Profile';
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { FaTimes, FaBars } from "react-icons/fa";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AppContext } from "../../context/UserContext";
+import { axiosusers } from "../../API/api";
+import Profile from "../../features/Profile";
 
 const navLinks = [
   { path: "/", name: "Inicio" },
@@ -24,42 +24,46 @@ const Header = () => {
   };
 
   const handleScroll = () => {
-    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-      headerRef.current.classList.add('sticky-nav');
+    if (
+      document.body.scrollTop > 80 ||
+      document.documentElement.scrollTop > 80
+    ) {
+      headerRef.current.classList.add("sticky-nav");
     } else {
-      headerRef.current.classList.remove('sticky-nav');
+      headerRef.current.classList.remove("sticky-nav");
     }
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleLogOut = async () => {
     try {
-      const response = await axiosusers.post('/logout');
+      const response = await axiosusers.post("/logout");
       if (response.status === 204) {
         setUser(null);
         setToken(null);
-        navigate('/');
+        navigate("/");
       } else {
-        console.log('Error logging out');
+        console.log("Error logging out");
       }
     } catch (error) {
-      console.log('Error logging out', error);
+      console.log("Error logging out", error);
     }
   };
 
   return (
-    <nav className="header bg-transparent absolute flex items-center justify-center top-4 left-0 w-full h-16 z-10 transition-all duration-300 ease-out" >
+    <nav className="header bg-transparent absolute flex items-center justify-center top-4 left-0 w-full h-16 z-10 transition-all duration-300 ease-out">
       <div className="md:container flex items-center justify-between gap-2 w-full mx-12">
         {/* Logo and Site Title */}
-        <Link to="/" className="max-w-full flex items-center gap-2 cursor-pointer ">
-        <img src="./logo.png" alt="logo" className="h-20 w-25 sm:h-30 pb-1" />
+        <Link
+          to="/"
+          className="max-w-full flex items-center gap-2 cursor-pointer "
+        >
+          <img src="./logo.png" alt="logo" className="h-20 w-25 sm:h-30 pb-1" />
         </Link>
-        
-
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:block">
@@ -83,9 +87,16 @@ const Header = () => {
 
         {/* Mobile and Desktop Avatar */}
         {user && (
-          <div className="flex items-center gap-4" onClick={() => setProfile(!profile)}>
-            <img src={user.photo} alt="user-profile" className="rounded-full h-12 w-12 md:h-16 md:w-16 object-cover cursor-pointer" />
-            {profile && <Profile/>}
+          <div
+            className="flex items-center gap-4"
+            onClick={() => setProfile(!profile)}
+          >
+            <img
+              src={user.photo}
+              alt="user-profile"
+              className="rounded-full h-12 w-12 md:h-16 md:w-16 object-cover cursor-pointer"
+            />
+            {profile && <Profile />}
           </div>
         )}
 
@@ -93,14 +104,17 @@ const Header = () => {
         <div className="hidden md:flex items-center gap-4">
           <button
             className="bg-yellow-400 text-blue px-4 py-2 rounded-md flex items-center"
-            onClick={user ? handleLogOut : () => navigate('/login')}
+            onClick={user ? handleLogOut : () => navigate("/login")}
           >
             {user ? "Log Out" : "Entrar"}
           </button>
         </div>
 
         {/* Mobile Menu Icon */}
-        <div onClick={handleMobileMenu} className="block md:hidden cursor-pointer">
+        <div
+          onClick={handleMobileMenu}
+          className="block md:hidden cursor-pointer"
+        >
           {openMenu ? <FaTimes size={25} /> : <FaBars size={28} />}
         </div>
 
@@ -108,7 +122,7 @@ const Header = () => {
         {openMenu && (
           <div
             className="fixed inset-0 backdrop-blur bg-opacity-90 z-10 flex flex-col items-center gap-4 py-6 transition-transform transform shadow-md"
-            style={{ top: '85px' }}
+            style={{ top: "85px" }}
           >
             <ul className="flex flex-col items-center justify-between gap-4 h-[12rem]">
               {navLinks.map((link, index) => (
@@ -124,8 +138,17 @@ const Header = () => {
               ))}
             </ul>
             <button
-              className="bg-yellow-400 text-[24px] text-withe px-6 py-2 mt-16 rounded-md flex items-center"
-              onClick={user ? handleLogOut : () => navigate('/login')}
+              onClick={user ? handleLogOut : () => navigate("/login")}
+              className="bg-blue-700 text-[24px] text-white px-6 py-2 mt-16 flex items-center
+             rounded-full font-extrabold shadow-2xl 
+             transition-all duration-300 ease-in-out transform
+             hover:bg-yellow-400 hover:text-gray-900 hover:scale-105 hover:shadow-glow-xl
+             focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
+              style={{
+                boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)", // Sombra inicial más marcada
+                "--tw-shadow-glow-xl":
+                  "0 0 25px rgba(252, 211, 77, 0.8), 0 0 50px rgba(252, 211, 77, 0.6)", // Brillo amarillo en hover
+              }}
             >
               {user ? "Log Out" : "Entrar"}
             </button>
@@ -137,8 +160,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-
-
-
