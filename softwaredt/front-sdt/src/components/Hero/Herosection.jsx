@@ -8,20 +8,21 @@ const Herosection = () => {
     <>
 
     <h2 
-    // Clase 'fixed' cambiada a 'absolute'
-    className="absolute top-[65%] left-1/4 -translate-x-1/2 
-               text-xl font-extrabold text-white tracking-wider z-50 
-               drop-shadow-lg"
+    className="absolute top-[65%] left-[35%] -translate-x-1/2 
+               text-lg md:text-3xl font-extrabold text-white tracking-wider z-50 
+               drop-shadow-lg text-center max-w-xs"
   >
     Software Dorado Technology
   </h2>
 
   <button
-    // Clase 'fixed' cambiada a 'absolute'
-    className="absolute top-[calc(65%+3rem)] left-1/4 -translate-x-1/2 z-50 
+    // Separación normal: 4rem. 
+    // Separación en escritorio (md:): 6rem para mayor espacio.
+    className="absolute top-[calc(65%+4rem)] md:top-[calc(65%+6rem)] left-[35%] -translate-x-1/2 z-50 
                bg-gradient-to-r from-blue-700 to-blue-800 text-white font-extrabold 
-               py-5 px-10 rounded-full text-2xl
-               shadow-2xl transition-all duration-300 ease-in-out transform
+               py-5 px-10 text-2xl
+               md:py-7 md:px-14 md:text-3xl 
+               rounded-full shadow-2xl transition-all duration-300 ease-in-out transform
                hover:from-yellow-400 hover:to-yellow-500 hover:text-gray-900
                hover:scale-110 hover:shadow-glow-xl
                focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
