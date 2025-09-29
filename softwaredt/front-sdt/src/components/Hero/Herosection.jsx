@@ -40,7 +40,7 @@ const Herosection = () => {
           Construimos Soluciones Para Nuestros Clientes
         </h1>
         <p className="text_para ">
-          Innovamos con soluciones de software de vanguardia.
+          Innovamos con Software de vanguardia.
 Transformamos negocios con tecnología personalizada.
 Potenciamos a empresas y personas con herramientas digitales.
         </p>
@@ -56,21 +56,21 @@ Potenciamos a empresas y personas con herramientas digitales.
             30+
           </h2>
           <span className="block h-2 w-[100px] bg-yellow-300 rounded-full mt-[-12px]"></span>
-          <p className="text_para">Years of Experience</p>
+          <p className="text_para">Clientes Satisfechos</p>
         </div>
         <div>
           <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[50px] font-[700] text-gray-800">
-            10+
+            50+
           </h2>
           <span className="block h-2 w-[100px] bg-purple-600 rounded-full mt-[-12px]"></span>
-          <p className="text_para">Locations</p>
+          <p className="text_para">Programas De Software Propios</p>
         </div>
         <div>
           <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-gray-800">
             100%
           </h2>
           <span className="block h-2 w-[150px] bg-teal-700 rounded-full mt-[-12px]"></span>
-          <p className="text_para">Guaranteed Satisfaction</p>
+          <p className="text_para">Estandar Mundial</p>
         </div>
       </div>
 
