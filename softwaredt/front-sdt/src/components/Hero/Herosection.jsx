@@ -7,16 +7,13 @@ const Herosection = () => {
   return (
     <>
       <h2 
-    // Bajamos a 60% en móvil (antes 55%). Escritorio se mantiene en 55%.
     className="absolute top-[60%] md:top-[55%] left-[35%] -translate-x-1/2 
                text-2xl md:text-4xl font-extrabold text-white tracking-wider z-50 
                drop-shadow-lg text-center max-w-xs"
   >
     Software Dorado Technology
   </h2>
-
   <button
-    // Acercamos a 5rem en móvil (antes 6rem). Escritorio se mantiene 55%+6rem.
     className="absolute top-[calc(60%+5rem)] md:top-[calc(55%+6rem)] left-[35%] -translate-x-1/2 z-50 
                bg-gradient-to-r from-blue-700 to-blue-800 text-white font-extrabold 
                py-5 px-10 text-2xl
