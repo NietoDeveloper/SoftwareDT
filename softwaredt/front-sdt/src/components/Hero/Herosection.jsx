@@ -6,22 +6,21 @@ import Bog1 from "../../assets/images/softwareempresas.mp4";
 const Herosection = () => {
   return (
     <>
-
-     <h2 
-    className="absolute top-[65%] md:top-[55%] left-[35%] -translate-x-1/2 
-               text-3xl md:text-4xl font-extrabold text-white tracking-wider z-50 
+      <h2 
+    // Bajamos a 60% en móvil (antes 55%). Escritorio se mantiene en 55%.
+    className="absolute top-[60%] md:top-[55%] left-[35%] -translate-x-1/2 
+               text-2xl md:text-4xl font-extrabold text-white tracking-wider z-50 
                drop-shadow-lg text-center max-w-xs"
   >
     Software Dorado Technology
   </h2>
 
   <button
-    // La base sube a 7rem para compensar el título más grande en móvil (text-3xl).
-    // En escritorio, se mantiene 55%+6rem, pero el título grande crea un espacio natural.
-    className="absolute top-[calc(65%+7rem)] md:top-[calc(55%+6rem)] left-[35%] -translate-x-1/2 z-50 
+    // Acercamos a 5rem en móvil (antes 6rem). Escritorio se mantiene 55%+6rem.
+    className="absolute top-[calc(60%+5rem)] md:top-[calc(55%+6rem)] left-[35%] -translate-x-1/2 z-50 
                bg-gradient-to-r from-blue-700 to-blue-800 text-white font-extrabold 
                py-5 px-10 text-2xl
-               md:py-7 md:px-14 md:text-3xl 
+               md:py-5 md:px-10 md:text-2xl 
                rounded-full shadow-2xl transition-all duration-300 ease-in-out transform
                hover:from-yellow-400 hover:to-yellow-500 hover:text-gray-900
                hover:scale-110 hover:shadow-glow-xl
@@ -34,7 +33,6 @@ const Herosection = () => {
     Contacto
   </button>
 
-    
       {/* hero content */}
       <section className={`h-[110vh] w-full relative flex justify-center`}>
         <video
