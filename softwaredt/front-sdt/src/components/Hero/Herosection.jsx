@@ -8,7 +8,7 @@ const Herosection = () => {
     <>
 
     <h2 
-    className="absolute top-[65%] left-[35%] -translate-x-1/2 
+    className="absolute top-[65%] md:top-[55%] left-[35%] -translate-x-1/2 
                text-lg md:text-3xl font-extrabold text-white tracking-wider z-50 
                drop-shadow-lg text-center max-w-xs"
   >
@@ -16,9 +16,8 @@ const Herosection = () => {
   </h2>
 
   <button
-    // Separación normal: 4rem. 
-    // Separación en escritorio (md:): 6rem para mayor espacio.
-    className="absolute top-[calc(65%+4rem)] md:top-[calc(65%+6rem)] left-[35%] -translate-x-1/2 z-50 
+    // La base es 65%+4rem. En escritorio (md:), se sube a 55% y se aumenta la separación a 6rem.
+    className="absolute top-[calc(65%+4rem)] md:top-[calc(55%+6rem)] left-[35%] -translate-x-1/2 z-50 
                bg-gradient-to-r from-blue-700 to-blue-800 text-white font-extrabold 
                py-5 px-10 text-2xl
                md:py-7 md:px-14 md:text-3xl 
@@ -33,7 +32,8 @@ const Herosection = () => {
   >
     Contacto
   </button>
-  
+
+    
       {/* hero content */}
       <section className={`h-[110vh] w-full relative flex justify-center`}>
         <video
