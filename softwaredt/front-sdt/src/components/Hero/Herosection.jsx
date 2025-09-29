@@ -32,30 +32,21 @@ const Herosection = () => {
   </button>
 
       {/* hero content */}
-      <section className={`h-[110vh] w-full relative flex justify-center`}>
-        <video
-          autoPlay
-          loop
-          muted
-          className="absolute w-full h-full object-cover"
-          src={Bog1}
-        />
-      </section>
       <div>
         <h1
           className="text-[36px] leading-[36px]
                      text-gray-800  md:text-[60px] font-[600] md:leading-[70px]"
         >
-          Construimos las soluciones para nuestros clientes
+          Construimos Soluciones Para Nuestros Clientes
         </h1>
         <p className="text_para ">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius,
-          obcaecati minus aliquptate architecto! Quam veniam q uas fugiat
-          repellat laudantium tempore?
+          Innovamos con soluciones de software de vanguardia.
+Transformamos negocios con tecnología personalizada.
+Potenciamos a empresas y personas con herramientas digitales.
         </p>
         <Link to="/doctors">
           <button className="btn border-4 border-black hover:bg-blue-500">
-            Book an Appointment
+            Agenda Tu Cita
           </button>
         </Link>
       </div>
@@ -92,6 +83,15 @@ const Herosection = () => {
           <img src={heroimage3} alt="doctor" className="w-full mb-[30px]" />
           <img src={heroimage4} alt="doctor" className="w-full mb-[30px]" />
         </div>
+        <section className="h-screen w-full relative flex justify-center overflow-hidden">
+  <video
+    autoPlay
+    loop
+    muted
+    className="absolute w-full h-full object-cover"
+    src={Bog1}
+  />
+</section>
       </div>
     </>
   );
