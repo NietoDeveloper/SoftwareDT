@@ -7,7 +7,6 @@ const Herosection = () => {
   return (
     <>
       <h2 
-    // Bajamos a 65% en móvil (antes 60%). Escritorio se mantiene en 55%.
     className="absolute top-[65%] md:top-[55%] left-[35%] -translate-x-1/2 
                text-2xl md:text-4xl font-extrabold text-white tracking-wider z-50 
                drop-shadow-lg text-center max-w-xs"
@@ -16,7 +15,6 @@ const Herosection = () => {
   </h2>
 
   <button
-    // Base móvil: 65% + 5rem. Escritorio se mantiene 55%+6rem.
     className="absolute top-[calc(65%+5rem)] md:top-[calc(55%+6rem)] left-[35%] -translate-x-1/2 z-50 
                bg-gradient-to-r from-blue-700 to-blue-800 text-white font-extrabold 
                py-5 px-10 text-2xl
