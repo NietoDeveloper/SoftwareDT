@@ -130,7 +130,7 @@ const Header = () => {
         {/* Mobile Menu */}
         {openMenu && (
           <div
-            className="fixed inset-0 backdrop-blur bg-opacity-90 z-10 flex flex-col items-center gap-4 py-6 transition-transform transform shadow-md"
+            className="fixed inset-0 backdrop-blur bg-opacity-95 z-10 flex flex-col items-center gap-4 py-6 transition-transform transform shadow-md"
             style={{ top: "85px" }}
           >
             <ul className="flex flex-col items-center justify-between gap-4 h-[10rem]">
@@ -148,7 +148,7 @@ const Header = () => {
             </ul>
             <button
               onClick={user ? handleLogOut : () => navigate("/login")}
-              className="bg-blue-700 text-[24px] text-white px-6 py-2 mt-16 flex items-center
+              className="bg-blue-700 text-[24px] text-white px-6 py-2 mt-4 flex items-center
              rounded-full font-extrabold shadow-2xl 
              transition-all duration-300 ease-in-out transform
              hover:bg-yellow-400 hover:text-gray-900 hover:scale-105 hover:shadow-glow-xl
