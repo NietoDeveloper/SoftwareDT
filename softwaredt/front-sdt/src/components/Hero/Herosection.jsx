@@ -6,15 +6,15 @@ const Herosection = () => {
   return (
     <>
       <h2
-  className="absolute top-[65%] md:top-[50%] left-[35%] -translate-x-1/2 
+        className="absolute top-[65%] md:top-[50%] left-[35%] -translate-x-1/2 
   text-3xl md:text-5xl font-extrabold text-white tracking-wider z-50 
   drop-shadow-lg text-center max-w-xs md:max-w-md"
->
-  Software Dorado Technology
-</h2>
+      >
+        Software Dorado Technology
+      </h2>
 
-<button
-  className="absolute top-[calc(65%+5rem)] md:top-[calc(50%+8rem)] left-[35%] -translate-x-1/2 z-50 
+      <button
+        className="absolute top-[calc(65%+5rem)] md:top-[calc(50%+8rem)] left-[35%] -translate-x-1/2 z-50 
   bg-gradient-to-r from-blue-700 to-blue-800 text-white font-extrabold 
   py-5 px-10 text-2xl
   md:py-6 md:px-12 md:text-3xl 
@@ -22,14 +22,14 @@ const Herosection = () => {
   hover:from-yellow-400 hover:to-yellow-500 hover:text-gray-900
   hover:scale-110 hover:shadow-glow-xl
   focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
-  style={{
-    boxShadow: "0 15px 40px rgba(0, 0, 0, 0.6)",
-    "--tw-shadow-glow-xl":
-      "0 0 30px rgba(252, 211, 77, 0.8), 0 0 60px rgba(252, 211, 77, 0.6)",
-  }}
->
-  Contacto
-</button>
+        style={{
+          boxShadow: "0 15px 40px rgba(0, 0, 0, 0.6)",
+          "--tw-shadow-glow-xl":
+            "0 0 30px rgba(252, 211, 77, 0.8), 0 0 60px rgba(252, 211, 77, 0.6)",
+        }}
+      >
+        Contacto
+      </button>
 
       {/* hero content */}
       <div className="relative w-full h-screen overflow-hidden">
@@ -37,12 +37,15 @@ const Herosection = () => {
           className="text-[36px] leading-[36px]
                      text-gray-800 mt-10 md:text-[60px] font-[600] md:leading-[70px]"
         >
-          Construimos Soluciones Para Nuestros Clientes
+          Construimos Software Que Da Solucion
         </h1>
         <p className="text_para mt-10">
-          Innovamos con Software de vanguardia. Transformamos negocios con
-          tecnología personalizada. Potenciamos a empresas y personas con
-          herramientas digitales.
+          Innovamos con software de vanguardia. Transformamos negocios con
+          tecnología personalizada. Potenciamos empresas con herramientas
+          digitales. Diseñamos apps, web y software a medida. Soluciones
+          escalables, intuitivas y eficientes. Tu visión, nuestra tecnología,
+          resultados reales. Eleva tu
+          negocio con nosotros.
         </p>
         <Link to="/doctors">
           <button className="btn border-4 border-black hover:bg-blue-500">
