@@ -35,11 +35,11 @@ const Herosection = () => {
       <div>
         <h1
           className="text-[36px] leading-[36px]
-                     text-gray-800  md:text-[60px] font-[600] md:leading-[70px]"
+                     text-gray-800 mt-10 md:text-[60px] font-[600] md:leading-[70px]"
         >
           Construimos Soluciones Para Nuestros Clientes
         </h1>
-        <p className="text_para ">
+        <p className="text_para mt-10">
           Innovamos con Software de vanguardia.
 Transformamos negocios con tecnología personalizada.
 Potenciamos a empresas y personas con herramientas digitales.
@@ -53,17 +53,17 @@ Potenciamos a empresas y personas con herramientas digitales.
       <div className="mt-[25px] flex flex-col lg:flex-row lg:items-center lg:mt-[20px] gap-5 lg:gap-30px">
         <div>
           <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-gray-800">
-            30+
+            50+
           </h2>
           <span className="block h-2 w-[100px] bg-yellow-300 rounded-full mt-[-12px]"></span>
           <p className="text_para">Clientes Satisfechos</p>
         </div>
         <div>
           <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[50px] font-[700] text-gray-800">
-            50+
+            60+
           </h2>
           <span className="block h-2 w-[100px] bg-purple-600 rounded-full mt-[-12px]"></span>
-          <p className="text_para">Programas De Software Propios</p>
+          <p className="text_para">App's Y Software Propios</p>
         </div>
         <div>
           <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-gray-800">
