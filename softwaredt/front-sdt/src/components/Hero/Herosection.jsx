@@ -45,8 +45,7 @@ const Herosection = () => {
           tecnología personalizada. Potenciamos empresas con herramientas
           digitales. Diseñamos apps, web y software a medida. Soluciones
           escalables, intuitivas y eficientes. Tu visión, nuestra tecnología,
-          resultados reales. Eleva tu
-          negocio con nosotros.
+          resultados reales. Eleva tu negocio con nosotros.
         </p>
         <Link to="/doctors">
           <button className="btn border-4 border-black hover:bg-blue-500">

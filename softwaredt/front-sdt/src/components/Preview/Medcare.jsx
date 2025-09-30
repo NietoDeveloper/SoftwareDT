@@ -11,7 +11,7 @@ const Medcare = () => {
         <div className="container">
           <div className="lg:w-[480px] mx-auto pt-10">
             <h2 className="heading text-center">
-              Providing the best medical care
+              Ofrecemos el Mejor Software De Colombia
             </h2>
             <p className="text_para text-center">
               Unmatched world-class medical care for everyone. We&apos;re a
@@ -30,7 +30,7 @@ const Medcare = () => {
                   className="text-[26px] leading-9 text-gray-900 
                         font-[700] text-center"
                 >
-                  Find a doctor
+                  Servicios
                 </h2>
                 <p className="text-[16px] leading-7 text-gray-800 font-[400] text-center mt-4">
                   World class healthcare for everyone. Our staff consists of
@@ -56,7 +56,7 @@ const Medcare = () => {
                   className="text-[26px] leading-9 text-gray-900 
                         font-[700] text-center"
                 >
-                  Leading experts
+                  Nuestros Expertos 
                 </h2>
                 <p className="text-[16px] leading-7 text-gray-800 font-[400] text-center mt-4">
                   World class healthcare for everyone. Our staff consists of
@@ -82,7 +82,7 @@ const Medcare = () => {
                   className="text-[26px] leading-9 text-gray-900 
                         font-[700] text-center"
                 >
-                  Experienced staff
+                  Productos
                 </h2>
                 <p className="text-[16px] leading-7 text-gray-800 font-[400] text-center mt-4">
                   World class healthcare for everyone. Our staff consists of
