@@ -6,16 +6,16 @@ import Bog1 from "../../assets/images/softwareempresas.mp4";
 const Herosection = () => {
   return (
     <>
-      <h2 
-    className="absolute top-[65%] md:top-[55%] left-[35%] -translate-x-1/2 
+      <h2
+        className="absolute top-[65%] md:top-[55%] left-[35%] -translate-x-1/2 
                text-2xl md:text-4xl font-extrabold text-white tracking-wider z-50 
                drop-shadow-lg text-center max-w-xs"
-  >
-    Software Dorado Technology
-  </h2>
+      >
+        Software Dorado Technology
+      </h2>
 
-  <button
-    className="absolute top-[calc(65%+5rem)] md:top-[calc(55%+6rem)] left-[35%] -translate-x-1/2 z-50 
+      <button
+        className="absolute top-[calc(65%+5rem)] md:top-[calc(55%+6rem)] left-[35%] -translate-x-1/2 z-50 
                bg-gradient-to-r from-blue-700 to-blue-800 text-white font-extrabold 
                py-5 px-10 text-2xl
                md:py-5 md:px-10 md:text-2xl 
@@ -23,16 +23,24 @@ const Herosection = () => {
                hover:from-yellow-400 hover:to-yellow-500 hover:text-gray-900
                hover:scale-110 hover:shadow-glow-xl
                focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
-    style={{
-      boxShadow: '0 15px 40px rgba(0, 0, 0, 0.6)',
-      '--tw-shadow-glow-xl': '0 0 30px rgba(252, 211, 77, 0.8), 0 0 60px rgba(252, 211, 77, 0.6)' 
-    }}
-  >
-    Contacto
-  </button>
+        style={{
+          boxShadow: "0 15px 40px rgba(0, 0, 0, 0.6)",
+          "--tw-shadow-glow-xl":
+            "0 0 30px rgba(252, 211, 77, 0.8), 0 0 60px rgba(252, 211, 77, 0.6)",
+        }}
+      >
+        Contacto
+      </button>
 
       {/* hero content */}
       <div>
+        <video
+          autoPlay
+          loop
+          muted
+          className="absolute w-full h-full object-cover"
+          src={Bog1}
+        />
         <h1
           className="text-[36px] leading-[36px]
                      text-gray-800 mt-10 md:text-[60px] font-[600] md:leading-[70px]"
@@ -40,9 +48,9 @@ const Herosection = () => {
           Construimos Soluciones Para Nuestros Clientes
         </h1>
         <p className="text_para mt-10">
-          Innovamos con Software de vanguardia.
-Transformamos negocios con tecnología personalizada.
-Potenciamos a empresas y personas con herramientas digitales.
+          Innovamos con Software de vanguardia. Transformamos negocios con
+          tecnología personalizada. Potenciamos a empresas y personas con
+          herramientas digitales.
         </p>
         <Link to="/doctors">
           <button className="btn border-4 border-black hover:bg-blue-500">
@@ -83,15 +91,7 @@ Potenciamos a empresas y personas con herramientas digitales.
           <img src={heroimage3} alt="doctor" className="w-full mb-[30px]" />
           <img src={heroimage4} alt="doctor" className="w-full mb-[30px]" />
         </div>
-        <section className="h-screen w-full relative flex justify-center overflow-hidden">
-  <video
-    autoPlay
-    loop
-    muted
-    className="absolute w-full h-full object-cover"
-    src={Bog1}
-  />
-</section>
+        <section className="h-screen w-full relative flex justify-center overflow-hidden"></section>
       </div>
     </>
   );
