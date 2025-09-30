@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import heroimage2 from "../../assets/images/banner5.png";
 import heroimage3 from "../../assets/images/hero-img03.png";
 import heroimage4 from "../../assets/images/feature-img.png";
 
@@ -79,14 +80,11 @@ const Herosection = () => {
 
       {/* hero images */}
       <div className="flex gap-[30px] justify-end">
-        <div className="flex-grow">
-          <img src={heroimage4} alt="doctor" className="w-full" />
-        </div>
         <div className="mt-[30px]">
           <img src={heroimage3} alt="doctor" className="w-full mb-[30px]" />
           <img src={heroimage4} alt="doctor" className="w-full mb-[30px]" />
+          <img src={heroimage2} alt="doctor" className="w-full" />
         </div>
-        <section className="h-screen w-full relative flex justify-center overflow-hidden"></section>
       </div>
     </>
   );
