@@ -1,8 +1,8 @@
-import xrayfeature from '../../assets/images/xrayfeat.jpg';
-import surgery from '../../assets/images/surgery.jpg';
-import feature from '../../assets/images/medicalfeat.jpg';
-import {Link} from 'react-router-dom';
-import {BsArrowRight} from 'react-icons/bs';
+import xrayfeature from "../../assets/images/xrayfeat.jpg";
+import surgery from "../../assets/images/surgery.jpg";
+import feature from "../../assets/images/softwareempresas.mp4";
+import { Link } from "react-router-dom";
+import { BsArrowRight } from "react-icons/bs";
 
 const Medcare = () => {
   return (
@@ -22,7 +22,14 @@ const Medcare = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] lg:mt-[55px]">
             <div className="py-[30px] px-5">
               <div className="flex items-center justify-center">
-                <img src={feature} alt="icon" className="rounded-2xl" />
+                <video
+                  src={feature}
+                  autoPlay
+                  loop
+                  muted
+                  alt="icon"
+                  className="rounded-2xl"
+                />
               </div>
 
               <div className="mt-[30px]">
@@ -56,7 +63,7 @@ const Medcare = () => {
                   className="text-[26px] leading-9 text-gray-900 
                         font-[700] text-center"
                 >
-                  Nuestros Expertos 
+                  Nuestros Expertos
                 </h2>
                 <p className="text-[16px] leading-7 text-gray-800 font-[400] text-center mt-4">
                   World class healthcare for everyone. Our staff consists of
@@ -102,7 +109,7 @@ const Medcare = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
 export default Medcare;
