@@ -33,14 +33,7 @@ const Herosection = () => {
       </button>
 
       {/* hero content */}
-      <div>
-        <video
-          autoPlay
-          loop
-          muted
-          className="absolute w-full h-full object-cover"
-          src={Bog1}
-        />
+      <div className="relative w-full h-screen overflow-hidden">
         <h1
           className="text-[36px] leading-[36px]
                      text-gray-800 mt-10 md:text-[60px] font-[600] md:leading-[70px]"
@@ -71,7 +64,7 @@ const Herosection = () => {
             60+
           </h2>
           <span className="block h-2 w-[100px] bg-purple-600 rounded-full mt-[-12px]"></span>
-          <p className="text_para">App's Y Software Propios</p>
+          <p className="text_para">Apps Y Software Propios</p>
         </div>
         <div>
           <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-gray-800">
@@ -84,6 +77,13 @@ const Herosection = () => {
 
       {/* hero images */}
       <div className="flex gap-[30px] justify-end">
+                        <video
+          autoPlay
+          loop
+          muted
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          src={Bog1}
+        />
         <div className="flex-grow">
           <img src={heroimage4} alt="doctor" className="w-full" />
         </div>
