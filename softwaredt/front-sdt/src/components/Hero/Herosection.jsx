@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import heroimage3 from "../../assets/images/hero-img03.png";
 import heroimage4 from "../../assets/images/feature-img.png";
-import Bog1 from "../../assets/images/softwareempresas.mp4";
 
 const Herosection = () => {
   return (
@@ -77,13 +76,6 @@ const Herosection = () => {
 
       {/* hero images */}
       <div className="flex gap-[30px] justify-end">
-                        <video
-          autoPlay
-          loop
-          muted
-          className="absolute top-0 left-0 w-full h-full object-cover"
-          src={Bog1}
-        />
         <div className="flex-grow">
           <img src={heroimage4} alt="doctor" className="w-full" />
         </div>
