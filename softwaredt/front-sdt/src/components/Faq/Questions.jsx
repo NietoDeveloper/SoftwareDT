@@ -1,5 +1,5 @@
 import FaqItem from "./Dropdown";
-import faqimg from '../../assets/images/faqImg.webp';
+import equipo1 from '../../assets/images/equipo1.png';
 import softlive from '../../assets/images/softlive.mp4';
 
 const Questions = () => {
@@ -19,7 +19,7 @@ const Questions = () => {
     </div>
     <div className="flex flex-col lg:flex-row justify-between lg:gap-2 gap-[50px]">
       <div className="w-full lg:w-1/2 pb-3">
-        <img src={faqimg} alt="faq" className="rounded-2xl" />
+        <img src={equipo1} alt="faq" className="rounded-2xl" />
       </div>
       <div className="pl-5 lg:mt-[30px] w-full">
         <div className="w-full">
