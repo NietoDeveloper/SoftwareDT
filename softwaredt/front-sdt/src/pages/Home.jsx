@@ -6,7 +6,6 @@ import Questions from "../components/Faq/Questions";
 import Guide from "../components/Explainer/Guide";
 import BogotaAir1 from "../assets/images/BogotaAir1.mp4";
 import BogotaAir2 from "../assets/images/MonserrateDron1.mp4";
-import softlive from "../assets/images/softlive.mp4"
 import Footer from "../components/Footer/Footer";
 
 const Home = () => {
@@ -37,14 +36,6 @@ const Home = () => {
       <About />
 
       <Services />
-
-              <video
-          autoPlay
-          loop
-          muted
-          className="absolute w-full h-full object-cover z-0"
-          src={softlive}
-        />
 
       <Guide />
 
