@@ -63,7 +63,7 @@ const Medcare = () => {
                   className="text-[26px] leading-9 text-gray-900 
                         font-[700] text-center"
                 >
-                  Nuestros Expertos
+                  Las Mejores Technologias
                 </h2>
                 <p className="text-[16px] leading-7 text-gray-800 font-[400] text-center mt-4">
                   World class healthcare for everyone. Our staff consists of
