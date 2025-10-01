@@ -1,19 +1,9 @@
 import about1 from '../assets/images/herodoctor4.png';
 import { Link } from 'react-router-dom';
-import aboutvid from "../assets/images/aboutvid.mp4";
 
 const About = () => {
   return (
     <section>
-
-                    <video
-                      autoPlay
-                      loop
-                      muted
-                      className="absolute w-full h-full object-cover z-0"
-                      src={aboutvid}
-                    />
-
         <div className="container pb-8">
             <div className="flex justify-between gap-[50px] lg:gap-[130px] xl:gap-0 flex-col
             lg:flex-row">
@@ -24,7 +14,6 @@ const About = () => {
                         <img src="" alt="" />
                     </div>
                 </div>
-
                 <div className='w-full lg:w-1/2 xl:w-[670px] order-1 lg:order-2'>
                     <h2 className='heading'>Creamos Software Con Estandares Mundiales</h2>
                     <p className='text_para'>
