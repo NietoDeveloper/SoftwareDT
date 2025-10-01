@@ -1,5 +1,5 @@
 import techs1 from "../../assets/images/techs1.png";
-import surgery from "../../assets/images/surgery.jpg";
+import techs2 from "../../assets/images/techs2.png";
 import feature from "../../assets/images/softwareempresas.mp4";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
@@ -81,7 +81,7 @@ const Medcare = () => {
             </div>
             <div className="py-[30px] px-5">
               <div className="flex items-center justify-center">
-                <img src={surgery} alt="icon" className="rounded-2xl" />
+                <img src={techs2} alt="icon" className="rounded-2xl" />
               </div>
 
               <div className="mt-[30px]">
