@@ -17,7 +17,7 @@ const About = () => {
                 </div>
 
                 <div className='w-full lg:w-1/2 xl:w-[670px] order-1 lg:order-2'>
-                    <h2 className='heading'>World-leading healthcare experts</h2>
+                    <h2 className='heading'>Creamos Software Con Estandares Mundiales</h2>
                     <p className='text_para'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum maxime 
                         molestiae repellat commodi facere veniam, sapiente consectetur. Officiis, 
@@ -25,7 +25,7 @@ const About = () => {
                         asperiores quisquam dicta.
                     </p>
                    
-                   <Link to='/services'><button className='btn hover:bg-blue-500'>Learn More</button></Link>
+                   <Link to='/services'><button className='btn hover:bg-blue-500'>Sobre Nosotros</button></Link>
 
                 </div>
             </div>
