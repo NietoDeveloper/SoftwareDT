@@ -15,7 +15,7 @@ const Questions = () => {
   />
   <div className="container relative z-10 text-white pt-[30px] pb-8">
     <div className="xl:w-[570px] mx-auto">
-      <h2 className="heading text-center text-white">Preguntas</h2>
+      <h2 className="heading text-center text-white">Preguntas Frecuentes </h2>
     </div>
     <div className="flex flex-col lg:flex-row justify-between lg:gap-2 gap-[50px]">
       <div className="w-full lg:w-1/2 pb-3">
