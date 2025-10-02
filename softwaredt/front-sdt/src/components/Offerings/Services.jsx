@@ -2,17 +2,17 @@ import ServicesCard from './ServicesCard';
 
 const servicesList = [
   {
-    name: 'Dentist',
+    name: 'Desarrollo Web',
     desc: 'Come meet qualifed and gentle denstist for your pearly whites',
   },
 
   {
-    name: 'Surgery',
+    name: 'Soluciones para Empresas',
     desc: 'All major surgeries including open-heart, kidney transplant',
   },
 
   {
-    name: 'Therapy',
+    name: '',
     desc: 'Book a session with our resident therapists qualified in marriage counselling, addictions',
   },
   {
@@ -26,7 +26,7 @@ const servicesList = [
   },
 
   {
-    name: 'Assisted Living',
+    name: 'Productos',
     desc: 'Our nursing home is a sanctuary for your loved one thanks to qualified nurses',
   },
 ];
@@ -38,7 +38,7 @@ const Services = () => {
         <div className="xl:w-[470px] mx-auto">
           <h2 className="heading text-center">Servicios</h2>
           <p className="text_para text-center">
-            We offer the following services:
+            Ofrecemos los siguientes servicios:
           </p>
         </div>
         <div
