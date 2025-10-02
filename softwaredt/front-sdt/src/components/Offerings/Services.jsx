@@ -12,16 +12,16 @@ const servicesList = [
   },
 
   {
-    name: '',
+    name: 'Software Personalizado',
     desc: 'Book a session with our resident therapists qualified in marriage counselling, addictions',
   },
   {
-    name: 'Cancer Care',
+    name: 'Software Contable, Manejo Personal, Manejo de Usuarios E Informacion.',
     desc: 'Intensive care for cancer patients we offer chemo, surgery, and rehabilitation',
   },
 
   {
-    name: 'Labor & Delivery',
+    name: 'Manejo y creacion de portafolio de redes sociales',
     desc: 'Gentle care during labor and safe delivery to nursing the newborn and mother',
   },
 
@@ -55,13 +55,3 @@ const Services = () => {
 };
 
 export default Services;
-
-<section>
-  <div className="container">
-    <div className="xl:w-[470px] mx-auto">
-      <h2 className="heading text-center">Our Medical Services</h2>
-      <p className="text_para text-center">We offer the following services:</p>
-    </div>
-    <Services />
-  </div>
-</section>;
