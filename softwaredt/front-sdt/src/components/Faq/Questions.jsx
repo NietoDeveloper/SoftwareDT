@@ -25,7 +25,7 @@ const Questions = () => {
         <div className="w-full  ">
           <div className='my-5 bg-yellow-400'>
             <FaqItem
-              question="Which method of payment do you accept?"
+              question="Tiene algun costo la cita?"
               answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
             />
           </div>
