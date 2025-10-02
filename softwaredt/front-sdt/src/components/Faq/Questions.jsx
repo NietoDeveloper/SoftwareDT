@@ -23,14 +23,14 @@ const Questions = () => {
       </div>
       <div className="pl-5 lg:mt-[30px] w-full">
         <div className="w-full  ">
-          <div className='my-5'>
+          <div className='my-5 bg-yellow-400'>
             <FaqItem
               question="Which method of payment do you accept?"
               answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
             />
           </div>
           
-          <div className='my-4'>
+          <div className='my-4 bg-yellow-400'>
             <FaqItem
               question="How can I reschedule an appointment?"
               answer="To improve your FAQ section, you can..."
