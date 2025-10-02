@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import featuredoc from '../../assets/images/herodoctor1.jpg';
+import equipo1 from '../../assets/images/equipo1.png';
 
 const Guide = () => {
   return (
@@ -9,24 +9,24 @@ const Guide = () => {
           <div className="flex items-center justify-between flex-col lg:flex-row pb-8 lg:pb-[55px]">
             <div className="xl:w-[670px]">
               <h2 className="heading">
-                Book an appointment
-                <br /> the easy way
+                Agenda tu Cita,
+                <br /> Uno de nuestros Ing de Software te Asesorara.
               </h2>
               <ul className="pl-4">
-                <li className="text_para">1.Browse our list of doctors</li>
-                <li className="text_para">2. Choose your preferred doctor</li>
+                <li className="text_para">1. Escoje uno de nuestros Servicios</li>
+                <li className="text_para">2. Asignacion Ingeniero de Software, segun tu solicitud</li>
                 <li className="text_para">
-                  3. Schedule at your most convenient time
+                  3. Seleciona la Hora y Fecha
                 </li>
-                <li className="text_para">4. Leave a review of the doctor</li>
+                <li className="text_para">4. Deja un Mensaje al Ingeniero de Software que asistira   a tu cita.</li>
               </ul>
               <Link to="/doctors">
-                <button className="btn hover:bg-blue-500">Learn More</button>
+                <button className="btn hover:bg-blue-500">Agenda una Cita</button>
               </Link>
             </div>
 
             <div className="relative z-10 xl:w-[770px] flex justify-end mt-[50px] lg:mt-0">
-              <img src={featuredoc}  alt="featuredoc" className="rounded-3xl lg:w-4/5" />
+              <img src={equipo1}  alt="featuredoc" className="rounded-3xl lg:w-4/5" />
             </div>
           </div>
         </div>
