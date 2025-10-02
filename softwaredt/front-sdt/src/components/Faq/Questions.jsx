@@ -13,7 +13,7 @@ const Questions = () => {
     className="absolute w-full h-full object-cover z-0"
     src={softlive}
   />
-  <div className="container relative z-10 text-white pt-[30px] pb-8">
+  <div className="container relative z-10 text-black pt-[30px] pb-8">
     <div className="xl:w-[570px] mx-auto">
       <h2 className="heading text-center text-white">Preguntas Frecuentes </h2>
     </div>
@@ -22,7 +22,7 @@ const Questions = () => {
         <img src={equipo2} alt="faq" className="rounded-2xl" />
       </div>
       <div className="pl-5 lg:mt-[30px] w-full">
-        <div className="w-full">
+        <div className="w-full  ">
           <div className='my-5'>
             <FaqItem
               question="Which method of payment do you accept?"
