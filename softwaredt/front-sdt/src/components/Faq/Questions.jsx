@@ -37,7 +37,7 @@ const Questions = () => {
             />
           </div>
           
-          <div className='my-4'>
+          <div className='my-4 bg-yellow-400'>
             <FaqItem
               question="Can I set an reminder to my appointment?"
               answer="To improve your FAQ section, you can..."
