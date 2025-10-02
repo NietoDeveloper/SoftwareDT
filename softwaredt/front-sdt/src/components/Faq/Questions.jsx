@@ -32,14 +32,14 @@ const Questions = () => {
           
           <div className='my-4 bg-yellow-400'>
             <FaqItem
-              question="How can I reschedule an appointment?"
+              question="Es presencial o virtual la cita?"
               answer="To improve your FAQ section, you can..."
             />
           </div>
           
           <div className='my-4 bg-yellow-400'>
             <FaqItem
-              question="Can I set an reminder to my appointment?"
+              question="Tienen atencion en todo el pais?"
               answer="To improve your FAQ section, you can..."
             />
           </div>
