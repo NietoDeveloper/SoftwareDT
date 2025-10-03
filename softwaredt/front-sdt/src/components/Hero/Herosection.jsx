@@ -33,58 +33,97 @@ const Herosection = () => {
       </button>
 
       {/* hero content */}
-      <div className="relative w-full h-screen overflow-hidden">
-        <h1
-          className="text-[36px] leading-[36px]
-                     text-gray-800 mt-10 md:text-[60px] font-[600] md:leading-[70px]"
-        >
-          Construimos Software Que Da Solucion
-        </h1>
-        <p className="text_para mt-10">
-          Innovamos con software de vanguardia. Transformamos negocios con
-          tecnología personalizada. Potenciamos empresas con herramientas
-          digitales. Diseñamos apps, web y software a medida. Soluciones
-          escalables, intuitivas y eficientes. Tu visión, nuestra tecnología,
-          resultados reales. Eleva tu negocio con nosotros.
-        </p>
-        <Link to="/doctors">
-          <button className="btn border-4 border-black hover:bg-blue-500">
-            Agenda Tu Cita
-          </button>
-        </Link>
-      </div>
-      <div className="mt-[25px] flex flex-col lg:flex-row lg:items-center lg:mt-[20px] gap-5 lg:gap-30px">
-        <div>
-          <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-gray-800">
-            50+
-          </h2>
-          <span className="block h-2 w-[100px] bg-yellow-300 rounded-full mt-[-12px]"></span>
-          <p className="text_para">Clientes Satisfechos</p>
-        </div>
-        <div>
-          <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[50px] font-[700] text-gray-800">
-            60+
-          </h2>
-          <span className="block h-2 w-[100px] bg-purple-600 rounded-full mt-[-12px]"></span>
-          <p className="text_para">Apps Y Software Propios</p>
-        </div>
-        <div>
-          <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-gray-800">
-            100%
-          </h2>
-          <span className="block h-2 w-[150px] bg-teal-700 rounded-full mt-[-12px]"></span>
-          <p className="text_para">Estandar Mundial</p>
-        </div>
-      </div>
+      <section className="min-h-screen w-full flex flex-col justify-center items-center relative pt-16 pb-12 lg:pt-0 lg:pb-0">
+        {/* Sección 1: Hero (Estilo Tesla - Contenido a la izquierda, Imágenes a la derecha/fondo) */}
+        <div className="container mx-auto px-6 flex flex-col lg:flex-row lg:items-center justify-between gap-10 lg:gap-20">
+          {/* Contenido de Texto y Botón (Ocupa 50% en pantallas grandes) */}
+          <div className="w-full lg:w-1/2 flex flex-col items-start z-10">
+            <h1
+              className="text-[36px] leading-[44px]
+                   text-gray-800 font-[600] lg:text-[56px] lg:leading-[64px] mb-6"
+            >
+              Construimos Software Que Da Solucion
+            </h1>
+            <p className="text_para mb-8 text-lg text-gray-600">
+              Innovamos con software de vanguardia. Transformamos negocios con
+              tecnología personalizada. Potenciamos empresas con herramientas
+              digitales. Diseñamos apps, web y software a medida. Soluciones
+              escalables, intuitivas y eficientes. Tu visión, nuestra
+              tecnología, resultados reales. Eleva tu negocio con nosotros.
+            </p>
+            <Link to="/doctors">
+              <button className="px-8 py-3 text-lg font-medium text-black border-2 border-black rounded-md transition duration-300 hover:bg-black hover:text-white">
+                Agenda Tu Cita
+              </button>
+            </Link>
+          </div>
 
-      {/* hero images */}
-      <div className="flex gap-[30px] justify-end">
-        <div className="mt-[30px]">
-          <img src={heroimage3} alt="doctor" className="w-full mb-[30px]" />
-          <img src={heroimage4} alt="doctor" className="w-full mb-[30px]" />
-          <img src={heroimage2} alt="doctor" className="w-full" />
+          {/* Contenedor de Imágenes (Ocupa 50% en pantallas grandes) */}
+          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end z-10">
+            {/* Las imágenes se agrupan en una columna para un efecto de "collage" limpio */}
+            <div className="flex flex-col gap-5 max-w-[350px] lg:max-w-full">
+              {/* Usamos 'aspect-video' o 'h-auto' con un ancho fijo si queremos que se ajusten mejor */}
+              <img
+                src={heroimage3}
+                alt="Diseño de Software"
+                className="rounded-xl shadow-xl w-full"
+              />
+              <div className="flex gap-5">
+                <img
+                  src={heroimage4}
+                  alt="Programación"
+                  className="rounded-xl shadow-xl w-1/2"
+                />
+                <img
+                  src={heroimage2}
+                  alt="Apps Móviles"
+                  className="rounded-xl shadow-xl w-1/2"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* -------------------------------------------------------------------------------------------------------------------------------- */}
+
+      <section className="py-16 bg-gray-50">
+        {/* Sección 2: Estadísticas (Separada y Limpia) */}
+        <div className="container mx-auto px-6">
+          <div className="mt-0 flex flex-col items-center lg:flex-row lg:justify-between gap-12 lg:gap-6">
+            {/* Cada Bloque de Estadística */}
+            <div className="text-center lg:text-left">
+              <h2 className="text-5xl lg:text-6xl font-[700] text-gray-800 mb-2">
+                50+
+              </h2>
+              <span className="block h-1.5 w-16 mx-auto lg:mx-0 bg-yellow-500 rounded-full mb-3"></span>
+              <p className="text-base text-gray-600 font-medium">
+                Clientes Satisfechos
+              </p>
+            </div>
+
+            <div className="text-center lg:text-left">
+              <h2 className="text-5xl lg:text-6xl font-[700] text-gray-800 mb-2">
+                60+
+              </h2>
+              <span className="block h-1.5 w-16 mx-auto lg:mx-0 bg-purple-600 rounded-full mb-3"></span>
+              <p className="text-base text-gray-600 font-medium">
+                Apps Y Software Propios
+              </p>
+            </div>
+
+            <div className="text-center lg:text-left">
+              <h2 className="text-5xl lg:text-6xl font-[700] text-gray-800 mb-2">
+                100%
+              </h2>
+              <span className="block h-1.5 w-24 mx-auto lg:mx-0 bg-teal-700 rounded-full mb-3"></span>
+              <p className="text-base text-gray-600 font-medium">
+                Estandar Mundial
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
