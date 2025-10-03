@@ -18,12 +18,12 @@ const Footer = () => {
         src={BogotaAir2}
       />
       <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="w-24 h-10 sm:w-32 sm:h-12 md:w-40 md:h-14 lg:w-48 lg:h-16 bg-gray-800"></div>
+        <img src="./logo.png" alt="logo" className="h-20 w-25 min-[700px]:h-30 min-[700px]:w-35 sm:h-30 pb-1" />
       </div>
       <div className="relative z-10 container mx-auto px-6 py-16 sm:px-8 sm:py-20 flex flex-col items-center text-center mt-20">
         <h1 className="text-4xl min-[700px]:text-5xl font-bold tracking-tight mt-15 mb-4 min-[700px]:mb-6">Software D T</h1>
-        <h2 className="text-3xl min-[700px]:text-4xl font-semibold tracking-tight mb-4 min-[700px]:mb-6">Dorado Technologies</h2>
-        <h3 className="text-2xl min-[700px]:text-3xl font-light tracking-wide mb-8 min-[700px]:mb-12">Codificamos Para Servir</h3>
+        <h2 className="text-2xl min-[700px]:text-3xl font-semibold tracking-tight mb-4 min-[700px]:mb-6">Dorado Technologies</h2>
+        <h3 className="text-xl min-[700px]:text-2xl font-light tracking-wide mb-8 min-[700px]:mb-12">Codificamos Para Servir</h3>
         <div className="flex flex-col min-[700px]:flex-row justify-center items-center gap-8 min-[700px]:gap-16">
           <div className="flex flex-col items-center">
             <ul className="text-xl min-[700px]:text-2xl font-light tracking-wide">
@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
         <div className="mt-8 flex flex-col items-center justify-center gap-2 min-[700px]:flex-row min-[700px]:gap-6 min-[700px]:justify-center">
           <p className="text-lg min-[700px]:text-xl font-light">Copyright 2025</p>
-          <p className="text-lg min-[700px]:text-xl font-light">Live: {currentDateTime} - Bogotá, Colombia</p>
+          <p className="text-lg min-[700px]:text-xl font-light"> {currentDateTime} - Bogotá, Colombia</p>
         </div>
       </div>
     </footer>
