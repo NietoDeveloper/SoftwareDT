@@ -1,5 +1,5 @@
 import React from 'react';
-import BogotaAir2 from "../../assets/images/MonserrateDron1.mp4"; // Adjust path as needed
+import BogotaAir2 from "../../assets/images/MonserrateDron1.mp4"; 
 
 const Footer = () => {
   return (
