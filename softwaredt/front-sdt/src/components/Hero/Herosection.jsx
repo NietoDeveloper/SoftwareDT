@@ -64,13 +64,13 @@ const Herosection = () => {
             <div className="flex flex-col gap-5 max-w-[350px] lg:max-w-full">
               {/* Usamos 'aspect-video' o 'h-auto' con un ancho fijo si queremos que se ajusten mejor */}
               <img
-                src={heroimage3}
+                src={heroimage4}
                 alt="Diseño de Software"
                 className="rounded-xl shadow-xl w-full"
               />
               <div className="flex gap-5">
                 <img
-                  src={heroimage4}
+                  src={heroimage3}
                   alt="Programación"
                   className="rounded-xl shadow-xl w-1/2"
                 />
@@ -85,45 +85,6 @@ const Herosection = () => {
         </div>
       </section>
 
-      {/* -------------------------------------------------------------------------------------------------------------------------------- */}
-
-      <section className="py-16 bg-gray-50">
-        {/* Sección 2: Estadísticas (Separada y Limpia) */}
-        <div className="container mx-auto px-6">
-          <div className="mt-0 flex flex-col items-center lg:flex-row lg:justify-between gap-12 lg:gap-6">
-            {/* Cada Bloque de Estadística */}
-            <div className="text-center lg:text-left">
-              <h2 className="text-5xl lg:text-6xl font-[700] text-gray-800 mb-2">
-                50+
-              </h2>
-              <span className="block h-1.5 w-16 mx-auto lg:mx-0 bg-yellow-500 rounded-full mb-3"></span>
-              <p className="text-base text-gray-600 font-medium">
-                Clientes Satisfechos
-              </p>
-            </div>
-
-            <div className="text-center lg:text-left">
-              <h2 className="text-5xl lg:text-6xl font-[700] text-gray-800 mb-2">
-                60+
-              </h2>
-              <span className="block h-1.5 w-16 mx-auto lg:mx-0 bg-purple-600 rounded-full mb-3"></span>
-              <p className="text-base text-gray-600 font-medium">
-                Apps Y Software Propios
-              </p>
-            </div>
-
-            <div className="text-center lg:text-left">
-              <h2 className="text-5xl lg:text-6xl font-[700] text-gray-800 mb-2">
-                100%
-              </h2>
-              <span className="block h-1.5 w-24 mx-auto lg:mx-0 bg-teal-700 rounded-full mb-3"></span>
-              <p className="text-base text-gray-600 font-medium">
-                Estandar Mundial
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 };
