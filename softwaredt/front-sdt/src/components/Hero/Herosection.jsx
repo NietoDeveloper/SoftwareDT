@@ -52,9 +52,9 @@ const Herosection = () => {
               tecnología, resultados reales. Eleva tu negocio con nosotros.
             </p>
             <Link to="/doctors">
-              <button className="px-8 py-3 text-lg font-medium text-black border-2 border-black rounded-md transition duration-300 hover:bg-black hover:text-white">
-                Agenda Tu Cita
-              </button>
+<button className="px-8 py-3 text-lg font-medium text-white border-2 border-transparent rounded-xl transition duration-300 bg-blue-600 hover:bg-yellow-400 hover:text-black">
+  Agenda Tu Cita
+</button>
             </Link>
           </div>
 
