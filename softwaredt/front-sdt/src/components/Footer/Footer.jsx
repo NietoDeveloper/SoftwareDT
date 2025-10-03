@@ -1,7 +1,13 @@
 import React from 'react';
-import BogotaAir2 from "../../assets/images/MonserrateDron1.mp4"; 
+import BogotaAir2 from "../../assets/images/MonserrateDron1.mp4"; // Adjust path as needed
 
 const Footer = () => {
+  const currentDateTime = new Date().toLocaleString('en-US', {
+    timeZone: 'America/Bogota',
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  });
+
   return (
     <footer className="relative min-h-screen w-full bg-black text-white flex items-center justify-center">
       <video
@@ -34,7 +40,10 @@ const Footer = () => {
               <li className="py-3 hover:text-yellow-300 transition-colors"><a href="#">LinkedIn</a></li>
               <li className="py-3 hover:text-yellow-300 transition-colors"><a href="#">Instagram</a></li>
             </ul>
-            <p className="mt-8 text-lg sm:text-xl font-light">Copyright 2025</p>
+            <div className="mt-8 flex flex-col items-center gap-2 sm:flex-row sm:gap-6 md:gap-8">
+              <p className="text-lg sm:text-xl font-light">Copyright 2025</p>
+              <p className="text-lg sm:text-xl font-light">{currentDateTime} - Bogotá, Colombia</p>
+            </div>
           </div>
         </div>
       </div>
