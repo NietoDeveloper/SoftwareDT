@@ -1,55 +1,53 @@
+import React from 'react';
 import FaqItem from "./Dropdown";
 import equipo2 from '../../assets/images/equipo2.png';
 import softlive from '../../assets/images/softlive.mp4';
 
 const Questions = () => {
   return (
-    <>
-     <section className="relative h-[110vh]">
-  <video
-    autoPlay
-    loop
-    muted
-    className="absolute w-full h-full object-cover z-0"
-    src={softlive}
-  />
-  <div className="container relative z-10 text-black pt-[30px] pb-8">
-    <div className="xl:w-[570px] mx-auto">
-      <h2 className="heading text-center text-white">Preguntas Frecuentes </h2>
-    </div>
-    <div className="flex flex-col lg:flex-row justify-between lg:gap-2 gap-[50px]">
-      <div className="w-full lg:w-1/2 pb-3">
-        <img src={equipo2} alt="faq" className="rounded-2xl" />
-      </div>
-      <div className="pl-5 lg:mt-[30px] w-full">
-        <div className="w-full  ">
-          <div className='my-5 bg-yellow-400'>
-            <FaqItem
-              question="Tiene algun costo la cita?"
-              answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
-            />
+    <section className="relative h-[120vh] w-full bg-black text-white flex items-center justify-center">
+      <video
+        autoPlay
+        loop
+        muted
+        className="absolute inset-0 w-full h-full object-cover opacity-50"
+        src={softlive}
+      />
+      <div className="relative z-10 container mx-auto px-6 py-16 min-[700px]:px-8 min-[700px]:py-20 flex flex-col items-center">
+        <h2 className="text-4xl min-[700px]:text-5xl font-bold tracking-tight text-center mb-8 min-[700px]:mb-12">Preguntas Frecuentes</h2>
+        <div className="flex flex-col min-[700px]:flex-row justify-center items-center gap-8 min-[700px]:gap-16 w-full max-w-6xl">
+          <div className="w-full min-[700px]:w-1/2">
+            <img src={equipo2} alt="faq" className="rounded-2xl w-full h-auto object-cover" />
           </div>
-          
-          <div className='my-4 bg-yellow-400'>
-            <FaqItem
-              question="Es presencial o virtual la cita?"
-              answer="To improve your FAQ section, you can..."
-            />
-          </div>
-          
-          <div className='my-4 bg-yellow-400'>
-            <FaqItem
-              question="Tienen atencion en todo el pais?"
-              answer="To improve your FAQ section, you can..."
-            />
+          <div className="w-full min-[700px]:w-1/2 flex flex-col items-center">
+            <div className="w-full max-w-lg">
+              <div className="my-4 min-[700px]:my-6">
+                <FaqItem
+                  question="¿Tiene algún costo la cita?"
+                  answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+                  className="bg-transparent border border-gray-200 rounded-lg text-white"
+                />
+              </div>
+              <div className="my-4 min-[700px]:my-6">
+                <FaqItem
+                  question="¿Es presencial o virtual la cita?"
+                  answer="To improve your FAQ section, you can..."
+                  className="bg-transparent border border-gray-200 rounded-lg text-white"
+                />
+              </div>
+              <div className="my-4 min-[700px]:my-6">
+                <FaqItem
+                  question="¿Tienen atención en todo el país?"
+                  answer="To improve your FAQ section, you can..."
+                  className="bg-transparent border border-gray-200 rounded-lg text-white"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-    </>
-  )
-}
+    </section>
+  );
+};
 
-export default Questions
+export default Questions;
