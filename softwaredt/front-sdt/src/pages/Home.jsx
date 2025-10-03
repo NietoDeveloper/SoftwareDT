@@ -5,7 +5,6 @@ import Medcare from "../components/Preview/Medcare";
 import Questions from "../components/Faq/Questions";
 import Guide from "../components/Explainer/Guide";
 import BogotaAir1 from "../assets/images/BogotaAir1.mp4";
-import BogotaAir2 from "../assets/images/MonserrateDron1.mp4";
 import Footer from "../components/Footer/Footer";
 
 const Home = () => {
@@ -40,16 +39,6 @@ const Home = () => {
       <Guide />
 
       <Questions />
-
-      <section className={`h-[108vh] w-full relative flex justify-center`}>
-        <video
-          autoPlay
-          loop
-          muted
-          className="absolute w-full h-full object-cover"
-          src={BogotaAir2}
-        />
-      </section>
 
       <Footer />
 
