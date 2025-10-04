@@ -23,15 +23,15 @@ const About = () => {
               Creamos Software Con Estandares Mundiales
             </h2>
             <p className="text_para">
-              Desarrollamos software innovador con estándares mundiales.
-              Utilizamos las mejores tecnologías para soluciones de
-              vanguardia. Nuestros proyectos garantizan calidad, eficiencia y
-              resultados.Estamos ubicados en Bogotá, Colombia. Ademas  atendemos
-              clientes en Colombia, Estados Unidos y Canadá.  Creamos soluciones
-              personalizadas para cada negocio. Nuestro equipo apasionado supera
-              expectativas en cada entrega. Transformamos ideas en herramientas
-              que impulsan el éxito.Contáctenos para llevar su empresa al
-              siguiente nivel. Construimos el futuro con tecnología de punta.
+              Desarrollamos software innovador con estándares mundiales,
+              utilizando tecnologías de vanguardia para crear soluciones
+              personalizadas que impulsan el éxito de cada negocio. Desde
+              nuestra sede en Bogotá, Colombia, atendemos a clientes en
+              Colombia, Estados Unidos y Canadá. Nuestro equipo apasionado
+              garantiza calidad, eficiencia y resultados excepcionales en cada
+              proyecto, transformando ideas en herramientas que elevan su
+              empresa al siguiente nivel. Contáctenos y construyamos juntos el
+              futuro con tecnología de punta.
             </p>
 
             <Link to="/services">
