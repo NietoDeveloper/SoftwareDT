@@ -9,7 +9,7 @@ const Payment = () => {
                 <input type="email" required/>
 
                 <div>
-                  <label htmlFor="card-info">Infoarmacion De Tarjet </label>
+                  <label htmlFor="card-info">Infoarmacion De Tarjeta </label>
                   <input id="card-info" type="number" required />
 
                     <div className="flex">
