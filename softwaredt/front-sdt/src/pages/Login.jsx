@@ -39,7 +39,7 @@ const Login = () => {
       <div className="flex flex-col md:flex-row gap-20">
         {/* Sign up icons */}
         <div className=" w-full md:w-1/2 p-6">
-          <h1 className="heading"> Log In</h1>
+          <h1 className="heading">Usuarios Log In</h1>
           <p className='text_para'>Dont have an account? <Link to="/signup" className='text-blue-600'>Sign up </Link> instead</p>
           <p className='mt-10 text-md'>Are you a doctor? Log in <Link to="/doctor/login" className='text-blue-600'>here</Link></p>
         </div>
