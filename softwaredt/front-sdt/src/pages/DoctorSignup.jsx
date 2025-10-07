@@ -30,7 +30,7 @@ const Doctorsignup = () => {
         <div className="w-full md:w-1/2 p-6">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col mb-4">
-              <label htmlFor="name" className="mb-2">FirstName</label>
+              <label htmlFor="name" className="mb-2">Apellido</label>
               <input
                 type="text"
                 id="name"
