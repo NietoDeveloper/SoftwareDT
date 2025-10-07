@@ -22,7 +22,7 @@ const Doctorsignup = () => {
       <div className="flex flex-col md:flex-row gap-20">
         {/* Sign up icons */}
         <div className=" w-full md:w-1/2 p-6">
-          <h1 className="heading">For Healthcare-practioners</h1>
+          <h1 className="heading">Para Empleados SoftwareDT</h1>
           <p className="text_para">Sign Up as a Doctor</p>
           <p>Have an account? <Link to="/doctor/login" className='text-blue-600'>Log in </Link> instead</p>
         </div>
