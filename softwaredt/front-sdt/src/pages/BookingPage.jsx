@@ -90,7 +90,7 @@ const BookAppointment = () => {
 
            <div className="flex justify-between pl-4  border-b-2">
                <h3 >Sobre</h3>
-               <h3>REtroalimentacion</h3>
+               <h3>Retroalimentacion</h3>
             </div>
         </div>
          
