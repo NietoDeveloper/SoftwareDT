@@ -90,14 +90,14 @@ const BookAppointment = () => {
 
            <div className="flex justify-between pl-4  border-b-2">
                <h3 >Sobre</h3>
-               <h3>Feedback</h3>
+               <h3>REtroalimentacion</h3>
             </div>
         </div>
          
          {/*appointment schedule */}
         <div className="shadow-2xl w-72 rounded-xl">
           <div className="flex flex-col items-center py-4">
-            <h2 className="text-2xl">Ticket Price: <span>{doctor.ticketPrice}</span></h2>
+            <h2 className="text-2xl">Preecio De Cita: <span>{doctor.ticketPrice}</span></h2>
             <h2 className="text-xl py-4 underline">Available Slots:</h2>
             {doctor.timeSlots}
             <div>
