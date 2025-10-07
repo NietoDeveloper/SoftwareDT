@@ -4,7 +4,7 @@ const Payment = () => {
   return (
     <div>
         <div>
-            <h1>Pay with Card</h1>
+            <h1>Paga Con Tarjetas</h1>
             <form>
                 <input type="email" required/>
 
