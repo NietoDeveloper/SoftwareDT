@@ -104,7 +104,7 @@ const BookAppointment = () => {
               <form className="flex flex-col py-8" onSubmit={handleBooking} >
                 <label htmlFor="date" className="text-xl underline">Pick a date:</label>
                 <input type="date" id="date" required onChange={(e) =>  setAppointment({ ...appointment, appointmentDate: e.target.value })} />
-                <button className="btn" type="submit">Book Appointment</button>
+                <button className="btn" type="submit"></button>
               </form>
             </div>
           </div>
