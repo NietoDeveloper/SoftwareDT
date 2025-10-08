@@ -19,7 +19,7 @@ const doctorRegister = asyncHandler (async (req, res) => {
     });
 
     if(result) {
-        res.status(201).json({message:"Tu perfilñ de Programador fue creado correctamente"})
+        res.status(201).json({message:"Tu perfil de Programador fue creado correctamente"})
     } else {
         res.sendStatus(500).json({message:"Internal server error"})
     }
@@ -79,7 +79,7 @@ const updateDoctor = asyncHandler (async (req, res) => {
     const result = await foundDoctor.save();
     console.log(result)
     if(result) {
-        return res.status(200).json({message:"Doctor's infor updated successfully!"})
+        return res.status(200).json({message:"Informacio de Programador actualizada!"})
     } else {
         return res.status(500).json({message:"Couldnt updated the detauls due to Internal server error!"})
     }
