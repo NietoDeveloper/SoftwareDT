@@ -61,7 +61,7 @@ const Signup = () => {
       <div className="flex flex-col md:flex-row gap-20">
         <div className="w-full md:w-1/2 p-6">
           <h1 className="heading">Quieres agendar una cita??</h1>
-          <p className="text_para">Sign Up as a patient.</p>
+          <p className="text_para"></p>
           <p>Have an account? <Link to="/login" className="text-blue-600">Log in</Link> instead</p>
         </div>
 
