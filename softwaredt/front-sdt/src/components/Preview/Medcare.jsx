@@ -14,7 +14,7 @@ const Medcare = () => {
               Ofrecemos el Mejor Software De Colombia
             </h2>
             <p className="text_para text-center">
-              Unmatched world-class medical care for everyone. We&apos;re a
+              Programadores De Clase Mundial&apos;re a
               large family of experienced medical staff
             </p>
           </div>
