@@ -40,7 +40,7 @@ const appointmentBooking = asyncHandler(async (req, res) => {
         }
 
     } catch (error) {
-        return res.status(500).json({ message: ".", error: error.message });
+        return res.status(500).json({ message: "Error de servidor encontrado mientra agendaba la .", error: error.message });
     }
         
         
