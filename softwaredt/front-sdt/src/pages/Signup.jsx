@@ -92,7 +92,7 @@ const Signup = () => {
             </div>
 
             <div className="flex flex-col mb-4">
-              <label htmlFor="password" className="mb-2">Password</label>
+              <label htmlFor="password" className="mb-2"></label>
               <input
                 type="password"
                 id="password"
