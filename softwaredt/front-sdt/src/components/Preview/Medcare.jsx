@@ -90,7 +90,7 @@ const Medcare = () => {
                   Productos
                 </h2>
                 <p className="text-[16px] leading-7 text-gray-800 font-[400] text-center mt-4">
-                  
+                   Software De Clase Mundial. Nuestro equipo se compone de desarrolladores de Software de clase mundial.
                 </p>
 
                 <Link
