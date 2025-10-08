@@ -36,7 +36,7 @@ const appointmentBooking = asyncHandler(async (req, res) => {
 
 
         } else {
-            return res.status(500).json({ message: "! " });
+            return res.status(500).json({ message: "Fallo al crear la Cita. El Servidor ! " });
         }
 
     } catch (error) {
