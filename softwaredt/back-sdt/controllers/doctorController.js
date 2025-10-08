@@ -19,7 +19,7 @@ const doctorRegister = asyncHandler (async (req, res) => {
     });
 
     if(result) {
-        res.status(201).json({message:""})
+        res.status(201).json({message:"Tu perfilñ de Programador fue creado correctasmente"})
     } else {
         res.sendStatus(500).json({message:"Internal server error"})
     }
