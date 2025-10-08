@@ -31,7 +31,7 @@ const Doctorlogin = () => {
         <div className=" w-full md:w-1/2 p-6">
           <h1 className="heading">Programador&apos; Log In</h1>
           <p>No Tienes Una Cuenta? <Link to="/doctor/signup" className='text-blue-600'>Sign up </Link> instead</p>
-          <p className="text_para">Quieres Agendar Una Cita? Log in <Link to="/login" className='text-blue-600'></Link></p>
+          <p className="text_para">Quieres Agendar Una Cita? Log in <Link to="/login" className='text-blue-600'>Clientes</Link></p>
         </div>
 
         <div className="w-full md:w-1/2 p-6">
