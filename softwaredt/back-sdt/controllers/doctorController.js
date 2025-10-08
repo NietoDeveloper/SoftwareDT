@@ -79,7 +79,7 @@ const updateDoctor = asyncHandler (async (req, res) => {
     const result = await foundDoctor.save();
     console.log(result)
     if(result) {
-        return res.status(200).json({message:"Informacio de Programador actualizada!"})
+        return res.status(200).json({message:"Informacion de Programador actualizada!"})
     } else {
         return res.status(500).json({message:"Couldnt updated the detauls due to Internal server error!"})
     }
