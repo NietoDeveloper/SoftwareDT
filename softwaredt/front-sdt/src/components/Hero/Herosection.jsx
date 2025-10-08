@@ -59,7 +59,6 @@ const Herosection = () => {
           </div>
 
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end z-10">
-            {/* Las imágenes se agrupan en una columna para un efecto de "collage" limpio */}
             <div className="flex flex-col gap-5 max-w-[350px] lg:max-w-full">
               {/* Usamos 'aspect-video' o 'h-auto' con un ancho fijo si queremos que se ajusten mejor */}
               <img
