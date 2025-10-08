@@ -20,7 +20,7 @@ const Home = () => {
         />
       </section>
       <section className="hero_section 2xl:h-[110vh]">
-        {/*Hero section */}
+
         <div className="container">
           <div className=" w-full">
             <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between">
