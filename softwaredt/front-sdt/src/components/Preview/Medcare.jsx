@@ -90,8 +90,7 @@ const Medcare = () => {
                   Productos
                 </h2>
                 <p className="text-[16px] leading-7 text-gray-800 font-[400] text-center mt-4">
-                  World class healthcare for everyone. Our staff consists of
-                  medical experts from around the world.
+                  
                 </p>
 
                 <Link
