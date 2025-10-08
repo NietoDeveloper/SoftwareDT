@@ -15,6 +15,7 @@ const Medcare = () => {
             </h2>
             <p className="text_para text-center">
               Programadores De Clase Mundial&apos;
+              Talentosos Desarrolladores De Software
             </p>
           </div>
 
