@@ -31,7 +31,7 @@ const Herosection = () => {
       >
         Contacto
       </button>
-      
+
       <section className="min-h-screen w-full flex flex-col justify-center items-center relative pt-16 pb-12 lg:pt-0 lg:pb-0">
         <div className="container mx-auto px-6 flex flex-col lg:flex-row lg:items-center justify-between gap-10 lg:gap-20">
           <div className="w-full lg:w-1/2 flex flex-col items-start z-10">
@@ -49,9 +49,9 @@ const Herosection = () => {
               tecnología, resultados reales. Eleva tu negocio con nosotros.
             </p>
             <Link to="/doctors">
-<button className="px-8 py-3 text-lg font-medium text-white border-2 border-transparent rounded-xl transition duration-300 bg-blue-600 hover:bg-yellow-400 hover:text-black">
-  Agenda Tu Cita
-</button>
+              <button className="px-8 py-3 text-lg font-medium text-white border-2 border-transparent rounded-xl transition duration-300 bg-blue-600 hover:bg-yellow-400 hover:text-black">
+                Agenda Tu Cita
+              </button>
             </Link>
           </div>
 
@@ -78,7 +78,6 @@ const Herosection = () => {
           </div>
         </div>
       </section>
-
     </>
   );
 };
