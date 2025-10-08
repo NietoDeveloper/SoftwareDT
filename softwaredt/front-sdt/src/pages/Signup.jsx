@@ -113,7 +113,7 @@ const Signup = () => {
               {errors.photo && <span className="text-red-600">{errors.photo.message}</span>}
             </div>
 
-            {isUploading && <div className="mb-4">Upload Progress: {uploadProgress.toFixed(2)}%</div>}
+            {isUploading && <div className="mb-4">Proceso De Carga: {uploadProgress.toFixed(2)}%</div>}
 
             <button type="submit" disabled={isUploading} className="btn bg-blue-600 text-white p-2 rounded">
               {isUploading ? 'Uploading...' : 'Sign Up'}
