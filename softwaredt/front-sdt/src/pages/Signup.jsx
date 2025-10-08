@@ -104,7 +104,7 @@ const Signup = () => {
             </div>
 
             <div className="flex flex-col mb-4">
-              <label htmlFor="photo" className="mb-2">Profile Image</label>
+              <label htmlFor="photo" className="mb-2"></label>
               <input
                 type="file"
                 id="photo"
