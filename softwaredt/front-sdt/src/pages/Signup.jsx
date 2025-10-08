@@ -68,7 +68,7 @@ const Signup = () => {
         <div className="w-full md:w-1/2 p-6">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col mb-4">
-              <label htmlFor="name" className="mb-2">First Name</label>
+              <label htmlFor="name" className="mb-2">Primer Nombre</label>
               <input
                 type="text"
                 id="name"
