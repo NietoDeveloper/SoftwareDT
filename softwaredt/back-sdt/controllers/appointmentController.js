@@ -31,7 +31,7 @@ const appointmentBooking = asyncHandler(async (req, res) => {
             if (user) {
                 res.status(201).json({ newAppointment, message: "Cita creada correctamente!" });
             } else{
-                res.status(500).json({ message: "Fa" });
+                res.status(500).json({ message: "Fallo al agendar la cita" });
             }
 
 
