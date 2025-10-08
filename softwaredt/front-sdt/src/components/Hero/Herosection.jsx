@@ -34,7 +34,6 @@ const Herosection = () => {
 
       {/* hero content */}
       <section className="min-h-screen w-full flex flex-col justify-center items-center relative pt-16 pb-12 lg:pt-0 lg:pb-0">
-        {/* Sección 1: Hero (Estilo Tesla - Contenido a la izquierda, Imágenes a la derecha/fondo) */}
         <div className="container mx-auto px-6 flex flex-col lg:flex-row lg:items-center justify-between gap-10 lg:gap-20">
           <div className="w-full lg:w-1/2 flex flex-col items-start z-10">
             <h1
