@@ -29,7 +29,7 @@ const appointmentBooking = asyncHandler(async (req, res) => {
                 {new:true}
             );
             if (user) {
-                res.status(201).json({ newAppointment, message: "Appointment created successfully!" });
+                res.status(201).json({ newAppointment, message: "!" });
             } else{
                 res.status(500).json({ message: "Failed to update user's appointment" });
             }
