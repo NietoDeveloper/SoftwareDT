@@ -27,7 +27,7 @@ const servicesList = [
 
   {
     name: 'Productos',
-    desc: 'Our nursing home is a sanctuary for your loved one thanks to qualified nurses',
+    desc: 'Our nursing home i',
   },
 ];
 
