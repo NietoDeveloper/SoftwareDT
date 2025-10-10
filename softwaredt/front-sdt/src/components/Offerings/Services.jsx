@@ -27,7 +27,7 @@ const servicesList = [
 
   {
     name: 'Productos',
-    desc: 'Creamos',
+    desc: 'Creamos p4roductos como: Plataforma de IA para agricultura,',
   },
 ];
 
