@@ -15,7 +15,7 @@ npm or Yarn
 Clone the repository:git clone <https://github.com/NietoDeveloper/SoftwareDT>
 
 
-Navigate to the project directory:cd <project-directory>
+Navigate to the project directory:cd
 
 
 Install dependencies:npm install
