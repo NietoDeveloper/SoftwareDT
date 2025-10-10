@@ -2,7 +2,7 @@
 
 Next.js + Node.js + Vite
 
-### Overview
+## Overview
 
 This is a web application built using Next.js for the frontend, Node.js for the backend server, and Vite for fast development and building. The main application logic is contained within a single primary file, which includes the server setup.
 Prerequisites
@@ -10,7 +10,7 @@ Prerequisites
 Node.js (v16 or higher)
 npm or Yarn
 
-# Technology Stack
+## Technology Stack
 ## Backend
 
     Node.js/Express: Handles server-side logic and provides RESTful APIs for frontend interaction.
