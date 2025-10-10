@@ -8,7 +8,7 @@ const servicesList = [
 
   {
     name: 'Soluciones para Empresas',
-    desc: '',
+    desc: 'Creamos Software que brinda',
   },
 
   {
