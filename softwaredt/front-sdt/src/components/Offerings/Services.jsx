@@ -17,7 +17,7 @@ const servicesList = [
   },
   {
     name: 'Software Contable, Manejo Personal, Manejo de Usuarios E Informacion.',
-    desc: 'Aplicamos  aedrgearfgb',
+    desc: 'Aplicamos  aedr',
   },
 
   {
