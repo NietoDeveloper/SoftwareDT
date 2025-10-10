@@ -3,7 +3,7 @@ import ServicesCard from './ServicesCard';
 const servicesList = [
   {
     name: 'Desarrollo Web',
-    desc: 'Come meet qualifed and gentle denstist for your pearly whites',
+    desc: 's',
   },
 
   {
