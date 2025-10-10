@@ -27,7 +27,7 @@ const servicesList = [
 
   {
     name: 'Productos',
-    desc: 'Creamos p4roductos como: Plataforma de IA para agricultura,',
+    desc: 'Creamos p4roductos como: Plataforma de IA para agricultura, App fintech para inclusión financiera,  ',
   },
 ];
 
