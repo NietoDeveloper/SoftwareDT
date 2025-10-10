@@ -13,7 +13,7 @@ const servicesList = [
 
   {
     name: 'Software Personalizado',
-    desc: '',
+    desc: 'Analizamos las solicitudes y necesidades para crear  ',
   },
   {
     name: 'Software Contable, Manejo Personal, Manejo de Usuarios E Informacion.',
