@@ -3,7 +3,7 @@ import ServicesCard from './ServicesCard';
 const servicesList = [
   {
     name: 'Desarrollo Web',
-    desc: 's',
+    desc: 'Desarrollamos Aplicaciones Y Webistes',
   },
 
   {
