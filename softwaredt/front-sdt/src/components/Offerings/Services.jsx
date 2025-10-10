@@ -27,7 +27,7 @@ const servicesList = [
 
   {
     name: 'Productos',
-    desc: '',
+    desc: 'Creamos',
   },
 ];
 
