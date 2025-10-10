@@ -1,33 +1,33 @@
-import ServicesCard from './ServicesCard';
+import ServicesCard from "./ServicesCard";
 
 const servicesList = [
   {
-    name: 'Desarrollo Web',
-    desc: 'Desarrollamos Aplicaciones Y Webistes, con las ultimas y mejores technologias',
+    name: "Desarrollo Web",
+    desc: "Desarrollamos Aplicaciones Y Webistes, con las ultimas y mejores technologias",
   },
 
   {
-    name: 'Soluciones para Empresas',
-    desc: 'Creamos Software que brinda soluciones e innovaciones que mejoran y cran excelentes procesos.',
+    name: "Soluciones para Empresas",
+    desc: "Creamos Software que brinda soluciones e innovaciones que mejoran y cran excelentes procesos.",
   },
 
   {
-    name: 'Software Personalizado',
-    desc: 'Analizamos las solicitudes y necesidades para crear ',
+    name: "Software Personalizado",
+    desc: "Analizamos las solicitudes y necesidades para crear ",
   },
   {
-    name: 'Software Contable, Manejo Personal, Manejo de Usuarios E Informacion.',
-    desc: 'Aplicamos una',
-  },
-
-  {
-    name: 'Manejo y creacion de portafolio de redes sociales',
-    desc: '',
+    name: "Software Contable, Manejo Personal, Manejo de Usuarios E Informacion.",
+    desc: "Aplicamos una",
   },
 
   {
-    name: 'Productos',
-    desc: 'Creamos Software como: Plataforma de IA para agricultura, App fintech para inclusión financiera, Software de IoT para ciudades inteligentes. ',
+    name: "Manejo y creacion de portafolio de redes sociales",
+    desc: "Nuestro servicio de manejo de redes sociales es una plataforma integral que permite programar publicaciones, crear contenido, analizar métricas y monitorear interacciones en plataformas como Facebook, Instagram, X y LinkedIn, todo desde un dashboard unificado para optimizar la presencia digital de tu marca.",
+  },
+
+  {
+    name: "Productos",
+    desc: "Creamos Software como: Plataforma de IA para agricultura, App fintech para inclusión financiera, Software de IoT para ciudades inteligentes. ",
   },
 ];
 
