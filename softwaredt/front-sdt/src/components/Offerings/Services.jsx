@@ -22,7 +22,7 @@ const servicesList = [
 
   {
     name: 'Manejo y creacion de portafolio de redes sociales',
-    desc: 'Gentle care during labor and safe delivery to nursin',
+    desc: '',
   },
 
   {
