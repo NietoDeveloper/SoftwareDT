@@ -8,12 +8,12 @@ const servicesList = [
 
   {
     name: 'Soluciones para Empresas',
-    desc: 'Creamos Software que brinda soluciones e innovaciones para cada necesidad.',
+    desc: 'Creamos Software que brinda soluciones e innovaciones que mejoran y cran excelentes procesos.',
   },
 
   {
     name: 'Software Personalizado',
-    desc: 'Book a session with our resident therapists qualified in marriage counselling, addictions',
+    desc: '',
   },
   {
     name: 'Software Contable, Manejo Personal, Manejo de Usuarios E Informacion.',
