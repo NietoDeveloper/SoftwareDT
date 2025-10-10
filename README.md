@@ -12,7 +12,7 @@ npm or Yarn
 
 ### Installation
 
-Clone the repository:git clone <repository-url>
+Clone the repository:git clone <>
 
 
 Navigate to the project directory:cd <project-directory>
