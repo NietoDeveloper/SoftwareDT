@@ -3,12 +3,12 @@ import ServicesCard from './ServicesCard';
 const servicesList = [
   {
     name: 'Desarrollo Web',
-    desc: 'Desarrollamos Aplicaciones Y Webistes',
+    desc: 'Desarrollamos Aplicaciones Y Webistes, con las ultimas technologias',
   },
 
   {
     name: 'Soluciones para Empresas',
-    desc: 'All major surgeries including open-heart, kidney transplant',
+    desc: '',
   },
 
   {
