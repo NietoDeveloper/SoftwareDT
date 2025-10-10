@@ -3,7 +3,7 @@ import ServicesCard from './ServicesCard';
 const servicesList = [
   {
     name: 'Desarrollo Web',
-    desc: 'Desarrollamos Aplicaciones Y Webistes, con las ultimas technologias',
+    desc: 'Desarrollamos Aplicaciones Y Webistes, con las ultimas y mejores technologias',
   },
 
   {
