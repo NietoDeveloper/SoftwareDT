@@ -53,7 +53,7 @@ npm run build: Builds the Next.js app with Vite.
 npm run start: Starts the production Node.js server.
 
 
-# Features
+### Features
 
     User Authentication: Supports secure user authentication using JWT (JSON Web Tokens). Users and doctors can securely log in with multiple devices, and logging out on one device does not affect their session on other devices.
 
