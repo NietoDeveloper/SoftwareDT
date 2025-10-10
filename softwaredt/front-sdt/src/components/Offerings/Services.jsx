@@ -13,7 +13,7 @@ const servicesList = [
 
   {
     name: 'Software Personalizado',
-    desc: 'Analizamos las solicitudes y necesidades para crear  ',
+    desc: 'Analizamos las solicitudes y necesidades para crear ',
   },
   {
     name: 'Software Contable, Manejo Personal, Manejo de Usuarios E Informacion.',
@@ -22,7 +22,7 @@ const servicesList = [
 
   {
     name: 'Manejo y creacion de portafolio de redes sociales',
-    desc: 'Gentle care during labor and safe delivery to nursing the newborn and mother',
+    desc: 'Gentle care during labor and safe delivery to nursin',
   },
 
   {
