@@ -37,8 +37,8 @@ const Questions = () => {
               </div>
               <div className="my-4 min-[700px]:my-6">
                 <FaqItem
-                  question="¿Tienen atención en todo el país?"
-                  answer="To improve your FAQ section, you can..."
+                  question="¿Tienen Atención en todo el país?"
+                  answer=""
                   className="bg-transparent border border-gray-200 rounded-lg text-white"
                 />
               </div>
