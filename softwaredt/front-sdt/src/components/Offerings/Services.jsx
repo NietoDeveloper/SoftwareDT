@@ -2,7 +2,7 @@ import ServicesCard from "./ServicesCard";
 
 const servicesList = [
   {
-    name: "Desarrollo Web",
+    name: "Desarrollo de Web, Apps y Bases de Datos",
     desc: "Desarrollamos Aplicaciones Y Webistes, con las ultimas y mejores technologias",
   },
 
