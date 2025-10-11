@@ -11,6 +11,11 @@ const servicesList = [
     desc: "Software Contable: Automatiza registros financieros, genera balances, estados de resultados y cumple con normativas fiscales. Simplifica la contabilidad con herramientas para facturación, conciliación bancaria y reportes financieros. Manejo de Personal: Administra nóminas, calcula salarios, beneficios y deducciones. Controla horarios, asistencias y expedientes de empleados, optimizando la gestión de recursos humanos. Manejo de Usuarios e Información: Gestiona accesos y permisos de usuarios con seguridad. Organiza y protege datos empresariales, facilitando la búsqueda, almacenamiento y análisis de información clave.",
   },
 
+    {
+    name: "Productos",
+    desc: "Creamos Software como: Plataforma de IA para agricultura, App fintech para inclusión financiera, Software de IoT para ciudades inteligentes. ",
+  },
+
   {
     name: "Software Personalizado",
     desc: "Solución diseñada a medida para satisfacer necesidades específicas de tu empresa. Incluye: Desarrollo a Medida: Funcionalidades adaptadas a procesos únicos, integrando requerimientos específicos de tu negocio. Escalabilidad: Flexible para crecer con tu empresa, permitiendo actualizaciones y nuevas integraciones. Gestión de Datos: Almacena, organiza y protege información clave con interfaces personalizadas. Soporte Técnico: Asistencia continua para garantizar rendimiento y adaptabilidad. ",
