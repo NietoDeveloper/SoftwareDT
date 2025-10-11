@@ -13,10 +13,7 @@ const servicesList = [
 
   {
     name: "Software Personalizado",
-    desc: "Solución diseñada a medida para satisfacer necesidades específicas de tu empresa. Incluye:
-
-Desarrollo a Medida: Funcionalidades adaptadas a procesos únicos, integrando requerimientos específicos de tu negocio.
-Escalabilidad: Flexible para crecer con tu empresa, permitiendo actualizaciones y nuevas integraciones.
+    desc: "Solución diseñada a medida para satisfacer necesidades específicas de tu empresa. Incluye: Desarrollo a Medida: Funcionalidades adaptadas a procesos únicos, integrando requerimientos específicos de tu negocio. Escalabilidad: Flexible para crecer con tu empresa, permitiendo actualizaciones y nuevas integraciones.
 Gestión de Datos: Almacena, organiza y protege información clave con interfaces personalizadas.
 Soporte Técnico: Asistencia continua para garantizar rendimiento y adaptabilidad. ",
   },
