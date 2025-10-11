@@ -38,7 +38,7 @@ const Questions = () => {
               <div className="my-4 min-[700px]:my-6">
                 <FaqItem
                   question="¿Tienen Atención en todo el país?"
-                  answer=""
+                  answer="Si.  "
                   className="bg-transparent border border-gray-200 rounded-lg text-white"
                 />
               </div>
