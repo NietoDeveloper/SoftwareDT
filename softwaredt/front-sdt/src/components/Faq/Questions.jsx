@@ -24,14 +24,14 @@ const Questions = () => {
               <div className="my-4 min-[700px]:my-6">
                 <FaqItem
                   question="¿Tiene algún costo la cita?"
-                  answer=""
+                  answer="No; La cita con un programador, es de tipo informativo y nos guiara en el servicio requerido. "
                   className="bg-transparent border border-gray-200 rounded-lg text-white"
                 />
               </div>
               <div className="my-4 min-[700px]:my-6">
                 <FaqItem
                   question="¿Es presencial o virtual la cita?"
-                  answer="To improve your FAQ section, you can..."
+                  answer=""
                   className="bg-transparent border border-gray-200 rounded-lg text-white"
                 />
               </div>
