@@ -21,8 +21,8 @@ const servicesList = [
     desc: "Solución diseñada a medida para satisfacer necesidades específicas de tu empresa. Incluye: Desarrollo a Medida: Funcionalidades adaptadas a procesos únicos, integrando requerimientos específicos de tu negocio. Escalabilidad: Flexible para crecer con tu empresa, permitiendo actualizaciones y nuevas integraciones. Gestión de Datos: Almacena, organiza y protege información clave con interfaces personalizadas. Soporte Técnico: Asistencia continua para garantizar rendimiento y adaptabilidad. ",
   },
   {
-    name: "",
-    desc: "",
+    name: "Actualizacion o creacion de Software",
+    desc: "Analisis de productos tus Software para decidir si quieres crear un software nuevo o el actual solo necesita ajustes.",
   },
 
   {
