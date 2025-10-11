@@ -35,7 +35,7 @@ const Footer = () => {
           </div>
           <div className="flex flex-col items-center">
             <ul className="text-xl min-[700px]:text-2xl font-light tracking-wide">
-              <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">Facebook</a></li>
+              <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#"></a></li>
               <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">Twitter</a></li>
               <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">LinkedIn</a></li>
               <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">Instagram</a></li>
