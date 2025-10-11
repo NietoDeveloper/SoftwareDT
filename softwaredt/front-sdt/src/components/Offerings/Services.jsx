@@ -16,7 +16,7 @@ const servicesList = [
     desc: "Analizamos las solicitudes y necesidades para crear ",
   },
   {
-    name: "Software Contable, Manejo Personal, Manejo de Usuarios E Informacion.",
+    name: "",
     desc: "Aplicamos una",
   },
 
