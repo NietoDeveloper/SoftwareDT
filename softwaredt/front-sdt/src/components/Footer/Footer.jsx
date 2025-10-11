@@ -38,7 +38,7 @@ const Footer = () => {
               <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">Productos</a></li>
               <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">Sobre Nosotros</a></li>
               <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">Talento Humano</a></li>
-              <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">Instagram</a></li>
+              <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">Trabaja Con Software DT</a></li>
             </ul>
           </div>
         </div>
