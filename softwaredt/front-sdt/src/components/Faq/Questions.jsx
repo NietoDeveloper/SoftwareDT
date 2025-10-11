@@ -24,7 +24,7 @@ const Questions = () => {
               <div className="my-4 min-[700px]:my-6">
                 <FaqItem
                   question="¿Tiene algún costo la cita?"
-                  answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+                  answer=""
                   className="bg-transparent border border-gray-200 rounded-lg text-white"
                 />
               </div>
