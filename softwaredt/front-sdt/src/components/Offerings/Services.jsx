@@ -17,7 +17,7 @@ const servicesList = [
   },
   {
     name: "Solución integral para la gestión empresarial que incluye:",
-    desc: "Aplicamos una",
+    desc: "Software Contable: Automatiza registros financieros, genera balances, estados de resultados y cumple con normativas fiscales. Simplifica la contabilidad con herramientas para facturación, conciliación bancaria y reportes financieros. Manejo de Personal: Administra nóminas, calcula salarios, beneficios y deducciones. Controla horarios, asistencias y expedientes de empleados, optimizando la gestión de recursos humanos. Manejo de Usuarios e Información: Gestiona accesos y permisos de usuarios con seguridad. Organiza y protege datos empresariales, facilitando la búsqueda, almacenamiento y análisis de información clave.",
   },
 
   {
