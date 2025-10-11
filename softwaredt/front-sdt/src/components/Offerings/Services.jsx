@@ -16,7 +16,7 @@ const servicesList = [
     desc: "Analizamos las solicitudes y necesidades para crear ",
   },
   {
-    name: "",
+    name: "Solución integral para la gestión empresarial que incluye:",
     desc: "Aplicamos una",
   },
 
