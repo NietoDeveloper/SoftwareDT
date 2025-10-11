@@ -22,7 +22,7 @@ const servicesList = [
   },
   {
     name: "Actualizacion o creacion de Software",
-    desc: "Analisis de productos tus Software para decidir si quieres crear un software nuevo o el actual solo necesita ajustes.",
+    desc: "Analisis de tus Software, para decidir si es mejor, crear un software nuevo o el actual solo necesita ajustes.",
   },
 
   {
