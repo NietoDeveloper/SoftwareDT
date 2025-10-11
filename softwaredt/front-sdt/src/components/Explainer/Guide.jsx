@@ -10,7 +10,7 @@ const Guide = () => {
             <div className="xl:w-[670px]">
               <h2 className="heading">
                 Agenda tu Cita,
-                <br /> Uno de nuestros Ing de Software te Asesorara.
+                <br /> Uno de nuestros Desarrolladores de Software te Guiara.
               </h2>
               <ul className="pl-4">
                 <li className="text_para">1. Escoje uno de nuestros Servicios</li>
