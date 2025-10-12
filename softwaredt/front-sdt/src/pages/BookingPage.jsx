@@ -112,7 +112,7 @@ const BookAppointment = () => {
 
         </div>
        ) : (
-        <p className="text-center text-red-500">...</p>
+        <p className="text-center text-red-500">Cargando Perfil del Programador...</p>
        )}
       </div>
      
