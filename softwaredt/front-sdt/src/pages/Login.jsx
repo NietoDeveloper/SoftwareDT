@@ -66,7 +66,7 @@ const Login = () => {
                 id="password"
                 className="border-2 p-2 outline-none"
                 placeholder="Enter password..."
-                {...register('password', { required: 'This field is required' })}
+                {...register('password', { : 'This field is required' })}
               />
               {errors.password && <span className="text-red-600">{errors.password.message}</span>}
             </div>
