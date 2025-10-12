@@ -61,7 +61,7 @@ const DoctorList = () => {
             </div>
           ))
         ) : (
-          <p>No doctors found</p>
+          <p>No se encontro Programador</p>
         )}
       </div>
     </div>
