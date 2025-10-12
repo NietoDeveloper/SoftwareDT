@@ -97,7 +97,7 @@ const BookAppointment = () => {
          {/*appointment schedule */}
         <div className="shadow-2xl w-72 rounded-xl">
           <div className="flex flex-col items-center py-4">
-            <h2 className="text-2xl">Ticket Price: <span>{doctor.ticketPrice}</span></h2>
+            <h2 className="text-2xl">Ticket Precio: <span>{doctor.ticketPrice}</span></h2>
             <h2 className="text-xl py-4 underline">Available Slots:</h2>
             {doctor.timeSlots}
             <div>
