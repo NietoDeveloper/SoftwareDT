@@ -23,7 +23,7 @@ const DoctorList = () => {
     queryFn: getDoctors,
   });
 
-  if (isLoading) return <h1>Loading....</h1>;
+  if (isLoading) return <h1>Cargando....</h1>;
   if (error)
     return <h1>An error occurred when fetching the data: {error.message}</h1>;
 
