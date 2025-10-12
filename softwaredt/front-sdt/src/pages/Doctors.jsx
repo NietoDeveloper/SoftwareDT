@@ -49,7 +49,7 @@ const DoctorList = () => {
                 />
                 <h1 className="text-xl font-semibold mb-2">{doctor.name}</h1>
                 <h2 className="text-gray-600 mb-2">{doctor.specialization}</h2>
-                <p className="text-yellow-500 mb-4">: {doctor.totalRating}</p>
+                <p className="text-yellow-500 mb-4">Puntaje: {doctor.totalRating}</p>
                 <p className="text-gray-700 mb-4">{doctor.bio}</p>
                 <button
                   className="w-10 h-10 rounded-full border border-solid border-gray-900 flex items-center justify-center hover:bg-blue-600 transition-colors group"
