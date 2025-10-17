@@ -30,10 +30,6 @@ mi-app-frontend/
 ├── package.json           \# Dependencias y scripts
 └── tailwind.config.js     \# Archivo de configuración de Tailwind CSS
 
-````
-
----
-
 ## ⚙️ Instalación y Configuración
 
 Sigue estos pasos para tener una copia local del proyecto ejecutándose.
