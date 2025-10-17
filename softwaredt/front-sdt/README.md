@@ -1,6 +1,3 @@
-# Manuel Nieto Software Developer
-
-```markdown
 # 🚀 Nombre de tu Aplicación - Frontend
 
 Este es el repositorio del **cliente (frontend)** de la aplicación **[Nombre de tu Aplicación]**. Fue construida usando **React** con **Vite** y estilizada con **Tailwind CSS**.
