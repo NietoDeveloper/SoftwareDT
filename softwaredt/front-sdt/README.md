@@ -122,8 +122,6 @@ Distribuido bajo la Licencia **[Elegir Licencia, e.g., MIT]**. Consulta el archi
 [Tu Nombre o el Nombre del Equipo] - [Tu Correo Electrónico]
 
 Enlace del Proyecto: https://aws.amazon.com/es/what-is/repo/
-````
-
 
 
 # 🚀 Nombre de tu Aplicación - Frontend
