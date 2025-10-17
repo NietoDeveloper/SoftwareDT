@@ -15,8 +15,6 @@ Este es el repositorio del **cliente (frontend)** de la aplicación **[Nombre de
 
 Una visión general de la estructura principal de directorios:
 
-```
-
 mi-app-frontend/
 ├── public/                \# Archivos estáticos
 ├── src/
@@ -148,3 +146,7 @@ Este es el repositorio del **cliente (frontend)** de la aplicación **[Nombre de
 ## 🏗️ Estructura del Proyecto
 
 Una visión general de la estructura principal de directorios:
+
+
+# Manuel Nieto Software Developer
+
