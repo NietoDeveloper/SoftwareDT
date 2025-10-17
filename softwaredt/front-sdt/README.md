@@ -1,11 +1,5 @@
 # Manuel Nieto Software Developer
 
-
-
-La respuesta anterior **ya está en formato Markdown** y lista para ser copiada y pegada en tu archivo `README.md`.
-
-Aquí la tienes de nuevo, completamente en Markdown:
-
 ```markdown
 # 🚀 Nombre de tu Aplicación - Frontend
 
