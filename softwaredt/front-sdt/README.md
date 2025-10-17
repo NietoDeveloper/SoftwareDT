@@ -58,7 +58,6 @@ Asegúrate de tener **Node.js** (versión recomendada: [ej. `v18.x`]) y **npm** 
 
     # .env
     VITE_API_URL=http://localhost:3000/api/
-    ```
 
     > **Nota:** En Vite, las variables de entorno deben comenzar con `VITE_` para ser expuestas al código del cliente.
 
