@@ -56,7 +56,6 @@ Asegúrate de tener **Node.js** (versión recomendada: [ej. `v18.x`]) y **npm** 
 
     Crea un archivo llamado `.env` en la raíz del proyecto. Este archivo debe contener la URL base de tu **backend** (servidor Node.js):
 
-    ```
     # .env
     VITE_API_URL=http://localhost:3000/api/
     ```
