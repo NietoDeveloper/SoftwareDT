@@ -85,15 +85,12 @@ En el directorio del proyecto, puedes ejecutar:
 | `npm run lint` | Ejecuta el linter (si está configurado). |
 | `npm run preview` | Sirve la carpeta `dist` localmente para verificar la compilación de producción. |
 
----
 
 ## 🎨 Estilo y Personalización con Tailwind CSS
 
 La configuración de Tailwind se encuentra en **`tailwind.config.js`**. Si necesitas añadir colores personalizados, fuentes, o modificar los *breakpoints*, hazlo en ese archivo.
 
 Los estilos base de Tailwind y cualquier CSS personalizado se importan en **`src/styles/tailwind.css`** (o el archivo de tu elección) para ser inyectados en la aplicación.
-
----
 
 ## 🤝 Contribución
 
@@ -110,8 +107,6 @@ Si deseas contribuir, por favor, sigue el flujo estándar de Git: *fork*, crea u
 ## 📄 Licencia
 
 Distribuido bajo la Licencia **[Elegir Licencia, e.g., MIT]**. Consulta el archivo `LICENSE` para más información.
-
----
 
 ## 📧 Contacto
 
