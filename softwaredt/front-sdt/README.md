@@ -51,7 +51,6 @@ Asegúrate de tener **Node.js** (versión recomendada: [ej. `v18.x`]) y **npm** 
     npm install
     # o si usas yarn
     # yarn install
-    ```
 
 3.  **Configurar Variables de Entorno:**
 
