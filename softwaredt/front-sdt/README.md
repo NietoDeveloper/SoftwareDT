@@ -128,10 +128,6 @@ Este es el repositorio del **cliente (frontend)** de la aplicación **[Nombre de
 | **Tailwind CSS** | Framework de CSS *utility-first* para un estilo rápido y flexible. |
 | **[Otras Librerías Importantes]** | *E.g., Axios, React Router Dom, Redux/Zustand, etc.* |
 
-## 🏗️ Estructura del Proyecto
-
-Una visión general de la estructura principal de directorios:
-
 
 # Manuel Nieto Software Developer
 
