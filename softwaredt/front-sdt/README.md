@@ -1,118 +1,119 @@
-# 🚀 Nombre de tu Aplicación - Frontend
+# 🚀 Your Application Name - Frontend
 
-Este es el repositorio del **cliente (frontend)** de la aplicación **[Nombre de tu Aplicación]**. 
+This is the **client (frontend)** repository for the **[Your Application Name]** application.
 
-## 🌟 Tecnologías Utilizadas
+## 🌟 Technologies Used
 
-| Tecnología | Descripción |
+| Technology | Description |
 | :--- | :--- |
-| **React** | Biblioteca de JavaScript para construir interfaces de usuario. |
-| **Vite** | Herramienta de construcción rápida para el desarrollo frontend. |
-| **Tailwind CSS** | Framework de CSS *utility-first* para un estilo rápido y flexible. |
-| **[Otras Librerías Importantes]** | *Axios, React Router Dom |
+| **React** | A JavaScript library for building user interfaces. |
+| **Vite** | A fast build tool for frontend development. |
+| **Tailwind CSS** | A *utility-first* CSS framework for rapid and flexible styling. |
+| **[Other Important Libraries]** | *Axios, React Router Dom* |
 
-## 🏗️ Estructura del Proyecto
+## 🏗️ Project Structure
 
-Una visión general de la estructura principal de directorios:
+An overview of the main directory structure:
 
-mi-app-frontend/
-├── public/                \# Archivos estáticos
+my-app-frontend/
+├── public/                \# Static files
 ├── src/
-│   ├── assets/            \# Imágenes, íconos, etc.
-│   ├── components/        \# Componentes reutilizables (Botones, Tarjetas, Headers)
-│   ├── hooks/             \# Custom Hooks
-│   ├── pages/             \# Componentes que representan páginas/vistas (Home, About, Login)
-│   ├── styles/            \# Archivos CSS globales o de configuración (tailwind.css)
-│   ├── utils/             \# Funciones de utilidad
-│   ├── App.jsx            \# Componente principal de la aplicación
-│   └── main.jsx           \# Punto de entrada de la aplicación
-├── index.html             \# El archivo HTML principal
-├── package.json           \# Dependencias y scripts
-└── tailwind.config.js     \# Archivo de configuración de Tailwind CSS
+│   ├── assets/            \# Images, icons, etc.
+│   ├── components/        \# Reusable components (Buttons, Cards, Headers)
+│   ├── hooks/             \# Custom Hooks
+│   ├── pages/             \# Components representing pages/views (Home, About, Login)
+│   ├── styles/            \# Global or configuration CSS files (tailwind.css)
+│   ├── utils/             \# Utility functions
+│   ├── App.jsx            \# Main application component
+│   └── main.jsx           \# Application entry point
+├── index.html             \# The main HTML file
+├── package.json           \# Dependencies and scripts
+└── tailwind.config.js     \# Tailwind CSS configuration file
 
-## ⚙️ Instalación y Configuración
+## ⚙️ Installation and Setup
 
-Sigue estos pasos para tener una copia local del proyecto ejecutándose.
+Follow these steps to get a local copy of the project up and running.
 
-### **Prerrequisitos**
+### **Prerequisites**
 
-Asegúrate de tener **Node.js** (versión recomendada: [ej. `v18.x`]) y **npm** o **yarn** instalado en tu sistema.
+Ensure you have **Node.js** (recommended version: [e.g., `v18.x`]) and **npm** or **yarn** installed on your system.
 
-### **Pasos**
+### **Steps**
 
-1.  **Clonar el Repositorio:**
-    ```bash
-    git clone [https://aws.amazon.com/es/what-is/repo/](https://aws.amazon.com/es/what-is/repo/)
-    cd [nombre-de-la-carpeta-frontend]
-    ```
+1.  **Clone the Repository:**
+    ```bash
+    git clone [https://aws.amazon.com/es/what-is/repo/](https://aws.amazon.com/es/what-is/repo/)
+    cd [frontend-folder-name]
+    ```
 
-2.  **Instalar Dependencias:**
-    ```bash
-    npm install
-    # o si usas yarn
-    # yarn install
+2.  **Install Dependencies:**
+    ```bash
+    npm install
+    # or if you use yarn
+    # yarn install
+    ```
 
-3.  **Configurar Variables de Entorno:**
+3.  **Configure Environment Variables:**
 
-    Crea un archivo llamado `.env` en la raíz del proyecto. Este archivo debe contener la URL base de tu **backend** (servidor Node.js):
+    Create a file named `.env` in the project root. This file should contain the base URL of your **backend** (Node.js server):
 
-    # .env
+    ```.env
+    VITE_API_URL=http://localhost:3000/api/
+    ```
 
-    VITE_API_URL=http://localhost:3000/api/
+    > **Note:** In Vite, environment variables must start with `VITE_` to be exposed to the client-side code.
 
-    > **Nota:** En Vite, las variables de entorno deben comenzar con `VITE_` para ser expuestas al código del cliente.
+4.  **Run the Project:**
 
-4.  **Ejecutar el Proyecto:**
+    Start the Vite development server.
 
-    Inicia el servidor de desarrollo de Vite.
+    ```bash
+    npm run dev
+    # or
+    # yarn dev
+    ```
 
-    ```bash
-    npm run dev
-    # o
-    # yarn dev
-    ```
+    The project will be available at `http://localhost:[port-assigned-by-vite]` (usually `http://localhost:5173`).
 
-    El proyecto estará disponible en `http://localhost:[puerto-asignado-por-vite]` (normalmente `http://localhost:5173`).
+## 📜 Available Scripts
 
-## 📜 Scripts Disponibles
+In the project directory, you can run:
 
-En el directorio del proyecto, puedes ejecutar:
-
-| Script | Descripción |
+| Script | Description |
 | :--- | :--- |
-| `npm run dev` | Inicia el servidor de desarrollo. |
-| `npm run build` | Construye la aplicación para producción en la carpeta `dist/`. |
-| `npm run lint` | Ejecuta el linter (si está configurado). |
-| `npm run preview` | Sirve la carpeta `dist` localmente para verificar la compilación de producción. |
+| `npm run dev` | Starts the development server. |
+| `npm run build` | Builds the app for production to the `dist/` folder. |
+| `npm run lint` | Runs the linter (if configured). |
+| `npm run preview` | Serves the `dist` folder locally to check the production build. |
 
 
-## 🎨 Estilo y Personalización con Tailwind CSS
+## 🎨 Styling and Customization with Tailwind CSS
 
-La configuración de Tailwind se encuentra en **`tailwind.config.js`**. Si necesitas añadir colores personalizados, fuentes, o modificar los *breakpoints*, hazlo en ese archivo.
+Tailwind configuration is located in **`tailwind.config.js`**. If you need to add custom colors, fonts, or modify breakpoints, do it in that file.
 
-Los estilos base de Tailwind y cualquier CSS personalizado se importan en **`src/styles/tailwind.css`** (o el archivo de tu elección) para ser inyectados en la aplicación.
+Tailwind's base styles and any custom CSS are imported into **`src/styles/tailwind.css`** (or your chosen file) to be injected into the application.
 
-## 🤝 Contribución
+## 🤝 Contribution
 
-Si deseas contribuir, por favor, sigue el flujo estándar de Git: *fork*, crea una rama, haz tus cambios y envía un **Pull Request**.
+If you wish to contribute, please follow the standard Git workflow: *fork*, create a branch, make your changes, and submit a **Pull Request**.
 
-1.  Haz *Fork* del proyecto.
-2.  Crea tu rama de *feature* (`git checkout -b feature/AmazingFeature`).
-3.  Commitea tus cambios (`git commit -m 'feat: Añade AmazingFeature'`).
-4.  Haz *Push* a la rama (`git push origin feature/AmazingFeature`).
-5.  Abre un *Pull Request*.
+1.  Fork the project.
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3.  Commit your changes (`git commit -m 'feat: Add AmazingFeature'`).
+4.  Push to the branch (`git push origin feature/AmazingFeature`).
+5.  Open a Pull Request.
 
 ---
 
-## 📄 Licencia
+## 📄 License
 
-Distribuido bajo la Licencia **[Elegir Licencia, e.g., MIT]**. Consulta el archivo `LICENSE` para más información.
+Distributed under the **[Choose License, e.g., MIT]** License. See the `LICENSE` file for more information.
 
-## 📧 Contacto
+## 📧 Contact
 
-[Tu Nombre o el Nombre del Equipo] - [Tu Correo Electrónico]
+[Your Name or Team Name] - [Your Email]
 
-Enlace del Proyecto: https://aws.amazon.com/es/what-is/repo/
+Project Link: https://aws.amazon.com/es/what-is/repo/
 
 
 # Manuel Nieto Software Developer
