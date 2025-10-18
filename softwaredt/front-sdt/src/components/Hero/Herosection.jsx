@@ -7,15 +7,15 @@ const Herosection = () => {
   return (
     <>
 <h2
-  className="absolute top-[65%] md:top-[calc(50%+10px)] left-[35%] -translate-x-1/2 
-  text-3xl md:text-4xl font-extrabold text-white tracking-wider z-50 
+  className="absolute top-[65%] md:top-[calc(50%+30px)] left-[35%] -translate-x-1/2 
+  text-3xl md:text-5xl font-extrabold text-white tracking-wider z-50 
   drop-shadow-lg text-center max-w-xs md:max-w-md"
 >
   Software Dorado Technology
 </h2>
 
 <button
-  className="absolute top-[calc(65%+5rem)] md:top-[calc(50%+8rem+10px)] left-[35%] -translate-x-1/2 z-50 
+  className="absolute top-[calc(65%+5rem)] md:top-[calc(50%+8rem+35px)] left-[35%] -translate-x-1/2 z-50 
   bg-gradient-to-r from-blue-700 to-blue-800 text-white font-extrabold 
   py-5 px-10 text-2xl
   md:py-6 md:px-12 md:text-3xl 
