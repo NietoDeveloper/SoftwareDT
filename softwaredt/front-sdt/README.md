@@ -126,7 +126,7 @@ Este es el repositorio del **cliente (frontend)** de la aplicación **[Nombre de
 | **React** | Biblioteca de JavaScript para construir interfaces de usuario. |
 | **Vite** | Herramienta de construcción rápida para el desarrollo frontend. |
 | **Tailwind CSS** | Framework de CSS *utility-first* para un estilo rápido y flexible. |
-| **[Otras Librerías Importantes]** | *E.g., Axios, React Router Dom, Redux/Zustand, etc.* |
+| **[Otras Librerías Importantes]** | *Axios, React Router Dom |
 
 
 # Manuel Nieto Software Developer
