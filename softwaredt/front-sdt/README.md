@@ -1,6 +1,15 @@
 # 🚀 Nombre de tu Aplicación - Frontend
 
-Este es el repositorio del **cliente (frontend)** de la aplicación **[Nombre de tu Aplicación]**. Fue construida usando **React** con **Vite** y estilizada con **Tailwind CSS**.
+Este es el repositorio del **cliente (frontend)** de la aplicación **[Nombre de tu Aplicación]**. 
+
+## 🌟 Tecnologías Utilizadas
+
+| Tecnología | Descripción |
+| :--- | :--- |
+| **React** | Biblioteca de JavaScript para construir interfaces de usuario. |
+| **Vite** | Herramienta de construcción rápida para el desarrollo frontend. |
+| **Tailwind CSS** | Framework de CSS *utility-first* para un estilo rápido y flexible. |
+| **[Otras Librerías Importantes]** | *Axios, React Router Dom |
 
 ## 🏗️ Estructura del Proyecto
 
@@ -109,15 +118,6 @@ Enlace del Proyecto: https://aws.amazon.com/es/what-is/repo/
 # 🚀 Nombre de tu Aplicación - Frontend
 
 Este es el repositorio del **cliente (frontend)** de la aplicación **[Nombre de tu Aplicación]**. Fue construida usando **React** con **Vite** y estilizada con **Tailwind CSS**.
-
-## 🌟 Tecnologías Utilizadas
-
-| Tecnología | Descripción |
-| :--- | :--- |
-| **React** | Biblioteca de JavaScript para construir interfaces de usuario. |
-| **Vite** | Herramienta de construcción rápida para el desarrollo frontend. |
-| **Tailwind CSS** | Framework de CSS *utility-first* para un estilo rápido y flexible. |
-| **[Otras Librerías Importantes]** | *Axios, React Router Dom |
 
 
 # Manuel Nieto Software Developer
