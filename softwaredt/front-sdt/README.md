@@ -115,11 +115,6 @@ Distribuido bajo la Licencia **[Elegir Licencia, e.g., MIT]**. Consulta el archi
 Enlace del Proyecto: https://aws.amazon.com/es/what-is/repo/
 
 
-# 🚀 Nombre de tu Aplicación - Frontend
-
-Este es el repositorio del **cliente (frontend)** de la aplicación **[Nombre de tu Aplicación]**. Fue construida usando **React** con **Vite** y estilizada con **Tailwind CSS**.
-
-
 # Manuel Nieto Software Developer
 
 ## 2025
