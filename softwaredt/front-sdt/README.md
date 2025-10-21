@@ -42,7 +42,7 @@ Ensure you have **Node.js** (recommended version: [e.g., `v18.x`]) and **npm** o
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://aws.amazon.com/es/what-is/repo/](https://aws.amazon.com/es/what-is/repo/)
+    git clone https://github.com/NietoDeveloper/SoftwareDT/tree/main/softwaredt
     cd [frontend-folder-name]
     ```
 
