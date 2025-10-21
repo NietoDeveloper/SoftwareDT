@@ -49,8 +49,6 @@ Ensure you have **Node.js** (recommended version: [e.g., `v18.x`]) and **npm** o
 2.  **Install Dependencies:**
     ```bash
     npm install
-    # or if you use yarn
-    # yarn install
     ```
 
 3.  **Configure Environment Variables:**
