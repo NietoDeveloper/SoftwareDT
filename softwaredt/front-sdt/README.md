@@ -95,7 +95,7 @@ If you wish to contribute, please follow the standard Git workflow: *fork*, crea
 
 1.  Fork the project.
 2.  Create your feature branch
-3.  Commit your changes (`git commit -m 'feat: Add AmazingFeature'`).
+3.  Commit your changes 
 4.  Push to the branch (`git push origin feature/AmazingFeature`).
 5.  Open a Pull Request.
 
