@@ -105,12 +105,6 @@ If you wish to contribute, please follow the standard Git workflow: *fork*, crea
 
 MIT
 
-## 📧 Contact
-
-[Your Name or Team Name] - [Your Email]
-
-Project Link: https://aws.amazon.com/es/what-is/repo/
-
 
 # Manuel Nieto Software Developer
 
