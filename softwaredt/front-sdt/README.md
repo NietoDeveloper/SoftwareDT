@@ -107,4 +107,8 @@ MIT
 
 # Manuel Nieto Software Developer
 
+---
+
 ## 2025
+
+---
