@@ -67,8 +67,6 @@ Ensure you have **Node.js** (recommended version: [e.g., `v18.x`]) and **npm** o
 
     ```bash
     npm run dev
-    # or
-    # yarn dev
     ```
 
     The project will be available at `http://localhost:[port-assigned-by-vite]` (usually `http://localhost:5173`).
