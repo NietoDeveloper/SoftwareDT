@@ -94,7 +94,7 @@ Tailwind's base styles and any custom CSS are imported into **`src/styles/tailwi
 If you wish to contribute, please follow the standard Git workflow: *fork*, create a branch, make your changes, and submit a **Pull Request**.
 
 1.  Fork the project.
-2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
+2.  Create your feature branch
 3.  Commit your changes (`git commit -m 'feat: Add AmazingFeature'`).
 4.  Push to the branch (`git push origin feature/AmazingFeature`).
 5.  Open a Pull Request.
