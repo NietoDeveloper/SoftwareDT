@@ -1,6 +1,6 @@
 # 🚀 Your Application Name - Frontend
 
-This is the **client (frontend)** repository for the **[]** application.
+This is the **client (frontend)** repository for the SoftwareDT application.
 
 ## 🌟 Technologies Used
 
