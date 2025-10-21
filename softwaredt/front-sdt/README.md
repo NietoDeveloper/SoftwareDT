@@ -69,7 +69,7 @@ Ensure you have **Node.js** (recommended version: [e.g., `v18.x`]) and **npm** o
     npm run dev
     ```
 
-    The project will be available at `http://localhost:[port-assigned-by-vite]` (usually `http://localhost:5173`).
+    The project will be available at `http://localhost:5173`
 
 ## 📜 Available Scripts
 
