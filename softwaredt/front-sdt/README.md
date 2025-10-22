@@ -56,7 +56,7 @@ Ensure you have **Node.js** (recommended version: [e.g., `v18.x`]) and **npm** o
     Create a file named `.env` in the project root. This file should contain the base URL of your **backend** (Node.js server):
 
     ```.env
-    VITE_API_URL=http://localhost:3000/api/
+    VITE_API_URL=http://localhost:8080
     ```
 
     > **Note:** In Vite, environment variables must start with `VITE_` to be exposed to the client-side code.
