@@ -25,7 +25,7 @@ const DoctorList = () => {
 
   if (isLoading) return <h1>Cargando....</h1>;
   if (error)
-    return <h1>Hubo un Error cargando los Datos: {error.message}</h1>;
+    return <h1>Error cargando los Datos: {error.message}</h1>;
 
   const doctors = data?.doctors || [];
 
