@@ -45,7 +45,7 @@ const Herosection = () => {
               Innovamos con software de vanguardia. Transformamos negocios con
               tecnología personalizada. Potenciamos empresas con herramientas
               digitales. Diseñamos apps, web y software a medida. Soluciones
-              escalables, intuitivas y eficientes. Tu visión, nuestra
+              escalables, intuitivas y eficientes. Con Tu visión y nuestra
               tecnología, resultados reales. Eleva tu negocio con nosotros.
             </p>
             <Link to="/doctors">
