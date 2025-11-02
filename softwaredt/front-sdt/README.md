@@ -1,6 +1,6 @@
 # 🚀 Software DT - Frontend
 
-This is the **Front (frontend)** repository for the **SoftwareDT application**
+This is the **(frontend)** repository for the **SoftwareDT application**
 
 ## 🌟 Technologies Used
 
