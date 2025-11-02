@@ -9,7 +9,7 @@ const Guide = () => {
           <div className="flex items-center justify-between flex-col lg:flex-row pb-8 lg:pb-[55px]">
             <div className="xl:w-[670px]">
               <h2 className="heading">
-                Agenda tu Cita,
+                Agenda tu Cita:
                 <br /> Uno de nuestros Ingenieros de Software te Guiara.
               </h2>
               <ul className="pl-4">
