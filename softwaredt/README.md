@@ -82,4 +82,4 @@ npm run start: Starts the production Node.js server.
 
     Review System: Users can leave reviews for doctors, allowing others to make informed decisions when choosing a doctor.
 
-### Manuel Nieto, Software Developer.
+# Manuel Nieto
