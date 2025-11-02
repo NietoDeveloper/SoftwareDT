@@ -105,8 +105,8 @@ If you wish to contribute, please follow the standard Git workflow: *fork*, crea
 
 MIT
 
-# Manuel Nieto Software Developer
+# Manuel Nieto 
 
----
+## NietoSoftwareDeveloper
 
 ### 2025
