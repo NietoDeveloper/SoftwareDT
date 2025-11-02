@@ -82,7 +82,6 @@ In the project directory, you can run:
 | `npm run lint` | Runs the linter (if configured). |
 | `npm run preview` | Serves the `dist` folder locally to check the production build. |
 
-
 ## 🎨 Styling and Customization with Tailwind CSS
 
 Tailwind configuration is located in **`tailwind.config.js`**. If you need to add custom colors, fonts, or modify breakpoints, do it in that file.
@@ -95,8 +94,8 @@ If you wish to contribute, please follow the standard Git workflow: *fork*, crea
 
 1.  Fork the project.
 2.  Create your feature branch
-3.  Commit your changes 
-4.  Push to the branch 
+3.  Commit your changes
+4.  Push to the branch
 5.  Open a Pull Request
 
 ---
@@ -105,7 +104,7 @@ If you wish to contribute, please follow the standard Git workflow: *fork*, crea
 
 MIT
 
-# Manuel Nieto 
+# Manuel Nieto
 
 ## NietoSoftwareDeveloper
 
