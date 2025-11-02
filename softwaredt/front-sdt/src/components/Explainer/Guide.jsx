@@ -15,9 +15,7 @@ const Guide = () => {
               <ul className="pl-4">
                 <li className="text_para">1. Escoje uno de nuestros Servicios</li>
                 <li className="text_para">2. Asignacion Ingeniero de Software, segun tu solicitud</li>
-                <li className="text_para">
-                  3. Seleciona la Hora y Fecha
-                </li>
+                <li className="text_para">3. Seleciona la Hora y Fecha</li>
                 <li className="text_para">4. Deja un Mensaje al Ingeniero de Software que te asistira</li>
               </ul>
               <Link to="/doctors">
