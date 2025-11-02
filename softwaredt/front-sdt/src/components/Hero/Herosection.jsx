@@ -6,30 +6,7 @@ import heroimage4 from "../../assets/images/feature-img.png";
 const Herosection = () => {
   return (
     <>
-      <h2
-        className="absolute top-[65%] md:top-[calc(50%+30px)] left-[35%] -translate-x-1/2 
-  text-3xl md:text-5xl font-extrabold text-white tracking-wider z-50 
-  drop-shadow-lg text-center max-w-xs md:max-w-md"
-      >
-        Software Dorado Technology
-      </h2>
 
-      <button
-        className="absolute top-[calc(65%+5rem)] md:top-[calc(50%+8rem+35px)] left-[35%] -translate-x-1/2 z-50 
-  bg-gradient-to-r from-blue-700 to-blue-800 text-white font-extrabold 
-  py-5 px-10 text-2xl
-  md:py-6 md:px-12 md:text-3xl 
-  rounded-full shadow-2xl transition-all duration-300 ease-in-out transform
-  hover:from-yellow-400 hover:to-yellow-500 hover:text-gray-900
-  hover:scale-110 hover:shadow-glow-xl
-  focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
-        style={{
-          boxShadow: "0 15px 40px rgba(0, 0, 0, 0.6)",
-          "--tw-shadow-glow-xl":
-            "0 0 30px rgba(252, 211, 77, 0.8), 0 0 60px rgba(252, 211, 77, 0.6)",
-        }}
-      >
-        Contacto
       </button>
 
       <section className="min-h-screen w-full flex flex-col justify-center items-center relative pt-16 pb-12 lg:pt-0 lg:pb-0">
