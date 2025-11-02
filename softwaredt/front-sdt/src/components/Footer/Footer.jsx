@@ -27,7 +27,7 @@ const Footer = () => {
         <div className="flex flex-col min-[700px]:flex-row justify-center items-center gap-8 min-[700px]:gap-16">
           <div className="flex flex-col items-center">
             <ul className="text-xl min-[700px]:text-2xl font-light tracking-wide">
-              <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">Proyectos</a></li>
+              <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">s</a></li>
               <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">Servicios</a></li>
               <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="#">Contacto</a></li>
               <li className="py-3 min-[700px]:py-4 hover:text-yellow-300 transition-colors"><a href="mailto:softwaredt@outlook.com">softwaredt@outlook.com</a></li>
