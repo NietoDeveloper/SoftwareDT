@@ -18,7 +18,7 @@ const Guide = () => {
                 <li className="text_para">
                   3. Seleciona la Hora y Fecha
                 </li>
-                <li className="text_para">4. Deja un Mensaje al Desarrollador de Software que asistira a tu cita</li>
+                <li className="text_para">4. Deja un Mensaje al Ingeniero de Software que te asistira</li>
               </ul>
               <Link to="/doctors">
                 <button className="btn hover:bg-blue-500">Agenda una Cita</button>
