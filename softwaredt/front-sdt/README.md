@@ -1,4 +1,4 @@
-# 🚀 Your Application Name - Frontend
+# 🚀  - Frontend
 
 This is the **Front (frontend)** repository for the **SoftwareDT application**
 
