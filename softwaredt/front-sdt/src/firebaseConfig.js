@@ -1,9 +1,3 @@
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const storage = getStorage(app)
-//const analytics = getAnalytics(app);
-
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {getStorage} from 'firebase/storage'
@@ -19,3 +13,8 @@ const firebaseConfig = {
   messagingSenderId: "739796107685",
   appId: "1:739796107685:web:6652ea0c94a15b6aee684c"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+export const storage = getStorage(app)
+//const analytics = getAnalytics(app);
