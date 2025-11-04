@@ -1,4 +1,4 @@
-```jsx
+
 import React from 'react';
 
 const ServicesList = () => {
@@ -27,4 +27,3 @@ const ServicesList = () => {
 };
 
 export default ServicesList;
-```
