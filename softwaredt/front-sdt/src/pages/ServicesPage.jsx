@@ -2,7 +2,7 @@ import React from 'react';
 
 const ServicesList = () => {
   const services = [
-    { title: 'Service 1', subtitle: 'Subtitle 1', description: 'Description for service 1.', photo: 'https://via.placeholder.com/150', price: '$100 - $200' },
+    { title: 'Desarrollo de Web, Apps y Bases de Datos', subtitle: 'Subtitle 1', description: 'Description for service 1.', photo: 'https://via.placeholder.com/150', price: '$100 - $200' },
     { title: 'Service 2', subtitle: 'Subtitle 2', description: 'Description for service 2.', photo: 'https://via.placeholder.com/150', price: '$150 - $250' },
     { title: 'Service 3', subtitle: 'Subtitle 3', description: 'Description for service 3.', photo: 'https://via.placeholder.com/150', price: '$200 - $300' },
     { title: 'Service 4', subtitle: 'Subtitle 4', description: 'Description for service 4.', photo: 'https://via.placeholder.com/150', price: '$250 - $350' },
