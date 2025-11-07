@@ -65,9 +65,9 @@ const DoctorList = () => {
                 >
                                    {" "}
                   <BsArrowRight className="text-gray-900 group-hover:text-white transition-colors" />
-                                 {" "}
+                  {" "}
                 </button>
-                             {" "}
+                {" "}
               </div>
               {" "}
             </div>
