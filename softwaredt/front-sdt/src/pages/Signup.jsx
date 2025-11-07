@@ -15,7 +15,6 @@ const Signup = () => {
   const onSubmit = async (data) => {
     setIsUploading(true);
     try {
-      // Upload the image to Firebase storage
       const imageFile = data.photo[0];
       const imageRef = ref(storage, `images/${imageFile.name + v4()}`);
       const uploadTask = uploadBytesResumable(imageRef, imageFile);
@@ -26,7 +25,6 @@ const Signup = () => {
           setUploadProgress(progress);
         },
         (error) => {
-          console.error('Upload failed', error);
           setIsUploading(false);
         },
         async () => {
@@ -44,14 +42,11 @@ const Signup = () => {
             },
           });
 
-          console.log(response.data);
-          console.log(data);
           setIsUploading(false);
           navigate('/login');
         }
       );
     } catch (error) {
-      console.error('There was an error uploading the data!', error);
       setIsUploading(false);
     }
   };
@@ -126,5 +121,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
-
