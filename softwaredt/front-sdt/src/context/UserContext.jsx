@@ -1,28 +1,26 @@
 import { createContext, useState, useEffect, useCallback } from "react";
-// Eliminamos: import { useNavigate } from "react-router-dom";
+// ELIMINADO: import { useNavigate } from "react-router-dom";
 import { setupInterceptors } from "../API/api";
 import React from "react";
 
 const AppContext = createContext();
 
 const UserProvider = ({ children }) => {
-    // Eliminamos: const navigate = useNavigate();
+    // ELIMINADO: const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
     const [appointmentDetails, setAppointmentDetails] = useState(null);
 
-    // 1. handleLogout ahora solo limpia el estado. 
-    // Usamos useCallback para que sea estable y no se recree en cada render.
+    // handleLogout ahora solo limpia el estado. 
+    // Lo hacemos estable con useCallback para que useEffect no se ejecute innecesariamente.
     const handleLogout = useCallback(() => {
         setToken(null);
         setUser(null);
-        // También limpia el token de acceso del almacenamiento local.
-        localStorage.removeItem('accessToken'); 
-        // ❌ ELIMINAMOS: navigate("/login");
-    }, [setToken, setUser]); // Depende solo de las funciones set
+        localStorage.removeItem('accessToken'); // Limpia también el token de acceso
+        // ELIMINADO: navigate("/login"); 
+    }, [setToken, setUser]);
 
-    // 2. El interceptor se configura con la función de logout estable.
-    // La dependencia 'handleLogout' ahora es estable gracias a useCallback.
+    // El interceptor usa la función de logout simple.
     useEffect(() => {
         setupInterceptors(setToken, handleLogout);
     }, [setToken, handleLogout]);
@@ -36,7 +34,7 @@ const UserProvider = ({ children }) => {
                 setToken,
                 setAppointmentDetails,
                 appointmentDetails,
-                handleLogout,
+                handleLogout, // La función ahora solo limpia el estado
             }}
         >
             {children}
