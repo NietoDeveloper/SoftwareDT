@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login"
 import Doctorsignup from "./pages/DoctorSignup";
 import Doctorlogin from "./pages/DoctorLogin";
+import Services from "./pages/Services"; // ⬅️ ASUMIMOS QUE NECESITAS ESTO
 import {UserProvider} from './context/UserContext';
 import PrivateRoutes from "./utils/PrivateRoutes";
 import DoctorProfile from "./pages/BookingPage";
@@ -15,8 +16,6 @@ import Payment from "./components/Checkout/Payment";
 
 
 function App() {
-
-
   return (
     
     <UserProvider>
@@ -26,6 +25,10 @@ function App() {
       <Route path="/" element={<Home/>}/>
       <Route path="/doctors" element={<DoctorList/>}/>
       <Route path="/contact" element={<Contact/>}/>
+      
+      {/* ⬅️ CORRECCIÓN: RUTA FALTANTE QUE CAUSA EL ERROR DE CONSOLA */}
+      <Route path="/services" element={<Services />} /> 
+      
       <Route path="/signup" element={<Signup/>}/>
       <Route path="/login" element={<Login/>}/>
       
