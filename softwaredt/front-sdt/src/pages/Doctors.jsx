@@ -10,7 +10,7 @@ const DoctorList = () => {
 
   const getDoctors = async () => {
     try {
-      
+      const res = await axiosusers.get('/doctors');
       return res.data;
     } catch (error) {
       console.error('Error fetching doctors:', error);
