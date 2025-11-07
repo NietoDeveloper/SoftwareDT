@@ -18,8 +18,8 @@ const refreshAccessToken = async (setToken, handleLogout) => {
       handleLogout();
     }
     
-    throw error;
-  }
+ throw error;
+ }
 };
 
 export default refreshAccessToken;
