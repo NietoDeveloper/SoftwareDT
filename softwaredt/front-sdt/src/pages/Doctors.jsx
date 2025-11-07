@@ -10,7 +10,7 @@ const DoctorList = () => {
 
   const getDoctors = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/api/doctors');
+      
       return res.data;
     } catch (error) {
       console.error('Error fetching doctors:', error);
