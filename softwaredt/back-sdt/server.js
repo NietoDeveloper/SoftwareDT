@@ -1,5 +1,7 @@
 require('dotenv').config();
 const express = require('express');
+const cookieParser = require('cookie-parser'); // 👈 Importar
+const cors = require('cors'); // 👈 Importar
 const app = express();
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
