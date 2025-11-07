@@ -56,7 +56,7 @@ const DoctorList = () => {
                 <p className="text-yellow-500 mb-4">
                   Puntaje: {doctor.totalRating}
                 </p>
-                               {" "}
+                {" "}
                 <p className="text-gray-700 mb-4">{doctor.bio}</p>             
                  {" "}
                 <button
