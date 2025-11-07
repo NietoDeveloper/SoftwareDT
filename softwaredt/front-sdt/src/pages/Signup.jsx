@@ -25,6 +25,7 @@ const Signup = () => {
           setUploadProgress(progress);
         },
         (error) => {
+          console.error('Upload failed:', error.code, error.message, error.customData ? error.customData.serverResponse : 'No server response');
           setIsUploading(false);
         },
         async () => {
@@ -47,6 +48,7 @@ const Signup = () => {
         }
       );
     } catch (error) {
+      console.error('Error in signup process:', error.code, error.message, error.customData ? error.customData.serverResponse : 'No server response');
       setIsUploading(false);
     }
   };
@@ -81,43 +83,4 @@ const Signup = () => {
                 id="email"
                 className="border-2 p-2 outline-none"
                 placeholder="Enter email..."
-                {...register('email', { required: 'This field is required' })}
-              />
-              {errors.email && <span className="text-red-600">{errors.email.message}</span>}
-            </div>
-
-            <div className="flex flex-col mb-4">
-              <label htmlFor="password" className="mb-2">Contraseña</label>
-              <input
-                type="password"
-                id="password"
-                className="border-2 p-2 outline-none"
-                placeholder="Enter password..."
-                {...register('password', { required: 'This field is required' })}
-              />
-              {errors.password && <span className="text-red-600">{errors.password.message}</span>}
-            </div>
-
-            <div className="flex flex-col mb-4">
-              <label htmlFor="photo" className="mb-2">Imagen De Perfil</label>
-              <input
-                type="file"
-                id="photo"
-                {...register('photo', { required: 'This field is required' })}
-              />
-              {errors.photo && <span className="text-red-600">{errors.photo.message}</span>}
-            </div>
-
-            {isUploading && <div className="mb-4">Proceso De Carga: {uploadProgress.toFixed(2)}%</div>}
-
-            <button type="submit" disabled={isUploading} className="btn bg-blue-600 text-white p-2 rounded">
-              {isUploading ? 'Uploading...' : 'Sign Up'}
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Signup;
+                {...register('email',
