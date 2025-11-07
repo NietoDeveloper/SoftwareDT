@@ -63,7 +63,7 @@ const DoctorList = () => {
                   className="w-10 h-10 rounded-full border border-solid border-gray-900 flex items-center justify-center hover:bg-blue-600 transition-colors group"
                   onClick={() => handleDoctorClick(doctor._id)}
                 >
-                                   {" "}
+                  {" "}
                   <BsArrowRight className="text-gray-900 group-hover:text-white transition-colors" />
                   {" "}
                 </button>
