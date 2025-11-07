@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaTimes, FaBars } from "react-icons/fa";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../context/UserContext";
-import { axiosusers } from "../../API/api";
+import { axiosAuth } from "../../API/api"; // ⬅️ CORRECCIÓN: Usar axiosAuth para Logout
 import Profile from "../../features/Profile";
 
 const navLinks = [
@@ -41,16 +41,26 @@ const Header = () => {
 
   const handleLogOut = async () => {
     try {
-      const response = await axiosusers.post("/logout");
+      // Usamos axiosAuth, que tiene withCredentials: true. 
+      // La ruta debe ser /user/logout o /doctor/logout, no solo /logout
+      const logoutPath = user?.role === 'doctor' ? '/doctor/logout' : '/user/logout';
+      const response = await axiosAuth.post(logoutPath); 
+      
       if (response.status === 204) {
         setUser(null);
         setToken(null);
+        localStorage.removeItem('accessToken'); // Limpiar el token de acceso
         navigate("/");
       } else {
-        console.log("Error logging out");
+        console.log("Error logging out with status:", response.status);
       }
     } catch (error) {
-      console.log("Error logging out", error);
+      // Si hay un error (ej. la cookie ya no existe), limpiamos el estado local de todos modos.
+      console.log("Error logging out, cleaning local state.", error); 
+      setUser(null);
+      setToken(null);
+      localStorage.removeItem('accessToken');
+      navigate("/");
     }
   };
 
@@ -105,14 +115,14 @@ const Header = () => {
           <button
             onClick={user ? handleLogOut : () => navigate("/login")}
             className="bg-blue-700 text-white px-4 py-2 flex items-center
-             rounded-full font-bold shadow-2xl 
-             transition-all duration-300 ease-in-out transform
-             hover:bg-yellow-400 hover:text-gray-900 hover:scale-105 hover:shadow-glow-xl
-             focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
+              rounded-full font-bold shadow-2xl 
+              transition-all duration-300 ease-in-out transform
+              hover:bg-yellow-400 hover:text-gray-900 hover:scale-105 hover:shadow-glow-xl
+              focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
             style={{
-              boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)", // Sombra inicial marcada
+              boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)", 
               "--tw-shadow-glow-xl":
-                "0 0 25px rgba(252, 211, 77, 0.8), 0 0 50px rgba(252, 211, 77, 0.6)", // Brillo amarillo en hover
+                "0 0 25px rgba(252, 211, 77, 0.8), 0 0 50px rgba(252, 211, 77, 0.6)", 
             }}
           >
             {user ? "Log Out" : "Entrar"}
@@ -149,14 +159,14 @@ const Header = () => {
             <button
               onClick={user ? handleLogOut : () => navigate("/login")}
               className="bg-blue-700 text-[24px] text-white px-6 py-2 mt-4 flex items-center
-             rounded-full font-extrabold shadow-2xl 
-             transition-all duration-300 ease-in-out transform
-             hover:bg-yellow-400 hover:text-gray-900 hover:scale-105 hover:shadow-glow-xl
-             focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
+              rounded-full font-extrabold shadow-2xl 
+              transition-all duration-300 ease-in-out transform
+              hover:bg-yellow-400 hover:text-gray-900 hover:scale-105 hover:shadow-glow-xl
+              focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
               style={{
-                boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)", // Sombra inicial más marcada
+                boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)", 
                 "--tw-shadow-glow-xl":
-                  "0 0 25px rgba(252, 211, 77, 0.8), 0 0 50px rgba(252, 211, 77, 0.6)", // Brillo amarillo en hover
+                  "0 0 25px rgba(252, 211, 77, 0.8), 0 0 50px rgba(252, 211, 77, 0.6)", 
               }}
             >
               {user ? "Log Out" : "Entrar"}
