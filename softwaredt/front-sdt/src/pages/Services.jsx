@@ -1,68 +1,73 @@
 import React from "react";
 
 const ServicesList = () => {
+  // URL de placeholder funcional y estable.
+  const functionalPlaceholder = "https://placehold.co/150x150/EEEEEE/313131?text=Servicio";
+
   const services = [
     {
-      title: "Desarrollo de Web, Apps y Bases de Datos",
-      subtitle: "Subtitle 1",
+      title: "Desarrollo Web, Apps y Bases de Datos",
+      subtitle: "Soluciones Digitales 360",
       description:
-        "Creación de sitios web dinámicos, responsivos y optimizados, adaptados a tus necesidades, con diseño moderno y SEO integrado. Desarrollo de Apps: Aplicaciones móviles personalizadas para iOS y Android, con interfaces intuitivas y funcionalidades específicas para tu negocio. Bases de Datos: Diseño y gestión de bases de datos seguras, escalables y eficientes, optimizadas para almacenar, consultar y analizar información.",
-      photo: "https://via.placeholder.com/150",
+        "Creación de sitios web dinámicos y responsivos, aplicaciones móviles personalizadas para iOS/Android, y diseño/gestión de bases de datos seguras y escalables.",
+      photo: functionalPlaceholder,
       price: "$100 - $200",
     },
     {
-      title: "Service 2",
-      subtitle: "Subtitle 2",
-      description: "Description for service 2.",
-      photo: "https://via.placeholder.com/150",
+      title: "Consultoría y Optimización SEO",
+      subtitle: "Aumenta tu visibilidad",
+      description: "Servicio de análisis profundo para mejorar el ranking en motores de búsqueda, optimización de contenido y auditorías técnicas para un mejor rendimiento.",
+      photo: functionalPlaceholder,
       price: "$150 - $250",
     },
     {
-      title: "Service 3",
-      subtitle: "Subtitle 3",
-      description: "Description for service 3.",
-      photo: "https://via.placeholder.com/150",
+      title: "Mantenimiento y Soporte IT",
+      subtitle: "Continuidad del negocio",
+      description: "Soporte técnico continuo, monitorización de servidores, actualizaciones de seguridad y mantenimiento preventivo para garantizar la operatividad de tus sistemas.",
+      photo: functionalPlaceholder,
       price: "$200 - $300",
     },
     {
-      title: "Service 4",
-      subtitle: "Subtitle 4",
-      description: "Description for service 4.",
-      photo: "https://via.placeholder.com/150",
+      title: "Diseño de Interfaz (UI/UX)",
+      subtitle: "Experiencia de usuario inmersiva",
+      description: "Diseño centrado en el usuario, creación de prototipos y pruebas de usabilidad para garantizar que tu producto sea intuitivo, accesible y atractivo.",
+      photo: functionalPlaceholder,
       price: "$250 - $350",
     },
     {
-      title: "Service 5",
-      subtitle: "Subtitle 5",
-      description: "Description for service 5.",
-      photo: "https://via.placeholder.com/150",
+      title: "Automatización de Procesos",
+      subtitle: "Eficiencia y ahorro",
+      description: "Implementación de scripts y herramientas para automatizar tareas repetitivas, liberando tiempo de tu equipo y reduciendo el margen de error humano.",
+      photo: functionalPlaceholder,
       price: "$300 - $400",
     },
     {
-      title: "Service 6",
-      subtitle: "Subtitle 6",
-      description: "Description for service 6.",
-      photo: "https://via.placeholder.com/150",
+      title: "Formación Técnica Personalizada",
+      subtitle: "Capacita a tu equipo",
+      description: "Sesiones de formación adaptadas a las necesidades de tu empresa en lenguajes de programación, bases de datos o nuevas tecnologías de desarrollo.",
+      photo: functionalPlaceholder,
       price: "$350 - $450",
     },
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-gray-50 min-h-screen">
       {services.map((service, index) => (
         <div
           key={index}
-          className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center"
+          className="bg-white shadow-xl rounded-xl p-6 flex flex-col items-center transform transition duration-300 hover:scale-[1.02] border border-blue-100"
         >
           <img
             src={service.photo}
             alt={service.title}
-            className="w-32 h-32 mb-2"
+            className="w-24 h-24 mb-4 rounded-full object-cover border-4 border-blue-500"
           />
-          <h2 className="text-xl font-bold mb-1">{service.title}</h2>
-          <h3 className="text-lg font-semibold mb-2">{service.subtitle}</h3>
-          <p className="text-gray-700 mb-2">{service.description}</p>
-          <p className="text-gray-900 font-bold">{service.price}</p>
+          <h2 className="text-2xl font-extrabold text-gray-800 mb-2 text-center">{service.title}</h2>
+          <h3 className="text-md font-semibold text-blue-600 mb-3 uppercase tracking-wider">{service.subtitle}</h3>
+          <p className="text-gray-600 mb-4 text-center flex-grow">{service.description}</p>
+          <div className="mt-auto pt-3 border-t w-full text-center">
+             <p className="text-xl font-black text-green-700">{service.price}</p>
+          </div>
         </div>
       ))}
     </div>
