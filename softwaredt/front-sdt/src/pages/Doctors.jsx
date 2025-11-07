@@ -69,15 +69,15 @@ const DoctorList = () => {
                 </button>
                              {" "}
               </div>
-                         {" "}
+              {" "}
             </div>
           ))
         ) : (
           <p>No se encontro Programador</p>
         )}
-             {" "}
+        {" "}
       </div>
-         {" "}
+      {" "}
     </div>
   );
 };
