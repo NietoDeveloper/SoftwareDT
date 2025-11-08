@@ -126,8 +126,6 @@ const App = () => {
 
               {/* Campo Mensaje */}
               <textarea name="message" id="message" rows="4" value={formData.message} onChange={handleChange} required className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 resize-none" placeholder="Escribe tu mensaje o pregunta..." aria-label="Mensaje"></textarea>
-              
-              {/* Mensaje de estado */}
               {statusMessage && (
                 <div className={`p-3 rounded-lg text-sm font-medium ${
                   statusMessage.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
