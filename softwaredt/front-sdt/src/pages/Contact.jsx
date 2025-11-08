@@ -178,7 +178,6 @@ const App = () => {
                 Encuéntranos en nuestra oficina principal. ¡Te esperamos!
             </p>
             
-            {/* Contenedor del Mapa (Haciéndolo Responsive) */}
             <div className="relative w-full overflow-hidden rounded-xl shadow-xl border border-gray-200" style={{ paddingBottom: '56.25%', height: 0 }}>
                 {/* Iframe del Mapa de Google (Reemplaza la URL 'src' con tu ubicación exacta) */}
                 <iframe
