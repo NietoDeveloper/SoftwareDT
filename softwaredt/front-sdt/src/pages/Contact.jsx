@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 // NOTA: Este es un placeholder. En tu aplicación real, importa y usa tu componente real de "../features/rating".
 const ReviewFormPlaceholder = () => {
   return (
-    <div className="mt-16 pt-10 border-t border-gray-200 bg-gray-50 p-8 rounded-2xl shadow-inner">
+    <div className="mt-8 pt-10 border-t border-gray-200 bg-gray-50 p-8 rounded-2xl shadow-inner">
       <h2 className="text-3xl font-extrabold text-gray-800 mb-4 text-center">
         ¿Cómo te fue con Software DT?
       </h2>
@@ -96,10 +96,10 @@ const App = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col items-center p-4 sm:p-8">
       <div className="bg-white shadow-2xl rounded-2xl w-full max-w-6xl overflow-hidden p-6 md:p-12 border border-gray-100">
         
-        <h1 className="text-4xl font-extrabold text-indigo-700 mb-2 tracking-tight">
+        <h1 className="text-4xl font-extrabold text-indigo-700 mb-2 tracking-tight text-center">
           Ponte en Contacto
         </h1>
-        <p className="text-gray-600 mb-10 text-lg">
+        <p className="text-gray-600 mb-10 text-lg text-center">
           Estamos aquí para responder todas tus preguntas sobre **Software DT**.
         </p>
 
@@ -108,7 +108,7 @@ const App = () => {
 
           {/* COLUMNA 1 & 2: Formulario Sencillo */}
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center justify-center">
               <MailIcon className="w-6 h-6 text-indigo-500 mr-3" /> 
               Envía tu Consulta por Correo
             </h2>
@@ -131,11 +131,11 @@ const App = () => {
           </div>
           <div className="lg:col-span-1 space-y-8 mt-6 lg:mt-0">
             <div className="bg-green-50 border border-green-200 p-6 rounded-xl shadow-lg">
-              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center justify-center">
                 <MessageCircleIcon className="w-6 h-6 text-green-600 mr-3" />
                 Soporte Rápido (WhatsApp)
               </h3>
-              <div className="font-semibold text-green-700 text-xl mb-4">
+              <div className="font-semibold text-green-700 text-xl mb-4 text-center">
                 {whatsappNumber}
               </div>
 
@@ -147,16 +147,16 @@ const App = () => {
           </div>
         </div>
 
-        <div className="mt-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+        <div className="mt-8">
+            <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center justify-center">
               <MapPinIcon className="w-7 h-7 text-indigo-500 mr-3" />
               Nuestra Ubicación
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 text-center">
                 Encuéntranos en nuestra oficina principal. ¡Te esperamos!
             </p>
             
-            <div className="relative w-full overflow-hidden rounded-xl shadow-xl border border-gray-200" style={{ paddingBottom: '56.25%', height: 0 }}>
+            <div className="relative w-full overflow-hidden rounded-xl shadow-xl border border-gray-200" style={{ paddingBottom: '40%', height: 0 }}>
                 <iframe
                     title="Ubicación de Software DT"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.62002570087!2d-74.07720932573215!3d4.664402693240212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3909772c9183d5%3A0x7d2864c3c3a7a92!2sBogot%C3%A1%2C%20Colombia!5e0!3m2!1ses!2s!4v1678886400000!5m2!1ses!2s"
@@ -177,7 +177,7 @@ const App = () => {
         <ReviewFormPlaceholder />
 
         {/* Footer para la marca */}
-        <div className="mt-12 pt-6 border-t border-gray-100 text-center text-sm text-gray-400">
+        <div className="mt-8 pt-6 border-t border-gray-100 text-center text-sm text-gray-400">
           Desarrollado por Software DT.
         </div>
       </div>
