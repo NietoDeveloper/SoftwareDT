@@ -123,8 +123,6 @@ const App = () => {
 
               {/* Campo Correo Electrónico */}
               <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} required className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150" placeholder="Tu Correo Electrónico" aria-label="Tu Correo Electrónico"/>
-
-              {/* Campo Mensaje */}
               <textarea name="message" id="message" rows="4" value={formData.message} onChange={handleChange} required className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 resize-none" placeholder="Escribe tu mensaje o pregunta..." aria-label="Mensaje"></textarea>
               {statusMessage && (
                 <div className={`p-3 rounded-lg text-sm font-medium ${
