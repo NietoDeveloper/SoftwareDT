@@ -157,7 +157,6 @@ const App = () => {
               </div>
 
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="w-full inline-flex justify-center items-center py-3 px-4 rounded-lg shadow-sm text-base font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 transition duration-200">
-                {/* Icono de WhatsApp simple */}
                 <svg className="w-5 h-5 mr-2 fill-white" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.039 2.01c-5.518 0-9.991 4.473-9.991 9.991 0 1.644.402 3.203 1.155 4.594L2.01 22.039l5.51-1.45c1.32.747 2.861 1.15 4.519 1.15 5.518 0 9.991-4.473 9.991-9.991S17.557 2.01 12.039 2.01zm4.33 13.567c-.201.528-1.189 1.056-1.637 1.056-.448 0-.96-.188-1.55-.412-2.185-1.077-3.646-3.784-3.76-3.957-.114-.173-.896-1.15-.36-1.928.536-.778 1.189-.877 1.58-.877s.69.018 1.01.761c.32.742.61 1.484.71 1.628.1.144.188.358.074.636-.114.277-.188.421-.36.636-.201.277-.421.502-.63.708-.209.207-.448.484-.25.753.19.27.674.877 1.348 1.43.673.553 1.258.742 1.58.93.32.188.51.15.698-.05.188-.201.815-.992 1.03-1.348.216-.358.374-.412.63-.412.256 0 1.628.188 2.067.96.438.778.295 1.47-.114 2.185z"/></svg>
                 Enviar WhatsApp
               </a>
