@@ -165,10 +165,6 @@ const App = () => {
           </div>
         </div>
 
-        {/* ==================================== */}
-        {/* SECCIÓN 2: UBICACIÓN Y MAPA */}
-        {/* ==================================== */}
-
         <div className="mt-16">
             <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center">
               <MapPinIcon className="w-7 h-7 text-indigo-500 mr-3" />
