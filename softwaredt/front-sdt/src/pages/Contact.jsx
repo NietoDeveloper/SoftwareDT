@@ -179,7 +179,6 @@ const App = () => {
             </p>
             
             <div className="relative w-full overflow-hidden rounded-xl shadow-xl border border-gray-200" style={{ paddingBottom: '56.25%', height: 0 }}>
-                {/* Iframe del Mapa de Google (Reemplaza la URL 'src' con tu ubicación exacta) */}
                 <iframe
                     title="Ubicación de Software DT"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.62002570087!2d-74.07720932573215!3d4.664402693240212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3909772c9183d5%3A0x7d2864c3c3a7a92!2sBogot%C3%A1%2C%20Colombia!5e0!3m2!1ses!2s!4v1678886400000!5m2!1ses!2s"
