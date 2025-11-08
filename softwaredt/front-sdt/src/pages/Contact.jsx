@@ -198,9 +198,6 @@ const App = () => {
             </div>
         </div>
 
-        {/* ==================================== */}
-        {/* SECCIÓN 3: REVIEW FORM (El que tenías) */}
-        {/* ==================================== */}
         <ReviewFormPlaceholder />
 
         {/* Footer para la marca */}
