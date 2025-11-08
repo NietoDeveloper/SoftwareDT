@@ -1,30 +1,6 @@
 import React, { useState } from 'react';
-// --- Placeholder: ReviewForm (Simulación de Componente de Rating) ---
-const ReviewFormPlaceholder = () => {
-  return (
-    <div className="pt-10 border-t border-gray-200 bg-gray-50 p-8 rounded-2xl shadow-inner w-full">
-      <h2 className="text-3xl font-extrabold text-gray-800 mb-4 text-center">
-        ¿Cómo te fue con Software DT?
-      </h2>
-      <p className="text-gray-600 text-center mb-6 max-w-xl mx-auto">
-        Tu opinión nos ayuda a mejorar. ¡Déjanos saber tu experiencia!
-      </p>
-      
-      <div className="flex flex-col items-center space-y-4">
-        <div className="text-4xl">
-          <span role="img" aria-label="star" className="text-yellow-400">★</span>
-          <span role="img" aria-label="star" className="text-yellow-400">★</span>
-          <span role="img" aria-label="star" className="text-yellow-400">★</span>
-          <span role="img" aria-label="star" className="text-yellow-400">★</span>
-          <span role="img" aria-label="star" className="text-gray-300">★</span>
-        </div>
-        <button className="py-2 px-6 rounded-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition duration-200">
-          Opinar Ahora
-        </button>
-      </div>
-    </div>
-  );
-};
+import ReviewForm from "../features/rating";
+
 // --- Iconos SVG ---
 const MailIcon = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -43,8 +19,8 @@ const MapPinIcon = (props) => (
         <circle cx="12" cy="10" r="3"/>
     </svg>
 );
-// --- Componente Principal ---
-const App = () => {
+
+const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -176,12 +152,12 @@ const App = () => {
         </div>
       </section>
       {/* ==================================================================== */}
-      {/* SECCIÓN 3: EXPERIENCIA Y FOOTER (90vh) */}
-      {/* Ajustado a min-h-[90vh] */}
+      {/* SECCIÓN 3: EXPERIENCIA Y FOOTER (100vh) */}
+      {/* Ajustado a min-h-screen */}
       {/* ==================================================================== */}
-      <section className="min-h-[90vh] flex flex-col justify-center items-center bg-white py-16 px-4 sm:px-8">
+      <section className="min-h-screen flex flex-col justify-center items-center bg-white py-16 px-4 sm:px-8">
         <div className="w-full max-w-4xl">
-            <ReviewFormPlaceholder />
+            <ReviewForm />
         </div>
        
         {/* Footer simple para la sección de Experiencia */}
@@ -196,4 +172,4 @@ const App = () => {
     </div>
   );
 };
-export default App;
+export default Contact;
