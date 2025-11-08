@@ -96,10 +96,6 @@ const App = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col items-center p-4 sm:p-8">
       <div className="bg-white shadow-2xl rounded-2xl w-full max-w-6xl overflow-hidden p-6 md:p-12 border border-gray-100">
         
-        {/* ==================================== */}
-        {/* SECCIÓN 1: CONTACTO Y WHATSAPP */}
-        {/* ==================================== */}
-        
         <h1 className="text-4xl font-extrabold text-indigo-700 mb-2 tracking-tight">
           Ponte en Contacto
         </h1>
