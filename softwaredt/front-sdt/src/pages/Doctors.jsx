@@ -5,25 +5,24 @@ import { BsArrowRight } from "react-icons/bs";
 
 const DoctorList = () => {
   const navigate = useNavigate();
+
   const getDoctors = async () => {
     try {
-      const res = await axiosAuth.get("/doctors"); // Usar axiosAuth para peticiones públicas
-      return res.data;
+      const res = await axiosAuth.get("/doctors");
+      return res.data.doctors;
     } catch (error) {
       console.error("Error fetching doctors:", error);
       throw error;
     }
   };
 
-  const { data, error, isLoading } = useQuery({
+  const { data: doctors = [], error, isLoading } = useQuery({
     queryKey: ["doctors"],
     queryFn: getDoctors,
   });
 
   if (isLoading) return <h1>Cargando....</h1>;
   if (error) return <h1>Error cargando los Datos: {error.message}</h1>;
-
-  const doctors = data?.doctors || [];
 
   const handleDoctorClick = (doctorId) => {
     navigate(`/doctors/${doctorId}`);
@@ -33,14 +32,14 @@ const DoctorList = () => {
     <div className=" mx-auto px-4 py-8">
       <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {doctors.length > 0 ? (
-          doctors.map((doctor, index) => (
+          doctors.map((doctor) => (
             <div
-              key={index}
+              key={doctor._id}
               className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow"
             >
               <div className="flex flex-col items-center">
                 <img
-                  src="https://via.placeholder.com/150"
+                  src={doctor.photo || "https://via.placeholder.com/150"}
                   alt="profile"
                   className="w-full h-48 object-cover rounded-md mb-4"
                 />
