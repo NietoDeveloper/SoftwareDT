@@ -2,10 +2,6 @@ const asyncHandler = require('express-async-handler');
 const Doctor = require('../models/Doctor');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
-// @desc Register a new doctor
-// @route POST /api/v1/auth/register
-// @access Public
 const doctorRegister = asyncHandler (async (req, res) => {
     const {name, email, password} = req.body;
     
