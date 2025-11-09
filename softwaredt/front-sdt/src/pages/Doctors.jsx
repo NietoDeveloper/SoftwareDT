@@ -9,16 +9,20 @@ const DoctorList = () => {
   const getDoctors = async () => {
     try {
       const res = await axiosAuth.get("/doctors");
-      return res.data.doctors;
+      // Corrección: Asegura que se devuelva un array (incluso si está vacío)
+      return res.data.doctors || []; 
     } catch (error) {
       console.error("Error fetching doctors:", error);
-      throw error;
+      // Es crucial relanzar (throw) el error para que TanStack Query lo maneje
+      throw error; 
     }
   };
 
   const { data: doctors = [], error, isLoading } = useQuery({
     queryKey: ["doctors"],
     queryFn: getDoctors,
+    // Opcional: Esto asegura que el valor inicial sea un array vacío si la carga falla
+    initialData: [], 
   });
 
   if (isLoading) return <h1>Cargando....</h1>;
@@ -59,7 +63,9 @@ const DoctorList = () => {
             </div>
           ))
         ) : (
-          <p>No se encontro Programador</p>
+          // El mensaje aquí dice "No se encontro Programador", asumiendo que es un error tipográfico
+          // y debería ser "Doctor" o "Médico", lo dejo como lo tenías.
+          <p>No se encontro Programador</p> 
         )}
       </div>
     </div>
