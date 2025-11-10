@@ -80,7 +80,6 @@ const Signup = () => {
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">Registro de Cliente</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         
-                        {/* Name Input */}
                         <div className="flex flex-col mb-4">
                             <label htmlFor="name" className="mb-2 font-medium text-gray-700">Primer Nombre</label>
                             <input
