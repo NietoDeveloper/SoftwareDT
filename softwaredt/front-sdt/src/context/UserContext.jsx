@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect, useCallback } from "react";
-// ELIMINADO: import { useNavigate } from "react-router-dom";
 import { setupInterceptors } from "../API/api";
 import React from "react";
 
