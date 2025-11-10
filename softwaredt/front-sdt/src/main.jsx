@@ -5,7 +5,7 @@ import './index.css'
 import {BrowserRouter as Router} from 'react-router-dom'
 import {QueryClientProvider, QueryClient} from '@tanstack/react-query';
 import './firebaseConfig'; 
-import "react-toastify/dist/ReactToastify.css"; // Import the Toastify CSS here
+import "react-toastify/dist/ReactToastify.css"; 
 import { ToastContainer } from 'react-toastify';
 
 const queryClient = new QueryClient()
