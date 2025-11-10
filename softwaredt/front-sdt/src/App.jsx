@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-// Se añade la extensión .jsx o .js a todas las importaciones locales para resolver el error.
+// Se añade la extensión .jsx a todas las importaciones locales para resolver el error.
 import Header from "./components/Header/Header.jsx";
 import Home from "./pages/Home.jsx";
 import './App.css';
@@ -9,8 +9,8 @@ import Login from "./pages/Login.jsx"
 import Doctorsignup from "./pages/DoctorSignup.jsx";
 import Doctorlogin from "./pages/DoctorLogin.jsx";
 import Services from "./pages/Services.jsx";
-// 🛑 AJUSTE DE RUTA: ASUMIENDO QUE App.jsx está en src/ y Context está en src/context/
-// y que el error anterior se debía a que App.jsx estaba en src/pages/ (¡pero ahora ya no!)
+
+// Importación del Contexto: La ruta './' es correcta si App.jsx está en src/
 import { UserProvider } from './context/UserContext.jsx'; 
 
 import PrivateRoutes from "./utils/PrivateRoutes.jsx";
@@ -18,13 +18,13 @@ import DoctorProfile from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 
-// ✨ Importación del nuevo Portal del Cliente (asumiendo que está en /pages)
-// AQUI TAMBIÉN ASUMIMOS QUE ES ClientePortal.jsx (con C mayúscula)
+// Importación del Portal del Cliente
 import ClientPortal from "./pages/ClientPortal.jsx"; 
 
 
 function App() {
     return (
+        // El proveedor envuelve toda la aplicación para que el contexto sea accesible.
         <UserProvider>
             <Header/>
             
@@ -32,8 +32,6 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/doctors" element={<DoctorList/>}/>
                 <Route path="/contact" element={<Contact/>}/>
-                
-                {/* Ruta para la página de Servicios */}
                 <Route path="/services" element={<Services />} /> 
                 
                 <Route path="/signup" element={<Signup/>}/>
@@ -45,7 +43,7 @@ function App() {
 
                 {/* Rutas Protegidas */}
                 <Route element={<PrivateRoutes/>}>
-                    {/* 🎯 NUEVA RUTA: Portal del Cliente Protegida */}
+                    {/* Ruta del Portal del Cliente */}
                     <Route path="/portal" element={<ClientPortal/>}/> 
                     <Route path="/doctors/:doctorId" element={<DoctorProfile/>}/>
                     <Route path="/checkout" element={<Payment/>}/>
