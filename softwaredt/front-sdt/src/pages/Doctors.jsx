@@ -19,7 +19,6 @@ const DoctorList = () => {
   const { data: doctors = [], error, isLoading } = useQuery({
     queryKey: ["doctors"],
     queryFn: getDoctors,
-    // Opcional: Esto asegura que el valor inicial sea un array vacío si la carga falla
     initialData: [], 
   });
 
