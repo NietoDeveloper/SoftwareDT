@@ -101,7 +101,6 @@ const Header = () => {
                     </div>
                 )}
 
-                {/* Log Out/Log In Button */}
                 <div className="hidden md:flex items-center gap-4">
                     <button
                         onClick={user ? handleLogOut : () => navigate("/login")}
