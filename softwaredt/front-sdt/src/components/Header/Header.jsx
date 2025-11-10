@@ -53,7 +53,7 @@ const Header = () => {
             }
         } catch (error) {
             console.log("Error logging out, cleaning local state.", error);
-            handleLogout(); // Limpia el estado del contexto
+            handleLogout();
             navigate("/"); // Redirige
         }
     };
