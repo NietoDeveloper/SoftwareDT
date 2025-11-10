@@ -47,7 +47,6 @@ const Header = () => {
 
             if (response.status === 204) {
                 handleLogout(); 
-                // 2. Redirige, usando useNavigate del componente local
                 navigate("/");
             } else {
                 console.log("Error logging out with status:", response.status);
