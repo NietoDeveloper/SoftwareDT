@@ -11,7 +11,6 @@ const firebaseConfig = {
   appId: "1:739796107685:web:6652ea0c94a15b6aee684c"
 };
 
-// Initializes the Firebase app safely (prevents re-initialization in React/hot-reloading environments).
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 export { app };
