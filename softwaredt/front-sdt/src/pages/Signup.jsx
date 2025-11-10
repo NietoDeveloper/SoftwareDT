@@ -25,7 +25,7 @@ const Signup = () => {
             };
 
             // Asegúrate de que tu backend (localhost:8080) esté corriendo
-            const response = await axios.post('http://localhost:8080/api/user/register', formData, {
+            const response = await axios.post('http://localhost:5000/api/user/register', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
