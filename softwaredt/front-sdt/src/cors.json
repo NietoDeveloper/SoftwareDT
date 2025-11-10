@@ -1,8 +1,8 @@
 [
   {
-    "origin": ["http://localhost:5173", "http://localhost:*"],
+    "origin": ["http://localhost:5173", "http://127.0.0.1:5173"],
+    "method": ["GET", "POST", "PUT", "OPTIONS"],
     "responseHeader": ["Content-Type", "Access-Control-Allow-Origin", "Authorization", "Content-Length", "User-Agent", "x-goog-resumable"],
-    "method": ["GET", "POST", "PUT", "DELETE"],
     "maxAgeSeconds": 3600
   }
 ]
