@@ -52,7 +52,6 @@ const Header = () => {
                 console.log("Error logging out with status:", response.status);
             }
         } catch (error) {
-            // Si hay un error, forzamos la limpieza del estado y la navegación.
             console.log("Error logging out, cleaning local state.", error);
             handleLogout(); // Limpia el estado del contexto
             navigate("/"); // Redirige
