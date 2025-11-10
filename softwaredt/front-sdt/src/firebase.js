@@ -10,7 +10,7 @@ const firebaseConfig = JSON.parse(typeof firebaseConfig !== 'undefined' ? fireba
 // Inicializar la aplicación de Firebase de forma segura (solo si no existe).
 let app;
 if (getApps().length === 0) {
-    // Si no hay aplicaciones inicializadas, crea una nueva.
+
     app = initializeApp(firebaseConfig);
 } else {
 
