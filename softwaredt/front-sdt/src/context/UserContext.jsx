@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useCallback, useContext } from "react";
-import { setupInterceptors } from "../API/api";
+import { setupInterceptors } from "../API/api.js"; // ⬅️ RUTA CORREGIDA
 import React from "react";
 
 const AppContext = createContext();
@@ -22,7 +22,7 @@ const UserProvider = ({ children }) => {
 
     // Lógica para determinar si el usuario está autenticado o si la carga inicial está pendiente
     const isAuthenticated = !!user && !!token;
-    // Define tu lógica de carga inicial aquí. Por ejemplo, si el token es nulo y la app está iniciando.
+    // Define tu lógica de carga inicial aquí. 
     const loading = token === null && localStorage.getItem('accessToken') !== null; 
 
     return (
@@ -44,10 +44,10 @@ const UserProvider = ({ children }) => {
     );
 };
 
-// Custom Hook para consumir el Contexto: ESTO RESUELVE EL ERROR DE IMPORTACIÓN
+// Custom Hook: ESTO ES LO QUE PERMITE IMPORTAR { useUser }
 export const useUser = () => {
     return useContext(AppContext);
 };
 
-// Exportamos todo lo necesario para que otros archivos (como ClientePortal) funcionen.
+// Exportamos todo lo necesario.
 export { UserProvider, AppContext, useUser };
