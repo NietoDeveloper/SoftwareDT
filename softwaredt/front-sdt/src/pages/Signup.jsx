@@ -93,7 +93,6 @@ const Signup = () => {
                             {errors.name && <span className="text-red-600 text-sm mt-1 font-medium">{errors.name.message}</span>}
                         </div>
 
-                        {/* Email Input */}
                         <div className="flex flex-col mb-4">
                             <label htmlFor="email" className="mb-2 font-medium text-gray-700">Email</label>
                             <input
