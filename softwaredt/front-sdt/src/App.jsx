@@ -16,7 +16,7 @@ import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 
 // ✨ Importación del nuevo Portal del Cliente (asumiendo que está en /pages)
-import ClientPortal from "./pages/ClientPortal.jsx";
+import ClientePortal from "./pages/ClientePortal.jsx";
 
 
 function App() {

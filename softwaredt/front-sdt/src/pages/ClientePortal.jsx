@@ -1,6 +1,8 @@
 import { useUser } from '../context/UserContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+// Asumiendo que las rutas de los componentes internos (Sidebar, Header, etc.) 
+// NO necesitan el cambio de nombre, ya que solo el archivo principal lo requiere.
 import Sidebar from '../components/ClientPortal/Sidebar';
 import Header from '../components/ClientPortal/Header';
 import Dashboard from '../components/ClientPortal/Dashboard';
@@ -10,7 +12,8 @@ import Invoices from '../components/ClientPortal/Invoices';
 import Documents from '../components/ClientPortal/Documents';
 
 // Componente principal del Portal del Cliente
-const ClientPortal = () => {
+// **¡CAMBIO AQUÍ!**
+const ClientePortal = () => {
     const { user, isAuthenticated, loading } = useUser();
     const navigate = useNavigate();
     const location = useLocation();
@@ -74,4 +77,5 @@ const ClientPortal = () => {
     );
 };
 
-export default ClientPortal;
+// **¡CAMBIO AQUÍ!**
+export default ClientePortal;
