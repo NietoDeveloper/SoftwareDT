@@ -28,7 +28,7 @@ const UserProvider = ({ children }) => {
                 setToken,
                 setAppointmentDetails,
                 appointmentDetails,
-                handleLogout, // La función ahora solo limpia el estado
+                handleLogout,
             }}
         >
             {children}
