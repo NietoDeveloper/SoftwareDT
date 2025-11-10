@@ -5,7 +5,7 @@ import { getStorage } from "firebase/storage";
 
 // Usar la configuración inyectada por el entorno para asegurar la integridad.
 // Se asume que '__firebase_config' es una variable global.
-const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+const firebaseConfig = JSON.parse(typeof firebaseConfig !== 'undefined' ? firebaseConfig : '{}');
 
 // Inicializar la aplicación de Firebase de forma segura (solo si no existe).
 let app;
