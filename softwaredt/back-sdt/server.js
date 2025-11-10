@@ -21,6 +21,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// --- CORRECCIÓN SVGH/SVG: Servir archivos estáticos ---
+// Esto permite que el servidor sirva archivos como imágenes, CSS y SVGs
+// desde la carpeta 'public', que es donde el frontend debe buscar los assets.
+app.use(express.static('public')); 
+
 // ------------------------------------------------------------------------------------------------------------------
 // 1. RUTAS PÚBLICAS (No requieren autenticación)
 // ------------------------------------------------------------------------------------------------------------------
@@ -28,13 +33,13 @@ app.use(cookieParser());
 // Rutas de Listado Público de Doctores (Ruta que llama DoctorList.jsx)
 app.use('/api/doctors', require('./routes/allDoctors'));
 
-// Rutas Públicas de Autenticación
+// Rutas Públicas de Autenticación de Usuario
 app.use('/api/user/register', require('./routes/userRoutes/userRegister'));
 app.use('/api/user/login', require('./routes/userRoutes/userLogin'));
 app.use('/api/user/refresh', require('./routes/userRoutes/userRefresh'));
 app.use('/api/user/logout', require('./routes/userRoutes/userLogout'));
 
-// Rutas Públicas de Doctor (Incluye el registro, donde ocurre el error de Firebase)
+// Rutas Públicas de Doctor (Registro de Doctor ya sin dependencias de Firebase)
 app.use('/api/doctor/register', require('./routes/doctorRoutes/doctorRegister')); 
 app.use('/api/doctor/login', require('./routes/doctorRoutes/doctorLogin'));
 app.use('/api/doctor/refresh', require('./routes/doctorRoutes/doctorRefresh'));
@@ -63,6 +68,6 @@ app.use(errorHandler);
 
 // Iniciar el servidor solo después de conectar a MongoDB
 mongoose.connection.once('open', () => {
-    console.log('Connected to MongoDB');
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    console.log('Connected to MongoDB');
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
