@@ -12,7 +12,7 @@ const UserProvider = ({ children }) => {
     const handleLogout = useCallback(() => {
         setToken(null);
         setUser(null);
-        localStorage.removeItem('accessToken'); // Limpia también el token de acceso
+        localStorage.removeItem('accessToken');
         // ELIMINADO: navigate("/login"); 
     }, [setToken, setUser]);
 
