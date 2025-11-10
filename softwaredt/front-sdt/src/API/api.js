@@ -31,7 +31,6 @@ const setupInterceptors = (setToken) => {
             error => Promise.reject(error)
         );
 
-        // INTERCEPTOR DE RESPUESTA (Maneja el 401 y Refresh)
         axiosPrivateInstance.interceptors.response.use(
             (response) => response,
             async (error) => {
