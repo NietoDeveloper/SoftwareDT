@@ -1,11 +1,10 @@
-import { createContext, useState, useEffect, useCallback, useContext } from "react"; // ⬅️ AÑADIDO: useContext
+import { createContext, useState, useEffect, useCallback, useContext } from "react";
 import { setupInterceptors } from "../API/api";
 import React from "react";
 
 const AppContext = createContext();
 
 const UserProvider = ({ children }) => {
-    // ... (Tu lógica de useState y useEffect sigue igual) ...
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
     const [appointmentDetails, setAppointmentDetails] = useState(null);
@@ -17,8 +16,14 @@ const UserProvider = ({ children }) => {
     }, [setToken, setUser]);
 
     useEffect(() => {
-        setupInterceptors(setToken, handleLogout);
+        // Asegura que los interceptores se configuren al iniciar
+        setupInterceptors(setToken, handleLogout); 
     }, [setToken, handleLogout]);
+
+    // Lógica para determinar si el usuario está autenticado o si la carga inicial está pendiente
+    const isAuthenticated = !!user && !!token;
+    // Define tu lógica de carga inicial aquí. Por ejemplo, si el token es nulo y la app está iniciando.
+    const loading = token === null && localStorage.getItem('accessToken') !== null; 
 
     return (
         <AppContext.Provider
@@ -30,9 +35,8 @@ const UserProvider = ({ children }) => {
                 setAppointmentDetails,
                 appointmentDetails,
                 handleLogout,
-                // Puedes agregar aquí la propiedad 'isAuthenticated' para que funcione mejor
-                isAuthenticated: !!user && !!token, // Añadiendo un chequeo de autenticación simple
-                loading: token === undefined // Define tu lógica de 'loading'
+                isAuthenticated, 
+                loading 
             }}
         >
             {children}
@@ -40,13 +44,10 @@ const UserProvider = ({ children }) => {
     );
 };
 
-// ⬅️ SOLUCIÓN: Crear y exportar el hook useUser
+// Custom Hook para consumir el Contexto: ESTO RESUELVE EL ERROR DE IMPORTACIÓN
 export const useUser = () => {
     return useContext(AppContext);
 };
 
-// ⬅️ Exportamos el proveedor y el nuevo hook
-export { UserProvider, AppContext };
-// NOTA: Con la línea de arriba, useUser no se exporta automáticamente.
-// Lo más limpio es:
-// export { UserProvider, AppContext, useUser };
+// Exportamos todo lo necesario para que otros archivos (como ClientePortal) funcionen.
+export { UserProvider, AppContext, useUser };

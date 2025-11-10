@@ -1,4 +1,4 @@
-import { axiosAuth } from "../API/api";
+import { axiosAuth } from "../API/api.js";
 
 const refreshAccessToken = async (setToken, handleLogout) => {
     try {

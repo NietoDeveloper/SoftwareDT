@@ -1,5 +1,5 @@
 import axios from 'axios';
-import refreshAccessToken from '../utils/refreshAccess';
+import refreshAccessToken from '../utils/refreshAccess.js'; // ⬅️ RUTA CORREGIDA
 
 const BASE_URL = 'http://localhost:5000/api';
 
@@ -41,7 +41,9 @@ const setupInterceptors = (setToken) => {
                     originalRequest._retry = true;
 
                     try {
-                        const accessToken = await refreshAccessToken(setToken);
+                        // Pasamos setToken como argumento, asumo que 'handleLogout' se maneja dentro
+                        // de la función de refreshAccessToken, como en el código que me diste antes.
+                        const accessToken = await refreshAccessToken(setToken); 
                         originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
                         return axiosPrivateInstance(originalRequest);
                     } catch (refreshError) {
