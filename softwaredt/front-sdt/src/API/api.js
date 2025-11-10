@@ -3,10 +3,6 @@ import refreshAccessToken from '../utils/refreshAccess';
 
 const BASE_URL = 'http://localhost:5000/api';
 
-// ----------------------------------------------------------------------
-// 1. INSTANCIA DE AUTENTICACIÓN (Exportada al final)
-// ----------------------------------------------------------------------
-
 const axiosAuth = axios.create({ // Eliminada la palabra clave 'export' aquí
     baseURL: BASE_URL,
     withCredentials: true,
