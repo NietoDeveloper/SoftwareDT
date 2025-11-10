@@ -68,7 +68,6 @@ const Header = () => {
                     <img src="./logo.png" alt="logo" className="h-20 w-25 sm:h-30 pb-1" />
                 </Link>
 
-                {/* Desktop Navigation Links */}
                 <div className="hidden md:block">
                     <ul className="flex items-center gap-2">
                         {navLinks.map((link, index) => (
