@@ -12,7 +12,6 @@ const Doctorsignup = () => {
 
     const onSubmit = async (data) => {
         try {
-            // Usar axiosAuth y la ruta completa de registro de doctor
             const response = await axiosAuth.post('/doctor/signup', data); 
             console.log(data)
             console.log(response)
