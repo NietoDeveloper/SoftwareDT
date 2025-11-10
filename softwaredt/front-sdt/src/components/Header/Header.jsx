@@ -46,7 +46,6 @@ const Header = () => {
             const response = await axiosAuth.post(logoutPath);
 
             if (response.status === 204) {
-                // 1. Limpia el estado del contexto (a través de la función simple de UserContext)
                 handleLogout(); 
                 // 2. Redirige, usando useNavigate del componente local
                 navigate("/");
