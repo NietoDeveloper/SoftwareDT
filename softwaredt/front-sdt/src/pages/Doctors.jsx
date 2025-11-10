@@ -9,7 +9,6 @@ const DoctorList = () => {
   const getDoctors = async () => {
     try {
       const res = await axiosAuth.get("/doctors");
-      // Corrección: Asegura que se devuelva un array (incluso si está vacío)
       return res.data.doctors || []; 
     } catch (error) {
       console.error("Error fetching doctors:", error);
