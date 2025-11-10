@@ -9,8 +9,6 @@ const UserProvider = ({ children }) => {
     const [token, setToken] = useState(null);
     const [appointmentDetails, setAppointmentDetails] = useState(null);
 
-    // handleLogout ahora solo limpia el estado. 
-    // Lo hacemos estable con useCallback para que useEffect no se ejecute innecesariamente.
     const handleLogout = useCallback(() => {
         setToken(null);
         setUser(null);
