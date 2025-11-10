@@ -42,7 +42,6 @@ const Header = () => {
 
     const handleLogOut = async () => {
         try {
-            // Usamos axiosAuth, que tiene withCredentials: true. 
             const logoutPath = user?.role === 'doctor' ? '/doctor/logout' : '/user/logout';
             const response = await axiosAuth.post(logoutPath);
 
