@@ -23,5 +23,4 @@ const db = getFirestore(app);
 
 const storage = getStorage(app);
 
-// Exportar la instancia de la aplicación y los servicios para que sean usados en otros módulos
 export { app, auth, db, storage };
