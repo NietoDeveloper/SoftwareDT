@@ -24,7 +24,6 @@ const Doctorsignup = () => {
     return (
         <div className="container">
             <div className="flex flex-col md:flex-row gap-20">
-                {/* Sign up icons */}
                 <div className=" w-full md:w-1/2 p-6">
                     <h1 className="heading">Para Empleados Software DT</h1>
                     <p className="text_para">Ingresa como Programador</p>
