@@ -17,10 +17,9 @@ const axiosPrivateDoctor = axios.create({
 });
 
 const setupInterceptors = (setToken) => {
-    // ... (Tu lógica de interceptores request y response va aquí)
+
     const interceptor = axiosPrivateInstance => {
         
-        // INTERCEPTOR DE PETICIÓN (Añade Access Token)
         axiosPrivateInstance.interceptors.request.use(
             config => {
                 const token = localStorage.getItem('accessToken'); 
