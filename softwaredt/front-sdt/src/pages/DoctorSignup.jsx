@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { axiosAuth } from '../API/api'; // CORRECCIÓN: Usar axiosAuth para el registro
+import { axiosAuth } from '../API/api'; 
 import {Link, useNavigate} from 'react-router-dom'
 
 const Doctorsignup = () => {
