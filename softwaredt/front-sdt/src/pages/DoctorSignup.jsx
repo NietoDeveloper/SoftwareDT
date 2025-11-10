@@ -18,7 +18,6 @@ const Doctorsignup = () => {
             navigate('/doctor/login')
         } catch (error) {
             console.error("Doctor Signup failed", error);
-            // Puedes añadir lógica para mostrar un mensaje de error al usuario aquí
         }
     };
     
