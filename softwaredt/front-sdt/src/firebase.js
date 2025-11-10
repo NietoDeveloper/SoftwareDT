@@ -7,7 +7,6 @@ import { getStorage } from "firebase/storage";
 // Se asume que '__firebase_config' es una variable global.
 const firebaseConfig = JSON.parse(typeof firebaseConfig !== 'undefined' ? firebaseConfig : '{}');
 
-// Inicializar la aplicación de Firebase de forma segura (solo si no existe).
 let app;
 if (getApps().length === 0) {
 
