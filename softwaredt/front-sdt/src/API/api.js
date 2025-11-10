@@ -12,7 +12,7 @@ const axiosPrivateUsers = axios.create({
     baseURL: `${BASE_URL}/user`,
 });
 
-const axiosPrivateDoctor = axios.create({ // Eliminada la palabra clave 'export' aquí
+const axiosPrivateDoctor = axios.create({
     baseURL: `${BASE_URL}/doctor`,
 });
 
