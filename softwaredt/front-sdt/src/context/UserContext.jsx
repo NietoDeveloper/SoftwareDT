@@ -13,7 +13,6 @@ const UserProvider = ({ children }) => {
         setToken(null);
         setUser(null);
         localStorage.removeItem('accessToken');
-        // ELIMINADO: navigate("/login"); 
     }, [setToken, setUser]);
 
     // El interceptor usa la función de logout simple.
