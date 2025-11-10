@@ -13,7 +13,7 @@ const navLinks = [
 ];
 
 const Header = () => {
-    // 💡 AHORA IMPORTAMOS 'handleLogout' del contexto, que solo limpia el estado.
+
     const { user, handleLogout } = useContext(AppContext); 
     const navigate = useNavigate();
     const [openMenu, setOpenMenu] = useState(false);
