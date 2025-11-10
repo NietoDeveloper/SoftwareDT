@@ -1,78 +1,54 @@
-import { useUser } from '../context/UserContext';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import Sidebar from '../components/ClientPortal/Sidebar';
-import Header from '../components/ClientPortal/Header';
-import Dashboard from '../components/ClientPortal/Dashboard';
-import Payments from '../components/ClientPortal/Payments';
-import Services from '../components/ClientPortal/Services';
-import Invoices from '../components/ClientPortal/Invoices';
-import Documents from '../components/ClientPortal/Documents';
+import { Routes, Route } from "react-router-dom";
+// Se añade la extensión .jsx o .js a todas las importaciones locales para resolver el error.
+import Header from "./components/Header/Header.jsx";
+import Home from "./pages/Home.jsx";
+import './App.css';
+import DoctorList from "./pages/Doctors.jsx";
+import Signup from "./pages/Signup.jsx";
+import Login from "./pages/Login.jsx"
+import Doctorsignup from "./pages/DoctorSignup.jsx";
+import Doctorlogin from "./pages/DoctorLogin.jsx";
+import Services from "./pages/Services.jsx";
+import {UserProvider} from './context/UserContext.jsx';
+import PrivateRoutes from "./utils/PrivateRoutes.jsx";
+import DoctorProfile from "./pages/BookingPage.jsx";
+import Contact from "./pages/Contact.jsx";
+import Payment from "./components/Checkout/Payment.jsx";
 
-// Componente principal del Portal del Cliente
-const ClientePortal = () => {
-    const { user, isAuthenticated, loading } = useUser();
-    const navigate = useNavigate();
-    const location = useLocation();
+// ✨ Importación del nuevo Portal del Cliente (asumiendo que está en /pages)
+import ClientPortal from "./pages/ClientPortal.jsx";
 
-    // Función para obtener el componente basado en el path
-    const getActiveComponent = () => {
-        const path = location.pathname.split('/').pop() || 'dashboard';
-        switch (path) {
-            case 'pagos':
-                return <Payments />;
-            case 'servicios':
-                return <Services />;
-            case 'facturas':
-            case 'invoices': // Agregando una opción de ruta en inglés por si acaso
-                return <Invoices />;
-            case 'documentos':
-                return <Documents />;
-            case 'dashboard':
-            default:
-                return <Dashboard />;
-        }
-    };
 
-    // Redirección si el usuario no está autenticado o no es un cliente
-    useEffect(() => {
-        if (!loading) {
-            if (!isAuthenticated) {
-                navigate('/login'); // Redirige a login si no está logeado
-            } else if (user?.role !== 'client') {
-                // Si el usuario está logeado pero no es un cliente (ej. es Admin), lo enviamos a la Home.
-                navigate('/'); 
-            }
-        }
-    }, [isAuthenticated, loading, navigate, user]);
+function App() {
+  return (
+    <UserProvider>
+      <Header/>
+      
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/doctors" element={<DoctorList/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+        
+        {/* Ruta para la página de Servicios */}
+        <Route path="/services" element={<Services />} /> 
+        
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<Login/>}/>
+        
+        <Route path="/doctor/signup" element={<Doctorsignup/>}/>
+        <Route path="/doctor/login" element={<Doctorlogin/>}/>
 
-    if (loading) {
-        return <div className="text-center p-8">Cargando portal...</div>;
-    }
 
-    if (!isAuthenticated || user?.role !== 'client') {
-        return null; // No renderizar nada mientras la redirección se ejecuta
-    }
+        {/* Rutas Protegidas */}
+        <Route element={<PrivateRoutes/>}>
+          {/* 🎯 NUEVA RUTA: Portal del Cliente Protegida */}
+          <Route path="/portal" element={<ClientPortal/>}/> 
+          <Route path="/doctors/:doctorId" element={<DoctorProfile/>}/>
+          <Route path="/checkout" element={<Payment/>}/>
+        </Route>
+      </Routes>
+    </UserProvider>
+  )
+}
 
-    return (
-        <div className="flex h-screen bg-gray-100">
-            {/* Sidebar */}
-            <Sidebar />
-
-            {/* Contenido principal */}
-            <div className="flex-1 flex flex-col overflow-hidden">
-                {/* Header */}
-                <Header />
-                
-                {/* Main Content Area */}
-                <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
-                    <div className="container mx-auto">
-                        {getActiveComponent()}
-                    </div>
-                </main>
-            </div>
-        </div>
-    );
-};
-
-export default ClientePortal;
+export default App;

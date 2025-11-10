@@ -1,24 +1,24 @@
-// 🛑 LÍNEAS A AJUSTAR EN src/pages/ClientePortal.jsx 🛑
-
-import { useUser } from '../context/UserContext.jsx'; // ⬅️ RUTA AJUSTADA
+// src/pages/ClientePortal.jsx
+import { useUser } from '../context/UserContext.jsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import Sidebar from '../components/ClientPortal/Sidebar.jsx'; // ⬅️ RUTA AJUSTADA
-import Header from '../components/ClientPortal/Header.jsx'; // ⬅️ RUTA AJUSTADA
-import Dashboard from '../components/ClientPortal/Dashboard.jsx'; // ⬅️ RUTA AJUSTADA
-import Payments from '../components/ClientPortal/Payments.jsx'; // ⬅️ RUTA AJUSTADA
-import Services from '../components/ClientPortal/Services.jsx'; // ⬅️ RUTA AJUSTADA
-import Invoices from '../components/ClientPortal/Invoices.jsx'; // ⬅️ RUTA AJUSTADA
-import Documents from '../components/ClientPortal/Documents.jsx'; // ⬅️ RUTA AJUSTADA
+
+// 🛑 AJUSTE: Añadir .jsx a todos los componentes para asegurar la resolución de rutas
+import Sidebar from '../components/ClientPortal/Sidebar.jsx';
+import Header from '../components/ClientPortal/Header.jsx';
+import Dashboard from '../components/ClientPortal/Dashboard.jsx';
+import Payments from '../components/ClientPortal/Payments.jsx';
+import Services from '../components/ClientPortal/Services.jsx';
+import Invoices from '../components/ClientPortal/Invoices.jsx';
+import Documents from '../components/ClientPortal/Documents.jsx';
 
 // Componente principal del Portal del Cliente
 const ClientePortal = () => {
-    // ... (El resto del código es funcional y no necesita cambios)
-    const { user, isAuthenticated, loading } = useUser(); 
+    const { user, isAuthenticated, loading } = useUser();
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Lógica para renderizar el componente activo según la URL
+    // Función para obtener el componente basado en el path
     const getActiveComponent = () => {
         const path = location.pathname.split('/').pop() || 'dashboard';
         switch (path) {
@@ -27,7 +27,7 @@ const ClientePortal = () => {
             case 'servicios':
                 return <Services />;
             case 'facturas':
-            case 'invoices':
+            case 'invoices': 
                 return <Invoices />;
             case 'documentos':
                 return <Documents />;
@@ -37,11 +37,11 @@ const ClientePortal = () => {
         }
     };
 
-    // Lógica de redirección (seguridad)
+    // Redirección si el usuario no está autenticado o no es un cliente
     useEffect(() => {
         if (!loading) {
             if (!isAuthenticated) {
-                navigate('/login'); 
+                navigate('/login');
             } else if (user?.role !== 'client') {
                 navigate('/'); 
             }
@@ -58,12 +58,15 @@ const ClientePortal = () => {
 
     return (
         <div className="flex h-screen bg-gray-100">
-            {/* Sidebar y Contenido */}
+            {/* Sidebar */}
             <Sidebar />
 
+            {/* Contenido principal */}
             <div className="flex-1 flex flex-col overflow-hidden">
+                {/* Header */}
                 <Header />
                 
+                {/* Main Content Area */}
                 <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
                     <div className="container mx-auto">
                         {getActiveComponent()}
