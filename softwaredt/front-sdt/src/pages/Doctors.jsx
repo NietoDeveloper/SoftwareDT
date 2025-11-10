@@ -63,8 +63,6 @@ const DoctorList = () => {
             </div>
           ))
         ) : (
-          // El mensaje aquí dice "No se encontro Programador", asumiendo que es un error tipográfico
-          // y debería ser "Doctor" o "Médico", lo dejo como lo tenías.
           <p>No se encontro Programador</p> 
         )}
       </div>
