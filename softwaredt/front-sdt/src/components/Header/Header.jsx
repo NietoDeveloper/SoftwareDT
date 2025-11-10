@@ -119,7 +119,6 @@ const Header = () => {
                     </button>
                 </div>
 
-                {/* Mobile Menu Icon */}
                 <div
                     onClick={handleMobileMenu}
                     className="block md:hidden cursor-pointer"
