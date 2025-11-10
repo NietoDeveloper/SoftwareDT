@@ -12,7 +12,6 @@ const DoctorList = () => {
       return res.data.doctors || []; 
     } catch (error) {
       console.error("Error fetching doctors:", error);
-      // Es crucial relanzar (throw) el error para que TanStack Query lo maneje
       throw error; 
     }
   };
