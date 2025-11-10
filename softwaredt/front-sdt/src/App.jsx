@@ -19,7 +19,7 @@ import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 
 // Importación del Portal del Cliente
-import ClientPortal from "./pages/ClientPortal.jsx"; 
+import ClientePortal from "./pages/ClientePortal.jsx"; 
 
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
                 {/* Rutas Protegidas */}
                 <Route element={<PrivateRoutes/>}>
                     {/* Ruta del Portal del Cliente */}
-                    <Route path="/portal" element={<ClientPortal/>}/> 
+                    <Route path="/portal" element={<ClientePortal/>}/> 
                     <Route path="/doctors/:doctorId" element={<DoctorProfile/>}/>
                     <Route path="/checkout" element={<Payment/>}/>
                 </Route>
