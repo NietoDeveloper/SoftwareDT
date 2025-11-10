@@ -13,7 +13,7 @@ if (getApps().length === 0) {
     // Si no hay aplicaciones inicializadas, crea una nueva.
     app = initializeApp(firebaseConfig);
 } else {
-    // Si ya existe una aplicación, obtén la instancia por defecto.
+
     app = getApp();
 }
 
