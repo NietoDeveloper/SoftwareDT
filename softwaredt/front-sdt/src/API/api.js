@@ -1,5 +1,5 @@
 import axios from 'axios';
-import refreshAccessToken from '../utils/refreshAccess.js'; // ⬅️ RUTA CORREGIDA
+import refreshAccessToken from '../utils/refreshAccessToken.js'; // ⬅️ Asumo que el nombre es 'refreshAccessToken.js'
 
 const BASE_URL = 'http://localhost:5000/api';
 
@@ -16,7 +16,8 @@ const axiosPrivateDoctor = axios.create({
     baseURL: `${BASE_URL}/doctor`,
 });
 
-const setupInterceptors = (setToken) => {
+// 1. CORRECCIÓN: La función ahora acepta 'handleLogout'.
+const setupInterceptors = (setToken, handleLogout) => {
 
     const interceptor = axiosPrivateInstance => {
         
@@ -41,12 +42,13 @@ const setupInterceptors = (setToken) => {
                     originalRequest._retry = true;
 
                     try {
-                        // Pasamos setToken como argumento, asumo que 'handleLogout' se maneja dentro
-                        // de la función de refreshAccessToken, como en el código que me diste antes.
-                        const accessToken = await refreshAccessToken(setToken); 
+                        // 2. CORRECCIÓN: Pasamos 'handleLogout' a la función de refresh.
+                        const accessToken = await refreshAccessToken(setToken, handleLogout); 
                         originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
                         return axiosPrivateInstance(originalRequest);
                     } catch (refreshError) {
+                        // Si el refresh falla, el error es rechazado y 'handleLogout' 
+                        // debe ser llamado dentro de 'refreshAccessToken'
                         return Promise.reject(refreshError);
                     }
                 }

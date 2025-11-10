@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useCallback, useContext } from "react";
-import { setupInterceptors } from "../API/api.js"; // ⬅️ RUTA CORREGIDA
+import { setupInterceptors } from "../API/api.js";
 import React from "react";
 
 const AppContext = createContext();
@@ -45,9 +45,11 @@ const UserProvider = ({ children }) => {
 };
 
 // Custom Hook: ESTO ES LO QUE PERMITE IMPORTAR { useUser }
+// ¡Aquí ya está exportado, así que no hay que repetirlo al final!
 export const useUser = () => {
     return useContext(AppContext);
 };
 
-// Exportamos todo lo necesario.
-export { UserProvider, AppContext, useUser };
+// Exportamos solo lo necesario que no fue exportado previamente.
+// ❌ ¡Se eliminó 'useUser' de aquí!
+export { UserProvider, AppContext };

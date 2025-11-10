@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AppContext } from "../context/UserContext";
-import refreshAccessToken from "../utils/refreshAccess";
+import refreshAccessToken from "../utils/refreshAccess.jsx";
 
 const useRefresh = () => {
   const { setToken } = useContext(AppContext);
