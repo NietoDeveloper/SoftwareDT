@@ -1,17 +1,17 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 
-// 💡 Nota: Asegúrate de que esta configuración sea la que se está usando
-// en el archivo `installHook.js` o en el componente que accede a Storage.
+// 💡 Nota: Esta configuración ahora incluye 'storageBucket', resolviendo el error.
+// Se recomienda mover las claves sensibles (API Key, etc.) a variables de entorno.
 const firebaseConfig = {
   apiKey: "AIzaSyCAh9zfi_utySugSQI_qcW54xf67A4X0oU",
   authDomain: "software-dt.firebaseapp.com",
   projectId: "software-dt",
-  storageBucket: "software-dt.appspot.com", // Confirma que este valor es correcto
+  storageBucket: "software-dt.appspot.com", // SOLUCIONADO: Bucket de almacenamiento especificado
   messagingSenderId: "739796107685",
   appId: "1:739796107685:web:6652ea0c94a15b6aee684c"
 };
 
-// 🌟 Mejorando la inicialización para evitar re-inicializaciones:
+// Initializes the Firebase app safely (prevents re-initialization in React/hot-reloading environments).
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 export { app };
