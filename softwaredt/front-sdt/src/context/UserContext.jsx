@@ -15,7 +15,6 @@ const UserProvider = ({ children }) => {
         localStorage.removeItem('accessToken');
     }, [setToken, setUser]);
 
-    // El interceptor usa la función de logout simple.
     useEffect(() => {
         setupInterceptors(setToken, handleLogout);
     }, [setToken, handleLogout]);
