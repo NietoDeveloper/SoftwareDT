@@ -17,7 +17,6 @@ if (getApps().length === 0) {
     app = getApp();
 }
 
-// Inicializar los servicios
 const auth = getAuth(app);
 const db = getFirestore(app);
 
