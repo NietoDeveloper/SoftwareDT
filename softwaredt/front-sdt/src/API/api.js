@@ -57,13 +57,9 @@ const setupInterceptors = (setToken) => {
     interceptor(axiosPrivateDoctor);
 };
 
-// ----------------------------------------------------------------------
-// EXPORTACIÓN ÚNICA (Correcta)
-// ----------------------------------------------------------------------
-
 export { 
     axiosAuth, 
     axiosPrivateUsers, 
-    axiosPrivateDoctor, // Exportación única de las variables definidas arriba
+    axiosPrivateDoctor,
     setupInterceptors 
 };
