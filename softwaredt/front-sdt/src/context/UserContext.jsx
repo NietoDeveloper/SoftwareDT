@@ -5,7 +5,6 @@ import React from "react";
 const AppContext = createContext();
 
 const UserProvider = ({ children }) => {
-    // ELIMINADO: const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
     const [appointmentDetails, setAppointmentDetails] = useState(null);
