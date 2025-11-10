@@ -87,7 +87,6 @@ const Header = () => {
                     </ul>
                 </div>
 
-                {/* Mobile and Desktop Avatar */}
                 {user && (
                     <div
                         className="flex items-center gap-4"
