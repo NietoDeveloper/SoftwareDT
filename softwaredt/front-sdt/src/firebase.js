@@ -21,10 +21,6 @@ if (getApps().length === 0) {
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Para el error de Storage ("No default bucket found"):
-// Este error ocurre si la propiedad 'storageBucket' está ausente o vacía
-// en la configuración de Firebase. La inicialización del servicio se mantiene,
-// pero asegúrese de que su configuración (firebaseConfig) sea completa.
 const storage = getStorage(app);
 
 // Exportar la instancia de la aplicación y los servicios para que sean usados en otros módulos
