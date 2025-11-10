@@ -1,17 +1,19 @@
-import { useUser } from '../context/UserContext';
+// 🛑 LÍNEAS A AJUSTAR EN src/pages/ClientePortal.jsx 🛑
+
+import { useUser } from '../context/UserContext.jsx'; // ⬅️ RUTA AJUSTADA
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import Sidebar from '../components/ClientPortal/Sidebar';
-import Header from '../components/ClientPortal/Header';
-import Dashboard from '../components/ClientPortal/Dashboard';
-import Payments from '../components/ClientPortal/Payments';
-import Services from '../components/ClientPortal/Services';
-import Invoices from '../components/ClientPortal/Invoices';
-import Documents from '../components/ClientPortal/Documents';
+import Sidebar from '../components/ClientPortal/Sidebar.jsx'; // ⬅️ RUTA AJUSTADA
+import Header from '../components/ClientPortal/Header.jsx'; // ⬅️ RUTA AJUSTADA
+import Dashboard from '../components/ClientPortal/Dashboard.jsx'; // ⬅️ RUTA AJUSTADA
+import Payments from '../components/ClientPortal/Payments.jsx'; // ⬅️ RUTA AJUSTADA
+import Services from '../components/ClientPortal/Services.jsx'; // ⬅️ RUTA AJUSTADA
+import Invoices from '../components/ClientPortal/Invoices.jsx'; // ⬅️ RUTA AJUSTADA
+import Documents from '../components/ClientPortal/Documents.jsx'; // ⬅️ RUTA AJUSTADA
 
 // Componente principal del Portal del Cliente
 const ClientePortal = () => {
-    // La magia del Contexto para obtener los datos del usuario
+    // ... (El resto del código es funcional y no necesita cambios)
     const { user, isAuthenticated, loading } = useUser(); 
     const navigate = useNavigate();
     const location = useLocation();
