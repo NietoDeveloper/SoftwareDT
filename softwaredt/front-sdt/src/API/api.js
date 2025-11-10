@@ -16,11 +16,6 @@ const axiosPrivateDoctor = axios.create({
     baseURL: `${BASE_URL}/doctor`,
 });
 
-// ----------------------------------------------------------------------
-// 3. CONFIGURACIÓN DEL INTERCEPTOR (Añade Token y Maneja 401)
-// ... (Toda esta lógica se mantiene igual)
-// ----------------------------------------------------------------------
-
 const setupInterceptors = (setToken) => {
     // ... (Tu lógica de interceptores request y response va aquí)
     const interceptor = axiosPrivateInstance => {
