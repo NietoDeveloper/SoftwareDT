@@ -8,10 +8,6 @@ const axiosAuth = axios.create({ // Eliminada la palabra clave 'export' aquí
     withCredentials: true,
 });
 
-// ----------------------------------------------------------------------
-// 2. INSTANCIAS PRIVADAS (Exportadas al final)
-// ----------------------------------------------------------------------
-
 const axiosPrivateUsers = axios.create({ // Eliminada la palabra clave 'export' aquí
     baseURL: `${BASE_URL}/user`,
 });
