@@ -1,8 +1,6 @@
 import { useUser } from '../context/UserContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-// Asumiendo que las rutas de los componentes internos (Sidebar, Header, etc.) 
-// NO necesitan el cambio de nombre, ya que solo el archivo principal lo requiere.
 import Sidebar from '../components/ClientPortal/Sidebar';
 import Header from '../components/ClientPortal/Header';
 import Dashboard from '../components/ClientPortal/Dashboard';
@@ -12,13 +10,13 @@ import Invoices from '../components/ClientPortal/Invoices';
 import Documents from '../components/ClientPortal/Documents';
 
 // Componente principal del Portal del Cliente
-// **¡CAMBIO AQUÍ!**
 const ClientePortal = () => {
-    const { user, isAuthenticated, loading } = useUser();
+    // La magia del Contexto para obtener los datos del usuario
+    const { user, isAuthenticated, loading } = useUser(); 
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Función para obtener el componente basado en el path
+    // Lógica para renderizar el componente activo según la URL
     const getActiveComponent = () => {
         const path = location.pathname.split('/').pop() || 'dashboard';
         switch (path) {
@@ -27,6 +25,7 @@ const ClientePortal = () => {
             case 'servicios':
                 return <Services />;
             case 'facturas':
+            case 'invoices':
                 return <Invoices />;
             case 'documentos':
                 return <Documents />;
@@ -36,13 +35,12 @@ const ClientePortal = () => {
         }
     };
 
-    // Redirección si el usuario no está autenticado o no es un cliente
+    // Lógica de redirección (seguridad)
     useEffect(() => {
         if (!loading) {
             if (!isAuthenticated) {
-                navigate('/login'); // Redirige a login si no está logeado
+                navigate('/login'); 
             } else if (user?.role !== 'client') {
-                // Opcional: si solo los clientes deben acceder
                 navigate('/'); 
             }
         }
@@ -53,20 +51,17 @@ const ClientePortal = () => {
     }
 
     if (!isAuthenticated || user?.role !== 'client') {
-        return null; // No renderizar nada mientras redirige
+        return null;
     }
 
     return (
         <div className="flex h-screen bg-gray-100">
-            {/* Sidebar */}
+            {/* Sidebar y Contenido */}
             <Sidebar />
 
-            {/* Contenido principal */}
             <div className="flex-1 flex flex-col overflow-hidden">
-                {/* Header */}
                 <Header />
                 
-                {/* Main Content Area */}
                 <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
                     <div className="container mx-auto">
                         {getActiveComponent()}
@@ -77,5 +72,4 @@ const ClientePortal = () => {
     );
 };
 
-// **¡CAMBIO AQUÍ!**
 export default ClientePortal;
