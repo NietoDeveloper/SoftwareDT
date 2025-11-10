@@ -8,7 +8,7 @@ const axiosAuth = axios.create({
     withCredentials: true,
 });
 
-const axiosPrivateUsers = axios.create({ // Eliminada la palabra clave 'export' aquí
+const axiosPrivateUsers = axios.create({
     baseURL: `${BASE_URL}/user`,
 });
 
