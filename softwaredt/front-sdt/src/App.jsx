@@ -15,7 +15,6 @@ import DoctorProfile from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 
-
 function App() {
   return (
     <UserProvider>

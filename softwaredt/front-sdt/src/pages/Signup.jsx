@@ -32,7 +32,7 @@ const Signup = () => {
                 photo: defaultImageUrl // Añadimos la URL por defecto
             };
 
-            // NOTA IMPORTANTE: Asegúrate de que esta URL coincida con la configuración del puerto 5000
+            // NOTA IMPORTANTE: Si ajustaste tu backend al puerto 3000, cambia 5000 por 3000
             const response = await axios.post('http://localhost:5000/api/user/register', formData, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,8 +43,20 @@ const Signup = () => {
                 throw new Error(response.data.error);
             }
 
-            // Registro exitoso, redirige al login
-            navigate('/login');
+            // =================================================================
+            // 🚀 CAMBIOS SOLICITADOS AQUÍ 🚀
+            // =================================================================
+
+            // 1. Mensaje en la Consola
+            console.log('✅ ¡Perfil creado con éxito! Redireccionando al usuario a la página de reservas.');
+            
+            // 2. Redirección a BookingPage (asumiendo que la ruta es '/bookings')
+            // Ajusta la ruta si tu BookingPage está en otro path, por ejemplo: '/agenda'
+            navigate('/bookings'); 
+
+            // =================================================================
+            // 🚀 FIN DE CAMBIOS SOLICITADOS 🚀
+            // =================================================================
 
         } catch (processError) {
             const errorMessage = processError?.response?.data?.error

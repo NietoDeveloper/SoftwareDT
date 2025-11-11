@@ -34,6 +34,7 @@ const Login = () => {
             // const response = await axiosAuth.post('/user/login', data) 
             
             // --- SIMULACIÓN DE LOGIN EXITOSO ---
+            // Nota: Si usas el backend real, reemplaza este bloque con la llamada real a la API.
             await new Promise(resolve => setTimeout(resolve, 1500)); // Simula latencia de red
             const mockResponse = {
                 data: {
@@ -51,7 +52,21 @@ const Login = () => {
             // setToken(response.data.accessToken);
             // setUser(response.data.userData);
             
-            navigate('/', {replace:true});
+            // =================================================================
+            // 🚀 CAMBIOS SOLICITADOS AQUÍ 🚀
+            // =================================================================
+            
+            // 1. Mensaje en la Consola
+            console.log(`👋 ¡Hola, ${response.data.userData.name || 'Usuario'}! Inicio de sesión exitoso. Redirigiendo a reservas.`);
+            
+            // 2. Redirección a BookingPage (ruta: /bookings)
+            navigate('/bookings', {replace:true}); 
+
+            // Nota: Se eliminó el 'navigate('/', {replace:true})' anterior.
+            // =================================================================
+            // 🚀 FIN DE CAMBIOS SOLICITADOS 🚀
+            // =================================================================
+            
             reset();
             
         } catch (processError) {
