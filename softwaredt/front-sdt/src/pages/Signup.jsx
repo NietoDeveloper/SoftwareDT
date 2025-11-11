@@ -15,6 +15,7 @@ const Signup = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    // NOTA: Eliminamos 'photo' de los campos a registrar en el formulario (ya no existe el input)
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
@@ -22,15 +23,16 @@ const Signup = () => {
         setIsLoading(true);
 
         try {
+            // URL de la imagen por defecto, usada si el usuario no sube ninguna
             const defaultImageUrl = 'https://placehold.co/400x400/EBF4FF/76A9FA?text=Perfil'; 
-            const { photo, ...restOfData } = data;
-
+            
+            // Creamos el objeto de datos que se enviará al backend
             const formData = {
-                ...restOfData,
-                photo: defaultImageUrl
+                ...data, // name, email, password
+                photo: defaultImageUrl // Añadimos la URL por defecto
             };
 
-            // Simulación de carga (reemplaza con tu URL de backend real)
+            // NOTA IMPORTANTE: Asegúrate de que esta URL coincida con la configuración del puerto 5000
             const response = await axios.post('http://localhost:5000/api/user/register', formData, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,8 +48,8 @@ const Signup = () => {
 
         } catch (processError) {
             const errorMessage = processError?.response?.data?.error
-                                 || processError?.message
-                                 || 'Ocurrió un error en el registro. Inténtalo de nuevo.';
+                                         || processError?.message
+                                         || 'Ocurrió un error en el registro. Inténtalo de nuevo.';
             
             console.error('Error en el proceso de registro:', errorMessage);
 
