@@ -1,32 +1,33 @@
-import { axiosAuth } from "../API/api.js";
+import { axiosAuth } from "../API/api";
 
 const refreshAccessToken = async (setToken, handleLogout) => {
     try {
-        // Usamos axiosAuth para enviar la cookie 'jwt' y obtener un nuevo token.
+        // Usamos axiosAuth para enviar la cookie 'jwt'.
+        // La ruta completa debe ser '/user/refresh' o '/doctor/refresh' 
+        // ya que la baseURL de axiosAuth es 'http://localhost:5000/api'.
+        // Asumo que esta es la ruta de usuario.
         const response = await axiosAuth.get('/user/refresh'); 
         
         const { accessToken } = response.data;
         
-        // CORRECCIÓN CLAVE: setToken espera solo el valor del token (string), no un callback de estado de objeto.
-        setToken(accessToken);
-        
-        // También guardamos en localStorage, ya que UserProvider lo necesita para la carga inicial.
-        localStorage.setItem('accessToken', accessToken);
+        setToken(prev => { 
+            console.log(JSON.stringify(prev));
+            return { ...prev, accessToken };
+        });
         
         return accessToken;
         
     } catch (error) {
         console.error("Error refreshing access token: Session expired or invalid refresh token.", error);
         
-        // Forzamos el cierre de sesión si el token de refresco falla con 401.
+        // Si la función de logout fue proporcionada y el error es 401, 
+        // forzamos el cierre de sesión para detener el bucle.
         if (handleLogout && error.response && error.response.status === 401) {
             handleLogout();
         }
         
-        // Re-lanza el error para que el interceptor sepa que falló y detenga la petición original.
         throw error;
     }
 };
 
-// Se mantiene la exportación por defecto
 export default refreshAccessToken;

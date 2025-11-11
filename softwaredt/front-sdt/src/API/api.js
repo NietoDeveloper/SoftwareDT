@@ -1,6 +1,5 @@
 import axios from 'axios';
-// CORRECCIÓN DE RUTA: Asumo que el nombre del archivo es 'refreshAccess.js'
-import refreshAccessToken from '../utils/refreshAccess.js'; 
+import refreshAccessToken from '../utils/refreshAccess';
 
 const BASE_URL = 'http://localhost:5000/api';
 
@@ -17,8 +16,7 @@ const axiosPrivateDoctor = axios.create({
     baseURL: `${BASE_URL}/doctor`,
 });
 
-// La función ahora acepta 'handleLogout', esencial para cerrar sesión si el refresh falla.
-const setupInterceptors = (setToken, handleLogout) => {
+const setupInterceptors = (setToken) => {
 
     const interceptor = axiosPrivateInstance => {
         
@@ -39,19 +37,14 @@ const setupInterceptors = (setToken, handleLogout) => {
                 const { config, response: { status } } = error;
                 const originalRequest = config;
 
-                // Si es un 401 (no autorizado) y no hemos intentado refrescar antes
                 if (status === 401 && !originalRequest._retry) {
                     originalRequest._retry = true;
 
                     try {
-                        // Intentamos obtener un nuevo token y pasamos handleLogout
-                        const accessToken = await refreshAccessToken(setToken, handleLogout); 
+                        const accessToken = await refreshAccessToken(setToken);
                         originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
-                        // Reintentamos la petición original con el nuevo token
                         return axiosPrivateInstance(originalRequest);
                     } catch (refreshError) {
-                        // Si el refresh falla, la función 'refreshAccessToken' llama a handleLogout,
-                        // y el error es rechazado.
                         return Promise.reject(refreshError);
                     }
                 }

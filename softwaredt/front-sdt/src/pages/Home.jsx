@@ -1,50 +1,49 @@
-import Herosection from "../components/Hero/Herosection.jsx"; // ⬅️ Extensión añadida
-import About from "../components/About.jsx"; // ⬅️ Extensión añadida
-import Services from "../components/Offerings/Services.jsx"; // ⬅️ Extensión añadida
-import Medcare from "../components/Preview/Medcare.jsx"; // ⬅️ Extensión añadida
-import Questions from "../components/Faq/Questions.jsx"; // ⬅️ Extensión añadida
-import Guide from "../components/Explainer/Guide.jsx"; // ⬅️ Extensión añadida
-import BogotaAir1 from "../assets/images/BogotaAir1.mp4"; // Este es un archivo, la extensión es correcta
-import Footer from "../components/Footer/Footer.jsx"; // ⬅️ Extensión añadida
+import Herosection from "../components/Hero/Herosection";
+import About from "../components/About";
+import Services from "../components/Offerings/Services";
+import Medcare from "../components/Preview/Medcare";
+import Questions from "../components/Faq/Questions";
+import Guide from "../components/Explainer/Guide";
+import BogotaAir1 from "../assets/images/BogotaAir1.mp4";
+import Footer from "../components/Footer/Footer";
 
 const Home = () => {
-    return (
-        <>
-            {/* 🛑 AJUSTE DE ESTRUCTURA: Combinamos el video y la Herosection en una sola sección */}
-            <section className={`hero_section h-[100vh] 2xl:h-[110vh] w-full relative flex items-center justify-center`}>
-                {/* Video de Fondo */}
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    className="absolute w-full h-full object-cover z-0"
-                    src={BogotaAir1}
-                />
-                
-                {/* Herosection (Encima del Video) */}
-                <div className="container relative z-10">
-                    <div className="w-full">
-                        <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between">
-                            <Herosection />
-                        </div>
-                    </div>
-                </div>
-            </section>
+  return (
+    <>
+      <section className={`h-[100vh] w-full relative flex justify-center`}>
+        <video
+          autoPlay
+          loop
+          muted
+          className="absolute w-full h-full object-cover z-0"
+          src={BogotaAir1}
+        />
+      </section>
+      <section className="hero_section 2xl:h-[110vh]">
 
-            {/* El resto de las secciones se mantienen igual */}
-            <Medcare />
+        <div className="container">
+          <div className=" w-full">
+            <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between">
+              <Herosection />
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <About />
+      <Medcare />
 
-            <Services />
+      <About />
 
-            <Guide />
+      <Services />
 
-            <Questions />
+      <Guide />
 
-            <Footer />
-        </>
-    );
+      <Questions />
+
+      <Footer />
+
+    </>
+  );
 };
 
 export default Home;

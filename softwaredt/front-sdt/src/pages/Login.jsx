@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
-// 🛑 AJUSTE: Usamos useUser y le damos la extensión .jsx a la ruta de contexto.
-import { useUser } from '../context/UserContext.jsx'; 
+// Nota: axiosAuth debe estar definido en tu entorno. Lo he simulado aquí con axios.
+import axios from 'axios'; 
 import { Link, useNavigate } from 'react-router-dom';
-
-// Asumo que tienes una instancia de axios configurada para autenticación
-const axiosAuth = axios; // Placeholder para evitar errores de compilación
+// import { AppContext } from '../context/UserContext'; // Asumo que el contexto existe
 
 // Componente de Icono de Candado (para claridad visual)
 const LockIcon = (props) => (
@@ -16,8 +14,7 @@ const LockIcon = (props) => (
 );
 
 const Login = () => {
-    // 🛑 ACTIVADO: Obtenemos los setters del estado global
-    const { setToken, setUser } = useUser(); 
+    // const {setToken, setUser} = useContext(AppContext) // Descomentar en tu entorno real
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -34,18 +31,25 @@ const Login = () => {
 
         try {
             // Reemplazar axios con tu axiosAuth y la ruta correcta en un entorno real
-            const response = await axiosAuth.post('/user/login', data); 
+            // const response = await axiosAuth.post('/user/login', data) 
             
-            // 🛑 ELIMINACIÓN DE SIMULACIÓN Y USO DE LA RESPUESTA REAL
-            // const mockResponse = { ... }; 
-            // const response = mockResponse;
+            // --- SIMULACIÓN DE LOGIN EXITOSO ---
+            await new Promise(resolve => setTimeout(resolve, 1500)); // Simula latencia de red
+            const mockResponse = {
+                data: {
+                    accessToken: 'mock_token_12345',
+                    userData: { name: 'Usuario Ejemplo', email: data.email }
+                }
+            };
+            const response = mockResponse;
+            // --- FIN SIMULACIÓN ---
 
             // Almacenar el Access Token localmente
             localStorage.setItem('accessToken', response.data.accessToken); 
 
-            // 🛑 ACTIVADO: Actualizar el estado del contexto
-            setToken(response.data.accessToken);
-            setUser(response.data.userData);
+            // Actualizar el estado del contexto (Descomentar en tu entorno real)
+            // setToken(response.data.accessToken);
+            // setUser(response.data.userData);
             
             navigate('/', {replace:true});
             reset();

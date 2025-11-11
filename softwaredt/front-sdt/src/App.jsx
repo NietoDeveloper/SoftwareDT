@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-// Se añade la extensión .jsx a todas las importaciones locales para resolver el error.
+// Se añade la extensión .jsx o .js a todas las importaciones locales para resolver el error.
 import Header from "./components/Header/Header.jsx";
 import Home from "./pages/Home.jsx";
 import './App.css';
@@ -9,48 +9,41 @@ import Login from "./pages/Login.jsx"
 import Doctorsignup from "./pages/DoctorSignup.jsx";
 import Doctorlogin from "./pages/DoctorLogin.jsx";
 import Services from "./pages/Services.jsx";
-
-// Importación del Contexto: La ruta './' es correcta si App.jsx está en src/
-import { UserProvider } from './context/UserContext.jsx'; 
-
+import {UserProvider} from './context/UserContext.jsx';
 import PrivateRoutes from "./utils/PrivateRoutes.jsx";
 import DoctorProfile from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 
-// Importación del Portal del Cliente
-import ClientePortal from "./pages/ClientePortal.jsx"; 
-
 
 function App() {
-    return (
-        // El proveedor envuelve toda la aplicación para que el contexto sea accesible.
-        <UserProvider>
-            <Header/>
-            
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/doctors" element={<DoctorList/>}/>
-                <Route path="/contact" element={<Contact/>}/>
-                <Route path="/services" element={<Services />} /> 
-                
-                <Route path="/signup" element={<Signup/>}/>
-                <Route path="/login" element={<Login/>}/>
-                
-                <Route path="/doctor/signup" element={<Doctorsignup/>}/>
-                <Route path="/doctor/login" element={<Doctorlogin/>}/>
+  return (
+    <UserProvider>
+      <Header/>
+      
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/doctors" element={<DoctorList/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+        
+        {/* Ruta para la página de Servicios */}
+        <Route path="/services" element={<Services />} /> 
+        
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<Login/>}/>
+        
+        <Route path="/doctor/signup" element={<Doctorsignup/>}/>
+        <Route path="/doctor/login" element={<Doctorlogin/>}/>
 
 
-                {/* Rutas Protegidas */}
-                <Route element={<PrivateRoutes/>}>
-                    {/* Ruta del Portal del Cliente */}
-                    <Route path="/portal" element={<ClientePortal/>}/> 
-                    <Route path="/doctors/:doctorId" element={<DoctorProfile/>}/>
-                    <Route path="/checkout" element={<Payment/>}/>
-                </Route>
-            </Routes>
-        </UserProvider>
-    )
+        {/* Rutas Protegidas */}
+        <Route element={<PrivateRoutes/>}>
+          <Route path="/doctors/:doctorId" element={<DoctorProfile/>}/>
+          <Route path="/checkout" element={<Payment/>}/>
+        </Route>
+      </Routes>
+    </UserProvider>
+  )
 }
 
 export default App;
