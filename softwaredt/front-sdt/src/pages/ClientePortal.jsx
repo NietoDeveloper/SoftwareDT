@@ -1,18 +1,16 @@
 // src/pages/ClientePortal.jsx
-
 import { useUser } from '../context/UserContext.jsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-// ✅ CORRECCIÓN CLAVE: Se cambió 'ClientePortal' a 'ClientPortal' en todas las importaciones.
-// Este cambio asume que tu carpeta en src/components/ se llama ClientPortal.
-import Sidebar from '../components/ClientPortal/Sidebar.jsx';
-import Header from '../components/ClientPortal/Header.jsx';
-import Dashboard from '../components/ClientPortal/Dashboard.jsx';
-import Payments from '../components/ClientPortal/Payments.jsx';
-import Services from '../components/ClientPortal/Services.jsx';
-import Invoices from '../components/ClientPortal/Invoices.jsx';
-import Documents from '../components/ClientPortal/Documents.jsx';
+// 🛑 CORRECCIÓN DE CAPITALIZACIÓN: Se usa 'ClientePortal' en todas las rutas
+import Sidebar from '../components/ClientePortal/Sidebar.jsx';
+import Header from '../components/ClientePortal/Header.jsx';
+import Dashboard from '../components/ClientePortal/Dashboard.jsx';
+import Payments from '../components/ClientePortal/Payments.jsx';
+import Services from '../components/ClientePortal/Services.jsx';
+import Invoices from '../components/ClientePortal/Invoices.jsx';
+import Documents from '../components/ClientePortal/Documents.jsx';
 
 // Componente principal del Portal del Cliente
 const ClientePortal = () => {
@@ -22,7 +20,8 @@ const ClientePortal = () => {
 
     // Función para obtener el componente basado en el path
     const getActiveComponent = () => {
-        const path = location.pathname.split('/').pop() || 'dashboard';
+        // Obtenemos el último segmento de la URL, o 'dashboard' si estamos en /portal
+        const path = location.pathname.split('/').pop() || 'dashboard'; 
         switch (path) {
             case 'pagos':
                 return <Payments />;
@@ -41,19 +40,22 @@ const ClientePortal = () => {
 
     // Redirección si el usuario no está autenticado o no es un cliente
     useEffect(() => {
-        if (!loading) {
+        // Esperamos a que el contexto termine de cargar la sesión.
+        if (!loading) { 
             if (!isAuthenticated) {
                 navigate('/login');
             } else if (user?.role !== 'client') {
+                // Redirige a la raíz si no es un cliente (ej. si fuera un doctor)
                 navigate('/'); 
             }
         }
     }, [isAuthenticated, loading, navigate, user]);
 
     if (loading) {
-        return <div className="text-center p-8">Cargando portal...</div>;
+        return <div className="text-center p-8 text-xl">Cargando portal...</div>;
     }
 
+    // Doble chequeo para evitar renderizar contenido sensible mientras ocurre la redirección
     if (!isAuthenticated || user?.role !== 'client') {
         return null;
     }
