@@ -9,6 +9,7 @@ const DoctorList = () => {
   const getDoctors = async () => {
     try {
       const res = await axiosAuth.get("/api/doctors"); 
+      // Esta línea maneja diferentes formatos de respuesta del backend
       return res.data.doctors || res.data || []; 
     } catch (error) {
       console.error("Error fetching doctors:", error);
@@ -28,8 +29,8 @@ const DoctorList = () => {
   if (doctors.length === 0) {
     return (
       <div className="text-center py-20">
-        <h1 className="text-2xl font-semibold text-gray-700">¡Vaya! No hay doctores registrados aún.</h1>
-        <p className="text-gray-500 mt-2">Usa Postman en `POST http://localhost:5000/api/doctor/register` para añadir el primero. ¡Manos a la obra! </p>
+        <h1 className="text-2xl font-semibold text-gray-700">¡Vaya! No se encontraron profesionales disponibles.</h1>
+        <p className="text-gray-500 mt-2">Por favor, inténtalo de nuevo más tarde o verifica la base de datos.</p>
       </div>
     );
   }
@@ -44,7 +45,7 @@ const DoctorList = () => {
         {doctors.map((doctor) => (
           <div
             key={doctor._id}
-            className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow"
+            className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer"
             onClick={() => handleDoctorClick(doctor._id)} 
           >
             <div className="flex flex-col items-center">
