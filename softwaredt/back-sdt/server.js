@@ -16,15 +16,21 @@ const PORT = process.env.PORT || 5000;
 // Conectar a la base de datos
 connectDB();
 
+// ==============================================================================
+// 0. SERVIR ARCHIVOS ESTÁTICOS Y ELIMINAR EL ERROR 401 DEL FAVICON
+// 
+// Importante: Esto DEBE ser el primer middleware para asegurar que archivos 
+// como favicon.ico, o cualquier JS/CSS estático, se sirvan antes de que 
+// cualquier lógica de autenticación (como verifyAccess) pueda bloquearlos.
+// ==============================================================================
+app.use(express.static('public')); 
+
+
 // Middlewares globales
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-// --- 0. Servir archivos estáticos (favicon.ico) ---
-// Debe ir ANTES de cualquier ruta y ANTES de verifyAccess.
-app.use(express.static('public')); 
 
 // ------------------------------------------------------------------------------------------------------------------
 // 1. RUTAS PÚBLICAS (No requieren autenticación)
