@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -68,6 +68,6 @@ app.use(errorHandler);
 
 // Iniciar el servidor solo después de conectar a MongoDB
 mongoose.connection.once('open', () => {
-    console.log('Connected to MongoDB');
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    console.log('Connected to MongoDB');
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
