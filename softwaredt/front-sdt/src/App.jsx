@@ -11,7 +11,9 @@ import Doctorlogin from "./pages/DoctorLogin.jsx";
 import Services from "./pages/Services.jsx";
 import {UserProvider} from './context/UserContext.jsx';
 import PrivateRoutes from "./utils/PrivateRoutes.jsx";
-import DoctorProfile from "./pages/BookingPage.jsx";
+// CORRECCIÓN: Se renombra la importación de DoctorProfile a BookingPage 
+// para reflejar su origen real (BookingPage.jsx)
+import BookingPage from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 
@@ -28,16 +30,21 @@ function App() {
         {/* Ruta para la página de Servicios */}
         <Route path="/services" element={<Services />} /> 
         
+        {/* Rutas de autenticación de Cliente */}
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
         
+        {/* Rutas de autenticación de Doctor */}
         <Route path="/doctor/signup" element={<Doctorsignup/>}/>
         <Route path="/doctor/login" element={<Doctorlogin/>}/>
-
+        
+        {/* RUTA AÑADIDA: ESTO RESUELVE EL ERROR "No routes matched location /bookings" */}
+        <Route path="/bookings" element={<BookingPage/>}/>
 
         {/* Rutas Protegidas */}
         <Route element={<PrivateRoutes/>}>
-          <Route path="/doctors/:doctorId" element={<DoctorProfile/>}/>
+          {/* Usamos BookingPage para el detalle del doctor (o cambiar a DoctorProfile si existe) */}
+          <Route path="/doctors/:doctorId" element={<BookingPage/>}/>
           <Route path="/checkout" element={<Payment/>}/>
         </Route>
       </Routes>
