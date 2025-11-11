@@ -5,7 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
 const corsOptions = require('./config/corsOptions');
-const {verifyAccess} = require('./middleware/verifyAccess');
+const {verifyAccess} = require('./middleware/verifyAccess'); // Tu middleware de autenticación
 const {unknownEndpoint} = require('./middleware/notFound');
 const {errorHandler} = require('./middleware/errorHandler');
 const path = require('path');
@@ -15,12 +15,16 @@ const PORT = process.env.PORT || 5000;
 
 connectDB();
 
+// Middlewares Globales y Estáticos (¡PÚBLICOS!)
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// ----------------------------------------------------------------------
+// PASO 1: Rutas PÚBLICAS (No requieren token)
+// ----------------------------------------------------------------------
 
 app.get('/', (req, res) => {
     res.status(200).json({
@@ -29,7 +33,10 @@ app.get('/', (req, res) => {
     });
 });
 
-app.use('/api/doctors', require('./routes/allDoctors'));
+// Rutas para LISTAR DOCTORES/PROYECTOS (Debería ser pública para la Home Page)
+app.use('/api/doctors', require('./routes/allDoctors')); 
+
+// Rutas de AUTENTICACIÓN (Registro, Login, Refresh, Logout)
 app.use('/api/user/register', require('./routes/userRoutes/userRegister'));
 app.use('/api/user/login', require('./routes/userRoutes/userLogin'));
 app.use('/api/user/refresh', require('./routes/userRoutes/userRefresh'));
@@ -40,7 +47,17 @@ app.use('/api/doctor/login', require('./routes/doctorRoutes/doctorLogin'));
 app.use('/api/doctor/refresh', require('./routes/doctorRoutes/doctorRefresh'));
 app.use('/api/doctor/logout', require('./routes/doctorRoutes/doctorLogout'));
 
-app.use(verifyAccess);
+// ----------------------------------------------------------------------
+// PASO 2: MIDDLEWARE DE AUTENTICACIÓN (Solo para lo que sigue)
+// ----------------------------------------------------------------------
+
+// Ahora, verifyAccess solo se aplicará a todas las rutas que se definan
+// en los bloques app.use() siguientes.
+app.use(verifyAccess); 
+
+// ----------------------------------------------------------------------
+// PASO 3: Rutas PROTEGIDAS (Requieren token)
+// ----------------------------------------------------------------------
 
 app.use('/api/user/update', require('./routes/userRoutes/userUpdateRoute'));
 app.use('/api/user/appointment', require('./routes/appointmentRoute'));
@@ -48,6 +65,10 @@ app.use('/api/user/review', require('./routes/reviewRoute'));
 
 app.use('/api/doctor/update', require('./routes/doctorRoutes/doctorUpdate'));
 app.use('/api/doctor/profile', require('./routes/bookingRoute'));
+
+// ----------------------------------------------------------------------
+// PASO 4: Middlewares de Manejo de Errores (Siempre al final)
+// ----------------------------------------------------------------------
 
 app.use(unknownEndpoint);
 app.use(errorHandler);
