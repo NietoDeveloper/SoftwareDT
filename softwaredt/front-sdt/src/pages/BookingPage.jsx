@@ -34,7 +34,7 @@ const BookAppointment = () => {
     };
     fetchDoctor();
     return () => {
-      isMounted = false; // Cleanup function to update mount status
+      isMounted = false;
     };
   }, [doctorId, token]);
 
