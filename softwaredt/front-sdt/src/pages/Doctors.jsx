@@ -8,23 +8,23 @@ const DoctorList = () => {
 
   const getDoctors = async () => {
     try {
-      const res = await axiosPublic.get("/doctors"); 
-      return res.data.doctors || res.data || []; 
+      const res = await axiosPublic.get("/doctors");
+      return res.data.doctors || res.data || [];
     } catch (error) {
       console.error("Error fetching doctors:", error);
-      throw error; 
+      throw error;
     }
   };
 
   const { data: doctors = [], error, isLoading } = useQuery({
     queryKey: ["doctors"],
     queryFn: getDoctors,
-    initialData: [], 
+    initialData: [],
   });
 
   if (isLoading) return <h1 className="text-center py-10 text-xl font-bold">Cargando....</h1>;
   if (error) return <h1 className="text-center py-10 text-red-600 text-xl font-bold">Error cargando los Datos: {error.message}</h1>;
-  
+
   if (doctors.length === 0) {
     return (
       <div className="text-center py-20">
@@ -44,26 +44,19 @@ const DoctorList = () => {
         {doctors.map((doctor) => (
           <div
             key={doctor._id}
-            className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => handleDoctorClick(doctor._id)} 
+            className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center text-center"
+            onClick={() => handleDoctorClick(doctor._id)}
           >
-            <div className="flex flex-col items-center">
-              <img
-                src={doctor.photo || "https://via.placeholder.com/150"}
-                alt="profile"
-                className="w-full h-48 object-cover rounded-md mb-4"
-              />
-              <h1 className="text-xl font-semibold mb-2">{doctor.name}</h1>
-              <h2 className="text-gray-600 mb-2">{doctor.specialization}</h2>
-              <p className="text-yellow-500 mb-4">
-                Puntaje: {doctor.totalRating}
-              </p>
-              <p className="text-gray-700 mb-4 line-clamp-2">{doctor.bio}</p>
-              <div
-                className="w-10 h-10 rounded-full border border-solid border-gray-900 flex items-center justify-center bg-transparent group-hover:bg-blue-600 transition-colors"
-              >
-                <BsArrowRight className="text-gray-900 group-hover:text-white transition-colors" />
-              </div>
+            <h1 className="text-xl font-semibold mb-2">{doctor.name}</h1>
+            <h2 className="text-gray-600 mb-2">{doctor.specialization}</h2>
+            <p className="text-yellow-500 mb-4">
+              Puntaje: {doctor.totalRating}
+            </p>
+            <p className="text-gray-700 mb-4 line-clamp-2 flex-grow">{doctor.bio}</p>
+            <div
+              className="w-10 h-10 rounded-full border border-solid border-gray-900 flex items-center justify-center bg-transparent group-hover:bg-blue-600 transition-colors mt-auto"
+            >
+              <BsArrowRight className="text-gray-900 group-hover:text-white transition-colors" />
             </div>
           </div>
         ))}
