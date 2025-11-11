@@ -23,7 +23,8 @@ connectDB();
 // como favicon.ico, o cualquier JS/CSS estático, se sirvan antes de que 
 // cualquier lógica de autenticación (como verifyAccess) pueda bloquearlos.
 // ==============================================================================
-app.use(express.static('public')); 
+// 🎯 INTERVENCIÓN: Uso de path.join(__dirname, 'public') para una ruta absoluta.
+app.use(express.static(path.join(__dirname, 'public'))); 
 
 
 // Middlewares globales
@@ -39,10 +40,10 @@ app.use(cookieParser());
 // 🎯 INTERVENCIÓN: Ruta para la Raíz (GET /)
 // Responde a peticiones directas a http://localhost:5000/ y evita el 401.
 app.get('/', (req, res) => {
-    res.status(200).json({ 
-        status: 'Server Operational', 
-        message: 'Welcome to the API root. Use /api/doctors to fetch the list.'
-    });
+    res.status(200).json({ 
+        status: 'Server Operational', 
+        message: 'Welcome to the API root. Use /api/doctors to fetch the list.'
+    });
 });
 
 // Rutas de Listado Público de Doctores (Ruta que llama DoctorList.jsx)
@@ -83,6 +84,6 @@ app.use(errorHandler);
 
 // Iniciar el servidor solo después de conectar a MongoDB
 mongoose.connection.once('open', () => {
-    console.log('Connected to MongoDB');
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    console.log('Connected to MongoDB');
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
