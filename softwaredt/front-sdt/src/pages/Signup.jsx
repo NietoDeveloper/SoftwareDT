@@ -15,24 +15,28 @@ const Signup = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    // NOTA: Eliminamos 'photo' de los campos a registrar en el formulario (ya no existe el input)
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        // El rol por defecto será 'PATIENT'
+        defaultValues: {
+            role: 'PATIENT' 
+        }
+    });
 
     const onSubmit = async (data) => {
         setError(null);
         setIsLoading(true);
 
         try {
-            // URL de la imagen por defecto, usada si el usuario no sube ninguna
+            // URL de la imagen por defecto
             const defaultImageUrl = 'https://placehold.co/400x400/EBF4FF/76A9FA?text=Perfil'; 
             
-            // Creamos el objeto de datos que se enviará al backend
             const formData = {
-                ...data, // name, email, password
+                ...data, 
                 photo: defaultImageUrl // Añadimos la URL por defecto
             };
 
-            // NOTA IMPORTANTE: Si ajustaste tu backend al puerto 3000, cambia 5000 por 3000
+            // Asegúrate de que el puerto 5000 sea el correcto para tu backend.
             const response = await axios.post('http://localhost:5000/api/user/register', formData, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,53 +47,56 @@ const Signup = () => {
                 throw new Error(response.data.error);
             }
 
-            // =================================================================
-            // 🚀 CAMBIOS SOLICITADOS AQUÍ 🚀
-            // =================================================================
-
-            // 1. Mensaje en la Consola
-            console.log('✅ ¡Perfil creado con éxito! Redireccionando al usuario a la página de reservas.');
+            console.log('✅ ¡Perfil creado con éxito! Redireccionando...');
             
-            // 2. Redirección a BookingPage (asumiendo que la ruta es '/bookings')
-            // Ajusta la ruta si tu BookingPage está en otro path, por ejemplo: '/agenda'
-            navigate('/bookings'); 
-
-            // =================================================================
-            // 🚀 FIN DE CAMBIOS SOLICITADOS 🚀
-            // =================================================================
-
+            // Lógica de redirección basada en el rol
+            if (data.role === 'DOCTOR') {
+                 // Redirige al Doctor a su Dashboard
+                navigate('/doctor/dashboard');
+            } else {
+                // Redirige al Paciente a la lista de doctores
+                navigate('/doctors'); 
+            }
+            
         } catch (processError) {
             const errorMessage = processError?.response?.data?.error
-                                         || processError?.message
-                                         || 'Ocurrió un error en el registro. Inténtalo de nuevo.';
+                                 || processError?.message
+                                 || 'Ocurrió un error en el registro. Inténtalo de nuevo.';
             
             console.error('Error en el proceso de registro:', errorMessage);
 
-            setError(
-                errorMessage.includes('Network')
-                ? 'Error de conexión con el servidor (backend). Asegúrate de que esté activo.'
-                : errorMessage
-            );
+            // Manejo de errores amigables para el usuario
+            let friendlyError = errorMessage;
+            if (errorMessage.includes('Network')) {
+                friendlyError = 'Error de conexión con el servidor. Asegúrate de que esté activo en el puerto correcto (ej: 5000).';
+            } else if (errorMessage.includes('409') || errorMessage.toLowerCase().includes('duplicate')) {
+                friendlyError = 'El correo electrónico ya está registrado. Por favor, utiliza otro.';
+            }
+
+            setError(friendlyError);
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        // Contenedor principal: Totalmente centrado y responsivo
+        // Contenedor principal
         <div className="min-h-screen flex items-center justify-center bg-gray-50/70 p-4 sm:p-8 lg:p-12 font-sans transition-all duration-300">
             <div className="w-full max-w-5xl flex flex-col md:flex-row bg-white shadow-2xl rounded-2xl p-6 sm:p-10 lg:p-12 transition-all duration-300 overflow-hidden">
                 
                 {/* Lado Izquierdo: Información y Banner */}
                 <div className="w-full md:w-1/2 p-4 flex flex-col justify-center text-center md:text-left">
-                    {/* Título ajustado 60px hacia abajo en dispositivos pequeños (mt-16 ~ 64px) */}
                     <h1 className="text-4xl sm:text-5xl font-extrabold text-blue-700 mb-4 sm:mb-6 mt-16 md:mt-0 transition-colors">
                         <UserIcon className="inline mr-3 h-8 w-8 sm:h-10 sm:w-10 text-blue-600"/>
                         Agenda tu Cita Médica
                     </h1>
+                    
+                    {/* 👇 ESTA ES LA LÍNEA CORREGIDA (de </d> a </p>) 👇 */}
                     <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8">
-                        Regístrate como Cliente y accede a nuestra red de especialistas de forma rápida y segura.
-                    </p>
+                        Regístrate y accede a nuestra red de especialistas de forma rápida y segura.
+                    </p> 
+                    {/* 👆 FIN DE LA CORRECCIÓN 👆 */}
+                    
                     <p className="text-gray-500 text-sm">
                         ¿Ya tienes una Cuenta?
                         <Link 
@@ -102,9 +109,8 @@ const Signup = () => {
                 </div>
 
                 {/* Lado Derecho: Formulario de Registro */}
-                {/* Separador vertical en MD+ y horizontal en XS/SM */}
                 <div className="w-full md:w-1/2 pt-6 md:pt-0 border-t md:border-t-0 md:border-l md:border-l-2 border-blue-100/50 md:pl-10 mt-6 md:mt-0">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Registro de Cliente</h2>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Registro de Cuenta</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         
                         {/* Campo Nombre */}
@@ -140,7 +146,7 @@ const Signup = () => {
                         </div>
 
                         {/* Campo Contraseña */}
-                        <div className="flex flex-col mb-6">
+                        <div className="flex flex-col mb-4">
                             <label htmlFor="password" className="mb-2 font-medium text-gray-700 text-sm">Contraseña</label>
                             <input
                                 type="password"
@@ -151,6 +157,20 @@ const Signup = () => {
                             />
                             {errors.password && <span className="text-red-600 text-sm mt-1 font-medium">{errors.password.message}</span>}
                         </div>
+
+                        {/* Campo Tipo de Cuenta (Rol) */}
+                        <div className="flex flex-col mb-6">
+                            <label htmlFor="role" className="mb-2 font-medium text-gray-700 text-sm">Tipo de Cuenta</label>
+                            <select
+                                id="role"
+                                className="border border-gray-300/60 p-3 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-200 shadow-inner hover:border-blue-400/50 outline-none w-full bg-white"
+                                {...register('role', { required: 'Debes seleccionar un tipo de cuenta' })}
+                            >
+                                <option value="PATIENT">Soy un Cliente / Paciente</option>
+                                <option value="DOCTOR">Soy un Doctor</option>
+                            </select>
+                            {errors.role && <span className="text-red-600 text-sm mt-1 font-medium">{errors.role.message}</span>}
+                        </div>
                         
                         {/* Mensaje de Error */}
                         {error && (
@@ -159,7 +179,7 @@ const Signup = () => {
                             </div>
                         )}
 
-                        {/* Botón de Envío (Uniforme y Elegante Hover) */}
+                        {/* Botón de Envío */}
                         <button
                             type="submit"
                             disabled={isLoading}
