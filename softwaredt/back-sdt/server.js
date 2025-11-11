@@ -15,8 +15,9 @@ const PORT = process.env.PORT || 5000;
 
 connectDB();
 
-// Middlewares Globales y Estáticos (¡PÚBLICOS!)
-app.use(express.static(path.join(__dirname, 'public')));
+// ----------------------------------------------------------------------
+// PASO 0: Middlewares Globales de configuración
+// ----------------------------------------------------------------------
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,7 +34,7 @@ app.get('/', (req, res) => {
     });
 });
 
-// Rutas para LISTAR DOCTORES/PROYECTOS (Debería ser pública para la Home Page)
+// Rutas para LISTAR DOCTORES/PROYECTOS (Públicas)
 app.use('/api/doctors', require('./routes/allDoctors')); 
 
 // Rutas de AUTENTICACIÓN (Registro, Login, Refresh, Logout)
@@ -46,6 +47,15 @@ app.use('/api/doctor/register', require('./routes/doctorRoutes/doctorRegister'))
 app.use('/api/doctor/login', require('./routes/doctorRoutes/doctorLogin'));
 app.use('/api/doctor/refresh', require('./routes/doctorRoutes/doctorRefresh'));
 app.use('/api/doctor/logout', require('./routes/doctorRoutes/doctorLogout'));
+
+// ----------------------------------------------------------------------
+// PASO 1.5: Archivos Estáticos (Movido aquí para evitar el 401 del favicon)
+// ----------------------------------------------------------------------
+// Esto sirve archivos como favicon.ico, images, etc.
+// Al colocarlo aquí, las solicitudes a archivos estáticos (como /favicon.ico)
+// se manejan antes de que se aplique la restricción de autenticación (verifyAccess).
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // ----------------------------------------------------------------------
 // PASO 2: MIDDLEWARE DE AUTENTICACIÓN (Solo para lo que sigue)
