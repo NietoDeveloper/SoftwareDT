@@ -8,6 +8,7 @@ const corsOptions = require('./config/corsOptions');
 const {verifyAccess} = require('./middleware/verifyAccess');
 const {unknownEndpoint} = require('./middleware/notFound');
 const {errorHandler} = require('./middleware/errorHandler');
+const path = require('path'); // Necesario para path.join
 
 const app = express();
 const PORT = process.env.PORT || 5000; 
@@ -21,14 +22,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// --- CORRECCIÓN SVGH/SVG: Servir archivos estáticos ---
-// Esto permite que el servidor sirva archivos como imágenes, CSS y SVGs
-// desde la carpeta 'public', que es donde el frontend debe buscar los assets.
+// --- 0. Servir archivos estáticos (favicon.ico) ---
+// Debe ir ANTES de cualquier ruta y ANTES de verifyAccess.
 app.use(express.static('public')); 
 
 // ------------------------------------------------------------------------------------------------------------------
 // 1. RUTAS PÚBLICAS (No requieren autenticación)
 // ------------------------------------------------------------------------------------------------------------------
+
+// 🎯 INTERVENCIÓN: Ruta para la Raíz (GET /)
+// Responde a peticiones directas a http://localhost:5000/ y evita el 401.
+app.get('/', (req, res) => {
+    res.status(200).json({ 
+        status: 'Server Operational', 
+        message: 'Welcome to the API root. Use /api/doctors to fetch the list.'
+    });
+});
 
 // Rutas de Listado Público de Doctores (Ruta que llama DoctorList.jsx)
 app.use('/api/doctors', require('./routes/allDoctors'));
