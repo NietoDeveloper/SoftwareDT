@@ -1,9 +1,11 @@
 // src/pages/ClientePortal.jsx
+
 import { useUser } from '../context/UserContext.jsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-// 🛑 AJUSTE: Añadir .jsx a todos los componentes para asegurar la resolución de rutas
+// ✅ CORRECCIÓN CLAVE: Se cambió 'ClientePortal' a 'ClientPortal' en todas las importaciones.
+// Este cambio asume que tu carpeta en src/components/ se llama ClientPortal.
 import Sidebar from '../components/ClientPortal/Sidebar.jsx';
 import Header from '../components/ClientPortal/Header.jsx';
 import Dashboard from '../components/ClientPortal/Dashboard.jsx';
