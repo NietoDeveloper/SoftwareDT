@@ -41,14 +41,6 @@ app.use(cookieParser());
 // Esto es correcto, asume que 'public' es la raíz de los assets estáticos.
 app.use(express.static('public'));
 
-// =================================================================================
-// 3. RUTAS PÚBLICAS (No requieren autenticación)
-// =================================================================================
-
-// Rutas Públicas - Base: /api
-// Es buena práctica usar un punto de entrada base más genérico para todas las rutas públicas
-app.use('/api', require('./routes/publicRoutes')); // -> Crear un archivo para agrupar estas rutas.
-
 // Rutas de Listado Público de Doctores
 app.use('/api/doctors', require('./routes/allDoctors'));
 
