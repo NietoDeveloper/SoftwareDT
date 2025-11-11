@@ -10,7 +10,7 @@ const {unknownEndpoint} = require('./middleware/notFound');
 const {errorHandler} = require('./middleware/errorHandler');
 
 const app = express();
-const PORT = process.env.PORT || 5000; 
+const PORT = process.env.PORT || 3000; 
 
 // Conectar a la base de datos
 connectDB();
