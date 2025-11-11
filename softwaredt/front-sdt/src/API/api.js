@@ -3,6 +3,14 @@ import refreshAccessToken from '../utils/refreshAccess';
 
 const BASE_URL = 'http://localhost:5000/api';
 
+// 1. NUEVO CLIENTE PÚBLICO:
+// Diseñado para rutas abiertas como /api/doctors. 
+// No incluye withCredentials ni interceptores, evitando el 401.
+const axiosPublic = axios.create({
+    baseURL: BASE_URL,
+});
+
+// Clientes existentes
 const axiosAuth = axios.create({
     baseURL: BASE_URL,
     withCredentials: true,
@@ -58,6 +66,7 @@ const setupInterceptors = (setToken) => {
 };
 
 export { 
+    axiosPublic, // 👈 NUEVO CLIENTE
     axiosAuth, 
     axiosPrivateUsers, 
     axiosPrivateDoctor,
