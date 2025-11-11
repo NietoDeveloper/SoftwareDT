@@ -37,9 +37,6 @@ function App() {
         {/* Rutas de autenticación de Doctor */}
         <Route path="/doctor/signup" element={<Doctorsignup/>}/>
         <Route path="/doctor/login" element={<Doctorlogin/>}/>
-        
-        {/* RUTA AÑADIDA: ESTO RESUELVE EL ERROR "No routes matched location /bookings" */}
-        <Route path="/bookings" element={<BookingPage/>}/>
 
         {/* Rutas Protegidas */}
         <Route element={<PrivateRoutes/>}>
