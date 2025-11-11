@@ -34,13 +34,22 @@ const DoctorList = () => {
     );
   }
 
-  const handleDoctorClick = (doctorId) => {
+  // Esta función ahora se usará para la tarjeta principal (detalles)
+  const handleDoctorDetailsClick = (doctorId) => {
     navigate(`/doctors/${doctorId}`);
   };
 
+  // NUEVA FUNCIÓN: Redirige directamente a la página de reservación de citas
+  const handleBookAppointmentClick = (e, doctorId) => {
+    // Esto es crucial: evita que el evento de clic se propague a la tarjeta contenedora
+    // y active handleDoctorDetailsClick.
+    e.stopPropagation();
+    
+    // Asumimos que la ruta para reservar una cita es /book-appointment/:doctorId
+    navigate(`/book-appointment/${doctorId}`);
+  };
+
   // 1. Determina la clase del contenedor principal
-  // Si solo hay un doctor, usa flexbox para centrar en la altura (h-screen/h-[100vh] + items-center + justify-center)
-  // Como la altura de la tarjeta es fija (300px), ajustamos el centrado si es necesario.
   const containerClasses =
     doctors.length === 1
       ? "flex items-center justify-center min-h-screen" // Centra la lista si hay un solo doctor
@@ -54,24 +63,23 @@ const DoctorList = () => {
         }`}
       >
         {doctors.map((doctor) => (
-          // 2. Aplicamos las clases para el margen superior y la altura.
-          // mt-[60px] para 60px de margin-top.
-          // h-[300px] para 300px de altura.
-          // NOTA: Se ha quitado 'h-[100vh]' ya que el requisito es ahora 300px de alto.
+          // 2. Aplicamos handleDoctorDetailsClick al contenedor de la tarjeta
           <div
             key={doctor._id}
-            className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center text-center **mt-[60px] h-[300px]**" 
-            onClick={() => handleDoctorClick(doctor._id)}
+            className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center text-center mt-[60px] h-[300px]" 
+            onClick={() => handleDoctorDetailsClick(doctor._id)} // Click en la tarjeta -> detalles
           >
             <h1 className="text-xl font-semibold mb-2">{doctor.name}</h1>
             <h2 className="text-gray-600 mb-2">{doctor.specialization}</h2>
             <p className="text-yellow-500 mb-4">
               Puntaje: {doctor.totalRating}
             </p>
-            {/* Usamos overflow-hidden para asegurar que el texto no desborde la altura de 300px */}
             <p className="text-gray-700 mb-4 line-clamp-2 flex-grow overflow-hidden">{doctor.bio}</p> 
+            
+            {/* 3. Aplicamos handleBookAppointmentClick al botón/icono */}
             <div
-              className="w-10 h-10 rounded-full border border-solid border-gray-900 flex items-center justify-center bg-transparent group-hover:bg-blue-600 transition-colors mt-auto"
+              className="w-10 h-10 rounded-full border border-solid border-gray-900 flex items-center justify-center bg-transparent group-hover:bg-blue-600 transition-colors mt-auto cursor-pointer"
+              onClick={(e) => handleBookAppointmentClick(e, doctor._id)} // Click en el botón -> CITA
             >
               <BsArrowRight className="text-gray-900 group-hover:text-white transition-colors" />
             </div>
