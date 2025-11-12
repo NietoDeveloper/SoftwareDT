@@ -59,7 +59,6 @@ const Login = () => {
 
             console.log(`👋 ¡Hola, ${userData.name || 'Usuario'}! Inicio de sesión exitoso. Redirigiendo a doctores.`);
             
-            // Redirige a /doctors y reemplaza la entrada en el historial.
             navigate('/doctors', {replace: true}); 
 
             reset();
