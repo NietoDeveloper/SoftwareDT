@@ -22,8 +22,7 @@ const UserProvider = ({ children }) => {
         const storedAccessToken = localStorage.getItem('accessToken');
         
         if (storedAccessToken) {
-            // Reestablecer el token en el estado de React si se encuentra en localStorage
-            // Lo guardamos como un objeto para ser consistente con la forma en que el backend lo maneja.
+        
             setToken({ accessToken: storedAccessToken }); 
             
         }
