@@ -6,7 +6,6 @@ const AppContext = createContext();
 
 const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    // El token es el objeto que contendrá el accessToken
     const [token, setToken] = useState(null); 
     const [appointmentDetails, setAppointmentDetails] = useState(null);
 
