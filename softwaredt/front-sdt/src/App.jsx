@@ -38,8 +38,11 @@ function App() {
 
         {/* Rutas Protegidas */}
         <Route element={<PrivateRoutes/>}>
-          {/* Se utiliza BookingPage para el detalle del doctor y la reserva */}
-          <Route path="/doctors/:doctorId" element={<BookingPage/>}/>
+          {/* CORRECCIÓN CLAVE: 
+            Se cambió "/doctors/:doctorId" a "/book-appointment/:doctorId" 
+            para que coincida con la navegación en DoctorList.jsx.
+          */}
+          <Route path="/book-appointment/:doctorId" element={<BookingPage/>}/> 
           <Route path="/checkout" element={<Payment/>}/>
         </Route>
       </Routes>
