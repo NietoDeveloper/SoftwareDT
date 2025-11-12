@@ -11,6 +11,8 @@ import Doctorlogin from "./pages/DoctorLogin.jsx";
 import Services from "./pages/Services.jsx";
 import {UserProvider} from './context/UserContext.jsx';
 import PrivateRoutes from "./utils/PrivateRoutes.jsx";
+// CORRECCIÓN: Se renombra la importación de DoctorProfile a BookingPage 
+// para reflejar su origen real (BookingPage.jsx)
 import BookingPage from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
@@ -38,15 +40,8 @@ function App() {
 
         {/* Rutas Protegidas */}
         <Route element={<PrivateRoutes/>}>
-          
-          {/* 1. Ruta de perfil/detalle del doctor */}
+          {/* Usamos BookingPage para el detalle del doctor (o cambiar a DoctorProfile si existe) */}
           <Route path="/doctors/:doctorId" element={<BookingPage/>}/>
-
-          {/* 2. RUTA AÑADIDA para resolver el error: 
-             Añade el path /book-appointment/ con un ID dinámico */}
-          <Route path="/book-appointment/:appointmentId" element={<BookingPage/>}/>
-
-          {/* 3. Ruta de pago */}
           <Route path="/checkout" element={<Payment/>}/>
         </Route>
       </Routes>
