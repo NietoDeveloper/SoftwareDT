@@ -204,7 +204,6 @@ const BookingPage = () => {
                     </div>
                 )}
 
-                {/* Botón de Agendar */}
                 <button
                     onClick={handleBooking}
                     disabled={isLoading || !selectedDate || !selectedTimeSlot}
