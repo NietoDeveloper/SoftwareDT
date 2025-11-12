@@ -2,10 +2,7 @@ import { axiosAuth } from "../API/api";
 
 const refreshAccessToken = async (setToken, handleLogout) => {
     try {
-        // Usamos axiosAuth para enviar la cookie 'jwt'.
-        // La ruta completa debe ser '/user/refresh' o '/doctor/refresh' 
-        // ya que la baseURL de axiosAuth es 'http://localhost:5000/api'.
-        // Asumo que esta es la ruta de usuario.
+
         const response = await axiosAuth.get('/user/refresh'); 
         
         const { accessToken } = response.data;
