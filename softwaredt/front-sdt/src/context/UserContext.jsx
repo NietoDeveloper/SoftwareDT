@@ -26,7 +26,6 @@ const UserProvider = ({ children }) => {
             // Lo guardamos como un objeto para ser consistente con la forma en que el backend lo maneja.
             setToken({ accessToken: storedAccessToken }); 
             
-            // Opcional: Si tienes datos de usuario guardados, cárgalos aquí también.
         }
     }, []); 
     
