@@ -7,7 +7,6 @@ const axiosPublic = axios.create({
     baseURL: BASE_URL,
 });
 
-// Clientes existentes
 const axiosAuth = axios.create({
     baseURL: BASE_URL,
     withCredentials: true,
