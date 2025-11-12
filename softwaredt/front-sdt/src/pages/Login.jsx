@@ -66,7 +66,7 @@ const Login = () => {
             
         } catch (processError) {
             console.error("Login failed", processError);
-            // Manejo de errores de la API
+
             const errorMessage = processError?.response?.data?.error
                                  || processError?.message
                                  || 'Credenciales inválidas o error de servidor.';
