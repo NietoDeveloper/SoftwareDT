@@ -40,8 +40,15 @@ function App() {
 
         {/* Rutas Protegidas */}
         <Route element={<PrivateRoutes/>}>
-          {/* Usamos BookingPage para el detalle del doctor (o cambiar a DoctorProfile si existe) */}
+          
+          {/* 1. Ruta de perfil/detalle del doctor */}
           <Route path="/doctors/:doctorId" element={<BookingPage/>}/>
+
+          {/* 2. RUTA AÑADIDA para resolver el error: 
+             Añade el path /book-appointment/ con un ID dinámico */}
+          <Route path="/book-appointment/:appointmentId" element={<BookingPage/>}/>
+
+          {/* 3. Ruta de pago */}
           <Route path="/checkout" element={<Payment/>}/>
         </Route>
       </Routes>
