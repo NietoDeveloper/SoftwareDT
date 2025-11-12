@@ -38,7 +38,7 @@ function App() {
 
         {/* Rutas Protegidas */}
         <Route element={<PrivateRoutes />}>
-
+<Route path="/book-appointment/:doctorId" element={<BookingPage />} />
           <Route path="/checkout" element={<Payment />} />
         </Route>
         <Route
