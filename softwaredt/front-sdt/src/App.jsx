@@ -36,7 +36,12 @@ function App() {
         <Route path="/doctor/signup" element={<Doctorsignup/>}/>
         <Route path="/doctor/login" element={<Doctorlogin/>}/>
 
-
+{/* Rutas Protegidas */}
+<Route element={<PrivateRoutes/>}>
+  <Route path="/doctors/:doctorId" element={<BookingPage/>}/>
+  <Route path="/checkout" element={<Payment/>}/>
+</Route>
+<Route path="/book-appointment/:appointmentId" element={<BookingPage/>}/>
         
       </Routes>
     </UserProvider>
