@@ -32,11 +32,7 @@ const Login = () => {
         setIsLoading(true);
 
         try {
-            // 🛑 NOTA IMPORTANTE: Debes reemplazar este código mock
-            // por la llamada real a tu API usando axiosAuth, por ejemplo:
-            // const response = await axiosAuth.post('/user/login', data);
-            
-            // --- CÓDIGO MOCK TEMPORAL ---
+
             await new Promise(resolve => setTimeout(resolve, 1500));
             const mockResponse = {
                 data: {
