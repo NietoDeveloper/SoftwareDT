@@ -11,8 +11,7 @@ import Doctorlogin from "./pages/DoctorLogin.jsx";
 import Services from "./pages/Services.jsx";
 import {UserProvider} from './context/UserContext.jsx';
 import PrivateRoutes from "./utils/PrivateRoutes.jsx";
-// CORRECCIÓN: Se renombra la importación de DoctorProfile a BookingPage 
-// para reflejar su origen real (BookingPage.jsx)
+// CORRECCIÓN: Se mantiene BookingPage importado correctamente, si el archivo es BookingPage.jsx
 import BookingPage from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
@@ -40,7 +39,7 @@ function App() {
 
         {/* Rutas Protegidas */}
         <Route element={<PrivateRoutes/>}>
-          {/* Usamos BookingPage para el detalle del doctor (o cambiar a DoctorProfile si existe) */}
+          {/* Se utiliza BookingPage para el detalle del doctor y la reserva */}
           <Route path="/doctors/:doctorId" element={<BookingPage/>}/>
           <Route path="/checkout" element={<Payment/>}/>
         </Route>
