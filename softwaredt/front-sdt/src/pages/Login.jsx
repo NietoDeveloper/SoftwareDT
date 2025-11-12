@@ -13,8 +13,7 @@ const LockIcon = (props) => (
 const Login = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    
-    // 💡 PASO 1: Obtener las funciones del contexto
+
     const { setToken, setUser } = useContext(AppContext);
 
     const navigate = useNavigate();
