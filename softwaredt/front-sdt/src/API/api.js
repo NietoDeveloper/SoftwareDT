@@ -62,7 +62,7 @@ const setupInterceptors = (setToken) => {
 };
 
 export { 
-    axiosPublic, // 👈 NUEVO CLIENTE
+    axiosPublic,
     axiosAuth, 
     axiosPrivateUsers, 
     axiosPrivateDoctor,
