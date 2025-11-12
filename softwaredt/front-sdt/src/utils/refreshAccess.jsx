@@ -17,8 +17,6 @@ const refreshAccessToken = async (setToken, handleLogout) => {
     } catch (error) {
         console.error("Error refreshing access token: Session expired or invalid refresh token.", error);
         
-        // Si la función de logout fue proporcionada y el error es 401, 
-        // forzamos el cierre de sesión para detener el bucle.
         if (handleLogout && error.response && error.response.status === 401) {
             handleLogout();
         }
