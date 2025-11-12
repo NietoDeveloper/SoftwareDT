@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+// Importamos axiosAuth para las llamadas reales a la API (en lugar del mock)
+// import { axiosAuth } from '../API/api'; 
+// Importamos el Contexto de Usuario y hemos añadido la extensión .jsx para resolver el error.
+import { AppContext } from '../context/UserContext.jsx';
 
 const LockIcon = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -12,6 +16,9 @@ const LockIcon = (props) => (
 const Login = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    
+    // 💡 PASO 1: Obtener las funciones del contexto
+    const { setToken, setUser } = useContext(AppContext);
 
     const navigate = useNavigate();
     const {
@@ -25,6 +32,11 @@ const Login = () => {
         setIsLoading(true);
 
         try {
+            // 🛑 NOTA IMPORTANTE: Debes reemplazar este código mock
+            // por la llamada real a tu API usando axiosAuth, por ejemplo:
+            // const response = await axiosAuth.post('/user/login', data);
+            
+            // --- CÓDIGO MOCK TEMPORAL ---
             await new Promise(resolve => setTimeout(resolve, 1500));
             const mockResponse = {
                 data: {
@@ -33,17 +45,28 @@ const Login = () => {
                 }
             };
             const response = mockResponse;
+            // --- FIN CÓDIGO MOCK ---
 
-            localStorage.setItem('accessToken', response.data.accessToken);
-
-            console.log(`👋 ¡Hola, ${response.data.userData.name || 'Usuario'}! Inicio de sesión exitoso. Redirigiendo a doctores.`);
+            const { accessToken, userData } = response.data;
             
-            navigate('/doctors', {replace:true});
+            // 💡 PASO 2: Guardar el token de forma persistente
+            localStorage.setItem('accessToken', accessToken);
+
+            // 💡 PASO 3: Actualizar el estado global de React
+            // Al hacer esto, AppContext notifica a PrivateRoutes que isAuthenticated es true.
+            setToken({ accessToken: accessToken }); 
+            setUser(userData); 
+
+            console.log(`👋 ¡Hola, ${userData.name || 'Usuario'}! Inicio de sesión exitoso. Redirigiendo a doctores.`);
+            
+            // Redirige a /doctors y reemplaza la entrada en el historial.
+            navigate('/doctors', {replace: true}); 
 
             reset();
             
         } catch (processError) {
             console.error("Login failed", processError);
+            // Manejo de errores de la API
             const errorMessage = processError?.response?.data?.error
                                  || processError?.message
                                  || 'Credenciales inválidas o error de servidor.';
