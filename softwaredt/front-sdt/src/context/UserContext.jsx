@@ -29,11 +29,7 @@ const UserProvider = ({ children }) => {
             // Opcional: Si tienes datos de usuario guardados, cárgalos aquí también.
         }
     }, []); 
-    // Las dependencias vacías [] aseguran que esto solo se ejecute al montar.
-
-    // ➡️ 2. EFECTO PARA CONFIGURAR LOS INTERCEPTORES DE AXIOS
-    // Este useEffect se encargará de re-ejecutarse cada vez que setToken o handleLogout cambien,
-    // asegurando que los interceptores tengan acceso a las funciones más actualizadas.
+    
     useEffect(() => {
         setupInterceptors(setToken, handleLogout);
     }, [setToken, handleLogout]);
