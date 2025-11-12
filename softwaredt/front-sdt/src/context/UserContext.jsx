@@ -17,7 +17,6 @@ const UserProvider = ({ children }) => {
         localStorage.removeItem('accessToken'); 
     }, [setToken, setUser]);
 
-    // ➡️ 1. EFECTO PARA CARGAR EL TOKEN AL INICIO (PERSISTENCIA)
     useEffect(() => {
         const storedAccessToken = localStorage.getItem('accessToken');
         
