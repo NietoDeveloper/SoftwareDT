@@ -52,8 +52,6 @@ const Login = () => {
             // 💡 PASO 2: Guardar el token de forma persistente
             localStorage.setItem('accessToken', accessToken);
 
-            // 💡 PASO 3: Actualizar el estado global de React
-            // Al hacer esto, AppContext notifica a PrivateRoutes que isAuthenticated es true.
             setToken({ accessToken: accessToken }); 
             setUser(userData); 
 
