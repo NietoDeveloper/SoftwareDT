@@ -13,7 +13,7 @@ const UserProvider = ({ children }) => {
     const handleLogout = useCallback(() => {
         setToken(null);
         setUser(null);
-        // ¡Importante! Eliminar del almacenamiento al cerrar sesión
+
         localStorage.removeItem('accessToken'); 
     }, [setToken, setUser]);
 
