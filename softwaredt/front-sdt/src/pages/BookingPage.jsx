@@ -156,7 +156,6 @@ const BookingPage = () => {
                     />
                 </div>
 
-                {/* Paso 2: Selección de Hora (Aparece solo si hay una fecha seleccionada) */}
                 {selectedDate && (
                     <div className="mb-8 p-6 border border-gray-200 rounded-xl shadow-md">
                         <h2 className="text-2xl font-bold text-gray-800 flex items-center mb-4">
@@ -194,7 +193,6 @@ const BookingPage = () => {
                     </div>
                 )}
                 
-                {/* Mensajes de estado */}
                 {error && (
                     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 font-semibold text-sm">
                         {error}
