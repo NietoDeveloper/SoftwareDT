@@ -48,8 +48,7 @@ const Login = () => {
             // --- FIN CÓDIGO MOCK ---
 
             const { accessToken, userData } = response.data;
-            
-            // 💡 PASO 2: Guardar el token de forma persistente
+          
             localStorage.setItem('accessToken', accessToken);
 
             setToken({ accessToken: accessToken }); 
