@@ -1,0 +1,59 @@
+import { createContext, useState, useEffect, useCallback } from "react";
+import { setupInterceptors } from "../API/api";
+import React from "react";
+
+const AppContext = createContext();
+
+const UserProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
+    // El token es el objeto que contendrá el accessToken
+    const [token, setToken] = useState(null); 
+    const [appointmentDetails, setAppointmentDetails] = useState(null);
+
+    const handleLogout = useCallback(() => {
+        setToken(null);
+        setUser(null);
+        // ¡Importante! Eliminar del almacenamiento al cerrar sesión
+        localStorage.removeItem('accessToken'); 
+    }, [setToken, setUser]);
+
+    // ➡️ 1. EFECTO PARA CARGAR EL TOKEN AL INICIO (PERSISTENCIA)
+    useEffect(() => {
+        const storedAccessToken = localStorage.getItem('accessToken');
+        
+        if (storedAccessToken) {
+            // Reestablecer el token en el estado de React si se encuentra en localStorage
+            // Lo guardamos como un objeto para ser consistente con la forma en que el backend lo maneja.
+            setToken({ accessToken: storedAccessToken }); 
+            
+            // Opcional: Si tienes datos de usuario guardados, cárgalos aquí también.
+        }
+    }, []); 
+    // Las dependencias vacías [] aseguran que esto solo se ejecute al montar.
+
+    // ➡️ 2. EFECTO PARA CONFIGURAR LOS INTERCEPTORES DE AXIOS
+    // Este useEffect se encargará de re-ejecutarse cada vez que setToken o handleLogout cambien,
+    // asegurando que los interceptores tengan acceso a las funciones más actualizadas.
+    useEffect(() => {
+        setupInterceptors(setToken, handleLogout);
+    }, [setToken, handleLogout]);
+
+
+    return (
+        <AppContext.Provider
+            value={{
+                user,
+                setUser,
+                token,
+                setToken,
+                setAppointmentDetails,
+                appointmentDetails,
+                handleLogout,
+            }}
+        >
+            {children}
+        </AppContext.Provider>
+    );
+};
+
+export { UserProvider, AppContext };
