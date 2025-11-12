@@ -45,7 +45,6 @@ const Login = () => {
                 }
             };
             const response = mockResponse;
-            // --- FIN CÓDIGO MOCK ---
 
             const { accessToken, userData } = response.data;
           
