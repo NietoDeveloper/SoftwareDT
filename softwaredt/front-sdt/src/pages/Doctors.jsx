@@ -34,17 +34,18 @@ const DoctorList = () => {
     );
   }
 
-  // Esta función navega a la página de detalles del doctor (ruta: /doctors/:doctorId)
+  // Esta función ahora se usará para la tarjeta principal (detalles)
   const handleDoctorDetailsClick = (doctorId) => {
     navigate(`/doctors/${doctorId}`);
   };
 
-  // Esta función navega a la página de reserva de citas (ruta: /book-appointment/:doctorId)
+  // NUEVA FUNCIÓN: Redirige directamente a la página de reservación de citas
   const handleBookAppointmentClick = (e, doctorId) => {
     // Esto es crucial: evita que el evento de clic se propague a la tarjeta contenedora
+    // y active handleDoctorDetailsClick.
     e.stopPropagation();
     
-    // NOTA: Esta ruta coincide ahora con la definida en App.jsx.
+    // Asumimos que la ruta para reservar una cita es /book-appointment/:doctorId
     navigate(`/book-appointment/${doctorId}`);
   };
 
