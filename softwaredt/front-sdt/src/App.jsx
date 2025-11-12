@@ -11,7 +11,6 @@ import Doctorlogin from "./pages/DoctorLogin.jsx";
 import Services from "./pages/Services.jsx";
 import {UserProvider} from './context/UserContext.jsx';
 import PrivateRoutes from "./utils/PrivateRoutes.jsx";
-// CORRECCIÓN: Se mantiene BookingPage importado correctamente, si el archivo es BookingPage.jsx
 import BookingPage from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
