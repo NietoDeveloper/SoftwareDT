@@ -1,9 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-// Importamos axiosAuth para las llamadas reales a la API (en lugar del mock)
-// import { axiosAuth } from '../API/api'; 
-// Importamos el Contexto de Usuario y hemos añadido la extensión .jsx para resolver el error.
 import { AppContext } from '../context/UserContext.jsx';
 
 const LockIcon = (props) => (
