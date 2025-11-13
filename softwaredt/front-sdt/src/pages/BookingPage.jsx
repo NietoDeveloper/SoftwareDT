@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-// Se elimina la extensión '.jsx' del path para que el bundler pueda resolver el módulo correctamente.
 import { AppContext } from '../context/UserContext';
 
 const CalendarIcon = (props) => (
