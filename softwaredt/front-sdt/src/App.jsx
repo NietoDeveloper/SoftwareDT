@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-// Se añade la extensión .jsx o .js a todas las importaciones locales para resolver el error.
+
 import Header from "./components/Header/Header.jsx";
 import Home from "./pages/Home.jsx";
 import "./App.css";
@@ -45,6 +45,10 @@ function App() {
           path="/book-appointment/:appointmentId"
           element={<BookingPage />}
         />
+        <Route 
+        path="/appointment-confirmation/:appointmentId" 
+        element={<AppointmentConfirmation />} 
+    />
       </Routes>
     </UserProvider>
   );
