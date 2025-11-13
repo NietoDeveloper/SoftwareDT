@@ -83,8 +83,7 @@ const BookingPage = () => {
                 time: selectedTimeSlot,
                 status: 'Pendiente', 
             };
-            
-            // --- SIMULACIÓN DE RESERVA ---
+
             await new Promise(resolve => setTimeout(resolve, 1500));
             const mockAppointmentId = Math.random().toString(36).substring(2, 15);
             
