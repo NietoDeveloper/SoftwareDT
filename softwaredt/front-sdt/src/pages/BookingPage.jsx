@@ -60,7 +60,6 @@ const BookingPage = () => {
         }, 800);
     };
 
-    // Efecto para cargar slots cuando cambia la fecha
     useEffect(() => {
         if (selectedDate) {
             fetchAvailableSlots(selectedDate);
