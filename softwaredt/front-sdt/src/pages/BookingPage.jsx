@@ -79,7 +79,7 @@ const BookingPage = () => {
         try {
             const bookingData = {
                 doctorId: doctorId,
-                patientId: user.id, // Asume que el ID del paciente está en el contexto
+                patientId: user.id, 
                 date: selectedDate,
                 time: selectedTimeSlot,
                 status: 'Pendiente', 
