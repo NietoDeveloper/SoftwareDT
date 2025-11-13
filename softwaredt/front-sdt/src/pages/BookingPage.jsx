@@ -44,7 +44,6 @@ const BookingPage = () => {
         }, 500);
     }, [doctorId]);
 
-    // Función Mock: Carga de franjas horarias disponibles
     const fetchAvailableSlots = (date) => {
         setIsLoading(true);
         setError(null);
