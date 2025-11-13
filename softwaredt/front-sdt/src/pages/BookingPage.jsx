@@ -64,7 +64,7 @@ const BookingPage = () => {
         if (selectedDate) {
             fetchAvailableSlots(selectedDate);
         }
-    }, [selectedDate]); // No incluir fetchAvailableSlots aquí ya que no queremos que se ejecute al inicio
+    }, [selectedDate]); 
 
     const handleBooking = async () => {
         if (!selectedDate || !selectedTimeSlot) {
