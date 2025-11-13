@@ -15,7 +15,6 @@ const ClockIcon = (props) => (
     </svg>
 );
 
-// Mock de disponibilidad de franjas horarias
 const MOCK_SLOTS = [
     "09:00", "10:00", "11:00", "14:00", "15:00", "16:00"
 ];
