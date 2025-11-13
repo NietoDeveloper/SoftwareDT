@@ -83,9 +83,6 @@ const BookingPage = () => {
                 time: selectedTimeSlot,
                 status: 'Pendiente', 
             };
-
-            // 🛑 Llama a la API real de reserva:
-            // const response = await axiosAuth.post(`/user/appointment/${doctorId}`, bookingData);
             
             // --- SIMULACIÓN DE RESERVA ---
             await new Promise(resolve => setTimeout(resolve, 1500));
