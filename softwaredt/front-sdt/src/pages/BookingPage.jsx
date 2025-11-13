@@ -51,7 +51,6 @@ const BookingPage = () => {
         setAvailableSlots([]);
 
         setTimeout(() => {
-            // En una app real, filtrarías slots basados en la fecha, si es fin de semana, etc.
             if (date) {
                 setAvailableSlots(MOCK_SLOTS);
             } else {
