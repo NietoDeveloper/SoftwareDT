@@ -50,9 +50,6 @@ const BookingPage = () => {
         setSelectedTimeSlot(null);
         setAvailableSlots([]);
 
-        // Lógica real: await axiosAuth.get(`/doctors/${doctorId}/slots?date=${date}`);
-        
-        // Simulación: Devuelve MOCK_SLOTS después de un breve retraso.
         setTimeout(() => {
             // En una app real, filtrarías slots basados en la fecha, si es fin de semana, etc.
             if (date) {
