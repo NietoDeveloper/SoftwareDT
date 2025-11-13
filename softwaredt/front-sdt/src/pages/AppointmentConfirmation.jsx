@@ -112,7 +112,7 @@ const AppointmentConfirmation = () => {
                         onClick={() => navigate('/doctors')} 
                         className="py-3 px-8 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition duration-300 transform hover:scale-105"
                     >
-                        Volver a la Lista de Doctores
+                        Volver a la Lista de Servicios
                     </button>
                 </div>
 
