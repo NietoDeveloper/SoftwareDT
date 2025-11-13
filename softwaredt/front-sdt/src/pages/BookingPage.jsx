@@ -35,12 +35,7 @@ const BookingPage = () => {
 
     // Función Mock: Simula la carga de datos del doctor
     useEffect(() => {
-        // En una app real, aquí llamarías a la API para obtener los detalles del doctor
-        // y establecerías setDoctorName.
-        // Ejemplo: const response = await axiosAuth.get(`/doctors/${doctorId}`);
-        // setDoctorName(response.data.name);
-        
-        // Simular un nombre para la UI
+
         setTimeout(() => {
             if (doctorId === '6913840444079672f1096e6a') {
                  setDoctorName("Dr. Javier Solís");
