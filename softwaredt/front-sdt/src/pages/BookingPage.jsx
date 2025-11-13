@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom'; 
+import React, { useState, useEffect, useMemo } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+
+// --- MOCK DATA & ICONS (Asumimos que están en un archivo de utilidades, pero los mantenemos aquí por ser autocontenido) ---
+const MOCK_USER = { id: 'patient-789', name: 'Usuario Ejemplo', email: 'usuario.ejemplo@example.com' }; 
+const MOCK_SLOTS = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
 
 const CalendarIcon = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
@@ -13,23 +17,24 @@ const ClockIcon = (props) => (
     </svg>
 );
 
-const MOCK_SLOTS = [
-    "09:00", "10:00", "11:00", "14:00", "15:00", "16:00"
-];
 
 const BookingPage = () => {
-    const { doctorId } = useParams();
+    // Nota: Esta ruta usa 'doctorId' para cargar la página, según tu App.jsx
+    const { doctorId } = useParams(); 
     const navigate = useNavigate();
     const location = useLocation(); 
     
-    const user = { id: 'mock-patient-123', name: 'Paciente Mock' }; 
+    // Simulación de los datos del doctor (usando datos de ejemplo si no vienen por state)
+    const doctor = useMemo(() => {
+        // En un caso real, harías un fetch aquí con doctorId
+        const defaultDoc = { name: "Dr. Default", specialization: "General", email: "default.doctor@clinic.com" };
+        return location.state?.doctorData || defaultDoc;
+    }, [location.state]);
 
-    const doctor = location.state?.doctorData || {}; 
 
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
     const [availableSlots, setAvailableSlots] = useState([]);
-    const [doctorName, setDoctorName] = useState(doctor.name || "Dr. Desconocido (ID: " + doctorId + ")");
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [message, setMessage] = useState(null);
@@ -42,9 +47,8 @@ const BookingPage = () => {
 
         setTimeout(() => {
             if (date) {
+                // Simulación: Los slots están disponibles si se selecciona una fecha
                 setAvailableSlots(MOCK_SLOTS);
-            } else {
-                 setAvailableSlots([]);
             }
             setIsLoading(false);
         }, 800);
@@ -67,30 +71,37 @@ const BookingPage = () => {
         setMessage(null);
 
         try {
+            // Datos que se enviarán a la página de confirmación
             const bookingData = {
                 doctorId: doctorId,
-                patientId: user.id, // Usa el ID simulado
+                doctorName: doctor.name, 
+                doctorEmail: doctor.email || `${doctor.name.toLowerCase().replace(/[^a-z]/g, '')}@clinic.com`,
+                patientId: MOCK_USER.id,
+                patientName: MOCK_USER.name,
+                patientEmail: MOCK_USER.email,
                 date: selectedDate,
                 time: selectedTimeSlot,
-                status: 'Confirmada',
-                doctorName: doctorName, 
                 specialization: doctor.specialization,
+                status: 'Confirmada',
             };
 
+            // Simulación de la llamada a la API de registro de cita
             await new Promise(resolve => setTimeout(resolve, 1500));
             const mockAppointmentId = Math.random().toString(36).substring(2, 15);
             
-            setMessage(`¡Cita con ${doctorName} agendada con éxito!`);
+            setMessage(`Redirigiendo a la confirmación...`);
             
+            // REDIRECCIÓN A LA RUTA PROTEGIDA DE CONFIRMACIÓN
             navigate(`/appointment-confirmation/${mockAppointmentId}`, { 
-                state: { booking: bookingData } 
+                state: { booking: bookingData } // Pasamos los datos para la página de confirmación
             });
 
         } catch (err) {
             console.error("Error al agendar la cita:", err);
-            setError("Error al procesar la reserva. Por favor, verifica la conexión con el servidor (puerto 8080) e inténtalo de nuevo.");
+            setError("Error al procesar la reserva. Por favor, inténtalo de nuevo.");
         } finally {
-            setIsLoading(false);
+            // El loading se desactivará con la redirección, pero por seguridad:
+            setTimeout(() => setIsLoading(false), 2000); 
         }
     };
     
@@ -104,7 +115,7 @@ const BookingPage = () => {
                     Agendar Cita
                 </h1>
                 <p className="text-xl font-semibold text-gray-700 mb-8 border-b pb-4">
-                    Con: <span className="text-indigo-600">{doctorName}</span>
+                    Con: <span className="text-indigo-600">{doctor.name} ({doctor.specialization})</span>
                 </p>
                 
                 <div className="mb-8 p-6 border border-gray-200 rounded-xl shadow-md">
@@ -129,13 +140,7 @@ const BookingPage = () => {
                         </h2>
 
                         {isLoading ? (
-                            <p className="text-blue-500 flex items-center">
-                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                Cargando franjas horarias...
-                            </p>
+                            <p className="text-blue-500 flex items-center">Cargando...</p>
                         ) : availableSlots.length > 0 ? (
                             <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
                                 {availableSlots.map(slot => (
@@ -153,21 +158,13 @@ const BookingPage = () => {
                                 ))}
                             </div>
                         ) : (
-                            <p className="text-red-500 font-medium">No hay franjas horarias disponibles para la fecha seleccionada.</p>
+                            <p className="text-red-500 font-medium">No hay franjas horarias disponibles.</p>
                         )}
                     </div>
                 )}
                 
-                {error && (
-                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 font-semibold text-sm">
-                        {error}
-                    </div>
-                )}
-                 {message && (
-                    <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4 font-semibold text-sm">
-                        {message}
-                    </div>
-                )}
+                {error && (<div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 font-semibold text-sm">{error}</div>)}
+                {message && (<div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4 font-semibold text-sm">{message}</div>)}
 
                 <button
                     onClick={handleBooking}
@@ -178,14 +175,7 @@ const BookingPage = () => {
                         : 'hover:bg-green-600 hover:shadow-green-500/60 transform hover:-translate-y-1'
                         }`}
                 >
-                    {isLoading ? (
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                    ) : (
-                        `Confirmar Reserva con ${selectedTimeSlot ? selectedTimeSlot : 'la Hora'} (${selectedDate ? new Date(selectedDate).toLocaleDateString('es-ES', { weekday: 'long' }) : 'Fecha'})`
-                    )}
+                    Confirmar Reserva
                 </button>
                 
             </div>
