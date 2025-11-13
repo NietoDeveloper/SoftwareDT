@@ -14,37 +14,37 @@ import PrivateRoutes from "./utils/PrivateRoutes.jsx";
 import BookingPage from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
-import MyAppointments from "./pages/MyAppointments.jsx"; // Importamos el nuevo componente
+import MyAppointments from "./pages/MyAppointments.jsx";
 
 function App() {
-  return (
-    <UserProvider>
-      <Header />
+  return (
+    <UserProvider>
+      <Header />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/doctors" element={<DoctorList />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/services" element={<Services />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/doctors" element={<DoctorList />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/services" element={<Services />} />
 
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/doctor/signup" element={<Doctorsignup />} />
-        <Route path="/doctor/login" element={<Doctorlogin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/doctor/signup" element={<Doctorsignup />} />
+        <Route path="/doctor/login" element={<Doctorlogin />} />
 
-        <Route element={<PrivateRoutes />}>
-          <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
-          <Route path="/checkout" element={<Payment />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
+          <Route path="/checkout" element={<Payment />} />
           <Route path="/my-appointments" element={<MyAppointments />} />
 
-          <Route 
-            path="/appointment-confirmation/:appointmentId" 
-            element={<AppointmentConfirmation />} 
-          />
-        </Route>
-      </Routes>
-    </UserProvider>
-  );
+          <Route 
+            path="/appointment-confirmation/:appointmentId" 
+            element={<AppointmentConfirmation />} 
+          />
+        </Route>
+      </Routes>
+    </UserProvider>
+  );
 }
 
 export default App;
