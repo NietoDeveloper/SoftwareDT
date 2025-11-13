@@ -66,7 +66,6 @@ const BookingPage = () => {
         }
     }, [selectedDate]); // No incluir fetchAvailableSlots aquí ya que no queremos que se ejecute al inicio
 
-    // Manejador de la reserva
     const handleBooking = async () => {
         if (!selectedDate || !selectedTimeSlot) {
             setError("Debes seleccionar una fecha y una hora para la cita.");
