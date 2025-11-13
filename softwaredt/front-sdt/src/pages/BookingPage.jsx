@@ -82,7 +82,6 @@ const BookingPage = () => {
                 date: selectedDate,
                 time: selectedTimeSlot,
                 status: 'Pendiente', 
-                // Añadir otros datos necesarios como el servicio, etc.
             };
 
             // 🛑 Llama a la API real de reserva:
