@@ -22,7 +22,6 @@ const BookingPage = () => {
     const navigate = useNavigate();
     const location = useLocation(); 
     
-    // Simulación de datos de usuario (reemplaza useContext(AppContext))
     const user = { id: 'mock-patient-123', name: 'Paciente Mock' }; 
 
     const doctor = location.state?.doctorData || {}; 
