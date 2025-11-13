@@ -20,12 +20,11 @@ const MOCK_SLOTS = [
 ];
 
 const BookingPage = () => {
-    // Hooks de enrutamiento y estado global
+ 
     const { doctorId } = useParams();
     const navigate = useNavigate();
     const { user } = useContext(AppContext);
 
-    // Estados locales
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
     const [availableSlots, setAvailableSlots] = useState([]);
