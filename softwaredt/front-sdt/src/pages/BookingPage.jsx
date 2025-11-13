@@ -33,7 +33,6 @@ const BookingPage = () => {
     const [error, setError] = useState(null);
     const [message, setMessage] = useState(null);
 
-    // Función Mock: Simula la carga de datos del doctor
     useEffect(() => {
 
         setTimeout(() => {
