@@ -139,7 +139,6 @@ const AppointmentConfirmation = () => {
           </div>
         </div>
 
-        {/* Estado de las Notificaciones (Mails) */}
         <div className="mt-10 p-5 bg-gray-50 rounded-xl border border-gray-200">
           <h3 className="text-xl font-bold text-gray-800 mb-4">
             Estado de Notificaciones
