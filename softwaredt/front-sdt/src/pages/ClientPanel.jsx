@@ -145,7 +145,6 @@ const ClientPanel = () => {
               <div className="text-center p-12 bg-white rounded-2xl shadow-xl border border-gray-100">
                 <p className="text-xl text-gray-600 mb-6">Parece que no tienes servicios agendados actualmente. ¡Agenda uno ahora!</p>
                 
-                {/* Botón: Estilo moderno, espaciado adecuado (mt-6), y efecto hover */}
                 <button className="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-xl text-base transition duration-200 shadow-lg hover:shadow-indigo-500/50 focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50">
                   Agendar nuevo servicio
                 </button>
