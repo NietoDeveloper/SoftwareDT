@@ -32,7 +32,6 @@ const AppointmentConfirmation = () => {
   useEffect(() => {
     if (bookingData) {
       setTimeout(() => {
-        // Simulación de éxito después de 2 segundos
         setEmailStatus({
           user: "Enviado con éxito",
           doctor: "Enviado con éxito",
