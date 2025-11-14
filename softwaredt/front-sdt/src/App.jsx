@@ -36,11 +36,6 @@ const PrivateRoutes = () => {
   }
 };
 
-
-// -----------------------------------------------------------
-// PLACEHOLDERS PARA COMPONENTES Y PÁGINAS (Para hacerlo autocontenido)
-// -----------------------------------------------------------
-
 const NavButton = ({ to, children }) => (
     <Link to={to} className="px-3 py-2 text-white transition duration-200 hover:bg-indigo-600 rounded-lg">
         {children}
