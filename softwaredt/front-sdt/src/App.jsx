@@ -15,6 +15,8 @@ import BookingPage from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 import ClientPanel from "./pages/ClientPanel.jsx";
+// Suponemos que tienes un componente para la página de perfil
+import UserProfile from "./pages/UserProfile.jsx"; // <<< Asumo la existencia de este componente
 
 function App() {
   return (
@@ -35,7 +37,10 @@ function App() {
         {/* Rutas Protegidas (Requieren autenticación) */}
         <Route element={<PrivateRoutes />}>
           
-          {/* RUTA NUEVA: Panel del Cliente */}
+          {/* RUTA AÑADIDA: Perfil de Usuario para corregir el log "No routes matched" */}
+          <Route path="/user/profile" element={<UserProfile />} /> 
+          
+          {/* Panel del Cliente (Dashboard) */}
           <Route path="/client/dashboard" element={<ClientPanel />} />
 
           {/* Cita de un Doctor específico */}
