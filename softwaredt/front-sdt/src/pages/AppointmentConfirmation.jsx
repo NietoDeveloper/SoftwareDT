@@ -19,7 +19,6 @@ const CheckCircleIcon = (props) => (
 );
 
 const AppointmentConfirmation = () => {
-  // Hooks de navegación y datos
   const { appointmentId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
