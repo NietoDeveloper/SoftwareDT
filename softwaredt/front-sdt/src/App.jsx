@@ -19,8 +19,7 @@ const UserProvider = ({ children }) => {
 
 const PrivateRoutes = () => {
   const { user } = useContext(UserContext);
-  
-  // Outlet permite renderizar las rutas anidadas
+
   if (user && user.isAuthenticated) {
     return <Outlet />;
   } else {
