@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 import { setupInterceptors } from "../API/api";
-import React from "react";
 
 const AppContext = createContext();
 
