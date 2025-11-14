@@ -76,10 +76,6 @@ const Payment = () => <div className="p-8 bg-green-50 m-4 rounded-lg"><h2 classN
 const AppointmentConfirmation = () => <div className="p-8 bg-yellow-50 m-4 rounded-lg"><h2 className="text-3xl text-indigo-700">Confirmación de Cita</h2><p>Tu cita ha sido agendada con éxito.</p></div>;
 
 
-// -----------------------------------------------------------
-// COMPONENTE PRINCIPAL
-// -----------------------------------------------------------
-
 function App() {
   return (
     <UserProvider>
