@@ -63,7 +63,6 @@ const ClientPanel = () => {
           setLoading(false);
         });
     } else if (!userLoading) {
-      // Si no hay usuario o no es cliente, y no está cargando
       setLoading(false);
       // Podrías redirigir aquí o simplemente mostrar un mensaje de error/no autorizado
     }
