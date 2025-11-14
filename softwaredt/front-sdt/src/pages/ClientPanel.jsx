@@ -66,9 +66,6 @@ const ClientPanel = () => {
       setLoading(false);
     }
   }, [user, userLoading]); // Se ejecuta cuando el usuario cambie o termine de cargar
-
-  // --- Renderizado Condicional ---
-
   if (userLoading) {
     return <div className="client-panel-container">Cargando datos del usuario...</div>;
   }
