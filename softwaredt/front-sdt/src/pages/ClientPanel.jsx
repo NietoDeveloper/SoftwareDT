@@ -64,7 +64,6 @@ const ClientPanel = () => {
         });
     } else if (!userLoading) {
       setLoading(false);
-      // Podrías redirigir aquí o simplemente mostrar un mensaje de error/no autorizado
     }
   }, [user, userLoading]); // Se ejecuta cuando el usuario cambie o termine de cargar
 
