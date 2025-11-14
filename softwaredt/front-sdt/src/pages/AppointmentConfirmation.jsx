@@ -58,7 +58,6 @@ const AppointmentConfirmation = () => {
   }, [bookingData]);
 
   if (!bookingData) {
-    // Caso de manejo si el usuario refresca la página (se pierden los datos del state)
     return (
       <div className="max-w-xl mx-auto p-10 mt-20 bg-red-50 rounded-xl shadow-lg border border-red-300">
         <h1 className="text-3xl font-bold text-red-700">
