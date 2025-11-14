@@ -2,10 +2,6 @@ import React, { useState, useContext, createContext } from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import "./App.css";
 
-// -----------------------------------------------------------
-// PLACEHOLDERS PARA CONTEXTO Y UTILS (Para hacerlo autocontenido)
-// -----------------------------------------------------------
-
 // 1. Contexto de Usuario (Placeholder)
 const UserContext = createContext(null);
 
