@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { AppContext as UserContext } from '../context/UserContext';  // Cambiado a named import con alias
 import { Link } from 'react-router-dom';
 import axios from 'axios';
