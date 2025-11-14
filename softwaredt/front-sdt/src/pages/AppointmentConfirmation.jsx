@@ -41,7 +41,6 @@ const AppointmentConfirmation = () => {
           doctor: "Enviado con éxito",
         });
 
-        // Notificación por consola para fines de depuración/simulación de backend
         console.log("-----------------------------------------");
         console.log(
           `[Email Mock] 📨 Correo de confirmación enviado a: ${bookingData.doctorName}`
