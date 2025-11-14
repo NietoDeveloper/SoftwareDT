@@ -30,7 +30,6 @@ const AppointmentConfirmation = () => {
   });
 
   useEffect(() => {
-    // Ejecutamos la simulación de envío solo si tenemos datos de la reserva
     if (bookingData) {
       // SIMULACIÓN DE ENVÍO DE CORREOS
       // En una aplicación real, esta sería una llamada asíncrona a un servicio de backend/email.
