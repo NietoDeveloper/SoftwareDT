@@ -31,8 +31,6 @@ const AppointmentConfirmation = () => {
 
   useEffect(() => {
     if (bookingData) {
-      // SIMULACIÓN DE ENVÍO DE CORREOS
-      // En una aplicación real, esta sería una llamada asíncrona a un servicio de backend/email.
       setTimeout(() => {
         // Simulación de éxito después de 2 segundos
         setEmailStatus({
