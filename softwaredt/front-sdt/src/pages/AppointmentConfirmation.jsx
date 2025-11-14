@@ -165,7 +165,6 @@ const AppointmentConfirmation = () => {
   );
 };
 
-// Componente auxiliar para las tarjetas de detalle
 const DetailCard = ({ title, value, className = "" }) => (
   <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100">
     <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
