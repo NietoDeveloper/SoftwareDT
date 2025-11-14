@@ -3,6 +3,7 @@ import { setupInterceptors } from "../API/api";
 
 const AppContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null); 
