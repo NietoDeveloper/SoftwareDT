@@ -70,6 +70,26 @@ const AppointmentConfirmation = () => {
 
     return (
         <div className="min-h-screen bg-green-50 p-4 sm:p-6 lg:p-8 font-sans">
+
+            <div className="mt-10 text-center flex flex-col sm:flex-row justify-center gap-4">
+                    
+                    {/* 👇 NUEVO BOTÓN: Ir al Panel del Cliente */}
+                    <button 
+                        onClick={() => navigate('/client/dashboard')} 
+                        className="py-3 px-8 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300 transform hover:scale-105 order-first sm:order-last" // Se añade estilo y orden
+                    >
+                        Ver Mis Citas
+                    </button>
+
+                    {/* Botón existente: Volver a la lista de servicios/doctores */}
+                    <button 
+                        onClick={() => navigate('/doctors')} 
+                        className="py-3 px-8 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition duration-300 transform hover:scale-105"
+                    >
+                        Volver a la Lista de Servicios
+                    </button>
+                </div>
+
             <div className="max-w-3xl mx-auto bg-white shadow-2xl rounded-3xl p-8 sm:p-12 transition-all duration-300">
                 
                 <CheckCircleIcon className="h-20 w-20 text-green-600 mx-auto mb-6"/>
