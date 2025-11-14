@@ -1,23 +1,25 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
   const navigate = useNavigate();
 
-  // Datos de usuario simulados
+  // Datos de usuario simulados o desde el contexto (reemplazar con datos reales)
   const user = {
-    name: "UserProfile.jsx",
-    email: "user.profile@empresa.com"
+    name: "Nombre del Usuario",
+    email: "usuario.actual@software-dt.com"
   };
 
   const goToClientPanel = () => {
-    navigate('/client-panel'); // Asegúrate de que esta ruta coincida con la ruta de tu Router para ClientPanel.jsx
+    // CORRECCIÓN: Usar la ruta exacta definida en App.jsx
+    navigate('/client/dashboard'); 
   };
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white shadow-xl rounded-lg p-6 max-w-sm w-full transition duration-300 hover:shadow-2xl">
         <div className="flex flex-col items-center">
-          <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4">
+          <div className="w-16 h-16 bg-indigo-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4">
             {user.name[0]}
           </div>
           <h2 className="text-2xl font-semibold text-gray-800 mb-1 truncate max-w-full" title={user.name}>
