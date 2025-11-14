@@ -176,7 +176,6 @@ const DetailCard = ({ title, value, className = "" }) => (
   </div>
 );
 
-// Componente auxiliar para el estado del correo
 const EmailStatusItem = ({ recipient, status }) => {
   const color =
     status === "Enviado con éxito" ? "text-green-600" : "text-yellow-600";
