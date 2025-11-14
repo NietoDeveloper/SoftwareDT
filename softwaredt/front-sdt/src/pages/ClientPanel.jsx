@@ -141,7 +141,7 @@ const ClientPanel = () => {
                 ))}
               </div>
             ) : (
-              // Estado de No Citas: Diseño limpio y botón mejorado
+          
               <div className="text-center p-12 bg-white rounded-2xl shadow-xl border border-gray-100">
                 <p className="text-xl text-gray-600 mb-6">Parece que no tienes servicios agendados actualmente. ¡Agenda uno ahora!</p>
                 
