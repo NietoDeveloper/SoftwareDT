@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
-// --- MOCK DATA & ICONS (Asumimos que están en un archivo de utilidades, pero los mantenemos aquí por ser autocontenido) ---
 const MOCK_USER = { id: 'patient-789', name: 'Usuario Ejemplo', email: 'usuario.ejemplo@example.com' }; 
 const MOCK_SLOTS = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
 
