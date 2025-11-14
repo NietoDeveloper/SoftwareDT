@@ -18,7 +18,7 @@ const ClockIcon = (props) => (
 
 
 const BookingPage = () => {
-    // Nota: Esta ruta usa 'doctorId' para cargar la página, según tu App.jsx
+    
     const { doctorId } = useParams(); 
     const navigate = useNavigate();
     const location = useLocation(); 
