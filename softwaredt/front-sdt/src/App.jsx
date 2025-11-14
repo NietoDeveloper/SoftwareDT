@@ -14,8 +14,6 @@ import PrivateRoutes from "./utils/PrivateRoutes.jsx";
 import BookingPage from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
-
-// Importamos el nuevo componente del Panel del Cliente
 import ClientPanel from "./pages/ClientPanel.jsx";
 
 function App() {
