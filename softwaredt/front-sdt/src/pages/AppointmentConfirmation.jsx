@@ -24,7 +24,6 @@ const AppointmentConfirmation = () => {
   const location = useLocation();
   const bookingData = location.state?.booking;
 
-  // Estados para simular la notificación por correo
   const [emailStatus, setEmailStatus] = useState({
     user: "Pendiente",
     doctor: "Pendiente",
