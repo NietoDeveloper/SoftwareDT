@@ -15,6 +15,9 @@ import BookingPage from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 
+// Importamos el nuevo componente del Panel del Cliente
+import ClientPanel from "./pages/ClientPanel.jsx";
+
 function App() {
   return (
     <UserProvider>
@@ -31,9 +34,19 @@ function App() {
         <Route path="/doctor/signup" element={<Doctorsignup />} />
         <Route path="/doctor/login" element={<Doctorlogin />} />
 
+        {/* Rutas Protegidas (Requieren autenticación) */}
         <Route element={<PrivateRoutes />}>
+          
+          {/* RUTA NUEVA: Panel del Cliente */}
+          <Route path="/client/dashboard" element={<ClientPanel />} />
+
+          {/* Cita de un Doctor específico */}
           <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
+          
+          {/* Página de Pago */}
           <Route path="/checkout" element={<Payment />} />
+
+          {/* Ruta de Confirmación de Cita */}
           <Route 
             path="/appointment-confirmation/:appointmentId" 
             element={<AppointmentConfirmation />} 
