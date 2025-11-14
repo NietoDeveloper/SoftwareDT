@@ -71,8 +71,6 @@ const AppointmentConfirmation = () => {
         <div className="min-h-screen bg-green-50 p-4 sm:p-6 lg:p-8 font-sans">
 
             <div className="mt-10 text-center flex flex-col sm:flex-row justify-center gap-4">
-                    
-                    {/* 👇 NUEVO BOTÓN: Ir al Panel del Cliente */}
                     <button 
                         onClick={() => navigate('/client/dashboard')} 
                         className="py-3 px-8 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300 transform hover:scale-105 order-first sm:order-last" // Se añade estilo y orden
