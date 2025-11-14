@@ -65,7 +65,6 @@ const AppointmentConfirmation = () => {
         );
     }
 
-    // Desestructurar los datos para la visualización
     const { doctorName, date, time, specialization } = bookingData;
 
     return (
