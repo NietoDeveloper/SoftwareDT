@@ -17,8 +17,6 @@ const UserProvider = ({ children }) => {
   );
 };
 
-// 3. PrivateRoutes (Placeholder)
-// Simula la lógica de protección de rutas basada en el contexto
 const PrivateRoutes = () => {
   const { user } = useContext(UserContext);
   
