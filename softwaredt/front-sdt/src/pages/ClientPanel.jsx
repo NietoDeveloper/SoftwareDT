@@ -19,14 +19,6 @@ const mockAppointments = [
     status: 'Completada',
     doctor: 'Ing. Software; Manuel Nieto',
   },
-  {
-    id: 3,
-    service: 'Mantenimiento Preventivo de Red',
-    date: '2025-11-25',
-    time: '11:00',
-    status: 'Confirmada',
-    doctor: 'Téc. Redes; Ricardo Muñoz',
-  },
 ];
 
 // Componente para los botones de la barra de perfil (simulados)
