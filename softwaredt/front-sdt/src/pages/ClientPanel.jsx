@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Truck, Clock, Calendar, CheckCircle, User, PlusCircle, Bell, Settings, LogOut } from 'lucide-react';
 
-// Simulación de datos de la API
 const mockAppointments = [
   {
     id: 1,
