@@ -9,7 +9,7 @@ const mockAppointments = [
     date: '2025-11-20',
     time: '14:30',
     status: 'Pendiente',
-    doctor: 'Ing. Laura Vélez',
+    doctor: 'Ing. Software; Laura Vélez',
   },
   {
     id: 2,
