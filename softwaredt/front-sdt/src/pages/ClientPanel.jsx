@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Truck, Clock, Calendar, CheckCircle, User, PlusCircle, Bell, Settings, LogOut } from 'lucide-react'; // Añadimos iconos para la cabecera
+import { Truck, Clock, Calendar, CheckCircle, User, PlusCircle, Bell, Settings, LogOut } from 'lucide-react';
 
 // Simulación de datos de la API
 const mockAppointments = [
@@ -30,11 +30,12 @@ const mockAppointments = [
 ];
 
 // Componente para los botones de la barra de perfil (simulados)
-const HeaderButton = ({ Icon, label, className = '' }) => (
+const HeaderButton = ({ Icon, label, className = '', onClick }) => (
   <button
     className={`p-3 rounded-full text-gray-700 bg-gray-100 hover:bg-indigo-50 hover:text-indigo-600 transition duration-150 ${className}`}
     aria-label={label}
     title={label}
+    onClick={onClick}
   >
     <Icon className="w-5 h-5" />
   </button>
@@ -68,19 +69,29 @@ const ClientPanel = () => {
   const getStatusClasses = (status) => {
     switch (status) {
       case 'Confirmada':
-        return 'text-green-800 bg-green-100 ring-green-300'; // Color de fondo más claro
+        return 'text-green-800 bg-green-100 ring-green-300';
       case 'Pendiente':
         return 'text-yellow-800 bg-yellow-100 ring-yellow-300';
       case 'Completada':
-        return 'text-indigo-800 bg-indigo-100 ring-indigo-300'; // Usamos índigo para completada
+        return 'text-indigo-800 bg-indigo-100 ring-indigo-300';
       default:
         return 'text-gray-800 bg-gray-100 ring-gray-300';
     }
   };
+  
+  // Manejador de clic para Ver Detalles (ahora con log en consola)
+  const handleViewDetails = (apptId) => {
+    console.log(`Cita ${apptId}: Se simuló la acción 'Ver Detalles'.`);
+    // Aquí se ejecutaría la lógica de navegación o mostrar un modal
+    // Ejemplo: alert(`Ver detalles de la cita ${apptId}`);
+  };
 
   // Botón primario para agendar nuevo servicio
   const ScheduleNewServiceButton = () => (
-    <button className="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-xl text-base transition duration-200 shadow-lg hover:shadow-indigo-500/50 focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50">
+    <button 
+      className="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-xl text-base transition duration-200 shadow-lg hover:shadow-indigo-500/50 focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50"
+      onClick={() => console.log('Navegar a la página de agendamiento.')}
+    >
       <PlusCircle className="w-5 h-5 mr-2" />
       Agendar nuevo servicio
     </button>
@@ -126,9 +137,12 @@ const ClientPanel = () => {
           <span>{appt.doctor}</span>
         </div>
 
-        {/* Botón de Ver Detalles (Agregado para cumplir el requisito de separación y color) */}
+        {/* Botón de Ver Detalles (Ahora con acción de log) */}
         <div className="md:col-span-2 flex justify-end mt-4 pt-4 border-t border-gray-100">
-            <button className="flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800 transition duration-150 p-2 rounded-lg hover:bg-indigo-50">
+            <button 
+                className="flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800 transition duration-150 p-2 rounded-lg hover:bg-indigo-50"
+                onClick={() => handleViewDetails(appt.id)}
+            >
                 Ver Detalles <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
             </button>
         </div>
@@ -152,9 +166,10 @@ const ClientPanel = () => {
             
             {/* Botones de Perfil y Acciones Rápidas */}
             <div className="flex space-x-3">
-                <HeaderButton Icon={Bell} label="Notificaciones" />
-                <HeaderButton Icon={Settings} label="Configuración" />
-                <HeaderButton Icon={LogOut} label="Cerrar Sesión" className="text-red-700 hover:bg-red-50 hover:text-red-700" />
+                {/* Botones de perfil con onClick simulado */}
+                <HeaderButton Icon={Bell} label="Notificaciones" onClick={() => console.log('Notificaciones clicadas')} />
+                <HeaderButton Icon={Settings} label="Configuración" onClick={() => console.log('Configuración clicada')} />
+                <HeaderButton Icon={LogOut} label="Cerrar Sesión" className="text-red-700 hover:bg-red-50 hover:text-red-700" onClick={() => console.log('Cerrar Sesión clicado')} />
             </div>
         </div>
 
