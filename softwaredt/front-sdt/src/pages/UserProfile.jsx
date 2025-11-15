@@ -11,7 +11,6 @@ const UserProfile = () => {
   };
 
   const goToClientPanel = () => {
-    // CORRECCIÓN: Usar la ruta exacta definida en App.jsx
     navigate('/client/dashboard'); 
   };
 
