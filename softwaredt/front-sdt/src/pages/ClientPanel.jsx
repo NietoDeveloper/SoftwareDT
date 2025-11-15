@@ -17,7 +17,7 @@ const mockAppointments = [
     date: '2025-11-10',
     time: '09:00',
     status: 'Completada',
-    doctor: 'Ing. Manuel Nieto',
+    doctor: 'Ing. Software; Manuel Nieto',
   },
 ];
 
@@ -94,7 +94,7 @@ const ClientPanel = () => {
         {/* Técnico: Ocupa toda la fila para mayor prominencia */}
         <div className="md:col-span-2 flex items-center space-x-2">
           <User className="w-4 h-4 text-indigo-500 flex-shrink-0" />
-          <span className="font-medium text-gray-900">Técnico Asignado:</span>
+          <span className="font-medium text-gray-900">Ingeniero Asignado:</span>
           <span>{appt.doctor}</span>
         </div>
       </div>
