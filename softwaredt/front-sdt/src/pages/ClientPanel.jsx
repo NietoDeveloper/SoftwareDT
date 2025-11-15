@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Truck, Clock, Calendar, CheckCircle, User } from 'lucide-react'; // Añadimos 'User' para el técnico
 
 // Simulación de datos de la API
