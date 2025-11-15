@@ -12,7 +12,7 @@ const mockAppointments = [
     doctor: 'Ing. Laura Vélez',
   },
   {
-    id: 3,
+    id: 2,
     service: 'Migración a Servidor Nuevo',
     date: '2025-11-10',
     time: '09:00',
