@@ -12,14 +12,6 @@ const mockAppointments = [
     doctor: 'Ing. Laura Vélez',
   },
   {
-    id: 2,
-    service: 'Revisión de Seguridad Cloud',
-    date: '2025-11-25',
-    time: '10:00',
-    status: 'Confirmada',
-    doctor: 'Dr. Javier Soto',
-  },
-  {
     id: 3,
     service: 'Migración a Servidor Nuevo',
     date: '2025-11-10',
