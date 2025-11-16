@@ -108,7 +108,6 @@ const ClientPanel = () => {
           <span>{appt.time}</span>
         </div>
         
-        {/* Técnico: Ocupa toda la fila para mayor prominencia */}
         <div className="md:col-span-2 flex items-center space-x-2 pt-1">
           <User className="w-4 h-4 text-indigo-500 flex-shrink-0" />
           <span className="font-medium text-gray-900">Ingeniero Asignado:</span>
