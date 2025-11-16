@@ -36,7 +36,6 @@ const ClientPanel = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Simulación de la carga de datos (reemplazar con fetch real)
   useEffect(() => {
     setIsLoading(true);
     // Simular un retraso de red
