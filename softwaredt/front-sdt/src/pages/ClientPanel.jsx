@@ -138,7 +138,6 @@ const ClientPanel = () => {
             </div>
 
             <div className="flex space-x-3">
-                {/* Botones de perfil con onClick simulado */}
                 <HeaderButton Icon={Bell} label="Notificaciones" onClick={() => console.log('Notificaciones clicadas')} />
                 <HeaderButton Icon={Settings} label="Configuración" onClick={() => console.log('Configuración clicada')} />
                 <HeaderButton Icon={LogOut} label="Cerrar Sesión" className="text-red-700 hover:bg-red-50 hover:text-red-700" onClick={() => console.log('Cerrar Sesión clicado')} />
