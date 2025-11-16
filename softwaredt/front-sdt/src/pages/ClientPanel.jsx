@@ -70,8 +70,6 @@ const ClientPanel = () => {
   
   const handleViewDetails = (apptId) => {
     console.log(`Cita ${apptId}: Se simuló la acción 'Ver Detalles'.`);
-    // Aquí se ejecutaría la lógica de navegación o mostrar un modal
-    // Ejemplo: alert(`Ver detalles de la cita ${apptId}`);
   };
 
   // Botón primario para agendar nuevo servicio
