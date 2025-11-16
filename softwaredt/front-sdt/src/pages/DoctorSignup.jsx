@@ -52,7 +52,7 @@ const Doctorsignup = () => {
     };
     
     return (
-        // Contenedor principal: Responsive, limpio y centrado
+
         <div className="min-h-screen flex items-center justify-center bg-gray-50/70 p-4 sm:p-8 lg:p-12 font-sans transition-all duration-300">
             <div className="w-full max-w-5xl flex flex-col md:flex-row bg-white shadow-2xl rounded-2xl p-6 sm:p-10 lg:p-12 transition-all duration-300 overflow-hidden">
                 
