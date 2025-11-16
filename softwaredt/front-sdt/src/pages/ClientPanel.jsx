@@ -113,7 +113,7 @@ const ClientPanel = () => {
           <span className="font-medium text-gray-900">Ingeniero Asignado:</span>
           <span>{appt.doctor}</span>
         </div>
-        
+
         <div className="md:col-span-2 flex justify-end mt-4 pt-4 border-t border-gray-100">
             <button 
                 className="flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800 transition duration-150 p-2 rounded-lg hover:bg-indigo-50"
@@ -127,7 +127,6 @@ const ClientPanel = () => {
   );
 
   return (
-    // Contenedor principal: Mayor padding en general y fondo más claro
     <div className="min-h-screen bg-gray-50 p-6 md:p-12 font-sans">
       <div className="max-w-6xl mx-auto">
         
