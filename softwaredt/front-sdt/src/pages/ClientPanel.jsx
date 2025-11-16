@@ -86,7 +86,7 @@ const ClientPanel = () => {
     <div className="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 border border-gray-200 transform hover:scale-[1.01]">
       
       <div className="flex justify-between items-start mb-4">
-        <div className="flex items-start space-x-3 pr-2"> {/* Espacio a la derecha para no chocar con el status */}
+        <div className="flex items-start space-x-3 pr-2"> 
           <Truck className="w-6 h-6 text-indigo-600 mt-0.5 flex-shrink-0" />
           <h3 className="text-xl font-bold text-gray-900 leading-snug">{appt.service}</h3>
         </div>
