@@ -154,7 +154,6 @@ const ClientPanel = () => {
           <ScheduleNewServiceButton />
         </header>
 
-        {/* Contenido Dinámico: Loading, Error o Citas */}
         {isLoading ? (
           <div className="flex flex-col justify-center items-center h-48 bg-white rounded-xl shadow-md">
             <div className="animate-spin rounded-full h-10 w-10 border-b-4 border-indigo-600 border-t-4 border-transparent"></div>
