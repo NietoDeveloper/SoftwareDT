@@ -52,7 +52,7 @@ const ClientPanel = () => {
       }
     }, 1000);
 
-    return () => clearTimeout(timer); // Limpieza del timer
+    return () => clearTimeout(timer); 
   }, []);
 
   const getStatusClasses = (status) => {
