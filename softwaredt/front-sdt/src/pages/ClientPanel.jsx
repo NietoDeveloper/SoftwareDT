@@ -68,7 +68,6 @@ const ClientPanel = () => {
     }
   };
   
-  // Manejador de clic para Ver Detalles (ahora con log en consola)
   const handleViewDetails = (apptId) => {
     console.log(`Cita ${apptId}: Se simuló la acción 'Ver Detalles'.`);
     // Aquí se ejecutaría la lógica de navegación o mostrar un modal
