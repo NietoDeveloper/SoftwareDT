@@ -41,7 +41,6 @@ function App() {
 
           <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
           
-          {/* Página de Pago */}
           <Route path="/checkout" element={<Payment />} />
 
           {/* Ruta de Confirmación de Cita */}
