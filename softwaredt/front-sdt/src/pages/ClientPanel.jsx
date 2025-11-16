@@ -83,7 +83,6 @@ const ClientPanel = () => {
   );
 
   const AppointmentCard = ({ appt }) => (
-    // Margen y sombra mejorados: Mayor padding (p-6), sombra más suave y transición pulida
     <div className="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 border border-gray-200 transform hover:scale-[1.01]">
       
       {/* Sección Principal y Status: Espacio claro entre título y badge */}
