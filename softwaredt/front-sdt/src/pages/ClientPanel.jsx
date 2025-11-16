@@ -172,7 +172,6 @@ const ClientPanel = () => {
         ) : (
           <div>
             {appointments.length > 0 ? (
-              // Contenedor de Citas: Margen y espaciado consistente (gap-8)
               <div className="grid gap-8 md:grid-cols-2">
                 {appointments.map((appt) => (
                   <AppointmentCard key={appt.id} appt={appt} />
