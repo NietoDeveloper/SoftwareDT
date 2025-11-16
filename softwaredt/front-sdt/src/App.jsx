@@ -15,7 +15,7 @@ import BookingPage from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 import ClientPanel from "./pages/ClientPanel.jsx";
-import UserProfile from "./pages/UserProfile.jsx"; // <<< Asumo la existencia de este componente
+import UserProfile from "./pages/UserProfile.jsx";
 
 function App() {
   return (
