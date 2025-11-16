@@ -113,8 +113,7 @@ const ClientPanel = () => {
           <span className="font-medium text-gray-900">Ingeniero Asignado:</span>
           <span>{appt.doctor}</span>
         </div>
-
-        {/* Botón de Ver Detalles (Ahora con acción de log) */}
+        
         <div className="md:col-span-2 flex justify-end mt-4 pt-4 border-t border-gray-100">
             <button 
                 className="flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800 transition duration-150 p-2 rounded-lg hover:bg-indigo-50"
