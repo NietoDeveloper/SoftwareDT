@@ -33,8 +33,7 @@ const Doctorsignup = () => {
 
         try {
 
-            await new Promise(resolve => setTimeout(resolve, 1500)); // Simula latencia de red
-            // --- FIN SIMULACIÓN ---
+            await new Promise(resolve => setTimeout(resolve, 1500));
 
             setSuccessMessage('¡Registro exitoso! Serás redirigido al login en breve.');
             reset();
