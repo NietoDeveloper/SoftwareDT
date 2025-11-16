@@ -57,7 +57,6 @@ const Doctorsignup = () => {
             <div className="w-full max-w-5xl flex flex-col md:flex-row bg-white shadow-2xl rounded-2xl p-6 sm:p-10 lg:p-12 transition-all duration-300 overflow-hidden">
                 
                 <div className="w-full md:w-1/2 p-4 flex flex-col justify-center text-center md:text-left">
-                    {/* Título ajustado 60px hacia abajo en dispositivos pequeños (mt-16 ~ 64px) */}
                     <h1 className="text-4xl sm:text-5xl font-extrabold text-green-700 mb-4 sm:mb-6 mt-16 md:mt-0 transition-colors">
                         <RegisterIcon className="inline mr-3 h-8 w-8 sm:h-10 sm:w-10 text-green-600"/>
                         Registro de Especialistas
