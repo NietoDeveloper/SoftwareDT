@@ -15,7 +15,6 @@ import BookingPage from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 import ClientPanel from "./pages/ClientPanel.jsx";
-// Suponemos que tienes un componente para la página de perfil
 import UserProfile from "./pages/UserProfile.jsx"; // <<< Asumo la existencia de este componente
 
 function App() {
