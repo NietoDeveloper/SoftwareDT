@@ -32,8 +32,6 @@ const Doctorsignup = () => {
         setSuccessMessage(null);
 
         try {
-            // Reemplazar axios con tu axiosAuth y la ruta correcta en un entorno real
-            // const response = await axiosAuth.post('/doctor/signup', data); 
 
             // --- SIMULACIÓN DE REGISTRO EXITOSO ---
             await new Promise(resolve => setTimeout(resolve, 1500)); // Simula latencia de red
