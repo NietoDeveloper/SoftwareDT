@@ -35,7 +35,6 @@ function App() {
 
         <Route element={<PrivateRoutes />}>
           
-          {/* RUTA AÑADIDA: Perfil de Usuario para corregir el log "No routes matched" */}
           <Route path="/user/profile" element={<UserProfile />} /> 
           
           {/* Panel del Cliente (Dashboard) */}
