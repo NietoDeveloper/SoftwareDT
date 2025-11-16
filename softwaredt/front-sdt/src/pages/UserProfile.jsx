@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 const UserProfile = () => {
   const navigate = useNavigate();
 
-  // Datos de usuario simulados o desde el contexto (reemplazar con datos reales)
   const user = {
     name: "Nombre del Usuario",
     email: "usuario.actual@software-dt.com"
