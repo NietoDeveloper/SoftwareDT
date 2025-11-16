@@ -72,7 +72,6 @@ const ClientPanel = () => {
     console.log(`Cita ${apptId}: Se simuló la acción 'Ver Detalles'.`);
   };
 
-  // Botón primario para agendar nuevo servicio
   const ScheduleNewServiceButton = () => (
     <button 
       className="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-xl text-base transition duration-200 shadow-lg hover:shadow-indigo-500/50 focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50"
