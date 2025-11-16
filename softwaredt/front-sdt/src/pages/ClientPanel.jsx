@@ -97,7 +97,6 @@ const ClientPanel = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 text-sm text-gray-700 border-t border-gray-200 pt-4 mt-4">
         
-        {/* Fecha, Hora y Técnico: Iconos alineados y espaciados */}
         <div className="flex items-center space-x-2">
           <Calendar className="w-4 h-4 text-indigo-500 flex-shrink-0" />
           <span className="font-medium text-gray-900">Fecha:</span>
