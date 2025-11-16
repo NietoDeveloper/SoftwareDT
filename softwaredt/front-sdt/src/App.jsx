@@ -33,7 +33,6 @@ function App() {
         <Route path="/doctor/signup" element={<Doctorsignup />} />
         <Route path="/doctor/login" element={<Doctorlogin />} />
 
-        {/* Rutas Protegidas (Requieren autenticación) */}
         <Route element={<PrivateRoutes />}>
           
           {/* RUTA AÑADIDA: Perfil de Usuario para corregir el log "No routes matched" */}
