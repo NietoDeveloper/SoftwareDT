@@ -43,7 +43,6 @@ function App() {
           
           <Route path="/checkout" element={<Payment />} />
 
-          {/* Ruta de Confirmación de Cita */}
           <Route 
             path="/appointment-confirmation/:appointmentId" 
             element={<AppointmentConfirmation />} 
