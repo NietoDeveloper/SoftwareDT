@@ -39,7 +39,6 @@ function App() {
 
           <Route path="/client/dashboard" element={<ClientPanel />} />
 
-          {/* Cita de un Doctor específico */}
           <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
           
           {/* Página de Pago */}
