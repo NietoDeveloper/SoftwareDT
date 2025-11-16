@@ -36,7 +36,6 @@ const DoctorList = () => {
   }
 
   const navigateToBooking = (e, doctor) => {
-    // Si se activa desde el botón, detenemos la propagación para evitar que se active el onClick del div principal.
     if (e) e.stopPropagation(); 
     
     navigate(`/book-appointment/${doctor._id}`, { state: { doctorData: doctor } });
