@@ -144,7 +144,6 @@ const ClientPanel = () => {
             </div>
         </div>
 
-        {/* Sección de Bienvenida y Botón de Agendar */}
         <header className="mb-10 p-6 bg-white rounded-2xl shadow-lg border-t-4 border-indigo-600 flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Panel de Servicios</h1>
