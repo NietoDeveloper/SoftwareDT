@@ -105,7 +105,6 @@ const AppointmentConfirmation = () => {
           Tu reserva ha sido procesada con éxito.
         </p>
 
-        {/* Detalles de la Cita */}
         <div className="space-y-6">
           <div className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
             <p className="text-sm font-semibold text-gray-500">
