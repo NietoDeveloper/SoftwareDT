@@ -38,7 +38,7 @@ const ClientPanel = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    // Simular un retraso de red
+
     const timer = setTimeout(() => {
       try {
         setAppointments(mockAppointments);
