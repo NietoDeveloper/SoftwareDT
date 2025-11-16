@@ -126,7 +126,6 @@ const Doctorsignup = () => {
                             </div>
                         )}
 
-                        {/* Botón de Envío (Color Verde para Especialistas) */}
                         <button
                             type="submit"
                             disabled={isLoading || successMessage}
