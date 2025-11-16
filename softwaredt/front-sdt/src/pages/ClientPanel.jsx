@@ -90,7 +90,6 @@ const ClientPanel = () => {
           <Truck className="w-6 h-6 text-indigo-600 mt-0.5 flex-shrink-0" />
           <h3 className="text-xl font-bold text-gray-900 leading-snug">{appt.service}</h3>
         </div>
-        {/* Etiqueta de Status: Mejor contraste y mayor padding (px-4 py-1.5) */}
         <span className={`flex-shrink-0 px-4 py-1.5 text-sm font-semibold rounded-full ring-1 ring-inset ${getStatusClasses(appt.status)}`}>
           {appt.status}
         </span>
