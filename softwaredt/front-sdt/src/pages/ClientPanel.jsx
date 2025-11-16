@@ -20,7 +20,6 @@ const mockAppointments = [
   },
 ];
 
-// Componente para los botones de la barra de perfil (simulados)
 const HeaderButton = ({ Icon, label, className = '', onClick }) => (
   <button
     className={`p-3 rounded-full text-gray-700 bg-gray-100 hover:bg-indigo-50 hover:text-indigo-600 transition duration-150 ${className}`}
