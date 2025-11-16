@@ -131,8 +131,7 @@ const ClientPanel = () => {
       <div className="max-w-6xl mx-auto">
         
         <div className="mt-20 flex justify-between items-center mb-6">
-            
-            {/* Logo o Nombre de la Empresa */}
+
             <div className="flex items-center space-x-2">
                 <CheckCircle className="w-8 h-8 text-indigo-600" />
                 <h2 className="text-3xl font-extrabold text-gray-900">TechServicios</h2>
