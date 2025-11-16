@@ -136,8 +136,7 @@ const ClientPanel = () => {
                 <CheckCircle className="w-8 h-8 text-indigo-600" />
                 <h2 className="text-3xl font-extrabold text-gray-900">TechServicios</h2>
             </div>
-            
-            {/* Botones de Perfil y Acciones Rápidas */}
+
             <div className="flex space-x-3">
                 {/* Botones de perfil con onClick simulado */}
                 <HeaderButton Icon={Bell} label="Notificaciones" onClick={() => console.log('Notificaciones clicadas')} />
