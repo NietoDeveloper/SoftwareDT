@@ -36,8 +36,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           
           <Route path="/user/profile" element={<UserProfile />} /> 
-          
-          {/* Panel del Cliente (Dashboard) */}
+
           <Route path="/client/dashboard" element={<ClientPanel />} />
 
           {/* Cita de un Doctor específico */}
