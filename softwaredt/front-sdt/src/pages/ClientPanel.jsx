@@ -130,7 +130,6 @@ const ClientPanel = () => {
     <div className="min-h-screen bg-gray-50 p-6 md:p-12 font-sans">
       <div className="max-w-6xl mx-auto">
         
-        {/* Cabecera Principal y Barra de Perfil: Margin top de 80px (mt-20) */}
         <div className="mt-20 flex justify-between items-center mb-6">
             
             {/* Logo o Nombre de la Empresa */}
