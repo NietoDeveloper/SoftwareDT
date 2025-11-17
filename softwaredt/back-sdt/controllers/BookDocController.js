@@ -9,7 +9,7 @@ const getDoctorProfile = asyncHandler(async (req, res) => {
     if (!doctorId) return res.status(400).json({ message: "ID required" });
 
     const foundDoctor = await Doctor.findById(doctorId).select('-password -refreshToken -email').exec();
-    console.log("Found Doctor:", foundDoctor); // Log the found doctor object
+    console.log("Found Doctor:", foundDoctor); 
     
     if (!foundDoctor) {
         return res.status(404).json({ message: "Doctor not found!" });
