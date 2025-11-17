@@ -1,5 +1,5 @@
 import {Link, useNavigate} from 'react-router-dom';
-import {axiosAuth} from '../API/api'; // ⬅️ CORRECCIÓN: Usar axiosAuth para el logout
+import {axiosAuth} from '../API/api';
 import {AppContext} from '../context/UserContext';
 import {useContext} from 'react';
 
