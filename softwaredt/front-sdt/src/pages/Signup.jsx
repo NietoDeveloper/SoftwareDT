@@ -16,7 +16,6 @@ const Signup = () => {
     const navigate = useNavigate();
     
     const { register, handleSubmit, formState: { errors } } = useForm({
-        // El rol por defecto será 'PATIENT'
         defaultValues: {
             role: 'PATIENT' 
         }
