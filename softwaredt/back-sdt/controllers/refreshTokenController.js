@@ -55,7 +55,6 @@ const handleRefreshToken = asyncHandler ( async (req, res) => {
                console.log(result);
 
               res.cookie('jwt', newRefreshToken, {httpOnly:true, sameSite:"None", maxAge:24*60*60*100})
-              //send authorization token to user
               res.json({accessToken})
                 
             }
