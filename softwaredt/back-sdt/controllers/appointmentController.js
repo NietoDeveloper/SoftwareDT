@@ -19,7 +19,6 @@ const appointmentBooking = asyncHandler(async (req, res) => {
             appointmentDate,
         });
 
-        //update the user appointment details in the database
         if(newAppointment) {
             const user = await User.findByIdAndUpdate(
                 userId, 
