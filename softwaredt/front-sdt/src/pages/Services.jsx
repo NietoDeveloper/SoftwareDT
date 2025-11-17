@@ -1,7 +1,6 @@
 import React from "react";
 
 const ServicesList = () => {
-  // URL de placeholder funcional y estable.
   const functionalPlaceholder = "https://placehold.co/150x150/EEEEEE/313131?text=Servicio";
 
   const services = [
