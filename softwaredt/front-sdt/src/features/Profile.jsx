@@ -9,8 +9,6 @@ const Profile = () => {
 
     const handleLogOut = async () => {
         try {
-            // Usamos axiosAuth, que tiene withCredentials: true, para que la cookie 'jwt' sea enviada y borrada.
-            // La ruta es '/user/logout' o '/doctor/logout'. Asumo que estás en el perfil de usuario.
             const response = await axiosAuth.post('/user/logout'); 
 
             if (response.status === 204) {
