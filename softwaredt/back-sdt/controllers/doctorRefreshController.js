@@ -9,7 +9,7 @@ const handleRefreshToken = asyncHandler ( async (req, res) => {
 
     const foundDoctor = await Doctor.findOne({refreshToken}).exec();
 
-    if(!foundDoctor) return res.sendStatus(403) //forbidden
+    if(!foundDoctor) return res.sendStatus(403) 
 
     jwt.verify(
         refreshToken,
