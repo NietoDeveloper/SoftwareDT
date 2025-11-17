@@ -48,7 +48,6 @@ const Signup = () => {
             if (data.role === 'DOCTOR') {
                 navigate('/doctor/dashboard');
             } else {
-                // Redirige al Paciente a la lista de doctores
                 navigate('/doctors'); 
             }
             
