@@ -58,7 +58,6 @@ const Signup = () => {
             
             console.error('Error en el proceso de registro:', errorMessage);
 
-            // Manejo de errores amigables para el usuario
             let friendlyError = errorMessage;
             if (errorMessage.includes('Network')) {
                 friendlyError = 'Error de conexión con el servidor. Asegúrate de que esté activo en el puerto correcto (ej: 5000).';
