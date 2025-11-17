@@ -4,7 +4,7 @@ const Doctor = require('../models/Doctor')
 
 const getDoctorProfile = asyncHandler(async (req, res) => {
     const doctorId = req.params.id;
-    console.log("Requested doctorId:", doctorId); // Check what ID is being passed
+    console.log("Requested doctorId:", doctorId); 
     
     if (!doctorId) return res.status(400).json({ message: "ID required" });
 
