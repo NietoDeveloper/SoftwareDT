@@ -162,7 +162,6 @@ const Signup = () => {
                             </div>
                         )}
 
-                        {/* Botón de Envío */}
                         <button
                             type="submit"
                             disabled={isLoading}
