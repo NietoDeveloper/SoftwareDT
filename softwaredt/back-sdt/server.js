@@ -41,13 +41,6 @@ app.use('/api/doctor/logout', require('./routes/doctorRoutes/doctorLogout'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// ----------------------------------------------------------------------
-// PASO 2: MIDDLEWARE DE AUTENTICACIÓN (Solo para lo que sigue)
-// ----------------------------------------------------------------------
-
-// Ahora, verifyAccess solo se aplicará a todas las rutas que se definan
-// en los bloques app.use() siguientes.
 app.use(verifyAccess); 
 
 // ----------------------------------------------------------------------
