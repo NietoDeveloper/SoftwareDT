@@ -34,7 +34,6 @@ app.get('/', (req, res) => {
     });
 });
 
-// Rutas para LISTAR DOCTORES/PROYECTOS (Públicas)
 app.use('/api/doctors', require('./routes/allDoctors')); 
 
 // Rutas de AUTENTICACIÓN (Registro, Login, Refresh, Logout)
