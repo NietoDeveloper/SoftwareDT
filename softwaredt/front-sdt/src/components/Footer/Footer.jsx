@@ -1,4 +1,3 @@
-import React from 'react';
 import BogotaAir2 from "../../assets/images/MonserrateDron1.mp4";
 
 const Footer = () => {
