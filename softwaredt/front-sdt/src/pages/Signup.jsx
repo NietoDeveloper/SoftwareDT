@@ -85,7 +85,6 @@ const Signup = () => {
                     <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8">
                         Regístrate y accede a nuestra red de especialistas de forma rápida y segura.
                     </p> 
-                    {/* 👆 FIN DE LA CORRECCIÓN 👆 */}
                     
                     <p className="text-gray-500 text-sm">
                         ¿Ya tienes una Cuenta?
