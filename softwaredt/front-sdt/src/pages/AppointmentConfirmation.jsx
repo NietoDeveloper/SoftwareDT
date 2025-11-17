@@ -1,5 +1,19 @@
 import { useEffect, useState } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+
+const useParams = () => ({ appointmentId: 'R789012' });
+const useNavigate = () => (path) => console.log(`Navigating to ${path}`);
+const useLocation = () => ({
+  state: {
+    booking: {
+      patientId: 'P123456',
+      doctorName: 'Dr. Sofia Velazquez',
+      date: new Date().toISOString().split('T')[0],
+      time: '14:30',
+      specialization: 'Cardiología',
+      status: 'Confirmada',
+    },
+  },
+});
 
 const CheckCircleIcon = (props) => (
   <svg
@@ -18,7 +32,60 @@ const CheckCircleIcon = (props) => (
   </svg>
 );
 
-const AppointmentConfirmation = () => {
+const DetailCard = ({ title, value, className = "" }) => (
+  <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100">
+    <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+      {title}
+    </p>
+    <p className={`text-lg font-semibold text-gray-900 truncate ${className}`}>
+      {value}
+    </p>
+  </div>
+);
+
+const EmailStatusItem = ({ recipient, status }) => {
+  const color =
+    status === "Enviado con éxito" ? "text-green-600" : "text-yellow-600";
+  const text =
+    status === "Enviado con éxito" ? "Enviado con éxito" : "Enviando...";
+
+  const icon =
+    status === "Enviado con éxito" ? (
+      <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
+    ) : (
+      <svg
+        className="animate-spin -ml-1 mr-2 h-5 w-5 text-yellow-500"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        ></circle>
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
+      </svg>
+    );
+
+  return (
+    <div className="flex justify-between items-center py-2 border-b last:border-b-0">
+      <span className="text-gray-700 font-medium flex items-center">
+        {icon} Notificación a {recipient}
+      </span>
+      <span className={`text-sm font-bold ${color}`}>{text}</span>
+    </div>
+  );
+};
+
+const App = () => {
   const { appointmentId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,18 +103,6 @@ const AppointmentConfirmation = () => {
           user: "Enviado con éxito",
           doctor: "Enviado con éxito",
         });
-
-        console.log("-----------------------------------------");
-        console.log(
-          `[Email Mock] 📨 Correo de confirmación enviado a: ${bookingData.doctorName}`
-        );
-        console.log(
-          `[Email Mock] 📧 Correo de confirmación enviado al paciente: ${bookingData.patientId}`
-        );
-        console.log(
-          `[Email Mock] Cita confirmada: ${bookingData.date} a las ${bookingData.time}`
-        );
-        console.log("-----------------------------------------");
       }, 2000);
     }
   }, [bookingData]);
@@ -56,7 +111,7 @@ const AppointmentConfirmation = () => {
     return (
       <div className="max-w-xl mx-auto p-10 mt-20 bg-red-50 rounded-xl shadow-lg border border-red-300">
         <h1 className="text-3xl font-bold text-red-700">
-          ⚠️ Error: Datos de Cita Perdidos
+          Error: Datos de Cita Perdidos
         </h1>
         <p className="mt-4 text-red-600">
           No se encontraron los detalles de la cita. Esto puede pasar si se
@@ -78,21 +133,18 @@ const AppointmentConfirmation = () => {
   return (
     <div className="min-h-screen bg-green-50 p-4 sm:p-6 lg:p-8 font-sans">
       <div className="mt-10 text-center flex flex-col sm:flex-row justify-center gap-4">
-                           {" "}
         <button
           onClick={() => navigate("/client/dashboard")}
-          className="py-3 px-8 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300 transform hover:scale-105 order-first sm:order-last" // Se añade estilo y orden
+          className="py-3 px-8 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300 transform hover:scale-105 order-first sm:order-last"
         >
-                                  Ver Mis Citas                    {" "}
+          Ver Mis Citas
         </button>
         <button
           onClick={() => navigate("/doctors")}
           className="py-3 px-8 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition duration-300 transform hover:scale-105"
         >
-                                  Volver a la Lista de Servicios                
-             {" "}
+          Volver a la Lista de Servicios
         </button>
-                       {" "}
       </div>
 
       <div className="max-w-3xl mx-auto bg-white shadow-2xl rounded-3xl p-8 sm:p-12 transition-all duration-300">
@@ -164,57 +216,4 @@ const AppointmentConfirmation = () => {
   );
 };
 
-const DetailCard = ({ title, value, className = "" }) => (
-  <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100">
-    <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
-      {title}
-    </p>
-    <p className={`text-lg font-semibold text-gray-900 truncate ${className}`}>
-      {value}
-    </p>
-  </div>
-);
-
-const EmailStatusItem = ({ recipient, status }) => {
-  const color =
-    status === "Enviado con éxito" ? "text-green-600" : "text-yellow-600";
-  const text =
-    status === "Enviado con éxito" ? "Enviado con éxito" : "Enviando...";
-
-  const icon =
-    status === "Enviado con éxito" ? (
-      <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
-    ) : (
-      <svg
-        className="animate-spin -ml-1 mr-2 h-5 w-5 text-yellow-500"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <circle
-          className="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="4"
-        ></circle>
-        <path
-          className="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-        ></path>
-      </svg>
-    );
-
-  return (
-    <div className="flex justify-between items-center py-2 border-b last:border-b-0">
-      <span className="text-gray-700 font-medium flex items-center">
-        {icon} Notificación a {recipient}
-      </span>
-      <span className={`text-sm font-bold ${color}`}>{text}</span>
-    </div>
-  );
-};
-
-export default AppointmentConfirmation;
+export default App;
