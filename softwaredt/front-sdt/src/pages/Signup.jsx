@@ -26,7 +26,6 @@ const Signup = () => {
         setIsLoading(true);
 
         try {
-            // URL de la imagen por defecto
             const defaultImageUrl = 'https://placehold.co/400x400/EBF4FF/76A9FA?text=Perfil'; 
             
             const formData = {
