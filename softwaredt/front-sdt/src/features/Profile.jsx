@@ -12,7 +12,6 @@ const Profile = () => {
             const response = await axiosAuth.post('/user/logout'); 
 
             if (response.status === 204) {
-                // Limpiar el estado del frontend
                 setUser(null);
                 setToken(null);
                 // Limpiar el Access Token del almacenamiento local (si lo usas)
