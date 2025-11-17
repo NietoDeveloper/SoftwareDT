@@ -43,9 +43,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(verifyAccess); 
 
-// ----------------------------------------------------------------------
-
-
 app.use('/api/user/update', require('./routes/userRoutes/userUpdateRoute'));
 app.use('/api/user/appointment', require('./routes/appointmentRoute'));
 app.use('/api/user/review', require('./routes/reviewRoute'));
