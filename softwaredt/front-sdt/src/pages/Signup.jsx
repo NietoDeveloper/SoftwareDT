@@ -30,7 +30,7 @@ const Signup = () => {
             
             const formData = {
                 ...data, 
-                photo: defaultImageUrl // Añadimos la URL por defecto
+                photo: defaultImageUrl 
             };
 
             // Asegúrate de que el puerto 5000 sea el correcto para tu backend.
