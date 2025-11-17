@@ -20,10 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// ----------------------------------------------------------------------
-// PASO 1: Rutas PÚBLICAS (No requieren token)
-// ----------------------------------------------------------------------
-
 app.get('/', (req, res) => {
     res.status(200).json({
         status: 'Server Operational',
