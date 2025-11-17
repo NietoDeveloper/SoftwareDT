@@ -27,8 +27,7 @@ const handleRefreshToken = asyncHandler ( async (req, res) => {
     } 
     
     const newRefreshTokenArray = foundUser.refreshToken.filter(rt => rt !== refreshToken)
-        
-        //evaluate jwt - check if its being reused by a foundUser
+
         jwt.verify(
             refreshToken,
             process.env.REFRESH_USER_TOKEN,
