@@ -5,8 +5,6 @@ const asyncHandler = require('express-async-handler');
 const appointmentBooking = asyncHandler(async (req, res) => {
     const doctor = req?.params?.id;
     const { appointmentDate } = req.body;
-    //console.log('Request body:', req.body);
-    //console.log('User ID from token:', req.userId);
 
     if (!doctor || !appointmentDate) {
         return res.status(400).json({ message: "Doctor and appointment date are required!" });
