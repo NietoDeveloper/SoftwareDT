@@ -22,7 +22,7 @@ const handleRefreshToken = asyncHandler ( async (req, res) => {
                 console.log(result)
             }
         )
-     return res.sendStatus(403) //forbidden
+     return res.sendStatus(403)
         
     } 
     
