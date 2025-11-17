@@ -15,9 +15,6 @@ const PORT = process.env.PORT || 5000;
 
 connectDB();
 
-// ----------------------------------------------------------------------
-// PASO 0: Middlewares Globales de configuración
-// ----------------------------------------------------------------------
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
