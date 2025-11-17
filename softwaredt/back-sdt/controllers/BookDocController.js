@@ -8,7 +8,6 @@ const getDoctorProfile = asyncHandler(async (req, res) => {
     
     if (!doctorId) return res.status(400).json({ message: "ID required" });
 
-    // Search for doctor in the database
     const foundDoctor = await Doctor.findById(doctorId).select('-password -refreshToken -email').exec();
     console.log("Found Doctor:", foundDoctor); // Log the found doctor object
     
