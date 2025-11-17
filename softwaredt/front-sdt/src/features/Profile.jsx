@@ -17,7 +17,6 @@ const Profile = () => {
                 localStorage.removeItem('accessToken'); 
                 navigate('/');
             } else {
-                // Aunque el backend envía 204 en caso de éxito, capturamos otros errores.
                 console.log('Error logging out with status:', response.status);
             }
         } catch (error) {
