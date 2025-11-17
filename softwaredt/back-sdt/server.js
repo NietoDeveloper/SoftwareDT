@@ -39,10 +39,6 @@ app.use('/api/doctor/login', require('./routes/doctorRoutes/doctorLogin'));
 app.use('/api/doctor/refresh', require('./routes/doctorRoutes/doctorRefresh'));
 app.use('/api/doctor/logout', require('./routes/doctorRoutes/doctorLogout'));
 
-// ----------------------------------------------------------------------
-// PASO 1.5: Archivos Estáticos (Movido aquí para evitar el 401 del favicon)
-// ----------------------------------------------------------------------
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 
