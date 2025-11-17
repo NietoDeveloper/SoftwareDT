@@ -40,8 +40,6 @@ const ReviewForm = () => {
             />
             </div>
             
-
-            {/* Submit button */}
             <div className=''>
                  <button
               type="submit"
