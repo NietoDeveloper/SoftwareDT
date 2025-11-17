@@ -51,8 +51,7 @@ app.use('/api/doctor/update', require('./routes/doctorRoutes/doctorUpdate'));
 app.use('/api/doctor/profile', require('./routes/bookingRoute'));
 
 // ----------------------------------------------------------------------
-// PASO 4: Middlewares de Manejo de Errores (Siempre al final)
-// ----------------------------------------------------------------------
+
 
 app.use(unknownEndpoint);
 app.use(errorHandler);
