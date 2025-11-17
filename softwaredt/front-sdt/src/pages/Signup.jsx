@@ -100,8 +100,7 @@ const Signup = () => {
                 <div className="w-full md:w-1/2 pt-6 md:pt-0 border-t md:border-t-0 md:border-l md:border-l-2 border-blue-100/50 md:pl-10 mt-6 md:mt-0">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">Registro de Cuenta</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        
-                        {/* Campo Nombre */}
+
                         <div className="flex flex-col mb-4">
                             <label htmlFor="name" className="mb-2 font-medium text-gray-700 text-sm">Primer Nombre</label>
                             <input
