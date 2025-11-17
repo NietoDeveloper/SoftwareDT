@@ -53,8 +53,7 @@ const handleRefreshToken = asyncHandler ( async (req, res) => {
                foundUser.refreshToken = [...newRefreshTokenArray, newRefreshToken];
                const result = await foundUser.save();
                console.log(result);
-            
-              //set secure cookie witth refreshToken
+
               res.cookie('jwt', newRefreshToken, {httpOnly:true, sameSite:"None", maxAge:24*60*60*100})
               //send authorization token to user
               res.json({accessToken})
