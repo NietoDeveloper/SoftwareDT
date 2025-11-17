@@ -44,8 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(verifyAccess); 
 
 // ----------------------------------------------------------------------
-// PASO 3: Rutas PROTEGIDAS (Requieren token)
-// ----------------------------------------------------------------------
+
 
 app.use('/api/user/update', require('./routes/userRoutes/userUpdateRoute'));
 app.use('/api/user/appointment', require('./routes/appointmentRoute'));
