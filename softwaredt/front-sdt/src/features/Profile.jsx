@@ -14,7 +14,6 @@ const Profile = () => {
             if (response.status === 204) {
                 setUser(null);
                 setToken(null);
-                // Limpiar el Access Token del almacenamiento local (si lo usas)
                 localStorage.removeItem('accessToken'); 
                 navigate('/');
             } else {
