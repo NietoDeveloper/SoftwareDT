@@ -29,7 +29,6 @@ app.get('/', (req, res) => {
 
 app.use('/api/doctors', require('./routes/allDoctors')); 
 
-// Rutas de AUTENTICACIÓN (Registro, Login, Refresh, Logout)
 app.use('/api/user/register', require('./routes/userRoutes/userRegister'));
 app.use('/api/user/login', require('./routes/userRoutes/userLogin'));
 app.use('/api/user/refresh', require('./routes/userRoutes/userRefresh'));
