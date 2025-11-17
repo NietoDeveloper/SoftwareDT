@@ -46,7 +46,6 @@ const Signup = () => {
             console.log('✅ ¡Perfil creado con éxito! Redireccionando...');
             
             if (data.role === 'DOCTOR') {
-                 // Redirige al Doctor a su Dashboard
                 navigate('/doctor/dashboard');
             } else {
                 // Redirige al Paciente a la lista de doctores
