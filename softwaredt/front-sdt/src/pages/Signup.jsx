@@ -45,7 +45,6 @@ const Signup = () => {
 
             console.log('✅ ¡Perfil creado con éxito! Redireccionando...');
             
-            // Lógica de redirección basada en el rol
             if (data.role === 'DOCTOR') {
                  // Redirige al Doctor a su Dashboard
                 navigate('/doctor/dashboard');
