@@ -143,7 +143,6 @@ const Signup = () => {
                             {errors.password && <span className="text-red-600 text-sm mt-1 font-medium">{errors.password.message}</span>}
                         </div>
 
-                        {/* Campo Tipo de Cuenta (Rol) */}
                         <div className="flex flex-col mb-6">
                             <label htmlFor="role" className="mb-2 font-medium text-gray-700 text-sm">Tipo de Cuenta</label>
                             <select
