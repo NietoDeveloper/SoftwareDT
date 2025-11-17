@@ -20,8 +20,6 @@ const Profile = () => {
                 console.log('Error logging out with status:', response.status);
             }
         } catch (error) {
-            // El error 401 o de conexión también indica que la sesión terminó.
-            // Es seguro limpiar el estado del frontend de todos modos.
             console.log('Error logging out. Cleaning local state.', error); 
             setUser(null);
             setToken(null);
