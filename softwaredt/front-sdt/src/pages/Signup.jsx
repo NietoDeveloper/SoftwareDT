@@ -82,7 +82,6 @@ const Signup = () => {
                         Agenda tu Cita Médica
                     </h1>
                     
-                    {/* 👇 ESTA ES LA LÍNEA CORREGIDA (de </d> a </p>) 👇 */}
                     <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8">
                         Regístrate y accede a nuestra red de especialistas de forma rápida y segura.
                     </p> 
