@@ -50,7 +50,6 @@ const handleRefreshToken = asyncHandler ( async (req, res) => {
                   process.env.REFRESH_TOKEN_SECRET,
                   {expiresIn:'1d'}
                )
-               //update refreshToken in db
                foundUser.refreshToken = [...newRefreshTokenArray, newRefreshToken];
                const result = await foundUser.save();
                console.log(result);
