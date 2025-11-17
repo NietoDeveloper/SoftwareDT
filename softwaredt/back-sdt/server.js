@@ -42,9 +42,7 @@ app.use('/api/doctor/logout', require('./routes/doctorRoutes/doctorLogout'));
 // ----------------------------------------------------------------------
 // PASO 1.5: Archivos Estáticos (Movido aquí para evitar el 401 del favicon)
 // ----------------------------------------------------------------------
-// Esto sirve archivos como favicon.ico, images, etc.
-// Al colocarlo aquí, las solicitudes a archivos estáticos (como /favicon.ico)
-// se manejan antes de que se aplique la restricción de autenticación (verifyAccess).
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 
