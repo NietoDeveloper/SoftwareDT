@@ -3,7 +3,9 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const connectDB = require('./config/dbConn');
+// **CORRECCIÓN AQUÍ:** Se desestructura { connectDB } si fue exportada como nombrada.
+// Si el archivo dbConn.js usa 'module.exports = { connectDB }'
+const { connectDB } = require('./config/dbConn'); 
 const corsOptions = require('./config/corsOptions');
 const {verifyAccess} = require('./middleware/verifyAccess');
 const {unknownEndpoint} = require('./middleware/notFound');
@@ -13,6 +15,7 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// La llamada ahora funcionará porque connectDB es la función.
 connectDB();
 
 app.use(cors(corsOptions));
