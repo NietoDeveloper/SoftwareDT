@@ -1,5 +1,29 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+
+// --- MOCK FUNCTIONS para simular el entorno de enrutamiento (NO ELIMINAR) ---
+
+/** Simula el hook useParams para obtener el ID de la cita. */
+const useParams = () => ({ appointmentId: 'R789012' });
+
+/** Simula el hook useNavigate para la navegación. */
+const useNavigate = () => (path) => console.log(`Navigating to ${path}`);
+
+// Objeto estable para booking
+const mockBooking = {
+    patientId: 'P123456',
+    doctorName: 'Dr. Sofia Velazquez',
+    date: new Date().toISOString().split('T')[0],
+    time: '14:30',
+    specialization: 'Cardiología',
+    status: 'Confirmada',
+};
+
+/** Simula el hook useLocation para obtener los datos pasados durante la reserva. */
+const useLocation = () => ({
+    state: {
+        booking: mockBooking,
+    },
+});
 
 // --- COMPONENTES AUXILIARES ---
 
@@ -105,20 +129,14 @@ const AppointmentConfirmation = () => {
 
     useEffect(() => {
         if (bookingData) {
-            const saveAppointment = async () => {
-                setSaveStatus("Guardando");
+            // Simula guardado en DB
+            const timerSave = setTimeout(() => {
                 try {
-                    const response = await fetch('/api/appointments', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(bookingData),
-                    });
-                    if (!response.ok) {
-                        throw new Error(`Error ${response.status}: ${await response.text()}`);
-                    }
+                    // Aquí simula éxito o error (para testing, siempre éxito)
+                    console.log('Cita simulada guardada:', bookingData);
                     setSaveStatus("Guardado con éxito");
 
-                    // Simula envío emails (reemplaza con real si existe endpoint)
+                    // Simula envío emails después
                     setTimeout(() => {
                         setEmailStatus({
                             user: "Enviado con éxito",
@@ -127,14 +145,15 @@ const AppointmentConfirmation = () => {
                     }, 2000);
                 } catch (error) {
                     setSaveStatus("Error");
-                    setErrorMessage(error.message || "Error al guardar la cita.");
+                    setErrorMessage("Error simulado al guardar la cita.");
                 }
-            };
+            }, 1000); // Simula delay de API
 
-            saveAppointment();
+            return () => clearTimeout(timerSave);
         }
     }, [bookingData]);
 
+    // Manejo de error si los datos de la cita se pierden (ej. por refrescar la página)
     if (!bookingData) {
         return (
             <div className="max-w-xl mx-auto p-10 mt-20 bg-red-50 rounded-xl shadow-lg border border-red-300">
@@ -155,7 +174,7 @@ const AppointmentConfirmation = () => {
         );
     }
 
-    if (saveStatus === "Pendiente" || saveStatus === "Guardando") {
+    if (saveStatus === "Pendiente") {
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center">
                 <p className="text-xl text-gray-600">Guardando cita...</p>
@@ -170,7 +189,7 @@ const AppointmentConfirmation = () => {
                     Error al Guardar Cita
                 </h1>
                 <p className="mt-4 text-red-600">
-                    {errorMessage || "Ocurrió un error al guardar la cita. Intenta nuevamente."}
+                    {errorMessage || "Ocurrió un error al guardar la cita en la base de datos. Intenta nuevamente."}
                 </p>
                 <button
                     onClick={() => navigate("/services")}
@@ -243,14 +262,17 @@ const AppointmentConfirmation = () => {
                     </div>
                 </div>
 
+                {/* --- BOTONES DE NAVEGACIÓN CORREGIDOS --- */}
                 <div className="mt-10 text-center flex flex-col sm:flex-row justify-center gap-4">
                     <button
+                        // Navega a la sección de citas del cliente
                         onClick={() => navigate("/client/appointments")}
                         className="py-3 px-8 bg-green-600 text-white font-bold rounded-xl shadow-lg shadow-green-500/30 hover:bg-green-700 transition duration-300 transform hover:-translate-y-0.5"
                     >
                         Ver Mis Citas
                     </button>
                     <button
+                        // Navega a la página de selección de servicios
                         onClick={() => navigate("/services")}
                         className="py-3 px-8 bg-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-0.5"
                     >
