@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const useParams = () => ({ appointmentId: 'R789012' });
 
 /** Simula el hook useNavigate para la navegación. */
-const useNavigate = () => (path) => console.log(`Navigating to ${path}`);
+const useNavigate = () => (path, options) => console.log(`Navigating to ${path}`, options ? options : '');
 
 // Objeto estable para booking
 const mockBooking = {
@@ -16,6 +16,8 @@ const mockBooking = {
     time: '14:30',
     specialization: 'Cardiología',
     status: 'Confirmada',
+    // Simulamos datos del doctor para pasarlos de vuelta a la página de reserva si es necesario
+    doctorData: { name: 'Dr. Sofia Velazquez', specialization: 'Cardiología', email: 'sofia.v@clinic.com' }
 };
 
 /** Simula el hook useLocation para obtener los datos pasados durante la reserva. */
@@ -201,7 +203,7 @@ const AppointmentConfirmation = () => {
         );
     }
 
-    const { doctorName, date, time, specialization, patientId, status } = bookingData;
+    const { doctorName, date, time, specialization, patientId, status, doctorData } = bookingData;
 
     return (
         <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8 font-sans">
@@ -272,8 +274,8 @@ const AppointmentConfirmation = () => {
                         Ver Mis Citas
                     </button>
                     <button
-                        // Navega a la página de selección de servicios
-                        onClick={() => navigate("/services")}
+                        // Navega a la página de reserva usando la ruta exacta: /pages/BookingPage.jsx
+                        onClick={() => navigate("/pages/BookingPage.jsx", { state: { doctorData: doctorData } })} 
                         className="py-3 px-8 bg-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-0.5"
                     >
                         Programar Otra Cita
