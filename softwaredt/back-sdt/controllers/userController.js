@@ -3,6 +3,7 @@ const User = require('../../models/User'); // Asumimos que este modelo usa la co
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+// --- 1. Registro de Usuario (userRegister) ---
 const userRegister = asyncHandler(async (req, res) => {
     const { name, email, password, photo} = req.body;
     if (!name || !email || !password)
@@ -11,7 +12,7 @@ const userRegister = asyncHandler(async (req, res) => {
     const userexist = await User.findOne({ email });
     if (userexist) return res.status(409).json({ message: 'User already exists! login instead' });
 
-    // 🎯 CORRECCIÓN 1: Usamos la versión asíncrona de hash para no bloquear el Event Loop.
+    // 🎯 CORRECCIÓN 1: Usamos la versión asíncrona de hash para no bloquear el Event Loop. (Ya estaba implementada, ¡bien hecho!)
     const hashedpassword = await bcrypt.hash(password, 10);
     
     //store the user details in the database
@@ -36,6 +37,7 @@ const userRegister = asyncHandler(async (req, res) => {
 });
 
 
+// --- 2. Inicio de Sesión (userLogin) ---
 const userLogin = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
@@ -70,7 +72,7 @@ const userLogin = asyncHandler(async (req, res) => {
         );
 
         // 🎯 CORRECCIÓN 2 (BUG FIX): Añadimos el nuevo token al array de refreshToken, 
-        // en lugar de sobrescribir, para permitir múltiples sesiones.
+        // en lugar de sobrescribir, para permitir múltiples sesiones. (Ya estaba implementada, ¡excelente!)
         foundUser.refreshToken = [...(foundUser.refreshToken || []), refreshToken];
         await foundUser.save();
 
@@ -80,9 +82,9 @@ const userLogin = asyncHandler(async (req, res) => {
         // Set refresh token as a cookie
         res.cookie('jwt', refreshToken, {
             httpOnly: true,
-            // 🎯 CORRECCIÓN 3: Añadir secure: true cuando sameSite es 'None' (necesario para HTTPS/producción)
+            // 🎯 CORRECCIÓN 3: Añadir secure: true y la lógica para producción.
             sameSite: 'None', 
-            secure: process.env.NODE_ENV === 'production', 
+            secure: process.env.NODE_ENV === 'production' || true, // 👈 MEJORA: `secure: true` debe ser mandatorio si `sameSite: 'None'`
             maxAge: 24 * 60 * 60 * 1000, // 1 day
         });
 
@@ -93,14 +95,14 @@ const userLogin = asyncHandler(async (req, res) => {
     }
 });
 
-
+// --- 3. Actualización de Detalles (updateUserDetails) ---
 const updateUserDetails = asyncHandler(async (req, res) => {
     if (!req?.params?.id)
         return res.status(400).json({ message: 'User id required!' });
 
     const foundUser = await User.findOne({ _id: req.params.id }).exec();
     if (!foundUser) {
-        // 🎯 CORRECCIÓN 4: 404 Not Found es más apropiado que 204 No Content
+        // 🎯 CORRECCIÓN 4: 404 Not Found es más apropiado que 204 No Content para recursos que no existen.
         return res.status(404).json({ message: 'No user with that ID was found' }) 
     };
     const { name, email, password, bloodType, gender, phone, photo } = req.body;
@@ -111,12 +113,18 @@ const updateUserDetails = asyncHandler(async (req, res) => {
     if (gender) foundUser.gender = gender;
     if (phone) foundUser.phone = phone;
     if (photo) foundUser.photo = photo;
+    
+    // 🎯 MEJORA 5: Evitar la actualización de `email` si ya existe en otro usuario (anti-duplicidad)
+    if (email && email !== foundUser.email) {
+        const emailExists = await User.findOne({ email });
+        if (emailExists) return res.status(409).json({ message: 'The new email address is already in use' });
+    }
 
     await foundUser.save();
     res.status(200).json({ message: 'User details updated successfully!' });
 });
 
-
+// --- 4. Cierre de Sesión (handleUserLogout) ---
 const handleUserLogout = asyncHandler(async (req, res) => {
     console.log('Logout request received');
     const cookies = req.cookies;
@@ -132,11 +140,11 @@ const handleUserLogout = asyncHandler(async (req, res) => {
     const foundUser = await User.findOne({ refreshToken }).exec();
     if (!foundUser) {
         console.log('User not found in database');
-        // 🎯 CORRECCIÓN 5: Añadir secure: true al limpiar la cookie
+        // 🎯 CORRECCIÓN 6: Asegurar `secure: true` para limpiar la cookie si `sameSite: 'None'`
         res.clearCookie('jwt', { 
             httpOnly: true, 
             sameSite: 'None',
-            secure: process.env.NODE_ENV === 'production',
+            secure: process.env.NODE_ENV === 'production' || true,
         });
         return res.sendStatus(204);
     }
@@ -147,11 +155,11 @@ const handleUserLogout = asyncHandler(async (req, res) => {
     console.log('User updated:', result);
 
     // Clear the refresh token cookie
-    // 🎯 CORRECCIÓN 5: Añadir secure: true al limpiar la cookie
+    // 🎯 CORRECCIÓN 6: Asegurar `secure: true` para limpiar la cookie si `sameSite: 'None'`
     res.clearCookie('jwt', { 
         httpOnly: true, 
         sameSite: 'None',
-        secure: process.env.NODE_ENV === 'production',
+        secure: process.env.NODE_ENV === 'production' || true,
     });
     res.sendStatus(204);
 });
