@@ -27,6 +27,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<DoctorList />} />
         <Route path="/contact" element={<Contact />} />
+        
+        {/*
+          IMPORTANTE: La ruta a Servicios está definida correctamente aquí como "/services" 
+          Asegúrate de que la navegación en AppointmentConfirmation use: navigate("/services")
+        */}
         <Route path="/services" element={<Services />} />
 
         <Route path="/signup" element={<Signup />} />
