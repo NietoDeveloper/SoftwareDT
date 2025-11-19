@@ -106,7 +106,6 @@ const updateUserDetails = asyncHandler(async (req, res) => {
     };
     const { name, email, password, bloodType, gender, phone, photo } = req.body;
     
-    // 🎯 MEJORA: Evitar duplicidad de email si el email cambia
     if (email && email !== foundUser.email) {
         const emailExists = await User.findOne({ email });
         if (emailExists) return res.status(409).json({ message: 'The new email address is already in use' });
