@@ -93,8 +93,6 @@ const userLogin = asyncHandler(async (req, res) => {
     res.status(200).json({ accessToken, userData, message: 'Login successful' });
 });
 
-// ----------------------------------------------------------------------
-// --- 3. Actualización de Detalles (updateUserDetails) ---
 const updateUserDetails = asyncHandler(async (req, res) => {
     if (!req?.params?.id)
         return res.status(400).json({ message: 'User id required!' });
