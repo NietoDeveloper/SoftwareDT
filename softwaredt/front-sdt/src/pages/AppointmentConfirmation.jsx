@@ -275,7 +275,7 @@ const AppointmentConfirmation = () => {
                     </button>
                     <button
                         // Navega a la página de reserva usando la ruta exacta: /pages/BookingPage.jsx
-                        onClick={() => navigate("/pages/BookingPage.jsx", { state: { doctorData: doctorData } })} 
+                        onClick={() => navigate("/pages/Services.jsx", { state: { doctorData: doctorData } })} 
                         className="py-3 px-8 bg-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-0.5"
                     >
                         Programar Otra Cita
