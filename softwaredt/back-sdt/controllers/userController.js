@@ -89,7 +89,6 @@ const userLogin = asyncHandler(async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
 
-    // Send access token and user data
     res.status(200).json({ accessToken, userData, message: 'Login successful' });
 });
 
