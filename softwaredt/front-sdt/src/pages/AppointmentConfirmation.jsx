@@ -264,21 +264,22 @@ const AppointmentConfirmation = () => {
                     </div>
                 </div>
 
-                {/* --- BOTONES DE NAVEGACIÓN CORREGIDOS --- */}
+                {/* --- BOTONES DE NAVEGACIÓN CORREGIDOS (Se cambia el texto y la ruta del segundo botón) --- */}
                 <div className="mt-10 text-center flex flex-col sm:flex-row justify-center gap-4">
                     <button
                         // Navega a la sección de citas del cliente
-                        onClick={() => navigate("/client/appointments")}
+                        onClick={() => navigate("/client/dashboard")}
                         className="py-3 px-8 bg-green-600 text-white font-bold rounded-xl shadow-lg shadow-green-500/30 hover:bg-green-700 transition duration-300 transform hover:-translate-y-0.5"
                     >
-                        Ver Mis Citas
+                        Ver Mi Panel
                     </button>
                     <button
-                        // Navega a la página de reserva usando la ruta exacta: /pages/BookingPage.jsx
-                        onClick={() => navigate("/pages/Services.jsx", { state: { doctorData: doctorData } })} 
+                        // ANTES: Programar Otra Cita
+                        // AHORA: Ir a servicios. Ruta actualizada a la canónica /services
+                        onClick={() => navigate("/services")} 
                         className="py-3 px-8 bg-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-0.5"
                     >
-                        Programar Otra Cita
+                        Ir a servicios
                     </button>
                 </div>
             </div>
