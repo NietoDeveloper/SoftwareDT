@@ -274,10 +274,7 @@ const AppointmentConfirmation = () => {
                         Ver Mi Panel
                     </button>
                     <button
-    // ANTES: Programar Otra Cita
-    // AHORA: Ir a servicios. Ruta actualizada a la canónica /services
-    // CORRECCIÓN: La navegación debe ser a la ruta lógica (/services), no al nombre del archivo (.jsx).
-    onClick={() => navigate("/ServicesList")} 
+    onClick={() => navigate("/services")} 
     className="py-3 px-8 bg-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-0.5"
 >
     Ir a servicios
