@@ -1,33 +1,50 @@
+// models/Doctor.js (CÓDIGO CORREGIDO)
+
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const doctorSchema = new Schema({
-    email:{type:String, required:true, unique:true},
-    name:{type:String, required:true},
-    password:{type:String, required:true},
-    photo:{type:String},
-    phone:{type:String},
-    roles:{
-        doctor:{
-            type:Number,
-            default:1001
-        },
-        admin:Number
-    },
-    ticketPrice:{type:Number, default:30},
+// 1. 🎯 Importar la conexión específica (UserDB)
+// Asegúrate de que esta ruta sea correcta para tu proyecto
+const { userDB } = require('../config/dbConn'); 
 
-    //doctors details when signingup first time
-    specialization:{type:String},
-    qualifications:{type:Array},
-    experience:{type:Array},
-    bio:{type:String, maxLength:250},
-    timeSlots:{type:Array},
-    reviews:[{type:mongoose.Types.ObjectId, ref:"Review"}],
-    rating:{type:Number, default:0},
-    totalRating:{type:Number, default:0},
-    isApproved:{type:String, enum:["pending", "approved", "cancelled"], default:"pending"},
-    appointments:[{type:mongoose.Types.ObjectId, ref:"Appointment"}],
-    refreshToken:[String]
+const doctorSchema = new Schema({
+    email: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
+    password: { 
+        type: String, 
+        required: true, 
+        select: false // 🔒 Oculta la contraseña por defecto en consultas GET públicas
+    },
+    photo: { type: String },
+    phone: { type: String },
+    roles: {
+        doctor: {
+            type: Number,
+            default: 1001
+        },
+        admin: Number
+    },
+    ticketPrice: { type: Number, default: 30 },
+
+    // Doctors details
+    specialization: { type: String },
+    qualifications: { type: Array },
+    experience: { type: Array },
+    bio: { type: String, maxLength: 250 },
+    timeSlots: { type: Array },
+    reviews: [{ type: mongoose.Types.ObjectId, ref: "Review" }],
+    rating: { type: Number, default: 0 },
+    totalRating: { type: Number, default: 0 },
+    isApproved: { type: String, enum: ["pending", "approved", "cancelled"], default: "pending" },
+    appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
+    refreshToken: {
+        type: [String],
+        select: false, // 🔒 Oculta el token de refresco por defecto
+        index: true
+    }
+}, { 
+    timestamps: true // Añade createdAt y updatedAt
 });
 
-module.exports = mongoose.model('Doctor', doctorSchema);
+// 2. 🔗 EXPORTACIÓN CLAVE: Usamos userDB.model() para asociar el modelo a la conexión principal
+module.exports = userDB.model('Doctor', doctorSchema);
