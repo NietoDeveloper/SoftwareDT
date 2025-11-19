@@ -212,7 +212,6 @@ const App = () => {
                         Ver Mis Citas
                     </button>
                     <button
-                        // Texto y ruta corregida a Lista de Servicios
                         onClick={() => navigate("/services")}
                         className="py-3 px-8 bg-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-0.5"
                     >
