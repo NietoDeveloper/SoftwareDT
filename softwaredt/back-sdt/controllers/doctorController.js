@@ -2,6 +2,10 @@ const asyncHandler = require('express-async-handler');
 const Doctor = require('../models/Doctor');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+
+// @desc Doctor registration
+// @route POST /api/doctor/register
+// @access Public
 const doctorRegister = asyncHandler (async (req, res) => {
     const {name, email, password} = req.body;
     
@@ -29,13 +33,12 @@ const doctorRegister = asyncHandler (async (req, res) => {
         // HTTP 201 Created
         res.status(201).json({message: "Your doctor's profile was created successfully"});
     } else {
-        // HTTP 500 Internal Server Error (though asyncHandler often handles this)
         res.status(500).json({message: "Internal server error: Could not create profile."}); 
     }
 });
 
 // @desc Doctor login
-// @route POST /api/v1/auth/login
+// @route POST /api/doctor/login
 // @access Public
 const handleDoctorLogin = asyncHandler (async (req, res) => {
     const {email, password} = req.body;
@@ -46,17 +49,17 @@ const handleDoctorLogin = asyncHandler (async (req, res) => {
     }
 
     // 2. Find doctor and check password
-    const findDoctor = await Doctor.findOne({email}).exec();
+    // 🔑 CORRECCIÓN CRÍTICA: Debemos seleccionar (+password) para obtener el hash
+    const findDoctor = await Doctor.findOne({email}).select('+password').exec(); 
     if(!findDoctor) {
-        // HTTP 401 Unauthorized for bad credentials
         return res.status(401).json({message: "Unauthorized: Invalid credentials"}); 
     }
 
+    // 3. Compare password
     const isMatch = await bcrypt.compare(password, findDoctor.password);
     
     if(isMatch) {
-        // 3. Generate tokens
-        // Assuming roles is an array/object on the Doctor model
+        // 4. Generate tokens and roles
         const roles = findDoctor.roles ? Object.values(findDoctor.roles).filter(Boolean) : []; 
         
         const accessToken = jwt.sign (
@@ -71,36 +74,37 @@ const handleDoctorLogin = asyncHandler (async (req, res) => {
             {expiresIn: '1d'}
         );
         
-        // 4. Save refreshToken
-        // Assuming the 'refreshToken' field on the Doctor model is *a string* for one token.
-        // If it should handle multiple tokens (for multiple devices), the model should be an array.
-        findDoctor.refreshToken = refreshToken; 
+        // 5. Save refreshToken (as an array element)
+        // 🔑 CORRECCIÓN: Manejar refreshToken como un array (para múltiples dispositivos)
+        const newRefreshTokenArray = findDoctor.refreshToken ? [...findDoctor.refreshToken, refreshToken] : [refreshToken];
+
+        findDoctor.refreshToken = newRefreshTokenArray;
         await findDoctor.save();
 
-        // 5. Build response and set cookie
-        const doctorData = await Doctor.findById(findDoctor._id).select('-password -refreshToken -email');
+        // 6. Build response and set cookie
+        // Excluir la contraseña y el refresh token del objeto que se envía al cliente
+        const { password: _, refreshToken: __, ...doctorData } = findDoctor.toObject();
         
-        // Secure cookie settings (use secure: true in production with HTTPS)
-        // Set sameSite to 'None' for cross-site cookie transmission (e.g., frontend on a different port/domain)
+        // Secure cookie settings
         res.cookie('jwt', refreshToken, {
             httpOnly: true, 
-            secure: process.env.NODE_ENV === 'production', // Use secure in production
+            secure: process.env.NODE_ENV === 'production', // Use secure: true in production
             sameSite: 'None', 
             maxAge: 24 * 60 * 60 * 1000 // 1 day
         }); 
         
         res.json({accessToken, roles, doctorData});
     } else {
-        // HTTP 401 Unauthorized for bad password
         res.status(401).json({message: "Unauthorized: Invalid credentials"}); 
     }
 });
 
 // @desc Update doctor profile information
-// @route PUT /api/v1/doctors/:id
+// @route PUT /api/doctor/update/:id
 // @access Private (Requires authentication/authorization)
 const updateDoctor = asyncHandler (async (req, res) => {
     const doctorId = req.params.id;
+    
     if(!doctorId) {
         return res.status(400).json({message: "Doctor ID is required in params."});
     }
@@ -108,12 +112,11 @@ const updateDoctor = asyncHandler (async (req, res) => {
     // 1. Find doctor by ID
     const foundDoctor = await Doctor.findById(doctorId).exec();
     if(!foundDoctor) {
-        // HTTP 404 Not Found (using 204 in your original was less appropriate for "not found")
         return res.status(404).json({message: "Doctor not found"});
     }
     
     // 2. Update fields if provided in request body
-    const {email, phone, specialization, qualifications, experience, bio, timeSlots} = req.body;
+    const {email, phone, specialization, qualifications, experience, bio, timeSlots, name, ticketPrice} = req.body;
     
     // Check for email duplicate *if* email is being updated and is different
     if (email && email !== foundDoctor.email) {
@@ -124,6 +127,11 @@ const updateDoctor = asyncHandler (async (req, res) => {
         foundDoctor.email = email;
     }
     
+    // Actualizar campos básicos
+    if (name) foundDoctor.name = name;
+    if (ticketPrice) foundDoctor.ticketPrice = ticketPrice;
+    
+    // Actualizar campos de perfil
     if (phone) foundDoctor.phone = phone;
     if (specialization) foundDoctor.specialization = specialization;
     if (qualifications) foundDoctor.qualifications = qualifications;
@@ -135,11 +143,12 @@ const updateDoctor = asyncHandler (async (req, res) => {
     const result = await foundDoctor.save();
     
     if(result) {
-        // Exclude sensitive fields from the returned data
-        const updatedData = await Doctor.findById(result._id).select('-password -refreshToken -email');
+        // Excluir campos sensibles antes de retornar
+        const { password: _, refreshToken: __, ...updatedData } = result.toObject();
+        
         return res.status(200).json({
             message: "Doctor's info updated successfully!",
-            doctorData: updatedData // Return updated data
+            doctorData: updatedData
         });
     } else {
         return res.status(500).json({message: "Could not update the details due to Internal server error!"});
@@ -147,21 +156,28 @@ const updateDoctor = asyncHandler (async (req, res) => {
 });
 
 // @desc Get all doctors (excluding sensitive info)
-// @route GET /api/v1/doctors
+// @route GET /api/doctors
 // @access Public (or adjust based on security model)
 const getAllDoctors = asyncHandler ( async (req, res ) => {
-    // Exclude password and tokens from results
-    const doctors = await Doctor.find().select('-password -refreshToken'); 
+    // El modelo ya tiene select:false en password y refreshToken, pero lo dejamos como seguro
+    const doctors = await Doctor.find().select('-password -refreshToken').exec(); 
     
     if(!doctors || doctors.length === 0) {
-        return res.status(204).json({message: "No doctors found in the database!"}); // 204 No Content
+        // 🔄 MEJORA: Devolver 200 OK con mensaje cuando no hay contenido, ya que enviamos un body.
+        return res.status(200).json({
+            message: "No doctors found in the database!",
+            doctors: []
+        }); 
     }
     
-    res.json({doctors});
+    res.status(200).json({
+        message: "Doctors retrieved successfully",
+        doctors
+    });
 });
 
 // @desc Doctor logout and clear cookie
-// @route POST /api/v1/auth/logout
+// @route POST /api/doctor/logout
 // @access Public
 const handleDoctorLogout = asyncHandler(async (req, res) => {
     const cookies = req.cookies;
@@ -173,13 +189,13 @@ const handleDoctorLogout = asyncHandler(async (req, res) => {
     
     const refreshToken = cookies.jwt;
 
-    // 2. Find doctor by refreshToken
-    const foundDoctor = await Doctor.findOne({ refreshToken }).exec();
+    // 2. Find doctor by refreshToken (requires selecting the refreshToken field)
+    const foundDoctor = await Doctor.findOne({ refreshToken }).select('+refreshToken').exec();
     
     // 3. Clear cookie regardless if token is in DB
     res.clearCookie('jwt', { 
         httpOnly: true, 
-        secure: process.env.NODE_ENV === 'production', // Must match the settings used to set the cookie
+        secure: process.env.NODE_ENV === 'production', 
         sameSite: 'None' 
     });
 
@@ -188,9 +204,11 @@ const handleDoctorLogout = asyncHandler(async (req, res) => {
         return res.sendStatus(204); 
     }
 
-    // 4. Remove refreshToken from the database
-    // Assuming refreshToken field is a STRING (single token) on the Doctor model
-    foundDoctor.refreshToken = ''; 
+    // 4. Remove refreshToken from the array in the database
+    // 🔑 CORRECCIÓN CRÍTICA: Usa el método array.filter() para eliminar solo el token actual.
+    const newRefreshTokenArray = foundDoctor.refreshToken.filter(token => token !== refreshToken);
+
+    foundDoctor.refreshToken = newRefreshTokenArray; 
     await foundDoctor.save();
 
     // 5. Successful logout
