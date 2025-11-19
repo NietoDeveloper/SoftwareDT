@@ -99,7 +99,6 @@ const updateUserDetails = asyncHandler(async (req, res) => {
     if (!req?.params?.id)
         return res.status(400).json({ message: 'User id required!' });
 
-    // En la actualización, no necesitamos la contraseña, por lo que findOne() es suficiente.
     const foundUser = await User.findOne({ _id: req.params.id }).exec();
     if (!foundUser) {
         return res.status(404).json({ message: 'No user with that ID was found' }) 
