@@ -1,187 +1,227 @@
-import { useState, useEffect } from 'react';
-import { Truck, Clock, Calendar, CheckCircle, User, PlusCircle, Bell, Settings, LogOut } from 'lucide-react';
+import { useEffect, useState } from "react";
 
-const mockAppointments = [
-  {
-    id: 1,
-    service: 'Instalación de Software ERP',
-    date: '2025-11-20',
-    time: '14:30',
-    status: 'Pendiente',
-    doctor: 'Ing. Software; Laura Vélez',
-  },
-  {
-    id: 2,
-    service: 'Migración a Servidor Nuevo',
-    date: '2025-11-10',
-    time: '09:00',
-    status: 'Completada',
-    doctor: 'Ing. Software; Manuel Nieto',
-  },
-];
+// --- MOCK FUNCTIONS para simular el entorno de enrutamiento (NO ELIMINAR) ---
 
-const HeaderButton = ({ Icon, label, className = '', onClick }) => (
-  <button
-    className={`p-3 rounded-full text-gray-700 bg-gray-100 hover:bg-indigo-50 hover:text-indigo-600 transition duration-150 ${className}`}
-    aria-label={label}
-    title={label}
-    onClick={onClick}
-  >
-    <Icon className="w-5 h-5" />
-  </button>
+/** Simula el hook useParams para obtener el ID de la cita. */
+const useParams = () => ({ appointmentId: 'R789012' });
+
+/** Simula el hook useNavigate para la navegación. */
+const useNavigate = () => (path) => console.log(`Navigating to ${path}`);
+
+/** Simula el hook useLocation para obtener los datos pasados durante la reserva. */
+const useLocation = () => ({
+    state: {
+        booking: {
+            patientId: 'P123456',
+            doctorName: 'Dr. Sofia Velazquez',
+            date: new Date().toISOString().split('T')[0],
+            time: '14:30',
+            specialization: 'Cardiología',
+            status: 'Confirmada',
+        },
+    },
+});
+
+// --- COMPONENTES AUXILIARES ---
+
+const CheckCircleIcon = (props) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        {...props}
+    >
+        <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+        />
+    </svg>
 );
 
-const ClientPanel = () => {
-  const [appointments, setAppointments] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setIsLoading(true);
-
-    const timer = setTimeout(() => {
-      try {
-        setAppointments(mockAppointments);
-        setError(null);
-      } catch (e) {
-        console.error("Error fetching appointments:", e);
-        setError("No pudimos cargar la lista de citas.");
-        setAppointments([]);
-      } finally {
-        setIsLoading(false);
-      }
-    }, 1000);
-
-    return () => clearTimeout(timer); 
-  }, []);
-
-  const getStatusClasses = (status) => {
-    switch (status) {
-      case 'Confirmada':
-        return 'text-green-800 bg-green-100 ring-green-300';
-      case 'Pendiente':
-        return 'text-yellow-800 bg-yellow-100 ring-yellow-300';
-      case 'Completada':
-        return 'text-indigo-800 bg-indigo-100 ring-indigo-300';
-      default:
-        return 'text-gray-800 bg-gray-100 ring-gray-300';
-    }
-  };
-  
-  const handleViewDetails = (apptId) => {
-    console.log(`Cita ${apptId}: Se simuló la acción 'Ver Detalles'.`);
-  };
-
-  const ScheduleNewServiceButton = () => (
-    <button 
-      className="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-xl text-base transition duration-200 shadow-lg hover:shadow-indigo-500/50 focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50"
-      onClick={() => console.log('Navegar a la página de agendamiento.')}
-    >
-      <PlusCircle className="w-5 h-5 mr-2" />
-      Agendar nuevo servicio
-    </button>
-  );
-
-  const AppointmentCard = ({ appt }) => (
-    <div className="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 border border-gray-200 transform hover:scale-[1.01]">
-      
-      <div className="flex justify-between items-start mb-4">
-        <div className="flex items-start space-x-3 pr-2"> 
-          <Truck className="w-6 h-6 text-indigo-600 mt-0.5 flex-shrink-0" />
-          <h3 className="text-xl font-bold text-gray-900 leading-snug">{appt.service}</h3>
-        </div>
-        <span className={`flex-shrink-0 px-4 py-1.5 text-sm font-semibold rounded-full ring-1 ring-inset ${getStatusClasses(appt.status)}`}>
-          {appt.status}
-        </span>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 text-sm text-gray-700 border-t border-gray-200 pt-4 mt-4">
-        
-        <div className="flex items-center space-x-2">
-          <Calendar className="w-4 h-4 text-indigo-500 flex-shrink-0" />
-          <span className="font-medium text-gray-900">Fecha:</span>
-          <span>{appt.date}</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Clock className="w-4 h-4 text-indigo-500 flex-shrink-0" />
-          <span className="font-medium text-gray-900">Hora:</span>
-          <span>{appt.time}</span>
-        </div>
-        
-        <div className="md:col-span-2 flex items-center space-x-2 pt-1">
-          <User className="w-4 h-4 text-indigo-500 flex-shrink-0" />
-          <span className="font-medium text-gray-900">Ingeniero Asignado:</span>
-          <span>{appt.doctor}</span>
-        </div>
-
-        <div className="md:col-span-2 flex justify-end mt-4 pt-4 border-t border-gray-100">
-            <button 
-                className="flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800 transition duration-150 p-2 rounded-lg hover:bg-indigo-50"
-                onClick={() => handleViewDetails(appt.id)}
-            >
-                Ver Detalles <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-            </button>
-        </div>
-      </div>
+const DetailCard = ({ title, value, className = "" }) => (
+    <div className="bg-white p-3 rounded-xl shadow-md border border-gray-100">
+        <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+            {title}
+        </p>
+        <p className={`text-lg font-semibold text-gray-900 truncate ${className}`}>
+            {value}
+        </p>
     </div>
-  );
+);
 
-  return (
-    <div className="min-h-screen bg-gray-50 p-6 md:p-12 font-sans">
-      <div className="max-w-6xl mx-auto">
-        
-        <div className="mt-20 flex justify-between items-center mb-6">
+const EmailStatusItem = ({ recipient, status }) => {
+    const color =
+        status === "Enviado con éxito" ? "text-green-600" : "text-yellow-600";
+    const text =
+        status === "Enviado con éxito" ? "Enviado con éxito" : "Enviando...";
 
-            <div className="flex items-center space-x-2">
-                <CheckCircle className="w-8 h-8 text-indigo-600" />
-                <h2 className="text-3xl font-extrabold text-gray-900">TechServicios</h2>
-            </div>
-
-            <div className="flex space-x-3">
-                <HeaderButton Icon={Bell} label="Notificaciones" onClick={() => console.log('Notificaciones clicadas')} />
-                <HeaderButton Icon={Settings} label="Configuración" onClick={() => console.log('Configuración clicada')} />
-                <HeaderButton Icon={LogOut} label="Cerrar Sesión" className="text-red-700 hover:bg-red-50 hover:text-red-700" onClick={() => console.log('Cerrar Sesión clicado')} />
-            </div>
-        </div>
-
-        <header className="mb-10 p-6 bg-white rounded-2xl shadow-lg border-t-4 border-indigo-600 flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Panel de Servicios</h1>
-            <p className="text-lg text-gray-600">
-              Revisa el estado de tus citas de servicio y soporte de tecnología.
-            </p>
-          </div>
-          <ScheduleNewServiceButton />
-        </header>
-
-        {isLoading ? (
-          <div className="flex flex-col justify-center items-center h-48 bg-white rounded-xl shadow-md">
-            <div className="animate-spin rounded-full h-10 w-10 border-b-4 border-indigo-600 border-t-4 border-transparent"></div>
-            <p className="ml-4 mt-4 text-lg text-gray-600">Cargando citas...</p>
-          </div>
-        ) : error ? (
-          <div className="text-center p-8 bg-red-100 text-red-700 rounded-xl border border-red-300 shadow-md">
-            <p className="font-semibold text-lg">{error}</p>
-          </div>
+    const icon =
+        status === "Enviado con éxito" ? (
+            <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
         ) : (
-          <div>
-            {appointments.length > 0 ? (
-              <div className="grid gap-8 md:grid-cols-2">
-                {appointments.map((appt) => (
-                  <AppointmentCard key={appt.id} appt={appt} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center p-12 bg-white rounded-2xl shadow-xl border border-gray-100">
-                <p className="text-xl text-gray-600 mb-6">Parece que no tienes servicios agendados actualmente.</p>
-                <ScheduleNewServiceButton /> 
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  );
+            <svg
+                className="animate-spin -ml-1 mr-2 h-5 w-5 text-yellow-500"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+            >
+                <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                ></circle>
+                <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+            </svg>
+        );
+
+    return (
+        <div className="flex justify-between items-center py-2 border-b last:border-b-0">
+            <span className="text-gray-700 font-medium flex items-center">
+                {icon} Notificación a {recipient}
+            </span>
+            <span className={`text-sm font-bold ${color}`}>{text}</span>
+        </div>
+    );
 };
 
-export default ClientPanel;
+// --- COMPONENTE PRINCIPAL ---
+
+const App = () => {
+    const { appointmentId } = useParams();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const bookingData = location.state?.booking;
+
+    const [emailStatus, setEmailStatus] = useState({
+        user: "Pendiente",
+        doctor: "Pendiente",
+    });
+
+    useEffect(() => {
+        if (bookingData) {
+            // Simula el envío de notificaciones por email
+            const timer = setTimeout(() => {
+                setEmailStatus({
+                    user: "Enviado con éxito",
+                    doctor: "Enviado con éxito",
+                });
+            }, 2000);
+            return () => clearTimeout(timer); // Limpieza
+        }
+    }, [bookingData]);
+
+    // Manejo de error si los datos de la cita se pierden (ej. por refrescar la página)
+    if (!bookingData) {
+        return (
+            <div className="max-w-xl mx-auto p-10 mt-20 bg-red-50 rounded-xl shadow-lg border border-red-300">
+                <h1 className="text-3xl font-bold text-red-700">
+                    Error: Datos de Cita Perdidos
+                </h1>
+                <p className="mt-4 text-red-600">
+                    No se encontraron los detalles de la cita. Por favor, verifica el estado en la sección de
+                    "Mis Citas".
+                </p>
+                <button
+                    onClick={() => navigate("/services")}
+                    className="mt-6 py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600 transition shadow-md hover:shadow-lg"
+                >
+                    Volver a la Lista de Servicios
+                </button>
+            </div>
+        );
+    }
+
+    const { doctorName, date, time, specialization } = bookingData;
+
+    return (
+        <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8 font-sans">
+            <div className="max-w-3xl mx-auto bg-white shadow-2xl rounded-3xl p-8 sm:p-12 mt-12 transition-all duration-300">
+                
+                <CheckCircleIcon className="h-20 w-20 text-green-600 mx-auto mb-6" />
+
+                <h1 className="text-4xl font-extrabold text-green-700 text-center mb-2">
+                    ¡Cita Confirmada!
+                </h1>
+                <p className="text-xl text-gray-600 text-center mb-10">
+                    Tu reserva ha sido procesada con éxito.
+                </p>
+
+                <div className="space-y-6">
+                    <div className="p-4 bg-blue-50 rounded-xl border-l-4 border-blue-500">
+                        <p className="text-sm font-semibold text-gray-500">
+                            Doctor / Especialista:
+                        </p>
+                        <p className="text-2xl font-bold text-blue-800">{doctorName}</p>
+                    </div>
+
+                    <div className="grid sm:grid-cols-3 gap-4">
+                        <DetailCard title="ID de Reserva" value={appointmentId} />
+                        <DetailCard
+                            title="Especialidad"
+                            value={specialization || "General"}
+                        />
+                        <DetailCard
+                            title="Fecha"
+                            value={new Date(date).toLocaleDateString("es-ES", {
+                                weekday: "short",
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                            })}
+                        />
+                        <DetailCard title="Hora" value={time} />
+                        <DetailCard title="ID Paciente" value={bookingData.patientId} />
+                        <DetailCard
+                            title="Estado"
+                            value={bookingData.status}
+                            className="text-green-600"
+                        />
+                    </div>
+                </div>
+
+                <div className="mt-10 p-5 bg-gray-50 rounded-xl border border-gray-200">
+                    <h3 className="text-xl font-bold text-gray-800 mb-4">
+                        Estado de Notificaciones
+                    </h3>
+                    <div className="space-y-3">
+                        <EmailStatusItem recipient="Paciente" status={emailStatus.user} />
+                        <EmailStatusItem
+                            recipient="Doctor/Especialista"
+                            status={emailStatus.doctor}
+                        />
+                    </div>
+                </div>
+
+                {/* --- BOTONES DE NAVEGACIÓN CORREGIDOS --- */}
+                <div className="mt-10 text-center flex flex-col sm:flex-row justify-center gap-4">
+                    <button
+                        // Ruta corregida a Mis Citas
+                        onClick={() => navigate("/client/appointments")}
+                        className="py-3 px-8 bg-green-600 text-white font-bold rounded-xl shadow-lg shadow-green-500/30 hover:bg-green-700 transition duration-300 transform hover:-translate-y-0.5"
+                    >
+                        Ver Mis Citas
+                    </button>
+                    <button
+                        // Texto y ruta corregida a Lista de Servicios
+                        onClick={() => navigate("/services")}
+                        className="py-3 px-8 bg-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-0.5"
+                    >
+                        Volver a la Lista de Servicios
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default App;

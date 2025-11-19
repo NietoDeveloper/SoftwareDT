@@ -1,8 +1,6 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useCallback } from 'react';
 
+// Icono SVG para el perfil del usuario
 const UserIcon = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
@@ -10,72 +8,144 @@ const UserIcon = (props) => (
     </svg>
 );
 
-const Signup = () => {
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();
-    
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        defaultValues: {
-            role: 'PATIENT' 
-        }
-    });
+// --- Lógica de Validación Manual ---
+const isRequired = (value) => value && value.trim() !== '';
+const isValidEmail = (email) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email);
+const isPasswordLongEnough = (password) => password.length >= 6;
 
-    const onSubmit = async (data) => {
-        setError(null);
+const validateField = (field, value) => {
+    switch (field) {
+        case 'name':
+            return isRequired(value) ? '' : 'Este campo es obligatorio';
+        case 'email':
+            if (!isRequired(value)) return 'Este campo es obligatorio';
+            return isValidEmail(value) ? '' : 'Formato de email incorrecto';
+        case 'password':
+            if (!isRequired(value)) return 'Este campo es obligatorio';
+            return isPasswordLongEnough(value) ? '' : 'La contraseña debe tener al menos 6 caracteres';
+        case 'role':
+            return isRequired(value) ? '' : 'Debes seleccionar un tipo de cuenta';
+        default:
+            return '';
+    }
+};
+
+const App = () => {
+    // Estado para los datos del formulario (reemplaza react-hook-form)
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        role: 'PATIENT' // Valor por defecto
+    });
+    
+    // Estados de UI y mensajes
+    const [validationErrors, setValidationErrors] = useState({});
+    const [apiError, setApiError] = useState(null);
+    const [successMessage, setSuccessMessage] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+    // Maneja el cambio de input y la validación en tiempo real
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData(prev => ({ ...prev, [id]: value }));
+        // Validar al cambiar para una mejor experiencia de usuario
+        setValidationErrors(prev => ({ ...prev, [id]: validateField(id, value) }));
+    };
+
+    // Función principal de envío (reemplaza handleSubmit de useForm y axios)
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        setApiError(null);
+        setSuccessMessage(null);
+
+        // 1. Ejecutar todas las validaciones
+        let newErrors = {};
+        Object.keys(formData).forEach(key => {
+            const error = validateField(key, formData[key]);
+            if (error) {
+                newErrors[key] = error;
+            }
+        });
+
+        // 2. Detener si hay errores de validación
+        if (Object.keys(newErrors).length > 0) {
+            setValidationErrors(newErrors);
+            return;
+        }
+
         setIsLoading(true);
 
-        try {
-            const defaultImageUrl = 'https://placehold.co/400x400/EBF4FF/76A9FA?text=Perfil'; 
-            
-            const formData = {
-                ...data, 
-                photo: defaultImageUrl 
-            };
+        const defaultImageUrl = 'https://placehold.co/400x400/EBF4FF/76A9FA?text=Perfil'; 
+        const finalData = {
+            ...formData, 
+            photo: defaultImageUrl 
+        };
+        
+        // URL de destino (la mantenemos para contexto, aunque sea local)
+        const apiUrl = 'http://localhost:5000/api/user/register'; 
 
-            const response = await axios.post('http://localhost:5000/api/user/register', formData, {
+        try {
+            // Usando fetch API nativo (reemplaza axios)
+            const response = await fetch(apiUrl, {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                body: JSON.stringify(finalData),
             });
 
-            if (response.data && response.data.error) {
-                throw new Error(response.data.error);
+            // Intentar parsear el JSON de la respuesta
+            let result;
+            try {
+                result = await response.json();
+            } catch (jsonError) {
+                // Si la respuesta no es JSON o está vacía, manejar como error de red genérico
+                if (!response.ok) {
+                     throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+                // Si fue exitosa pero sin JSON (ej. 204 No Content), continuar como éxito.
+                result = {}; 
             }
 
-            console.log('✅ ¡Perfil creado con éxito! Redireccionando...');
-            
-            if (data.role === 'DOCTOR') {
-                navigate('/doctor/dashboard');
-            } else {
-                navigate('/doctors'); 
+            if (!response.ok || result.error) {
+                // El servidor devolvió un error (ej. 409 Conflict, 400 Bad Request)
+                const errorText = result.error || response.statusText || 'Error desconocido del servidor.';
+                throw new Error(errorText);
             }
+
+            // Éxito: Simulación de redirección con mensaje de éxito
+            console.log('✅ ¡Perfil creado con éxito!');
+            const roleText = finalData.role === 'DOCTOR' ? 'Doctor(a)' : 'Paciente';
+            setSuccessMessage(`¡Registro exitoso! Serás redirigido al dashboard de ${roleText} (simulado).`);
+            setFormData({ name: '', email: '', password: '', role: 'PATIENT' }); // Limpiar formulario
+            setValidationErrors({});
             
         } catch (processError) {
-            const errorMessage = processError?.response?.data?.error
-                                 || processError?.message
-                                 || 'Ocurrió un error en el registro. Inténtalo de nuevo.';
+            const errorMessage = processError.message || 'Ocurrió un error en el registro. Inténtalo de nuevo.';
             
-            console.error('Error en el proceso de registro:', errorMessage);
-
+            // Lógica de errores amigables de tu código original
             let friendlyError = errorMessage;
-            if (errorMessage.includes('Network')) {
-                friendlyError = 'Error de conexión con el servidor. Asegúrate de que esté activo en el puerto correcto (ej: 5000).';
-            } else if (errorMessage.includes('409') || errorMessage.toLowerCase().includes('duplicate')) {
+            if (errorMessage.includes('fetch') || errorMessage.includes('Network') || errorMessage.includes('Failed to fetch')) {
+                friendlyError = 'Error de conexión con el servidor. Asegúrate de que tu backend esté activo en el puerto correcto (ej: 5000).';
+            } else if (errorMessage.toLowerCase().includes('duplicate') || errorMessage.includes('409')) {
                 friendlyError = 'El correo electrónico ya está registrado. Por favor, utiliza otro.';
             }
 
-            setError(friendlyError);
+            console.error('Error en el proceso de registro:', friendlyError);
+            setApiError(friendlyError);
+
         } finally {
             setIsLoading(false);
         }
     };
 
-    return (
 
+    return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50/70 p-4 sm:p-8 lg:p-12 font-sans transition-all duration-300">
             <div className="w-full max-w-5xl flex flex-col md:flex-row bg-white shadow-2xl rounded-2xl p-6 sm:p-10 lg:p-12 transition-all duration-300 overflow-hidden">
 
+                {/* Columna de Bienvenida */}
                 <div className="w-full md:w-1/2 p-4 flex flex-col justify-center text-center md:text-left">
                     <h1 className="text-4xl sm:text-5xl font-extrabold text-blue-700 mb-4 sm:mb-6 mt-16 md:mt-0 transition-colors">
                         <UserIcon className="inline mr-3 h-8 w-8 sm:h-10 sm:w-10 text-blue-600"/>
@@ -88,80 +158,94 @@ const Signup = () => {
                     
                     <p className="text-gray-500 text-sm">
                         ¿Ya tienes una Cuenta?
-                        <Link 
-                            to="/login" 
-                            className="text-blue-600 hover:text-blue-800 font-semibold ml-1 transition duration-200 border-b border-blue-600/50 hover:border-blue-800/80"
+                        {/* Simulación de Link, ya que react-router-dom no está disponible */}
+                        <span 
+                            className="text-blue-600 hover:text-blue-800 font-semibold ml-1 transition duration-200 border-b border-blue-600/50 hover:border-blue-800/80 cursor-pointer"
+                            onClick={() => console.log('Simulating navigation to /login')}
                         >
                             Inicia Sesión aquí
-                        </Link>
+                        </span>
                     </p>
                 </div>
 
+                {/* Columna de Formulario */}
                 <div className="w-full md:w-1/2 pt-6 md:pt-0 border-t md:border-t-0 md:border-l md:border-l-2 border-blue-100/50 md:pl-10 mt-6 md:mt-0">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">Registro de Cuenta</h2>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    
+                    {/* Mensaje de éxito (simula la redirección) */}
+                    {successMessage && (
+                        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg relative mb-4 font-semibold text-sm">
+                            {successMessage}
+                            <button className="float-right font-bold" onClick={() => setSuccessMessage(null)}>x</button>
+                        </div>
+                    )}
 
+                    <form onSubmit={onSubmit}>
+                        {/* Campo de Nombre */}
                         <div className="flex flex-col mb-4">
                             <label htmlFor="name" className="mb-2 font-medium text-gray-700 text-sm">Primer Nombre</label>
                             <input
                                 type="text"
                                 id="name"
-                                className="border border-gray-300/60 p-3 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-200 shadow-inner hover:border-blue-400/50 outline-none w-full"
+                                value={formData.name}
+                                onChange={handleChange}
+                                className={`border ${validationErrors.name ? 'border-red-500' : 'border-gray-300/60'} p-3 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-200 shadow-inner hover:border-blue-400/50 outline-none w-full`}
                                 placeholder="Ingresa tu nombre..."
-                                {...register('name', { required: 'Este campo es obligatorio' })}
                             />
-                            {errors.name && <span className="text-red-600 text-sm mt-1 font-medium">{errors.name.message}</span>}
+                            {validationErrors.name && <span className="text-red-600 text-sm mt-1 font-medium">{validationErrors.name}</span>}
                         </div>
 
+                        {/* Campo de Email */}
                         <div className="flex flex-col mb-4">
                             <label htmlFor="email" className="mb-2 font-medium text-gray-700 text-sm">Email</label>
                             <input
                                 type="email"
                                 id="email"
-                                className="border border-gray-300/60 p-3 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-200 shadow-inner hover:border-blue-400/50 outline-none w-full"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className={`border ${validationErrors.email ? 'border-red-500' : 'border-gray-300/60'} p-3 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-200 shadow-inner hover:border-blue-400/50 outline-none w-full`}
                                 placeholder="Ingresa tu email..."
-                                {...register('email', {
-                                    required: 'Este campo es obligatorio',
-                                    pattern: {
-                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                        message: "Formato de email incorrecto"
-                                    }
-                                })}
                             />
-                            {errors.email && <span className="text-red-600 text-sm mt-1 font-medium">{errors.email.message}</span>}
+                            {validationErrors.email && <span className="text-red-600 text-sm mt-1 font-medium">{validationErrors.email}</span>}
                         </div>
 
+                        {/* Campo de Contraseña */}
                         <div className="flex flex-col mb-4">
                             <label htmlFor="password" className="mb-2 font-medium text-gray-700 text-sm">Contraseña</label>
                             <input
                                 type="password"
                                 id="password"
-                                className="border border-gray-300/60 p-3 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-200 shadow-inner hover:border-blue-400/50 outline-none w-full"
+                                value={formData.password}
+                                onChange={handleChange}
+                                className={`border ${validationErrors.password ? 'border-red-500' : 'border-gray-300/60'} p-3 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-200 shadow-inner hover:border-blue-400/50 outline-none w-full`}
                                 placeholder="Ingresa tu contraseña..."
-                                {...register('password', { required: 'Este campo es obligatorio', minLength: { value: 6, message: 'La contraseña debe tener al menos 6 caracteres' } })}
                             />
-                            {errors.password && <span className="text-red-600 text-sm mt-1 font-medium">{errors.password.message}</span>}
+                            {validationErrors.password && <span className="text-red-600 text-sm mt-1 font-medium">{validationErrors.password}</span>}
                         </div>
 
+                        {/* Campo de Rol */}
                         <div className="flex flex-col mb-6">
                             <label htmlFor="role" className="mb-2 font-medium text-gray-700 text-sm">Tipo de Cuenta</label>
                             <select
                                 id="role"
-                                className="border border-gray-300/60 p-3 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-200 shadow-inner hover:border-blue-400/50 outline-none w-full bg-white"
-                                {...register('role', { required: 'Debes seleccionar un tipo de cuenta' })}
+                                value={formData.role}
+                                onChange={handleChange}
+                                className={`border ${validationErrors.role ? 'border-red-500' : 'border-gray-300/60'} p-3 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-200 shadow-inner hover:border-blue-400/50 outline-none w-full bg-white`}
                             >
                                 <option value="PATIENT">Soy un Cliente / Paciente</option>
                                 <option value="DOCTOR">Soy un Doctor</option>
                             </select>
-                            {errors.role && <span className="text-red-600 text-sm mt-1 font-medium">{errors.role.message}</span>}
+                            {validationErrors.role && <span className="text-red-600 text-sm mt-1 font-medium">{validationErrors.role}</span>}
                         </div>
 
-                        {error && (
+                        {/* Mensaje de Error de API */}
+                        {apiError && (
                             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mb-4 font-semibold text-sm">
-                                {error}
+                                {apiError}
                             </div>
                         )}
 
+                        {/* Botón de Envío */}
                         <button
                             type="submit"
                             disabled={isLoading}
@@ -187,4 +271,4 @@ const Signup = () => {
     );
 };
 
-export default Signup;
+export default App;
