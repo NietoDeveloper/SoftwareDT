@@ -138,7 +138,7 @@ const AppointmentConfirmation = () => {
                             <User className="h-6 w-6" />
                         </IconWrapper>
                         <div className="ml-4">
-                            <p className="text-sm font-medium text-blue-700">Ingeniero Asignado</p>
+                            <p className="text-sm font-medium text-blue-700">Ingeniero de Software Asignado</p>
                             <h2 className="text-xl font-bold text-gray-900">{appointmentData.doctorName}</h2>
                             <p className="text-sm text-gray-500">Especialidad: {appointmentData.specialization}</p>
                         </div>
