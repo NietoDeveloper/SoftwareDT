@@ -189,7 +189,7 @@ const AppointmentConfirmation = () => {
                         Ir a mi Panel de Control
                     </Link>
                     <Link
-                        to="/doctors"
+                        to="/services"
                         className="py-3 px-6 bg-gray-200 text-gray-800 font-semibold rounded-xl shadow-md hover:bg-gray-300 transition duration-300 text-center"
                     >
                         Reservar Otra Cita
