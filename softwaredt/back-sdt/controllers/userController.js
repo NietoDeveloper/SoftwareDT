@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-// 🚨 CORRECCIÓN DE RUTA: Cambiado de '../../models/User' a '../models/User'
+// La ruta ha sido corregida de '../../models/User' a '../models/User'
 const User = require('../models/User'); 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -27,7 +27,6 @@ const userRegister = asyncHandler(async (req, res) => {
     console.log(result);
 
     if (result) {
-        // En el registro, no enviamos la contraseña, ni el refreshToken
         res.status(201).json({
             message: 'User created successfully',
             user: {
@@ -56,9 +55,6 @@ const userLogin = asyncHandler(async (req, res) => {
         return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    // Comparación de contraseña ya se hizo arriba
-    // const isMatch = await bcrypt.compare(password, foundUser.password); // Ya no es necesaria la línea de isMatch
-
     // Create access token
     const accessToken = jwt.sign(
         { id: foundUser._id, email: foundUser.email },
@@ -84,7 +80,6 @@ const userLogin = asyncHandler(async (req, res) => {
     res.cookie('jwt', refreshToken, {
         httpOnly: true,
         sameSite: 'None', 
-        // Usa secure: true si sameSite es 'None' (requerido para cross-site/producción)
         secure: process.env.NODE_ENV === 'production' || true, 
         maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
@@ -92,6 +87,8 @@ const userLogin = asyncHandler(async (req, res) => {
     res.status(200).json({ accessToken, userData, message: 'Login successful' });
 });
 
+// ----------------------------------------------------------------------
+// --- 3. Actualización de Detalles (updateUserDetails) ---
 const updateUserDetails = asyncHandler(async (req, res) => {
     if (!req?.params?.id)
         return res.status(400).json({ message: 'User id required!' });
@@ -102,6 +99,7 @@ const updateUserDetails = asyncHandler(async (req, res) => {
     };
     const { name, email, password, bloodType, gender, phone, photo } = req.body;
     
+    // Evitar duplicidad de email si el email cambia
     if (email && email !== foundUser.email) {
         const emailExists = await User.findOne({ email });
         if (emailExists) return res.status(409).json({ message: 'The new email address is already in use' });
@@ -111,4 +109,47 @@ const updateUserDetails = asyncHandler(async (req, res) => {
     if (name) foundUser.name = name;
     if (password) foundUser.password = await bcrypt.hash(password, 10);
     if (bloodType) foundUser.bloodType = bloodType;
-    if
+    if (gender) foundUser.gender = gender; // <--- CONTINUACIÓN Y CIERRE DEL BLOQUE AQUÍ
+    if (phone) foundUser.phone = phone;
+    if (photo) foundUser.photo = photo;
+
+    await foundUser.save();
+    res.status(200).json({ message: 'User details updated successfully!' });
+}); // <--- LLAVE DE CIERRE FALTANTE
+
+// ----------------------------------------------------------------------
+// --- 4. Cierre de Sesión (handleUserLogout) ---
+const handleUserLogout = asyncHandler(async (req, res) => {
+    const cookies = req.cookies;
+    if (!cookies?.jwt) {
+        return res.sendStatus(204); // No content
+    }
+    
+    const refreshToken = cookies.jwt;
+    
+    // Check if the refresh token is in the database
+    const foundUser = await User.findOne({ refreshToken }).exec();
+    if (!foundUser) {
+        // Limpia la cookie incluso si el token no está en la DB
+        res.clearCookie('jwt', { 
+            httpOnly: true, 
+            sameSite: 'None',
+            secure: process.env.NODE_ENV === 'production' || true,
+        });
+        return res.sendStatus(204);
+    }
+
+    // Delete the refresh token from the database
+    foundUser.refreshToken = foundUser.refreshToken.filter(token => token !== refreshToken);
+    await foundUser.save();
+
+    // Clear the refresh token cookie
+    res.clearCookie('jwt', { 
+        httpOnly: true, 
+        sameSite: 'None',
+        secure: process.env.NODE_ENV === 'production' || true,
+    });
+    res.sendStatus(204);
+}); // <--- LLAVE DE CIERRE FALTANTE
+
+module.exports = { userRegister, userLogin, updateUserDetails, handleUserLogout};
