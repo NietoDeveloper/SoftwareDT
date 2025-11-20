@@ -18,9 +18,6 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// 🎯 CAMBIO CLAVE 2: Eliminamos la llamada a connectDB() porque ya no existe como función exportada.
-// Las conexiones se inicializan al hacer el 'require' de dbConn.js
-
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
