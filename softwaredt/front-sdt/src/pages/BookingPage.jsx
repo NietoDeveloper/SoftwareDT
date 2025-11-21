@@ -90,7 +90,6 @@ const BookingPage = () => {
             
             setMessage(`Redirigiendo a la confirmación...`);
             
-            // REDIRECCIÓN A LA RUTA PROTEGIDA DE CONFIRMACIÓN
             navigate(`/appointment-confirmation/${mockAppointmentId}`, { 
                 state: { booking: bookingData } // Pasamos los datos para la página de confirmación
             });
