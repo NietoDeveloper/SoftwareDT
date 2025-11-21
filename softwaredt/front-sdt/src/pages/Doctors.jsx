@@ -2,50 +2,30 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { BsArrowRight } from "react-icons/bs";
 import { toast } from "react-toastify";
-import axios from "axios";
-
-// Define la URL base de tu backend (Asegúrate de que sea la correcta, incluyendo el puerto si es necesario)
-const API_BASE_URL = "http://localhost:5000/api/user"; // La ruta que falló fue /api/user/doctors
-
-// Crea una instancia de Axios que pueda incluir el token
-const axiosInstance = axios.create({
-    baseURL: API_BASE_URL,
-    // Aquí puedes configurar otros valores por defecto si es necesario
-});
-
-// Interceptor para agregar el token de autorización a cada solicitud
-axiosInstance.interceptors.request.use(
-    (config) => {
-        // Obtén el token del almacenamiento local (ajusta esto según dónde lo guardes)
-        const token = localStorage.getItem("token"); 
-
-        if (token) {
-            // Añade el encabezado de Autorización si el token existe
-            config.headers["Authorization"] = `Bearer ${token}`;
-        }
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
+// Importamos la instancia de Axios ya configurada con el token
+import axiosInstance from "../utils/axiosInstance"; // Asegúrate de ajustar la ruta de importación
 
 const DoctorList = () => {
   const navigate = useNavigate();
 
   const getDoctors = async () => {
     try {
-      // Usa la instancia de axios configurada para enviar el token
-      // La URL completa será: http://localhost:5000/api/user/doctors
+      // 🚀 ¡CORRECCIÓN APLICADA! Usamos axiosInstance para enviar el token
       const res = await axiosInstance.get("/doctors"); 
       return res.data.doctors || res.data || [];
     } catch (error) {
-      // Revisa si el error es 401 y maneja la redirección o el mensaje
-      if (error.response && error.response.status === 401) {
-          toast.error("No autorizado. Por favor, inicia sesión.");
-          navigate("/login"); // Redirige al inicio de sesión si es 401
+      // Manejo de errores de autenticación (401) y 403 (Forbidden)
+      if (error.response) {
+        if (error.response.status === 401 || error.response.status === 403) {
+          // Si el token es inválido (401) o no tiene permisos (403)
+          toast.error("Sesión expirada o acceso denegado. Por favor, inicia sesión.");
+          localStorage.removeItem("token"); // Opcional: Limpiar el token malo
+          navigate("/login"); 
+        } else {
+          toast.error("Fallo al cargar la lista de doctores. Error: " + error.response.status);
+        }
       } else {
-          toast.error("Fallo al cargar la lista de doctores. Posible error de red o servidor.");
+        toast.error("Fallo de red o servidor no disponible.");
       }
       throw error;
     }
@@ -57,6 +37,7 @@ const DoctorList = () => {
     initialData: [],
   });
 
+  // ... (El resto del código de renderizado permanece igual)
   if (isLoading) return <h1 className="text-center py-10 text-xl font-bold">Cargando....</h1>;
   if (error) return <h1 className="text-center py-10 text-red-600 text-xl font-bold">Error cargando los Datos.</h1>;
 

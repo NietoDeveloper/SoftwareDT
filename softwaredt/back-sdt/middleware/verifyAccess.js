@@ -1,39 +1,56 @@
 const jwt = require('jsonwebtoken');
 
 const verifyAccess = (req, res, next) => {
-    // Busca el encabezado 'Authorization', permitiendo variaciones en mayúsculas/minúsculas
-    const authHeader = req.headers.Authorization || req.headers.authorization;
+    // 1. Obtener el encabezado de autorización
+    // Usa req.headers.authorization directamente (Express a menudo lo normaliza a minúsculas)
+    const authHeader = req.headers.authorization;
 
-    // 1. Verificar la presencia y formato 'Bearer '
-    if (!authHeader?.startsWith('Bearer ')) {
-        // 401 Unauthorized: No se proporcionó token o el formato es incorrecto
-        console.log('DEBUG: Access Denied. No Bearer token found in headers.');
-        return res.status(401).json({ message: "Access denied! Token is missing or invalid format." });
+    // 2. Verificar la presencia y el formato 'Bearer '
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        console.log('DEBUG: Access Denied. Token is missing or invalid format (401).');
+        // 401 Unauthorized: El cliente debe autenticarse (enviar un token válido)
+        return res.status(401).json({ 
+            success: false, 
+            message: "Acceso denegado. Se requiere un token de portador ('Bearer')." 
+        });
     }
 
     const token = authHeader.split(' ')[1];
 
-    // 2. Verificar el token usando la clave secreta
+    // 3. Verificar el token usando la clave secreta
     jwt.verify(
         token, 
         process.env.ACCESS_TOKEN_SECRET, 
         (err, decoded) => {
             if (err) {
-                // 403 Forbidden: El token existe pero es inválido (ej. expirado, firma incorrecta)
-                console.log('DEBUG: Token verification failed:', err.message);
-                return res.status(403).json({ message: "Access denied. Token is invalid or expired." });
+                // 403 Forbidden: El token existe pero es inválido (ej. expirado, malformado, firma incorrecta)
+                // Usar 403 es apropiado si el cliente envió un token, pero no tiene acceso.
+                const errorMessage = err.name === 'TokenExpiredError' 
+                    ? "Token expirado. Por favor, inicia sesión de nuevo."
+                    : "Token inválido o malformado.";
+                
+                console.log(`DEBUG: Token verification failed (${err.name}): ${err.message}`);
+                
+                return res.status(403).json({ 
+                    success: false, 
+                    message: `Acceso prohibido. ${errorMessage}`
+                });
             }
 
-            // 3. Asignar el ID de usuario y roles al objeto request
-            if (!decoded?.id) {
-                 // Protección extra si el payload del token no contiene el ID mínimo requerido
-                 console.log('DEBUG: Token payload missing required user ID.');
-                 return res.status(403).json({ message: "Access denied. Token payload is incomplete." });
+            // 4. Verificar el payload mínimo y adjuntar datos al objeto request
+            if (!decoded || !decoded.id) {
+                console.log('DEBUG: Token payload is incomplete (missing user ID).');
+                return res.status(403).json({ 
+                    success: false, 
+                    message: "Acceso prohibido. Información de usuario incompleta en el token." 
+                });
             }
             
+            // Adjuntar datos decodificados al objeto de solicitud para middlewares/rutas subsiguientes
             req.userId = decoded.id;
-            req.roles = decoded.roles; // Asigna los roles decodificados (Nota: ver sugerencia a continuación)
+            req.roles = decoded.roles; 
             
+            // Continuar con el siguiente middleware o manejador de ruta
             next();
         }
     );
