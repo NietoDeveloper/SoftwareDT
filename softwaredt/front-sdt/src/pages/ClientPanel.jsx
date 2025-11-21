@@ -202,7 +202,6 @@ const App = () => {
                     </div>
                 </div>
 
-                {/* --- BOTONES DE NAVEGACIÓN CORREGIDOS --- */}
                 <div className="mt-10 text-center flex flex-col sm:flex-row justify-center gap-4">
                     <button
                         // Ruta corregida a Mis Citas
