@@ -33,9 +33,7 @@ const AppointmentConfirmation = () => {
                 // const data = await response.json();
                 
                 await new Promise(resolve => setTimeout(resolve, 2000)); // Simula latencia
-                
-                // Si la data es exitosa, se establece el estado.
-                // Esta data debe ser REAL, obtenida del backend.
+
                 const realData = {
                     appointmentId: appointmentId,
                     doctorId: '6913840444079672f1096e6a',
