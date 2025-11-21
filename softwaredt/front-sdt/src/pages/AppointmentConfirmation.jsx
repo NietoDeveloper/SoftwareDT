@@ -129,7 +129,6 @@ const AppointmentConfirmation = () => {
                     <p className="text-gray-600 text-lg">Tu reserva ha sido procesada. Recibirás un recordatorio por correo.</p>
                 </div>
 
-                {/* Detalles de la Cita - Layout de tarjeta */}
                 <div className="space-y-4 border-t border-b border-gray-100 py-6">
                     
                     {/* Sección Doctor */}
