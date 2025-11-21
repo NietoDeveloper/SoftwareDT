@@ -99,7 +99,6 @@ const BookingPage = () => {
             console.error("Error al agendar la cita:", err);
             setError("Error al procesar la reserva. Por favor, inténtalo de nuevo.");
         } finally {
-            // El loading se desactivará con la redirección, pero por seguridad:
             setTimeout(() => setIsLoading(false), 2000); 
         }
     };
