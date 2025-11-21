@@ -39,7 +39,14 @@ const BookingPage = () => {
             setIsLoading(true);
             try {
                 const response = await fetch(`/api/doctors/${doctorId}`);
-                if (!response.ok) throw new Error('Error al cargar doctor');
+                if (!response.ok) {
+                    const text = await response.text();
+                    throw new Error(`Error ${response.status}: ${text || 'No se pudo cargar el doctor'}`);
+                }
+                const contentType = response.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    throw new Error("Respuesta no es JSON válida");
+                }
                 const data = await response.json();
                 setDoctor(data);
             } catch (err) {
@@ -59,7 +66,14 @@ const BookingPage = () => {
 
         try {
             const response = await fetch(`/api/doctors/${doctorId}/slots?date=${date}`);
-            if (!response.ok) throw new Error('Error al cargar slots');
+            if (!response.ok) {
+                const text = await response.text();
+                throw new Error(`Error ${response.status}: ${text || 'No se pudieron cargar los slots'}`);
+            }
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+                throw new Error("Respuesta no es JSON válida");
+            }
             const slots = await response.json();
             setAvailableSlots(slots);
         } catch (err) {
@@ -111,8 +125,14 @@ const BookingPage = () => {
                 body: JSON.stringify(bookingData)
             });
 
-            if (!response.ok) throw new Error('Error al crear cita');
-
+            if (!response.ok) {
+                const text = await response.text();
+                throw new Error(`Error ${response.status}: ${text || 'No se pudo crear la cita'}`);
+            }
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+                throw new Error("Respuesta no es JSON válida");
+            }
             const data = await response.json();
             setMessage(`Redirigiendo a la confirmación...`);
             navigate(`/appointment-confirmation/${data._id}`, {
