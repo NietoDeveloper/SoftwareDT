@@ -1,8 +1,6 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useContext } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-
-const MOCK_USER = { id: 'patient-789', name: 'Usuario Ejemplo', email: 'usuario.ejemplo@example.com' }; 
-const MOCK_SLOTS = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
+import { UserContext } from '../context/UserContext';
 
 const CalendarIcon = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
@@ -16,19 +14,13 @@ const ClockIcon = (props) => (
     </svg>
 );
 
-
 const BookingPage = () => {
-    
-    const { doctorId } = useParams(); 
+    const { doctorId } = useParams();
     const navigate = useNavigate();
-    const location = useLocation(); 
-    
-    const doctor = useMemo(() => {
-        const defaultDoc = { name: "Dr. Default", specialization: "General", email: "default.doctor@clinic.com" };
-        return location.state?.doctorData || defaultDoc;
-    }, [location.state]);
+    const location = useLocation();
+    const { user } = useContext(UserContext);
 
-
+    const [doctor, setDoctor] = useState(null);
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
     const [availableSlots, setAvailableSlots] = useState([]);
@@ -36,27 +28,60 @@ const BookingPage = () => {
     const [error, setError] = useState(null);
     const [message, setMessage] = useState(null);
 
-    const fetchAvailableSlots = (date) => {
+    useEffect(() => {
+        if (!user) {
+            navigate('/login', { state: { from: location } });
+        }
+    }, [user, navigate, location]);
+
+    useEffect(() => {
+        const fetchDoctor = async () => {
+            setIsLoading(true);
+            try {
+                const response = await fetch(`/api/doctors/${doctorId}`);
+                if (!response.ok) throw new Error('Error al cargar doctor');
+                const data = await response.json();
+                setDoctor(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchDoctor();
+    }, [doctorId]);
+
+    const fetchAvailableSlots = async (date) => {
         setIsLoading(true);
         setError(null);
         setSelectedTimeSlot(null);
         setAvailableSlots([]);
 
-        setTimeout(() => {
-            if (date) {
-                setAvailableSlots(MOCK_SLOTS);
-            }
+        try {
+            const response = await fetch(`/api/doctors/${doctorId}/slots?date=${date}`);
+            if (!response.ok) throw new Error('Error al cargar slots');
+            const slots = await response.json();
+            setAvailableSlots(slots);
+        } catch (err) {
+            setError(err.message);
+        } finally {
             setIsLoading(false);
-        }, 800);
+        }
     };
 
     useEffect(() => {
-        if (selectedDate) {
+        if (selectedDate && doctor) {
             fetchAvailableSlots(selectedDate);
         }
-    }, [selectedDate]); 
+    }, [selectedDate, doctor]);
 
     const handleBooking = async () => {
+        if (!user) {
+            setError("Debes iniciar sesión para agendar una cita.");
+            navigate('/login');
+            return;
+        }
+
         if (!selectedDate || !selectedTimeSlot) {
             setError("Debes seleccionar una fecha y una hora para la cita.");
             return;
@@ -69,34 +94,42 @@ const BookingPage = () => {
         try {
             const bookingData = {
                 doctorId: doctorId,
-                doctorName: doctor.name, 
-                doctorEmail: doctor.email || `${doctor.name.toLowerCase().replace(/[^a-z]/g, '')}@clinic.com`,
-                patientId: MOCK_USER.id,
-                patientName: MOCK_USER.name,
-                patientEmail: MOCK_USER.email,
+                doctorName: doctor.name,
+                doctorEmail: doctor.email,
+                patientId: user._id,
+                patientName: user.name,
+                patientEmail: user.email,
                 date: selectedDate,
                 time: selectedTimeSlot,
                 specialization: doctor.specialization,
                 status: 'Confirmada',
             };
 
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            const mockAppointmentId = Math.random().toString(36).substring(2, 15);
-            
-            setMessage(`Redirigiendo a la confirmación...`);
-            
-            navigate(`/appointment-confirmation/${mockAppointmentId}`, { 
-                state: { booking: bookingData }
+            const response = await fetch('/api/appointments', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(bookingData)
             });
 
+            if (!response.ok) throw new Error('Error al crear cita');
+
+            const data = await response.json();
+            setMessage(`Redirigiendo a la confirmación...`);
+            navigate(`/appointment-confirmation/${data._id}`, {
+                state: { booking: bookingData }
+            });
         } catch (err) {
             console.error("Error al agendar la cita:", err);
             setError("Error al procesar la reserva. Por favor, inténtalo de nuevo.");
         } finally {
-            setTimeout(() => setIsLoading(false), 2000); 
+            setIsLoading(false);
         }
     };
-    
+
+    if (!doctor) {
+        return <div className="min-h-screen bg-gray-50 flex items-center justify-center">Cargando doctor...</div>;
+    }
+
     const today = new Date().toISOString().split('T')[0];
 
     return (
