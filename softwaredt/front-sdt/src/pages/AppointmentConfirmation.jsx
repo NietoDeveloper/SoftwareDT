@@ -52,7 +52,6 @@ const AppointmentConfirmation = () => {
 
                 setAppointmentData(realData);
 
-                // Log para verificar que se carga la data real, como solicitaste.
                 console.log('Cita real cargada:', realData); 
 
             } catch (err) {
