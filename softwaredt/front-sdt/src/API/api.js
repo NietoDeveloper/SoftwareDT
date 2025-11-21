@@ -1,70 +1,90 @@
 import axios from 'axios';
-import refreshAccessToken from '../utils/refreshAccess';
+import refreshAccessToken from './refreshAccess'; 
 
 const BASE_URL = 'http://localhost:5000/api';
 
+// 1. Instancia Pública (Para rutas abiertas)
 const axiosPublic = axios.create({
-    baseURL: `${BASE_URL}/user`,
+    baseURL: BASE_URL,
 });
 
+// 2. Instancia Auth (Para Login/Logout/Refresh, maneja cookies)
 const axiosAuth = axios.create({
     baseURL: BASE_URL,
     withCredentials: true,
 });
 
-const axiosPrivateUsers = axios.create({
-    baseURL: `${BASE_URL}/user`,
+// 3. Instancia Privada (Para rutas protegidas, usa interceptores)
+const axiosPrivate = axios.create({
+    baseURL: BASE_URL,
 });
 
-const axiosPrivateDoctor = axios.create({
-    baseURL: `${BASE_URL}/doctor`,
-});
+// Variable para asegurar que el interceptor solo se configure una vez
+let interceptorsConfigured = false;
 
-const setupInterceptors = (setToken) => {
+// 🔑 CAMBIO CLAVE: setupInterceptors ahora espera una función de logout completa (onLogout)
+const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
+    // Evitar configurar los interceptores múltiples veces
+    if (interceptorsConfigured) return;
+    
+    // --- Interceptor de Solicitud (Añadir el Access Token) ---
+    axiosPrivate.interceptors.request.use(
+        config => {
+            const token = getAccessToken(); 
 
-    const interceptor = axiosPrivateInstance => {
-        
-        axiosPrivateInstance.interceptors.request.use(
-            config => {
-                const token = localStorage.getItem('accessToken'); 
-                if (token && !config.headers.Authorization) {
-                    config.headers.Authorization = `Bearer ${token}`;
-                }
-                return config;
-            },
-            error => Promise.reject(error)
-        );
-
-        axiosPrivateInstance.interceptors.response.use(
-            (response) => response,
-            async (error) => {
-                const { config, response: { status } } = error;
-                const originalRequest = config;
-
-                if (status === 401 && !originalRequest._retry) {
-                    originalRequest._retry = true;
-
-                    try {
-                        const accessToken = await refreshAccessToken(setToken);
-                        originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
-                        return axiosPrivateInstance(originalRequest);
-                    } catch (refreshError) {
-                        return Promise.reject(refreshError);
-                    }
-                }
-                return Promise.reject(error);
+            if (token && !config.headers.Authorization) {
+                config.headers.Authorization = `Bearer ${token}`;
             }
-        );
-    };
+            return config;
+        },
+        error => Promise.reject(error)
+    );
+    
+    // --- Interceptor de Respuesta (Manejar 401 y Refrescar Token) ---
+    axiosPrivate.interceptors.response.use(
+        (response) => response,
+        async (error) => {
+            const prevRequest = error.config;
+            const status = error.response?.status;
+            
+            // 🛑 Condición de reintento: status 401 (Unauthorized) y no ha reintentado antes.
+            if (status === 401 && !prevRequest._retry) {
+                prevRequest._retry = true;
 
-    interceptor(axiosPrivateUsers);
-    interceptor(axiosPrivateDoctor);
+                try {
+                    // Obtiene el nuevo Access Token
+                    // Se asume que refreshAccessToken SOLO devuelve el nuevo token, sin setearlo globalmente.
+                    const newAccessToken = await refreshAccessToken();
+                    
+                    // 1. Almacena el nuevo token en el estado de React (Contexto)
+                    setAccessToken(newAccessToken); 
+
+                    // 2. Actualizar el encabezado y reenviar la solicitud fallida
+                    prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+                    return axiosPrivate(prevRequest); 
+
+                } catch (refreshError) {
+                    // Si el refresh falla (ej: 401 del endpoint /refresh, o token expirado)
+                    console.error("Token refresh failed, forcing logout:", refreshError);
+                    
+                    // 🔑 CORRECCIÓN APLICADA: Disparamos la acción de logout provista por el Contexto.
+                    if (onLogout) {
+                        onLogout(); 
+                    }
+                    return Promise.reject(refreshError);
+                }
+            }
+            // Rechazar otros errores
+            return Promise.reject(error);
+        }
+    );
+
+    interceptorsConfigured = true;
 };
 
 export { 
     axiosPublic,
     axiosAuth, 
-    axiosPrivateUsers, 
-    axiosPrivateDoctor,
+    axiosPrivate,
     setupInterceptors 
 };

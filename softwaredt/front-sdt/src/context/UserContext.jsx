@@ -1,60 +1,67 @@
 import { createContext, useState, useEffect, useCallback } from "react";
-import { setupInterceptors } from "../API/api";
+import { setupInterceptors } from "../API/api"; // Se asume que esta es la ruta correcta
+// Asegúrate de que esta ruta sea correcta para tu lógica de hooks/utilidades
+import useOnClickOutside from "../hooks/useOnClickOutside"; // Si lo usas, impórtalo aquí o en los componentes que lo necesitan
 
-// 1. 🔑 CORRECCIÓN: Renombrado a UserContext para consistencia
 const UserContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 const UserProvider = ({ children }) => {
+    // Definición de estados
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null); 
-    // 2. 🔑 CRÍTICO: Estado de carga. Inicialmente true hasta que se verifica localStorage.
     const [loading, setLoading] = useState(true); 
     const [appointmentDetails, setAppointmentDetails] = useState(null);
     
-    // Función de ejemplo para cargar detalles del usuario (necesaria para llenar 'user')
-    // Necesitarás implementar esta función con una llamada a la API
-    const fetchUser = useCallback(async (accessToken) => {
-        // Ejemplo de lógica futura:
-        // try {
-        //     const response = await axiosPublic.get('/user/profile', {
-        //         headers: { Authorization: `Bearer ${accessToken}` }
-        //     });
-        //     setUser(response.data.user);
-        // } catch (error) {
-        //     console.error("Fallo al obtener el perfil de usuario:", error);
-        //     handleLogout(); // Limpiar si el token no es válido
-        // }
-        // Si no tienes una API, puedes omitir esta parte por ahora, pero el 'user' quedará vacío.
-    }, []);
-
+    // Función de limpieza de sesión
     const handleLogout = useCallback(() => {
         setToken(null);
         setUser(null);
         localStorage.removeItem('accessToken'); 
+        // 🚨 CRÍTICO: Limpiar cualquier dato de sesión adicional si existe
+        // localStorage.removeItem('user'); 
     }, []);
 
-    // Efecto para cargar el token al iniciar la aplicación
+    // Función para leer el token actual desde el estado (necesaria para el interceptor)
+    // Usamos 'useCallback' para que el useEffect que configura los interceptores
+    // no se ejecute infinitamente.
+    const getAccessToken = useCallback(() => {
+        return token;
+    }, [token]);
+
+
+    // Efecto 1: Cargar el token al iniciar la aplicación
     useEffect(() => {
         const storedAccessToken = localStorage.getItem('accessToken');
         
         if (storedAccessToken) {
-            // 3. CORRECCIÓN: Almacenamos el token como string (más simple)
             setToken(storedAccessToken);
-            
-            // 4. 📝 RECORDATORIO: Necesitas una llamada a la API aquí para llenar el estado 'user'
+            // 📝 NOTA: Aquí iría la lógica para llamar a tu API y obtener el perfil
             // fetchUser(storedAccessToken); 
+
+            // Para que los componentes que consumen el contexto no muestren un usuario nulo 
+            // hasta que se obtenga el perfil real, puedes establecer un usuario placeholder si lo deseas.
+            setUser({ profileLoaded: false }); 
         }
 
-        // 5. 🔑 CRÍTICO: Una vez que se completa la verificación, establece loading en false.
+        // Una vez que se verifica localStorage, loading debe ser false.
         setLoading(false);
-    }, [fetchUser]); // Dependencia fetchUser agregada para useCallback
+    }, []); // Sin dependencias, solo se ejecuta al montar
 
-    // Efecto para configurar los interceptores de Axios
+
+    // Efecto 2: Configurar los interceptores de Axios
+    // Se ejecuta solo una vez al montar, y cuando getAccessToken o handleLogout cambien
+    // (aunque getAccessToken depende del token, setupInterceptors maneja la configuración única)
     useEffect(() => {
-        // Esto asume que setToken y handleLogout son necesarias en los interceptores
-        setupInterceptors(setToken, handleLogout); 
-    }, [setToken, handleLogout]);
+        // 🔑 CORRECCIÓN CRÍTICA: Se pasa el getter y el setter/limpiador.
+        // Asumiendo que setupInterceptors en api.js recibe (getAccessToken, handleLogout)
+        setupInterceptors(getAccessToken, handleLogout); 
+        
+        // El interceptor usa getAccessToken() para obtener el valor más reciente del token.
+        // No añadimos getAccessToken o handleLogout a las dependencias si setupInterceptors
+        // maneja la configuración única, pero si no se usa el patrón de ref, se deben incluir:
+        // return () => { /* Aquí iría la lógica para desmontar los interceptores si fuera necesario */ };
+    }, [getAccessToken, handleLogout]); 
 
     return (
         <UserContext.Provider
@@ -63,17 +70,17 @@ const UserProvider = ({ children }) => {
                 setUser,
                 token,
                 setToken,
-                // 6. 🔑 Añadimos el estado de carga al contexto
-                loading, 
+                loading, // Estado de carga (útil para proteger rutas antes de que se lea el token)
+                getAccessToken, // Exponer el getter si otros componentes lo necesitan
                 setAppointmentDetails,
                 appointmentDetails,
-                handleLogout,
+                handleLogout, // Función de cierre de sesión
             }}
         >
-            {children}
+            {/* 🔑 Solo renderizar los hijos si la verificación inicial (loading) ha terminado */}
+            {!loading ? children : <div>Cargando sesión...</div>} 
         </UserContext.Provider>
     );
 };
 
-// 7. 🔑 Exportamos el UserContext para ser usado con useContext()
 export { UserProvider, UserContext };

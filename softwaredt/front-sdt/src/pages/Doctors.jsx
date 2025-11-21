@@ -3,28 +3,31 @@ import { useQuery } from "@tanstack/react-query";
 import { BsArrowRight } from "react-icons/bs";
 import { toast } from "react-toastify";
 // Importamos la instancia de Axios ya configurada con el token
-import axiosInstance from "../utils/axiosInstance"; // Asegúrate de ajustar la ruta de importación
+import axiosInstance from "../utils/axiosInstance"; // Ajusta esta ruta si es necesario
 
 const DoctorList = () => {
   const navigate = useNavigate();
 
   const getDoctors = async () => {
     try {
-      // 🚀 ¡CORRECCIÓN APLICADA! Usamos axiosInstance para enviar el token
+      // Usamos axiosInstance para enviar el token a la ruta /api/user/doctors
       const res = await axiosInstance.get("/doctors"); 
+      // El backend devuelve res.data.doctors o solo res.data
       return res.data.doctors || res.data || [];
     } catch (error) {
       // Manejo de errores de autenticación (401) y 403 (Forbidden)
       if (error.response) {
         if (error.response.status === 401 || error.response.status === 403) {
-          // Si el token es inválido (401) o no tiene permisos (403)
+          // Si el token es inválido o no tiene permisos, se notifica y se limpia la sesión.
           toast.error("Sesión expirada o acceso denegado. Por favor, inicia sesión.");
-          localStorage.removeItem("token"); // Opcional: Limpiar el token malo
+          localStorage.removeItem("token");
+          // Si estás usando otros estados de sesión (como context o Redux), límpialos también.
           navigate("/login"); 
         } else {
           toast.error("Fallo al cargar la lista de doctores. Error: " + error.response.status);
         }
       } else {
+        // Error de red (servidor no disponible, CORS, etc.)
         toast.error("Fallo de red o servidor no disponible.");
       }
       throw error;
@@ -37,7 +40,7 @@ const DoctorList = () => {
     initialData: [],
   });
 
-  // ... (El resto del código de renderizado permanece igual)
+  // ... (El resto del código de renderizado es correcto)
   if (isLoading) return <h1 className="text-center py-10 text-xl font-bold">Cargando....</h1>;
   if (error) return <h1 className="text-center py-10 text-red-600 text-xl font-bold">Error cargando los Datos.</h1>;
 
