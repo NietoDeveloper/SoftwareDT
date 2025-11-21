@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+// 🛑 IMPORTACIÓN CRÍTICA: Importamos la conexión específica que maneja la DB de usuarios.
+const { userDB } = require('../config/dbConn'); 
 
 const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
@@ -7,7 +9,7 @@ const userSchema = new Schema({
     password: { 
         type: String, 
         required: true, 
-        select: false // 👈 CORRECCIÓN CLAVE: No devuelve la contraseña por defecto en las consultas.
+        select: false // No devuelve la contraseña por defecto en las consultas.
     },
     phone: { type: String },
     photo: { type: String, default: "https://www.pngarts.com/explore/215296" },
@@ -19,9 +21,11 @@ const userSchema = new Schema({
     },
     refreshToken: {
         type: [String],
-        index: true // 👈 MEJORA: Crea un índice para búsquedas rápidas durante el login/logout.
+        index: true // Crea un índice para búsquedas rápidas durante el login/logout.
     }
-}, { timestamps: true }); // 👈 MEJORA: Añade campos createdAt y updatedAt automáticamente.
+}, { timestamps: true }); // Añade campos createdAt y updatedAt automáticamente.
 
 
-module.exports = mongoose.model('User', userSchema);
+// 🛑 CORRECCIÓN CLAVE: Usamos userDB.model() en lugar de mongoose.model().
+// Esto vincula el esquema de usuario a la conexión de base de datos correcta.
+module.exports = userDB.model('User', userSchema);
