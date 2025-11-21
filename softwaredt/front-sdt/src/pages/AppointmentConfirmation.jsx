@@ -175,7 +175,6 @@ const AppointmentConfirmation = () => {
 
                 </div>
 
-                {/* Acciones */}
                 <div className="mt-8 flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
                     <Link
                         to="/dashboard"
