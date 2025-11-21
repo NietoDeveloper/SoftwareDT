@@ -43,15 +43,37 @@ const userRegister = asyncHandler(async (req, res) => {
 const userLogin = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
+    // --- CÓDIGO DE DEPURACIÓN TEMPORAL ---
+    console.log('--- LOGIN ATTEMPT ---');
+    console.log(`Received email: ${email}`);
+    console.log(`Received password (WARNING: Plaintext): ${password}`); 
+    // ---------------------------------------
+
     if (!email || !password) {
         return res.status(400).json({ message: 'Login credentials required!' });
     }
 
     // Encuentra el usuario e incluye explícitamente el hash de la contraseña (select('+password'))
     const foundUser = await User.findOne({ email }).select('+password').exec();
+    
+    // --- CÓDIGO DE DEPURACIÓN TEMPORAL ---
+    console.log(`User found in DB: ${!!foundUser}`);
+    // ---------------------------------------
 
-    // Si el usuario no existe o las credenciales son inválidas
-    if (!foundUser || !(await bcrypt.compare(password, foundUser.password))) {
+    // Si el usuario no existe O las credenciales son inválidas
+    if (!foundUser) {
+        console.log('DEBUG: User not found in database.');
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+    
+    const match = await bcrypt.compare(password, foundUser.password);
+    
+    // --- CÓDIGO DE DEPURACIÓN TEMPORAL ---
+    console.log(`Password match result: ${match}`);
+    // ---------------------------------------
+
+    if (!match) {
+        console.log('DEBUG: Password mismatch.');
         return res.status(401).json({ message: 'Unauthorized' });
     }
 
@@ -109,13 +131,13 @@ const updateUserDetails = asyncHandler(async (req, res) => {
     if (name) foundUser.name = name;
     if (password) foundUser.password = await bcrypt.hash(password, 10);
     if (bloodType) foundUser.bloodType = bloodType;
-    if (gender) foundUser.gender = gender; // <--- CONTINUACIÓN Y CIERRE DEL BLOQUE AQUÍ
+    if (gender) foundUser.gender = gender;
     if (phone) foundUser.phone = phone;
     if (photo) foundUser.photo = photo;
 
     await foundUser.save();
     res.status(200).json({ message: 'User details updated successfully!' });
-}); // <--- LLAVE DE CIERRE FALTANTE
+}); // <-- AÑADIDA LLAVE DE CIERRE FALTANTE
 
 // ----------------------------------------------------------------------
 // --- 4. Cierre de Sesión (handleUserLogout) ---
@@ -150,6 +172,6 @@ const handleUserLogout = asyncHandler(async (req, res) => {
         secure: process.env.NODE_ENV === 'production' || true,
     });
     res.sendStatus(204);
-}); // <--- LLAVE DE CIERRE FALTANTE
+}); // <-- AÑADIDA LLAVE DE CIERRE FALTANTE
 
 module.exports = { userRegister, userLogin, updateUserDetails, handleUserLogout};
