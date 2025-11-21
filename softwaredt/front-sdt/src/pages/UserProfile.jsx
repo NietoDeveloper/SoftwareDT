@@ -27,7 +27,7 @@ const UserProfile = () => {
     // Función para ir al panel de citas
     const goToAppointments = () => {
         // Asumiendo que esta es la ruta para las citas del cliente
-        navigate('/client/appointments'); 
+        navigate('/pages/clientappointments'); 
     };
 
     // Obtenemos la inicial del nombre para el avatar
