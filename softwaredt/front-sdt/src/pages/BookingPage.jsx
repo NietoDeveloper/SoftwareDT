@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 const MOCK_USER = { id: 'patient-789', name: 'Usuario Ejemplo', email: 'usuario.ejemplo@example.com' }; 
