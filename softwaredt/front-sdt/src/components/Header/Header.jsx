@@ -94,9 +94,8 @@ const Header = () => {
                                     to={link.path}
                                     className={({ isActive }) =>
                                         isActive
-                                            ? "text-black font-bold text-xl leading-7"
-                                            // 🛠️ Corrección: 'text-withe' probablemente debería ser 'text-white'
-                                            : "text-white font-semi-bold text-xl leading-7 hover:text-yellow-400" 
+                                            ? "text-black font-bold text-xl leading-7" // 👈 Activo: Negro
+                                            : "text-black font-semi-bold text-xl leading-7 hover:text-yellow-400" // 👈 Por defecto: Negro | Hover: Dorado
                                     }
                                 >
                                     {link.name}
@@ -128,10 +127,10 @@ const Header = () => {
                         <button
                             onClick={user ? handleLogOut : () => navigate("/login")}
                             className="bg-blue-700 text-white px-4 py-2 flex items-center
-                                rounded-full font-bold shadow-2xl 
-                                transition-all duration-300 ease-in-out transform
-                                hover:bg-yellow-400 hover:text-gray-900 hover:scale-105 hover:shadow-glow-xl
-                                focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
+                            rounded-full font-bold shadow-2xl 
+                            transition-all duration-300 ease-in-out transform
+                            hover:bg-yellow-400 hover:text-gray-900 hover:scale-105 hover:shadow-glow-xl
+                            focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
                             style={{
                                 boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)", 
                                 "--tw-shadow-glow-xl":
@@ -149,6 +148,8 @@ const Header = () => {
                     onClick={handleMobileMenu}
                     className="block md:hidden cursor-pointer"
                 >
+                    {/* 💡 Sugerencia: Ajusta el color de los iconos FaTimes y FaBars aquí si es necesario, 
+                         por ejemplo: <FaTimes size={25} className="text-black" /> */}
                     {openMenu ? <FaTimes size={25} /> : <FaBars size={28} />}
                 </div>
 
@@ -162,7 +163,8 @@ const Header = () => {
                                 <li key={index}>
                                     <NavLink
                                         to={link.path}
-                                        className="text-2xl font-medium text-blue hover:text-yellow-400"
+                                        // 👈 Aquí se aplica: Por defecto: Negro | Hover: Dorado
+                                        className="text-2xl font-medium text-black hover:text-yellow-400" 
                                         onClick={handleMobileMenu}
                                     >
                                         {link.name}
