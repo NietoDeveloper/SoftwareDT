@@ -142,7 +142,6 @@ const AppointmentConfirmation = () => {
                         </div>
                     </div>
 
-                    {/* Fila de Fecha y Hora */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <DetailItem 
                             icon={<Calendar className="h-5 w-5" />}
