@@ -105,7 +105,6 @@ const AppointmentConfirmation = () => {
         );
     }
     
-    // Si no hay data y no hay error (caso muy raro, pero seguro)
     if (!appointmentData) {
         return (
             <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50 font-sans">
