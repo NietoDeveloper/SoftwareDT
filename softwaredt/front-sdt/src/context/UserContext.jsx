@@ -1,7 +1,8 @@
-import { createContext, useState, useEffect, useCallback } from "react";
-import { setupInterceptors } from "../API/api"; // Se asume que esta es la ruta correcta
-// Asegúrate de que esta ruta sea correcta para tu lógica de hooks/utilidades
-import useOnClickOutside from "../hooks/useOnClickOutside"; // Si lo usas, impórtalo aquí o en los componentes que lo necesitan
+import { createContext, useState, useEffect, useCallback, useRef } from "react";
+import { setupInterceptors } from "../API/api"; 
+// 🔑 Importación de hook: Si el archivo existe en la ruta '../hooks/useOnClickOutside', descomenta.
+// Si no existe, déjalo comentado y resuelve la dependencia de Header.jsx.
+// import useOnClickOutside from "../hooks/useOnClickOutside"; 
 
 const UserContext = createContext();
 
@@ -13,24 +14,27 @@ const UserProvider = ({ children }) => {
     const [loading, setLoading] = useState(true); 
     const [appointmentDetails, setAppointmentDetails] = useState(null);
     
+    // 💡 Paso 1: Usar useRef para estabilizar el token
+    const tokenRef = useRef(token);
+    
+    // Sincroniza la Referencia (Ref) con el estado (token)
+    useEffect(() => {
+        tokenRef.current = token;
+    }, [token]);
+
     // Función de limpieza de sesión
     const handleLogout = useCallback(() => {
         setToken(null);
         setUser(null);
         localStorage.removeItem('accessToken'); 
-        // 🚨 CRÍTICO: Limpiar cualquier dato de sesión adicional si existe
-        // localStorage.removeItem('user'); 
-    }, []);
+    }, []); // Dependencias vacías, solo se crea una vez
 
-    // Función para leer el token actual desde el estado (necesaria para el interceptor)
-    // Usamos 'useCallback' para que el useEffect que configura los interceptores
-    // no se ejecute infinitamente.
+    // 💡 Paso 2: El Getter usa el Ref (estable, no cambia con 'token')
     const getAccessToken = useCallback(() => {
-        return token;
-    }, [token]);
+        return tokenRef.current; // Devuelve el valor más reciente del token
+    }, []); // Dependencias vacías, solo se crea una vez
 
-
-    // Efecto 1: Cargar el token al iniciar la aplicación
+    // Efecto 1: Cargar el token al iniciar la aplicación (Sin cambios, ya era correcto)
     useEffect(() => {
         const storedAccessToken = localStorage.getItem('accessToken');
         
@@ -39,29 +43,27 @@ const UserProvider = ({ children }) => {
             // 📝 NOTA: Aquí iría la lógica para llamar a tu API y obtener el perfil
             // fetchUser(storedAccessToken); 
 
-            // Para que los componentes que consumen el contexto no muestren un usuario nulo 
-            // hasta que se obtenga el perfil real, puedes establecer un usuario placeholder si lo deseas.
             setUser({ profileLoaded: false }); 
         }
 
-        // Una vez que se verifica localStorage, loading debe ser false.
         setLoading(false);
-    }, []); // Sin dependencias, solo se ejecuta al montar
+    }, []); 
 
 
     // Efecto 2: Configurar los interceptores de Axios
-    // Se ejecuta solo una vez al montar, y cuando getAccessToken o handleLogout cambien
-    // (aunque getAccessToken depende del token, setupInterceptors maneja la configuración única)
+    // 💡 Paso 3: setupInterceptors se llama con los 3 argumentos necesarios.
     useEffect(() => {
-        // 🔑 CORRECCIÓN CRÍTICA: Se pasa el getter y el setter/limpiador.
-        // Asumiendo que setupInterceptors en api.js recibe (getAccessToken, handleLogout)
-        setupInterceptors(getAccessToken, handleLogout); 
+        // La función getAccessToken es ESTABLE (gracias al useCallback y useRef).
+        // La función setToken es ESTABLE.
+        // La función handleLogout es ESTABLE (gracias al useCallback).
+        // Por lo tanto, este useEffect solo se ejecuta al montar el componente.
         
-        // El interceptor usa getAccessToken() para obtener el valor más reciente del token.
-        // No añadimos getAccessToken o handleLogout a las dependencias si setupInterceptors
-        // maneja la configuración única, pero si no se usa el patrón de ref, se deben incluir:
-        // return () => { /* Aquí iría la lógica para desmontar los interceptores si fuera necesario */ };
-    }, [getAccessToken, handleLogout]); 
+        // 🔑 CORRECCIÓN CRÍTICA: Se pasan los TRES argumentos.
+        setupInterceptors(getAccessToken, setToken, handleLogout); 
+        
+    }, [getAccessToken, setToken, handleLogout]); 
+    // Al ser las dependencias funciones useCallback y setState, este efecto se estabiliza.
+
 
     return (
         <UserContext.Provider
@@ -70,14 +72,14 @@ const UserProvider = ({ children }) => {
                 setUser,
                 token,
                 setToken,
-                loading, // Estado de carga (útil para proteger rutas antes de que se lea el token)
-                getAccessToken, // Exponer el getter si otros componentes lo necesitan
+                loading, 
+                getAccessToken, 
                 setAppointmentDetails,
                 appointmentDetails,
-                handleLogout, // Función de cierre de sesión
+                handleLogout, 
             }}
         >
-            {/* 🔑 Solo renderizar los hijos si la verificación inicial (loading) ha terminado */}
+            {/* 🔑 Bloquear la interfaz hasta que se verifique la sesión */}
             {!loading ? children : <div>Cargando sesión...</div>} 
         </UserContext.Provider>
     );
