@@ -10,7 +10,6 @@ const IconWrapper = ({ children, className }) => (
     </div>
 );
 
-// --- Componente principal de Confirmación de Cita ---
 const AppointmentConfirmation = () => {
     const { appointmentId } = useParams();
 
