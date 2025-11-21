@@ -130,8 +130,7 @@ const AppointmentConfirmation = () => {
                 </div>
 
                 <div className="space-y-4 border-t border-b border-gray-100 py-6">
-                    
-                    {/* Sección Doctor */}
+
                     <div className="flex items-center p-4 bg-blue-50/70 rounded-xl shadow-inner">
                         <IconWrapper>
                             <User className="h-6 w-6" />
