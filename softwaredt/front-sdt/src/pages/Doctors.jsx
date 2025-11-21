@@ -35,10 +35,8 @@ const DoctorList = () => {
     );
   }
 
-  const navigateToBooking = (e, doctor) => {
-    if (e) e.stopPropagation(); 
-    
-    navigate(`/book-appointment/${doctor._id}`, { state: { doctorData: doctor } });
+  const navigateToBooking = (doctorId) => {
+    navigate(`/book-appointment/${doctorId}`);
   };
 
   const containerClasses =
@@ -56,8 +54,8 @@ const DoctorList = () => {
         {doctors.map((doctor) => (
           <div
             key={doctor._id}
-            className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center text-center mt-[60px] h-[300px]" 
-            onClick={() => navigateToBooking(null, doctor)}
+            className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center text-center h-[300px]" 
+            onClick={() => navigateToBooking(doctor._id)}
           >
             <h1 className="text-xl font-semibold mb-2">{doctor.name}</h1>
             <h2 className="text-gray-600 mb-2">{doctor.specialization}</h2>
@@ -68,7 +66,10 @@ const DoctorList = () => {
             
             <div
               className="w-10 h-10 rounded-full border border-solid border-gray-900 flex items-center justify-center bg-transparent group-hover:bg-blue-600 transition-colors mt-auto cursor-pointer"
-              onClick={(e) => navigateToBooking(e, doctor)}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigateToBooking(doctor._id);
+              }}
             >
               <BsArrowRight className="text-gray-900 group-hover:text-white transition-colors" />
             </div>
