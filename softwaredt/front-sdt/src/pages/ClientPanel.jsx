@@ -204,7 +204,6 @@ const App = () => {
 
                 <div className="mt-10 text-center flex flex-col sm:flex-row justify-center gap-4">
                     <button
-                        // Ruta corregida a Mis Citas
                         onClick={() => navigate("/client/appointments")}
                         className="py-3 px-8 bg-green-600 text-white font-bold rounded-xl shadow-lg shadow-green-500/30 hover:bg-green-700 transition duration-300 transform hover:-translate-y-0.5"
                     >
