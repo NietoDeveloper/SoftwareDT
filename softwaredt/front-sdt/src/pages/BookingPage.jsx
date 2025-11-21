@@ -46,7 +46,6 @@ const BookingPage = () => {
 
         setTimeout(() => {
             if (date) {
-                // Simulación: Los slots están disponibles si se selecciona una fecha
                 setAvailableSlots(MOCK_SLOTS);
             }
             setIsLoading(false);
