@@ -2,11 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-// mongoose se mantiene para tipos y utilidades, pero la conexión ahora viene de dbConn
 const mongoose = require('mongoose'); 
 
-// 🎯 CAMBIO CLAVE 1: Importamos la conexión userDB, la cual ya está inicializada al hacer require.
-// Esto asume que dbConn.js se encarga de llamar a initializeConnection para userDB y citaDB.
+// Importamos la conexión userDB
 const { userDB } = require('./config/dbConn'); 
 
 const corsOptions = require('./config/corsOptions');
@@ -26,12 +24,14 @@ app.use(cookieParser());
 app.get('/', (req, res) => {
     res.status(200).json({
         status: 'Server Operational',
-        message: 'Welcome to the API root. Use /api/doctors to fetch the list.'
+        message: 'Welcome to the API root.'
     });
 });
 
-app.use('/api/doctors', require('./routes/allDoctors')); 
-
+// ----------------------------------------------------
+// 1. RUTAS PÚBLICAS (Autenticación y Registro)
+// Estas rutas NO usan el middleware verifyAccess
+// ----------------------------------------------------
 app.use('/api/user/register', require('./routes/userRoutes/userRegister'));
 app.use('/api/user/login', require('./routes/userRoutes/userLogin'));
 app.use('/api/user/refresh', require('./routes/userRoutes/userRefresh'));
@@ -42,9 +42,21 @@ app.use('/api/doctor/login', require('./routes/doctorRoutes/doctorLogin'));
 app.use('/api/doctor/refresh', require('./routes/doctorRoutes/doctorRefresh'));
 app.use('/api/doctor/logout', require('./routes/doctorRoutes/doctorLogout'));
 
+// Rutas de archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
+// ----------------------------------------------------
+// 2. MIDDLEWARE DE AUTENTICACIÓN (Rutas Protegidas)
+// Todas las rutas definidas después de esta línea requerirán un JWT válido
+// ----------------------------------------------------
 app.use(verifyAccess); 
+
+// ----------------------------------------------------
+// 3. RUTAS PROTEGIDAS (Requieren Token Válido)
+// CAMBIO CLAVE: Mover la ruta de los doctores aquí. 
+// Además, la ruta se ajusta al formato que usa el frontend: /api/user/doctors
+// ----------------------------------------------------
+app.use('/api/user/doctors', require('./routes/allDoctors')); // <-- ¡CORREGIDO!
 
 app.use('/api/user/update', require('./routes/userRoutes/userUpdateRoute'));
 app.use('/api/user/appointment', require('./routes/appointmentRoute'));
@@ -53,10 +65,13 @@ app.use('/api/user/review', require('./routes/reviewRoute'));
 app.use('/api/doctor/update', require('./routes/doctorRoutes/doctorUpdate'));
 app.use('/api/doctor/profile', require('./routes/bookingRoute'));
 
+// ----------------------------------------------------
+// 4. MANEJO DE ERRORES
+// ----------------------------------------------------
 app.use(unknownEndpoint);
 app.use(errorHandler);
 
-// 🎯 CAMBIO CLAVE 3: Usamos el listener de la conexión específica (userDB) en lugar del global de Mongoose.
+// Iniciamos el servidor solo después de que la conexión principal esté abierta
 userDB.once('open', () => {
     console.log('✅ Conexión principal (USUARIOS) lista. Servidor iniciando.');
     app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
