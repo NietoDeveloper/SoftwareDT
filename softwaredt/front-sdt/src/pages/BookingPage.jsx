@@ -23,7 +23,6 @@ const BookingPage = () => {
     const navigate = useNavigate();
     const location = useLocation(); 
     
-    // Simulación de los datos del doctor (usando datos de ejemplo si no vienen por state)
     const doctor = useMemo(() => {
         const defaultDoc = { name: "Dr. Default", specialization: "General", email: "default.doctor@clinic.com" };
         return location.state?.doctorData || defaultDoc;
