@@ -70,9 +70,7 @@ const AppointmentConfirmation = () => {
             setIsLoading(false);
         }
 
-    }, [appointmentId]); // Se ejecuta cada vez que cambia el ID de la URL
-
-    // 4. Renderizado condicional
+    }, [appointmentId]); 
 
     if (isLoading) {
         return (
