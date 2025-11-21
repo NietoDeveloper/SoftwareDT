@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, Mail, User, Clock, Stethoscope, BriefcaseMedical } from 'lucide-react';
 
-// --- Iconos reutilizables de Lucide ---
-
 const IconWrapper = ({ children, className }) => (
     <div className={`p-3 rounded-full bg-blue-100 text-blue-600 flex-shrink-0 ${className}`}>
         {children}
