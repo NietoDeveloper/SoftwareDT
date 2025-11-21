@@ -22,7 +22,6 @@ const axiosPrivate = axios.create({
 // Variable para asegurar que el interceptor solo se configure una vez
 let interceptorsConfigured = false;
 
-// 🔑 CAMBIO CLAVE: setupInterceptors ahora espera una función de logout completa (onLogout)
 const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
     // Evitar configurar los interceptores múltiples veces
     if (interceptorsConfigured) return;
@@ -53,7 +52,6 @@ const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
 
                 try {
                     // Obtiene el nuevo Access Token
-                    // Se asume que refreshAccessToken SOLO devuelve el nuevo token, sin setearlo globalmente.
                     const newAccessToken = await refreshAccessToken();
                     
                     // 1. Almacena el nuevo token en el estado de React (Contexto)
@@ -67,7 +65,7 @@ const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
                     // Si el refresh falla (ej: 401 del endpoint /refresh, o token expirado)
                     console.error("Token refresh failed, forcing logout:", refreshError);
                     
-                    // 🔑 CORRECCIÓN APLICADA: Disparamos la acción de logout provista por el Contexto.
+                    // Disparamos la acción de logout provista por el Contexto.
                     if (onLogout) {
                         onLogout(); 
                     }

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios'; // Simulación de axiosAuth
 import { Link, useNavigate } from 'react-router-dom';
+// 🔑 CORRECCIÓN DEL ERROR: Añadida la extensión .js para resolver el path
+import { axiosAuth } from '../API/api.js'; 
+import { toast } from 'react-toastify'; // Usamos toast para mensajes
 
 const RegisterIcon = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -16,7 +18,6 @@ const RegisterIcon = (props) => (
 const Doctorsignup = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
-    const [successMessage, setSuccessMessage] = useState(null);
     const [error, setError] = useState(null);
 
     const {
@@ -29,13 +30,15 @@ const Doctorsignup = () => {
     const onSubmit = async (data) => {
         setIsLoading(true);
         setError(null);
-        setSuccessMessage(null);
 
         try {
+            // 🔑 LLAMADA REAL A LA API: Usamos axiosAuth para el registro
+            const response = await axiosAuth.post('/doctor/signup', data);
 
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            setSuccessMessage('¡Registro exitoso! Serás redirigido al login en breve.');
+            // Mensaje de éxito
+            const successMsg = response.data.message || '¡Registro exitoso! Serás redirigido al login en breve.';
+            toast.success(successMsg);
+            
             reset();
             
             setTimeout(() => {
@@ -44,15 +47,26 @@ const Doctorsignup = () => {
 
         } catch (processError) {
             console.error("Doctor Signup failed", processError);
-            const errorMessage = processError?.response?.data?.error || processError?.message || 'Error al registrar el especialista.';
+            let errorMessage = 'Error al registrar el especialista.';
+
+            if (processError.response) {
+                // Errores de respuesta del servidor (ej: 409 Conflicto si el email ya existe)
+                errorMessage = processError.response.data.message || processError.response.data.error || errorMessage;
+            } else if (processError.request) {
+                // Error de red (servidor no responde)
+                errorMessage = "Fallo de red. El servidor no está disponible.";
+            }
+            
+            toast.error(errorMessage);
             setError(errorMessage);
         } finally {
             setIsLoading(false);
         }
     };
     
-    return (
+    // Eliminé successMessage del estado y uso toastify para una mejor UX.
 
+    return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50/70 p-4 sm:p-8 lg:p-12 font-sans transition-all duration-300">
             <div className="w-full max-w-5xl flex flex-col md:flex-row bg-white shadow-2xl rounded-2xl p-6 sm:p-10 lg:p-12 transition-all duration-300 overflow-hidden">
                 
@@ -120,15 +134,10 @@ const Doctorsignup = () => {
                                 {error}
                             </div>
                         )}
-                        {successMessage && (
-                            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg relative mb-4 font-semibold text-sm">
-                                {successMessage}
-                            </div>
-                        )}
 
                         <button
                             type="submit"
-                            disabled={isLoading || successMessage}
+                            disabled={isLoading}
                             className={`w-full py-3.5 bg-green-600 text-white rounded-xl font-bold shadow-lg shadow-green-500/30 transition-all duration-300 flex items-center justify-center ${
                                 isLoading 
                                 ? 'opacity-70 cursor-not-allowed' 
