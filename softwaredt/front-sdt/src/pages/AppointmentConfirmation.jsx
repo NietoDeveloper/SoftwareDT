@@ -12,7 +12,6 @@ const IconWrapper = ({ children, className }) => (
 
 // --- Componente principal de Confirmación de Cita ---
 const AppointmentConfirmation = () => {
-    // 1. Obtiene el ID de la cita de la URL
     const { appointmentId } = useParams();
 
     const [appointmentData, setAppointmentData] = useState(null);
