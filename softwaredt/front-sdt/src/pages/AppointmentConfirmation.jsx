@@ -114,7 +114,6 @@ const AppointmentConfirmation = () => {
         );
     }
 
-    // Estado de Éxito - Muestra la confirmación
     return (
         <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50 font-sans">
             <div className="w-full max-w-3xl bg-white p-6 sm:p-10 rounded-2xl shadow-2xl transform transition duration-500 hover:shadow-3xl">
