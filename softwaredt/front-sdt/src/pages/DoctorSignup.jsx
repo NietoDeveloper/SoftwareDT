@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-// 🔑 CORRECCIÓN DEL ERROR: Añadida la extensión .js para resolver el path
-import { axiosAuth } from '../API/api.js'; 
-import { toast } from 'react-toastify'; // Usamos toast para mensajes
+// 🛠️ CORRECCIÓN DE RESOLUCIÓN: Se eliminó la extensión .js para permitir que el bundler (ESBuild/Vite)
+// resuelva correctamente el path relativo del módulo 'api'.
+import { axiosAuth } from '../API/api'; 
+import { toast } from 'react-toastify'; 
 
+// Componente SVG para el Icono de Registro
 const RegisterIcon = (props) => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        className="h-6 w-6" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        strokeWidth="2" 
+        strokeLinecap="round" 
+        strokeLinejoin="round" 
+        {...props}
+        aria-hidden="true" // Añadido para accesibilidad, ya que el texto lo describe
+    >
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
         <polyline points="14 2 14 8 20 8"></polyline>
         <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -15,10 +28,10 @@ const RegisterIcon = (props) => (
     </svg>
 );
 
-const Doctorsignup = () => {
+const DoctorSignup = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null); 
 
     const {
         register,
@@ -32,14 +45,13 @@ const Doctorsignup = () => {
         setError(null);
 
         try {
-            // 🔑 LLAMADA REAL A LA API: Usamos axiosAuth para el registro
+            // Se asume que /doctor/signup es el endpoint correcto
             const response = await axiosAuth.post('/doctor/signup', data);
 
-            // Mensaje de éxito
             const successMsg = response.data.message || '¡Registro exitoso! Serás redirigido al login en breve.';
             toast.success(successMsg);
             
-            reset();
+            reset(); // Limpiamos el formulario después del éxito
             
             setTimeout(() => {
                 navigate('/doctor/login');
@@ -47,10 +59,10 @@ const Doctorsignup = () => {
 
         } catch (processError) {
             console.error("Doctor Signup failed", processError);
-            let errorMessage = 'Error al registrar el especialista.';
+            let errorMessage = 'Error al registrar el especialista. Inténtalo de nuevo.';
 
             if (processError.response) {
-                // Errores de respuesta del servidor (ej: 409 Conflicto si el email ya existe)
+                // Errores de respuesta del servidor (ej: 409 Conflicto)
                 errorMessage = processError.response.data.message || processError.response.data.error || errorMessage;
             } else if (processError.request) {
                 // Error de red (servidor no responde)
@@ -64,8 +76,6 @@ const Doctorsignup = () => {
         }
     };
     
-    // Eliminé successMessage del estado y uso toastify para una mejor UX.
-
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50/70 p-4 sm:p-8 lg:p-12 font-sans transition-all duration-300">
             <div className="w-full max-w-5xl flex flex-col md:flex-row bg-white shadow-2xl rounded-2xl p-6 sm:p-10 lg:p-12 transition-all duration-300 overflow-hidden">
@@ -112,7 +122,7 @@ const Doctorsignup = () => {
                                 id="email"
                                 className="border border-gray-300/60 p-3 rounded-xl focus:ring-green-500 focus:border-green-500 transition duration-200 shadow-inner hover:border-green-400/50 outline-none w-full"
                                 placeholder="ejemplo@software-dt.com"
-                                {...register('email', { required: 'El email es obligatorio' })}
+                                {...register('email', { required: 'El email es obligatorio', pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: "Formato de email incorrecto" } })}
                             />
                             {errors.email && <span className="text-red-600 text-sm mt-1 font-medium">{errors.email.message}</span>}
                         </div>
@@ -160,4 +170,4 @@ const Doctorsignup = () => {
     );
 };
 
-export default Doctorsignup;
+export default DoctorSignup;
