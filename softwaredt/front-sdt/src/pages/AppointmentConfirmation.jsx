@@ -168,7 +168,6 @@ const AppointmentConfirmation = () => {
                         />
                     </div>
 
-                    {/* Notas */}
                     <div className="p-4 bg-yellow-50/70 rounded-xl border border-yellow-200">
                         <p className="text-sm font-medium text-yellow-700 mb-1">Motivo/Notas</p>
                         <p className="text-gray-700">{appointmentData.notes}</p>
