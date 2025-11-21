@@ -1,9 +1,37 @@
 import { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
-import { axiosPublic } from "../API/api";
+import { UserContext } from '../context/UserContext.jsx'; // 🛠️ CORRECCIÓN: Se agregó la extensión explícita '.jsx' para ayudar al compilador a resolver la ruta del módulo.
+import { toast } from 'react-toastify';
+import axios from 'axios'; 
 
+// --- Instancia de Axios Configuradas (Axios Private/Auth) ---
+// Define la URL base de tu backend.
+const API_BASE_URL = "http://localhost:5000/api/user"; // URL de ejemplo
+
+// Crear una instancia de Axios **privada** que usaremos para todas las rutas protegidas.
+export const axiosPrivate = axios.create({
+    baseURL: API_BASE_URL,
+});
+
+// Interceptor para inyectar el token en las solicitudes subsiguientes.
+axiosPrivate.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem("token"); 
+
+        if (token) {
+            // CORRECCIÓN PREVIA: Se envía solo el token puro (sin 'Bearer ') 
+            // para evitar el error 'jwt malformed' si el backend no lo procesa correctamente.
+            config.headers["Authorization"] = token;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
+// --- Componente Icono ---
 const LockIcon = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -11,9 +39,11 @@ const LockIcon = (props) => (
     </svg>
 );
 
+// --- Componente Login ---
 const Login = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    // userContext debería manejar el token y el usuario en un estado global
     const { setToken, setUser } = useContext(UserContext); 
     const navigate = useNavigate();
     const {
@@ -27,18 +57,23 @@ const Login = () => {
         setIsLoading(true);
 
         try {
-            const response = await axiosPublic.post('/login', data);
+            // Usar axios.post directamente para el login (ruta pública)
+            const response = await axios.post(`${API_BASE_URL}/login`, data);
             
-            const { accessToken, userData } = response.data;
-          
-            localStorage.setItem('accessToken', accessToken);
+            // Asumo que el backend devuelve un objeto como: { token: '...', userData: {...} }
+            const { token, userData } = response.data;
+            
+            // 1. **GUARDAR EL TOKEN EN LOCAL STORAGE**
+            localStorage.setItem('token', token); 
 
-            setToken({ accessToken: accessToken }); 
+            // 2. **ACTUALIZAR CONTEXTO**
+            setToken(token);
             setUser(userData); 
-
-            console.log(`👋 ¡Hola, ${userData.name || 'Usuario'}! Inicio de sesión exitoso. Redirigiendo a doctores.`);
             
-            navigate('/doctors', {replace: true}); 
+            toast.success(`👋 ¡Hola, ${userData.name || 'Usuario'}! Inicio de sesión exitoso. Redirigiendo a doctores.`);
+            
+            // 3. **REDIRIGIR**
+            navigate('/doctors', { replace: true }); 
 
             reset();
             
@@ -46,19 +81,22 @@ const Login = () => {
             console.error("Login failed", processError);
 
             const errorMessage = processError?.response?.data?.error
+                                 || processError?.response?.data?.message
                                  || processError?.message
                                  || 'Credenciales inválidas o error de servidor.';
             
             setError(
                 errorMessage.includes('Network')
                 ? 'Error de conexión con el servidor (backend). Asegúrate de que esté activo.'
-                : 'Email o Contraseña incorrectos.'
+                : 'Email o Contraseña incorrectos. ' + errorMessage
             );
+            toast.error(errorMessage);
         } finally {
             setIsLoading(false);
         }
     };
     
+    // --- Resto del componente de presentación (sin cambios) ---
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50/70 p-4 sm:p-8 lg:p-12 font-sans transition-all duration-300">
             <div className="w-full max-w-5xl flex flex-col md:flex-row bg-white shadow-2xl rounded-2xl p-6 sm:p-10 lg:p-12 transition-all duration-300 overflow-hidden">
