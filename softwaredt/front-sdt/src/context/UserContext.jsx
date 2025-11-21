@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useCallback, useRef } from "react";
-import { setupInterceptors } from "../API/api"; 
+import { setupInterceptors } from "../API/api.js"; 
 // 🚨 Importación de hook: Se mantiene comentada para evitar el error de compilación 500.
 // Si el archivo existe en la ruta '../hooks/useOnClickOutside', descomenta.
 // import useOnClickOutside from "../hooks/useOnClickOutside"; 
@@ -69,7 +69,6 @@ const UserProvider = ({ children }) => {
                 handleLogout, 
             }}
         >
-            {/* Bloquear la interfaz hasta que se verifique la sesión */}
             {!loading ? children : <div>Cargando sesión...</div>} 
         </UserContext.Provider>
     );
