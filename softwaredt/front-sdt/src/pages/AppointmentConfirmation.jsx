@@ -90,7 +90,7 @@ const AppointmentConfirmation = () => {
     }
 
     if (error) {
-        // Estado de Error
+
         return (
             <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50 font-sans">
                 <div className="w-full max-w-xl bg-white p-8 rounded-2xl shadow-xl text-center">
