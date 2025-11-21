@@ -1,5 +1,5 @@
-import { useState, useEffect, useMemo, useContext } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { useParams, useNavigate, useLocation, Link } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 const CalendarIcon = (props) => (
@@ -126,7 +126,18 @@ const BookingPage = () => {
         }
     };
 
-    if (!doctor) {
+    if (error) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="text-red-600 text-center">
+                    <p>{error}</p>
+                    <Link to="/doctors" className="text-blue-600 hover:underline">Volver a la lista de doctores</Link>
+                </div>
+            </div>
+        );
+    }
+
+    if (isLoading || !doctor) {
         return <div className="min-h-screen bg-gray-50 flex items-center justify-center">Cargando doctor...</div>;
     }
 
@@ -188,7 +199,6 @@ const BookingPage = () => {
                     </div>
                 )}
                 
-                {error && (<div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 font-semibold text-sm">{error}</div>)}
                 {message && (<div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4 font-semibold text-sm">{message}</div>)}
 
                 <button
