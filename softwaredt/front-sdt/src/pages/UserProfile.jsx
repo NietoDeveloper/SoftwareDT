@@ -1,16 +1,16 @@
-import React, { useContext } from 'react'; // 👈 1. Importar useContext
+import React, { useContext } from 'react'; 
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext'; // 👈 2. Importar UserContext
+import { UserContext } from '../context/UserContext'; 
+import { FiCalendar, FiLogOut } from 'react-icons/fi'; // Importamos iconos modernos
 
 const UserProfile = () => {
     const navigate = useNavigate();
     
-    // 👈 3. Obtener el estado 'user' y la función 'handleLogout' del contexto
+    // Obtener el estado 'user' y la función 'handleLogout' del contexto
     const { user, handleLogout } = useContext(UserContext);
 
-    // 4. Manejar el caso si el contexto aún no tiene el usuario cargado
+    // Manejar el caso si el contexto aún no tiene el usuario cargado
     if (!user) {
-        // Podrías devolver un spinner, o una tarjeta de carga simple
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
                 <div className="text-gray-600">Cargando perfil...</div>
@@ -24,38 +24,53 @@ const UserProfile = () => {
         navigate('/login'); // Redirige al usuario a la página de inicio de sesión
     };
 
-    const goToClientPanel = () => {
-        navigate('/client/dashboard'); 
+    // Función para ir al panel de citas
+    const goToAppointments = () => {
+        // Asumiendo que esta es la ruta para las citas del cliente
+        navigate('/client/appointments'); 
     };
 
+    // Obtenemos la inicial del nombre para el avatar
+    const userInitial = user.name ? user.name[0].toUpperCase() : 'U';
+
     return (
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-            <div className="bg-white shadow-xl rounded-lg p-6 max-w-sm w-full transition duration-300 hover:shadow-2xl">
+        <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4 sm:p-6 font-inter">
+            {/* Contenedor del Perfil: Limpio, moderno y con mejores márgenes */}
+            <div className="bg-white shadow-2xl rounded-xl p-8 max-w-sm w-full border border-gray-200 transition duration-300 transform hover:scale-[1.01]">
                 <div className="flex flex-col items-center">
-                    {/* El resto del código usa el objeto 'user' del contexto */}
-                    <div className="w-16 h-16 bg-indigo-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4">
-                        {/* Aseguramos que 'user.name' exista antes de acceder al índice [0] */}
-                        {user.name ? user.name[0].toUpperCase() : 'U'}
+                    
+                    {/* Avatar con Inicial (sin foto) */}
+                    <div className="w-20 h-20 bg-indigo-600 rounded-full flex items-center justify-center text-white text-4xl font-extrabold mb-6 shadow-lg border-4 border-white ring-2 ring-indigo-300">
+                        {userInitial}
                     </div>
-                    <h2 className="text-2xl font-semibold text-gray-800 mb-1 truncate max-w-full" title={user.name}>
+
+                    {/* Nombre */}
+                    <h2 className="text-2xl font-bold text-gray-900 mb-1 truncate max-w-full text-center" title={user.name}>
                         {user.name}
                     </h2>
-                    <p className="text-sm text-gray-500 mb-6 truncate max-w-full" title={user.email}>
+                    
+                    {/* Correo Electrónico */}
+                    <p className="text-sm text-gray-500 mb-8 truncate max-w-full text-center" title={user.email}>
                         {user.email}
                     </p>
                     
+                    {/* Sección de Botones con Separación */}
+
+                    {/* Botón Ir a mis Citas (Citas/Panel) */}
                     <button
-                        onClick={goToClientPanel}
-                        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150 ease-in-out shadow-md hover:shadow-lg mb-3"
+                        onClick={goToAppointments}
+                        className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-200 ease-in-out shadow-md hover:shadow-lg mb-4"
                     >
-                        Ir a Panel de Cliente
+                        <FiCalendar className="w-5 h-5" />
+                        Ir a mis Citas
                     </button>
 
-                    {/* Botón de Cerrar Sesión Añadido */}
+                    {/* Botón Cerrar Sesión */}
                     <button
                         onClick={logoutAndRedirect}
-                        className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-150 ease-in-out shadow-md hover:shadow-lg"
+                        className="w-full flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-4 rounded-lg focus:outline-none focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 transition duration-200 ease-in-out shadow-md hover:shadow-lg"
                     >
+                        <FiLogOut className="w-5 h-5" />
                         Cerrar Sesión
                     </button>
                 </div>

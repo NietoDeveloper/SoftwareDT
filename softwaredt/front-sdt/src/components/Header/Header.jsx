@@ -124,30 +124,21 @@ const Header = () => {
 
                     {/* Botón de Entrar/Salir */}
                     <div className="hidden md:flex items-center">
-                        // Ubicado dentro de la sección {openMenu && (...)}
-
-<button
-    onClick={() => {
-        // Ejecuta la lógica principal (Log Out o Navegar a Login)
-        user ? handleLogOut() : navigate("/login");
-        
-        // CIERRA el menú móvil DESPUÉS de la acción.
-        // Asumiendo que handleMobileMenu invierte el estado de 'openMenu'
-        handleMobileMenu(); 
-    }}
-    className="bg-blue-700 text-[24px] text-white px-6 py-2 mt-4 flex items-center
-    rounded-full font-extrabold shadow-2xl 
-    transition-all duration-300 ease-in-out transform
-    hover:bg-yellow-400 hover:text-gray-900 hover:scale-105 hover:shadow-glow-xl
-    focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
-    style={{
-        boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)", 
-        "--tw-shadow-glow-xl":
-            "0 0 25px rgba(252, 211, 77, 0.8), 0 0 50px rgba(252, 211, 77, 0.6)", 
-    }}
->
-    {user ? "Log Out" : "Entrar"}
-</button>
+                        <button
+                            onClick={user ? handleLogOut : () => navigate("/login")}
+                            className="bg-blue-700 text-white px-4 py-2 flex items-center
+                            rounded-full font-bold shadow-2xl 
+                            transition-all duration-300 ease-in-out transform
+                            hover:bg-yellow-400 hover:text-gray-900 hover:scale-105 hover:shadow-glow-xl
+                            focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
+                            style={{
+                                boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)", 
+                                "--tw-shadow-glow-xl":
+                                    "0 0 25px rgba(252, 211, 77, 0.8), 0 0 50px rgba(252, 211, 77, 0.6)", 
+                            }}
+                        >
+                            {user ? "Log Out" : "Entrar"}
+                        </button>
                     </div>
                 </div>
 
