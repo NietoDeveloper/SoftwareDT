@@ -75,7 +75,6 @@ const AppointmentConfirmation = () => {
     // 4. Renderizado condicional
 
     if (isLoading) {
-        // Estado de Carga
         return (
             <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50 font-sans">
                 <div className="flex items-center space-x-3 bg-white p-6 rounded-xl shadow-lg">
