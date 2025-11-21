@@ -4,7 +4,7 @@ import refreshAccessToken from '../utils/refreshAccess';
 const BASE_URL = 'http://localhost:5000/api';
 
 const axiosPublic = axios.create({
-    baseURL: BASE_URL,
+    baseURL: `${BASE_URL}/user`,
 });
 
 const axiosAuth = axios.create({
