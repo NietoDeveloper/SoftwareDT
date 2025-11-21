@@ -3,10 +3,27 @@ import { AppContext } from "../context/UserContext";
 import refreshAccessToken from "../utils/refreshAccess";
 
 const useRefresh = () => {
+  // Extraemos la función para actualizar el estado global
   const { setToken } = useContext(AppContext);
 
   const refresh = async () => {
-    return await refreshAccessToken(setToken);
+    try {
+      // 1. La utilidad solo nos devuelve el string del nuevo token
+      const newAccessToken = await refreshAccessToken();
+
+      // 2. Nosotros actualizamos el estado de React AQUÍ
+      // (Ajusta esto si tu estado es un objeto, ej: setAuth({ ...auth, accessToken: newAccessToken }))
+      setToken(newAccessToken);
+
+      // 3. Retornamos el token por si quien llama al hook lo necesita inmediatamente
+      return newAccessToken;
+
+    } catch (error) {
+      console.error("Error al refrescar token:", error);
+      // Opcional: Si falla el refresh, podrías limpiar el estado aquí
+      // setToken(null);
+      throw error; 
+    }
   };
 
   return refresh;

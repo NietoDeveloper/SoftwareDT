@@ -5,8 +5,6 @@ const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
 
-    // Check if user is logged in (basic check based on localStorage)
-    // Adjust this logic based on your actual auth implementation
     const isLoggedIn = !!localStorage.getItem('token');
 
     const handleLogout = () => {
