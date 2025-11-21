@@ -80,7 +80,6 @@ const BookingPage = () => {
                 status: 'Confirmada',
             };
 
-            // Simulación de la llamada a la API de registro de cita
             await new Promise(resolve => setTimeout(resolve, 1500));
             const mockAppointmentId = Math.random().toString(36).substring(2, 15);
             
