@@ -195,7 +195,6 @@ const AppointmentConfirmation = () => {
     );
 };
 
-// Componente auxiliar para mostrar detalles
 const DetailItem = ({ icon, title, value }) => (
     <div className="flex items-center p-3 bg-white border border-gray-200 rounded-xl">
         <div className="text-blue-500 mr-3">
