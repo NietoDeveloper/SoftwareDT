@@ -70,7 +70,6 @@ const BookingPage = () => {
         setMessage(null);
 
         try {
-            // Datos que se enviarán a la página de confirmación
             const bookingData = {
                 doctorId: doctorId,
                 doctorName: doctor.name, 
