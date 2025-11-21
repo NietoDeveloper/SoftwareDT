@@ -91,7 +91,7 @@ const BookingPage = () => {
             setMessage(`Redirigiendo a la confirmación...`);
             
             navigate(`/appointment-confirmation/${mockAppointmentId}`, { 
-                state: { booking: bookingData } // Pasamos los datos para la página de confirmación
+                state: { booking: bookingData }
             });
 
         } catch (err) {
