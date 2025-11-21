@@ -27,10 +27,6 @@ const AppointmentConfirmation = () => {
             setError(null);
 
             try {
-                // --- SIMULACIÓN DE LLAMADA A API (REEMPLAZAR CON FETCH REAL) ---
-                // Aquí iría tu llamada fetch/axios a la API, por ejemplo:
-                // const response = await fetch(`/api/appointments/${appointmentId}`);
-                // const data = await response.json();
                 
                 await new Promise(resolve => setTimeout(resolve, 2000)); // Simula latencia
 
