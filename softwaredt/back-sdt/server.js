@@ -45,10 +45,6 @@ app.use('/api/doctor/logout', require('./routes/doctorRoutes/doctorLogout'));
 // Rutas de archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ----------------------------------------------------
-// 2. MIDDLEWARE DE AUTENTICACIÓN (Rutas Protegidas)
-// Todas las rutas definidas después de esta línea requerirán un JWT válido
-// ----------------------------------------------------
 app.use(verifyAccess); 
 
 app.use('/api/user/doctors', require('./routes/allDoctors')); // <-- ¡CORREGIDO!
