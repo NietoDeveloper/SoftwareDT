@@ -62,7 +62,6 @@ const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
                     return axiosPrivate(prevRequest); 
 
                 } catch (refreshError) {
-                    // Si el refresh falla (ej: 401 del endpoint /refresh, o token expirado)
                     console.error("Token refresh failed, forcing logout:", refreshError);
                     
                     if (onLogout) {
