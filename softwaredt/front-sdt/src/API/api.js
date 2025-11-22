@@ -19,7 +19,6 @@ const axiosPrivate = axios.create({
     baseURL: BASE_URL,
 });
 
-// Variable para asegurar que el interceptor solo se configure una vez
 let interceptorsConfigured = false;
 
 const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
