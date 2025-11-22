@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(verifyAccess); 
 
-app.use('/api/user/doctors', require('./routes/allDoctors')); // <-- ¡CORREGIDO!
+app.use('/api/user/doctors', require('./routes/allDoctors')); 
 
 app.use('/api/user/update', require('./routes/userRoutes/userUpdateRoute'));
 app.use('/api/user/appointment', require('./routes/appointmentRoute'));
