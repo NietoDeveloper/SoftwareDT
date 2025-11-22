@@ -63,7 +63,6 @@ app.use('/api/doctor/profile', require('./routes/bookingRoute'));
 app.use(unknownEndpoint);
 app.use(errorHandler);
 
-// Iniciamos el servidor solo después de que la conexión principal esté abierta
 userDB.once('open', () => {
     console.log('✅ Conexión principal (USUARIOS) lista. Servidor iniciando.');
     app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
