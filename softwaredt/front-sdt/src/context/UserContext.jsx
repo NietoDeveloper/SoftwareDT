@@ -29,7 +29,6 @@ const UserProvider = ({ children }) => {
         return tokenRef.current; // Devuelve el valor más reciente del token
     }, []); 
 
-    // Efecto 1: Cargar el token al iniciar la aplicación
     useEffect(() => {
         const storedAccessToken = localStorage.getItem('accessToken');
         
