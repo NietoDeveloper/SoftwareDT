@@ -3,7 +3,6 @@ import { AppContext } from "../context/UserContext";
 import refreshAccessToken from "../utils/refreshAccess";
 
 const useRefresh = () => {
-  // Extraemos la función para actualizar el estado global
   const { setToken } = useContext(AppContext);
 
   const refresh = async () => {
