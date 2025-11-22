@@ -5,8 +5,6 @@ import { UserContext } from '../context/UserContext.jsx'; // 🛠️ CORRECCIÓN
 import { toast } from 'react-toastify';
 import axios from 'axios'; 
 
-// --- Instancia de Axios Configuradas (Axios Private/Auth) ---
-// Define la URL base de tu backend.
 const API_BASE_URL = "http://localhost:5000/api/user"; // URL de ejemplo
 
 // Crear una instancia de Axios **privada** que usaremos para todas las rutas protegidas.
