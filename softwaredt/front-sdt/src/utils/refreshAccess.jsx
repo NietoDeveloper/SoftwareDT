@@ -17,7 +17,6 @@ const refreshAccessToken = async () => {
         return accessToken;
         
     } catch (error) {
-        // Registramos el error de manera informativa
         console.error("Error al refrescar el token de acceso. Sesión no renovada.", error);
         
         throw error;
