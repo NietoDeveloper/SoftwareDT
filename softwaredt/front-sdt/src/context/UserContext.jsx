@@ -26,7 +26,7 @@ const UserProvider = ({ children }) => {
     }, []); 
 
     const getAccessToken = useCallback(() => {
-        return tokenRef.current; // Devuelve el valor más reciente del token
+        return tokenRef.current; 
     }, []); 
 
     useEffect(() => {
