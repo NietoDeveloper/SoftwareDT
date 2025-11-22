@@ -32,7 +32,6 @@ const LockIcon = (props) => (
     </svg>
 );
 
-// --- Componente Login ---
 const Login = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
