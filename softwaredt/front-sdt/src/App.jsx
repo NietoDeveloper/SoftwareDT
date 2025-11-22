@@ -9,7 +9,6 @@ import Login from "./pages/Login.jsx";
 import Doctorsignup from "./pages/DoctorSignup.jsx";
 import Doctorlogin from "./pages/DoctorLogin.jsx";
 import Services from "./pages/Services.jsx";
-// ✅ Importación de contexto correcta
 import { UserProvider } from "./context/UserContext.jsx"; 
 import PrivateRoutes from "./utils/PrivateRoutes.jsx";
 import BookingPage from "./pages/BookingPage.jsx";
