@@ -14,7 +14,6 @@ const UserProvider = ({ children }) => {
     const [loading, setLoading] = useState(true); 
     const [appointmentDetails, setAppointmentDetails] = useState(null);
     
-    // 1. Usar useRef para estabilizar el token
     const tokenRef = useRef(token);
     
     // Sincroniza la Referencia (Ref) con el estado (token)
