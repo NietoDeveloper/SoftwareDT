@@ -57,7 +57,6 @@ const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
                     // 1. Almacena el nuevo token en el estado de React (Contexto)
                     setAccessToken(newAccessToken); 
 
-                    // 2. Actualizar el encabezado y reenviar la solicitud fallida
                     prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
                     return axiosPrivate(prevRequest); 
 
