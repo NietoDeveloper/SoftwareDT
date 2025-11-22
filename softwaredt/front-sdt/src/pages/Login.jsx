@@ -52,7 +52,6 @@ const Login = () => {
             
             const { token, userData } = response.data;
             
-            // 1. **GUARDAR EL TOKEN EN LOCAL STORAGE**
             localStorage.setItem('token', token); 
 
             // 2. **ACTUALIZAR CONTEXTO**
