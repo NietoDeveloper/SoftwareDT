@@ -45,7 +45,6 @@ const DoctorSignup = () => {
         setError(null);
 
         try {
-            // Se asume que /doctor/signup es el endpoint correcto
             const response = await axiosAuth.post('/doctor/signup', data);
 
             const successMsg = response.data.message || '¡Registro exitoso! Serás redirigido al login en breve.';
