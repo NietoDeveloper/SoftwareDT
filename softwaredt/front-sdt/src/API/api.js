@@ -65,14 +65,12 @@ const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
                     // Si el refresh falla (ej: 401 del endpoint /refresh, o token expirado)
                     console.error("Token refresh failed, forcing logout:", refreshError);
                     
-                    // Disparamos la acción de logout provista por el Contexto.
                     if (onLogout) {
                         onLogout(); 
                     }
                     return Promise.reject(refreshError);
                 }
             }
-            // Rechazar otros errores
             return Promise.reject(error);
         }
     );
