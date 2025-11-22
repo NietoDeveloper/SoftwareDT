@@ -15,8 +15,7 @@ const UserProvider = ({ children }) => {
     const [appointmentDetails, setAppointmentDetails] = useState(null);
     
     const tokenRef = useRef(token);
-    
-    // Sincroniza la Referencia (Ref) con el estado (token)
+
     useEffect(() => {
         tokenRef.current = token;
     }, [token]);
