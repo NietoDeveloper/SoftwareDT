@@ -8,8 +8,6 @@ import { axiosAuth } from "../API/api";
  */
 const refreshAccessToken = async () => {
     try {
-        // 🔑 NOTA: La instancia axiosAuth está configurada con `withCredentials: true`,
-        // lo que asegura que la cookie del Refresh Token se envíe automáticamente.
         const response = await axiosAuth.get('/user/refresh'); 
         
         const { accessToken } = response.data;
