@@ -4,7 +4,6 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const mongoose = require('mongoose'); 
 
-// Importamos la conexión userDB
 const { userDB } = require('./config/dbConn'); 
 
 const corsOptions = require('./config/corsOptions');
