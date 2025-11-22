@@ -25,7 +25,6 @@ const UserProvider = ({ children }) => {
         localStorage.removeItem('accessToken'); 
     }, []); 
 
-    // 2. El Getter usa el Ref
     const getAccessToken = useCallback(() => {
         return tokenRef.current; // Devuelve el valor más reciente del token
     }, []); 
