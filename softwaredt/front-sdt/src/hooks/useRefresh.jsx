@@ -13,7 +13,6 @@ const useRefresh = () => {
       // (Ajusta esto si tu estado es un objeto, ej: setAuth({ ...auth, accessToken: newAccessToken }))
       setToken(newAccessToken);
 
-      // 3. Retornamos el token por si quien llama al hook lo necesita inmediatamente
       return newAccessToken;
 
     } catch (error) {
