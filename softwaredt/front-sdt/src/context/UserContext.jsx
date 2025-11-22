@@ -19,8 +19,7 @@ const UserProvider = ({ children }) => {
     useEffect(() => {
         tokenRef.current = token;
     }, [token]);
-
-    // Función de limpieza de sesión
+    
     const handleLogout = useCallback(() => {
         setToken(null);
         setUser(null);
