@@ -7,7 +7,6 @@ import axios from 'axios';
 
 const API_BASE_URL = "http://localhost:5000/api/user"; 
 
-// Crear una instancia de Axios **privada** que usaremos para todas las rutas protegidas.
 export const axiosPrivate = axios.create({
     baseURL: API_BASE_URL,
 });
