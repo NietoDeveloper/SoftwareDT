@@ -35,7 +35,6 @@ const LockIcon = (props) => (
 const Login = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    // userContext debería manejar el token y el usuario en un estado global
     const { setToken, setUser } = useContext(UserContext); 
     const navigate = useNavigate();
     const {
