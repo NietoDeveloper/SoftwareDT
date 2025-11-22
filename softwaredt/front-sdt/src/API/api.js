@@ -26,7 +26,6 @@ const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
     // Evitar configurar los interceptores múltiples veces
     if (interceptorsConfigured) return;
     
-    // --- Interceptor de Solicitud (Añadir el Access Token) ---
     axiosPrivate.interceptors.request.use(
         config => {
             const token = getAccessToken(); 
