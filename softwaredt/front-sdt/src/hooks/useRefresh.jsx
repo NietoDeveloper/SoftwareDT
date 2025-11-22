@@ -18,8 +18,6 @@ const useRefresh = () => {
 
     } catch (error) {
       console.error("Error al refrescar token:", error);
-      // Opcional: Si falla el refresh, podrías limpiar el estado aquí
-      // setToken(null);
       throw error; 
     }
   };
