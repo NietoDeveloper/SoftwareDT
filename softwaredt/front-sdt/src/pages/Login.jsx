@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext.jsx'; // 🛠️ CORRECCIÓN: Se agregó la extensión explícita '.jsx' para ayudar al compilador a resolver la ruta del módulo.
+import { UserContext } from '../context/UserContext.jsx';
 import { toast } from 'react-toastify';
 import axios from 'axios'; 
 
