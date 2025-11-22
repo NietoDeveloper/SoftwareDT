@@ -1,8 +1,5 @@
 import { createContext, useState, useEffect, useCallback, useRef } from "react";
 import { setupInterceptors } from "../API/api.js"; 
-// 🚨 Importación de hook: Se mantiene comentada para evitar el error de compilación 500.
-// Si el archivo existe en la ruta '../hooks/useOnClickOutside', descomenta.
-// import useOnClickOutside from "../hooks/useOnClickOutside"; 
 
 const UserContext = createContext();
 
