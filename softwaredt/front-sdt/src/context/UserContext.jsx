@@ -6,7 +6,6 @@ import { setupInterceptors } from "../API/api.js";
 
 const UserContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 const UserProvider = ({ children }) => {
     // Definición de estados
     const [user, setUser] = useState(null);
@@ -19,7 +18,7 @@ const UserProvider = ({ children }) => {
     useEffect(() => {
         tokenRef.current = token;
     }, [token]);
-    
+
     const handleLogout = useCallback(() => {
         setToken(null);
         setUser(null);
