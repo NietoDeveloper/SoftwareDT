@@ -54,7 +54,6 @@ const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
                     // Obtiene el nuevo Access Token
                     const newAccessToken = await refreshAccessToken();
                     
-                    // 1. Almacena el nuevo token en el estado de React (Contexto)
                     setAccessToken(newAccessToken); 
 
                     prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
