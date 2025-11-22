@@ -8,9 +8,6 @@ const useRefresh = () => {
   const refresh = async () => {
     try {
       const newAccessToken = await refreshAccessToken();
-
-      // 2. Nosotros actualizamos el estado de React AQUÍ
-      // (Ajusta esto si tu estado es un objeto, ej: setAuth({ ...auth, accessToken: newAccessToken }))
       setToken(newAccessToken);
 
       return newAccessToken;
