@@ -28,10 +28,6 @@ app.get('/', (req, res) => {
     });
 });
 
-// ----------------------------------------------------
-// 1. RUTAS PÚBLICAS (Autenticación y Registro)
-// Estas rutas NO usan el middleware verifyAccess
-// ----------------------------------------------------
 app.use('/api/user/register', require('./routes/userRoutes/userRegister'));
 app.use('/api/user/login', require('./routes/userRoutes/userLogin'));
 app.use('/api/user/refresh', require('./routes/userRoutes/userRefresh'));
