@@ -23,7 +23,6 @@ const axiosPrivate = axios.create({
 let interceptorsConfigured = false;
 
 const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
-    // Evitar configurar los interceptores múltiples veces
     if (interceptorsConfigured) return;
     
     axiosPrivate.interceptors.request.use(
