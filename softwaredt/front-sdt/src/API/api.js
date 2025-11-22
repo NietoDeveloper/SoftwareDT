@@ -46,7 +46,6 @@ const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
             const prevRequest = error.config;
             const status = error.response?.status;
             
-            // 🛑 Condición de reintento: status 401 (Unauthorized) y no ha reintentado antes.
             if (status === 401 && !prevRequest._retry) {
                 prevRequest._retry = true;
 
