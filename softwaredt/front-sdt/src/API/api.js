@@ -3,7 +3,6 @@ import refreshAccessToken from './refreshAccess';
 
 const BASE_URL = 'http://localhost:5000/api';
 
-// 1. Instancia Pública (Para rutas abiertas)
 const axiosPublic = axios.create({
     baseURL: BASE_URL,
 });
