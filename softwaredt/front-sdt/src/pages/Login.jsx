@@ -54,7 +54,6 @@ const Login = () => {
             
             localStorage.setItem('token', token); 
 
-            // 2. **ACTUALIZAR CONTEXTO**
             setToken(token);
             setUser(userData); 
             
