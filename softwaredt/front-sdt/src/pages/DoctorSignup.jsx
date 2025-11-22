@@ -62,7 +62,6 @@ const DoctorSignup = () => {
             let errorMessage = 'Error al registrar el especialista. Inténtalo de nuevo.';
 
             if (processError.response) {
-                // Errores de respuesta del servidor (ej: 409 Conflicto)
                 errorMessage = processError.response.data.message || processError.response.data.error || errorMessage;
             } else if (processError.request) {
                 // Error de red (servidor no responde)
