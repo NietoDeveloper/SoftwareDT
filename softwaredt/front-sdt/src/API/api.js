@@ -14,7 +14,6 @@ const axiosAuth = axios.create({
     withCredentials: true,
 });
 
-// 3. Instancia Privada (Para rutas protegidas, usa interceptores)
 const axiosPrivate = axios.create({
     baseURL: BASE_URL,
 });
