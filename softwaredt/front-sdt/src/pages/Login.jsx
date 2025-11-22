@@ -16,8 +16,6 @@ axiosPrivate.interceptors.request.use(
         const token = localStorage.getItem("token"); 
 
         if (token) {
-            // CORRECCIÓN PREVIA: Se envía solo el token puro (sin 'Bearer ') 
-            // para evitar el error 'jwt malformed' si el backend no lo procesa correctamente.
             config.headers["Authorization"] = token;
         }
         return config;
