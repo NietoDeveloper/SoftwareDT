@@ -20,8 +20,6 @@ const refreshAccessToken = async () => {
         // Registramos el error de manera informativa
         console.error("Error al refrescar el token de acceso. Sesión no renovada.", error);
         
-        // Relanzamos el error. El interceptor de Axios lo capturará 
-        // y usará la función handleLogout que le pasamos desde el Contexto.
         throw error;
     }
 };
