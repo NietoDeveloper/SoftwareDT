@@ -51,7 +51,7 @@ const DoctorSignup = () => {
             const successMsg = response.data.message || '¡Registro exitoso! Serás redirigido al login en breve.';
             toast.success(successMsg);
             
-            reset(); // Limpiamos el formulario después del éxito
+            reset();
             
             setTimeout(() => {
                 navigate('/doctor/login');
