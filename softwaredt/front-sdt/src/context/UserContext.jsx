@@ -40,16 +40,12 @@ const UserProvider = ({ children }) => {
         
         if (storedAccessToken) {
             setToken(storedAccessToken);
-            // 📝 NOTA: Aquí iría la lógica para llamar a tu API y obtener el perfil
             setUser({ profileLoaded: false }); 
         }
 
         setLoading(false);
     }, []); 
 
-
-    // Efecto 2: Configurar los interceptores de Axios
-    // 3. Se llama con los TRES argumentos requeridos por la versión corregida de api.js
     useEffect(() => {
         setupInterceptors(getAccessToken, setToken, handleLogout); 
     }, [getAccessToken, setToken, handleLogout]); 
