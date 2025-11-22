@@ -39,7 +39,6 @@ const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
         error => Promise.reject(error)
     );
     
-    // --- Interceptor de Respuesta (Manejar 401 y Refrescar Token) ---
     axiosPrivate.interceptors.response.use(
         (response) => response,
         async (error) => {
