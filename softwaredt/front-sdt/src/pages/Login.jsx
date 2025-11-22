@@ -59,7 +59,6 @@ const Login = () => {
             
             toast.success(`👋 ¡Hola, ${userData.name || 'Usuario'}! Inicio de sesión exitoso. Redirigiendo a doctores.`);
             
-            // 3. **REDIRIGIR**
             navigate('/doctors', { replace: true }); 
 
             reset();
