@@ -51,7 +51,6 @@ const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
                 prevRequest._retry = true;
 
                 try {
-                    // Obtiene el nuevo Access Token
                     const newAccessToken = await refreshAccessToken();
                     
                     setAccessToken(newAccessToken); 
