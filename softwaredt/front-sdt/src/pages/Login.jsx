@@ -12,7 +12,6 @@ export const axiosPrivate = axios.create({
     baseURL: API_BASE_URL,
 });
 
-// Interceptor para inyectar el token en las solicitudes subsiguientes.
 axiosPrivate.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("token"); 
