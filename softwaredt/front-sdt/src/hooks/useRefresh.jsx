@@ -7,7 +7,6 @@ const useRefresh = () => {
 
   const refresh = async () => {
     try {
-      // 1. La utilidad solo nos devuelve el string del nuevo token
       const newAccessToken = await refreshAccessToken();
 
       // 2. Nosotros actualizamos el estado de React AQUÍ
