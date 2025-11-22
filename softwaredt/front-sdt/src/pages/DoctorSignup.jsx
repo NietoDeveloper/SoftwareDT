@@ -18,7 +18,7 @@ const RegisterIcon = (props) => (
         strokeLinecap="round" 
         strokeLinejoin="round" 
         {...props}
-        aria-hidden="true" // Añadido para accesibilidad, ya que el texto lo describe
+        aria-hidden="true"
     >
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
         <polyline points="14 2 14 8 20 8"></polyline>
