@@ -64,7 +64,6 @@ const DoctorSignup = () => {
             if (processError.response) {
                 errorMessage = processError.response.data.message || processError.response.data.error || errorMessage;
             } else if (processError.request) {
-                // Error de red (servidor no responde)
                 errorMessage = "Fallo de red. El servidor no está disponible.";
             }
             
