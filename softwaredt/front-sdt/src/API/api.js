@@ -8,7 +8,6 @@ const axiosPublic = axios.create({
     baseURL: BASE_URL,
 });
 
-// 2. Instancia Auth (Para Login/Logout/Refresh, maneja cookies)
 const axiosAuth = axios.create({
     baseURL: BASE_URL,
     withCredentials: true,
