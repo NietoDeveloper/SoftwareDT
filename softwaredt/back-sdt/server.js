@@ -51,11 +51,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ----------------------------------------------------
 app.use(verifyAccess); 
 
-// ----------------------------------------------------
-// 3. RUTAS PROTEGIDAS (Requieren Token Válido)
-// CAMBIO CLAVE: Mover la ruta de los doctores aquí. 
-// Además, la ruta se ajusta al formato que usa el frontend: /api/user/doctors
-// ----------------------------------------------------
 app.use('/api/user/doctors', require('./routes/allDoctors')); // <-- ¡CORREGIDO!
 
 app.use('/api/user/update', require('./routes/userRoutes/userUpdateRoute'));
