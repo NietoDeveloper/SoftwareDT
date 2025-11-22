@@ -22,7 +22,6 @@ const Header = () => {
                         <span className="text-green-600 text-2xl font-bold">Software<span className="text-gray-800">DT</span></span>
                     </div>
 
-                    {/* Desktop Navigation */}
                     <nav className="hidden md:flex space-x-8 items-center">
                         <Link to="/" className="text-gray-600 hover:text-green-600 font-medium transition-colors">Inicio</Link>
                         <Link to="/doctors" className="text-gray-600 hover:text-green-600 font-medium transition-colors">Especialistas</Link>
