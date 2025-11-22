@@ -50,7 +50,6 @@ const Login = () => {
         try {
             const response = await axios.post(`${API_BASE_URL}/login`, data);
             
-            // Asumo que el backend devuelve un objeto como: { token: '...', userData: {...} }
             const { token, userData } = response.data;
             
             // 1. **GUARDAR EL TOKEN EN LOCAL STORAGE**
