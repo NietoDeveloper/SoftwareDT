@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-// 🛠️ CORRECCIÓN DE RESOLUCIÓN: Se eliminó la extensión .js para permitir que el bundler (ESBuild/Vite)
-// resuelva correctamente el path relativo del módulo 'api'.
 import { axiosAuth } from '../API/api'; 
 import { toast } from 'react-toastify'; 
 
