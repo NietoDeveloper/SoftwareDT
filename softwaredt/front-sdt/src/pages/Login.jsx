@@ -49,7 +49,6 @@ const Login = () => {
         setIsLoading(true);
 
         try {
-            // Usar axios.post directamente para el login (ruta pública)
             const response = await axios.post(`${API_BASE_URL}/login`, data);
             
             // Asumo que el backend devuelve un objeto como: { token: '...', userData: {...} }
