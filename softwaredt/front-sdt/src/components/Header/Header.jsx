@@ -45,7 +45,6 @@ const Header = () => {
                         )}
                     </nav>
 
-                    {/* Mobile menu button */}
                     <div className="flex items-center md:hidden">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
