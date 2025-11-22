@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { axiosAuth } from '../API/api'; 
 import { toast } from 'react-toastify'; 
 
-// Componente SVG para el Icono de Registro
 const RegisterIcon = (props) => (
     <svg 
         xmlns="http://www.w3.org/2000/svg" 
