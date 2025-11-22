@@ -24,7 +24,6 @@ const AppointmentConfirmation = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 3. Efecto para simular la carga de datos (fetch real)
   useEffect(() => {
     const fetchAppointmentData = async () => {
       setIsLoading(true);
