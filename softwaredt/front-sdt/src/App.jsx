@@ -18,36 +18,37 @@ import ClientPanel from "./pages/ClientAppointmentsPanel.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
 
 function App() {
-  return (
-    <UserProvider>
-      <Header />
-      <Routes
-        future={{
-          v7_startTransition: true,
-          v7_relativeSplatPath: true,
-        }}
-      >
-        <Route path="/" element={<Home />} />
-        <Route path="/doctors" element={<DoctorList />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/doctor/signup" element={<Doctorsignup />} />
-        <Route path="/doctor/login" element={<Doctorlogin />} />
-        <Route element={<PrivateRoutes />}>
-          <Route path="/user/profile" element={<UserProfile />} /> 
-          <Route path="/client/dashboard" element={<ClientPanel />} />
-          <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
-          <Route path="/checkout" element={<Payment />} />
-          <Route 
-            path="/appointment-confirmation/:appointmentId" 
-            element={<AppointmentConfirmation />} 
-          />
-        </Route>
-      </Routes>
-    </UserProvider>
-  );
+  return (
+    <UserProvider>
+      <Header />
+      <Routes
+            // **CORRECCIÓN #1:** Se eliminan las 'future' flags de aquí,
+            // ya que solo van en el BrowserRouter (en index.js).
+            // future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+      >
+        <Route path="/" element={<Home />} />
+        <Route path="/doctors" element={<DoctorList />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/doctor/signup" element={<Doctorsignup />} />
+        <Route path="/doctor/login" element={<Doctorlogin />} />
+        
+        <Route element={<PrivateRoutes />}>
+            
+          <Route path="/user/profile" element={<UserProfile />} /> 
+          <Route path="/client/dashboard" element={<ClientPanel />} />
+          <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
+          <Route path="/checkout" element={<Payment />} />
+          <Route 
+            path="/appointment-confirmation/:appointmentId" 
+            element={<AppointmentConfirmation />} 
+          />
+        </Route>
+      </Routes>
+    </UserProvider>
+  );
 }
 
 export default App;
