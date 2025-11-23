@@ -1,22 +1,21 @@
-import { axiosAuth } from "../API/api";
+import axios from 'axios';
 
-/**
- * @returns {Promise<string>} El nuevo Access Token.
- * @throws {Error} 
- */
 const refreshAccessToken = async () => {
-    try {
-        const response = await axiosAuth.get('/user/refresh'); 
-        
-        const { accessToken } = response.data;
+  try {
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (!refreshToken) throw new Error('No refresh token');
 
-        return accessToken;
-        
-    } catch (error) {
-        console.error("Error al refrescar el token de acceso. Sesión no renovada.", error);
-        
-        throw error;
-    }
+    const response = await axios.post('http://localhost:5000/api/refresh', { refreshToken });
+    const { accessToken } = response.data;
+    localStorage.setItem('accessToken', accessToken);
+    return accessToken;
+  } catch (error) {
+    console.error('Error refreshing token:', error);
+    // Opcional: logout o redirect
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    throw error;
+  }
 };
 
 export default refreshAccessToken;

@@ -22,8 +22,20 @@ const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
   if (interceptorsConfigured) return;
 
   axiosPrivate.interceptors.request.use(
-    config => {
-      const token = getAccessToken();
+    async (config) => {
+      let token = getAccessToken();
+      if (!token) {
+        try {
+          token = await refreshAccessToken();
+          setAccessToken(token);
+        } catch (error) {
+          console.error("Failed to refresh token on request:", error);
+          if (onLogout) {
+            onLogout();
+          }
+          return Promise.reject(error);
+        }
+      }
       if (token && !config.headers.Authorization) {
         config.headers.Authorization = `Bearer ${token}`;
       }
