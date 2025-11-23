@@ -22,7 +22,12 @@ function App() {
     <UserProvider>
       <Header />
 
-      <Routes>
+      <Routes
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<DoctorList />} />
         <Route path="/contact" element={<Contact />} />
