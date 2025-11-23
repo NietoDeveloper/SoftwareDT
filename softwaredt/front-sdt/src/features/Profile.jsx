@@ -16,7 +16,7 @@ const Profile = () => {
 
     const logoutFromApiAndState = async () => {
         try {
-            // 1. Llamada a la API de backend
+
             await axiosAuth.post('/user/logout'); 
 
             handleLogout(); 
