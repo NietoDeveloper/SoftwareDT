@@ -18,10 +18,9 @@ const Profile = () => {
         try {
             // 1. Llamada a la API de backend
             await axiosAuth.post('/user/logout'); 
-            
+
             handleLogout(); 
-            
-            // 3. Redirección
+  
             navigate('/login'); // Es más común redirigir a /login después de cerrar sesión
         } catch (error) {
             // 🚨 Importante: Si la API de logout falla (ej. token caducado), 
