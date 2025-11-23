@@ -10,10 +10,6 @@ const Profile = () => {
     const { setToken, setUser, handleLogout } = useContext(UserContext);
     const navigate = useNavigate();
 
-    // 💡 BUENA PRÁCTICA: Usar la función handleLogout ya definida en el contexto.
-    // Esto asegura que la lógica de limpieza de estado y localStorage sea consistente.
-    // Sin embargo, mantendremos la llamada a la API de logout aquí.
-
     const logoutFromApiAndState = async () => {
         try {
 
