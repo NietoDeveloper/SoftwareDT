@@ -5,18 +5,23 @@ import { UserContext } from '../context/UserContext.jsx';
 import { toast } from 'react-toastify';
 import axios from 'axios'; 
 
+// Usaremos un API_BASE_URL más genérico ya que este archivo no está en src/API
 const API_BASE_URL = "http://localhost:5000/api/user"; 
 
+// Esta instancia debe ir en src/API/api.js, pero la dejaré aquí por ahora
+// OJO: Los interceptores deben ser más robustos para usar headers dinámicos
 export const axiosPrivate = axios.create({
-    baseURL: API_BASE_URL,
+    baseURL: API_BASE_URL, // Debería ser http://localhost:5000/api para usar /user/login
 });
 
 axiosPrivate.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem("token"); 
+        // Almacenamos el token con el prefijo 'Bearer ' en localStorage
+        const tokenWithBearer = localStorage.getItem("token"); 
 
-        if (token) {
-            config.headers["Authorization"] = token;
+        if (tokenWithBearer) {
+            // Usamos la clave estándar 'Authorization'
+            config.headers.Authorization = tokenWithBearer; 
         }
         return config;
     },
@@ -48,17 +53,20 @@ const Login = () => {
         setIsLoading(true);
 
         try {
+            // Petición POST al endpoint completo (ej: http://localhost:5000/api/user/login)
             const response = await axios.post(`${API_BASE_URL}/login`, data);
             
             const { token, userData } = response.data;
             
-            localStorage.setItem('token', token); 
+            // 🚨 CORRECCIÓN CRÍTICA: Guardar el token con el prefijo Bearer
+            localStorage.setItem('token', `Bearer ${token}`); 
 
-            setToken(token);
+            setToken(`Bearer ${token}`); // También actualizamos el Context
             setUser(userData); 
             
-            toast.success(`👋 ¡Hola, ${userData.name || 'Usuario'}! Inicio de sesión exitoso. Redirigiendo a doctores.`);
+            toast.success(`👋 ¡Hola, ${userData.name || 'Usuario'}! Inicio de sesión exitoso. Redirigiendo...`);
             
+            // Redirigir a la lista de doctores, que es donde se inicia el proceso de booking.
             navigate('/doctors', { replace: true }); 
 
             reset();
