@@ -19,7 +19,6 @@ const DoctorList = () => {
       return res.data.doctors || res.data || [];
     } catch (error) {
       if (error.response) {
-        // Manejo de token inválido / expirado
         if (error.response.status === 401 || error.response.status === 403) {
           toast.error("Sesión expirada o acceso denegado. Por favor, inicia sesión de nuevo.");
           localStorage.removeItem("token"); // Usas 'token' en localStorage, lo removemos.
