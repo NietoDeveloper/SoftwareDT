@@ -16,7 +16,6 @@ import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 import ClientPanel from "./pages/ClientAppointmentsPanel.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
-import DoctorDashboardPage from "./pages/DoctorDashboardPage.jsx";
 
 function App() {
   return (
@@ -33,7 +32,6 @@ function App() {
         <Route path="/doctor/login" element={<Doctorlogin />} />
         
         <Route element={<PrivateRoutes />}>
-            <Route path="/doctor/dashboard" element={<DoctorDashboardPage />} />
           <Route path="/user/profile" element={<UserProfile />} /> 
           <Route path="/client/dashboard" element={<ClientPanel />} />
           <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
