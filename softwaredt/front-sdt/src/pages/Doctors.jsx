@@ -70,7 +70,7 @@ const DoctorList = () => {
         {doctors.map((doctor) => (
           <div
             key={doctor._id}
-            className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center text-center h-[300px]"
+            className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center text-center h-[300px] group"
             onClick={() => navigateToBooking(doctor._id)}
           >
             <h1 className="text-xl font-semibold mb-2">{doctor.name}</h1>

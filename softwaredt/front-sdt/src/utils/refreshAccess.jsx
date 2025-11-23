@@ -11,7 +11,6 @@ const refreshAccessToken = async () => {
     return accessToken;
   } catch (error) {
     console.error('Error refreshing token:', error);
-    // Opcional: logout o redirect
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     throw error;
