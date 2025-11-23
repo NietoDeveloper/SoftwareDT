@@ -19,7 +19,6 @@ const Profile = () => {
             // 1. Llamada a la API de backend
             await axiosAuth.post('/user/logout'); 
             
-            // 2. Limpieza de estado local (usa la lógica del contexto)
             handleLogout(); 
             
             // 3. Redirección
