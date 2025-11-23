@@ -16,16 +16,13 @@ import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 import ClientPanel from "./pages/ClientAppointmentsPanel.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
+import DoctorDashboardPage from "./pages/DoctorDashboardPage.jsx";
 
 function App() {
   return (
     <UserProvider>
       <Header />
-      <Routes
-            // **CORRECCIÓN #1:** Se eliminan las 'future' flags de aquí,
-            // ya que solo van en el BrowserRouter (en index.js).
-            // future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-      >
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<DoctorList />} />
         <Route path="/contact" element={<Contact />} />
@@ -36,7 +33,7 @@ function App() {
         <Route path="/doctor/login" element={<Doctorlogin />} />
         
         <Route element={<PrivateRoutes />}>
-            
+            <Route path="/doctor/dashboard" element={<DoctorDashboardPage />} />
           <Route path="/user/profile" element={<UserProfile />} /> 
           <Route path="/client/dashboard" element={<ClientPanel />} />
           <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
