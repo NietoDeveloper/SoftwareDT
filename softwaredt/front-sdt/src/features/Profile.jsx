@@ -4,8 +4,6 @@ import { UserContext } from '../context/UserContext';
 import { useContext } from 'react';
 
 const Profile = () => {
-    // 🛠️ Corrección: Usar UserContext al consumir el contexto
-    // También obtenemos handleLogout, ya que es la función que deberíamos usar.
     const { setToken, setUser, handleLogout } = useContext(UserContext);
     const navigate = useNavigate();
 
