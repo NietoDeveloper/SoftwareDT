@@ -14,6 +14,7 @@ const DoctorList = () => {
 
   const getDoctors = async () => {
     try {
+      // eslint-disable-next-line no-undef
       const res = await axiosSecure.get("/doctors"); 
       return res.data.doctors || res.data || [];
     } catch (error) {
