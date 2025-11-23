@@ -21,7 +21,7 @@ const DoctorList = () => {
       if (error.response) {
         if (error.response.status === 401 || error.response.status === 403) {
           toast.error("Sesión expirada o acceso denegado. Por favor, inicia sesión de nuevo.");
-          localStorage.removeItem("token"); // Usas 'token' en localStorage, lo removemos.
+          localStorage.removeItem("token"); 
           navigate("/login");
         } else {
           toast.error("Fallo al cargar la lista de doctores. Error: " + error.response.status);
