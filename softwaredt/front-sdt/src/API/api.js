@@ -1,5 +1,5 @@
 import axios from 'axios';
-import refreshAccessToken from './refreshAccess';
+import refreshAccessToken from '../utils/refreshAccess';
 
 const BASE_URL = 'http://localhost:5000/api';
 

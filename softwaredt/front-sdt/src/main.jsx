@@ -10,14 +10,21 @@ import { ToastContainer } from 'react-toastify';
 
 const queryClient = new QueryClient()
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router>
+    {/* Añadimos la propiedad 'future' con las banderas recomendadas 
+      para optar por el comportamiento de v7 y silenciar las advertencias.
+    */}
+    <Router
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <QueryClientProvider client = {queryClient}>
-      <ToastContainer />
+        <ToastContainer />
         <App />
-     </QueryClientProvider>
+      </QueryClientProvider>
     </Router>
   </React.StrictMode>,
 )
