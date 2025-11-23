@@ -14,7 +14,6 @@ const DoctorList = () => {
 
   const getDoctors = async () => {
     try {
-      // 🚨 CAMBIO CRÍTICO: Usamos axiosSecure para enviar el token.
       const res = await axiosSecure.get("/doctors"); 
       return res.data.doctors || res.data || [];
     } catch (error) {
