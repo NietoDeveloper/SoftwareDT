@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { axiosPublic } from "../API/api.js";
+// 🚨 CAMBIO AQUÍ: Importamos axiosSecure en lugar de axiosPublic
+import { axiosSecure } from "../API/api.js"; 
 
 const ArrowRightIcon = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -15,13 +16,15 @@ const DoctorList = () => {
 
   const getDoctors = async () => {
     try {
-      const res = await axiosPublic.get("/doctors");
+      // 🚨 CAMBIO CRÍTICO: Usamos axiosSecure para enviar el token.
+      const res = await axiosSecure.get("/doctors"); 
       return res.data.doctors || res.data || [];
     } catch (error) {
       if (error.response) {
+        // Manejo de token inválido / expirado
         if (error.response.status === 401 || error.response.status === 403) {
-          toast.error("Sesión expirada o acceso denegado. Por favor, inicia sesión.");
-          localStorage.removeItem("accessToken");
+          toast.error("Sesión expirada o acceso denegado. Por favor, inicia sesión de nuevo.");
+          localStorage.removeItem("token"); // Usas 'token' en localStorage, lo removemos.
           navigate("/login");
         } else {
           toast.error("Fallo al cargar la lista de doctores. Error: " + error.response.status);
@@ -70,7 +73,7 @@ const DoctorList = () => {
         {doctors.map((doctor) => (
           <div
             key={doctor._id}
-            className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center text-center h-[300px] group"
+            className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center text-center h-[300px]"
             onClick={() => navigateToBooking(doctor._id)}
           >
             <h1 className="text-xl font-semibold mb-2">{doctor.name}</h1>
