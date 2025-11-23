@@ -21,7 +21,6 @@ function App() {
   return (
     <UserProvider>
       <Header />
-
       <Routes
         future={{
           v7_startTransition: true,
@@ -31,24 +30,16 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<DoctorList />} />
         <Route path="/contact" element={<Contact />} />
-        
         <Route path="/services" element={<Services />} />
-
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/doctor/signup" element={<Doctorsignup />} />
         <Route path="/doctor/login" element={<Doctorlogin />} />
-
         <Route element={<PrivateRoutes />}>
-          
           <Route path="/user/profile" element={<UserProfile />} /> 
-
           <Route path="/client/dashboard" element={<ClientPanel />} />
-
           <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
-          
           <Route path="/checkout" element={<Payment />} />
-
           <Route 
             path="/appointment-confirmation/:appointmentId" 
             element={<AppointmentConfirmation />} 
