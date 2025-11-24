@@ -37,7 +37,6 @@ const verifyAccess = (req, res, next) => {
                 });
             }
 
-            // 4. Verificar el payload mínimo y adjuntar datos al objeto request
             if (!decoded || !decoded.id) {
                 console.log('DEBUG: Token payload is incomplete (missing user ID).');
                 return res.status(403).json({ 
