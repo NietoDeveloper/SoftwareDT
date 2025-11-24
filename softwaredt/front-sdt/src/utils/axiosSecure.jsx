@@ -14,7 +14,6 @@ const axiosSecure = axios.create({
 
 axiosSecure.interceptors.request.use(
   (config) => {
-    // Obtener el token de autenticación (JWT) desde el almacenamiento local.
     const token = localStorage.getItem('accessToken'); 
     
     // Si se encuentra el token, se añade al encabezado de Autorización como Bearer Token.
