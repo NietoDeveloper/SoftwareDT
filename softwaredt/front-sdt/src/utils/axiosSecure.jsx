@@ -29,12 +29,10 @@ axiosSecure.interceptors.request.use(
 );
 
 // 4. Interceptor de Respuesta (Response Interceptor)
-// Este código se ejecuta cuando el servidor responde.
-// Se usa principalmente para manejar errores de autenticación (401/403).
+
 axiosSecure.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Verifica si el error es por falta de autorización (401) o prohibido (403).
     if (error.response && (error.response.status === 401 || error.response.status === 403)) {
       console.log('Error de autenticación detectado. Token expirado o no autorizado.');
       
