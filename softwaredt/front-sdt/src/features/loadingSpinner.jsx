@@ -27,7 +27,6 @@ const Spinner = () => {
           animate-spin
         "
       >
-        {/* Este div está vacío, el efecto visual se logra completamente con los estilos de borde y la animación. */}
       </div>
 
     </div>
