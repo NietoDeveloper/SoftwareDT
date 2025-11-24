@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken');
 
 const verifyAccess = (req, res, next) => {
-    // 1. Obtener el encabezado de autorización
-    // Usa req.headers.authorization directamente (Express a menudo lo normaliza a minúsculas)
     const authHeader = req.headers.authorization;
 
     // 2. Verificar la presencia y el formato 'Bearer '
