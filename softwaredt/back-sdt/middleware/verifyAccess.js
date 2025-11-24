@@ -3,10 +3,8 @@ const jwt = require('jsonwebtoken');
 const verifyAccess = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
-    // 2. Verificar la presencia y el formato 'Bearer '
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         console.log('DEBUG: Access Denied. Token is missing or invalid format (401).');
-        // 401 Unauthorized: El cliente debe autenticarse (enviar un token válido)
         return res.status(401).json({ 
             success: false, 
             message: "Acceso denegado. Se requiere un token de portador ('Bearer')." 
