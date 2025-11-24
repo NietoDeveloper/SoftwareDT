@@ -46,7 +46,6 @@ const verifyAccess = (req, res, next) => {
                 });
             }
             
-            // Adjuntar datos decodificados al objeto de solicitud para middlewares/rutas subsiguientes
             req.userId = decoded.id;
             req.roles = decoded.roles; 
             
