@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-// 1. Define la URL base de tu backend.
-// Utiliza la variable de entorno de Vite (VITE_API_URL).
-
 const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1'; 
 
 const axiosSecure = axios.create({
