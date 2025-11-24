@@ -13,7 +13,7 @@ const doctorSchema = new Schema({
     password: { 
         type: String, 
         required: true, 
-        select: false // 🔒 Oculta la contraseña por defecto en consultas GET públicas
+        select: false 
     },
     photo: { type: String },
     phone: { type: String },
