@@ -41,5 +41,4 @@ const doctorSchema = new Schema({
     timestamps: true 
 });
 
-// 2. 🔗 EXPORTACIÓN CLAVE: Usamos userDB.model() para asociar el modelo a la conexión principal
 module.exports = userDB.model('Doctor', doctorSchema);
