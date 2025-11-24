@@ -28,8 +28,6 @@ axiosSecure.interceptors.request.use(
   }
 );
 
-// 4. Interceptor de Respuesta (Response Interceptor)
-
 axiosSecure.interceptors.response.use(
   (response) => response,
   (error) => {
