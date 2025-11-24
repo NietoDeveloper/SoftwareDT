@@ -26,7 +26,6 @@ const doctorSchema = new Schema({
     },
     ticketPrice: { type: Number, default: 30 },
 
-    // Doctors details
     specialization: { type: String },
     qualifications: { type: Array },
     experience: { type: Array },
