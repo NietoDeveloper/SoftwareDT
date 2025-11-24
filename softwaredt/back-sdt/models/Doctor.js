@@ -43,7 +43,7 @@ const doctorSchema = new Schema({
         index: true
     }
 }, { 
-    timestamps: true // Añade createdAt y updatedAt
+    timestamps: true 
 });
 
 // 2. 🔗 EXPORTACIÓN CLAVE: Usamos userDB.model() para asociar el modelo a la conexión principal
