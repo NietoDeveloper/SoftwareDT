@@ -38,10 +38,6 @@ axiosSecure.interceptors.response.use(
     if (error.response && (error.response.status === 401 || error.response.status === 403)) {
       console.log('Error de autenticación detectado. Token expirado o no autorizado.');
       
-      // Aquí puedes implementar la lógica de cierre de sesión forzado:
-      // 1. Eliminar el token del almacenamiento local:
-      // localStorage.removeItem('accessToken'); 
-      
     }
     
     return Promise.reject(error);
