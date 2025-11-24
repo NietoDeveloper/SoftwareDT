@@ -39,7 +39,7 @@ const doctorSchema = new Schema({
     appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
     refreshToken: {
         type: [String],
-        select: false, // 🔒 Oculta el token de refresco por defecto
+        select: false, 
         index: true
     }
 }, { 
