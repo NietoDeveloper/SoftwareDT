@@ -15,8 +15,7 @@ const axiosSecure = axios.create({
 axiosSecure.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('accessToken'); 
-    
-    // Si se encuentra el token, se añade al encabezado de Autorización como Bearer Token.
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
