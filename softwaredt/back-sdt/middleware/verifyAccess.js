@@ -50,7 +50,6 @@ const verifyAccess = (req, res, next) => {
             req.userId = decoded.id;
             req.roles = decoded.roles; 
             
-            // Continuar con el siguiente middleware o manejador de ruta
             next();
         }
     );
