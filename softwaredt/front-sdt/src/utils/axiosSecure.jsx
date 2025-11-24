@@ -5,7 +5,6 @@ import axios from 'axios';
 // Si no está definida, usa un fallback (ej. http://localhost:5000/api/v1).
 const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1'; 
 
-// 2. Crea la instancia de Axios.
 const axiosSecure = axios.create({
   baseURL: baseURL,
   withCredentials: true, 
