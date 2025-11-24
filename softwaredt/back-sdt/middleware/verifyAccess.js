@@ -23,8 +23,6 @@ const verifyAccess = (req, res, next) => {
         process.env.ACCESS_TOKEN_SECRET, 
         (err, decoded) => {
             if (err) {
-                // 403 Forbidden: El token existe pero es inválido (ej. expirado, malformado, firma incorrecta)
-                // Usar 403 es apropiado si el cliente envió un token, pero no tiene acceso.
                 const errorMessage = err.name === 'TokenExpiredError' 
                     ? "Token expirado. Por favor, inicia sesión de nuevo."
                     : "Token inválido o malformado.";
