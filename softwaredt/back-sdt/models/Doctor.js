@@ -1,5 +1,3 @@
-// models/Doctor.js (CÓDIGO CORREGIDO)
-
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
