@@ -1,7 +1,5 @@
 const Spinner = () => {
   return (
-    // Contenedor principal para centrarlo si es necesario y asegurar que el spinner esté visible.
-    // Utilizaremos flexbox para centrar (si se usa en un contexto más grande).
     <div className="flex items-center justify-center min-h-[50px]">
       
       {/* El corazón del Spinner: un div con bordes gruesos y redondeados.
