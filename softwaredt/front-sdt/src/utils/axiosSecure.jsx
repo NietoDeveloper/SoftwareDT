@@ -42,10 +42,6 @@ axiosSecure.interceptors.response.use(
       // 1. Eliminar el token del almacenamiento local:
       // localStorage.removeItem('accessToken'); 
       
-      // 2. Redirigir al usuario a la página de inicio de sesión:
-      // window.location.href = '/login'; 
-      
-      // Opcionalmente, mostrar una notificación al usuario.
     }
     
     return Promise.reject(error);
