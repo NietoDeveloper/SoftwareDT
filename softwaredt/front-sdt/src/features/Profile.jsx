@@ -16,8 +16,6 @@ const Profile = () => {
   
             navigate('/login'); // Es más común redirigir a /login después de cerrar sesión
         } catch (error) {
-            // 🚨 Importante: Si la API de logout falla (ej. token caducado), 
-            // igual debemos limpiar la sesión localmente para evitar que el usuario se quede "colgado".
             console.error('Fallo la llamada al endpoint de logout. Limpiando sesión local.', error); 
             
             handleLogout(); 
