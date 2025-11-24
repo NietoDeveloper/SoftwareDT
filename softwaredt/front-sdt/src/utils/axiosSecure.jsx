@@ -48,7 +48,6 @@ axiosSecure.interceptors.response.use(
       // Opcionalmente, mostrar una notificación al usuario.
     }
     
-    // Retorna el error para que pueda ser capturado por el código que hizo la llamada.
     return Promise.reject(error);
   }
 );
