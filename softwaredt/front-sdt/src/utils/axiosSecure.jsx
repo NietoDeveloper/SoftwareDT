@@ -12,9 +12,6 @@ const axiosSecure = axios.create({
   withCredentials: true, 
 });
 
-// 3. Interceptor de Solicitud (Request Interceptor)
-// Este código se ejecuta antes de que la solicitud HTTP se envíe al servidor.
-// Se usa para adjuntar el token de autenticación a los encabezados.
 axiosSecure.interceptors.request.use(
   (config) => {
     // Obtener el token de autenticación (JWT) desde el almacenamiento local.
