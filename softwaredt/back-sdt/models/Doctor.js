@@ -3,8 +3,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-// 1. 🎯 Importar la conexión específica (UserDB)
-// Asegúrate de que esta ruta sea correcta para tu proyecto
 const { userDB } = require('../config/dbConn'); 
 
 const doctorSchema = new Schema({
