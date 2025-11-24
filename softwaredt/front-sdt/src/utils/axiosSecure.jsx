@@ -8,7 +8,6 @@ const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
 // 2. Crea la instancia de Axios.
 const axiosSecure = axios.create({
   baseURL: baseURL,
-  // Habilita el envío de cookies a través de CORS si tu backend lo requiere.
   withCredentials: true, 
 });
 
