@@ -23,7 +23,6 @@ axiosSecure.interceptors.request.use(
     return config;
   },
   (error) => {
-    // Manejar cualquier error durante la configuración de la solicitud.
     return Promise.reject(error);
   }
 );
