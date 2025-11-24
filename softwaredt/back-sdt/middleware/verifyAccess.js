@@ -17,7 +17,6 @@ const verifyAccess = (req, res, next) => {
 
     const token = authHeader.split(' ')[1];
 
-    // 3. Verificar el token usando la clave secreta
     jwt.verify(
         token, 
         process.env.ACCESS_TOKEN_SECRET, 
