@@ -200,7 +200,6 @@ const handleDoctorLogout = asyncHandler(async (req, res) => {
     });
 
     if (!foundDoctor) {
-        // Token was invalid or already removed from DB, but the cookie is cleared.
         return res.sendStatus(204); 
     }
 
