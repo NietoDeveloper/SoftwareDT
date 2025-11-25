@@ -10,8 +10,6 @@ const initializeConnection = (uri, name) => {
     
     // Opciones recomendadas de Mongoose para conexiones robustas
     const connectionOptions = {
-        // Estas opciones solían ser obligatorias, ahora son el comportamiento por defecto en Mongoose 6+
-        // Se mantienen aquí para claridad y compatibilidad
    
     };
 
