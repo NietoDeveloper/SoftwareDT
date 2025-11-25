@@ -21,7 +21,7 @@ const userSchema = new Schema({
     },
     refreshToken: {
         type: [String],
-        index: true // Crea un índice para búsquedas rápidas durante el login/logout.
+        index: true
     }
 }, { timestamps: true }); 
 
