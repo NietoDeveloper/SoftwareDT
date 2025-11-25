@@ -8,7 +8,6 @@ const initializeConnection = (uri, name) => {
         return null;
     }
     
-    // Opciones recomendadas de Mongoose para conexiones robustas
     const connectionOptions = {
    
     };
