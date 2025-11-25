@@ -11,7 +11,6 @@ const doctorRegister = asyncHandler (async (req, res) => {
     }
     const duplicate = await Doctor.findOne({email}).exec();
     if(duplicate) {
-        // HTTP 409 Conflict
         return res.status(409).json({message: "Email already exists"}); 
     }
 
