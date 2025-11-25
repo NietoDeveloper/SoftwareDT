@@ -23,6 +23,6 @@ const userSchema = new Schema({
         type: [String],
         index: true // Crea un índice para búsquedas rápidas durante el login/logout.
     }
-}, { timestamps: true }); // Añade campos createdAt y updatedAt automáticamente.
+}, { timestamps: true }); 
 
 module.exports = userDB.model('User', userSchema);
