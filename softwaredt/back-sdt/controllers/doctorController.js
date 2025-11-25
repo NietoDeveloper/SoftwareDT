@@ -100,8 +100,7 @@ const handleDoctorLogin = asyncHandler (async (req, res) => {
 });
 
 // @desc Update doctor profile information
-// @route PUT /api/doctor/update/:id
-// @access Private (Requires authentication/authorization)
+
 const updateDoctor = asyncHandler (async (req, res) => {
     const doctorId = req.params.id;
     
