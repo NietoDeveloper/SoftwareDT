@@ -191,8 +191,7 @@ const handleDoctorLogout = asyncHandler(async (req, res) => {
 
     // 2. Find doctor by refreshToken (requires selecting the refreshToken field)
     const foundDoctor = await Doctor.findOne({ refreshToken }).select('+refreshToken').exec();
-    
-    // 3. Clear cookie regardless if token is in DB
+
     res.clearCookie('jwt', { 
         httpOnly: true, 
         secure: process.env.NODE_ENV === 'production', 
