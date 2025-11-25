@@ -159,7 +159,6 @@ const updateDoctor = asyncHandler (async (req, res) => {
 // @route GET /api/doctors
 // @access Public (or adjust based on security model)
 const getAllDoctors = asyncHandler ( async (req, res ) => {
-    // El modelo ya tiene select:false en password y refreshToken, pero lo dejamos como seguro
     const doctors = await Doctor.find().select('-password -refreshToken').exec(); 
     
     if(!doctors || doctors.length === 0) {
