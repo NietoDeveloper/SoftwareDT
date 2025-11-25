@@ -211,8 +211,7 @@ const handleDoctorLogout = asyncHandler(async (req, res) => {
     foundDoctor.refreshToken = newRefreshTokenArray; 
     await foundDoctor.save();
 
-    // 5. Successful logout
-    res.sendStatus(204); // Successful request, no content to return
+    res.sendStatus(204); 
 });
 
 module.exports = { 
