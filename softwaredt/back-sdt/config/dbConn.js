@@ -42,7 +42,6 @@ const userDB = initializeConnection(
     'USUARIOS'
 );
 
-// 2. Conexión para Citas (Clúster Nuevo para las Citas)
 const citaDB = initializeConnection(
     process.env.MONGODB_URI_CITAS, 
     'CITAS'
