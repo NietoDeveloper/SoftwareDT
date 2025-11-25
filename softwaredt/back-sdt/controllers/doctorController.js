@@ -57,8 +57,6 @@ const handleDoctorLogin = asyncHandler (async (req, res) => {
             {expiresIn: '1d'}
         );
         
-        // 5. Save refreshToken (as an array element)
-        // 🔑 CORRECCIÓN: Manejar refreshToken como un array (para múltiples dispositivos)
         const newRefreshTokenArray = findDoctor.refreshToken ? [...findDoctor.refreshToken, refreshToken] : [refreshToken];
 
         findDoctor.refreshToken = newRefreshTokenArray;
