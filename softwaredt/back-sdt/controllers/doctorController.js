@@ -88,7 +88,7 @@ const handleDoctorLogin = asyncHandler (async (req, res) => {
         // Secure cookie settings
         res.cookie('jwt', refreshToken, {
             httpOnly: true, 
-            secure: process.env.NODE_ENV === 'production', // Use secure: true in production
+            secure: process.env.NODE_ENV === 'production', 
             sameSite: 'None', 
             maxAge: 24 * 60 * 60 * 1000 // 1 day
         }); 
