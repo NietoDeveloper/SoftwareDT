@@ -22,7 +22,6 @@ const doctorRegister = asyncHandler (async (req, res) => {
     });
 
     if(result) {
-        // HTTP 201 Created
         res.status(201).json({message: "Your doctor's profile was created successfully"});
     } else {
         res.status(500).json({message: "Internal server error: Could not create profile."}); 
