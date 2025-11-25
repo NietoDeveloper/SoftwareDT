@@ -9,7 +9,7 @@ const userSchema = new Schema({
     password: { 
         type: String, 
         required: true, 
-        select: false // No devuelve la contraseña por defecto en las consultas.
+        select: false 
     },
     phone: { type: String },
     photo: { type: String, default: "https://www.pngarts.com/explore/215296" },
