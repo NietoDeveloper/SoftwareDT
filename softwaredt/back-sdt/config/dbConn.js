@@ -36,7 +36,6 @@ const initializeConnection = (uri, name) => {
     return connection;
 };
 
-// 1. Conexión para Usuarios y Perfiles (Clúster Original)
 const userDB = initializeConnection(
     process.env.MONGODB_URI_USUARIOS, 
     'USUARIOS'
