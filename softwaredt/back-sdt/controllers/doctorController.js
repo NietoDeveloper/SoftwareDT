@@ -81,8 +81,6 @@ const handleDoctorLogin = asyncHandler (async (req, res) => {
         findDoctor.refreshToken = newRefreshTokenArray;
         await findDoctor.save();
 
-        // 6. Build response and set cookie
-        // Excluir la contraseña y el refresh token del objeto que se envía al cliente
         const { password: _, refreshToken: __, ...doctorData } = findDoctor.toObject();
         
         res.cookie('jwt', refreshToken, {
