@@ -99,8 +99,6 @@ const handleDoctorLogin = asyncHandler (async (req, res) => {
     }
 });
 
-// @desc Update doctor profile information
-
 const updateDoctor = asyncHandler (async (req, res) => {
     const doctorId = req.params.id;
     
