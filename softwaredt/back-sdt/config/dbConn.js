@@ -17,7 +17,6 @@ const initializeConnection = (uri, name) => {
         // Puedes agregar más opciones específicas aquí si las necesitas, ej: serverSelectionTimeoutMS
     };
 
-    // mongoose.createConnection crea una conexión que puede ser asignada a modelos específicos
     const connection = mongoose.createConnection(uri, connectionOptions);
     
     connection.on('connected', () => {
