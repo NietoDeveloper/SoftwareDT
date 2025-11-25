@@ -9,8 +9,6 @@ const doctorRegister = asyncHandler (async (req, res) => {
     if(!name || !email || !password) {
         return res.status(400).json({message: "Name, password and email are required!"});
     }
-
-    // 2. Check for duplicates
     const duplicate = await Doctor.findOne({email}).exec();
     if(duplicate) {
         // HTTP 409 Conflict
