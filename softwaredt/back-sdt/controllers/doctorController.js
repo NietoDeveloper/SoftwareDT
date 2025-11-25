@@ -127,7 +127,6 @@ const updateDoctor = asyncHandler (async (req, res) => {
         foundDoctor.email = email;
     }
     
-    // Actualizar campos básicos
     if (name) foundDoctor.name = name;
     if (ticketPrice) foundDoctor.ticketPrice = ticketPrice;
     
