@@ -115,7 +115,6 @@ const updateDoctor = asyncHandler (async (req, res) => {
         return res.status(404).json({message: "Doctor not found"});
     }
     
-    // 2. Update fields if provided in request body
     const {email, phone, specialization, qualifications, experience, bio, timeSlots, name, ticketPrice} = req.body;
     
     if (email && email !== foundDoctor.email) {
