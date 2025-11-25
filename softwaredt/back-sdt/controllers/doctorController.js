@@ -163,7 +163,6 @@ const getAllDoctors = asyncHandler ( async (req, res ) => {
     const doctors = await Doctor.find().select('-password -refreshToken').exec(); 
     
     if(!doctors || doctors.length === 0) {
-        // 🔄 MEJORA: Devolver 200 OK con mensaje cuando no hay contenido, ya que enviamos un body.
         return res.status(200).json({
             message: "No doctors found in the database!",
             doctors: []
