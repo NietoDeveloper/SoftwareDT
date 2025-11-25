@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 // Función para inicializar una conexión y manejar sus eventos
 const initializeConnection = (uri, name) => {
     if (!uri) {
-        // En un entorno de producción, puedes optar por lanzar un error fatal.
         console.error(`⚠️ URI de MongoDB para ${name} no definida en .env`);
         return null;
     }
