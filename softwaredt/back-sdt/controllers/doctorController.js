@@ -109,7 +109,6 @@ const updateDoctor = asyncHandler (async (req, res) => {
         return res.status(400).json({message: "Doctor ID is required in params."});
     }
     
-    // 1. Find doctor by ID
     const foundDoctor = await Doctor.findById(doctorId).exec();
     if(!foundDoctor) {
         return res.status(404).json({message: "Doctor not found"});
