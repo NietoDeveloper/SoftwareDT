@@ -102,7 +102,6 @@ const updateDoctor = asyncHandler (async (req, res) => {
     if (name) foundDoctor.name = name;
     if (ticketPrice) foundDoctor.ticketPrice = ticketPrice;
     
-    // Actualizar campos de perfil
     if (phone) foundDoctor.phone = phone;
     if (specialization) foundDoctor.specialization = specialization;
     if (qualifications) foundDoctor.qualifications = qualifications;
