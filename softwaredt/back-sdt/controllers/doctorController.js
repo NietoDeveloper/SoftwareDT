@@ -139,7 +139,6 @@ const updateDoctor = asyncHandler (async (req, res) => {
     if (experience) foundDoctor.experience = experience;
     if (timeSlots) foundDoctor.timeSlots = timeSlots;
 
-    // 3. Save updates
     const result = await foundDoctor.save();
     
     if(result) {
