@@ -176,9 +176,6 @@ const getAllDoctors = asyncHandler ( async (req, res ) => {
     });
 });
 
-// @desc Doctor logout and clear cookie
-// @route POST /api/doctor/logout
-// @access Public
 const handleDoctorLogout = asyncHandler(async (req, res) => {
     const cookies = req.cookies;
     
