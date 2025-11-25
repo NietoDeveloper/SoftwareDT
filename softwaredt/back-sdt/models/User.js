@@ -25,7 +25,4 @@ const userSchema = new Schema({
     }
 }, { timestamps: true }); // Añade campos createdAt y updatedAt automáticamente.
 
-
-// 🛑 CORRECCIÓN CLAVE: Usamos userDB.model() en lugar de mongoose.model().
-// Esto vincula el esquema de usuario a la conexión de base de datos correcta.
 module.exports = userDB.model('User', userSchema);
