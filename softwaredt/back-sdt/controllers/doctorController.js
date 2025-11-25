@@ -188,8 +188,6 @@ const handleDoctorLogout = asyncHandler(async (req, res) => {
     } 
     
     const refreshToken = cookies.jwt;
-
-    // 2. Find doctor by refreshToken (requires selecting the refreshToken field)
     const foundDoctor = await Doctor.findOne({ refreshToken }).select('+refreshToken').exec();
 
     res.clearCookie('jwt', { 
