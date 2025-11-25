@@ -4,8 +4,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 // @desc Doctor registration
-// @route POST /api/doctor/register
-// @access Public
+
 const doctorRegister = asyncHandler (async (req, res) => {
     const {name, email, password} = req.body;
     
