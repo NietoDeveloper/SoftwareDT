@@ -36,8 +36,6 @@ const handleDoctorLogin = asyncHandler (async (req, res) => {
         return res.status(400).json({message: "Login credentials required"});
     }
 
-    // 2. Find doctor and check password
-    // 🔑 CORRECCIÓN CRÍTICA: Debemos seleccionar (+password) para obtener el hash
     const findDoctor = await Doctor.findOne({email}).select('+password').exec(); 
     if(!findDoctor) {
         return res.status(401).json({message: "Unauthorized: Invalid credentials"}); 
