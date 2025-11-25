@@ -48,8 +48,6 @@ const citaDB = initializeConnection(
     'CITAS'
 );
 
-// Exportamos ambas conexiones para que los Modelos (Cita, Usuario, Doctor, etc.) puedan usarlas.
-// NOTA: Es esencial que los modelos usen estas conexiones con .model(name, schema, collection, skipInit)
 module.exports = {
     userDB,
     citaDB
