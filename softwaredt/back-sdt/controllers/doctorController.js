@@ -31,7 +31,6 @@ const doctorRegister = asyncHandler (async (req, res) => {
 const handleDoctorLogin = asyncHandler (async (req, res) => {
     const {email, password} = req.body;
     
-    // 1. Validation check
     if(!email || !password) {
         return res.status(400).json({message: "Login credentials required"});
     }
