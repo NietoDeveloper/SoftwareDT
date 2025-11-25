@@ -26,7 +26,6 @@ const initializeConnection = (uri, name) => {
     
     connection.on('error', (err) => {
         console.error(`❌ Error al conectar MongoDB (${name}):`, err.message);
-        // Puedes añadir aquí lógica de reintento si es necesario
     });
 
     connection.on('disconnected', () => {
