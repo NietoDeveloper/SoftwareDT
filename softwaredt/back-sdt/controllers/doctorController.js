@@ -40,7 +40,6 @@ const handleDoctorLogin = asyncHandler (async (req, res) => {
         return res.status(401).json({message: "Unauthorized: Invalid credentials"}); 
     }
 
-    // 3. Compare password
     const isMatch = await bcrypt.compare(password, findDoctor.password);
     
     if(isMatch) {
