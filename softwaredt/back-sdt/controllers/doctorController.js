@@ -43,7 +43,6 @@ const handleDoctorLogin = asyncHandler (async (req, res) => {
     const isMatch = await bcrypt.compare(password, findDoctor.password);
     
     if(isMatch) {
-        // 4. Generate tokens and roles
         const roles = findDoctor.roles ? Object.values(findDoctor.roles).filter(Boolean) : []; 
         
         const accessToken = jwt.sign (
