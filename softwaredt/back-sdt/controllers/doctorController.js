@@ -143,7 +143,6 @@ const updateDoctor = asyncHandler (async (req, res) => {
     const result = await foundDoctor.save();
     
     if(result) {
-        // Excluir campos sensibles antes de retornar
         const { password: _, refreshToken: __, ...updatedData } = result.toObject();
         
         return res.status(200).json({
