@@ -85,7 +85,6 @@ const handleDoctorLogin = asyncHandler (async (req, res) => {
         // Excluir la contraseña y el refresh token del objeto que se envía al cliente
         const { password: _, refreshToken: __, ...doctorData } = findDoctor.toObject();
         
-        // Secure cookie settings
         res.cookie('jwt', refreshToken, {
             httpOnly: true, 
             secure: process.env.NODE_ENV === 'production', 
