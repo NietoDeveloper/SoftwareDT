@@ -142,7 +142,6 @@ const getAllDoctors = asyncHandler ( async (req, res ) => {
 const handleDoctorLogout = asyncHandler(async (req, res) => {
     const cookies = req.cookies;
     
-    // 1. Check for cookie
     if (!cookies?.jwt) {
         return res.sendStatus(204); 
     } 
