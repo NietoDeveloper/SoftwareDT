@@ -155,9 +155,6 @@ const updateDoctor = asyncHandler (async (req, res) => {
     }
 });
 
-// @desc Get all doctors (excluding sensitive info)
-// @route GET /api/doctors
-// @access Public (or adjust based on security model)
 const getAllDoctors = asyncHandler ( async (req, res ) => {
     const doctors = await Doctor.find().select('-password -refreshToken').exec(); 
     
