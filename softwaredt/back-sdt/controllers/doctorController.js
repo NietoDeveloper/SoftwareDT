@@ -118,7 +118,6 @@ const updateDoctor = asyncHandler (async (req, res) => {
     // 2. Update fields if provided in request body
     const {email, phone, specialization, qualifications, experience, bio, timeSlots, name, ticketPrice} = req.body;
     
-    // Check for email duplicate *if* email is being updated and is different
     if (email && email !== foundDoctor.email) {
         const duplicateEmail = await Doctor.findOne({ email }).exec();
         if (duplicateEmail) {
