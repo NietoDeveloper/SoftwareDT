@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-// 🛑 IMPORTACIÓN CRÍTICA: Importamos la conexión específica que maneja la DB de usuarios.
 const { userDB } = require('../config/dbConn'); 
 
 const userSchema = new Schema({
