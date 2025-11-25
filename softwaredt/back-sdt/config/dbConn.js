@@ -12,9 +12,7 @@ const initializeConnection = (uri, name) => {
     const connectionOptions = {
         // Estas opciones solían ser obligatorias, ahora son el comportamiento por defecto en Mongoose 6+
         // Se mantienen aquí para claridad y compatibilidad
-        // useNewUrlParser: true, 
-        // useUnifiedTopology: true,
-        // Puedes agregar más opciones específicas aquí si las necesitas, ej: serverSelectionTimeoutMS
+   
     };
 
     const connection = mongoose.createConnection(uri, connectionOptions);
