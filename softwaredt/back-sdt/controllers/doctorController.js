@@ -204,8 +204,6 @@ const handleDoctorLogout = asyncHandler(async (req, res) => {
         return res.sendStatus(204); 
     }
 
-    // 4. Remove refreshToken from the array in the database
-    // 🔑 CORRECCIÓN CRÍTICA: Usa el método array.filter() para eliminar solo el token actual.
     const newRefreshTokenArray = foundDoctor.refreshToken.filter(token => token !== refreshToken);
 
     foundDoctor.refreshToken = newRefreshTokenArray; 
