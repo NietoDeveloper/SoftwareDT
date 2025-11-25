@@ -28,9 +28,6 @@ const doctorRegister = asyncHandler (async (req, res) => {
     }
 });
 
-// @desc Doctor login
-// @route POST /api/doctor/login
-// @access Public
 const handleDoctorLogin = asyncHandler (async (req, res) => {
     const {email, password} = req.body;
     
