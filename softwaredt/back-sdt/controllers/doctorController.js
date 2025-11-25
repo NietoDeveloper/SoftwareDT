@@ -184,7 +184,7 @@ const handleDoctorLogout = asyncHandler(async (req, res) => {
     
     // 1. Check for cookie
     if (!cookies?.jwt) {
-        return res.sendStatus(204); // No content to send back, successful "logout" if no cookie
+        return res.sendStatus(204); 
     } 
     
     const refreshToken = cookies.jwt;
