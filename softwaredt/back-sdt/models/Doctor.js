@@ -23,21 +23,21 @@ const doctorSchema = new Schema({
     ticketPrice: { type: Number, default: 30 },
 
     specialization: { type: String },
-    qualifications: { type: Array },
-    experience: { type: Array },
+    qualifications: { type: [Schema.Types.Mixed] },
+    experience: { type: [Schema.Types.Mixed] },
     bio: { type: String, maxLength: 250 },
-    timeSlots: { type: Array },
-    reviews: [{ type: mongoose.Types.ObjectId, ref: "Review" }],  // Si Review en citaDB, populate OK con ids
+    timeSlots: { type: [Schema.Types.Mixed] },
+    reviews: [{ type: mongoose.Types.ObjectId, ref: "Review" }],
     rating: { type: Number, default: 0 },
     totalRating: { type: Number, default: 0 },
     isApproved: { type: String, enum: ["pending", "approved", "cancelled"], default: "pending" },
-    appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],  // Similar para Appointment
+    appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
     refreshToken: {
         type: [String],
         select: false, 
         index: true
     },
-    isAvailable: { type: Boolean, default: true }  // Nuevo: para filter disponibles en controller
+    isAvailable: { type: Boolean, default: true }
 }, { 
     timestamps: true 
 });
