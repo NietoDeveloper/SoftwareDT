@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const mongoose = require('mongoose'); 
 
-const connectDBs = require('./config/dbConn');  // Ajusta si nombre es db.js
+const connectDBs = require('./config/dbConn'); 
 
 const corsOptions = require('./config/corsOptions');
 const {verifyAccess} = require('./middleware/verifyAccess');
