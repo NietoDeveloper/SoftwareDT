@@ -1,20 +1,18 @@
 const mongoose = require('mongoose');
-const { Schema }= mongoose;
+const { Schema } = mongoose;
+
+const { citaDB } = require('../config/dbConn');
 
 const reviewSchema = new Schema({
-    text:{type:String, maxLength:250},
-    doctor:{type:mongoose.Types.ObjectId, ref:"Doctor"},
-    user:{type:mongoose.Types.ObjectId, ref:"User"},
+    doctor: { type: mongoose.Types.ObjectId, ref: "Doctor", required: true },
+    user: { type: mongoose.Types.ObjectId, ref: "User", required: true },
+    reviewText: { type: String, required: true, maxLength: 250 },
     rating: { 
         type: Number, 
         required: true, 
         min: 1, 
         max: 5 
-    },
-    reviewText: {
-        type: String,
-        required: true,
-      },
-}, {timestamps:true})
+    }
+}, { timestamps: true });
 
-module.exports = mongoose.model('Review', reviewSchema);
+module.exports = citaDB.model('Review', reviewSchema);
