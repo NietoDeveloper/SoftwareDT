@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const mongoose = require('mongoose'); 
 
-const { userDB } = require('./config/dbConn'); 
+const connectDBs = require('./config/dbConn');  // Ajusta si nombre es db.js
 
 const corsOptions = require('./config/corsOptions');
 const {verifyAccess} = require('./middleware/verifyAccess');
@@ -53,7 +53,18 @@ app.use('/api/doctor/profile', require('./routes/bookingRoute'));
 app.use(unknownEndpoint);
 app.use(errorHandler);
 
-userDB.once('open', () => {
-    console.log('✅ Conexión principal (USUARIOS) lista. Servidor iniciando.');
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-});
+async function startServer() {
+    try {
+        const { userDB, citaDB } = await connectDBs();
+        if (!userDB || !citaDB) {
+            console.error('❌ Fallo en conexiones DB. Saliendo...');
+            process.exit(1);
+        }
+        app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+    } catch (error) {
+        console.error('❌ Error iniciando server:', error);
+        process.exit(1);
+    }
+}
+
+startServer();
