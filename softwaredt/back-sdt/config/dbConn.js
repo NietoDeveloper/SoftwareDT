@@ -1,21 +1,15 @@
 const mongoose = require('mongoose');
 
-const initializeConnection = (uri, name, dbName) => {
+const initializeConnection = (uri, name) => {
     if (!uri) {
         console.error(`⚠️ URI de MongoDB para ${name} no definida en .env`);
         return null;
     }
     
-    const connectionOptions = {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        dbName: dbName || 'test'  // Reemplaza: 'softwaredt_usuarios' o real de Atlas
-    };
-
-    const connection = mongoose.createConnection(uri, connectionOptions);
+    const connection = mongoose.createConnection(uri);
     
     connection.on('connected', () => {
-        console.log(`✅ MongoDB (${name}) Conectado exitosamente a ${dbName}.`);
+        console.log(`✅ MongoDB (${name}) Conectado exitosamente.`);
     });
     
     connection.on('error', (err) => {
@@ -31,14 +25,12 @@ const initializeConnection = (uri, name, dbName) => {
 
 const userDB = initializeConnection(
     process.env.MONGODB_URI_USUARIOS, 
-    'USUARIOS',
-    'softwaredt_usuarios'  // Ajusta al real
+    'USUARIOS'
 );
 
 const citaDB = initializeConnection(
     process.env.MONGODB_URI_CITAS, 
-    'CITAS',
-    'softwaredt_citas'  // Ajusta al real
+    'CITAS'
 );
 
 module.exports = { userDB, citaDB };
