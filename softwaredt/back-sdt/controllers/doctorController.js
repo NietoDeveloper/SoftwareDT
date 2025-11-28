@@ -69,7 +69,7 @@ const handleDoctorLogin = asyncHandler(async (req, res) => {
             httpOnly: true, 
             secure: process.env.NODE_ENV === 'production', 
             sameSite: 'None', 
-            maxAge: 24 * 60 * 60 * 1000 // 1 day
+            maxAge: 24 * 60 * 60 * 1000 
         }); 
         
         res.json({ accessToken, roles, doctorData });
