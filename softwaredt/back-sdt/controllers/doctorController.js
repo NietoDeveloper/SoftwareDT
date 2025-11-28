@@ -19,7 +19,7 @@ const doctorRegister = asyncHandler(async (req, res) => {
         name, 
         email,
         password: hashedpassword,
-        roles: { doctor: 1001 }  // Default role
+        roles: { doctor: 1001 } 
     });
 
     if (result) {
