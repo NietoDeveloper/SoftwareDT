@@ -102,7 +102,7 @@ const updateDoctor = asyncHandler(async (req, res) => {
     
     if (name) foundDoctor.name = name;
     if (ticketPrice) foundDoctor.ticketPrice = ticketPrice;
-    if (photo) foundDoctor.photo = photo;  // Asume string URL; usa multer para file upload si needed
+    if (photo) foundDoctor.photo = photo;  
     
     if (phone) foundDoctor.phone = phone;
     if (specialization) foundDoctor.specialization = specialization;
