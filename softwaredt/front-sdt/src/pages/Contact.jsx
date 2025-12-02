@@ -1,151 +1,175 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { LogIn, LogOut, Menu, X, Phone } from 'lucide-react'; // Usamos íconos para un toque moderno
+import React, { useState } from 'react';
+import ReviewForm from "../features/rating";
 
-const Header = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const navigate = useNavigate();
+// --- Iconos SVG ---
+const MailIcon = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect width="20" height="16" x="2" y="4" rx="2"/>
+    <path d="m22 7-8.97 5.7a1.83 1.83 0 0 1-2.06 0L2 7"/>
+  </svg>
+);
+const MessageCircleIcon = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8L3 21Z"/>
+  </svg>
+);
+const MapPinIcon = (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+        <circle cx="12" cy="10" r="3"/>
+    </svg>
+);
 
-    // Se asume que si existe 'token', el usuario está logeado.
-    const isLoggedIn = !!localStorage.getItem('token');
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        navigate('/doctor/login');
-    };
-
-    const navLinkClass = "text-gray-600 hover:text-green-600 font-medium transition-colors p-1 rounded-md hover:bg-gray-50";
-    const mobileLinkClass = "block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 transition-all";
-
-    return (
-        <header className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-                <div className="flex justify-between items-center h-16">
-                    
-                    {/* Logotipo */}
-                    <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => navigate('/')}>
-                        <span className="text-2xl font-extrabold tracking-tight">
-                            <span className="text-green-600">Software</span>
-                            <span className="text-gray-800">DT</span>
-                        </span>
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState(null);
+  const whatsappNumber = "+57 300 123 4567";
+  const rawNumber = "573001234567";
+  const whatsappLink = `https://wa.me/${rawNumber}?text=Hola,%20quisiera%20saber%20más%20sobre%20Software%20DT.`;
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setStatusMessage(null);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatusMessage(null);
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    if (formData.name && formData.email && formData.message) {
+      setStatusMessage({ type: 'success', text: '¡Mensaje enviado! Te respondemos en breve.' });
+      setFormData({ name: '', email: '', message: '' });
+    } else {
+      setStatusMessage({ type: 'error', text: 'Por favor, completa Nombre, Correo y Mensaje.' });
+    }
+    
+    setIsSubmitting(false);
+  };
+  return (
+    <div className="flex flex-col w-full min-h-screen bg-gray-50">
+      
+      {/* ==================================================================== */}
+      {/* SECCIÓN 1: CONTACTO Y FORMULARIO (100vh) */}
+      {/* Ajustado a min-h-screen y contenido centrado */}
+      {/* ==================================================================== */}
+      <section className="min-h-screen flex items-center justify-center py-16 px-4 sm:px-8">
+          <div className="w-full max-w-4xl p-6 md:p-12 bg-white rounded-2xl shadow-2xl border border-gray-100 mt-[30px]">
+           
+            {/* Título: Bajado 30px (pt-8) y Centrado */}
+            <div className="mb-10 pt-[22px]">
+                <h1 className="text-4xl font-extrabold text-indigo-700 mb-2 tracking-tight text-center">
+                  Ponte en Contacto
+                </h1>
+                <p className="text-gray-600 text-lg text-center max-w-2xl mx-auto">
+                  Estamos aquí para responder todas tus preguntas sobre **Software DT**.
+                </p>
+            </div>
+            <div className="grid grid-cols-1 gap-12">
+              <div className="col-span-1">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center justify-center">
+                  <MailIcon className="w-6 h-6 text-indigo-500 mr-3" />
+                  Envía tu Consulta por Correo
+                </h2>
+               
+                <form onSubmit={handleSubmit} className="space-y-4 max-w-xl mx-auto">
+                  <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} required className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150" placeholder="Tu Nombre" aria-label="Tu Nombre"/>
+                  <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} required className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150" placeholder="Tu Correo Electrónico" aria-label="Tu Correo Electrónico"/>
+                  <textarea name="message" id="message" rows="4" value={formData.message} onChange={handleChange} required className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 resize-none" placeholder="Escribe tu mensaje o pregunta..." aria-label="Mensaje"></textarea>
+                  {statusMessage && (
+                    <div className={`p-3 rounded-lg text-sm font-medium ${
+                      statusMessage.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                    }`}>
+                      {statusMessage.text}
                     </div>
-
-                    {/* Menú de Navegación (Desktop) */}
-                    <nav className="hidden md:flex space-x-8 items-center">
-                        <Link to="/" className={navLinkClass}>Inicio</Link>
-                        <Link to="/doctors" className={navLinkClass}>Especialistas</Link>
-                        {/* Nuevo Botón de Contacto */}
-                        <Link to="/contact" className={navLinkClass}>
-                            <div className='flex items-center space-x-1'>
-                                <Phone size={16} className="hidden lg:inline"/>
-                                <span>Contacto</span>
-                            </div>
-                        </Link>
-                        
-                        {isLoggedIn ? (
-                            // Botón de Cerrar Sesión (ROJO)
-                            <button 
-                                onClick={handleLogout}
-                                className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl font-semibold transition-all shadow-md hover:shadow-lg transform hover:scale-105"
-                            >
-                                <LogOut size={18} />
-                                <span>Cerrar Sesión</span>
-                            </button>
-                        ) : (
-                            // Botones de Login (AZUL) y Registro (VERDE)
-                            <div className="flex items-center space-x-3">
-                                <Link 
-                                    to="/doctor/login" 
-                                    className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl font-semibold transition-all shadow-md hover:shadow-lg transform hover:scale-105"
-                                >
-                                    <LogIn size={18} />
-                                    <span>Login</span>
-                                </Link>
-                                <Link 
-                                    to="/doctor/signup" 
-                                    className="hidden lg:inline-flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl font-semibold transition-all shadow-md hover:shadow-lg transform hover:scale-105"
-                                >
-                                    <span>Registro</span>
-                                </Link>
-                            </div>
-                        )}
-                    </nav>
-
-                    {/* Botón de Menú (Mobile) */}
-                    <div className="flex items-center md:hidden">
-                        <button
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="text-gray-500 hover:text-green-600 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
-                        >
-                            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                        </button>
+                  )}
+                  <button type="submit" disabled={isSubmitting} className="w-full flex justify-center items-center py-3 px-4 rounded-lg shadow-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                    {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+      </section>
+      {/* ==================================================================== */}
+      {/* SECCIÓN 2: WHATSAPP Y MAPA (100vh) */}
+      {/* Ajustado a min-h-screen y contenido centrado */}
+      {/* ==================================================================== */}
+      <section className="min-h-screen flex items-center justify-center bg-gray-100 py-16 px-4 sm:px-8">
+        <div className="w-full max-w-6xl p-6 md:p-12 bg-white rounded-2xl shadow-2xl border border-gray-200">
+            <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+              <MapPinIcon className="w-7 h-7 text-indigo-500 inline-block mr-3 mb-1" />
+              Nuestra Ubicación y Soporte Rápido
+            </h2>
+           
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+               
+                {/* WHATSAPP */}
+                <div className="col-span-1 flex flex-col justify-center">
+                    <div className="bg-green-50 border border-green-200 p-8 rounded-xl shadow-lg">
+                      <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center justify-center">
+                        <MessageCircleIcon className="w-6 h-6 text-green-600 mr-3" />
+                        Soporte Rápido (WhatsApp)
+                      </h3>
+                      <p className="text-gray-600 text-center mb-4">
+                        ¿Necesitas ayuda inmediata? Contáctanos directamente.
+                      </p>
+                      <div className="font-semibold text-green-700 text-2xl mb-6 text-center">
+                        {whatsappNumber}
+                      </div>
+                      <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="w-full inline-flex justify-center items-center py-3 px-4 rounded-lg shadow-sm text-base font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 transition duration-200">
+                        <svg className="w-5 h-5 mr-2 fill-white" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.039 2.01c-5.518 0-9.991 4.473-9.991 9.991 0 1.644.402 3.203 1.155 4.594L2.01 22.039l5.51-1.45c1.32.747 2.861 1.15 4.519 1.15 5.518 0 9.991-4.473 9.991-9.991S17.557 2.01 12.039 2.01zm4.33 13.567c-.201.528-1.189 1.056-1.637 1.056-.448 0-.96-.188-1.55-.412-2.185-1.077-3.646-3.784-3.76-3.957-.114-.173-.896-1.15-.36-1.928.536-.778 1.189-.877 1.58-.877s.69.018 1.01.761c.32.742.61 1.484.71 1.628.1.144.188.358.074.636-.114.277-.188.421-.36.636-.201.277-.421.502-.63.708-.209.207-.448.484-.25.753.19.27.674.877 1.348 1.43.673.553 1.258.742 1.58.93.32.188.51.15.698-.05.188-.201.815-.992 1.03-1.348.216-.358.374-.412.63-.412.256 0 1.628.188 2.067.96.438.778.295 1.47-.114 2.185z"/></svg>
+                        Abrir Chat
+                      </a>
+                    </div>
+                </div>
+                {/* MAPA */}
+                <div className="col-span-1">
+                    <p className="text-gray-600 mb-4 text-center">
+                        Encuéntranos en nuestra oficina principal. ¡Te esperamos!
+                    </p>
+                   
+                    <div className="relative w-full overflow-hidden rounded-xl shadow-xl border border-gray-300" style={{ paddingBottom: '40%', height: 0 }}>
+                        <iframe
+                            title="Ubicación de Software DT"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.62002570087!2d-74.07720932573215!3d4.664402693240212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3909772c9183d5%3A0x7d2864c3c3a7a92!2sBogot%C3%A1%2C%20Colombia!5e0!3m2!1ses!2s!4v1678886400000!5m2!1ses!2s"
+                            loading="lazy"
+                            className="absolute top-0 left-0 w-full h-full border-none"
+                            allowFullScreen=""
+                            aria-hidden="false"
+                            tabIndex="0"
+                        ></iframe>
+                    </div>
+                    <div className="mt-6 p-4 bg-indigo-50 rounded-lg text-center">
+                        <p className="font-semibold text-indigo-700">Dirección Ejemplo:</p>
+                        <p className="text-gray-700">Calle 100 # 10 - 50, Piso 5, Bogotá, Colombia</p>
                     </div>
                 </div>
             </div>
-
-            {/* Menú Desplegable (Mobile) */}
-            {isMenuOpen && (
-                <div className="md:hidden bg-white border-t border-gray-100 pb-2 transition-all duration-300 ease-in-out">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        <Link 
-                            to="/" 
-                            className={mobileLinkClass}
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Inicio
-                        </Link>
-                        <Link 
-                            to="/doctors" 
-                            className={mobileLinkClass}
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Especialistas
-                        </Link>
-                        {/* Nuevo Botón de Contacto (Mobile) */}
-                        <Link 
-                            to="/contact" 
-                            className={mobileLinkClass}
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Contacto
-                        </Link>
-
-                        {isLoggedIn ? (
-                             // Botón de Cerrar Sesión (ROJO) - Mobile
-                             <button 
-                                onClick={() => { handleLogout(); setIsMenuOpen(false); }}
-                                className="w-full text-left flex items-center space-x-2 px-3 py-2 mt-2 rounded-md text-base font-semibold text-white bg-red-600 hover:bg-red-700 transition-colors"
-                            >
-                                <LogOut size={18} />
-                                <span>Cerrar Sesión</span>
-                            </button>
-                        ) : (
-                            <>
-                                {/* Botón de Login (AZUL) - Mobile */}
-                                <Link 
-                                    to="/doctor/login" 
-                                    className="w-full text-left flex items-center space-x-2 px-3 py-2 rounded-md text-base font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors"
-                                    onClick={() => setIsMenuOpen(false)}
-                                >
-                                    <LogIn size={18} />
-                                    <span>Login</span>
-                                </Link>
-                                {/* Botón de Registro (VERDE) - Mobile */}
-                                <Link 
-                                    to="/doctor/signup" 
-                                    className="w-full text-left px-3 py-2 rounded-md text-base font-semibold text-green-600 hover:bg-green-50 mt-1"
-                                    onClick={() => setIsMenuOpen(false)}
-                                >
-                                    Registro
-                                </Link>
-                            </>
-                        )}
-                    </div>
-                </div>
-            )}
-        </header>
-    );
+        </div>
+      </section>
+      {/* ==================================================================== */}
+      {/* SECCIÓN 3: EXPERIENCIA Y FOOTER (100vh) */}
+      {/* Ajustado a min-h-screen */}
+      {/* ==================================================================== */}
+      <section className="min-h-screen flex flex-col justify-center items-center bg-white py-16 px-4 sm:px-8">
+        <div className="w-full max-w-4xl">
+            <ReviewForm />
+        </div>
+       
+        {/* Footer simple para la sección de Experiencia */}
+        <div className="mt-12 pt-6 border-t border-gray-100 text-center text-sm text-gray-400 w-full max-w-4xl">
+            Gracias por tu feedback.
+        </div>
+      </section>
+      {/* FOOTER GLOBAL - Al final de la página */}
+      <div className="pt-6 pb-6 bg-gray-50 border-t border-gray-200 text-center text-sm text-gray-500">
+        © {new Date().getFullYear()} Software DT. Todos los derechos reservados.
+      </div>
+    </div>
+  );
 };
-
-export default Header;
+export default Contact;
