@@ -77,7 +77,7 @@ const Header = () => {
                             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50"
                             onClick={() => setIsMenuOpen(false)}
                         >
-                            Especialistas
+                            Servicios
                         </Link>
                         {isLoggedIn ? (
                              <button 
