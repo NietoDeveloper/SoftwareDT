@@ -125,14 +125,3 @@ const Header = () => {
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     Registro
-                                </Link>
-                            </>
-                        )}
-                    </div>
-                </div>
-            )}
-        </header>
-    );
-};
-
-export default Header;
