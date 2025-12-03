@@ -104,7 +104,7 @@ If you wish to contribute, please follow the standard Git workflow: *fork*, crea
 
 MIT
 
-# Manuel Nieto
+## Manuel Nieto
 
 ## NietoSoftwareDeveloper
 
