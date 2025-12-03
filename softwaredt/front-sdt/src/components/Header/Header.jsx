@@ -3,14 +3,7 @@ import { useState } from 'react';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const navigate = useNavigate();
 
-    const isLoggedIn = !!localStorage.getItem('token');
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        navigate('/doctor/login');
     };
 
     return (
