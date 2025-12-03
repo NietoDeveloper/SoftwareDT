@@ -59,33 +59,3 @@ const Header = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                                 )}
                             </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            {isMenuOpen && (
-                <div className={`md:hidden bg-blue-600/50 backdrop-blur-xl border-t border-gray-100 max-h-[50vh] overflow-auto transition-all duration-300 ease-in-out ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
-                    <div className="px-2 pt-2 pb-3 space-y-0.5 sm:px-3">
-                        <Link
-                            to="/"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Inicio
-                        </Link>
-                        <Link
-                            to="/doctors"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Servicios
-                        </Link>
-                        <Link
-                            to="/clients"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Nuestros Clientes
-                        </Link>
-                        <Link
-                            to="/contact"
