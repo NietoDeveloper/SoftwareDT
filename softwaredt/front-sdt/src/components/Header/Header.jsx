@@ -19,7 +19,7 @@ const Header = () => {
                 <div className="flex justify-between items-center h-16">
                   
                     <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => window.location.href = '/'}>
-                        <span className="text-black text-2xl font-bold hover:text-yellow-500 transition-colors">Software<span className="text-black hover:text-yellow-500 transition-colors">DT</span></span>
+                        <span className="text-black text-2xl font-bold hover:text-yellow-500 transition-colors">Software<span className="text-black hover:text-yellow-500 transition-colors">D T</span></span>
                     </div>
                     <nav className="hidden md:flex space-x-8 items-center">
                         <Link to="/" className="text-black hover:text-yellow-500 font-medium transition-colors">Inicio</Link>
