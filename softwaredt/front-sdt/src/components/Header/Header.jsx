@@ -118,10 +118,3 @@ const Header = () => {
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     Login
-                                </Link>
-                                <Link 
-                                    to="/doctor/signup" 
-                                    className="block px-3 py-2 rounded-md text-base font-medium text-green-600 hover:bg-green-50 font-bold text-center"
-                                    onClick={() => setIsMenuOpen(false)}
-                                >
-                                    Registro
