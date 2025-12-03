@@ -26,7 +26,7 @@ const Header = () => {
                         <Link to="/doctors" className="text-black hover:text-yellow-500 font-medium transition-colors">Especialistas</Link>
                         <Link to="/clients" className="text-black hover:text-yellow-500 font-medium transition-colors">Nuestros Clientes</Link>
                         <Link to="/contact" className="text-black hover:text-yellow-500 font-medium transition-colors">Contacto</Link>
-                        <Link to="/#about" className="text-black hover:text-yellow-500 font-medium transition-colors">About</Link>
+                        <Link to="/#about" className="text-black hover:text-yellow-500 font-medium transition-colors">Sobre Software D T</Link>
                         <Link to="/appointment" className="text-black hover:text-yellow-500 font-medium transition-colors">Agenda Cita</Link>
                       
                         {isLoggedIn ? (
