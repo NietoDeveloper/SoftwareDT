@@ -68,23 +68,3 @@ const Header = () => {
             {isMenuOpen && (
                 <div className="md:hidden bg-white border-t border-gray-100">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        <Link 
-                            to="/" 
-                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Inicio
-                        </Link>
-                        <Link 
-                            to="/doctors" 
-                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Servicios
-                        </Link>
-                        <Link 
-                            to="/contact" 
-                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Contacto
