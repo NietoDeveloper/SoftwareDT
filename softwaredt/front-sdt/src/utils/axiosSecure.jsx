@@ -36,4 +36,4 @@ axiosSecure.interceptors.response.use(
 
 export default axiosSecure;
 
-console.log =>() eventNames
+console.log =>() event
