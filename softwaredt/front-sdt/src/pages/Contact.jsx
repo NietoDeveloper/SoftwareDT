@@ -154,7 +154,7 @@ const Contact = () => {
       {/* ==================================================================== */}
       {/* SECCIÓN 3: EXPERIENCIA Y FOOTER (100vh) */}
       {/* Ajustado a min-h-screen */}
-      {/* ==================================================================== */}
+
       <section className="min-h-screen flex flex-col justify-center items-center bg-white py-16 px-4 sm:px-8">
         <div className="w-full max-w-4xl">
             <ReviewForm />
