@@ -50,8 +50,6 @@ const Contact = () => {
   };
   return (
     <div className="flex flex-col w-full min-h-screen bg-gray-50">
-      
-      {/* ==================================================================== */}
       {/* SECCIÓN 1: CONTACTO Y FORMULARIO (100vh) */}
       {/* Ajustado a min-h-screen y contenido centrado */}
       {/* ==================================================================== */}
