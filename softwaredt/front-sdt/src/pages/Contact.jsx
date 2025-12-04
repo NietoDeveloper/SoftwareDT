@@ -50,8 +50,7 @@ const Contact = () => {
   };
   return (
     <div className="flex flex-col w-full min-h-screen bg-gray-50">
-      {/* SECCIÓN 1: CONTACTO Y FORMULARIO (100vh) */}
-      {/* Ajustado a min-h-screen y contenido centrado */}
+
       {/* ==================================================================== */}
       <section className="min-h-screen flex items-center justify-center py-16 px-4 sm:px-8">
           <div className="w-full max-w-4xl p-6 md:p-12 bg-white rounded-2xl shadow-2xl border border-gray-100 mt-[30px]">
