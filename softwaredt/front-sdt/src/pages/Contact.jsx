@@ -90,8 +90,6 @@ const Contact = () => {
       </section>
       {/* ==================================================================== */}
       {/* SECCIÓN 2: WHATSAPP Y MAPA (100vh) */}
-      {/* Ajustado a min-h-screen y contenido centrado */}
-      {/* ==================================================================== */}
       <section className="min-h-screen flex items-center justify-center bg-gray-100 py-16 px-4 sm:px-8">
         <div className="w-full max-w-6xl p-6 md:p-12 bg-white rounded-2xl shadow-2xl border border-gray-200">
             <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
