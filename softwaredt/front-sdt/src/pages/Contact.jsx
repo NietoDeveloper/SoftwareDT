@@ -147,7 +147,6 @@ const Contact = () => {
             <ReviewForm />
         </div>
        
-        {/* Footer simple para la sección de Experiencia */}
         <div className="mt-12 pt-6 border-t border-gray-100 text-center text-sm text-gray-400 w-full max-w-4xl">
             Gracias por tu feedback.
         </div>
