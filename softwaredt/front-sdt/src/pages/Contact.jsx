@@ -116,7 +116,7 @@ const Contact = () => {
                       </a>
                     </div>
                 </div>
-                {/* MAPA */}
+
                 <div className="col-span-1">
                     <p className="text-gray-600 mb-4 text-center">
                         Encuéntranos en nuestra oficina principal. ¡Te esperamos!
