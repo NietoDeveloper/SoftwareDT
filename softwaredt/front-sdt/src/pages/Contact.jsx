@@ -97,8 +97,7 @@ const Contact = () => {
             </h2>
            
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-               
-                {/* WHATSAPP */}
+
                 <div className="col-span-1 flex flex-col justify-center">
                     <div className="bg-green-50 border border-green-200 p-8 rounded-xl shadow-lg">
                       <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center justify-center">
