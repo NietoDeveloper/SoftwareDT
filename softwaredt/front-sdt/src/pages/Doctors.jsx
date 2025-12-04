@@ -51,7 +51,7 @@ const DoctorList = () => {
     return (
       <div className="text-center py-20">
         <h1 className="text-2xl font-semibold text-gray-700">¡Vaya! No se encontraron profesion disponibles. (¡Ndajetopái pohanohára oñembosako'íva!)</h1>
-        <p className="text-gray-500 mt-2">Por favor, inténtalo de nuevo más tarde. (Eñeha'ã jey upe rire.)</p>
+        <p className="text-gray-500 mt-2">Por favor, inténtalo de nuevo más tarde. ( Eñeha'ã jey upe rire.)</p>
       </div>
     );
   }
