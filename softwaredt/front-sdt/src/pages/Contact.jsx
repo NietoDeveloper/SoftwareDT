@@ -54,7 +54,6 @@ const Contact = () => {
       <section className="min-h-screen flex items-center justify-center py-16 px-4 sm:px-8">
           <div className="w-full max-w-4xl p-6 md:p-12 bg-white rounded-2xl shadow-2xl border border-gray-100 mt-[30px]">
            
-            {/* Título: Bajado 30px (pt-8) y Centrado */}
             <div className="mb-10 pt-[22px]">
                 <h1 className="text-4xl font-extrabold text-indigo-700 mb-2 tracking-tight text-center">
                   Ponte en Contacto
