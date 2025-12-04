@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { eventNames } from 'process';
 
 const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1'; 
 
@@ -35,4 +36,4 @@ axiosSecure.interceptors.response.use(
 
 export default axiosSecure;
 
-## manuel nieto
+console.log =>() eventNames
