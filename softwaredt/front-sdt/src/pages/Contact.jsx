@@ -151,7 +151,7 @@ const Contact = () => {
             Gracias por tu feedback.
         </div>
       </section>
-      {/* FOOTER GLOBAL - Al final de la página */}
+
       <div className="pt-6 pb-6 bg-gray-50 border-t border-gray-200 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} Software DT. Todos los derechos reservados.
       </div>
