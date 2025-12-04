@@ -40,7 +40,7 @@ const DoctorList = () => {
     staleTime: 5 * 60 * 1000, 
   });
 
-  if (isLoading) return <h1 className="text-center py-10 text-xl font-bold">Cargando.... (Oñembohysýiva...)</h1>;
+  if (isLoading) return <h1 className="text-center py-10 text-xl font-bold">Cargando.... (Servicios...)</h1>;
   
   if (error) {
     const errorMessage = error.response ? `HTTP ${error.response.status}: ${error.response.data.message || 'Error desconocido.'}` : error.message;
