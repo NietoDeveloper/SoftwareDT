@@ -6,3 +6,5 @@
     Firebase: Stores user profile pictures for improved user experience.
 
 ## Manuel Nieto
+
+## NietoDeveloper
