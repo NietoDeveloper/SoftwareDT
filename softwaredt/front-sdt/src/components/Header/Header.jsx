@@ -104,10 +104,7 @@ const Header = () => {
                         <Link
                             to="/#about"
                             className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Informacion Servicios
-                        </Link>
+
                         <Link
                             to="/appointment"
                             className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
