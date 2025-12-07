@@ -113,7 +113,7 @@ const AppointmentConfirmation = () => {
             to="/doctors"
             className="text-blue-600 hover:text-blue-800 font-medium"
           >
-            Volver a la lista de doctores
+            Volver a la lista de docto
           </Link>
         </div>
       </div>
