@@ -14,7 +14,3 @@ const verifyAccess = (req, res, next) => {
         token, 
         process.env.ACCESS_TOKEN_SECRET, 
         (err, decoded) => {
-            if (err) {
-                // Manejo d
-                const statusCode = 403;
-                let errorMessage;
