@@ -4,7 +4,6 @@ const verifyAccess = (req, res, next) => {
     // 1. Manejo de Encabezados (Soporte para 'Authorization' y 'authorization')
     const authHeader = req.headers.authorization || req.headers.Authorization;
 
-    // 2. Comprobació
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         console.log('DEBUG: Access Denied. Token is missing or invalid format (401).');
         return res.sendStatus(401); 
