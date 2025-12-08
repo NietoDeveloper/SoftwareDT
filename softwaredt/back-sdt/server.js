@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // -------------------------------------------------------------
 // APLICACIÓN DEL MIDDLEWARE DE ACCESO: 
-// TODAS LAS RUTAS DEFINIDAS DE AQUÍ EN ADELANTE REQUIEREN JWT
+
 app.use(verifyAccess); 
 
 // Rutas Protegidas (Sí requieren verifyAccess)
