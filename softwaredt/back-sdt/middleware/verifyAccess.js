@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const verifyAccess = (req, res, next) => {
-    // 1. Manejo de Encabezados (Soporte para 'Authorization' y '
+    // 1. Manejo de Encabezados
     const authHeader = req.headers.authorization || req.headers.Authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
