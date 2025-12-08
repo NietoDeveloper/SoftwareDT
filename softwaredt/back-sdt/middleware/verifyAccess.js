@@ -50,8 +50,7 @@ const verifyAccess = (req, res, next) => {
                     message: "Acceso prohibido. Información de usuario incompleta en el token." 
                 });
             }
-            
-            // 6. Token válido: Adjuntar info 
+
             req.userId = decoded.id;
             req.roles = decoded.roles; 
             
