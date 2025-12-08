@@ -50,7 +50,6 @@ const verifyAccess = (req, res, next) => {
                 });
             }
 
-            // 5. Adjuntar información del usuario y continuar
             req.userId = decoded.id;
             req.roles = decoded.roles; 
             
