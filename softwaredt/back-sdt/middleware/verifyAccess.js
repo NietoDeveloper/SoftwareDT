@@ -36,19 +36,4 @@ const verifyAccess = (req, res, next) => {
             }
 
             if (!decoded || !decoded.id || !decoded.roles) {
-                console.log('DEBUG: Token payload is incomplete (missing user ID or roles).');
-                return res.status(403).json({ 
-                    success: false, 
-                    message: "Acceso prohibido. Información de usuario incompleta en el token." 
-                });
-            }
 
-            req.userId = decoded.id;
-            req.roles = decoded.roles; 
-            
-            next();
-        }
-    );
-};
-
-module.exports = { verifyAccess };
