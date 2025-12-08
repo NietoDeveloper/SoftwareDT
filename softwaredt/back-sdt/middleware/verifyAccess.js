@@ -18,8 +18,3 @@ const verifyAccess = (req, res, next) => {
                 // Manejo d
                 const statusCode = 403;
                 let errorMessage;
-
-                if (err.name === 'TokenExpiredError') {
-                    errorMessage = "Token expirado. Por favor, inicia sesión de nuevo.";
-                } else if (err.name === 'JsonWebTokenError') 
-                    errorMessage = "Token inválido o malformado.";
