@@ -11,7 +11,6 @@ const verifyAccess = (req, res, next) => {
         return res.sendStatus(401); 
     }
 
-    // 3. Extracción del Token (l
     const token = authHeader.split(' ')[1];
 
     jwt.verify(
