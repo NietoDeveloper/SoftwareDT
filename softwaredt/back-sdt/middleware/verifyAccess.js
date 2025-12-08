@@ -51,7 +51,7 @@ const verifyAccess = (req, res, next) => {
                 });
             }
             
-            // 6. Token válido: Adjuntar info al objeto 'req' y pasar al siguiente middleware/ruta
+            // 6. Token válido: Adjuntar info 
             req.userId = decoded.id;
             req.roles = decoded.roles; 
             
