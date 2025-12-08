@@ -23,17 +23,3 @@ const verifyAccess = (req, res, next) => {
                     errorMessage = "Token expirado. Por favor, inicia sesión de nuevo.";
                 } else if (err.name === 'JsonWebTokenError') 
                     errorMessage = "Token inválido o malformado.";
-                } else {
-                    errorMessage = "Error de verificación desconocido.";
-                }
-                
-                console.log(`DEBUG: Token verification failed (${err.name}): ${err.message}`);
-                
-                return res.status(statusCode).json({ 
-                    success: false, 
-                    message: `Acceso prohibido. ${errorMessage}`
-                });
-            }
-
-            if (!decoded || !decoded.id || !decoded.roles) {
-
