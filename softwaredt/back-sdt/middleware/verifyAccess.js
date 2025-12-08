@@ -14,7 +14,7 @@ const verifyAccess = (req, res, next) => {
     // 3. Extracción del Token (la parte después de 'Bearer ')
     const token = authHeader.split(' ')[1];
 
-    // 4. Verificación del Token
+    // 4. Verificación
     jwt.verify(
         token, 
         process.env.ACCESS_TOKEN_SECRET, 
