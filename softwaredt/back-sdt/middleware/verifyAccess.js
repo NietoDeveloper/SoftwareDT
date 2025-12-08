@@ -13,5 +13,3 @@ const verifyAccess = (req, res, next) => {
 
     const token = authHeader.split(' ')[1];
 
-    jwt.verify(
-        token, 
