@@ -31,9 +31,3 @@ const verifyAccess = (req, res, next) => {
             }
 
             if (!decoded || !decoded.id) {
-                console.log('DEBUG: Token payload is incomplete (missing user ID).');
-                return res.status(403).json({ 
-                    success: false, 
-                    message: "Acceso prohibido. Información de usuario incompleta en el token." 
-                });
-            }
