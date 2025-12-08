@@ -37,7 +37,6 @@ app.use('/api/doctor/login', require('./routes/doctorRoutes/doctorLogin'));
 app.use('/api/doctor/refresh', require('./routes/doctorRoutes/doctorRefresh'));
 app.use('/api/doctor/logout', require('./routes/doctorRoutes/doctorLogout'));
 
-// Rutas de Archivos Estáticos (No requieren verifyAccess)
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(verifyAccess); 
