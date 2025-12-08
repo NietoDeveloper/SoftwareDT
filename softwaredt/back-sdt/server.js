@@ -44,7 +44,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(verifyAccess); 
 
-// Rutas Protegidas (Sí requieren verifyAccess)
 app.use('/api/user/doctors', require('./routes/allDoctors')); 
 
 app.use('/api/user/update', require('./routes/userRoutes/userUpdateRoute'));
