@@ -54,7 +54,6 @@ app.use('/api/user/review', require('./routes/reviewRoute'));
 app.use('/api/doctor/update', require('./routes/doctorRoutes/doctorUpdate'));
 app.use('/api/doctor/profile', require('./routes/bookingRoute'));
 
-// Middlewares de Cierre de Cadena
 app.use(unknownEndpoint);
 app.use(errorHandler);
 
