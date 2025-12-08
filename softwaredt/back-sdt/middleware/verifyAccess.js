@@ -21,7 +21,7 @@ const verifyAccess = (req, res, next) => {
         (err, decoded) => {
             if (err) {
                 // Manejo de errores específicos de JWT
-                const statusCode = 403; // Prohibido
+                const statusCode = 403;
                 let errorMessage;
 
                 if (err.name === 'TokenExpiredError') {
