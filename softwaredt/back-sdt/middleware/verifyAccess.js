@@ -8,8 +8,3 @@ const verifyAccess = (req, res, next) => {
         return res.status(401).json({ 
             success: false, 
             message: "Acceso denegado. Se requiere un token de portador ('Bearer')." 
-        });
-    }
-
-    const token = authHeader.split(' ')[1];
-
