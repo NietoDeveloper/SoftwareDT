@@ -20,7 +20,7 @@ const verifyAccess = (req, res, next) => {
         process.env.ACCESS_TOKEN_SECRET, 
         (err, decoded) => {
             if (err) {
-                // Manejo de errores específicos de JWT
+                // Manejo d
                 const statusCode = 403;
                 let errorMessage;
 
