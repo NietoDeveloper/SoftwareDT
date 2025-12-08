@@ -26,8 +26,7 @@ const verifyAccess = (req, res, next) => {
 
                 if (err.name === 'TokenExpiredError') {
                     errorMessage = "Token expirado. Por favor, inicia sesión de nuevo.";
-                } else if (err.name === 'JsonWebTokenError') {
-                    // Esto incluye 
+                } else if (err.name === 'JsonWebTokenError') 
                     errorMessage = "Token inválido o malformado.";
                 } else {
                     errorMessage = "Error de verificación desconocido.";
