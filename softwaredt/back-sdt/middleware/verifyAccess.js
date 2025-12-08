@@ -7,7 +7,7 @@ const verifyAccess = (req, res, next) => {
     // 2. Comprobación inicial: Token faltante o formato incorrecto ('Bearer ')
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         console.log('DEBUG: Access Denied. Token is missing or invalid format (401).');
-        // Usar sendStatus(401) 
+        // Usar sendStatus
         return res.sendStatus(401); 
     }
 
