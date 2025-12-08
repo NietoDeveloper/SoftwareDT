@@ -16,18 +16,3 @@ const verifyAccess = (req, res, next) => {
     jwt.verify(
         token, 
         process.env.ACCESS_TOKEN_SECRET, 
-        (err, decoded) => {
-            if (err) {
-                const errorMessage = err.name === 'TokenExpiredError' 
-                    ? "Token expirado. Por favor, inicia sesión de nuevo."
-                    : "Token inválido o malformado.";
-                
-                console.log(`DEBUG: Token verification failed (${err.name}): ${err.message}`);
-                
-                return res.status(403).json({ 
-                    success: false, 
-                    message: `Acceso prohibido. ${errorMessage}`
-                });
-            }
-
-            if (!decoded || !decoded.id) {
