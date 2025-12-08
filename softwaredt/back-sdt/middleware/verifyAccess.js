@@ -37,7 +37,3 @@ const verifyAccess = (req, res, next) => {
                     message: "Acceso prohibido. Información de usuario incompleta en el token." 
                 });
             }
-            
-            req.userId = decoded.id;
-            req.roles = decoded.roles; 
-            
