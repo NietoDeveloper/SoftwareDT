@@ -15,4 +15,3 @@ const verifyAccess = (req, res, next) => {
 
     jwt.verify(
         token, 
-        process.env.ACCESS_TOKEN_SECRET, 
