@@ -41,7 +41,6 @@ const verifyAccess = (req, res, next) => {
                 });
             }
 
-            // 4. Verificación del Payload (información interna del token)
             if (!decoded || !decoded.id || !decoded.roles) {
                 console.log('DEBUG: Token payload is incomplete (missing user ID or roles).');
                 return res.status(403).json({ 
