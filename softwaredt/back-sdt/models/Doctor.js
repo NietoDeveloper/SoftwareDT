@@ -30,7 +30,7 @@ const doctorSchema = new Schema({
         required: true, 
         select: false 
     },
-    photo: { type: String },  // Opcional, podría agregar default: '' si es necesario
+    photo: { type: String },  
     phone: { type: String },
     roles: {
         doctor: {
