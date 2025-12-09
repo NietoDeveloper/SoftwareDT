@@ -15,8 +15,6 @@ const DoctorList = () => {
 
   const getDoctors = async () => {
     try {
-      // Usamos axios plain sin token para permitir acceso sin login
-      // Asumiendo que VITE_API_URL está definido en .env (ej. http://localhost:5000/api)
       const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";  // Ajusta si es necesario
       const res = await axios.get(`${apiUrl}/doctors`);
       return res.data.doctors || res.data || [];
