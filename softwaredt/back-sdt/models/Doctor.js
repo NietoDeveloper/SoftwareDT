@@ -1,25 +1,4 @@
 
-
-const doctorSchema = new Schema({
-    email: { type: String, required: true, unique: true },
-    name: { type: String, required: true },
-    password: { 
-        type: String, 
-        required: true, 
-        select: false 
-    },
-    photo: { type: String },  // Opcional, podría agregar default: '' si es necesario
-    phone: { type: String },
-    roles: {
-        doctor: {
-            type: Number,
-            default: 1001
-        },
-        admin: Number  
-    },
-    ticketPrice: { type: Number, default: 30 },
-    specialization: { type: String, required: true },
-    qualifications: [qualificationSchema],
     experience: [experienceSchema],
     bio: { type: String, maxlength: 250 },
     timeSlots: [timeSlotSchema],
