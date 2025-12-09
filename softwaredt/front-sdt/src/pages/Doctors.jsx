@@ -50,7 +50,7 @@ const DoctorList = () => {
   if (doctors.length === 0) {
     return (
       <div className="text-center py-20">
-        <h1 className="text-2xl font-semibold text-gray-700">¡Vaya! No se encontraron profesion disponibles.</h1>
+        <h1 className="text-2xl font-semibold text-gray-700">¡Vaya! No se encontraron Servicios disponibles.</h1>
         <p className="text-gray-500 mt-2">Por favor, inténtalo de nuevo más tarde. ( Error cargando....)</p>
       </div>
     );
