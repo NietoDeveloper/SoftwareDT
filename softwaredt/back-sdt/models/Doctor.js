@@ -37,7 +37,7 @@ const doctorSchema = new Schema({
             type: Number,
             default: 1001
         },
-        admin: Number  // Opcional, para roles híbridos
+        admin: Number  
     },
     ticketPrice: { type: Number, default: 30 },
     specialization: { type: String, required: true },
