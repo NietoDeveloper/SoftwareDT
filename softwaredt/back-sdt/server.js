@@ -28,9 +28,4 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/user/register', require('./routes/userRoutes/userRegister'));
-app.use('/api/user/login', require('./routes/userRoutes/userLogin'));
-app.use('/api/user/refresh', require('./routes/userRoutes/userRefresh'));
-app.use('/api/user/logout', require('./routes/userRoutes/userLogout'));
-
-
 
