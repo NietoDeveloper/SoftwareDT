@@ -19,8 +19,6 @@ const DoctorList = () => {
       const res = await axios.get(`${apiUrl}/doctors`);
       return res.data.doctors || res.data || [];
     } catch (error) {
-      // Eliminamos redirección a login para 401/403, ya que no es requerido
-      // Solo mostramos error general
       if (error.response) {
         toast.error("Fallo al cargar la lista de doctores. Error: " + error.response.status);
       } else {
