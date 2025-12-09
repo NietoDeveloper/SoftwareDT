@@ -50,16 +50,3 @@ app.use('/api/user/review', require('./routes/reviewRoute'));
 app.use('/api/doctor/update', require('./routes/doctorRoutes/doctorUpdate'));
 app.use('/api/doctor/profile', require('./routes/bookingRoute'));
 
-app.use(unknownEndpoint);
-app.use(errorHandler);
-
-Promise.all([
-    new Promise(resolve => userDB.once('open', resolve)),
-    new Promise(resolve => citaDB.once('open', resolve))
-]).then(() => {
-    console.log('✅ Ambas conexiones DB listas. Servidor iniciando.');
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-}).catch(err => {
-    console.error('❌ Error en conexiones DB:', err);
-    process.exit(1);
-});
