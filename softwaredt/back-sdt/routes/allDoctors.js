@@ -1,14 +1,4 @@
 const express = require('express');
-
-
-
-
-
-
-
-
-
-const express = require('express');
 const router = express.Router();
 
 // 1. Importa la función correcta (getAllDoctors) del controlador correcto (doctorController)
