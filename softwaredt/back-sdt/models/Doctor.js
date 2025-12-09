@@ -47,7 +47,7 @@ const doctorSchema = new Schema({
     timeSlots: [timeSlotSchema],
     reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
     rating: { type: Number, default: 0 },  
-    totalRating: { type: Number, default: 0 },  // Posiblemente la suma o conteo de ratings
+    totalRating: { type: Number, default: 0 },  
     isApproved: { type: String, enum: ["pending", "approved", "cancelled"], default: "approved" },
     appointments: [{ type: Schema.Types.ObjectId, ref: "Appointment" }],
     refreshToken: {
