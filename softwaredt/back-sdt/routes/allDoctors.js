@@ -5,3 +5,19 @@ const { getAllServices } = require('../controllers/serviceController');
 router.get('/', getAllServices); 
 
 module.exports = router;
+
+
+
+
+
+
+const express = require('express');
+const router = express.Router();
+
+// 1. Importa la función correcta (getAllDoctors) del controlador correcto (doctorController)
+const { getAllDoctors } = require('../controllers/doctorController'); 
+
+// 2. Asocia la ruta GET con la función getAllDoctors
+router.get('/', getAllDoctors); 
+
+module.exports = router;
