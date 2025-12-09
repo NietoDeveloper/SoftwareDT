@@ -39,7 +39,6 @@ app.use('/api/doctor/logout', require('./routes/doctorRoutes/doctorLogout'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Ruta pública para doctores (movida antes de verifyAccess para no requerir auth)
 app.use('/api/doctors', require('./routes/allDoctors'));  // Renombrada a /api/doctors para consistencia
 
 app.use(verifyAccess); 
