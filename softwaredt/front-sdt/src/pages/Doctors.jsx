@@ -1,32 +1,4 @@
-import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { toast } from "react-toastify";
-import axiosSecure from "../utils/axiosSecure";
 
-const ArrowRightIcon = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <line x1="5" y1="12" x2="19" y2="12"></line>
-    <polyline points="12 5 19 12 12 19"></polyline>
-  </svg>
-);
-
-const DoctorList = () => {
-  const navigate = useNavigate();
-
-  const getDoctors = async () => {
-    try {
-      const res = await axiosSecure.get("/doctors"); 
-      return res.data.doctors || res.data || [];
-    } catch (error) {
-      if (error.response) {
-        if (error.response.status === 401 || error.response.status === 403) {
-          toast.error("Sesión expirada o acceso denegado. Por favor, inicia sesión de nuevo.");
-          localStorage.removeItem("token"); 
-          navigate("/login");
-        } else {
-          toast.error("Fallo al cargar la lista de doctores. Error: " + error.response.status);
-        }
-      } else {
         toast.error("Fallo de red o servidor no disponible. Por favor, inténtalo más tarde.");
       }
       throw error;
