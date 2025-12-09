@@ -53,12 +53,12 @@ const doctorSchema = new Schema({
     refreshToken: {
         type: [String],
         select: false, 
-        index: true  // Bueno para queries rápidas en logout
+        index: true  
     },
     isAvailable: { type: Boolean, default: true }
 }, { 
     timestamps: true,
-    collection: 'servicios'  // Forzado a usar la colección 'servicios' en la DB
+    collection: 'servicios' 
 });
 
 module.exports = userDB.model('Doctor', doctorSchema);
