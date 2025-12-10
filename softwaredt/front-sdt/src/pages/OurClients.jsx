@@ -66,7 +66,7 @@ const OurClients = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 sm:gap-10 justify-items-center">
           {clientData.map((client) => (
             // Botón/Tarjeta del Cliente
-            // Utiliza un `a` con `target="_blank"` para abrir el enlace en una nueva pestaña.
+           
             <a
               key={client.id}
               href={client.website}
