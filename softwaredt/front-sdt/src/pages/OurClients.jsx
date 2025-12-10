@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-// Datos de los clientes - Reemplace estos datos con la información real de sus 6 clientes.
 const clientData = [
   {
     id: 1,
