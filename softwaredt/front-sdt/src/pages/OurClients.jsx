@@ -54,7 +54,7 @@ const OurClients = () => {
         Nuestros Clientes
       </h2>
 
-      {/* Contenedor de la Cuadrícula Flexible para los Clientes */}
+      {/* Contenedor de la Cuadrí
       <div className="w-full max-w-[1400px]">
    
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 sm:gap-10 justify-items-center">
