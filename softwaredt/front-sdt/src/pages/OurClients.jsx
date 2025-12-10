@@ -27,7 +27,7 @@ const clientData = [
     title: "Distribuidora Delta",
     description: "Sistema de inventario en tiempo real conectado a puntos de venta (POS).",
     imageUrl: "/images/client-delta.png",
-    website: "https://www.distribuidoradelta.com",
+    website: "https://www..com",
   },
   {
     id: 5,
