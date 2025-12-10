@@ -81,8 +81,8 @@ const OurClients = () => {
               <div className="flex-shrink-0 w-32 h-32 mb-4">
                   {/*
                     La imagen se centra y se usa `object-contain` para que el logo completo se vea sin recortar.
-                    Se usa un efecto de grupo para un hover sutil en el logo.
-                  */}
+                    Se us
+                    
                   <img
                       src={client.imageUrl}
                       alt={`Logo de ${client.title}`}
