@@ -34,7 +34,7 @@ const clientData = [
     title: "Restaurante Epsilon",
     description: "Implementación de un sistema de pedidos online personalizado y optimizado.",
     imageUrl: "/images/client-epsilon.png",
-    website: "https://www.restauranteepsilon.com",
+    website: "https://www..com",
   },
   {
     id: 6,
