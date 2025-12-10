@@ -13,7 +13,7 @@ const clientData = [
     title: "Firma Beta Legal",
     description: "Creación de un portal de consulta legal con documentación organizada.",
     imageUrl: "/images/client-beta.png", 
-    website: "https://www.firmabeta.com",
+    website: "https://www..com",
   },
   {
     id: 3,
