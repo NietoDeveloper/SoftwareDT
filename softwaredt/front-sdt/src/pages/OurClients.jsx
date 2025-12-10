@@ -95,7 +95,6 @@ const OurClients = () => {
                 {client.title}
               </h3>
 
-              {/* Descripción del 
               <p className="text-gray-700 text-center flex-grow">
                 {client.description}
               </p>
