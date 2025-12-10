@@ -1,6 +1,6 @@
 #  Software-DT
 
-Next.js + Node.js + Vite
+MERN Stack
 
 ## Overview
 
