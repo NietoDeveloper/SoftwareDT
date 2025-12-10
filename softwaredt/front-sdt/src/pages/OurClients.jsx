@@ -20,7 +20,7 @@ const clientData = [
     id: 3,
     title: "Tech Gamma Solutions",
     description: "Integración de API para servicios de terceros y microservicios.",
-    imageUrl: "/images/client-gamma.png", // <--- Reemplace con la ruta real
+    imageUrl: "/images/client-gamma.png", // <--- Reemplace con
     website: "https://www.techgamma.com",
   },
   {
