@@ -100,7 +100,7 @@ const OurClients = () => {
                 {client.description}
               </p>
               
-              {/* Indicador de Botón/Enlace (Hover Notorio en Gold) */}
+              {/* Indicador de Botón/Enlace 
               <div className="mt-4 text-sm font-medium text-gray-500 group-hover:text-amber-500 transition-colors duration-300">
                 Visitar Web &rarr;
               </div>
