@@ -90,7 +90,6 @@ const OurClients = () => {
                   />
               </div>
 
-              {/* Título 
               <h3 className="text-xl font-semibold text-black mb-2 text-center group-hover:text-amber-600 transition-colors duration-300">
                 {client.title}
               </h3>
