@@ -6,7 +6,7 @@ const clientData = [
     title: "Cliente Alpha S.A.S.",
     description: "Desarrollo de plataforma de gestión interna y optimización de flujos de trabajo.",
     imageUrl: "/images/client-alpha.png", 
-    website: "https://www.clientealpha.com",
+    website: "https://www..com",
   },
   {
     id: 2,
