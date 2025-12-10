@@ -41,7 +41,7 @@ const clientData = [
     id: 6,
     title: "ONG Zeta Social",
     description: "Diseño y desarrollo de sitio web informativo con funcionalidades de donación.",
-    imageUrl: "/images/client-zeta.png", // <--- Reemplace con la ruta real
+    imageUrl: "/images/client-zeta.png", 
     website: "https://www.ongzeta.org",
   },
 ];
