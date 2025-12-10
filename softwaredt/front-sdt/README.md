@@ -100,7 +100,7 @@ If you wish to contribute, please follow the standard Git workflow: *fork*, crea
 
 ---
 
-## 📄 License
+## 📄 License   MIT
 
 ## Manuel Nieto
 
