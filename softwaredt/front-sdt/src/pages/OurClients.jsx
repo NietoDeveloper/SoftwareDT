@@ -13,7 +13,7 @@ const clientData = [
     id: 2,
     title: "Firma Beta Legal",
     description: "Creación de un portal de consulta legal con documentación organizada.",
-    imageUrl: "/images/client-beta.png", // <--- Reemp
+    imageUrl: "/images/client-beta.png", 
     website: "https://www.firmabeta.com",
   },
   {
