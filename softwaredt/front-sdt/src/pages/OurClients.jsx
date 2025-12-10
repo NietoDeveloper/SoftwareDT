@@ -75,7 +75,7 @@ const OurClients = () => {
               className="group w-full max-w-sm flex flex-col items-center bg-white border border-gray-100 rounded-xl shadow-lg 
                          p-6 transition-all duration-300 ease-in-out cursor-pointer 
                          hover:shadow-2xl hover:border-amber-400 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-amber-500/50"
-              style={{ minHeight: '320px' }} // Asegura una altura mínima para la uniformidad
+              style={{ minHeight: '320px' }} 
             >
               <div className="flex-shrink-0 w-32 h-32 mb-4">
         
