@@ -77,7 +77,6 @@ const OurClients = () => {
                          hover:shadow-2xl hover:border-amber-400 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-amber-500/50"
               style={{ minHeight: '320px' }} // Asegura una altura mínima para la uniformidad
             >
-              {/* Contenedor de la Imagen - Asegura la separación clara y centralización */}
               <div className="flex-shrink-0 w-32 h-32 mb-4">
         
                   <img
