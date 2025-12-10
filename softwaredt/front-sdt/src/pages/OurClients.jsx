@@ -1,7 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 
 // Datos de los clientes - Reemplace estos datos con la información real de sus 6 clientes.
-// NOTA: Debe importar o proporcionar las rutas correctas para las imágenes.
 const clientData = [
   {
     id: 1,
