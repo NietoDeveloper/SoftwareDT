@@ -59,10 +59,7 @@ const OurClients = () => {
         {/*
           Configuración de la cuadrícula responsiva:
           - grid-cols-1: 1 columna en móviles (320px)
-          - sm:grid-cols-2: 2 columnas en pantallas pequeñas/tablets
-          - lg:grid-cols-3: 3 columnas en pantallas grandes
-          - xl:grid-cols-4: Opcional: 4 columnas en pantallas extra grandes (Más allá de 1280px, si lo desea)
-        */}
+   
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 sm:gap-10 justify-items-center">
           {clientData.map((client) => (
             <a
