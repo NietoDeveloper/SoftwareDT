@@ -80,8 +80,6 @@ const OurClients = () => {
               {/* Contenedor de la Imagen - Asegura la separación clara y centralización */}
               <div className="flex-shrink-0 w-32 h-32 mb-4">
                   {/*
-                    La imagen se centra y se usa `object-contain` para que el logo completo se vea sin recortar.
-                    Se us
                     
                   <img
                       src={client.imageUrl}
