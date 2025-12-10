@@ -56,9 +56,6 @@ const OurClients = () => {
 
       {/* Contenedor de la Cuadrícula Flexible para los Clientes */}
       <div className="w-full max-w-[1400px]">
-        {/*
-          Configuración de la cuadrícula responsiva:
-          - grid-cols-1: 1 columna en móviles (320px)
    
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 sm:gap-10 justify-items-center">
           {clientData.map((client) => (
