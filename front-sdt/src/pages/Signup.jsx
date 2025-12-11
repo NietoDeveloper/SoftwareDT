@@ -102,7 +102,7 @@ const App = () => {
             console.log('✅ ¡Perfil creado con éxito!');
             const roleText = finalData.role === 'DOCTOR' ? 'Doctor(a)' : 'Paciente';
             setSuccessMessage(`¡Registro exitoso! Serás redirigido al dashboard de ${roleText} (simulado).`);
-            setFormData({ name: '', email: '', password: '', role: 'PATIENT' }); // Limpiar formulario
+            setFormData({ name: '', email: '', password: '', role: 'PATIENT' }); 
             setValidationErrors({});
             
         } catch (processError) {
