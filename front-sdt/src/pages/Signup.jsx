@@ -91,7 +91,6 @@ const App = () => {
                 if (!response.ok) {
                      throw new Error(`Error ${response.status}: ${response.statusText}`);
                 }
-                // Si fue exitosa pero sin JSON (ej. 204 No Content), continuar como éxito.
                 result = {}; 
             }
 
