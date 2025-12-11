@@ -73,7 +73,7 @@ const App = () => {
             photo: defaultImageUrl 
         };
         
-        // URL de destino (la mantenemos para contexto, aunque sea local)
+        // URL de destino 
         const apiUrl = 'http://localhost:5000/api/user/register'; 
 
         try {
