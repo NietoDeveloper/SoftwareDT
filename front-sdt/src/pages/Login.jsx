@@ -59,7 +59,6 @@ const Login = () => {
             
             toast.success(`👋 ¡Hola, ${userData.name || 'Usuario'}! Inicio de sesión exitoso. Redirigiendo...`);
             
-            // Redirigir a la lista de doctores, que es donde se inicia el proceso de booking.
             navigate('/doctors', { replace: true }); 
 
             reset();
