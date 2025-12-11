@@ -152,7 +152,6 @@ const App = () => {
                 <div className="w-full md:w-1/2 pt-6 md:pt-0 border-t md:border-t-0 md:border-l md:border-l-2 border-blue-100/50 md:pl-10 mt-6 md:mt-0">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">Registro de Cuenta</h2>
                     
-                    {/* Mensaje de éxito (simula la redirección) */}
                     {successMessage && (
                         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg relative mb-4 font-semibold text-sm">
                             {successMessage}
