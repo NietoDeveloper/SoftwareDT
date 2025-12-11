@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom";
-// 🚨 CORRECCIÓN 1: Cambiado de AppContext a UserContext
+// 🚨 CORRECCIÓN 
 import { UserContext } from "../context/UserContext"; 
 
 const PrivateRoutes = () => {
