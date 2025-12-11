@@ -218,7 +218,6 @@ const App = () => {
                             </div>
                         )}
 
-                        {/* Botón de Envío */}
                         <button
                             type="submit"
                             disabled={isLoading}
