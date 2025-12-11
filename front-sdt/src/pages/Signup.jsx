@@ -29,7 +29,6 @@ const validateField = (field, value) => {
 };
 
 const App = () => {
-    // Estado para los datos del formulario 
     const [formData, setFormData] = useState({
         name: '',
         email: '',
