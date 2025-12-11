@@ -4,8 +4,7 @@ MERN Stack
 
 ## Overview
 
-This is a web application built using Next.js for the frontend, Node.js for the backend server, and Vite for fast development and building. The main application logic is contained within a single primary file, which includes the server setup.    CRUD (Create, Read, Update, Delete) application built with MERN. The system allows users to create an account, book appointments with their preferred service, and leave reviews, on the other hand, can create profiles showcasing their experience, specialization, and availability for appointments. Once a Employee serice sets up their profile, they can log in to manage their appointments.
-
+This is a web application built using Next.js for the frontend, Node.js for the backend server, and Vite for fast development and building. The main application logic is contained within a single primary file, which includes the server setup.   CRUD (Create, Read, Update, Delete) application built with MERN. The system allows users to create an account, book appointments with their preferred service, and leave reviews, on the other hand, can create profiles showcasing their experience, specialization, and availability for appointments. Once a Employee-service sets up their profile, they can log in to manage their appointments.
 
 ## Prerequisites
 
@@ -101,22 +100,4 @@ npm run start: Starts the production Node.js server.
     Appointment Booking: Users can book appointments with their preferred doctors and view/manage their upcoming appointments.
 
     Review System: Users can leave reviews for doctors, allowing others to make informed decisions when choosing a doctor.
-
-## Technology Stack
-
-## Backend
-
-    Node.js/Express: Handles server-side logic and provides RESTful APIs for frontend interaction.
-    MongoDB: Utilized as the database to store user accounts, doctor profiles, appointments, and reviews.
-    JWT (JSON Web Tokens): Implements authentication and authorization mechanisms using access tokens and refresh tokens.
-    Firebase: Stores user profile pictures for improved user experience.
-
-## Frontend
-
-
-    React: Builds the user interface to interact with the backend APIs.
-    React Router: Provides route protection and navigation within the application.
-    Redux: Manages session data such as user profiles and authentication status.
-    Axios and React Query: Efficiently consume backend APIs for seamless data retrieval and manipulation.
-    Tailwind CSS: Utilized for styling and enhancing the overall user experience.
 
