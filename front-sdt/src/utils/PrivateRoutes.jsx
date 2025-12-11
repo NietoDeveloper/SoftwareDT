@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom";
-// 🚨 CORRECCIÓN 
 import { UserContext } from "../context/UserContext"; 
 
 const PrivateRoutes = () => {
