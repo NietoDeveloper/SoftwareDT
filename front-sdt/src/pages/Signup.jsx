@@ -172,7 +172,6 @@ const App = () => {
                             {validationErrors.name && <span className="text-red-600 text-sm mt-1 font-medium">{validationErrors.name}</span>}
                         </div>
 
-                        {/* Campo de Email */}
                         <div className="flex flex-col mb-4">
                             <label htmlFor="email" className="mb-2 font-medium text-gray-700 text-sm">Email</label>
                             <input
