@@ -108,7 +108,7 @@ const App = () => {
         } catch (processError) {
             const errorMessage = processError.message || 'Ocurrió un error en el registro. Inténtalo de nuevo.';
             
-            // Lógica de errores amigables de tu código original
+            // 
             let friendlyError = errorMessage;
             if (errorMessage.includes('fetch') || errorMessage.includes('Network') || errorMessage.includes('Failed to fetch')) {
                 friendlyError = 'Error de conexión con el servidor. Asegúrate de que tu backend esté activo en el puerto correcto (ej: 5000).';
