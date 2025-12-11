@@ -47,7 +47,6 @@ const App = () => {
         setValidationErrors(prev => ({ ...prev, [id]: validateField(id, value) }));
     };
 
-    // Función principal de envío 
     const onSubmit = async (e) => {
         e.preventDefault();
         setApiError(null);
