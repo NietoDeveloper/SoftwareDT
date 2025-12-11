@@ -6,7 +6,7 @@ const initializeConnection = (uri, name) => { // 1. Quitar 'dbName' como argumen
         return null;
     }
     
-    // 2. Simplificar connectionOptions (eliminar dbName)
+    // 2. Simplificar co
     const connectionOptions = {}; 
     
     const connection = mongoose.createConnection(uri, connectionOptions);
