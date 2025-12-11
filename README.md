@@ -44,7 +44,8 @@ npm run dev
 Vite will serve the frontend at http://localhost:5173.
 The Node.js server will run within the main application file.
 
-Build
+## Build
+
 To build the application for production:
 npm run build
 
