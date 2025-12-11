@@ -5,8 +5,7 @@ const initializeConnection = (uri, name) => { // 1. Quitar 'dbName' como argumen
         console.error(`⚠️ URI de MongoDB para ${name} no definida en .env`);
         return null;
     }
-    
-    // 2. Simplificar co
+
     const connectionOptions = {}; 
     
     const connection = mongoose.createConnection(uri, connectionOptions);
