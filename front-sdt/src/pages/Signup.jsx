@@ -7,7 +7,6 @@ const UserIcon = (props) => (
     </svg>
 );
 
-// --- Lógica de Validación Manual ---
 const isRequired = (value) => value && value.trim() !== '';
 const isValidEmail = (email) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email);
 const isPasswordLongEnough = (password) => password.length >= 6;
