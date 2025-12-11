@@ -48,7 +48,6 @@ const Login = () => {
         setIsLoading(true);
 
         try {
-            // Petición POST al endpoint completo (ej: http://localhost:5000/api/user/login)
             const response = await axios.post(`${API_BASE_URL}/login`, data);
             
             const { token, userData } = response.data;
