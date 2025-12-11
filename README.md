@@ -49,7 +49,8 @@ The Node.js server will run within the main application file.
 To build the application for production:
 npm run build
 
-Production
+## Production
+
 To start the production server:
 npm start
 
