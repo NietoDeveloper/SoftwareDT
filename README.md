@@ -61,7 +61,7 @@ pages/: Next.js pages for the frontend.
 public/: Static assets.
 vite.config.js: Vite configuration for frontend development and build.
 
-Scripts
+## Scripts
 
 npm run dev: Runs Vite for frontend and Node.js server concurrently.
 npm run build: Builds the Next.js app with Vite.
