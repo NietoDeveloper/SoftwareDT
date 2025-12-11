@@ -8,7 +8,7 @@ import axios from 'axios';
 const API_BASE_URL = "http://localhost:5000/api/user"; 
 
 export const axiosPrivate = axios.create({
-    baseURL: API_BASE_URL, // Debería ser http://localhost:5000/api para usar /user/login
+    baseURL: API_BASE_URL, 
 });
 
 axiosPrivate.interceptors.request.use(
