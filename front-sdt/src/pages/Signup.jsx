@@ -44,7 +44,6 @@ const App = () => {
     const handleChange = (e) => {
         const { id, value } = e.target;
         setFormData(prev => ({ ...prev, [id]: value }));
-        // Validar al cambiar 
         setValidationErrors(prev => ({ ...prev, [id]: validateField(id, value) }));
     };
 
