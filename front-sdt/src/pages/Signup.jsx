@@ -76,7 +76,7 @@ const App = () => {
         const apiUrl = 'http://localhost:5000/api/user/register'; 
 
         try {
-            // Usando fetch API nativo (reemplaza axios)
+            // Usando fetch API nativo
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
