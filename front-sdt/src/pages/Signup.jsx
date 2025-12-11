@@ -36,7 +36,6 @@ const App = () => {
         role: 'PATIENT'
     });
     
-    // Estados de UI y mensajes
     const [validationErrors, setValidationErrors] = useState({});
     const [apiError, setApiError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
