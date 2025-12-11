@@ -28,15 +28,14 @@ npm or Yarn
     Axios and React Query: Efficiently consume backend APIs for seamless data retrieval and manipulation.
     Tailwind CSS: Utilized for styling and enhancing the overall user experience.
 
-### Installation
+## Installation
 
 Clone the repository:git clone <https://github.com/NietoDeveloper/SoftwareDT>
 
+### Navigate to the project directory:cd
 
-## Navigate to the project directory:cd
 
-
-## Install dependencies:npm install
+### Install dependencies:npm install
 
 
 
