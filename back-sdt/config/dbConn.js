@@ -25,8 +25,6 @@ const initializeConnection = (uri, name) => { // 1. Quitar 'dbName' como argumen
     return connection;
 };
 
-// 3. 
-
 const userDB = initializeConnection(
     process.env.MONGODB_URI_USUARIOS, 
     'USUARIOS'
