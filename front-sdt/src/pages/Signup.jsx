@@ -60,7 +60,6 @@ const App = () => {
             }
         });
 
-        // 2. 
         if (Object.keys(newErrors).length > 0) {
             setValidationErrors(newErrors);
             return;
