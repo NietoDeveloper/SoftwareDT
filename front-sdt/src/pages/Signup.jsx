@@ -33,7 +33,7 @@ const App = () => {
         name: '',
         email: '',
         password: '',
-        role: 'PATIENT' // Valor por defecto
+        role: 'PATIENT'
     });
     
     // Estados de UI y mensajes
