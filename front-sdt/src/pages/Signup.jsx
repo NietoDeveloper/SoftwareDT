@@ -95,7 +95,6 @@ const App = () => {
             }
 
             if (!response.ok || result.error) {
-                // El servidor devolvió un error (ej. 409 Conflict, 400 Bad Request)
                 const errorText = result.error || response.statusText || 'Error desconocido del servidor.';
                 throw new Error(errorText);
             }
