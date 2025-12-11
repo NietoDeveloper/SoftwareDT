@@ -54,7 +54,7 @@ const Login = () => {
 
             localStorage.setItem('token', `Bearer ${token}`); 
 
-            setToken(`Bearer ${token}`); // También actualizamos el Context
+            setToken(`Bearer ${token}`); 
             setUser(userData); 
             
             toast.success(`👋 ¡Hola, ${userData.name || 'Usuario'}! Inicio de sesión exitoso. Redirigiendo...`);
