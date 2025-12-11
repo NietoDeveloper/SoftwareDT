@@ -84,7 +84,6 @@ const App = () => {
                 body: JSON.stringify(finalData),
             });
 
-            // Intentar parsear el JSON de la respuesta
             let result;
             try {
                 result = await response.json();
