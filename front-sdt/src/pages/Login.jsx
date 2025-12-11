@@ -7,8 +7,6 @@ import axios from 'axios';
 
 const API_BASE_URL = "http://localhost:5000/api/user"; 
 
-// Esta instancia debe ir en src/API/api.js, pero la dejaré aquí por ahora
-
 export const axiosPrivate = axios.create({
     baseURL: API_BASE_URL, // Debería ser http://localhost:5000/api para usar /user/login
 });
