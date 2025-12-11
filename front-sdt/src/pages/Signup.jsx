@@ -52,7 +52,6 @@ const App = () => {
         setApiError(null);
         setSuccessMessage(null);
 
-        // 1. Ejecutar todas las validaciones
         let newErrors = {};
         Object.keys(formData).forEach(key => {
             const error = validateField(key, formData[key]);
