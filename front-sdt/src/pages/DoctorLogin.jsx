@@ -36,7 +36,6 @@ const Doctorlogin = () => {
             // Reemplazar axios con tu axiosAuth y la ruta correcta en un entorno real
             // const response = await axiosAuth.post('/doctor/login', data); 
 
-            // --- SIMULACIÓN DE LOGIN EXITOSO DE DOCTOR ---
             await new Promise(resolve => setTimeout(resolve, 1500)); // Simula latencia de red
             const mockResponse = {
                 data: {
