@@ -52,7 +52,7 @@ const Login = () => {
             
             const { token, userData } = response.data;
             
-            // 🚨 CORRECCIÓN CRÍTICA: Guardar el token con el prefijo Bearer
+            // 🚨 
             localStorage.setItem('token', `Bearer ${token}`); 
 
             setToken(`Bearer ${token}`); // También actualizamos el Context
