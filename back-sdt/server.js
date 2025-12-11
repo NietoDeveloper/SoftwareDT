@@ -42,7 +42,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/doctors', require('./routes/allDoctors'));  
 app.use(verifyAccess); 
 
-// Otras rutas protegidas
 app.use('/api/user/update', require('./routes/userRoutes/userUpdateRoute'));
 app.use('/api/user/appointment', require('./routes/appointmentRoute'));
 app.use('/api/user/review', require('./routes/reviewRoute'));
