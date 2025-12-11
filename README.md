@@ -32,17 +32,14 @@ npm or Yarn
 
 Clone the repository:git clone <https://github.com/NietoDeveloper/SoftwareDT>
 
-### Navigate to the project directory:cd
+## Navigate to the project directory:cd
 
-
-### Install dependencies:npm install
-
+## Install dependencies:npm install
 
 ### Development
 
 To start the development server:
 npm run dev
-
 
 Vite will serve the frontend at http://localhost:5173.
 The Node.js server will run within the main application file.
