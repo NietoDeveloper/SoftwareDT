@@ -86,16 +86,3 @@ npm run start: Starts the production Node.js server.
 ## NietoSoftwareDeveloper
 
 ### 2025
-
-### Features
-
-    User Authentication: Supports secure user authentication using JWT (JSON Web Tokens). Users and doctors can securely log in with multiple devices, and logging out on one device does not affect their session on other devices.
-
-    Authorization: Implements role-based authorization to ensure that only authenticated users and doctors can access their respective functionalities.
-
-    Profile Management: Users can upload a profile picture, and doctors can showcase their experience, specialization, and availability for appointments.
-
-    Appointment Booking: Users can book appointments with their preferred doctors and view/manage their upcoming appointments.
-
-    Review System: Users can leave reviews for doctors, allowing others to make informed decisions when choosing a doctor.
-
