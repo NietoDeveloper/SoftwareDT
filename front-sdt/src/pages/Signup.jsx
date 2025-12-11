@@ -88,7 +88,6 @@ const App = () => {
             try {
                 result = await response.json();
             } catch (jsonError) {
-                // Si la respuesta no es JSON o está vacía, manejar como error de red genérico
                 if (!response.ok) {
                      throw new Error(`Error ${response.status}: ${response.statusText}`);
                 }
