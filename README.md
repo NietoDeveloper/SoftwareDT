@@ -54,7 +54,7 @@ npm run build
 To start the production server:
 npm start
 
-Project Structure
+## Project Structure
 
 main.js: The primary file containing the Node.js server and core application logic.
 pages/: Next.js pages for the frontend.
