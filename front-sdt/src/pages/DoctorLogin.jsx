@@ -44,7 +44,6 @@ const Doctorlogin = () => {
                 }
             };
             const response = mockResponse;
-            // --- FIN SIMULACIÓN ---
 
             // Guardar el Access Token y el perfil del doctor
             localStorage.setItem('accessToken', response.data.accessToken); 
