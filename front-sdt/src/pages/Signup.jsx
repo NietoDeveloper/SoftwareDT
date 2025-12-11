@@ -41,7 +41,7 @@ const App = () => {
     const [successMessage, setSuccessMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    // Maneja el cambio de input y la validación en tiempo real
+    // Maneja el 
     const handleChange = (e) => {
         const { id, value } = e.target;
         setFormData(prev => ({ ...prev, [id]: value }));
