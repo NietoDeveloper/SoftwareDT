@@ -38,7 +38,6 @@ Clone the repository:git clone <https://github.com/NietoDeveloper/SoftwareDT>
 ### Install dependencies:npm install
 
 
-
 ### Development
 
 To start the development server:
@@ -82,13 +81,13 @@ npm run start: Starts the production Node.js server.
 
     Review System: Users can leave reviews for doctors, allowing others to make informed decisions when choosing a doctor.
 
-# Manuel Nieto
+## Manuel Nieto
 
 ## NietoSoftwareDeveloper
 
 ### 2025
 
-# Features
+### Features
 
     User Authentication: Supports secure user authentication using JWT (JSON Web Tokens). Users and doctors can securely log in with multiple devices, and logging out on one device does not affect their session on other devices.
 
