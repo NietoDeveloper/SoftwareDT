@@ -5,7 +5,6 @@ import { UserContext } from '../context/UserContext.jsx';
 import { toast } from 'react-toastify';
 import axios from 'axios'; 
 
-// Usaremos un API_BASE_URL más genérico ya que este archivo no está en src/API
 const API_BASE_URL = "http://localhost:5000/api/user"; 
 
 // Esta instancia debe ir en src/API/api.js, pero la dejaré aquí por ahora
