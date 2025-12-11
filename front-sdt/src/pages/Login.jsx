@@ -16,7 +16,6 @@ axiosPrivate.interceptors.request.use(
         const tokenWithBearer = localStorage.getItem("token"); 
 
         if (tokenWithBearer) {
-            // Usamos la clave estándar 'Authorization'
             config.headers.Authorization = tokenWithBearer; 
         }
         return config;
