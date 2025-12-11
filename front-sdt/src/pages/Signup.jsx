@@ -159,7 +159,6 @@ const App = () => {
                     )}
 
                     <form onSubmit={onSubmit}>
-                        {/* Campo de Nombre */}
                         <div className="flex flex-col mb-4">
                             <label htmlFor="name" className="mb-2 font-medium text-gray-700 text-sm">Primer Nombre</label>
                             <input
