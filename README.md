@@ -20,7 +20,7 @@ npm or Yarn
     JWT (JSON Web Tokens): Implements authentication and authorization mechanisms using access tokens and refresh tokens.
     Firebase: Stores user profile pictures for improved user experience.
 
-## Frontend
+### Frontend
 
     React: Builds the user interface to interact with the backend APIs.
     React Router: Provides route protection and navigation within the application.
