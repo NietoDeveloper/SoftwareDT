@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const initializeConnection = (uri, name) => { // 1. Quitar 'dbName' como argumento
+const initializeConnection = (uri, name) => { 
     if (!uri) {
         console.error(`⚠️ URI de MongoDB para ${name} no definida en .env`);
         return null;
