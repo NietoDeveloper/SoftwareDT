@@ -45,7 +45,6 @@ const Doctorlogin = () => {
             };
             const response = mockResponse;
 
-            // Guardar el Access Token y el perfil del doctor
             localStorage.setItem('accessToken', response.data.accessToken); 
             // setToken(response.data.accessToken); // Descomentar en tu entorno real
             // setUser(response.data.doctorData);   // Descomentar en tu entorno real
