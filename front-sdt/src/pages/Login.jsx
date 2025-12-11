@@ -13,7 +13,6 @@ export const axiosPrivate = axios.create({
 
 axiosPrivate.interceptors.request.use(
     (config) => {
-        // Almacenamos el token con el prefijo 'Bearer ' en localStorage
         const tokenWithBearer = localStorage.getItem("token"); 
 
         if (tokenWithBearer) {
