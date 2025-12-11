@@ -11,7 +11,6 @@ const initializeConnection = (uri, name) => { // 1. Quitar 'dbName' como argumen
     const connection = mongoose.createConnection(uri, connectionOptions);
     
     connection.on('connected', () => {
-        // Mejorar el log p
         console.log(`✅ MongoDB (${name}) Conectado exitosamente a DB: ${connection.name}.`);
     });
     
