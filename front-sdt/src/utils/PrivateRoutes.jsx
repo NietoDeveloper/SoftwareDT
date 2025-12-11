@@ -8,7 +8,6 @@ const PrivateRoutes = () => {
     // También he añadido 'loading' para manejar el estado inicial de carga (buena práctica)
     const { token, loading } = useContext(UserContext); 
     
-    // Opcional: Manejar el estado de carga antes de verificar el token.
     if (loading) {
         return <div>Cargando autenticación...</div>;
     }
