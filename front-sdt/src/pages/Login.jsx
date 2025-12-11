@@ -51,8 +51,7 @@ const Login = () => {
             const response = await axios.post(`${API_BASE_URL}/login`, data);
             
             const { token, userData } = response.data;
-            
-            // 🚨 
+
             localStorage.setItem('token', `Bearer ${token}`); 
 
             setToken(`Bearer ${token}`); // También actualizamos el Context
