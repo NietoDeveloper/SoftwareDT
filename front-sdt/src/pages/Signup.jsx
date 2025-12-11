@@ -212,7 +212,6 @@ const App = () => {
                             {validationErrors.role && <span className="text-red-600 text-sm mt-1 font-medium">{validationErrors.role}</span>}
                         </div>
 
-                        {/* Mensaje de Error de API */}
                         {apiError && (
                             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mb-4 font-semibold text-sm">
                                 {apiError}
