@@ -207,7 +207,7 @@ const App = () => {
                                 className={`border ${validationErrors.role ? 'border-red-500' : 'border-gray-300/60'} p-3 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-200 shadow-inner hover:border-blue-400/50 outline-none w-full bg-white`}
                             >
                                 <option value="PATIENT">Soy un Cliente / Paciente</option>
-                                <option value="DOCTOR">Soy un Ingeniero De Software</option>
+                                <option value="DOCTOR">Soy un Ingeniero De Software DT</option>
                             </select>
                             {validationErrors.role && <span className="text-red-600 text-sm mt-1 font-medium">{validationErrors.role}</span>}
                         </div>
