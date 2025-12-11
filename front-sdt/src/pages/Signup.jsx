@@ -99,7 +99,6 @@ const App = () => {
                 throw new Error(errorText);
             }
 
-            // Éxito: Simulación de redirección con mensaje de éxito
             console.log('✅ ¡Perfil creado con éxito!');
             const roleText = finalData.role === 'DOCTOR' ? 'Doctor(a)' : 'Paciente';
             setSuccessMessage(`¡Registro exitoso! Serás redirigido al dashboard de ${roleText} (simulado).`);
