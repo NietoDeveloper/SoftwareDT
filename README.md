@@ -4,7 +4,7 @@ MERN Stack
 
 ## Overview
 
-This is a web application built using Next.js for the frontend, Node.js for the backend server, and Vite for fast development and building. The main application logic is contained within a single primary file, which includes the server setup.
+This is a web application built using Next.js for the frontend, Node.js for the backend server, and Vite for fast development and building. The main application logic is contained within a single primary file, which includes the server setup.    CRUD (Create, Read, Update, Delete) application built with MERN. The system allows users to create an account, book appointments with their preferred doctor, and leave reviews, on the other hand, can create profiles showcasing their experience, specialization, and availability for appointments. Once a doctor sets up their profile, they can log in to manage their appointments.
 
 
 ## Prerequisites
