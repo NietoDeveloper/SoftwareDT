@@ -11,12 +11,7 @@ const Header = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         navigate('/doctor/login');
-    };
 
-ogin" className="text-black font-medium hover:text-yellow-500 transition-colors">
-
-
-            )}
         </header>
     );
 };
