@@ -101,13 +101,7 @@ const Header = () => {
                         >
                             Contacto
                         </Link>
-                        <Link
-                            to="/appointment"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Agenda Cita
-                        </Link>
+
                         {isLoggedIn ? (
                              <button
                                 onClick={() => { handleLogout(); setIsMenuOpen(false); }}
