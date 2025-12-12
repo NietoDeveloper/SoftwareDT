@@ -41,7 +41,7 @@ const ServicesList = () => {
       price: "$300 - $400",
     },
     {
-      title: "Formación Técnica Personalizada",
+      title: "",
       subtitle: "Capacita a tu equipo",
       description: "Sesiones de formación adaptadas a las necesidades de tu empresa en lenguajes de programación, bases de datos o nuevas tecnologías de desarrollo.",
       photo: functionalPlaceholder,
