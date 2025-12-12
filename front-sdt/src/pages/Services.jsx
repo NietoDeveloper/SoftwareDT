@@ -10,7 +10,7 @@ const ServicesList = () => {
       description:
         "Creación de sitios web dinámicos y responsivos, aplicaciones móviles personalizadas para iOS/Android, y diseño/gestión de bases de datos seguras y escalables.",
       photo: functionalPlaceholder,
-      price: "Desde  $ 10.000.000 COP",
+      price: "Desde  $ 2.000.000 COP",
     },
     {
       title: "Consultoría y Optimización SEO",
