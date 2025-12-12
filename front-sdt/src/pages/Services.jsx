@@ -17,7 +17,7 @@ const ServicesList = () => {
       subtitle: "Aumenta tu visibilidad",
       description: "Servicio de análisis profundo para mejorar el ranking en motores de búsqueda, optimización de contenido y auditorías técnicas para un mejor rendimiento.",
       photo: functionalPlaceholder,
-      price: "",
+      price: "Desde  $ 5.000.000 COP",
     },
     {
       title: "Mantenimiento y Soporte IT",
