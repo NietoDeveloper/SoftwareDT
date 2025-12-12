@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ReviewForm from "../features/rating";
+import Footer from "../components/Footer/Footer";
 
 const MailIcon = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -86,6 +87,7 @@ const Contact = () => {
                 </form>
               </div>
             </div>
+            <Footer />
           </div>
       </section>
 
@@ -155,6 +157,7 @@ const Contact = () => {
       <div className="pt-6 pb-6 bg-gray-50 border-t border-gray-200 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} Software DT. Todos los derechos reservados.
       </div>
+      <Footer />
     </div>
   );
 };
