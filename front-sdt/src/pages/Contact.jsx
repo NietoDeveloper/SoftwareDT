@@ -148,7 +148,9 @@ const Contact = () => {
         <div className="w-full max-w-4xl">
             <ReviewForm />
         </div>
-      
+       
+      </section>
+
       <div className="pt-6 pb-6 bg-gray-50 border-t border-gray-200 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} Software DT. Todos los derechos reservados.
       </div>
