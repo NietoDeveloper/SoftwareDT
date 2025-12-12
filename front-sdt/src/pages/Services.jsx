@@ -45,7 +45,7 @@ const ServicesList = () => {
       subtitle: "Independiente Y/O con Inversion",
       description: "Realizamos Investigacion Independiente continua, y ademas; Buscamos cooperacion con otras organizaciones e Inversores.",
       photo: functionalPlaceholder,
-      price: "$350 - $450",
+      price: "Desde  $ 10.000.000 COP",
     },
   ];
 
