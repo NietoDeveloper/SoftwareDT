@@ -18,16 +18,7 @@ import ClientPanel from "./pages/ClientAppointmentsPanel.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
 
 function App() {
-  return (
-    <UserProvider>
-      <Header />
-      <Routes
-        future={{
-          v7_startTransition: true,
-          v7_relativeSplatPath: true,
-        }}
 
-  );
 }
 
 export default App;
