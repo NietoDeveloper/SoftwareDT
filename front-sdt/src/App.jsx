@@ -31,13 +31,7 @@ function App() {
         <Route path="/doctors" element={<DoctorList />} />
         <Route path="/contact" element={<Contact />} />
      
-        
-        <Route element={<PrivateRoutes />}>
-         
-            path="/appointment-confirmation/:appointmentId" 
-            element={<AppointmentConfirmation />} 
-          />
-        </Route>
+
       </Routes>
     </UserProvider>
   );
