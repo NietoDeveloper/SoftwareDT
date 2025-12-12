@@ -43,7 +43,7 @@ const ServicesList = () => {
     {
       title: "Investigacion Y Desarrollo",
       subtitle: "Independiente Y/O con Inversion",
-      description: " lenguajes de programación, bases de datos o nuevas tecnologías de desarrollo.",
+      description: "Realizamos Investigacion Independiente continua, y ademas; Buscamos cooperacion con otras organizaciones e Inversores.   lenguajes de programación, bases de datos o nuevas tecnologías de desarrollo.",
       photo: functionalPlaceholder,
       price: "$350 - $450",
     },
