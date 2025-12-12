@@ -135,7 +135,7 @@ const Contact = () => {
                     </div>
                     <div className="mt-6 p-4 bg-indigo-50 rounded-lg text-center">
                         <p className="font-semibold text-indigo-700">Dirección:</p>
-                        <p className="text-gray-700">Carrera 72 # 10 - 50, Piso 5, Bogotá, Colombia</p>
+                        <p className="text-gray-700">Carrera 72 # 2 - 50, Piso 5, Bogotá, Colombia</p>
                     </div>
                 </div>
             </div>
