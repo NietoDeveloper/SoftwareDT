@@ -24,7 +24,7 @@ const ServicesList = () => {
       subtitle: "Continuidad del negocio",
       description: "Soporte técnico continuo, monitorización de servidores, actualizaciones de seguridad y mantenimiento preventivo para garantizar la operatividad de tus sistemas.",
       photo: functionalPlaceholder,
-      price: "$200 - $300",
+      price: "Desde  $ 10.000.000 COP",
     },
     {
       title: "Diseño de Interfaz (UI/UX)",
