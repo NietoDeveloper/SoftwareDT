@@ -105,7 +105,7 @@ const Contact = () => {
                         Soporte Rápido (WhatsApp)
                       </h3>
                       <p className="text-gray-600 text-center mb-4">
-                        ¿Necesitas ayuda inmediata? Contáctanos directamente.
+                        ¿Necesitas ayuda inmediata? Contáctanos
                       </p>
                       <div className="font-semibold text-green-700 text-2xl mb-6 text-center">
                         {whatsappNumber}
