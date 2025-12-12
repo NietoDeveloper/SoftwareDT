@@ -47,16 +47,7 @@ const Header = () => {
                             </div>
                         )}
                     </nav>
-                    <div className="flex items-center md:hidden">
-                        <button
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="text-black hover:text-yellow-500 focus:outline-none p-2 transition-colors"
-                        >
-                            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                {isMenuOpen ? (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
 
-                </div>
             )}
         </header>
     );
