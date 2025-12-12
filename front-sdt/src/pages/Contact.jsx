@@ -142,14 +142,11 @@ const Contact = () => {
             </div>
         </div>
       </section>
-
       <section className="min-h-screen flex flex-col justify-center items-center bg-white py-16 px-4 sm:px-8">
         <div className="w-full max-w-4xl">
             <ReviewForm />
         </div>
-       
       </section>
-
       <Footer />
     </div>
   );
