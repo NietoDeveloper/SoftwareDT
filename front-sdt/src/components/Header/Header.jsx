@@ -8,11 +8,7 @@ const Header = () => {
     const isLoggedIn = !!localStorage.getItem('token');
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        navigate('/doctor/login');
 
-        </header>
     );
 };
 export default Header;
