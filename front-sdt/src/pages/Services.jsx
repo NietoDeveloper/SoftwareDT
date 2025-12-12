@@ -41,8 +41,8 @@ const ServicesList = () => {
       price: "$300 - $400",
     },
     {
-      title: "",
-      subtitle: "Capacita a tu equipo",
+      title: "Investigacion Y Desarrollo",
+      subtitle: "Independiente Y/O con Inversion",
       description: "Sesiones de formación adaptadas a las necesidades de tu empresa en lenguajes de programación, bases de datos o nuevas tecnologías de desarrollo.",
       photo: functionalPlaceholder,
       price: "$350 - $450",
