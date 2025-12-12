@@ -38,7 +38,7 @@ const ServicesList = () => {
       subtitle: "Eficiencia y ahorro",
       description: "Implementación de scripts y herramientas para automatizar tareas repetitivas, liberando tiempo de tu equipo y reduciendo el margen de error humano.",
       photo: functionalPlaceholder,
-      price: "",
+      price: "Desde  $ 6.000.000 COP",
     },
     {
       title: "Investigacion Y Desarrollo",
