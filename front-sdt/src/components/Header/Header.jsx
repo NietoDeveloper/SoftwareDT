@@ -117,13 +117,7 @@ const Header = () => {
                             </button>
                         ) : (
                             <>
-                                <Link
-                                    to="/doctor/login"
-                                    className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
-                                    onClick={() => setIsMenuOpen(false)}
-                                >
-                                    Login
-                                </Link>
+                               
                                 <Link
                                     to="/doctor/signup"
                                     className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center font-bold transition-colors"
