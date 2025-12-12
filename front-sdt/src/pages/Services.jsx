@@ -31,7 +31,7 @@ const ServicesList = () => {
       subtitle: "Experiencia de usuario inmersiva",
       description: "Diseño centrado en el usuario, creación de prototipos y pruebas de usabilidad para garantizar que tu producto sea intuitivo, accesible y atractivo.",
       photo: functionalPlaceholder,
-      price: "$250 - $350",
+      price: "Desde  $ 3.000.000 COP",
     },
     {
       title: "Automatización de Procesos",
