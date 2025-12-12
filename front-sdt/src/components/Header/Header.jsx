@@ -80,13 +80,7 @@ const Header = () => {
                         >
                             Informacion Servicios
                         </Link>
-                        <Link
-                            to="/doctors"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Escoje Servicio
-                        </Link>
+
 
 
                         {isLoggedIn ? (
