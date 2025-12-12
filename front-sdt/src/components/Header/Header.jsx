@@ -39,14 +39,7 @@ const Header = () => {
                         ) : (
                             <div className="flex items-center space-x-4">
                                 <Link to="/doctor/login" className="text-black font-medium hover:text-yellow-500 transition-colors">
-                                    Login
-                                </Link>
-                                <Link to="/doctor/signup" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-                                    Registro
-                                </Link>
-                            </div>
-                        )}
-                    </nav>
+
 
             )}
         </header>
