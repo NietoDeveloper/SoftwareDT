@@ -13,17 +13,4 @@ const Header = () => {
         navigate('/doctor/login');
     };
 
-    return (
-       
-                            <>
-                               
- 
-                            </>
-                        )}
-                    </div>
-                </div>
-            )}
-        </header>
-    );
-};
 export default Header;
