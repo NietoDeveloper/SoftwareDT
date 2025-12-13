@@ -21,58 +21,6 @@ const clientData = [
     id: 3,
     title: "Ministerio de Defensa Colombia",
     description: "Sistemas de gestión segura para defensa nacional.",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/24/Logo_Ministerio_de_Defensa_%282022-2026%29.png",
-    website: "https://www.mindefensa.gov.co/",
-  },
-  {
-    id: 4,
-    title: "RCN Televisión Colombia",
-    description: "Plataformas digitales para medios de comunicación.",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a3/CanalRCN2023.png",
-    website: "https://www.canalrcn.com/",
-  },
-  {
-    id: 5,
-    title: "Cliente Personalizado 1",
-    description: "Descripción personalizable.",
-    imageUrl: "", // Espacio para customizar con link online del logo
-    website: "", // Espacio para customizar con web de la empresa
-  },
-  {
-    id: 6,
-    title: "Cliente Personalizado 2",
-    description: "Descripción personalizable.",
-    imageUrl: "", // Espacio para customizar con link online del logo
-    website: "", // Espacio para customizar con web de la empresa
-  },
-];
 
-const OurClients = () => {
-  return (
-    <div>
-    <section className="flex flex-col items-center p-4 sm:p-8 md:p-12 min-h-screen">
-      <h2 className="text-4xl sm:text-5xl font-extrabold text-black mb-12 text-center">
-        Nuestros Clientes
-      </h2>
-
-      <div className="w-full max-w-[1400px]">
-   
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 sm:gap-10 justify-items-center">
-          {clientData.map((client) => (
-            <a
-              key={client.id}
-              href={client.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group w-full max-w-sm flex flex-col items-center bg-white border border-gray-100 rounded-xl shadow-lg 
-                         p-6 transition-all duration-300 ease-in-out cursor-pointer 
-                         hover:shadow-2xl hover:border-yellow-400 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
-              style={{ minHeight: '320px' }} 
-            >
-              <div className="flex-shrink-0 w-32 h-32 mb-4">
-
-
-  );
-};
 
 export default OurClients;
