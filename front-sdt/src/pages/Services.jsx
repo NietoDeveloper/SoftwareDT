@@ -60,13 +60,7 @@ const ServicesList = () => {
                            hover:shadow-2xl hover:border-yellow-400 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
                 style={{ minHeight: '320px' }} 
               >
-                <div className="flex-shrink-0 w-32 h-32 mb-4">
-                  <img
-                    src={service.photo}
-                    alt={service.title}
-                    className="w-full h-full object-contain rounded-full border-4 border-gray-100 group-hover:border-yellow-500 transition-colors duration-300"
-                  />
-                </div>
+
 
             ))}
           </div>
