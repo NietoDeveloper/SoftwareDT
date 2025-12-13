@@ -94,7 +94,7 @@ const OurClients = () => {
         </div>
       </div>
     </section>
-          <div className="w-full -mx-4 sm:-mx-8 md:-mx-12 mt-5">
+      <div className="w-full -mx-4 sm:-mx-8 md:-mx-12 mt-5">
         <Footer />
       </div>
     </div>
