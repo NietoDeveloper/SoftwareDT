@@ -43,17 +43,7 @@ const ServicesList = () => {
     },
   ];
 
-  return (
-    <div>
-      <section className="flex flex-col items-center p-4 min-h-screen bg-gray-50">
-        <h1 className="text-4xl font-extrabold text-black mb-12 text-center">
-          Servicios 
 
-              >
-
-
-            ))}
-          </div>
         </div>
       </section>
       <Footer />
