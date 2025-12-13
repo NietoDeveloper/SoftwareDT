@@ -18,24 +18,7 @@ const OurClients = () => {
         Nuestros Clientes
       </h2>
 
-      <div className="w-full max-w-[1400px]">
-   
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 sm:gap-10 justify-items-center">
-          {clientData.map((client) => (
-            <a
-              key={client.id}
-              href={client.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group w-full max-w-sm flex flex-col items-center bg-white border border-gray-100 rounded-xl shadow-lg 
-                         p-6 transition-all duration-300 ease-in-out cursor-pointer 
-                         hover:shadow-2xl hover:border-yellow-400 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
-              style={{ minHeight: '320px' }} 
-            >
 
-      </div>
-        <Footer />
-    </section>
     </div>
   );
 };
