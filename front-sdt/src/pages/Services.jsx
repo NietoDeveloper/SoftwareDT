@@ -43,18 +43,7 @@ const ServicesList = () => {
   ];
 
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-gray-50 min-h-screen">
-        {services.map((service, index) => (
-          <div
-            key={index}
-            className="bg-white shadow-xl rounded-xl p-6 flex flex-col items-center transform transition duration-300 hover:scale-[1.02] border border-blue-100"
-          >
-            <img
-              src={service.photo}
-              alt={service.title}
-              className="w-24 h-24 mb-4 rounded-full object-cover border-4 border-blue-500"
-            />
+
 
               </p>
             </div>
