@@ -67,17 +67,7 @@ const ServicesList = () => {
                     className="w-full h-full object-contain rounded-full border-4 border-gray-100 group-hover:border-yellow-500 transition-colors duration-300"
                   />
                 </div>
-                <h2 className="text-2xl font-extrabold text-black mb-2 text-center group-hover:text-yellow-600 transition-colors duration-300">
-                  {service.title}
-                </h2>
-                <h3 className="text-md font-semibold text-black mb-3 uppercase tracking-wider group-hover:text-yellow-600 transition-colors duration-300">
-                  {service.subtitle}
-                </h3>
-                <p className="text-gray-700 text-center flex-grow">
-                  {service.description}
-                </p>
 
-              </Link>
             ))}
           </div>
         </div>
