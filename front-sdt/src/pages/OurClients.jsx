@@ -38,13 +38,7 @@ const clientData = [
     imageUrl: "", // Espacio para customizar con link online del logo
     website: "", // Espacio para customizar con web de la empresa
   },
-  {
-    id: 6,
-    title: "Cliente Personalizado 2",
-    description: "Descripción personalizable.",
-    imageUrl: "", // Espacio para customizar con link online del logo
-    website: "", // Espacio para customizar con web de la empresa
-  },
+
 ];
 
 const OurClients = () => {
@@ -93,8 +87,8 @@ const OurClients = () => {
           ))}
         </div>
       </div>
+        <Footer />
     </section>
-     <Footer />
     </div>
   );
 };
