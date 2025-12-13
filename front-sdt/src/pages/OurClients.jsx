@@ -70,28 +70,7 @@ const OurClients = () => {
               style={{ minHeight: '320px' }} 
             >
               <div className="flex-shrink-0 w-32 h-32 mb-4">
-        
-                  <img
-                      src={client.imageUrl || "/images/placeholder-logo.png"} // Placeholder si imageUrl está vacío
-                      alt={`Logo de ${client.title}`}
-                      className="w-full h-full object-contain rounded-full border-4 border-gray-100 group-hover:border-yellow-500 transition-colors duration-300"
-                  />
-              </div>
 
-              <h3 className="text-xl font-semibold text-black mb-2 text-center group-hover:text-yellow-600 transition-colors duration-300">
-                {client.title}
-              </h3>
-
-              <p className="text-gray-700 text-center flex-grow">
-                {client.description}
-              </p>
-              
-              <div className="mt-4 text-sm font-medium text-gray-500 group-hover:text-yellow-500 transition-colors duration-300">
-                Visitar Web &rarr;
-              </div>
-            </a>
-          ))}
-        </div>
 
   );
 };
