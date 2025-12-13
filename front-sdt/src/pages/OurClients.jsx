@@ -41,19 +41,7 @@ const OurClients = () => {
                   />
               </div>
 
-              <h3 className="text-xl font-semibold text-black mb-2 text-center group-hover:text-yellow-600 transition-colors duration-300">
-                {client.title}
-              </h3>
 
-              <p className="text-gray-700 text-center flex-grow">
-                {client.description}
-              </p>
-              
-              <div className="mt-4 text-sm font-medium text-gray-500 group-hover:text-yellow-500 transition-colors duration-300">
-                Visitar Web &rarr;
-              </div>
-            </a>
-          ))}
         </div>
       </div>
         <Footer />
