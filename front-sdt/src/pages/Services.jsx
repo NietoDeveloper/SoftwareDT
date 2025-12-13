@@ -58,12 +58,7 @@ const ServicesList = () => {
             <h2 className="text-2xl font-extrabold text-gray-800 mb-2 text-center">
               {service.title}
             </h2>
-            <h3 className="text-md font-semibold text-blue-600 mb-3 uppercase tracking-wider">
-              {service.subtitle}
-            </h3>
-            <p className="text-gray-600 mb-4 text-center flex-grow">
-              {service.description}
-            </p>
+
             <div className="mt-auto pt-3 border-t w-full text-center">
               <p className="text-xl font-black text-green-700">
                 {service.price}
