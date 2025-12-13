@@ -24,13 +24,7 @@ const clientData = [
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/24/Logo_Ministerio_de_Defensa_%282022-2026%29.png",
     website: "https://www.mindefensa.gov.co/",
   },
-  {
-    id: 4,
-    title: "RCN Televisión Colombia",
-    description: "Plataformas digitales para medios de comunicación.",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a3/CanalRCN2023.png",
-    website: "https://www.canalrcn.com/",
-  },
+
 
 
 ];
