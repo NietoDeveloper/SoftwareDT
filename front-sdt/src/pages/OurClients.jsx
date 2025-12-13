@@ -92,7 +92,6 @@ const OurClients = () => {
           ))}
         </div>
       </div>
-      <Footer />
     </section>
   );
 };
