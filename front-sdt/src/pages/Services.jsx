@@ -94,7 +94,7 @@ const ServicesList = () => {
           </Link>
         ))}
       </div>
-      <Footer />
+
     </div>
   );
 };
