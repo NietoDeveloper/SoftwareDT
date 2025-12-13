@@ -10,14 +10,7 @@ const clientData = [
     imageUrl: "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/RWCZER-Legal-IP-Trademarks-CP-MS-logo-740x417-1?wid=406&hei=230&fit=crop&resSharp=1",
     website: "https://www.microsoft.com/",
   },
-  {
-    id: 2,
-    title: "Google",
-    description: "Desarrollo de aplicaciones integradas con servicios de Google.",
-    imageUrl: "https://storage.googleapis.com/gd-prod/images/a910d418-7123-4bc4-aa3b-ef7e25e74ae6.60c498c559810aa0.webp",
-    website: "https://www.google.com/",
-  },
-  {
+
 
 
 
