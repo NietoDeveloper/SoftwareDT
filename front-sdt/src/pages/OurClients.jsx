@@ -18,12 +18,7 @@ const clientData = [
     website: "https://www.google.com/",
   },
   {
-    id: 3,
-    title: "Ministerio de Defensa Colombia",
-    description: "Sistemas de gestión segura para defensa nacional.",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/24/Logo_Ministerio_de_Defensa_%282022-2026%29.png",
-    website: "https://www.mindefensa.gov.co/",
-  },
+
 
 
 
