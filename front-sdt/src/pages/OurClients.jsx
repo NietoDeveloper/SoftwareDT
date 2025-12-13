@@ -31,20 +31,7 @@ const clientData = [
     imageUrl: "/images/client-delta.png",
     website: "https://www..com",
   },
-  {
-    id: 5,
-    title: "Restaurante Epsilon",
-    description: "Implementación de un sistema de pedidos online personalizado y optimizado.",
-    imageUrl: "/images/client-epsilon.png",
-    website: "https://www..com",
-  },
-  {
-    id: 6,
-    title: "ONG Zeta Social",
-    description: "Diseño y desarrollo de sitio web informativo con funcionalidades de donación.",
-    imageUrl: "/images/client-zeta.png", 
-    website: "https://www..org",
-  },
+
 ];
 
 const OurClients = () => {
@@ -54,6 +41,21 @@ const OurClients = () => {
       <h2 className="text-4xl sm:text-5xl font-extrabold text-black mb-12 text-center">
         Nuestros Clientes
       </h2>
+
+      <div className="w-full max-w-[1400px]">
+   
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 sm:gap-10 justify-items-center">
+          {clientData.map((client) => (
+            <a
+              key={client.id}
+              href={client.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-full max-w-sm flex flex-col items-center bg-white border border-gray-100 rounded-xl shadow-lg 
+                         p-6 transition-all duration-300 ease-in-out cursor-pointer 
+                         hover:shadow-2xl hover:border-amber-400 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-amber-500/50"
+              style={{ minHeight: '320px' }} 
+            >
 
 
               
