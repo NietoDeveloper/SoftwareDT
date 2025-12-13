@@ -45,14 +45,5 @@ const ServicesList = () => {
   return (
 
 
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <Footer />
-    </div>
-  );
-};
 
 export default ServicesList;
