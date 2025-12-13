@@ -3,13 +3,6 @@ import React from 'react';
 import Footer from "../components/Footer/Footer";
 
 const clientData = [
-  {
-    id: 1,
-    title: "Microsoft",
-    description: "Colaboración en soluciones de cloud y AI.",
-    imageUrl: "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/RWCZER-Legal-IP-Trademarks-CP-MS-logo-740x417-1?wid=406&hei=230&fit=crop&resSharp=1",
-    website: "https://www.microsoft.com/",
-  },
 
 
 
