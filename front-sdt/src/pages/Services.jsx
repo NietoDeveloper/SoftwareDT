@@ -40,22 +40,7 @@ const ServicesList = () => {
       photo: functionalPlaceholder,
       price: "Desde  $ 3.000.000 COP",
     },
-    {
-      title: "Automatización de Procesos",
-      subtitle: "Eficiencia y ahorro",
-      description:
-        "Implementación de scripts y herramientas para automatizar tareas repetitivas, liberando tiempo de tu equipo y reduciendo el margen de error humano.",
-      photo: functionalPlaceholder,
-      price: "Desde  $ 6.000.000 COP",
-    },
-    {
-      title: "Investigacion Y Desarrollo",
-      subtitle: "Independiente Y/O con Inversion",
-      description:
-        "Realizamos Investigacion Independiente continua, y ademas; Buscamos cooperacion con otras organizaciones e Inversores.",
-      photo: functionalPlaceholder,
-      price: "Desde  $ 10.000.000 COP",
-    },
+
   ];
 
   return (
