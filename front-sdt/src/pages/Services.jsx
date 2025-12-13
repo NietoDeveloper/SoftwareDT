@@ -76,11 +76,7 @@ const ServicesList = () => {
                 <p className="text-gray-700 text-center flex-grow">
                   {service.description}
                 </p>
-                <div className="mt-auto pt-3 border-t w-full text-center">
-                  <p className="text-xl font-black text-black group-hover:text-yellow-500 transition-colors duration-300">
-                    {service.price}
-                  </p>
-                </div>
+
               </Link>
             ))}
           </div>
