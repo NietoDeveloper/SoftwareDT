@@ -31,13 +31,7 @@ const clientData = [
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a3/CanalRCN2023.png",
     website: "https://www.canalrcn.com/",
   },
-  {
-    id: 5,
-    title: "Cliente Personalizado 1",
-    description: "Descripción personalizable.",
-    imageUrl: "", // Espacio para customizar con link online del logo
-    website: "", // Espacio para customizar con web de la empresa
-  },
+
 
 ];
 
