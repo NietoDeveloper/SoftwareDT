@@ -32,17 +32,7 @@ const OurClients = () => {
                          hover:shadow-2xl hover:border-yellow-400 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
               style={{ minHeight: '320px' }} 
             >
-              <div className="flex-shrink-0 w-32 h-32 mb-4">
-        
-                  <img
-                      src={client.imageUrl || "/images/placeholder-logo.png"} // Placeholder si imageUrl está vacío
-                      alt={`Logo de ${client.title}`}
-                      className="w-full h-full object-contain rounded-full border-4 border-gray-100 group-hover:border-yellow-500 transition-colors duration-300"
-                  />
-              </div>
 
-
-        </div>
       </div>
         <Footer />
     </section>
