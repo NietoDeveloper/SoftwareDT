@@ -108,15 +108,7 @@ const updateDoctor = asyncHandler(async (req, res) => {
    
 });
 
-const getAllDoctors = asyncHandler(async (req, res) => {
-    const doctors = await Doctor.find({ isApproved: 'approved', isAvailable: true }).select('-password -refreshToken'); 
-    
-    if (doctors.length === 0) {  // Simplificado: find siempre devuelve array, vacío si no hay matches
-        return res.status(200).json({
-            message: "No available doctors found in the database!",
-            doctors: []
-        }); 
-    }
+
     
     res.status(200).json({
         message: "Available doctors retrieved successfully",
