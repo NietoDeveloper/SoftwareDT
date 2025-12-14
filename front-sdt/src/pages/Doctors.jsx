@@ -83,10 +83,6 @@ const DoctorList = () => {
             </p>
             <p className="text-gray-700 mb-4 line-clamp-2 flex-grow overflow-hidden">{doctor.bio}</p>
             
-            <div className="w-10 h-10 rounded-full border border-solid border-gray-900 flex items-center justify-center bg-transparent group-hover:bg-blue-600 transition-colors mt-auto cursor-pointer">
-              <ArrowRightIcon className="text-gray-900 group-hover:text-white transition-colors" />
-            </div>
-          </div>
         ))}
       </div>
 
