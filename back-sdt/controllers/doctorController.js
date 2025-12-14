@@ -100,16 +100,7 @@ const updateDoctor = asyncHandler(async (req, res) => {
         foundDoctor.email = email;
     }
     
-    if (name) foundDoctor.name = name;
-    if (ticketPrice) foundDoctor.ticketPrice = ticketPrice;
-    if (photo) foundDoctor.photo = photo;  
-    
-    if (phone) foundDoctor.phone = phone;
-    if (specialization) foundDoctor.specialization = specialization;
-    if (qualifications) foundDoctor.qualifications = qualifications;
-    if (bio) foundDoctor.bio = bio;
-    if (experience) foundDoctor.experience = experience;
-    if (timeSlots) foundDoctor.timeSlots = timeSlots;
+
 
     const result = await foundDoctor.save();
     
