@@ -60,14 +60,7 @@ const DoctorList = () => {
   const containerClasses =
     doctors.length === 1
       ? "flex items-center justify-center min-h-screen"
-      : "min-h-screen";
 
-  return (
-    <div>
-    <div className={`mx-auto px-4 py-8 ${containerClasses}`}>
-      <div
-        className={`container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${
-          doctors.length === 1 ? 'w-full max-w-lg' : ''
 
          
 
