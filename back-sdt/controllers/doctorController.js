@@ -29,21 +29,6 @@ const doctorRegister = asyncHandler(async (req, res) => {
     }
 });
 
-const handleDoctorLogin = asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-    
-    if (!email || !password) {
-        return res.status(400).json({ message: "Login credentials required" });
-    }
-
-    const findDoctor = await Doctor.findOne({ email }).select('+password'); 
-    if (!findDoctor) {
-        return res.status(401).json({ message: "Unauthorized: Invalid credentials" }); 
-    }
-
-    const isMatch = await bcrypt.compare(password, findDoctor.password);
-    
-    if (isMatch) {
 
 
 module.exports = { 
