@@ -69,11 +69,7 @@ const DoctorList = () => {
           doctors.length === 1 ? 'w-full max-w-lg' : ''
         }`}
       >
-        {doctors.map((doctor) => (
-          <div
-            key={doctor._id}
-            className="group bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center text-center h-[300px]"
-            onClick={() => navigateToBooking(doctor._id)}
+
 
          
            
