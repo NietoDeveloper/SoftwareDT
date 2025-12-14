@@ -14,24 +14,7 @@ const ArrowRightIcon = (props) => (
 const DoctorList = () => {
   const navigate = useNavigate();
 
-  const getDoctors = async () => {
-    try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api"; 
-      const res = await axios.get(`${apiUrl}/doctors`);
-      return res.data.doctors || res.data || [];
-    } catch (error) {
-      if (error.response) {
-        toast.error("Fallo al cargar la lista de doctores. Error: " + error.response.status);
-      } else {
-        toast.error("Fallo de red o servidor no disponible. Por favor, inténtalo más tarde.");
-      }
-      throw error;
-    }
-  };
 
-
-  if (isLoading) return <h1 className="text-center py-10 text-xl font-bold">Cargando Servicios....</h1>;
-  
 
 
 
