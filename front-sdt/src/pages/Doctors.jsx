@@ -9,19 +9,7 @@ import Footer from "../components/Footer/Footer";
 const DoctorList = () => {
   const navigate = useNavigate();
 
-  const getDoctors = async () => {
-    try {
-         } catch (error) {
-      if (error.response) {
-        // Error HTTP, ej: 404, 500
-        toast.error(`Error ${error.response.status}: ${error.response.data.message || 'Fallo desconocido del servidor.'}`);
-      } else {
-        // CORRECCIÓN: Mensaje de error de red más claro
-        toast.error("Fallo de red o servidor no disponible. Verifique la conexión del backend.");
-      }
-      throw error;
-    }
-  };
+
 
   const { data: doctors = [], error, isLoading } = useQuery({
     queryKey: ["doctors"],
