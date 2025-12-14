@@ -122,19 +122,7 @@ const handleDoctorLogout = asyncHandler(async (req, res) => {
     if (!cookies?.jwt) {
         return res.sendStatus(204); 
     } 
-    
-    const refreshToken = cookies.jwt;
-    const foundDoctor = await Doctor.findOne({ refreshToken }).select('+refreshToken');
 
-    res.clearCookie('jwt', { 
-        httpOnly: true, 
-        secure: process.env.NODE_ENV === 'production', 
-        sameSite: 'None' 
-    });
-
-    if (!foundDoctor) {
-        return res.sendStatus(204); 
-    }
 
     const newRefreshTokenArray = foundDoctor.refreshToken.filter(token => token !== refreshToken);
 
