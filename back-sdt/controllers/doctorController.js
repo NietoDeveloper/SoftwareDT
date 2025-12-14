@@ -104,13 +104,7 @@ const updateDoctor = asyncHandler(async (req, res) => {
 
     const result = await foundDoctor.save();
     
-    if (result) {
-        const { password: _, refreshToken: __, ...updatedData } = result.toObject();
-        
-        return res.status(200).json({
-            message: "Doctor's info updated successfully!",
-            doctorData: updatedData
-        });
+
    
 });
 
