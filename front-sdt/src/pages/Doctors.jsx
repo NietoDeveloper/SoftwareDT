@@ -10,9 +10,6 @@ const DoctorList = () => {
   const navigate = useNavigate();
 
 
-  const navigateToBooking = (doctorId) => {
-    navigate(`/book-appointment/${doctorId}`);
-  };
 
 
   return (
