@@ -12,15 +12,6 @@ const DoctorList = () => {
 
 
 
-
-  // CORRECCIÓN: Mensaje de carga
-  if (isLoading) return <h1 className="text-center py-10 text-xl font-bold">Cargando Doctores....</h1>;
-  
-  if (error) {
-    const errorMessage = error.response ? `HTTP ${error.response.status}: ${error.response.data.message || 'Error desconocido.'}` : error.message;
-    return <h1 className="text-center py-10 text-red-600 text-xl font-bold">Error cargando los Datos. {errorMessage}</h1>;
-  }
-
   if (doctors.length === 0) {
     return (
       <div className="text-center py-20">
