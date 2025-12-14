@@ -111,9 +111,7 @@ const updateDoctor = asyncHandler(async (req, res) => {
             message: "Doctor's info updated successfully!",
             doctorData: updatedData
         });
-    } else {
-        return res.status(500).json({ message: "Could not update the details due to Internal server error!" });
-    }
+   
 });
 
 const getAllDoctors = asyncHandler(async (req, res) => {
