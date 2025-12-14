@@ -12,31 +12,7 @@ const ArrowRightIcon = (props) => (
 );
 
 const DoctorList = () => {
-  const navigate = useNavigate();
 
-  const getDoctors = async () => {
-    try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api"; 
-      const res = await axios.get(`${apiUrl}/doctors`);
-      return res.data.doctors || res.data || [];
-    } catch (error) {
-      if (error.response) {
-        toast.error(`Error ${error.response.status}: ${error.response.data.message || 'Fallo desconocido del servidor.'}`);
-      } else {
-        toast.error("Fallo de red o servidor no disponible. Verifique la conexión del backend.");
-      }
-      throw error;
-    }
-  };
-
-  const { data: doctors = [], error, isLoading } = useQuery({
-    queryKey: ["doctors"],
-    queryFn: getDoctors,
-    initialData: [],
-    staleTime: 5 * 60 * 1000, 
-    refetchOnWindowFocus: false, 
-
-  }
 
 
 
