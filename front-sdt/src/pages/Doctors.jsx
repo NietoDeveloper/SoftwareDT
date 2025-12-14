@@ -47,7 +47,7 @@ const DoctorList = () => {
     return (
       <div className="text-center py-20">
       
-        <p className="text-gray-500 mt-2">Por favor, inténtalo de nuevo más tarde. (Error cargando....)</p>
+        
       </div>
     );
   }
