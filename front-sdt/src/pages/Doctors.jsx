@@ -6,10 +6,6 @@ import Footer from "../components/Footer/Footer";
 
 
 
-const DoctorList = () => {
-  const navigate = useNavigate();
-
-
 
 
 
