@@ -29,12 +29,6 @@ const DoctorList = () => {
     }
   };
 
-  const { data: doctors = [], error, isLoading } = useQuery({
-    queryKey: ["doctors"],
-    queryFn: getDoctors,
-    initialData: [],
-    staleTime: 5 * 60 * 1000, 
-  });
 
   if (isLoading) return <h1 className="text-center py-10 text-xl font-bold">Cargando Servicios....</h1>;
   
