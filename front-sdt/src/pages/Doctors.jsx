@@ -28,12 +28,5 @@ const DoctorList = () => {
           >
 
 
-        ))}
-      </div>
-    </div>
-    <Footer />
-    </div>
-  );
-};
 
 export default DoctorList;
