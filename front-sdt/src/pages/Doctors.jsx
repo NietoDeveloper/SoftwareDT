@@ -53,18 +53,6 @@ const DoctorList = () => {
     );
   }
 
-  const navigateToBooking = (doctorId) => {
-    navigate(`/book-appointment/${doctorId}`);
-  };
 
-  const containerClasses =
-    doctors.length === 1
-      ? "flex items-center justify-center min-h-screen"
-
-
-         
-
-  );
-};
 
 export default DoctorList;
