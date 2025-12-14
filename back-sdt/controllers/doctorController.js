@@ -1,7 +1,3 @@
-const asyncHandler = require('express-async-handler');
-const Doctor = require('../models/Doctor');
-const jwt = require('jsonwebtoken');
-
 
 
 
