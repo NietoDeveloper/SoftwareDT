@@ -14,10 +14,6 @@ const DoctorList = () => {
     navigate(`/book-appointment/${doctorId}`);
   };
 
-  const containerClasses =
-    doctors.length === 1
-      ? "flex items-center justify-center min-h-screen"
-      : "min-h-screen";
 
   return (
     <div>
