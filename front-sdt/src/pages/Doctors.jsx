@@ -78,7 +78,7 @@ const DoctorList = () => {
             <h1 className="text-xl font-semibold mb-2">{doctor.name}</h1>
             <h2 className="text-gray-600 mb-2">{doctor.specialization}</h2>
          
-            <p className="text-gray-700 mb-4 line-clamp-2 flex-grow overflow-hidden">{doctor.bio}</p>
+           
             
 
         ))}
