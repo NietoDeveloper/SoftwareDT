@@ -10,18 +10,6 @@ const DoctorList = () => {
   const navigate = useNavigate();
 
 
-
-
-  if (doctors.length === 0) {
-    return (
-      <div className="text-center py-20">
-        {/* CORRECCIÓN: Mensaje de lista vacía */}
-        <h1 className="text-2xl font-semibold text-gray-700">¡Vaya! No se encontraron Doctores disponibles.</h1>
-        <p className="text-gray-500 mt-2">Por favor, inténtalo de nuevo más tarde.</p>
-      </div>
-    );
-  }
-
   const navigateToBooking = (doctorId) => {
     navigate(`/book-appointment/${doctorId}`);
   };
