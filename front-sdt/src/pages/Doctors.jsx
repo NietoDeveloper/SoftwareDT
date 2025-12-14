@@ -11,14 +11,7 @@ const DoctorList = () => {
 
 
 
-  const { data: doctors = [], error, isLoading } = useQuery({
-    queryKey: ["doctors"],
-    queryFn: getDoctors,
-    initialData: [],
-    staleTime: 5 * 60 * 1000, 
-    // 🔥 CORRECCIÓN CLAVE PARA LA INTERMITENCIA: Evita recargar automáticamente al cambiar de pestaña.
-    refetchOnWindowFocus: false, 
-  });
+
 
   // CORRECCIÓN: Mensaje de carga
   if (isLoading) return <h1 className="text-center py-10 text-xl font-bold">Cargando Doctores....</h1>;
