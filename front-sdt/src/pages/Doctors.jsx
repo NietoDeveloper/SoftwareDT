@@ -59,15 +59,5 @@ const DoctorList = () => {
 
   return (
 
-          
-        
-            </div>
-          ))}
-        </div>
-      </div>
-  
-    </div>
-  );
-};
 
 export default DoctorList;
