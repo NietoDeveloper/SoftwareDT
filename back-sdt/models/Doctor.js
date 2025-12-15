@@ -27,11 +27,6 @@ const doctorSchema = new Schema({
         admin: Number  
     },
 
-    },
-    isAvailable: { type: Boolean, default: true }
-}, { 
-    timestamps: true,
-    collection: 'services' 
-});
+
 
 module.exports = userDB.model('Doctor', doctorSchema);
