@@ -10,9 +10,9 @@ const ServicesList = () => {
   const services = [
     {
       title: "Desarrollo Web, Apps y Bases de Datos",
-      subtitle: "Todo tipo de WebSites, Apps, Bases de Datos",
+      subtitle: "Creamos Todo tipo de WebSites, Apps, Bases de Datos",
       description:
-        "Creación de sitios web dinámicos y responsivos, aplicaciones móviles personalizadas para iOS/Android, y diseño/gestión de bases de datos seguras y escalables.",
+        "La Creación a la MEDIDA de sitios web dinámicos y responsivos, aplicaciones móviles personalizadas para iOS/Android, y diseño/gestión de bases de datos seguras y escalables.",
       photo: functionalPlaceholder,
       price: "Desde  $ 2.000.000 COP",
     },
