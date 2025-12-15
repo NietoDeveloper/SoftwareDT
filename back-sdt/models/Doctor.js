@@ -26,19 +26,7 @@ const doctorSchema = new Schema({
         },
         admin: Number  
     },
-    ticketPrice: { type: Number, default: 0 },
-    specialization: { type: String, required: true },
-    bio: { type: String, maxlength: 250 },
-    timeSlots: [timeSlotSchema],
-    reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
-    rating: { type: Number, default: 0 },  
-    totalRating: { type: Number, default: 0 },  
-    isApproved: { type: String, enum: ["pending", "approved", "cancelled"], default: "approved" },
-    appointments: [{ type: Schema.Types.ObjectId, ref: "Appointment" }],
-    refreshToken: {
-        type: [String],
-        select: false, 
-        index: true  
+
     },
     isAvailable: { type: Boolean, default: true }
 }, { 
