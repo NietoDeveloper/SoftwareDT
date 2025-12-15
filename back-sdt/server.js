@@ -46,8 +46,7 @@ app.use('/api/user/update', require('./routes/userRoutes/userUpdateRoute'));
 app.use('/api/user/appointment', require('./routes/appointmentRoute'));
 app.use('/api/user/review', require('./routes/reviewRoute'));
 
-app.use('/api/doctor/update', require('./routes/doctorRoutes/doctorUpdate'));
-app.use('/api/doctor/profile', require('./routes/bookingRoute'));
+
 
 Promise.all([
 
