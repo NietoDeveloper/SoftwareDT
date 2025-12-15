@@ -58,6 +58,5 @@ Promise.all([
 
 
 }).catch(err => {
-    console.error('❌ Error en conexiones DB:', err);
-    process.exit(1);
+
 });
