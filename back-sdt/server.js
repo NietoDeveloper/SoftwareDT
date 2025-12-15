@@ -20,15 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.get('/', (req, res) => {
-    res.status(200).json({
-        status: 'Server Operational',
-        message: 'Welcome to the API root.'
-    });
-});
 
-app.use('/api/user/register', require('./routes/userRoutes/userRegister'));
-app.use('/api/user/login', require('./routes/userRoutes/userLogin'));
+
 
 
 
