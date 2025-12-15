@@ -7,10 +7,7 @@ const mongoose = require('mongoose');
 const { userDB, citaDB } = require('./config/dbConn'); 
 
 const corsOptions = require('./config/corsOptions');
-const {verifyAccess} = require('./middleware/verifyAccess');
-const {unknownEndpoint} = require('./middleware/notFound');
-const {errorHandler} = require('./middleware/errorHandler');
-const path = require('path');
+
 
 
 app.use(cors(corsOptions));
