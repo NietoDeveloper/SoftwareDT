@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
     res.set('Expires', '0');
     res.set('ETag', ''); 
     
-    next(); // Pasar al controlador
+    next(); 
 }, getAllDoctors); 
 
 module.exports = router;
