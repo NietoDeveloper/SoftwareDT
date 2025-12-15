@@ -6,7 +6,7 @@ const { userDB } = require('../config/dbConn');
 const qualificationSchema = new Schema({
   institution: { type: String, required: true },
   degree: { type: String, required: true },
-  year: { type: Number, required: true }
+
 });
 
 const experienceSchema = new Schema({
