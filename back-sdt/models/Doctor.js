@@ -19,13 +19,7 @@ const doctorSchema = new Schema({
     },
     photo: { type: String },  
     phone: { type: String },
-    roles: {
-        doctor: {
-            type: Number,
-            default: 1001
-        },
-        admin: Number  
-    },
+
 
 
 
