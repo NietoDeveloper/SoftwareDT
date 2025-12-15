@@ -3,12 +3,6 @@ const { Schema } = mongoose;
 
 const { userDB } = require('../config/dbConn'); 
 
-const qualificationSchema = new Schema({
-
-
-
-});
-
 const experienceSchema = new Schema({
   hospital: { type: String, required: true },
   role: { type: String, required: true },
