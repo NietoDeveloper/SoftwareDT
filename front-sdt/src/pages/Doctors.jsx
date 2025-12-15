@@ -68,10 +68,7 @@ const DoctorList = () => {
               onClick={() => navigateToBooking(doctor._id)}
             >
           
-                Puntaje: {doctor.totalRating}
-              </p>
-              <p className="text-black mb-4 line-clamp-3 flex-grow overflow-hidden">{doctor.bio}</p>
-              
+        
             </div>
           ))}
         </div>
