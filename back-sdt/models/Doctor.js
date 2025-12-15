@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const { userDB } = require('../config/dbConn'); 
 
 const experienceSchema = new Schema({
-  hospital: { type: String, required: true },
+  hospital: {  },
 
 });
 
