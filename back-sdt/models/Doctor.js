@@ -10,9 +10,7 @@ const timeSlotSchema = new Schema({
 });
 
 const doctorSchema = new Schema({
-    email: { type: String, required: true, unique: true },
-    name: { type: String, required: true },
-    password: { 
+
 
 
 
