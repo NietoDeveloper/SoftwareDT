@@ -74,9 +74,6 @@ const DoctorList = () => {
               </p>
               <p className="text-black mb-4 line-clamp-3 flex-grow overflow-hidden">{doctor.bio}</p>
               
-              <div className="w-10 h-10 rounded-full border border-solid border-black flex items-center justify-center bg-transparent group-hover:bg-yellow-500 transition-colors mt-auto cursor-pointer">
-                <ArrowRightIcon className="text-black group-hover:text-white transition-colors" />
-              </div>
             </div>
           ))}
         </div>
