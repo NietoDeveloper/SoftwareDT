@@ -35,7 +35,6 @@ app.get('/', (req, res) => {
     });
 });
 
-// ... (El resto de tus rutas y middlewares permanece igual)
 app.use('/api/user/register', require('./routes/userRoutes/userRegister'));
 app.use('/api/user/login', require('./routes/userRoutes/userLogin'));
 app.use('/api/user/refresh', require('./routes/userRoutes/userRefresh'));
