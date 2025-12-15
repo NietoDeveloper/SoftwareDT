@@ -81,7 +81,7 @@ const DoctorList = () => {
           ))}
         </div>
       </div>
-      <Footer />
+  
     </div>
   );
 };
