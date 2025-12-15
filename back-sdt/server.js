@@ -32,8 +32,6 @@ app.use('/api/user/login', require('./routes/userRoutes/userLogin'));
 app.use('/api/user/refresh', require('./routes/userRoutes/userRefresh'));
 app.use('/api/user/logout', require('./routes/userRoutes/userLogout'));
 
-app.use('/api/doctor/register', require('./routes/doctorRoutes/doctorRegister'));
-app.use('/api/doctor/login', require('./routes/doctorRoutes/doctorLogin'));
 
 
 app.use(express.static(path.join(__dirname, 'public')));
