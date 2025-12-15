@@ -67,9 +67,7 @@ const DoctorList = () => {
               className="group bg-white shadow-md rounded-lg p-6 hover:shadow-xl hover:bg-yellow-100 transition-all duration-300 cursor-pointer flex flex-col items-center text-center w-full max-w-xs"
               onClick={() => navigateToBooking(doctor._id)}
             >
-              <h1 className="text-xl font-semibold mb-2 text-black">{doctor.name}</h1>
-              <h2 className="text-black mb-2">{doctor.specialization}</h2>
-              <p className="text-black mb-4">
+          
                 Puntaje: {doctor.totalRating}
               </p>
               <p className="text-black mb-4 line-clamp-3 flex-grow overflow-hidden">{doctor.bio}</p>
