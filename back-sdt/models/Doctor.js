@@ -35,7 +35,6 @@ const doctorSchema = new Schema({
     },
     ticketPrice: { type: Number, default: 0 },
     specialization: { type: String, required: true },
-    experience: [experienceSchema],
     bio: { type: String, maxlength: 250 },
     timeSlots: [timeSlotSchema],
     reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
