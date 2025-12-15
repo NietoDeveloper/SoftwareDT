@@ -14,11 +14,7 @@ const doctorRegister = asyncHandler(async (req, res) => {
         return res.status(409).json({ message: "Email already exists" }); 
     }
 
-    if (result) {
-        res.status(201).json({ message: "Your doctor's profile was created successfully" });
-    } else {
-        res.status(500).json({ message: "Internal server error: Could not create profile." }); 
-    }
+
 });
 
 const handleDoctorLogin = asyncHandler(async (req, res) => {
