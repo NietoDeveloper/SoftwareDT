@@ -4,9 +4,6 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const mongoose = require('mongoose'); 
 
-const { userDB, citaDB } = require('./config/dbConn'); 
-
-const corsOptions = require('./config/corsOptions');
 
 
 
