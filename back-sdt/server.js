@@ -55,7 +55,7 @@ app.use(errorHandler);
 Promise.all([
 
 ]).then(() => {
-    console.log('✅ Ambas conexiones DB listas. Servidor iniciando.');
+
 
 }).catch(err => {
     console.error('❌ Error en conexiones DB:', err);
