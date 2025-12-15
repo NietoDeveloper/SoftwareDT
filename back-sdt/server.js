@@ -12,8 +12,6 @@ const {unknownEndpoint} = require('./middleware/notFound');
 const {errorHandler} = require('./middleware/errorHandler');
 const path = require('path');
 
-const app = express();
-const PORT = process.env.PORT || 5000;
 
 app.use(cors(corsOptions));
 app.use(express.json());
