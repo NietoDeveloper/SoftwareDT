@@ -5,7 +5,7 @@ const { userDB } = require('../config/dbConn');
 
 const experienceSchema = new Schema({
   hospital: { type: String, required: true },
-  role: { type: String, required: true },
+
 });
 
 const timeSlotSchema = new Schema({
