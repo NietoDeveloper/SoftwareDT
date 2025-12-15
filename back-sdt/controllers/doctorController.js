@@ -14,14 +14,6 @@ const doctorRegister = asyncHandler(async (req, res) => {
         return res.status(409).json({ message: "Email already exists" }); 
     }
 
-    const hashedpassword = await bcrypt.hash(password, 10);
-    const result = await Doctor.create({
-        name, 
-        email,
-        password: hashedpassword,
-        roles: { doctor: 1001 } 
-    });
-
     if (result) {
         res.status(201).json({ message: "Your doctor's profile was created successfully" });
     } else {
