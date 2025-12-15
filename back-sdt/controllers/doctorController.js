@@ -152,10 +152,7 @@ const handleDoctorLogout = asyncHandler(async (req, res) => {
 
     const newRefreshTokenArray = foundDoctor.refreshToken.filter(token => token !== refreshToken);
 
-    foundDoctor.refreshToken = newRefreshTokenArray; 
-    await foundDoctor.save();
 
-    res.sendStatus(204); 
 });
 
 module.exports = { 
