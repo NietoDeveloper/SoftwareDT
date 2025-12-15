@@ -7,7 +7,7 @@ const experienceSchema = new Schema({
   hospital: { type: String, required: true },
   role: { type: String, required: true },
   startYear: { type: Number, required: true },
-  endYear: { type: Number }  
+ 
 });
 
 const timeSlotSchema = new Schema({
