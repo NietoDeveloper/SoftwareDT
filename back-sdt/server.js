@@ -56,7 +56,7 @@ Promise.all([
 
 ]).then(() => {
     console.log('✅ Ambas conexiones DB listas. Servidor iniciando.');
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
 }).catch(err => {
     console.error('❌ Error en conexiones DB:', err);
     process.exit(1);
