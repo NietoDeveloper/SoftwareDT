@@ -9,10 +9,7 @@ const doctorRegister = asyncHandler(async (req, res) => {
     if (!name || !email || !password) {
         return res.status(400).json({ message: "Name, password and email are required!" });
     }
-    const duplicate = await Doctor.findOne({ email });
-    if (duplicate) {
-        return res.status(409).json({ message: "Email already exists" }); 
-    }
+
 
 
 });
