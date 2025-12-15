@@ -10,8 +10,6 @@ router.get('/', (req, res, next) => {
     res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     res.set('Pragma', 'no-cache');
     res.set('Expires', '0');
-    
-    // 2. Anular el ETag. Esto es lo que específicamente previene el 304.
     res.set('ETag', ''); 
     
     next(); // Pasar al controlador
