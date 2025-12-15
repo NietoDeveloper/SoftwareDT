@@ -9,9 +9,6 @@ const timeSlotSchema = new Schema({
   endTime: { type: String, required: true }
 });
 
-const doctorSchema = new Schema({
-
-
 
 
 
