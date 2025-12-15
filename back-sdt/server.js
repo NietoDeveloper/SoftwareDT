@@ -53,8 +53,7 @@ app.use(unknownEndpoint);
 app.use(errorHandler);
 
 Promise.all([
-    new Promise(resolve => userDB.once('open', resolve)),
-    new Promise(resolve => citaDB.once('open', resolve))
+
 ]).then(() => {
     console.log('✅ Ambas conexiones DB listas. Servidor iniciando.');
     app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
