@@ -40,19 +40,6 @@ const DoctorList = () => {
   if (isLoading) return <h1 className="text-center py-10 text-xl font-bold text-black">Cargando Doctores....</h1>;
   
   if (error) {
-    const errorMessage = error.response ? `HTTP ${error.response.status}: ${error.response.data.message || 'Error desconocido.'}` : error.message;
-    return <h1 className="text-center py-10 text-red-600 text-xl font-bold">Error cargando los Datos. {errorMessage}</h1>;
-  }
-
-  if (doctors.length === 0) {
-
-  }
-
-  const navigateToBooking = (doctorId) => {
-    navigate(`/book-appointment/${doctorId}`);
-  };
-
-  return (
 
 
 export default DoctorList;
