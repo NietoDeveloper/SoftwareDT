@@ -33,7 +33,7 @@ const doctorSchema = new Schema({
         },
         admin: Number  
     },
-    ticketPrice: { type: Number, default: 30 },
+    ticketPrice: { type: Number, default: 0 },
     specialization: { type: String, required: true },
     experience: [experienceSchema],
     bio: { type: String, maxlength: 250 },
