@@ -25,21 +25,6 @@ const DoctorList = () => {
       } else {
         toast.error("Fallo de red o servidor no disponible. Verifique la conexión del backend.");
       }
-      throw error;
-    }
-  };
-
-  const { data: doctors = [], error, isLoading } = useQuery({
-    queryKey: ["doctors"],
-    queryFn: getDoctors,
-    initialData: [],
-    staleTime: 5 * 60 * 1000, 
-    refetchOnWindowFocus: false, 
-  });
-
-  if (isLoading) return <h1 className="text-center py-10 text-xl font-bold text-black">Cargando Doctores....</h1>;
-  
-  if (error) {
 
 
 export default DoctorList;
