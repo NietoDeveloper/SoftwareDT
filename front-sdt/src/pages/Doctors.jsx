@@ -58,10 +58,6 @@ const DoctorList = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="mx-auto px-4 py-8 max-w-screen-2xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-          {doctors.map((doctor) => (
 
           
         
