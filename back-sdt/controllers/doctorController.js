@@ -114,26 +114,7 @@ const updateDoctor = asyncHandler(async (req, res) => {
     }
 });
 
-const getAllDoctors = asyncHandler(async (req, res) => {
-    const doctors = await Doctor.find({}).select('-password -refreshToken'); 
-    
-    if (doctors.length === 0) { 
-        return res.status(200).json({
-            message: "No available doctors found in the database! (Colección vacía)",
-            doctors: []
-        }); 
-    }
-    
-    res.status(200).json({
-        message: "Available doctors retrieved successfully",
-        doctors
-    });
-});
 
-const handleDoctorLogout = asyncHandler(async (req, res) => {
-    const cookies = req.cookies;
-    
-    if (!cookies?.jwt) {
         return res.sendStatus(204); 
     } 
     
