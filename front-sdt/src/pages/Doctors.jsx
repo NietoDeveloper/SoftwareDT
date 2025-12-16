@@ -112,7 +112,7 @@ const DoctorList = () => {
           Servicios
         </h1>
         <h2 className="text-2xl font-semibold text-center mb-8 text-black">
-          Escoje Un Servicio
+          Escoje Uno
         </h2>
         <div className="flex flex-wrap justify-center gap-6">
           {doctors.map((doctor) => (
