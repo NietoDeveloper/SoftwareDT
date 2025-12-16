@@ -36,7 +36,7 @@ const DoctorList = () => {
       return []; 
       
     } catch (error) {
-      // Mantenemos el manejo de errores perfecto que ya tienes
+      // Mantenemos el
       if (error.response) {
         toast.error(`Error ${error.response.status}: ${error.response.data.message || 'Fallo desconocido del servidor.'}`);
       } else {
