@@ -168,8 +168,6 @@ const updateDoctor = asyncHandler(async (req, res) => {
 });
 
 const getAllDoctors = asyncHandler(async (req, res) => {
-  // 🔥 CORRECCIÓN CLAVE: Usar 'approved' (String) en lugar de true (Boolean)
-  // Añadimos isAvailable: true para ser coherentes con la lógica de disponibilidad.
   const doctors = await Doctor.find({ isApproved: 'approved', isAvailable: true }) 
     .select("-password -refreshToken")
     .lean();
