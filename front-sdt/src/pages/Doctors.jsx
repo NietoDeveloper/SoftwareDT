@@ -119,13 +119,7 @@ const DoctorList = () => {
             <div
               key={doctor._id}
               className="group bg-white shadow-md rounded-lg p-6 hover:shadow-xl hover:bg-yellow-100 transition-all duration-300 cursor-pointer flex flex-col items-center text-center w-full max-w-xs"
-              onClick={() => navigateToBooking(doctor._id)}
 
-              </p>
-                                         {" "}
-              <div className="w-10 h-10 rounded-full border border-solid border-black flex items-center justify-center bg-transparent group-hover:bg-yellow-500 transition-colors mt-auto cursor-pointer">
-                               {" "}
-                <ArrowRightIcon className="text-black group-hover:text-white transition-colors" />
                              {" "}
               </div>
                          {" "}
