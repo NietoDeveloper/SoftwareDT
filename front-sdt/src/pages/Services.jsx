@@ -20,7 +20,7 @@ const ServicesList = () => {
       title: "Inteligencia Artificial",
       subtitle: "Integracion Y Desarrollo para webs, Apps y Servicios Personalizados.  Bots, Robots, Tareas, Guia, Respuesta,  Investigacion, Correos.",
       description:
-        "Software Actual",
+        "Software Actual,  Technologias de Vanguardia.",
       photo: functionalPlaceholder,
       price: "Desde  $ 5.000.000 COP",
     },
