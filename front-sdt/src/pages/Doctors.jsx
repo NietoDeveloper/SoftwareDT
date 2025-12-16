@@ -27,7 +27,6 @@ const DoctorList = () => {
       if (Array.isArray(res.data.doctors)) {
           return res.data.doctors;
       }
-      // O acepta res.data si es un array directo.
       if (Array.isArray(res.data)) {
           return res.data;
       }
