@@ -113,16 +113,7 @@ const DoctorList = () => {
            {" "}
       <div className="mx-auto px-4 py-8 max-w-screen-2xl">
                {" "}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-                   {" "}
-          {doctors.map((doctor) => (
-            <div
-              key={doctor._id}
-              className="group bg-white shadow-md rounded-lg p-6 hover:shadow-xl hover:bg-yellow-100 transition-all duration-300 cursor-pointer flex flex-col items-center text-center w-full max-w-xs"
 
-                             {" "}
-              </div>
-                         {" "}
             </div>
           ))}
                  {" "}
