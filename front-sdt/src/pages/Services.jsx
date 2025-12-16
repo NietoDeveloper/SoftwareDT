@@ -20,7 +20,7 @@ const ServicesList = () => {
       title: "Inteligencia Artificial",
       subtitle: "Integracion Y Desarrollo para webs, Apps y Servicios Personalizados",
       description:
-        "Servicio de análisis profundo para mejorar el ranking en motores de búsqueda, optimización de contenido y auditorías técnicas para un mejor rendimiento.",
+        "",
       photo: functionalPlaceholder,
       price: "Desde  $ 5.000.000 COP",
     },
