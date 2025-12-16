@@ -71,7 +71,7 @@ const DoctorList = () => {
   if (isLoading) {
     return (
       <h1 className="text-center py-10 text-xl font-bold text-black">
-        Cargando Doctores....
+        Cargando Servicios....
       </h1>
     );
   }
