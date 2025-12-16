@@ -19,23 +19,7 @@ const doctorRegister = asyncHandler(async (req, res) => {
 
   const hashedpassword = await bcrypt.hash(password, 10);
 
-  const result = await Doctor.create({
-    name,
-    email,
-    password: hashedpassword,
-    roles: { doctor: 1001 },
-  });
 
-  if (result) {
-    res
-      .status(201)
-      .json({ message: "Your doctor's profile was created successfully" });
-  } else {
-    res
-      .status(500)
-      .json({ message: "Internal server error: Could not create profile." });
-  }
-});
 
 const handleDoctorLogin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
