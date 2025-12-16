@@ -32,7 +32,7 @@ const DoctorList = () => {
           return res.data;
       }
       
-      // Si la respuesta no tiene la estructura esperada (array), devuelve un array vacío.
+      // Si la respuesta no tiene la estructura
       return []; 
       
     } catch (error) {
