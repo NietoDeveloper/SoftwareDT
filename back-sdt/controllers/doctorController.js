@@ -22,29 +22,6 @@ const doctorRegister = asyncHandler(async (req, res) => {
 json({ message: "Unauthorized: Invalid credentials" });
   }
 
-  const isMatch = await bcrypt.compare(password, findDoctor.password);
-
-  if (!isMatch) {
-    return res
-      .status(401)
-      .json({ message: "Unauthorized: Invalid credentials" });
-  }
-
-  const roles = findDoctor.roles
-    ? Object.values(findDoctor.roles).filter(Boolean)
-    : [];
-
-  const accessToken = jwt.sign(
-    { id: findDoctor._id, roles },
-    process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "1h" }
-  );
-
-  const refreshToken = jwt.sign(
-    { id: findDoctor._id },
-    process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: "1d" }
-  );
 
   let newRefreshTokenArray = [];
 
