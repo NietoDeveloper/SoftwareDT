@@ -18,7 +18,7 @@ const ServicesList = () => {
     },
         {
       title: "Inteligencia Artificial",
-      subtitle: "Integracion Y Desarrollo para webs, Apps y Servicios Personalizados",
+      subtitle: "Integracion Y Desarrollo para webs, Apps y Servicios Personalizados.  Bots, Robots, Tareas, Guia, Respuesta,  Investigacion, Correos.",
       description:
         "Software Actual",
       photo: functionalPlaceholder,
