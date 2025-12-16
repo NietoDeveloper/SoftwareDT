@@ -23,7 +23,7 @@ const DoctorList = () => {
       const res = await axios.get(fullUrl);
       
       // 💡 AJUSTE 2: Lógica de retorno más estricta para asegurar un array.
-      // Prioriza res.data.doctors (si el backend devuelve { doctors: [...] })
+
       if (Array.isArray(res.data.doctors)) {
           return res.data.doctors;
       }
