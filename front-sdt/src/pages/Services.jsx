@@ -17,8 +17,8 @@ const ServicesList = () => {
       price: "Desde  $ 2.000.000 COP",
     },
         {
-      title: "",
-      subtitle: "Aumenta tu visibilidad",
+      title: "Inteligencia Artificial",
+      subtitle: "",
       description:
         "Servicio de análisis profundo para mejorar el ranking en motores de búsqueda, optimización de contenido y auditorías técnicas para un mejor rendimiento.",
       photo: functionalPlaceholder,
