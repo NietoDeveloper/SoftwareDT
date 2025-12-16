@@ -16,7 +16,7 @@ const DoctorList = () => {
 
   const getDoctors = async () => {
     try {
-      // 💡 AJUSTE 1: Limpia la URL base para evitar dobles barras (//) si VITE_API_URL ya termina en /.
+      // 💡 AJUSTE 1: Limpia la URL base para evit
       const baseApiUrl = (import.meta.env.VITE_API_URL || "http://localhost:5000/api").replace(/\/$/, '');
       const fullUrl = `${baseApiUrl}/doctors`;
       
