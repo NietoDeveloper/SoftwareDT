@@ -36,7 +36,7 @@ const ServicesList = () => {
       title: "Consultoría y Optimización SEO",
       subtitle: "Aumenta tu visibilidad",
       description:
-        "Servicio de análisis profundo para mejorar el ranking en motores de búsqueda, optimización de contenido y auditorías técnicas para un mejor rendimiento.",
+        "Análisis profundo para mejorar el ranking en motores de búsqueda, optimización de contenido y auditorías técnicas para un mejor rendimiento.",
       photo: functionalPlaceholder,
       price: "Desde  $ 8.000.000 COP",
     },
