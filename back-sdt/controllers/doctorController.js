@@ -78,7 +78,6 @@ const handleDoctorLogin = asyncHandler(async (req, res) => {
     { expiresIn: "1d" }
   );
 
-  // Lógica para manejar el refresh token array (manteniendo solo el nuevo token por seguridad)
   let newRefreshTokenArray = findDoctor.refreshToken?.length
     ? findDoctor.refreshToken.filter((token) => token !== req.cookies?.jwt)
     : [];
