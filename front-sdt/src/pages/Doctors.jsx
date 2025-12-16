@@ -21,8 +21,6 @@ const DoctorList = () => {
       const fullUrl = `${baseApiUrl}/doctors`;
       
       const res = await axios.get(fullUrl);
-      
-      // 💡 AJUSTE 2: Lógica de retorno más estricta para asegurar un array.
 
       if (Array.isArray(res.data.doctors)) {
           return res.data.doctors;
