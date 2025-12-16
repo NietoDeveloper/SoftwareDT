@@ -31,8 +31,6 @@ const DoctorList = () => {
       if (Array.isArray(res.data)) {
           return res.data;
       }
-      
-      // Si la respuesta no tiene la estructura
       return []; 
       
     } catch (error) {
