@@ -160,8 +160,7 @@ const updateDoctor = asyncHandler(async (req, res) => {
       doctorData: updatedData,
     });
   }
-  
-  // Manejo de error si save() no arroja error pero tampoco devuelve resultado
+
   return res.status(500).json({
     message: "Could not update the details due to Internal server error!",
   });
