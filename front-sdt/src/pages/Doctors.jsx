@@ -106,20 +106,7 @@ const DoctorList = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="mx-auto px-4 py-8 max-w-screen-2xl">
-        <h1 className="text-4xl font-extrabold text-center mb-2 text-black">
-          Servicios
-        </h1>
-        <h2 className="text-2xl font-semibold text-center mb-8 text-black">
-          Escoje Uno
-        </h2>
-        <div className="flex flex-wrap justify-center gap-6">
-          {doctors.map((doctor) => (
-            <div
-              key={doctor._id}
-              className="
-                group bg-white shadow-lg rounded-lg p-6 min-w-[280px] h-[80vh]
+adow-lg rounded-lg p-6 min-w-[280px] h-[80vh]
 
 
 
