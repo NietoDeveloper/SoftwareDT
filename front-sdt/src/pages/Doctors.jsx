@@ -128,25 +128,14 @@ const DoctorList = () => {
               "
               onClick={() => navigateToBooking(doctor._id)}
             >
-              <h1 className="text-xl font-semibold mt-12 text-black group-hover:text-amber-700">
-                {doctor.name}
-              </h1>
-              <h2 className="text-lg text-black mt-8 group-hover:text-amber-600">
-                {doctor.specialization}
-              </h2>
-              <p className="text-lg text-black mt-8">Puntaje: {doctor.totalRating}</p>
-              <p className="text-lg text-black mt-12 mb-4 line-clamp-3 overflow-hidden flex-grow">
-                {doctor.bio}
-              </p>
 
-              <div className="w-10 h-10 rounded-full border border-solid border-black flex items-center justify-center bg-transparent group-hover:bg-amber-500 transition-colors mt-auto cursor-pointer">
-                <ArrowRightIcon className="text-black group-hover:text-white transition-colors" />
-              </div>
+
+
             </div>
           ))}
         </div>
       </div>
-      <Footer />
+
     </div>
   );
 };
