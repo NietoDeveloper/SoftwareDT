@@ -117,9 +117,7 @@ const DoctorList = () => {
             <div
               key={doctor._id}
               className="
-               r-pointer flex flex-col items-center text-center w-full
-                !w-[calc(100%/1-1.5rem)] sm:!w-[calc(100%/2-1.5rem)] md:!w-[calc(100%/3-1.5rem)] lg:!w-[calc(100%/4-1.5rem)] xl:!w-[calc(100%/5-1.5rem)] 2xl:!w-[calc(100%/5-1.5rem)]
-                max-w-xs sm:max-w-sm lg:max-w-none
+               max-w-sm lg:max-w-none
                 text-black
               "
               onClick={() => navigateToBooking(doctor._id)}
