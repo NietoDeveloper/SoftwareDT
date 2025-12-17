@@ -128,12 +128,7 @@ const DoctorList = () => {
               "
               onClick={() => navigateToBooking(doctor._id)}
             >
-              <h1 className="text-xl font-semibold mt-6 text-black group-hover:text-amber-700">
-                {doctor.name}
-              </h1>
-              <h2 className="text-black mt-4 group-hover:text-amber-600">
-                {doctor.specialization}
-              </h2>
+
 
 
             </div>
