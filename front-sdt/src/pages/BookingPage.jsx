@@ -1,117 +1,184 @@
-import { useLocation, useParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useParams, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import axios from "axios";
-import Footer from "../components/Footer/Footer"; // Asumiendo que tienes este componente
+import { useState } from "react";
+import Footer from "../components/Footer/Footer";
 
 const BookingPage = () => {
-  const location = useLocation();
-  const { id } = useParams(); // Obtiene el doctorId de la URL por si necesitas usarlo
-  const doctor = location.state?.doctor; // Recibe los datos del doctor desde el state
+  const { doctorId } = useParams();
+  const navigate = useNavigate();
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    appointmentDate: "",
+    appointmentTime: "",
+    reason: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const getDoctor = async () => {
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+      const res = await axios.get(`${apiUrl}/doctors/${doctorId}`);
+      return res.data.doctor || res.data;
+    } catch (error) {
+      if (error.response) {
+        toast.error(`Error ${error.response.status}: ${error.response.data.message || 'Fallo desconocido del servidor.'}`);
+      } else {
+        toast.error("Fallo de red o servidor no disponible. Verifique la conexión del backend.");
+      }
+      throw error;
+    }
+  };
+
+  const { data: doctor, error, isLoading } = useQuery({
+    queryKey: ["doctor", doctorId],
+    queryFn: getDoctor,
+    staleTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
+  });
+
+  if (isLoading) return <h1 className="text-center py-10 text-xl font-bold text-black">Cargando Detalles del Doctor....</h1>;
+
+  if (error) {
+    const errorMessage = error.response ? `HTTP ${error.response.status}: ${error.response.data.message || 'Error desconocido.'}` : error.message;
+    return <h1 className="text-center py-10 text-red-600 text-xl font-bold">Error cargando los Datos. {errorMessage}</h1>;
+  }
 
   if (!doctor) {
     return (
       <div className="text-center py-20">
-        <h1 className="text-2xl font-semibold text-red-600">Error: No se encontraron datos del servicio seleccionado.</h1>
-        <p className="text-black mt-2">Por favor, regresa y selecciona un servicio nuevamente.</p>
+        <h1 className="text-2xl font-semibold text-black">¡Vaya! No se encontró el Doctor seleccionado.</h1>
+        <p className="text-black mt-2">Por favor, regresa a la lista de servicios.</p>
       </div>
     );
   }
 
-  const onSubmit = async (data) => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
     try {
       const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-      const appointmentData = {
-        ...data,
+      await axios.post(`${apiUrl}/appointments`, {
         doctorId: doctor._id,
-        doctorName: doctor.name,
-        specialization: doctor.specialization,
-      };
-      const res = await axios.post(`${apiUrl}/appointments`, appointmentData); // Ajusta la endpoint según tu backend
-      toast.success("Cita reservada exitosamente!");
-      // Opcional: redirigir a otra página después del éxito
+        ...formData,
+      });
+      toast.success("Cita reservada con éxito!");
+      navigate("/"); // O redirige a donde prefieras, como la lista de doctores
     } catch (error) {
-      toast.error("Error al reservar la cita. Verifica los datos o el servidor.");
+      if (error.response) {
+        toast.error(`Error ${error.response.status}: ${error.response.data.message || 'Fallo al reservar la cita.'}`);
+      } else {
+        toast.error("Fallo de red o servidor no disponible.");
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto px-4 py-8 max-w-screen-md">
-        <h1 className="text-4xl font-extrabold text-center mb-4 text-black">Reservar Cita</h1>
-        <h2 className="text-2xl font-semibold text-center mb-8 text-black">Servicio Seleccionado: {doctor.name}</h2>
+      <div className="mx-auto px-4 py-8 max-w-screen-2xl">
+        <h1 className="text-4xl font-extrabold text-center mb-2 text-black">Reservar Cita</h1>
+        <h2 className="text-2xl font-semibold text-center mb-8 text-black">Detalles del Servicio Seleccionado</h2>
 
-        {/* Información prellenada del doctor (solo lectura) */}
-        <div className="bg-yellow-50 p-6 rounded-lg shadow-md mb-8">
-          <h3 className="text-xl font-semibold text-black">Detalles del Servicio</h3>
-          <p className="text-black mt-2"><strong>Nombre:</strong> {doctor.name}</p>
-          <p className="text-black mt-2"><strong>Especialización:</strong> {doctor.specialization}</p>
-          <p className="text-black mt-2"><strong>Puntaje:</strong> {doctor.totalRating}</p>
-          <p className="text-black mt-2"><strong>Bio:</strong> {doctor.bio}</p>
+        {/* Sección de información del doctor */}
+        <div className="flex flex-col md:flex-row justify-center gap-8 mb-12">
+          <div className="bg-white rounded-lg p-6 shadow-lg max-w-md w-full text-center">
+            <h1 className="text-2xl font-semibold mb-4 text-black">{doctor.name}</h1>
+            <h2 className="text-xl text-black mb-4">{doctor.specialization}</h2>
+            <p className="text-black mb-4">Puntaje: {doctor.totalRating}</p>
+            <p className="text-black">{doctor.bio}</p>
+          </div>
+
+          {/* Formulario de reserva */}
+          <div className="bg-white rounded-lg p-6 shadow-lg max-w-md w-full">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <label className="flex flex-col">
+                <span className="text-black font-semibold">Nombre Completo</span>
+                <input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  required
+                  className="border border-gray-300 rounded p-2 text-black"
+                />
+              </label>
+              <label className="flex flex-col">
+                <span className="text-black font-semibold">Correo Electrónico</span>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="border border-gray-300 rounded p-2 text-black"
+                />
+              </label>
+              <label className="flex flex-col">
+                <span className="text-black font-semibold">Teléfono</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                  className="border border-gray-300 rounded p-2 text-black"
+                />
+              </label>
+              <label className="flex flex-col">
+                <span className="text-black font-semibold">Fecha de la Cita</span>
+                <input
+                  type="date"
+                  name="appointmentDate"
+                  value={formData.appointmentDate}
+                  onChange={handleInputChange}
+                  required
+                  className="border border-gray-300 rounded p-2 text-black"
+                />
+              </label>
+              <label className="flex flex-col">
+                <span className="text-black font-semibold">Hora de la Cita</span>
+                <input
+                  type="time"
+                  name="appointmentTime"
+                  value={formData.appointmentTime}
+                  onChange={handleInputChange}
+                  required
+                  className="border border-gray-300 rounded p-2 text-black"
+                />
+              </label>
+              <label className="flex flex-col">
+                <span className="text-black font-semibold">Motivo de la Cita</span>
+                <textarea
+                  name="reason"
+                  value={formData.reason}
+                  onChange={handleInputChange}
+                  required
+                  className="border border-gray-300 rounded p-2 text-black h-24"
+                />
+              </label>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="bg-amber-500 text-white font-semibold py-2 rounded hover:bg-amber-600 transition-colors"
+              >
+                {isSubmitting ? "Reservando..." : "Reservar Cita"}
+              </button>
+            </form>
+          </div>
         </div>
-
-        {/* Formulario para completar la cita */}
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-6 rounded-lg shadow-md">
-          <div className="mb-4">
-            <label htmlFor="patientName" className="block text-black font-medium mb-2">Nombre del Paciente</label>
-            <input
-              id="patientName"
-              type="text"
-              className="w-full p-2 border border-gray-300 rounded"
-              {...register("patientName", { required: "Este campo es requerido" })}
-            />
-            {errors.patientName && <p className="text-red-600 mt-1">{errors.patientName.message}</p>}
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-black font-medium mb-2">Email</label>
-            <input
-              id="email"
-              type="email"
-              className="w-full p-2 border border-gray-300 rounded"
-              {...register("email", { required: "Este campo es requerido", pattern: { value: /^\S+@\S+$/i, message: "Email inválido" } })}
-            />
-            {errors.email && <p className="text-red-600 mt-1">{errors.email.message}</p>}
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="date" className="block text-black font-medium mb-2">Fecha de la Cita</label>
-            <input
-              id="date"
-              type="date"
-              className="w-full p-2 border border-gray-300 rounded"
-              {...register("date", { required: "Este campo es requerido" })}
-            />
-            {errors.date && <p className="text-red-600 mt-1">{errors.date.message}</p>}
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="time" className="block text-black font-medium mb-2">Hora de la Cita</label>
-            <input
-              id="time"
-              type="time"
-              className="w-full p-2 border border-gray-300 rounded"
-              {...register("time", { required: "Este campo es requerido" })}
-            />
-            {errors.time && <p className="text-red-600 mt-1">{errors.time.message}</p>}
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="notes" className="block text-black font-medium mb-2">Notas Adicionales</label>
-            <textarea
-              id="notes"
-              className="w-full p-2 border border-gray-300 rounded"
-              rows="4"
-              {...register("notes")}
-            />
-          </div>
-
-          <button type="submit" className="w-full bg-amber-500 text-white py-2 rounded hover:bg-amber-600 transition-colors">
-            Confirmar Cita
-          </button>
-        </form>
       </div>
       <Footer />
     </div>
