@@ -113,9 +113,6 @@ const DoctorList = () => {
           Escoje Uno
 
 
-              <div className="w-10 h-10 rounded-full border border-solid border-black flex items-center justify-center bg-transparent group-hover:bg-amber-500 transition-colors mt-auto cursor-pointer">
-                <ArrowRightIcon className="text-black group-hover:text-white transition-colors" />
-              </div>
             </div>
           ))}
         </div>
