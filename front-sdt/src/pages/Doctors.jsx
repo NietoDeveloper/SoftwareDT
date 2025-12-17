@@ -120,9 +120,7 @@ const DoctorList = () => {
                max-w-sm lg:max-w-none
                 text-black
               "
-              onClick={() => navigateToBooking(doctor._id)}
-              style={{ flexBasis: 'calc(20% - 1.5rem)' }}
-            >
+           s
               <h1 className="text-xl font-semibold mb-2 text-black group-hover:text-amber-700">
                 {doctor.name}
               </h1>
