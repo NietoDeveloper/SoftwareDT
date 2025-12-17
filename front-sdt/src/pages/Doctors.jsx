@@ -39,19 +39,7 @@ const DoctorList = () => {
             "If-Modified-Since": "",
           },
         }
-      );
-      console.log("API response (debe ser 200 con datos):", res.status, res.data);
-      return res.data.doctors || res.data || [];
-    } catch (error) {
-      if (error.response) {
-        toast.error(
-          `Error ${error.response.status}: ${
-            error.response.data.message || "Fallo desconocido."
-          }`
-        );
-      } else {
-        toast.error("Fallo de red. Verifica backend.");
-
+     
 
 
 export default DoctorList;
