@@ -146,7 +146,7 @@ const BookingPage = () => {
                 </button>
                 
                 <p className="text-center text-[10px] font-bold text-black uppercase tracking-tighter opacity-50 mt-6">
-                  Notificación inmediata al confirmar
+                  Notificación inmediata al Crear Cita
                 </p>
               </form>
             </div>
