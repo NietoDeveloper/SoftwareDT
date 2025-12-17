@@ -27,7 +27,7 @@ const Header = () => {
                         <Link to="/doctors" className="text-black hover:text-yellow-500 font-medium transition-colors">Escoje Servicio</Link>
                         <Link to="/clients" className="text-black hover:text-yellow-500 font-medium transition-colors">Nuestros Clientes</Link>
                         <Link to="/contact" className="text-black hover:text-yellow-500 font-medium transition-colors">Contacto</Link>
-                        <Link to="/appointment" className="text-black hover:text-yellow-500 font-medium transition-colors">Agenda Cita</Link>
+                        <Link to="/appointment" className="text-black hover:text-yellow-500 font-medium transition-colors">Panel Cliente</Link>
                       
                         {isLoggedIn ? (
                             <button
