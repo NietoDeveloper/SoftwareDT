@@ -119,9 +119,7 @@ const DoctorList = () => {
               <h2 className="text-black mb-2 group-hover:text-amber-600">
                 {doctor.specialization}
               </h2>
-              <p className="text-black mb-4">Puntaje: {doctor.totalRating}</p>
-              <p className="text-black mb-4 line-clamp-3 flex-grow overflow-hidden">
-                {doctor.bio}
+             o}
               </p>
 
               <div className="w-10 h-10 rounded-full border border-solid border-black flex items-center justify-center bg-transparent group-hover:bg-amber-500 transition-colors mt-auto cursor-pointer">
