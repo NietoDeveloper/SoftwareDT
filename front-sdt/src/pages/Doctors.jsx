@@ -108,9 +108,7 @@ const DoctorList = () => {
   return (
     <div className="min-h-screen">
       <div className="mx-auto px-4 py-8 max-w-screen-2xl">
-        <h1 className="text-4xl font-extrabold text-center mb-2 text-black">
-          Servicios
-        </h1>
+        
         <h2 className="text-2xl font-semibold text-center mb-8 text-black">
           Escoje Uno
         </h2>
