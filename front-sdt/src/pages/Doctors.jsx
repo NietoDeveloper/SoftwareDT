@@ -112,15 +112,6 @@ const DoctorList = () => {
         <h2 className="text-2xl font-semibold text-center mb-8 text-black">
           Escoje Uno
 
-           s
-              <h1 className="text-xl font-semibold mb-2 text-black group-hover:text-amber-700">
-                {doctor.name}
-              </h1>
-              <h2 className="text-black mb-2 group-hover:text-amber-600">
-                {doctor.specialization}
-              </h2>
-             o}
-              </p>
 
               <div className="w-10 h-10 rounded-full border border-solid border-black flex items-center justify-center bg-transparent group-hover:bg-amber-500 transition-colors mt-auto cursor-pointer">
                 <ArrowRightIcon className="text-black group-hover:text-white transition-colors" />
