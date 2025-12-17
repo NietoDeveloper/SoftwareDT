@@ -181,7 +181,7 @@ const BookingPage = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-black mb-2 uppercase tracking-wide">Hora (Intervalos 30m)</label>
+                    <label className="block text-sm font-bold text-black mb-2 uppercase tracking-wide">Hora: 9:00 AM - 18:00 PM</label>
                     <select 
                       name="appointmentTime" 
                       value={formData.appointmentTime} 
