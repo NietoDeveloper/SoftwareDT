@@ -1,4 +1,5 @@
 import BogotaAir2 from "../../assets/images/MonserrateDron1.mp4";
+import Logo from "../../assets/images/logo.png";
 
 const Footer = () => {
   const currentDateTime = new Date().toLocaleString('en-US', {
@@ -17,7 +18,7 @@ const Footer = () => {
         src={BogotaAir2}
       />
       <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20">
-        <img src="./logo.png" alt="logo" className="h-20 w-25 min-[700px]:h-30 min-[700px]:w-35 sm:h-30 pb-1" />
+        <img src={Logo} alt="logo" className="h-20 w-25 min-[700px]:h-30 min-[700px]:w-35 sm:h-30 pb-1" />
       </div>
       <div className="relative z-10 container mx-auto px-6 py-16 sm:px-8 sm:py-20 flex flex-col items-center text-center mt-20">
         <h1 className="text-4xl min-[700px]:text-5xl font-bold tracking-tight mt-15 mb-4 min-[700px]:mb-6">Software D T</h1>
