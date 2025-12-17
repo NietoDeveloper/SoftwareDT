@@ -1,16 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
-const { getAllDoctors } = require('../controllers/doctorController'); 
+// Importamos ambos controladores
+const { getAllDoctors, getSingleDoctor } = require('../controllers/doctorController'); 
 
-// Ruta GET para obtener todos los doctores (de colección 'services')
-router.get('/', async (req, res, next) => {
-  try {
-    await getAllDoctors(req, res);  // Llama al controller
-  } catch (error) {
-    console.error('Error en ruta /doctors:', error.message);
-    res.status(500).json({ message: 'Error al obtener services. Verifica logs del server.' });
-  }
-});
+/**
+ * @route   GET /api/doctors
+ * @desc    Obtener todos los doctores
+ */
+router.get('/', getAllDoctors);
+
+/**
+ * @route   GET /api/doctors/:id
+ * @desc    Obtener un doctor por su ID (Usado por BookingPage)
+ */
+router.get('/:id', getSingleDoctor);
 
 module.exports = router;
