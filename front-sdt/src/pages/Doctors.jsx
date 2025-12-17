@@ -55,17 +55,7 @@ const DoctorList = () => {
       throw error;
     }
   };
-
-  const {
-    data: doctors = [],
-    error,
-    isLoading,
-  } = useQuery({
-    queryKey: ["doctors"],
-    queryFn: getDoctors,
-    initialData: [],
-    staleTime: 0,
-    refetchOnWindowFocus: true,
+hOnWindowFocus: true,
   });
 
 
