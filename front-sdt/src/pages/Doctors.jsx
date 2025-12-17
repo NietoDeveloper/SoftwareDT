@@ -111,15 +111,7 @@ const DoctorList = () => {
         
         <h2 className="text-2xl font-semibold text-center mb-8 text-black">
           Escoje Uno
-        </h2>
-        <div className="flex flex-wrap justify-center gap-6">
-          {doctors.map((doctor) => (
-            <div
-              key={doctor._id}
-              className="
-               max-w-sm lg:max-w-none
-                text-black
-              "
+
            s
               <h1 className="text-xl font-semibold mb-2 text-black group-hover:text-amber-700">
                 {doctor.name}
