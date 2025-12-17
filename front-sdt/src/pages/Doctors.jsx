@@ -120,11 +120,7 @@ const DoctorList = () => {
               key={doctor._id}
               className="
                 group bg-white shadow-lg rounded-lg p-6 min-w-[280px] h-[80vh]
-                hover:shadow-2xl hover:bg-yellow-100 hover:translate-y-[-10px]
-                transition-all duration-300 ease-in-out
-                cursor-pointer flex flex-col items-center text-center
-                text-black border-2 border-transparent hover:border-amber-400
-                flex-grow
+
 
 
 
