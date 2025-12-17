@@ -101,7 +101,6 @@ const BookingPage = () => {
             <p className="text-black">{doctor.bio}</p>
           </div>
 
-          {/* Formulario de reserva */}
           <div className="bg-white rounded-lg p-6 shadow-lg max-w-md w-full">
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <label className="flex flex-col">
