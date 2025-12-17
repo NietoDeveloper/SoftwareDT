@@ -125,17 +125,7 @@ const DoctorList = () => {
                 cursor-pointer flex flex-col items-center text-center
                 text-black border-2 border-transparent hover:border-amber-400
                 flex-grow
-              "
-              onClick={() => navigateToBooking(doctor._id)}
-              style={{
-                flexBasis: 'calc(25% - 1.5rem)', 
-                maxWidth: 'calc(100%/1 - 1.5rem)', // Base: 1 en móviles
-                '@media (min-width: 640px)': { maxWidth: 'calc(100%/2 - 1.5rem)' }, // sm: 2 tarjetas
-                '@media (min-width: 768px)': { maxWidth: 'calc(100%/3 - 1.5rem)' }, // md: 3 tarjetas
-                '@media (min-width: 1024px)': { maxWidth: 'calc(100%/4 - 1.5rem)' }, // lg: 4 tarjetas
-                '@media (min-width: 1280px)': { maxWidth: 'calc(100%/4 - 1.5rem)' }, // xl: 4 tarjetas
-              }}
-            >
+
 
 
 
