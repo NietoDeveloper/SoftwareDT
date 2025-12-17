@@ -11,14 +11,6 @@ const BookingPage = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    appointmentDate: "",
-    appointmentTime: "",
-    reason: "",
-  });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
