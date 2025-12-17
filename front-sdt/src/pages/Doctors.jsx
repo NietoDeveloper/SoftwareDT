@@ -136,11 +136,6 @@ const DoctorList = () => {
                 '@media (min-width: 1280px)': { maxWidth: 'calc(100%/4 - 1.5rem)' }, // xl: 4 tarjetas
               }}
             >
-              <h1 className="text-2xl font-bold mb-4 text-black group-hover:text-amber-700">
-                {doctor.name}
-              </h1>
-              <h2 className="text-lg font-medium text-black mb-4 group-hover:text-amber-600">
-                {doctor.specialization}
 
 
 
