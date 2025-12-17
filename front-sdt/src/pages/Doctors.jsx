@@ -105,20 +105,7 @@ const DoctorList = () => {
     navigate(`/book-appointment/${doctorId}`);
   };
 
-  return (
-    <div className="min-h-screen">
-      <div className="mx-auto px-4 py-8 max-w-screen-2xl">
-        
-        <h2 className="text-2xl font-semibold text-center mb-8 text-black">
-          Escoje Uno
 
-
-            </div>
-          ))}
-        </div>
-
-    </div>
-  );
 };
 
 export default DoctorList;
