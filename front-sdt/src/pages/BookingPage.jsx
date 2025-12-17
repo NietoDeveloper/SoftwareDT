@@ -1,154 +1,121 @@
-import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useLocation, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import axios from "axios";
-import Footer from "../components/Footer/Footer";
+import Footer from "../components/Footer/Footer"; // Asumiendo que tienes este componente
 
-const ArrowRightIcon = (props) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <line x1="5" y1="12" x2="19" y2="12"></line>
-    <polyline points="12 5 19 12 12 19"></polyline>
-  </svg>
-);
+const BookingPage = () => {
+  const location = useLocation();
+  const { id } = useParams(); // Obtiene el doctorId de la URL por si necesitas usarlo
+  const doctor = location.state?.doctor; // Recibe los datos del doctor desde el state
 
-const DoctorList = () => {
-  const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const getDoctors = async () => {
-    try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-      const res = await axios.get(
-        `${apiUrl}/doctors?_cache=${Date.now()}&random=${Math.random()}`,
-        {
-          headers: {
-            "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
-            Pragma: "no-cache",
-            Expires: "0",
-            "If-None-Match": "",
-            "If-Modified-Since": "",
-          },
-        }
-      );
-      console.log("API response (debe ser 200 con datos):", res.status, res.data);
-      return res.data.doctors || res.data || [];
-    } catch (error) {
-      if (error.response) {
-        toast.error(
-          `Error ${error.response.status}: ${
-            error.response.data.message || "Fallo desconocido."
-          }`
-        );
-      } else {
-        toast.error("Fallo de red. Verifica backend.");
-      }
-      throw error;
-    }
-  };
-
-  const {
-    data: doctors = [],
-    error,
-    isLoading,
-  } = useQuery({
-    queryKey: ["doctors"],
-    queryFn: getDoctors,
-    initialData: [],
-    staleTime: 0,
-    refetchOnWindowFocus: true,
-  });
-
-  if (isLoading)
-    return (
-      <h1 className="text-center py-10 text-xl font-bold text-black">
-        Cargando Doctores....
-      </h1>
-    );
-
-  if (error) {
-    const errorMessage = error.response
-      ? `HTTP ${error.response.status}: ${
-          error.response.data.message || "Error desconocido."
-        }`
-      : error.message;
-    return (
-      <h1 className="text-center py-10 text-red-600 text-xl font-bold">
-        Error cargando los Datos. {errorMessage}
-      </h1>
-    );
-  }
-
-  if (doctors.length === 0) {
+  if (!doctor) {
     return (
       <div className="text-center py-20">
-        <h1 className="text-2xl font-semibold text-black">
-          ¡Vaya! No se encontraron Servicios disponibles.
-        </h1>
-        <p className="text-black mt-2">
-          Por favor, inténtalo de nuevo más tarde o verifica la DB.
-        </p>
+        <h1 className="text-2xl font-semibold text-red-600">Error: No se encontraron datos del servicio seleccionado.</h1>
+        <p className="text-black mt-2">Por favor, regresa y selecciona un servicio nuevamente.</p>
       </div>
     );
   }
 
-  const navigateToBooking = (doctor) => {
-    navigate(`/book-appointment/${doctor._id}`, { state: { doctor } });
+  const onSubmit = async (data) => {
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+      const appointmentData = {
+        ...data,
+        doctorId: doctor._id,
+        doctorName: doctor.name,
+        specialization: doctor.specialization,
+      };
+      const res = await axios.post(`${apiUrl}/appointments`, appointmentData); // Ajusta la endpoint según tu backend
+      toast.success("Cita reservada exitosamente!");
+      // Opcional: redirigir a otra página después del éxito
+    } catch (error) {
+      toast.error("Error al reservar la cita. Verifica los datos o el servidor.");
+    }
   };
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto px-4 py-8 max-w-screen-2xl">
-        <h1 className="text-4xl font-extrabold text-center mb-2 text-black">
-          Servicios
-        </h1>
-        <h2 className="text-2xl font-semibold text-center mb-8 text-black">
-          Escoje Un Servicio
-        </h2>
-        <div className="flex flex-wrap justify-center gap-6">
-          {doctors.map((doctor) => (
-            <div
-              key={doctor._id}
-              className="
-                group bg-white rounded-lg p-6 transition-all duration-300
-                cursor-pointer flex flex-col items-center justify-between text-center
-                w-full min-w-[280px] max-w-[280px] h-[70vh]
-                shadow-lg hover:shadow-2xl hover:translate-y-[-10px]
-                hover:bg-yellow-50
-                text-black
-              "
-              onClick={() => navigateToBooking(doctor)}
-            >
-              <h1 className="text-xl font-semibold mt-12 text-black group-hover:text-amber-700">
-                {doctor.name}
-              </h1>
-              <h2 className="text-lg text-black mt-8 group-hover:text-amber-600">
-                {doctor.specialization}
-              </h2>
-              <p className="text-lg text-black mt-8">Puntaje: {doctor.totalRating}</p>
-              <p className="text-lg text-black mt-12 mb-4 line-clamp-3 overflow-hidden flex-grow">
-                {doctor.bio}
-              </p>
+      <div className="mx-auto px-4 py-8 max-w-screen-md">
+        <h1 className="text-4xl font-extrabold text-center mb-4 text-black">Reservar Cita</h1>
+        <h2 className="text-2xl font-semibold text-center mb-8 text-black">Servicio Seleccionado: {doctor.name}</h2>
 
-              <div className="w-10 h-10 rounded-full border border-solid border-black flex items-center justify-center bg-transparent group-hover:bg-amber-500 transition-colors mt-auto cursor-pointer">
-                <ArrowRightIcon className="text-black group-hover:text-white transition-colors" />
-              </div>
-            </div>
-          ))}
+        {/* Información prellenada del doctor (solo lectura) */}
+        <div className="bg-yellow-50 p-6 rounded-lg shadow-md mb-8">
+          <h3 className="text-xl font-semibold text-black">Detalles del Servicio</h3>
+          <p className="text-black mt-2"><strong>Nombre:</strong> {doctor.name}</p>
+          <p className="text-black mt-2"><strong>Especialización:</strong> {doctor.specialization}</p>
+          <p className="text-black mt-2"><strong>Puntaje:</strong> {doctor.totalRating}</p>
+          <p className="text-black mt-2"><strong>Bio:</strong> {doctor.bio}</p>
         </div>
+
+        {/* Formulario para completar la cita */}
+        <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-6 rounded-lg shadow-md">
+          <div className="mb-4">
+            <label htmlFor="patientName" className="block text-black font-medium mb-2">Nombre del Paciente</label>
+            <input
+              id="patientName"
+              type="text"
+              className="w-full p-2 border border-gray-300 rounded"
+              {...register("patientName", { required: "Este campo es requerido" })}
+            />
+            {errors.patientName && <p className="text-red-600 mt-1">{errors.patientName.message}</p>}
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-black font-medium mb-2">Email</label>
+            <input
+              id="email"
+              type="email"
+              className="w-full p-2 border border-gray-300 rounded"
+              {...register("email", { required: "Este campo es requerido", pattern: { value: /^\S+@\S+$/i, message: "Email inválido" } })}
+            />
+            {errors.email && <p className="text-red-600 mt-1">{errors.email.message}</p>}
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="date" className="block text-black font-medium mb-2">Fecha de la Cita</label>
+            <input
+              id="date"
+              type="date"
+              className="w-full p-2 border border-gray-300 rounded"
+              {...register("date", { required: "Este campo es requerido" })}
+            />
+            {errors.date && <p className="text-red-600 mt-1">{errors.date.message}</p>}
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="time" className="block text-black font-medium mb-2">Hora de la Cita</label>
+            <input
+              id="time"
+              type="time"
+              className="w-full p-2 border border-gray-300 rounded"
+              {...register("time", { required: "Este campo es requerido" })}
+            />
+            {errors.time && <p className="text-red-600 mt-1">{errors.time.message}</p>}
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="notes" className="block text-black font-medium mb-2">Notas Adicionales</label>
+            <textarea
+              id="notes"
+              className="w-full p-2 border border-gray-300 rounded"
+              rows="4"
+              {...register("notes")}
+            />
+          </div>
+
+          <button type="submit" className="w-full bg-amber-500 text-white py-2 rounded hover:bg-amber-600 transition-colors">
+            Confirmar Cita
+          </button>
+        </form>
       </div>
       <Footer />
     </div>
   );
 };
 
-export default DoctorList;
+export default BookingPage;
