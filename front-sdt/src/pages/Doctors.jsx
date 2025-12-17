@@ -68,13 +68,5 @@ const DoctorList = () => {
     refetchOnWindowFocus: true,
   });
 
-  if (isLoading)
-    return (
-      <h1 className="text-center py-10 text-xl font-bold text-black">
-        Cargando Doctores....
-      </h1>
-    );
-
-
 
 export default DoctorList;
