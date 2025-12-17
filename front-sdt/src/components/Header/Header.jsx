@@ -88,6 +88,13 @@ const Header = () => {
                             Escoje Servicio
                         </Link>
                         <Link
+                            to="/contact"
+                            className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Contacto
+                        </Link>
+                                                <Link
                             to="/clients"
                             className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
                             onClick={() => setIsMenuOpen(false)}
@@ -95,18 +102,11 @@ const Header = () => {
                             Nuestros Clientes
                         </Link>
                         <Link
-                            to="/contact"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Contacto
-                        </Link>
-                        <Link
                             to="/appointment"
                             className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
                             onClick={() => setIsMenuOpen(false)}
                         >
-                            Agenda Cita
+                            Panel Cliente
                         </Link>
                         {isLoggedIn ? (
                              <button
