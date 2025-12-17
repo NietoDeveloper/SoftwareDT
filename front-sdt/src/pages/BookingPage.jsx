@@ -2,14 +2,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useState, useEffect, useContext } from "react"; // Agregado useEffect y useContext
+import { useState, useEffect, useContext } from "react";
 import Footer from "../components/Footer/Footer";
-import { UserContext } from "../context/UserContext"; // Asumiendo path correcto, ajusta si needed
+import { UserContext } from "../context/UserContext";
 
 const BookingPage = () => {
+  // 1. Asegúrate de que el parámetro coincida con tu App.jsx (/:doctorId)
   const { doctorId } = useParams();
   const navigate = useNavigate();
-  const { user } = useContext(UserContext); // Integro UserContext para prefill
+  const { user } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -22,28 +23,23 @@ const BookingPage = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // 2. Función de fetch corregida
   const getDoctor = async () => {
     try {
       const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-      const res = await axios.get(
-        `${apiUrl}/doctors/${doctorId}?_cache=${Date.now()}&random=${Math.random()}`,
-        {
-          headers: {
-            "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
-            Pragma: "no-cache",
-            Expires: "0",
-            "If-None-Match": "",
-            "If-Modified-Since": "",
-          },
-        }
-      );
+      // Simplificamos la URL y dejamos que React Query maneje el estado
+      const res = await axios.get(`${apiUrl}/doctors/${doctorId}`);
+      
+      // LOG CRÍTICO para depuración:
+      console.log("Datos recibidos del doctor:", res.data);
+      
+      // IMPORTANTE: Ajusta esta línea según la estructura REAL de tu backend
+      // Si tu backend hace: res.json(doctor) -> usa res.data
+      // Si tu backend hace: res.json({ doctor }) -> usa res.data.doctor
       return res.data.doctor || res.data;
     } catch (error) {
-      if (error.response) {
-        toast.error(`Error ${error.response.status}: ${error.response.data.message || 'Fallo desconocido del servidor.'}`);
-      } else {
-        toast.error("Fallo de red o servidor no disponible. Verifique la conexión del backend.");
-      }
+      const msg = error.response?.data?.message || "Error al obtener datos del doctor";
+      toast.error(msg);
       throw error;
     }
   };
@@ -51,37 +47,20 @@ const BookingPage = () => {
   const { data: doctor, error, isLoading } = useQuery({
     queryKey: ["doctor", doctorId],
     queryFn: getDoctor,
-    staleTime: 0, // Datos frescos siempre
-    refetchOnWindowFocus: true, // Refetch al focus
+    enabled: !!doctorId, // Solo corre si hay ID
   });
 
-  // Prefill form con user data si logueado (de UserContext)
+  // 3. Prefill optimizado
   useEffect(() => {
     if (user) {
       setFormData((prev) => ({
         ...prev,
-        fullName: user.fullName || user.name || "", // Ajusta según tu UserContext
+        fullName: user.name || user.fullName || "",
         email: user.email || "",
         phone: user.phone || "",
       }));
     }
   }, [user]);
-
-  if (isLoading) return <h1 className="text-center py-10 text-xl font-bold text-black">Cargando Detalles del Doctor....</h1>;
-
-  if (error) {
-    const errorMessage = error.response?.data?.message || error.message || "Error desconocido.";
-    return <h1 className="text-center py-10 text-red-600 text-xl font-bold">Error cargando los Datos. {errorMessage}</h1>;
-  }
-
-  if (!doctor || !doctor._id) {
-    return (
-      <div className="text-center py-20">
-        <h1 className="text-2xl font-semibold text-black">¡Vaya! No se encontró el Doctor seleccionado.</h1>
-        <p className="text-black mt-2">Por favor, regresa a la lista de servicios.</p>
-      </div>
-    );
-  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -91,133 +70,80 @@ const BookingPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
       await axios.post(`${apiUrl}/appointments`, {
         doctorId: doctor._id,
         ...formData,
       });
-      toast.success("Cita reservada con éxito!");
-      navigate("/doctors"); // Redirige a lista de doctores para flujo continuo
+      toast.success("¡Cita reservada con éxito!");
+      navigate("/my-appointments"); // Cambiado a una ruta lógica de éxito
     } catch (error) {
-      if (error.response) {
-        toast.error(`Error ${error.response.status}: ${error.response.data.message || 'Fallo al reservar la cita.'}`);
-      } else {
-        toast.error("Fallo de red o servidor no disponible.");
-      }
+      toast.error(error.response?.data?.message || "Error al procesar la reserva");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Fecha mínima: hoy
+  if (isLoading) return <div className="text-center py-20 font-bold">Cargando detalles...</div>;
+  
+  if (error || !doctor) return (
+    <div className="text-center py-20">
+      <h1 className="text-red-500 font-bold">No se pudo cargar la información del servicio.</h1>
+      <button onClick={() => navigate("/doctors")} className="mt-4 bg-gray-200 p-2 rounded">Volver</button>
+    </div>
+  );
+
   const today = new Date().toISOString().split("T")[0];
 
   return (
-    <div className="min-h-screen">
-      <div className="mx-auto px-4 py-8 max-w-screen-2xl">
-        <h1 className="text-4xl font-extrabold text-center mb-2 text-black">Reservar Cita</h1>
-        <h2 className="text-2xl font-semibold text-center mb-8 text-black">Detalles del Servicio Seleccionado</h2>
+    <div className="min-h-screen bg-gray-50">
+      <div className="mx-auto px-4 py-8 max-w-5xl">
+        <h1 className="text-3xl font-bold text-center mb-8">Confirmar Cita</h1>
 
-        {/* Sección de información del doctor */}
-        <div className="flex flex-col md:flex-row justify-center gap-8 mb-12">
-          <div className="bg-white rounded-lg p-6 shadow-lg hover:shadow-2xl transition-shadow max-w-md w-full text-center">
-            <h1 className="text-2xl font-semibold mb-4 text-black">{doctor.name}</h1>
-            <h2 className="text-xl text-black mb-4">{doctor.specialization}</h2>
-            <p className="text-black mb-4">Puntaje: {doctor.totalRating}</p>
-            <p className="text-black">{doctor.bio}</p>
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Info del Doctor/Servicio */}
+          <div className="bg-white p-8 rounded-xl shadow-md border-t-4 border-amber-500">
+            <h2 className="text-2xl font-bold text-amber-700 mb-2">{doctor.name}</h2>
+            <p className="text-gray-600 font-medium mb-4">{doctor.specialization}</p>
+            <hr className="mb-4" />
+            <p className="text-gray-700 leading-relaxed mb-6">{doctor.bio || "Sin descripción disponible."}</p>
+            <div className="bg-amber-50 p-4 rounded-lg">
+              <p className="text-sm font-bold text-amber-800">Calificación: ⭐ {doctor.totalRating || '5.0'}</p>
+            </div>
           </div>
 
-          {/* Formulario de reserva */}
-          <div className="bg-white rounded-lg p-6 shadow-lg hover:shadow-2xl transition-shadow max-w-md w-full">
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <label className="flex flex-col">
-                <span className="text-black font-semibold">Nombre Completo</span>
-                <input
-                  type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  required
-                  minLength={3}
-                  className="border border-gray-300 rounded p-2 text-black"
-                />
-              </label>
-              <label className="flex flex-col">
-                <span className="text-black font-semibold">Correo Electrónico</span>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                  className="border border-gray-300 rounded p-2 text-black"
-                />
-              </label>
-              <label className="flex flex-col">
-                <span className="text-black font-semibold">Teléfono</span>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  required
-                  pattern="[0-9]{7,15}"
-                  className="border border-gray-300 rounded p-2 text-black"
-                />
-              </label>
-              <label className="flex flex-col">
-                <span className="text-black font-semibold">Fecha de la Cita</span>
-                <input
-                  type="date"
-                  name="appointmentDate"
-                  value={formData.appointmentDate}
-                  onChange={handleInputChange}
-                  required
-                  min={today} // No fechas pasadas
-                  className="border border-gray-300 rounded p-2 text-black"
-                />
-              </label>
-              <label className="flex flex-col">
-                <span className="text-black font-semibold">Hora de la Cita</span>
-                <input
-                  type="time"
-                  name="appointmentTime"
-                  value={formData.appointmentTime}
-                  onChange={handleInputChange}
-                  required
-                  className="border border-gray-300 rounded p-2 text-black"
-                />
-              </label>
-              <label className="flex flex-col">
-                <span className="text-black font-semibold">Motivo de la Cita</span>
-                <textarea
-                  name="reason"
-                  value={formData.reason}
-                  onChange={handleInputChange}
-                  required
-                  minLength={10}
-                  className="border border-gray-300 rounded p-2 text-black h-24"
-                />
-              </label>
-              <div className="flex gap-4">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="bg-amber-500 text-white font-semibold py-2 rounded hover:bg-amber-600 transition-colors flex-1"
-                >
-                  {isSubmitting ? "Reservando..." : "Reservar Cita"}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => navigate("/doctors")}
-                  className="bg-gray-500 text-white font-semibold py-2 rounded hover:bg-gray-600 transition-colors flex-1"
-                >
-                  Cancelar
-                </button>
+          {/* Formulario */}
+          <div className="bg-white p-8 rounded-xl shadow-md">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-bold mb-1">Tu Nombre</label>
+                <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required className="w-full border p-2 rounded focus:ring-2 focus:ring-amber-500 outline-none" />
               </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-bold mb-1">Fecha</label>
+                  <input type="date" name="appointmentDate" min={today} value={formData.appointmentDate} onChange={handleInputChange} required className="w-full border p-2 rounded" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold mb-1">Hora</label>
+                  <input type="time" name="appointmentTime" value={formData.appointmentTime} onChange={handleInputChange} required className="w-full border p-2 rounded" />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold mb-1">Motivo / Notas</label>
+                <textarea name="reason" value={formData.reason} onChange={handleInputChange} required minLength={10} className="w-full border p-2 rounded h-24" placeholder="¿En qué podemos ayudarte?" />
+              </div>
+
+              <button 
+                type="submit" 
+                disabled={isSubmitting} 
+                className={`w-full py-3 rounded-lg font-bold text-white transition-all ${isSubmitting ? 'bg-gray-400' : 'bg-amber-600 hover:bg-amber-700 shadow-md'}`}
+              >
+                {isSubmitting ? "Procesando..." : "Confirmar Reserva"}
+              </button>
             </form>
           </div>
         </div>
