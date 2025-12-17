@@ -25,20 +25,6 @@ const ArrowRightIcon = (props) => (
 const DoctorList = () => {
   const navigate = useNavigate();
 
-  const getDoctors = async () => {
-    try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-      const res = await axios.get(
-        `${apiUrl}/doctors?_cache=${Date.now()}&random=${Math.random()}`,
-        {
-          headers: {
-            "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
-            Pragma: "no-cache",
-            Expires: "0",
-            "If-None-Match": "",
-            "If-Modified-Since": "",
-          },
-        }
       );
       console.log("API response (debe ser 200 con datos):", res.status, res.data);
       return res.data.doctors || res.data || [];
