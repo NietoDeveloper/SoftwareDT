@@ -149,10 +149,7 @@ const DoctorList = () => {
                 {doctor.bio}
               </p>
 
-              <div className="w-12 h-12 rounded-full border-2 border-solid border-black flex items-center justify-center bg-transparent group-hover:bg-amber-500 transition-colors mt-auto cursor-pointer">
-                <ArrowRightIcon className="text-black group-hover:text-white transition-colors w-6 h-6" />
-              </div>
-            </div>
+
           ))}
         </div>
       </div>
