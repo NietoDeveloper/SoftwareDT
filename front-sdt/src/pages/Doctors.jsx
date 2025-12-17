@@ -51,12 +51,7 @@ const DoctorList = () => {
         );
       } else {
         toast.error("Fallo de red. Verifica backend.");
-      }
-      throw error;
-    }
-  };
-hOnWindowFocus: true,
-  });
+
 
 
 export default DoctorList;
