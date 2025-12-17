@@ -108,7 +108,7 @@ const DoctorList = () => {
   return (
     <div className="min-h-screen">
       <div className="mx-auto px-4 py-8 max-w-screen-2xl">
-        <h1 className="text-4xl font-extrabold text-center mt-[-10px] mb-2 text-black">
+        <h1 className="text-4xl font-extrabold text-center mb-2 -mt-[10px] text-black">
           Servicios
         </h1>
         <h2 className="text-2xl font-semibold text-center mb-8 text-black">
@@ -121,7 +121,7 @@ const DoctorList = () => {
               className="
                 group bg-white rounded-lg p-6 transition-all duration-300
                 cursor-pointer flex flex-col items-center justify-between text-center
-                w-[280px] min-w-[280px] max-w-[280px] h-[90vh]
+                w-full min-w-[280px] max-w-[280px] h-[800px]
                 shadow-lg hover:shadow-2xl hover:translate-y-[-10px]
                 hover:bg-yellow-50
                 text-black
