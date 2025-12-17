@@ -89,15 +89,7 @@ const DoctorList = () => {
   }
 
   if (doctors.length === 0) {
-    return (
-      <div className="text-center py-20">
-        <h1 className="text-2xl font-semibold text-black">
-          ¡Vaya! No se encontraron Servicios disponibles.
-        </h1>
-        <p className="text-black mt-2">
-          Por favor, inténtalo de nuevo más tarde o verifica la DB.
-        </p>
-      </div>
+
     );
   }
 
