@@ -134,10 +134,6 @@ const DoctorList = () => {
               <h2 className="text-black mt-4 group-hover:text-amber-600">
                 {doctor.specialization}
               </h2>
-              <p className="text-black mt-4">Puntaje: {doctor.totalRating}</p>
-              <p className="text-black mt-6 mb-4 line-clamp-3 overflow-hidden flex-grow">
-                {doctor.bio}
-              </p>
 
 
             </div>
