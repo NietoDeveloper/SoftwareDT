@@ -15,10 +15,7 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// =========================================================
-// 💡 CORRECCIÓN PARA EL PROBLEMA 304 (Cache/ETag)
-// Deshabilitar ETag asegura que el servidor siempre envíe una 
-// respuesta completa (200 OK) con el cuerpo de los datos.
+espuesta completa (200 OK) con el cuerpo de los datos.
 // =========================================================
 app.disable('etag'); 
 
