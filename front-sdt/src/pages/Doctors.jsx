@@ -141,13 +141,7 @@ const DoctorList = () => {
               </h1>
               <h2 className="text-lg font-medium text-black mb-4 group-hover:text-amber-600">
                 {doctor.specialization}
-              </h2>
-              <p className="text-black mb-4 font-semibold">
-                Puntaje: {doctor.totalRating}
-              </p>
-              <p className="text-black mb-8 flex-grow overflow-hidden text-sm leading-relaxed">
-                {doctor.bio}
-              </p>
+
 
 
           ))}
