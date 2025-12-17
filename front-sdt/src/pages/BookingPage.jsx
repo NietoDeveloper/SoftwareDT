@@ -93,7 +93,7 @@ const BookingPage = () => {
       {/* 2. flex-grow empuja al Footer siempre hacia abajo */}
       <main className="flex-grow">
         <div className="mx-auto px-4 py-12 max-w-5xl">
-          <h1 className="text-4xl font-extrabold text-center mb-2">Confirmar Cita</h1>
+          <h1 className="text-4xl font-extrabold text-center mb-2">Hacer Cita</h1>
           <p className="text-center text-gray-600 mb-10">Completa la información para agendar tu servicio</p>
 
           <div className="grid md:grid-cols-2 gap-10 items-start">
