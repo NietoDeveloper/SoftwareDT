@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import Footer from "../components/Footer/Footer";
 import { UserContext } from "../context/UserContext";
 
@@ -21,6 +21,20 @@ const BookingPage = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Generar opciones de tiempo de 9 AM a 6 PM cada 30 min
+  const timeOptions = useMemo(() => {
+    const times = [];
+    let start = 9; // 9 AM
+    while (start < 18) { // Hasta las 6 PM
+      const hour = start < 10 ? `0${Math.floor(start)}` : Math.floor(start);
+      const minutes = start % 1 === 0 ? "00" : "30";
+      times.push(`${hour}:${minutes}`);
+      start += 0.5;
+    }
+    times.push("18:00");
+    return times;
+  }, []);
 
   const getDoctor = async () => {
     try {
@@ -53,6 +67,16 @@ const BookingPage = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    
+    // Validación de Domingo para la fecha
+    if (name === "appointmentDate") {
+      const day = new Date(value).getUTCDay();
+      if (day === 0) { // 0 es Domingo
+        toast.warning("Atendemos de Lunes a Sábado. Por favor elige otro día.");
+        return;
+      }
+    }
+
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -129,12 +153,17 @@ const BookingPage = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-bold text-black mb-2 uppercase tracking-wide">Fecha Preferida</label>
-                    <input type="date" name="appointmentDate" min={today} value={formData.appointmentDate} onChange={handleInputChange} required className="w-full border border-black p-4 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none bg-white text-black transition-all" />
+                    <label className="block text-sm font-bold text-black mb-2 uppercase tracking-wide">Fecha (Lun - Sab)</label>
+                    <input type="date" name="appointmentDate" min={today} value={formData.appointmentDate} onChange={handleInputChange} required className="w-full border border-black p-4 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none bg-white text-black transition-all cursor-pointer" />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-black mb-2 uppercase tracking-wide">Hora</label>
-                    <input type="time" name="appointmentTime" value={formData.appointmentTime} onChange={handleInputChange} required className="w-full border border-black p-4 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none bg-white text-black transition-all" />
+                    <label className="block text-sm font-bold text-black mb-2 uppercase tracking-wide">Hora (9:00 - 18:00)</label>
+                    <select name="appointmentTime" value={formData.appointmentTime} onChange={handleInputChange} required className="w-full border border-black p-4 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none bg-white text-black transition-all cursor-pointer">
+                      <option value="">Seleccionar Hora</option>
+                      {timeOptions.map((time) => (
+                        <option key={time} value={time}>{time}</option>
+                      ))}
+                    </select>
                   </div>
                 </div>
 
