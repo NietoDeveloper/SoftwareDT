@@ -91,7 +91,6 @@ const userLogin = asyncHandler(async (req, res) => {
         { expiresIn: '1d' }
     );
 
-    // Añade el nuevo token de actualización al array
     foundUser.refreshToken = [...(foundUser.refreshToken || []), refreshToken];
     await foundUser.save();
 
