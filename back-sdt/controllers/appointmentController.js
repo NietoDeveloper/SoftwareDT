@@ -25,12 +25,6 @@ const appointmentBooking = asyncHandler(async (req, res) => {
     // 3. Obtener ID del usuario desde el token (inyectado por verifyAccess)
     const userId = req.id; 
 
-    // 4. Buscar información del doctor para la "Tarjeta" en la DB de Atlas
-    const doctorData = await Doctor.findById(doctorId).lean();
-    if (!doctorData) {
-        return res.status(404).json({ message: "El especialista no existe." });
-    }
-
     // 5. Crear la cita con la estructura JSON completa para Atlas
     const newAppointment = await Appointment.create({
         user: userId,
