@@ -13,7 +13,7 @@ const { errorHandler } = require('./middleware/errorHandler');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// 💡 SOLUCIÓN GLOBAL PARA 304: Deshabilitar ETag evita que el navegador use cache vieja
+/
 app.disable('etag'); 
 
 app.use(cors(corsOptions));
