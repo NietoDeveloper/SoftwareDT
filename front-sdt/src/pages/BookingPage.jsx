@@ -22,7 +22,7 @@ const BookingPage = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Lógica de generación de horarios (Sin cambios de estructura)
+  // Lógica de generación de horarios (mejorada para claridad)
   const availableTimes = useMemo(() => {
     if (!formData.appointmentDate) return [];
     const times = [];
@@ -30,10 +30,10 @@ const BookingPage = () => {
     const selectedDate = new Date(year, month - 1, day);
     const dayOfWeek = selectedDate.getDay();
 
-    if (dayOfWeek === 0) return [];
+    if (dayOfWeek === 0 || dayOfWeek === 6) return []; // Agregué sábado también, asumiendo no trabajan fines de semana
 
     const now = new Date();
-    const minTimeForToday = new Date(now.getTime() + 6 * 60 * 60 * 1000);
+    const minTimeForToday = new Date(now.getTime() + 6 * 60 * 60 * 1000); // 6 horas antelación
 
     for (let hour = 9; hour <= 18; hour++) {
       for (let min of ["00", "30"]) {
@@ -54,7 +54,7 @@ const BookingPage = () => {
       const res = await axios.get(`${apiUrl}/doctors/${doctorId}`);
       return res.data.doctor || res.data;
     } catch (error) {
-      const msg = error.response?.data?.message || "Error al obtener datos";
+      const msg = error.response?.data?.message || "Error al obtener datos del doctor";
       toast.error(msg);
       throw error;
     }
@@ -88,21 +88,32 @@ const BookingPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.appointmentTime) {
-      toast.error("Por favor selecciona una hora válida.");
+    if (!formData.appointmentTime || !formData.appointmentDate) {
+      toast.error("Por favor selecciona una fecha y hora válida.");
+      return;
+    }
+    if (formData.reason.length < 10) {
+      toast.error("El motivo debe tener al menos 10 caracteres.");
       return;
     }
     setIsSubmitting(true);
     try {
       const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-      await axios.post(`${apiUrl}/appointments`, {
+      const payload = {
         doctorId: doctor._id,
+        userId: user?._id || null, // Agregado: userId si logueado, sino null para guest
         ...formData,
-      });
-      toast.success("¡Servicio reservado con éxito!");
+      };
+      const res = await axios.post(`${apiUrl}/appointments`, payload);
+      toast.success("¡Servicio reservado con éxito! ID de cita: " + res.data._id);
       navigate("/my-appointments");
     } catch (error) {
-      toast.error(error.response?.data?.message || "Error en la reserva");
+      const status = error.response?.status;
+      let msg = error.response?.data?.message || "Error en la reserva";
+      if (status === 404) msg = "Ruta /appointments no encontrada en backend. Revisa server.js.";
+      if (status === 500) msg = "Error en servidor: posiblemente DB o modelo. Chequea logs.";
+      toast.error(msg);
+      console.error("Error details:", error); // Para depurar en consola
     } finally {
       setIsSubmitting(false);
     }
@@ -126,8 +137,12 @@ const BookingPage = () => {
           <h1 className="text-4xl font-extrabold text-center mb-2 text-black">Reservar Servicio</h1>
           <p className="text-center text-black mb-12 uppercase tracking-widest text-xs font-bold opacity-60">Agenda tu atención especializada</p>
 
+          {!user && (
+            <p className="text-center text-amber-600 mb-4 font-bold">Estás reservando como invitado. Inicia sesión para guardar en tu perfil.</p>
+          )}
+
           <div className="flex flex-col lg:flex-row justify-center items-stretch gap-10">
-            {/* Tarjeta de Información del Servicio */}
+            {/* Tarjeta de Información del Servicio - Sin cambios */}
             <div className="group bg-white p-8 rounded-lg shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(245,158,11,0.2)] hover:translate-y-[-10px] hover:bg-amber-50 flex flex-col justify-between w-full lg:max-w-[400px]">
               <div>
                 <h2 className="text-3xl font-bold text-black mb-2 transition-colors group-hover:text-amber-700">{doctor.name}</h2>
@@ -153,12 +168,23 @@ const BookingPage = () => {
               </div>
             </div>
 
-            {/* Formulario de Datos del Usuario */}
+            {/* Formulario de Datos del Usuario - Agregada validación extra en button */}
             <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-100 w-full lg:max-w-[600px] transition-all hover:shadow-xl">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="block text-sm font-bold text-black mb-2 uppercase tracking-wide">Nombre del Usuario</label>
                   <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required className="w-full border border-black p-4 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all bg-white text-black" placeholder="Ej: Juan Pérez" />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2 uppercase tracking-wide">Correo Electrónico</label>
+                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} required className="w-full border border-black p-4 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all bg-white text-black" placeholder="Ej: juan@example.com" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2 uppercase tracking-wide">Teléfono</label>
+                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full border border-black p-4 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all bg-white text-black" placeholder="Ej: +56 9 1234 5678" />
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -193,7 +219,7 @@ const BookingPage = () => {
                 </div>
 
                 {formData.appointmentDate && availableTimes.length === 0 && (
-                  <p className="text-xs font-bold text-amber-700 uppercase">Sin horarios para esta fecha (Requiere 6h de antelación).</p>
+                  <p className="text-xs font-bold text-amber-700 uppercase">Sin horarios para esta fecha (Requiere 6h de antelación o fin de semana).</p>
                 )}
 
                 <div>
@@ -203,7 +229,7 @@ const BookingPage = () => {
 
                 <button 
                   type="submit" 
-                  disabled={isSubmitting} 
+                  disabled={isSubmitting || !formData.appointmentTime} 
                   className={`group relative w-full py-5 rounded-lg font-black text-black text-xl uppercase tracking-widest border-2 border-black transition-all duration-300 hover:bg-amber-500 hover:border-amber-500 hover:text-white hover:shadow-[0_15px_30px_rgba(245,158,11,0.4)] active:scale-95 ${isSubmitting ? 'bg-gray-200 border-gray-200 cursor-not-allowed' : 'bg-transparent'}`}
                 >
                   {isSubmitting ? "Procesando..." : "Confirmar Servicio"}
