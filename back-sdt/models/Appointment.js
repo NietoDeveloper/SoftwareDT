@@ -9,7 +9,6 @@ const appointmentSchema = new Schema({
         enum: ["pending", "approved", "cancelled"],
         default: "pending",
     },
-    isPaid: { type: Boolean, default: false }
-}, { timestamps: true });
+
 
 module.exports = citaDB.model('Appointment', appointmentSchema);
