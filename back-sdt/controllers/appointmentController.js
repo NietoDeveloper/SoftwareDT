@@ -32,13 +32,6 @@ const appointmentBooking = asyncHandler(async (req, res) => {
             }
 
 
-        } else {
-            return res.status(500).json({ message: "Failed to create appointment! Server error encountered." });
-        }
-
-    } catch (error) {
-        return res.status(500).json({ message: "Server error encountered while booking appointment.", error: error.message });
-    }
         
 });
 
