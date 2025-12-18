@@ -20,16 +20,7 @@ const appointmentBooking = asyncHandler(async (req, res) => {
         });
 
         if(newAppointment) {
-            const user = await User.findByIdAndUpdate(
-                userId, 
-                { $push: {appointments:newAppointment._id}},
-                {new:true}
-            );
-            if (user) {
-                res.status(201).json({ newAppointment, message: "Appointment created successfully!" });
-            } else{
-                res.status(500).json({ message: "Failed to update user's appointment" });
-            }
+
 
 
         
