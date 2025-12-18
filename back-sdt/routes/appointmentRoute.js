@@ -9,34 +9,37 @@ const {
 
 /**
  * @route   POST /api/appointments
- * @desc    Crear una cita. Si viene con token (optionalAccess), se liga al userId. 
- * Si no, se procesa como Guest.
- * @access  Public / Optional Auth
+ * @desc    Crear una nueva cita (Guest o Logueado)
  */
 router.post(
     '/', 
-    asyncHandler(async (req, res) => {
-        // Validación rápida antes de ir al controller
-        const { doctorId, date, time } = req.body;
+    asyncHandler(async (req, res, next) => {
+        // 1. Validación rápida de campos obligatorios del body
+        // Nota: Asegúrate que el frontend envíe 'appointmentDate' y 'appointmentTime' 
+        // para que coincida con la lógica de tu controlador.
+        const { doctorId, appointmentDate, appointmentTime } = req.body;
         
-        if (!doctorId || !date || !time) {
-            return res.status(400).json({ message: 'Doctor ID, fecha y hora son requeridos.' });
+        if (!doctorId || !appointmentDate || !appointmentTime) {
+            return res.status(400).json({ 
+                message: 'Faltan datos críticos: doctorId, appointmentDate o appointmentTime.' 
+            });
         }
 
-        // Llamamos a la función del controlador
-        await appointmentBooking(req, res);
+        // 2. Ejecutar el controlador
+        // Pasamos req, res y next explícitamente para asegurar el flujo
+        await appointmentBooking(req, res, next);
     })
 );
 
 /**
  * @route   GET /api/appointments
- * @desc    Listar todas las citas (Admin)
+ * @desc    Listar todas las citas (Solo para vista administrativa)
  */
 router.get('/', asyncHandler(getAppointments));
 
 /**
  * @route   GET /api/appointments/user/:userId
- * @desc    Listar citas específicas de un usuario
+ * @desc    Listar citas de un usuario específico
  */
 router.get('/user/:userId', asyncHandler(getUserAppointments));
 
