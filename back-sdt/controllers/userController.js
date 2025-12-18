@@ -95,7 +95,6 @@ const userLogin = asyncHandler(async (req, res) => {
     foundUser.refreshToken = [...(foundUser.refreshToken || []), refreshToken];
     await foundUser.save();
 
-    // Exclude sensitive fields from user data for client response
     const userData = await User.findById(foundUser._id).select('-password -refreshToken -email');
 
     res.cookie('jwt', refreshToken, {
