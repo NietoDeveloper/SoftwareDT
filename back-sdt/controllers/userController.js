@@ -98,7 +98,6 @@ const userLogin = asyncHandler(async (req, res) => {
     // Exclude sensitive fields from user data for client response
     const userData = await User.findById(foundUser._id).select('-password -refreshToken -email');
 
-    // Set refresh token as a cookie
     res.cookie('jwt', refreshToken, {
         httpOnly: true,
         sameSite: 'None', 
