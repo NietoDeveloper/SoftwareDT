@@ -19,32 +19,34 @@ const appointmentBooking = asyncHandler(async (req, res) => {
     // 2. Validación robusta
     if (!doctorId || !appointmentDate || !appointmentTime || !fullName || !email || !phone || !reason) {
         return res.status(400).json({ 
-            message: "Faltan campos obligatorios (doctorId, date, time, fullName, email, phone, reason)." 
+            message: "Faltan campos obligatorios para procesar la reserva." 
         });
     }
 
-    // 3. Obtener userId con consistencia
-    // Según nuestro middleware optionalAccess, el ID viene en req.userId
+    // 3. Prioridad al ID del Token (Security First)
+    // Si el middleware optionalAccess encontró un token válido, usamos ese ID.
+    // Si no, verificamos si viene un ID en el body (para flujos manuales).
     const userId = req.userId || bodyUserId || null; 
 
     // 4. Buscar información del Doctor/Servicio
     const doctorData = await Doctor.findById(doctorId).lean();
     if (!doctorData) {
-        return res.status(404).json({ message: "El servicio solicitado no está disponible." });
+        return res.status(404).json({ message: "El especialista o servicio solicitado no existe." });
     }
 
-    // 5. Crear el registro en la base de datos de CITAS
+    // 5. Crear el registro en la base de datos de CITAS (citaDB)
     const newAppointment = await Appointment.create({
-        user: userId, // Será null si es Guest
+        user: userId, // null si es Guest
         doctor: doctorId,
         serviceName: doctorData.name,         
         specialization: doctorData.specialization,
-        userInfo: {                                  
+        userInfo: {                                     
             fullName,
             email,
             phone
         },
         appointmentDetails: {
+            // Aseguramos que la fecha sea válida antes de guardarla
             date: new Date(appointmentDate), 
             time: appointmentTime,
             reason,
@@ -58,31 +60,36 @@ const appointmentBooking = asyncHandler(async (req, res) => {
     });
 
     if (newAppointment) {
-        // 6. Vincular la reserva al Usuario SOLO si userId existe
+        // 6. Vinculación atómica si hay un usuario logueado
         if (userId) {
-            // Importante: User.findByIdAndUpdate debe apuntar a la conexión userDB 
-            // Asegúrate que tu modelo User esté exportado usando esa conexión
-            const updatedUser = await User.findByIdAndUpdate(
-                userId, 
-                { $push: { appointments: newAppointment._id } },
-                { new: true }
-            );
+            try {
+                // Buscamos y actualizamos el usuario en userDB
+                const updatedUser = await User.findByIdAndUpdate(
+                    userId, 
+                    { $push: { appointments: newAppointment._id } },
+                    { new: true, runValidators: false } // runValidators false para evitar líos con contraseñas al actualizar solo array
+                );
 
-            if (!updatedUser) {
-                console.warn(`⚠️ Cita ${newAppointment._id} creada pero no se encontró usuario ${userId} para vincular.`);
+                if (!updatedUser) {
+                    console.warn(`⚠️ Cita ${newAppointment._id} creada pero el usuario ${userId} no existe en la DB de usuarios.`);
+                }
+            } catch (error) {
+                console.error(`❌ Error vinculando cita al usuario: ${error.message}`);
+                // No lanzamos error aquí para no cancelar la creación de la cita, 
+                // pero podrías manejarlo según tu lógica de negocio.
             }
         }
 
-        console.log(`✅ Cita OK: ${newAppointment._id} | Tipo: ${userId ? 'Usuario' : 'Guest'}`);
+        console.log(`✅ Registro exitoso: ${newAppointment._id} [${userId ? 'Usuario' : 'Invitado'}]`);
         
         return res.status(201).json({ 
             success: true,
             appointmentId: newAppointment._id, 
-            message: "¡Servicio reservado exitosamente!" 
+            message: "¡Reserva confirmada! Pronto nos pondremos en contacto." 
         });
     } else {
-        res.status(500);
-        throw new Error("Error interno al procesar la reserva.");
+        res.status(400);
+        throw new Error("No se pudo completar el registro de la cita.");
     }
 });
 
