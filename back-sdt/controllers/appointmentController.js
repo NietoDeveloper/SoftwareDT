@@ -36,22 +36,6 @@ const appointmentBooking = asyncHandler(async (req, res) => {
         user: userId,
         doctor: doctorId,
         doctorName: doctorData.name,         // Info de la tarjeta
-        specialization: doctorData.specialization, // Info de la tarjeta
-        patientInfo: {
-            fullName,
-            email,
-            phone
-        },
-        appointmentDetails: {
-            date: appointmentDate,
-            time: appointmentTime,
-            reason,
-            status: "pending"
-        },
-        paymentInfo: {
-            price: doctorData.ticketPrice || 0
-        }
-    });
 
     if (newAppointment) {
         // 6. Vincular la cita al historial del usuario
