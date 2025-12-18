@@ -15,18 +15,17 @@ const {
 router.post(
     '/', 
     asyncHandler(async (req, res, next) => {
-        // 1. Validación rápida de campos obligatorios
-        const { doctorId, appointmentDate, appointmentTime } = req.body;
+        // 1. Validación rápida de campos obligatorios en la capa de ruta
+        const { doctorId, appointmentDate, appointmentTime, fullName, email, phone, reason } = req.body;
         
-        if (!doctorId || !appointmentDate || !appointmentTime) {
+        if (!doctorId || !appointmentDate || !appointmentTime || !fullName || !email || !phone || !reason) {
             return res.status(400).json({ 
-                message: 'Faltan datos críticos: doctorId, appointmentDate o appointmentTime.' 
+                message: 'Información incompleta. Por favor verifique todos los campos.' 
             });
         }
 
-        // 2. Ejecutar el controlador
-        // Nota: Solo llamamos a next si el controlador no envía una respuesta, 
-        // pero appointmentBooking debería encargarse de res.json()
+        // 2. Ejecutar el controlador directamente
+        // Pasamos el flujo al controlador que ya importamos
         return appointmentBooking(req, res, next);
     })
 );
@@ -43,4 +42,5 @@ router.get('/', asyncHandler(getAppointments));
  */
 router.get('/user/:userId', asyncHandler(getUserAppointments));
 
+// CRÍTICO: Asegurar la exportación del router
 module.exports = router;
