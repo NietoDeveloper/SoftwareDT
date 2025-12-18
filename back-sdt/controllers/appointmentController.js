@@ -67,13 +67,7 @@ const appointmentBooking = asyncHandler(async (req, res) => {
                 success: true,
                 newAppointment, 
                 message: "¡Cita reservada y guardada en Atlas exitosamente!" 
-            });
-        } else {
-            res.status(500).json({ message: "Cita creada, pero no se pudo actualizar el perfil del usuario." });
-        }
-    } else {
-        res.status(500).json({ message: "Error interno al intentar crear la cita." });
-    }
+
 });
 
 module.exports = { appointmentBooking };
