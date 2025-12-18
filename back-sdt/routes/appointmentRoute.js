@@ -10,13 +10,12 @@ const {
 /**
  * @route   POST /api/appointments
  * @desc    Crear una nueva cita (Guest o Logueado)
+ * @access  Public/Optional (vía optionalAccess en server.js)
  */
 router.post(
     '/', 
     asyncHandler(async (req, res, next) => {
-        // 1. Validación rápida de campos obligatorios del body
-        // Nota: Asegúrate que el frontend envíe 'appointmentDate' y 'appointmentTime' 
-        // para que coincida con la lógica de tu controlador.
+        // 1. Validación rápida de campos obligatorios
         const { doctorId, appointmentDate, appointmentTime } = req.body;
         
         if (!doctorId || !appointmentDate || !appointmentTime) {
@@ -26,14 +25,15 @@ router.post(
         }
 
         // 2. Ejecutar el controlador
-        // Pasamos req, res y next explícitamente para asegurar el flujo
-        await appointmentBooking(req, res, next);
+        // Nota: Solo llamamos a next si el controlador no envía una respuesta, 
+        // pero appointmentBooking debería encargarse de res.json()
+        return appointmentBooking(req, res, next);
     })
 );
 
 /**
  * @route   GET /api/appointments
- * @desc    Listar todas las citas (Solo para vista administrativa)
+ * @desc    Listar todas las citas (Admin)
  */
 router.get('/', asyncHandler(getAppointments));
 
