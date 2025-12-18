@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const {handleDoctorLogin} = require('../../controllers/doctorController');
+// Importamos la función exacta definida en doctorController
+const { handleDoctorLogin } = require('../../controllers/doctorController');
 
-router.post('/', handleDoctorLogin)
+/**
+ * @route   POST /api/doctor/login
+ * @desc    Autenticación de doctores y generación de tokens
+ * @access  Public
+ */
+router.post('/', handleDoctorLogin);
 
-module.exports = router
+module.exports = router;
