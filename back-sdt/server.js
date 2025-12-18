@@ -31,31 +31,27 @@ app.get('/', (req, res) => {
     });
 });
 
-// --- RUTAS PÚBLICAS ---
+// --- RUTAS ---
+// Nota: Si alguna de estas lanza error, revisa que el archivo tenga "module.exports = router"
 
-// Auth Usuarios
 app.use('/api/user/register', require('./routes/userRoutes/userRegister'));
 app.use('/api/user/login', require('./routes/userRoutes/userLogin'));
 app.use('/api/user/refresh', require('./routes/userRoutes/userRefresh'));
 app.use('/api/user/logout', require('./routes/userRoutes/userLogout'));
 
-// Auth Doctores
 app.use('/api/doctor/register', require('./routes/doctorRoutes/doctorRegister'));
 app.use('/api/doctor/login', require('./routes/doctorRoutes/doctorLogin'));
 app.use('/api/doctor/refresh', require('./routes/doctorRoutes/doctorRefresh'));
 app.use('/api/doctor/logout', require('./routes/doctorRoutes/doctorLogout'));
 
-// Servicios y Doctores (Público)
 app.use('/api/doctors', require('./routes/allDoctors'));  
 
-// 🚀 Citas: Usamos optionalAccess para permitir Guests y Usuarios logueados
+// 🚀 Citas: Middleware opcional
 app.use('/api/appointments', optionalAccess, require('./routes/appointmentRoute'));
 
-// --- MIDDLEWARE DE AUTENTICACIÓN ESTRICTA ---
-// Solo lo que sigue requiere token obligatorio
+// --- PROTECCIÓN GLOBAL PARA RUTAS PRIVADAS ---
 app.use(verifyAccess); 
 
-// --- RUTAS PRIVADAS ---
 app.use('/api/user/update', require('./routes/userRoutes/userUpdateRoute'));
 app.use('/api/user/review', require('./routes/reviewRoute'));
 app.use('/api/doctor/update', require('./routes/doctorRoutes/doctorUpdate'));
@@ -66,6 +62,7 @@ app.use(unknownEndpoint);
 app.use(errorHandler);
 
 // --- CONEXIÓN Y ARRANQUE ---
+// Optimización: Solo arrancar si ambas DB están listas
 Promise.all([
     new Promise(resolve => userDB.once('open', resolve)),
     new Promise(resolve => citaDB.once('open', resolve))
