@@ -3,6 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
+const morgan = require('morgan'); // Agregado: Para logging de requests (instala con npm i morgan)
 
 const { userDB, citaDB } = require('./config/dbConn'); 
 const corsOptions = require('./config/corsOptions');
@@ -13,8 +14,9 @@ const { errorHandler } = require('./middleware/errorHandler');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.disable('etag'); 
+// app.disable('etag'); // Comentado: No es necesario a menos que tengas un motivo específico
 
+app.use(morgan('dev')); // Agregado: Loguea requests en consola para depurar (e.g., POST /api/appointments 201)
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -43,8 +45,11 @@ app.use('/api/doctor/refresh', require('./routes/doctorRoutes/doctorRefresh'));
 app.use('/api/doctor/logout', require('./routes/doctorRoutes/doctorLogout'));
 
 // 🚀 RUTA CRÍTICA: Servicios/Doctores (Pública para que el Booking Page cargue datos)
-// Esta ruta ahora maneja tanto GET / como GET /:id (gracias al cambio en routes/allDoctors)
 app.use('/api/doctors', require('./routes/allDoctors'));  
+
+// Nueva ruta para citas (Pública para permitir guests). Cambiada de /api/user/appointment a /api/appointments
+// Asume que appointmentRoute.js maneja POST, GET, etc.
+app.use('/api/appointments', require('./routes/appointmentRoute')); // <--- AQUÍ SE GUARDA LA CITA (POST). Movida arriba para ser pública
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -56,19 +61,20 @@ app.use(verifyAccess);
 
 // Rutas de Usuario
 app.use('/api/user/update', require('./routes/userRoutes/userUpdateRoute'));
-app.use('/api/user/appointment', require('./routes/appointmentRoute')); // <--- PARA CREAR LA CITA (POST)
 app.use('/api/user/review', require('./routes/reviewRoute'));
 
 // Rutas de Doctor
 app.use('/api/doctor/update', require('./routes/doctorRoutes/doctorUpdate'));
 app.use('/api/doctor/profile', require('./routes/bookingRoute'));
 
+// Opcional: Si quieres una ruta privada para ver mis citas (e.g., GET /api/user/my-appointments)
+// Puedes agregar aquí: app.use('/api/user/my-appointments', require('./routes/myAppointmentsRoute'));
+
 // Manejo de errores
 app.use(unknownEndpoint);
 app.use(errorHandler);
 
 // --- CONEXIÓN A BASES DE DATOS Y ARRANQUE ---
-
 
 Promise.all([
     new Promise(resolve => userDB.once('open', resolve)),
