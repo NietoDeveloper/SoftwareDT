@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const {updateDoctor} = require('../../controllers/doctorController');
+// Importamos la función exacta del controlador de doctores
+const { updateDoctor } = require('../../controllers/doctorController');
 
-router.put( '/:id', updateDoctor)
+/**
+ * @route   PUT /api/doctor/update/:id
+ * @desc    Actualizar información del perfil del doctor
+ * @access  Private (El middleware verifyAccess ya está en server.js)
+ */
+router.put('/:id', updateDoctor);
 
-module.exports = router
+module.exports = router;
