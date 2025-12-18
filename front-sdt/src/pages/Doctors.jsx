@@ -39,7 +39,7 @@ const DoctorList = () => {
     navigate(`/book-appointment/${doctor._id}`, { state: { doctorData: doctor } });
   };
 
-  if (isLoading) return <h1 className="text-center py-10 text-xl font-bold text-black">Cargando Doctores....</h1>;
+  if (isLoading) return <h1 className="text-center py-10 text-xl font-bold text-black">Cargando Servicios....</h1>;
 
   if (error) return <h1 className="text-center py-10 text-red-600 text-xl font-bold">Error cargando los Datos.</h1>;
 
