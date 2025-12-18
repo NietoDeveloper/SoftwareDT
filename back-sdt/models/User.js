@@ -17,7 +17,7 @@ const userSchema = new Schema({
     // Campo especial para el Desarrollador/Administrador
     adminMessage: { 
         type: String, 
-        default: "" // Aquí es donde escribirás el contenido exclusivo para el usuario
+        default: "Mensaje De Dev:  Cuentas con los mas competentes y consistentes Ingenieros de Software De Colombia." // Aquí es donde escribirás el contenido exclusivo para el usuario
     },
 
     // Referencias a los servicios contratados
