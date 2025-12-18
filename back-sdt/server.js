@@ -7,14 +7,13 @@ const morgan = require('morgan'); // Agregado: Para logging de requests (instala
 
 const { userDB, citaDB } = require('./config/dbConn'); 
 const corsOptions = require('./config/corsOptions');
-const { verifyAccess } = require('./middleware/verifyAccess');
+const verifyAccess = require('./middleware/verifyAccess'); // Cambiado a require normal
+const optionalAccess = require('./middleware/optionalAccess'); // Agregado: Nuevo middleware para auth opcional
 const { unknownEndpoint } = require('./middleware/notFound');
 const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-// app.disable('etag'); // Comentado: No es necesario a menos que tengas un motivo específico
 
 app.use(morgan('dev')); // Agregado: Loguea requests en consola para depurar (e.g., POST /api/appointments 201)
 app.use(cors(corsOptions));
@@ -47,9 +46,8 @@ app.use('/api/doctor/logout', require('./routes/doctorRoutes/doctorLogout'));
 // 🚀 RUTA CRÍTICA: Servicios/Doctores (Pública para que el Booking Page cargue datos)
 app.use('/api/doctors', require('./routes/allDoctors'));  
 
-// Nueva ruta para citas (Pública para permitir guests). Cambiada de /api/user/appointment a /api/appointments
-// Asume que appointmentRoute.js maneja POST, GET, etc.
-app.use('/api/appointments', require('./routes/appointmentRoute')); // <--- AQUÍ SE GUARDA LA CITA (POST). Movida arriba para ser pública
+// Nueva ruta para citas (Pública con auth opcional). Cambiada de /api/user/appointment a /api/appointments
+app.use('/api/appointments', optionalAccess, require('./routes/appointmentRoute')); // <--- Agregado optionalAccess para manejar logueados/guests
 
 app.use(express.static(path.join(__dirname, 'public')));
 

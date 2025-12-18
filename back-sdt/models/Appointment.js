@@ -4,7 +4,7 @@ const { citaDB } = require('../config/dbConn');
 
 const appointmentSchema = new Schema({
     // Referencias a los IDs originales (Lógica de base de datos)
-    user: { type: mongoose.Types.ObjectId, ref: "User", required: true },
+    user: { type: mongoose.Types.ObjectId, ref: "User", required: false, default: null }, // Corregido: No required para guests (default null)
     doctor: { type: mongoose.Types.ObjectId, ref: "Doctor", required: true }, // Mantiene 'doctor' para no romper la relación con la colección
 
     // Información Denormalizada del Servicio (Para la "Tarjeta")
@@ -20,7 +20,7 @@ const appointmentSchema = new Schema({
 
     // Detalles del Servicio Reservado
     appointmentDetails: {
-        date: { type: String, required: true },         // 'YYYY-MM-DD'
+        date: { type: Date, required: true },           // Corregido: Type Date para mejor manejo (convierte en controller)
         time: { type: String, required: true },         // 'HH:MM'
         reason: { type: String, required: true },
         status: {
@@ -39,6 +39,10 @@ const appointmentSchema = new Schema({
 }, { 
     timestamps: true 
 });
+
+// Agregado: Índices para queries eficientes (e.g., buscar citas por doctor y date)
+appointmentSchema.index({ doctor: 1, 'appointmentDetails.date': 1 });
+appointmentSchema.index({ user: 1 });
 
 // Exportación mediante la conexión citaDB (Base de datos sdt2)
 module.exports = citaDB.model('Appointment', appointmentSchema);
