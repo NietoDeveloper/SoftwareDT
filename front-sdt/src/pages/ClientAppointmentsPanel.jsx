@@ -155,7 +155,7 @@ const ClientAppointmentsPanel = () => {
                 <Bell size={16} className="text-black animate-pulse" />
               </div>
               <h2 className="text-base font-black text-black uppercase tracking-tighter">
-                NietoDev Direct
+                Software Engineer 
               </h2>
             </div>
 
@@ -168,7 +168,7 @@ const ClientAppointmentsPanel = () => {
                   <div className="w-8 h-8 bg-black rounded-full border border-amber-500 overflow-hidden">
                       <img src="https://softwaredt.vercel.app/favicon.ico" alt="Dev" className="w-full h-full object-cover" />
                   </div>
-                  <p className="text-[9px] font-black text-black uppercase tracking-widest">Software Engineer Manuel Nieto</p>
+                  <p className="text-[9px] font-black text-black uppercase tracking-widest">Manuel Nieto</p>
                 </div>
               </div>
 

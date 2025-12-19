@@ -10,7 +10,8 @@ const Header = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        navigate('/doctor/login');
+        // Ajustado para redirigir al login general tras cerrar sesión
+        navigate('/login');
     };
 
     return (
@@ -33,7 +34,6 @@ const Header = () => {
                         <Link to="/clients" className="text-black hover:text-yellow-500 font-medium transition-colors">Nuestros Clientes</Link>
                         <Link to="/contact" className="text-black hover:text-yellow-500 font-medium transition-colors">Contacto</Link>
                         
-                        {/* AJUSTE: Redirección a Panel Cliente */}
                         <Link to="/client-appointments" className="text-black hover:text-yellow-500 font-medium transition-colors">Panel Cliente</Link>
                       
                         {isLoggedIn ? (
@@ -45,10 +45,12 @@ const Header = () => {
                             </button>
                         ) : (
                             <div className="flex items-center space-x-4">
-                                <Link to="/doctor/login" className="text-black font-medium hover:text-yellow-500 transition-colors">
+                                {/* AJUSTE: Redirección a Login.jsx */}
+                                <Link to="/login" className="text-black font-medium hover:text-yellow-500 transition-colors">
                                     Login
                                 </Link>
-                                <Link to="/doctor/signup" className="text-black font-medium hover:text-yellow-500 transition-colors font-bold">
+                                {/* AJUSTE: Redirección a Signup.jsx */}
+                                <Link to="/signup" className="text-black font-medium hover:text-yellow-500 transition-colors font-bold">
                                     Registro
                                 </Link>
                             </div>
@@ -113,7 +115,6 @@ const Header = () => {
                             Nuestros Clientes
                         </Link>
 
-                        {/* AJUSTE: Redirección a Panel Cliente en Mobile */}
                         <Link
                             to="/client-appointments"
                             className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
@@ -131,15 +132,17 @@ const Header = () => {
                             </button>
                         ) : (
                             <>
+                                {/* AJUSTE: Redirección a Login.jsx en Mobile */}
                                 <Link
-                                    to="/doctor/login"
+                                    to="/login"
                                     className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center transition-colors"
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     Login
                                 </Link>
+                                {/* AJUSTE: Redirección a Signup.jsx en Mobile */}
                                 <Link
-                                    to="/doctor/signup"
+                                    to="/signup"
                                     className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-yellow-500 hover:bg-yellow-50 text-center font-bold transition-colors"
                                     onClick={() => setIsMenuOpen(false)}
                                 >
