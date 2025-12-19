@@ -76,24 +76,7 @@ const DoctorList = () => {
                   {doctor.name}
                 </h3>
                 
-                {/* Span reubicado abajo del título con Margin Top y mejor fuente */}
-                <span className="mt-4 text-[12px] font-black text-black bg-transparent group-hover:bg-amber-500 px-4 py-1.5 rounded-lg uppercase tracking-[0.2em] transition-colors duration-300">
 
-
-              {/* Botón Acción */}
-              <div className="flex flex-col items-center gap-4">
-                <span className="text-[10px] font-black uppercase tracking-tighter text-gray-500 group-hover:text-black transition-colors">
-                  Protocolo de Inicio
-                </span>
-                <div className="w-14 h-14 rounded-full border-[3px] border-black flex items-center justify-center 
-                                group-hover:bg-black group-hover:border-black transition-all duration-300
-                                shadow-[5px_5px_0px_#f59e0b] group-hover:shadow-none group-hover:scale-110">
-                  <ArrowRightIcon className="text-black group-hover:text-amber-500 transition-colors" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
       
       <div className="w-full mt-12">
