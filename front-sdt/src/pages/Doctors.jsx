@@ -55,12 +55,7 @@ const DoctorList = () => {
               className="group bg-white rounded-lg p-6 transition-all duration-300 cursor-pointer flex flex-col items-center justify-between text-center w-full max-w-[280px] h-[550px] shadow-lg hover:shadow-2xl hover:translate-y-[-10px] hover:bg-yellow-50 text-black"
               onClick={() => navigateToBooking(doctor)} // Pasamos el objeto completo
             >
-              <div>
-                <h1 className="text-xl font-semibold mt-4 text-black group-hover:text-amber-700">{doctor.name}</h1>
-                <h2 className="text-lg text-gray-600 mt-2">{doctor.specialization}</h2>
-                <p className="text-sm text-gray-500 mt-4">Puntaje: {doctor.totalRating || 0}</p>
-                <p className="text-md text-black mt-6 line-clamp-4">{doctor.bio}</p>
-              </div>
+
 
               <div className="w-10 h-10 rounded-full border border-black flex items-center justify-center group-hover:bg-amber-500 transition-colors mt-6">
                 <ArrowRightIcon className="text-black group-hover:text-white" />
