@@ -49,31 +49,7 @@ const DoctorList = () => {
             <div className="w-8 h-[2px] bg-amber-500 shadow-[0_0_8px_#f59e0b]"></div>
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Engineering Solutions</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter">
-            Nuestros <span className="text-amber-500">Servicios</span>
-          </h1>
-          <h2 className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-[0.2em]">
-            Selecciona una arquitectura de trabajo
-          </h2>
-        </div>
 
-        {/* Grid Responsivo (320px a 1800px) */}
-        <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
-          {doctors.map((doctor) => (
-            <div
-              key={doctor._id}
-              className="group bg-white border-2 border-gray-50 rounded-[35px] p-8 transition-all duration-300 ease-out cursor-pointer 
-                         flex flex-col items-center justify-between text-center 
-                         w-full sm:max-w-[320px] h-[580px] 
-                         shadow-[0_10px_30px_rgba(0,0,0,0.03)] 
-                         hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] 
-                         hover:-translate-y-3 hover:border-amber-500/30"
-
-
-
-          ))}
-        </div>
-      </div>
       
       <div className="w-full mt-12">
         <Footer />
