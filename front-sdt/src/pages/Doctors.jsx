@@ -71,18 +71,6 @@ const DoctorList = () => {
 
 
 
-              {/* Botón Circular Gold con Movimiento */}
-              <div className="flex flex-col items-center gap-4">
-                <span className="text-[10px] font-black uppercase tracking-tighter text-gray-400 group-hover:text-black transition-colors">
-                  Ver Detalles
-                </span>
-                <div className="w-14 h-14 rounded-full border-2 border-black flex items-center justify-center 
-                                group-hover:bg-black group-hover:border-black transition-all duration-300
-                                shadow-[4px_4px_0px_#f59e0b] group-hover:shadow-none group-hover:scale-110">
-                  <ArrowRightIcon className="text-black group-hover:text-amber-500 transition-colors" />
-                </div>
-              </div>
-            </div>
           ))}
         </div>
       </div>
