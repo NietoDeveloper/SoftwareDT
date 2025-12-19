@@ -116,15 +116,7 @@ const AppointmentConfirmation = () => {
             to="/doctors"
             className="py-5 px-10 bg-white text-black border-4 border-black font-black rounded-2xl transition-all duration-300 hover:border-amber-500 hover:text-amber-600 hover:scale-[1.02] text-center uppercase text-sm tracking-[0.15em]"
           >
-            Explorar más Servicios
-          </Link>
-        </div>
-      </div>
-      
-      <p className="mb-12 text-[11px] font-black text-black uppercase tracking-[0.3em] opacity-30">
-        SoftwareDT • Bogotá Colombia • 2025
-      </p>
-    </div>
+
   );
 };
 
