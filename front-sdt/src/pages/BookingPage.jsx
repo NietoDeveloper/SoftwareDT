@@ -227,13 +227,7 @@ const BookingPage = () => {
                   <textarea name="reason" value={formData.reason} onChange={handleInputChange} required minLength={10} className="w-full border border-black p-4 rounded-lg h-32 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none resize-none bg-white text-black transition-all" placeholder="Indica brevemente el motivo o requerimiento..." />
                 </div>
 
-                <button 
-                  type="submit" 
-                  disabled={isSubmitting || !formData.appointmentTime} 
-                  className={`group relative w-full py-5 rounded-lg font-black text-black text-xl uppercase tracking-widest border-2 border-black transition-all duration-300 hover:bg-amber-500 hover:border-amber-500 hover:text-white hover:shadow-[0_15px_30px_rgba(245,158,11,0.4)] active:scale-95 ${isSubmitting ? 'bg-gray-200 border-gray-200 cursor-not-allowed' : 'bg-transparent'}`}
-                >
-                  {isSubmitting ? "Procesando..." : "Confirmar Servicio"}
-                </button>
+
 
               </form>
             </div>
