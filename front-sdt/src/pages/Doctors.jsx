@@ -13,13 +13,6 @@ const ArrowRightIcon = (props) => (
 );
 
 const DoctorList = () => {
-  const navigate = useNavigate();
-
-  const getDoctors = async () => {
-    try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-      // Eliminamos el exceso de headers manuales, React Query ya maneja el cache eficientemente
-      const res = await axios.get(`${apiUrl}/doctors`);
 
 
   const { data: doctors = [], error, isLoading } = useQuery({
