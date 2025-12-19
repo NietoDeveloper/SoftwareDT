@@ -80,7 +80,6 @@ const AppointmentConfirmation = () => {
     <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50 font-sans">
       <div className="w-full max-w-3xl bg-white p-6 sm:p-10 rounded-2xl shadow-2xl border border-gray-100">
         
-        {/* Encabezado de Éxito */}
         <div className="text-center mb-10">
           <div className="mx-auto mb-4 w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center shadow-sm">
             <CheckCircle size={40} />
