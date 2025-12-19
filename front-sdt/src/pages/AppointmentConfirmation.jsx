@@ -165,13 +165,7 @@ const AppointmentConfirmation = () => {
 };
 
 const DetailItem = ({ icon, title, value }) => (
-  <div className="flex items-center p-4 bg-white border border-gray-100 rounded-xl shadow-sm">
-    <div className="text-amber-500 mr-4 bg-amber-50 p-2 rounded-lg">{icon}</div>
-    <div>
-      <p className="text-[10px] font-black text-gray-400 uppercase tracking-tighter">{title}</p>
-      <p className="text-sm font-bold text-gray-800">{value}</p>
-    </div>
-  </div>
+
 );
 
 export default AppointmentConfirmation;
