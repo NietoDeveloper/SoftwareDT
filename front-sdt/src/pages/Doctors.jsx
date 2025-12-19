@@ -53,7 +53,6 @@ const DoctorList = () => {
           </h1>
         </div>
 
-        {/* Grid Ajustado */}
         <div className="flex flex-wrap justify-center gap-8 lg:gap-10">
           {doctors.map((doctor) => (
             <div
