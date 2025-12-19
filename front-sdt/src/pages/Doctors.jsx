@@ -20,14 +20,7 @@ const DoctorList = () => {
       const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
       // Eliminamos el exceso de headers manuales, React Query ya maneja el cache eficientemente
       const res = await axios.get(`${apiUrl}/doctors`);
-      
-      // Ajuste según lo que vimos en tu consola (res.data suele ser donde están los datos)
-      return res.data.doctors || res.data; 
-    } catch (error) {
-      toast.error("Error al conectar con el servidor");
-      throw error;
-    }
-  };
+
 
   const { data: doctors = [], error, isLoading } = useQuery({
     queryKey: ["doctors"],
