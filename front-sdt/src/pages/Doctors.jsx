@@ -71,7 +71,7 @@ const DoctorList = () => {
               onClick={() => navigateToBooking(doctor)}
             >
               <div className="w-full">
-                {/* Badge de Categoría sutil */}
+            
                 <span className="text-[9px] font-black text-amber-600 bg-amber-50 px-3 py-1 rounded-full uppercase tracking-widest mb-6 inline-block">
                   {doctor.specialization || "General"}
                 </span>
