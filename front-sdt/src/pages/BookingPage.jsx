@@ -234,10 +234,7 @@ const BookingPage = () => {
                 >
                   {isSubmitting ? "Procesando..." : "Confirmar Servicio"}
                 </button>
-                
-                <p className="text-center text-[10px] font-bold text-black uppercase tracking-tighter opacity-50 mt-6 transition-opacity">
-                  Reserva segura • Confirmación inmediata del servicio
-                </p>
+
               </form>
             </div>
           </div>
