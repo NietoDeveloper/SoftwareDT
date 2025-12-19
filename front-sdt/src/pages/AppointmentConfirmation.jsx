@@ -145,13 +145,7 @@ const AppointmentConfirmation = () => {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-          <Link
-            to="/my-appointments"
-            className="py-4 px-8 bg-black text-white font-bold rounded-xl shadow-lg hover:bg-amber-600 transition-all duration-300 text-center uppercase text-sm tracking-widest"
-          >
-            Mis Servicios Reservados
-          </Link>
+
 
         </div>
       </div>
