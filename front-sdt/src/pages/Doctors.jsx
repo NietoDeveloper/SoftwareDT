@@ -76,7 +76,6 @@ const DoctorList = () => {
                 </span>
               </div>
 
-              {/* Contenedor Medio: Bio con Flex-Grow para centrar dinámicamente */}
               <div className="flex-1 flex items-center justify-center py-4 w-full">
                 <p className="text-gray-800 text-base md:text-lg font-bold leading-snug italic line-clamp-4">
                   "{doctor.bio}"
