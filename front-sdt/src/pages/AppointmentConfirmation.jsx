@@ -128,7 +128,6 @@ const AppointmentConfirmation = () => {
   );
 };
 
-// Sub-componente para los items del Grid
 const DetailItem = ({ icon, title, value }) => (
   <div className="group flex items-center p-5 bg-white border border-gray-200 rounded-2xl transition-all duration-300 hover:border-black hover:shadow-lg">
     <div className="text-black group-hover:text-amber-600 transition-colors mr-4 bg-gray-100 p-3 rounded-xl group-hover:bg-black">
