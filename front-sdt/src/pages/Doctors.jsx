@@ -44,12 +44,6 @@ const DoctorList = () => {
   if (error) return <h1 className="text-center py-10 text-red-600 text-xl font-bold">Error cargando los Datos.</h1>;
 
   return (
-    <div className="min-h-screen">
-      <div className="mx-auto px-4 py-8 max-w-screen-2xl">
-        <h1 className="text-4xl font-extrabold text-center mb-2 text-black">Servicios</h1>
-        <h2 className="text-2xl font-semibold text-center mb-8 text-black">Escoge Un Servicio</h2>
-        <div className="flex flex-wrap justify-center gap-6">
-          {doctors.map((doctor) => (
 
 
 
