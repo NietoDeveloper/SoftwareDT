@@ -62,7 +62,6 @@ const ClientAppointmentsPanel = () => {
 
       <div className="max-w-5xl mx-auto px-4 mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        {/* COLUMNA IZQUIERDA: Lista de Servicios */}
         <div className="lg:col-span-2 space-y-6">
           <h2 className="text-xl font-black text-black uppercase border-b-2 border-amber-500 inline-block mb-4">
             Servicios Contratados
