@@ -76,20 +76,6 @@ const DoctorList = () => {
                   {doctor.specialization || "General"}
                 </span>
 
-                <h3 className="text-2xl font-black text-black uppercase tracking-tight mb-2 group-hover:text-amber-600 transition-colors duration-300">
-                  {doctor.name}
-                </h3>
-                
-                <div className="w-10 h-[2px] bg-black group-hover:bg-amber-500 mx-auto mb-4 transition-colors"></div>
-
-                <p className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-6">
-                  Rating: <span className="text-black">{doctor.totalRating || "5.0"}</span>
-                </p>
-
-                <p className="text-gray-500 text-sm font-medium leading-relaxed line-clamp-6 px-2">
-                  {doctor.bio}
-                </p>
-              </div>
 
               {/* Botón Circular Gold con Movimiento */}
               <div className="flex flex-col items-center gap-4">
