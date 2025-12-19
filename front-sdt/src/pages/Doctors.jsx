@@ -82,7 +82,6 @@ const DoctorList = () => {
                 </p>
               </div>
 
-              {/* Contenedor Inferior: Rating y Acción */}
               <div className="w-full flex flex-col items-center mt-auto flex-shrink-0">
                 <div className="w-12 h-[2px] bg-amber-500 mb-4 shadow-[0_0_4px_#f59e0b]"></div>
                 
