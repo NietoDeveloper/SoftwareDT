@@ -92,15 +92,6 @@ const AppointmentConfirmation = () => {
           />
         </div>
 
-        {/* Motivo del Servicio */}
-        <div className="mt-8 p-6 bg-gray-50 rounded-2xl border-l-8 border-black shadow-inner">
-          <p className="text-xs font-black text-black uppercase tracking-widest mb-3 opacity-60">
-            Motivo registrado
-          </p>
-          <p className="text-black font-medium text-lg italic leading-relaxed">
-            "{data.reason}"
-          </p>
-        </div>
 
 
   );
