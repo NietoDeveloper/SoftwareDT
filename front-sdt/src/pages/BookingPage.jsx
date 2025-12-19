@@ -222,10 +222,6 @@ const BookingPage = () => {
                   <p className="text-xs font-bold text-amber-700 uppercase">Sin horarios para esta fecha (Requiere 6h de antelación o fin de semana).</p>
                 )}
 
-                <div>
-                  <label className="block text-sm font-bold text-black mb-2 uppercase tracking-wide">Motivo del Servicio</label>
-                  <textarea name="reason" value={formData.reason} onChange={handleInputChange} required minLength={10} className="w-full border border-black p-4 rounded-lg h-32 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none resize-none bg-white text-black transition-all" placeholder="Indica brevemente el motivo o requerimiento..." />
-                </div>
 
 
 
