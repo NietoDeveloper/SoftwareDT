@@ -46,10 +46,6 @@ const DoctorList = () => {
   return (
 
 
-
-              <div className="w-10 h-10 rounded-full border border-black flex items-center justify-center group-hover:bg-amber-500 transition-colors mt-6">
-                <ArrowRightIcon className="text-black group-hover:text-white" />
-              </div>
             </div>
           ))}
         </div>
