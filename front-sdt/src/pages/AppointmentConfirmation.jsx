@@ -152,12 +152,7 @@ const AppointmentConfirmation = () => {
           >
             Mis Servicios Reservados
           </Link>
-          <Link
-            to="/doctors"
-            className="py-4 px-8 bg-white text-black border-2 border-black font-bold rounded-xl hover:bg-gray-100 transition-all duration-300 text-center uppercase text-sm tracking-widest"
-          >
-            Nuevo Servicio
-          </Link>
+
         </div>
       </div>
     </div>
