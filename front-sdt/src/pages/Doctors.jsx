@@ -68,13 +68,7 @@ const DoctorList = () => {
                          shadow-[0_10px_30px_rgba(0,0,0,0.03)] 
                          hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] 
                          hover:-translate-y-3 hover:border-amber-500/30"
-              onClick={() => navigateToBooking(doctor)}
-            >
-              <div className="w-full">
-            
-                <span className="text-[9px] font-black text-amber-600 bg-amber-50 px-3 py-1 rounded-full uppercase tracking-widest mb-6 inline-block">
-                  {doctor.specialization || "General"}
-                </span>
+
 
 
               {/* Botón Circular Gold con Movimiento */}
