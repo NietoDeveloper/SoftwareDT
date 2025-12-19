@@ -164,7 +164,7 @@ const AppointmentConfirmation = () => {
   );
 };
 
-const DetailItem = ({ icon, title, value }) => (
+
 
 );
 
