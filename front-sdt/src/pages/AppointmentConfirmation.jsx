@@ -102,20 +102,6 @@ const AppointmentConfirmation = () => {
           </p>
         </div>
 
-        {/* Botones de Acción (Gold Hovers) */}
-        <div className="mt-12 flex flex-col sm:flex-row justify-center gap-6">
-          <Link
-            to="/client-appointments"
-            className="group flex items-center justify-center gap-3 py-5 px-10 bg-black text-white font-black rounded-2xl shadow-xl transition-all duration-300 hover:bg-amber-500 hover:text-black hover:translate-y-[-5px] hover:shadow-[0_15px_30px_rgba(217,119,6,0.4)] text-center uppercase text-sm tracking-[0.15em]"
-          >
-            Panel Cliente
-            <ArrowRight className="transition-transform group-hover:translate-x-2" />
-          </Link>
-          
-          <Link
-            to="/doctors"
-            className="py-5 px-10 bg-white text-black border-4 border-black font-black rounded-2xl transition-all duration-300 hover:border-amber-500 hover:text-amber-600 hover:scale-[1.02] text-center uppercase text-sm tracking-[0.15em]"
-          >
 
   );
 };
