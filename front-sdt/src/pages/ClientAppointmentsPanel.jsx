@@ -110,7 +110,6 @@ const ClientAppointmentsPanel = () => {
           )}
         </div>
 
-        {/* COLUMNA DERECHA: Contenido del Desarrollador/Administrador */}
         <div className="lg:col-span-1">
           <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-6 sticky top-6 shadow-sm">
             <div className="flex items-center gap-2 mb-6">
