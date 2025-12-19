@@ -52,26 +52,6 @@ const DoctorList = () => {
           <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter">
             Nuestros <span className="text-amber-500">Servicios</span>
           </h1>
-          <h2 className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-[0.2em]">
-            Selecciona una arquitectura de trabajo
-          </h2>
-        </div>
-
-        {/* Grid Responsivo (320px a 1800px) */}
-        <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
-          {doctors.map((doctor) => (
-            <div
-              key={doctor._id}
-              className="group bg-white border-[4px] border-black rounded-[35px] p-8 transition-all duration-300 ease-out cursor-pointer 
-                         flex flex-col items-center justify-between text-center 
-                         w-full sm:max-w-[340px] h-[620px] 
-                         shadow-[0_10px_30px_rgba(0,0,0,0.03)] 
-                         hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)] 
-                         hover:-translate-y-3 hover:border-amber-500"
-              onClick={() => navigateToBooking(doctor)}
-            >
-              <div className="w-full flex flex-col items-center">
-                {/* Título */}
 
 
 export default DoctorList;
