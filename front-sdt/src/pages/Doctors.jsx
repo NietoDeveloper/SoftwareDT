@@ -72,18 +72,6 @@ const DoctorList = () => {
             >
               <div className="w-full flex flex-col items-center">
                 {/* Título */}
-                <h3 className="text-2xl font-black text-black uppercase tracking-tight group-hover:text-amber-600 transition-colors duration-300">
-                  {doctor.name}
-                </h3>
-                
 
-      </div>
-      
-      <div className="w-full mt-12">
-        <Footer />
-      </div>
-    </div>
-  );
-};
 
 export default DoctorList;
