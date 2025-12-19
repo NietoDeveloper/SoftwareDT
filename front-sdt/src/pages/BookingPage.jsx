@@ -216,11 +216,7 @@ const BookingPage = () => {
                       ))}
                     </select>
                   </div>
-                </div>
 
-                {formData.appointmentDate && availableTimes.length === 0 && (
-                  <p className="text-xs font-bold text-amber-700 uppercase">Sin horarios para esta fecha (Requiere 6h de antelación o fin de semana).</p>
-                )}
 
 
 
