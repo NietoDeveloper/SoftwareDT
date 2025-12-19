@@ -15,9 +15,6 @@ const ArrowRightIcon = (props) => (
 const DoctorList = () => {
 
 
-  const { data: doctors = [], error, isLoading } = useQuery({
-    queryKey: ["doctors"],
-    queryFn: getDoctors,
   });
 
   // FUNCIÓN CLAVE: Pasamos el objeto 'doctor' completo en el estado de navegación
