@@ -50,11 +50,7 @@ const DoctorList = () => {
         <h2 className="text-2xl font-semibold text-center mb-8 text-black">Escoge Un Servicio</h2>
         <div className="flex flex-wrap justify-center gap-6">
           {doctors.map((doctor) => (
-            <div
-              key={doctor._id}
-              className="group bg-white rounded-lg p-6 transition-all duration-300 cursor-pointer flex flex-col items-center justify-between text-center w-full max-w-[280px] h-[550px] shadow-lg hover:shadow-2xl hover:translate-y-[-10px] hover:bg-yellow-50 text-black"
-              onClick={() => navigateToBooking(doctor)} // Pasamos el objeto completo
-            >
+
 
 
               <div className="w-10 h-10 rounded-full border border-black flex items-center justify-center group-hover:bg-amber-500 transition-colors mt-6">
