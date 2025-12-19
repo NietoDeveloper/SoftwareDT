@@ -9,40 +9,67 @@ import Footer from "../components/Footer/Footer";
 
 const Home = () => {
   return (
-    <>
-      <section className={`h-[100vh] w-full relative flex justify-center`}>
+    <div className="bg-[#fcfcfc] antialiased">
+      {/* VIDEO SECTION - Manteniendo posición y forma */}
+      <section className="h-[100vh] w-full relative flex justify-center overflow-hidden">
         <video
           autoPlay
           loop
           muted
-          className="absolute w-full h-full object-cover z-0"
+          playsInline
+          className="absolute w-full h-full object-cover z-0 opacity-90"
           src={BogotaAir1}
         />
+        {/* Overlay sutil para mejorar legibilidad si hay componentes encima */}
+        <div className="absolute inset-0 bg-black/10 z-[1]"></div>
       </section>
-      <section className="hero_section 2xl:h-[110vh]">
 
-        <div className="container">
-          <div className=" w-full">
-            <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between">
+      {/* HERO SECTION - Ajustes de color y hover sutil */}
+      <section className="hero_section 2xl:h-[110vh] py-16 lg:py-24 max-w-[1800px] mx-auto px-4 sm:px-8">
+        <div className="container mx-auto">
+          <div className="w-full">
+            <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between text-black group">
+              {/* Los estilos de letras negras y hover gold se heredan a Herosection */}
+              <style dangerouslySetInnerHTML={{ __html: `
+                .hero_section h1, .hero_section p, .hero_section span { color: #000000; }
+                .hero_section button:hover { 
+                  background-color: #f59e0b !important; 
+                  color: #000 !important;
+                  transform: translateY(-3px);
+                  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                }
+              `}} />
               <Herosection />
             </div>
           </div>
         </div>
       </section>
 
-      <Medcare />
+      {/* BLOQUES INTERMEDIOS - Aplicando sombra suave y transiciones */}
+      <main className="max-w-[1800px] mx-auto overflow-hidden">
+        <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
+          <Medcare />
+        </div>
 
-      <About />
+        <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
+          <About />
+        </div>
 
-      <Services />
+        <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
+          <Services />
+        </div>
 
-      <Guide />
+        <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
+          <Guide />
+        </div>
 
-      <Questions />
+        <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
+          <Questions />
+        </div>
+      </main>
 
       <Footer />
-
-    </>
+    </div>
   );
 };
 
