@@ -66,7 +66,6 @@ const DoctorList = () => {
                          hover:-translate-y-2 hover:border-amber-500"
               onClick={() => navigateToBooking(doctor)}
             >
-              {/* Contenedor Superior: Título y Especialidad */}
               <div className="w-full flex flex-col items-center flex-shrink-0">
                 <h3 className="text-xl font-black text-black uppercase tracking-tight group-hover:text-amber-600 transition-colors duration-300 truncate w-full">
                   {doctor.name}
