@@ -29,7 +29,7 @@ const AppointmentConfirmation = () => {
       setError(null);
 
       try {
-        // Simulación de fetch a la API (Próximamente axios.get(`/appointments/${appointmentId}`))
+
         await new Promise((resolve) => setTimeout(resolve, 1500)); 
 
         // Estructura idéntica a la que guardamos en Atlas
