@@ -94,7 +94,7 @@ const AppointmentConfirmation = () => {
         </div>
 
         <div className="space-y-6">
-          {/* Tarjeta del Servicio Asignado */}
+
           <div className="flex items-center p-6 bg-amber-50 rounded-2xl border border-amber-100 transition-hover hover:bg-amber-100/50">
             <IconWrapper>
               <Briefcase className="h-7 w-7" />
