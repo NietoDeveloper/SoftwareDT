@@ -112,7 +112,6 @@ const AppointmentConfirmation = () => {
             </div>
           </div>
 
-          {/* Grid de Detalles (UserInfo y AppointmentDetails) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <DetailItem 
               icon={<Calendar className="h-5 w-5" />} 
