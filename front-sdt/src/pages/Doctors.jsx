@@ -78,20 +78,7 @@ const DoctorList = () => {
                 
                 {/* Span reubicado abajo del título con Margin Top y mejor fuente */}
                 <span className="mt-4 text-[12px] font-black text-black bg-transparent group-hover:bg-amber-500 px-4 py-1.5 rounded-lg uppercase tracking-[0.2em] transition-colors duration-300">
-                  {doctor.specialization || "General"}
-                </span>
 
-                <div className="w-16 h-[3px] bg-amber-500 my-6 shadow-[0_0_5px_#f59e0b]"></div>
-
-                {/* Contenido (Bio) Agrandado */}
-                <p className="text-gray-800 text-lg font-bold leading-relaxed line-clamp-6 px-2 italic">
-                  "{doctor.bio}"
-                </p>
-                
-                <p className="text-[12px] font-black text-gray-400 uppercase tracking-widest mt-6">
-                  Rating: <span className="text-black">{doctor.totalRating || "5.0"}</span>
-                </p>
-              </div>
 
               {/* Botón Acción */}
               <div className="flex flex-col items-center gap-4">
