@@ -77,7 +77,7 @@ const DoctorList = () => {
                 </h3>
                 
                 {/* Span reubicado abajo del título con Margin Top y mejor fuente */}
-                <span className="mt-4 text-[12px] font-black text-white bg-black group-hover:bg-amber-500 px-4 py-1.5 rounded-lg uppercase tracking-[0.2em] transition-colors duration-300">
+                <span className="mt-4 text-[12px] font-black text-black bg-transparent group-hover:bg-amber-500 px-4 py-1.5 rounded-lg uppercase tracking-[0.2em] transition-colors duration-300">
                   {doctor.specialization || "General"}
                 </span>
 
