@@ -5,99 +5,105 @@ import Footer from "../components/Footer/Footer";
 const clientData = [
   {
     id: 1,
-    title: "Microsoft",
-    description: "Colaboración en soluciones de cloud y AI.",
-    imageUrl:
-      "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/RWCZER-Legal-IP-Trademarks-CP-MS-logo-740x417-1?wid=406&hei=230&fit=crop&resSharp=1",
-    website: "https://www.microsoft.com/",
+    title: "Banco Agrario de Colombia",
+    description: "Desarrollo de sistemas transaccionales y seguridad bancaria.",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/10/Logo_Banco_Agrario.png",
+    website: "https://www.bancoagrario.gov.co/",
   },
   {
     id: 2,
     title: "Google",
-    description:
-      "Desarrollo de aplicaciones integradas con servicios de Google.",
-    imageUrl:
-      "https://storage.googleapis.com/gd-prod/images/a910d418-7123-4bc4-aa3b-ef7e25e74ae6.60c498c559810aa0.webp",
+    description: "Optimización de arquitecturas cloud y servicios de integración.",
+    imageUrl: "https://storage.googleapis.com/gd-prod/images/a910d418-7123-4bc4-aa3b-ef7e25e74ae6.60c498c559810aa0.webp",
     website: "https://www.google.com/",
   },
   {
     id: 3,
-    title: "Ministerio de Defensa Colombia",
-    description: "Sistemas de gestión segura para defensa nacional.",
-    imageUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/2/24/Logo_Ministerio_de_Defensa_%282022-2026%29.png",
+    title: "Ministerio de Defensa",
+    description: "Sistemas de gestión segura y protección de datos nacionales.",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/24/Logo_Ministerio_de_Defensa_%282022-2026%29.png",
     website: "https://www.mindefensa.gov.co/",
   },
   {
     id: 4,
-    title: "RCN Televisión Colombia",
-    description: "Plataformas digitales para medios de comunicación.",
-    imageUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/a/a3/CanalRCN2023.png",
+    title: "RCN Televisión",
+    description: "Plataformas digitales escalables para medios masivos.",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a3/CanalRCN2023.png",
     website: "https://www.canalrcn.com/",
   },
   {
     id: 5,
-    title: "Cliente Personalizado 1",
-    description: "Descripción personalizable.",
-    imageUrl: "", // Espacio para customizar con link online del logo
-    website: "", // Espacio para customizar con web de la empresa
+    title: "Tejas Ajover",
+    description: "Sistemas ERP y automatización de procesos industriales.",
+    imageUrl: "https://ajover.co/wp-content/uploads/2021/03/Logo-Ajover-3.png", 
+    website: "https://ajover.co/",
   },
   {
     id: 6,
-    title: "Cliente Personalizado 2",
-    description: "Descripción personalizable.",
-    imageUrl: "", // Espacio para customizar con link online del logo
-    website: "", // Espacio para customizar con web de la empresa
+    title: "Software DT",
+    description: "Arquitecturas propietarias y consultoría avanzada.",
+    imageUrl: "", // Placeholder del logo propio
+    website: "https://softwaredt.vercel.app/",
   },
 ];
 
 const OurClients = () => {
   return (
-    <div>
-      <section className="flex flex-col items-center p-4 sm:p-8 md:p-12 min-h-screen">
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-black mb-12 text-center">
-          Nuestros Clientes
-        </h2>
+    <div className="bg-[#fcfcfc] min-h-screen">
+      <section className="flex flex-col items-center py-20 px-4 sm:px-8">
+        {/* Cabecera Técnica */}
+        <div className="w-full max-w-[1800px] mb-16 text-center lg:text-left flex flex-col items-center lg:items-start lg:px-12">
+          <div className="inline-flex items-center gap-2 mb-4">
+            <div className="w-10 h-1 bg-amber-500"></div>
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Partners & Trust</span>
+          </div>
+          <h2 className="text-4xl sm:text-6xl font-black text-black uppercase tracking-tighter leading-none">
+            Nuestros <span className="text-amber-500 text-shadow-sm">Clientes</span>
+          </h2>
+        </div>
 
-        <div className="w-full max-w-[1400px]">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 sm:gap-10 justify-items-center">
+        {/* Grid Responsive de 320px a 1800px */}
+        <div className="w-full max-w-[1800px] px-4 lg:px-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {clientData.map((client) => (
               <a
                 key={client.id}
                 href={client.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group w-full max-w-sm flex flex-col items-center bg-white border border-gray-100 rounded-xl shadow-lg 
-                         p-6 transition-all duration-300 ease-in-out cursor-pointer 
-                         hover:shadow-2xl hover:border-yellow-400 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
-                style={{ minHeight: "320px" }}
+                className="group relative flex flex-col items-center bg-white border-[3px] border-black rounded-[30px] p-10 transition-all duration-300 hover:-translate-y-2 hover:shadow-[20px_20px_0px_0px_rgba(245,158,11,0.3)]"
               >
-                <div className="flex-shrink-0 w-32 h-32 mb-4">
+                {/* Logo Container con Efecto */}
+                <div className="flex-shrink-0 w-36 h-36 mb-6 relative">
+                  <div className="absolute inset-0 bg-amber-500 rounded-full scale-0 group-hover:scale-110 transition-transform duration-500 opacity-20"></div>
                   <img
-                    src={client.imageUrl || "/images/placeholder-logo.png"} // Placeholder si imageUrl está vacío
+                    src={client.imageUrl || "https://placehold.co/400x400/000000/F59E0B?text=DT"}
                     alt={`Logo de ${client.title}`}
-                    className="w-full h-full object-contain rounded-full border-4 border-gray-100 group-hover:border-yellow-500 transition-colors duration-300"
+                    className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-110 grayscale group-hover:grayscale-0"
                   />
                 </div>
 
-                <h3 className="text-xl font-semibold text-black mb-2 text-center group-hover:text-yellow-600 transition-colors duration-300">
+                {/* Título y Descripción en Negro */}
+                <h3 className="text-xl font-black text-black uppercase tracking-tight mb-3 text-center transition-colors group-hover:text-amber-600">
                   {client.title}
                 </h3>
 
-                <p className="text-gray-700 text-center flex-grow">
+                <p className="text-gray-600 font-medium text-center text-sm leading-relaxed mb-6">
                   {client.description}
                 </p>
 
-                <div className="mt-4 text-sm font-medium text-gray-500 group-hover:text-yellow-500 transition-colors duration-300">
-                  Visitar Web &rarr;
+                {/* Link con Estética Gold al Hover */}
+                <div className="mt-auto inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 group-hover:text-black transition-colors">
+                  Protocolo Web <span className="text-amber-500 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </a>
             ))}
           </div>
         </div>
       </section>
-      <div className="w-full mt-5">
+
+      {/* Footer sin interrupciones visuales */}
+      <div className="w-full">
         <Footer />
       </div>
     </div>

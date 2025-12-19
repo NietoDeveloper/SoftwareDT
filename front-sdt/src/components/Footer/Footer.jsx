@@ -9,8 +9,8 @@ const Footer = () => {
   });
 
   return (
-    <footer className="relative min-h-screen w-full bg-black text-white flex items-center justify-center overflow-hidden">
-      {/* Video de Fondo con Overlay */}
+    <footer className="relative min-h-screen w-full bg-black flex items-center justify-center overflow-hidden">
+      {/* Background Video */}
       <video
         autoPlay
         loop
@@ -19,74 +19,92 @@ const Footer = () => {
         className="absolute inset-0 w-full h-full object-cover opacity-40"
         src={BogotaAir2}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-0"></div>
-
-      {/* Logo Superior */}
-      <div className="absolute top-10 left-1/2 transform -translate-x-1/2 z-20">
-        <img src={Logo} alt="logo" className="h-16 w-auto grayscale brightness-200 opacity-80" />
+      
+      {/* Logo superior */}
+      <div className="absolute top-12 left-1/2 transform -translate-x-1/2 z-20">
+        <img src={Logo} alt="logo" className="h-16 w-auto transition-transform hover:scale-110 duration-500" />
       </div>
 
-      {/* Tarjeta Pequeña Transparente (Glassmorphism) */}
-      <div className="relative z-10 w-full max-w-[90%] sm:max-w-[1800px] mx-auto flex items-center justify-center px-4">
-        <div className="backdrop-blur-md bg-white/5 border border-white/10 p-8 sm:p-12 rounded-[40px] w-full max-w-4xl shadow-2xl">
-          
-          {/* Header del Footer - Fuentes más pequeñas */}
-          <div className="text-center mb-10">
-            <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-[0.3em] text-white mb-2">
-              Software <span className="text-amber-500">DT</span>
-            </h1>
-            <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.5em] text-gray-400">
-              Dorado Technologies
+      {/* Content Container: Responsive 320px a 1800px */}
+      <div className="relative z-10 w-full max-w-[1800px] px-6 py-16 flex flex-col items-center text-center mt-20">
+        
+        {/* Títulos ajustados (Más pequeños y técnicos) */}
+        <div className="mb-12">
+          <h1 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-[0.3em] drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+            Software <span className="text-amber-500">D T</span>
+          </h1>
+          <h2 className="text-sm sm:text-base font-bold text-gray-300 uppercase tracking-[0.5em] mt-2">
+            Dorado Technologies
+          </h2>
+          <div className="w-12 h-[2px] bg-amber-500 mx-auto mt-4 shadow-[0_0_10px_#f59e0b]"></div>
+        </div>
+
+        {/* Eslogan con sombra */}
+        <h3 className="text-lg sm:text-xl font-black text-white uppercase tracking-widest mb-12 italic drop-shadow-md">
+          "Codificamos Para Servir"
+        </h3>
+
+        {/* Links Grid: Letras negras al hacer hover a Gold */}
+        <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-24 mb-16">
+          <div className="flex flex-col items-center md:items-start">
+            <ul className="text-sm sm:text-base font-bold text-white uppercase tracking-tighter space-y-4">
+              <li className="group">
+                <a href="#" className="transition-all duration-300 group-hover:text-amber-500 group-hover:translate-x-2 inline-block drop-shadow-[1px_1px_0px_rgba(0,0,0,1)]">
+                  Servicios
+                </a>
+              </li>
+              <li className="group">
+                <a href="#" className="transition-all duration-300 group-hover:text-amber-500 group-hover:translate-x-2 inline-block drop-shadow-[1px_1px_0px_rgba(0,0,0,1)]">
+                  Productos
+                </a>
+              </li>
+              <li className="group">
+                <a href="#" className="transition-all duration-300 group-hover:text-amber-500 group-hover:translate-x-2 inline-block drop-shadow-[1px_1px_0px_rgba(0,0,0,1)]">
+                  Contacto
+                </a>
+              </li>
+              <li className="group">
+                <a href="mailto:softwaredt@outlook.com" className="text-amber-500 transition-all duration-300 group-hover:text-white group-hover:scale-105 inline-block font-black">
+                  softwaredt@outlook.com
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="flex flex-col items-center md:items-start border-t md:border-t-0 md:border-l border-amber-500/30 pt-8 md:pt-0 md:pl-12">
+            <ul className="text-sm sm:text-base font-bold text-white uppercase tracking-tighter space-y-4">
+              <li className="group">
+                <a href="#" className="transition-all duration-300 group-hover:text-amber-500 group-hover:translate-x-2 inline-block drop-shadow-[1px_1px_0px_rgba(0,0,0,1)]">
+                  Proyectos
+                </a>
+              </li>
+              <li className="group">
+                <a href="#" className="transition-all duration-300 group-hover:text-amber-500 group-hover:translate-x-2 inline-block drop-shadow-[1px_1px_0px_rgba(0,0,0,1)]">
+                  Investigacion
+                </a>
+              </li>
+              <li className="group">
+                <a href="#" className="transition-all duration-300 group-hover:text-amber-500 group-hover:translate-x-2 inline-block drop-shadow-[1px_1px_0px_rgba(0,0,0,1)]">
+                  Sobre Software DT
+                </a>
+              </li>
+              <li className="group">
+                <a href="#" className="transition-all duration-300 group-hover:text-amber-500 group-hover:translate-x-2 inline-block drop-shadow-[1px_1px_0px_rgba(0,0,0,1)]">
+                  Trabaja con nosotros
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Info Inferior */}
+        <div className="mt-8 pt-8 border-t border-white/10 w-full max-w-2xl flex flex-col items-center gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
+            <p className="hover:text-amber-500 transition-colors">Copyright 2025 © Software DT</p>
+            <p className="text-white bg-black/50 px-3 py-1 rounded-full border border-white/10 shadow-lg">
+              {currentDateTime} — Bogotá, Colombia
             </p>
-            <div className="w-12 h-[1px] bg-amber-500 mx-auto mt-4"></div>
           </div>
-
-          {/* Enlaces con Hover Gold y Movimiento */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-8 mb-12">
-            <div className="flex flex-col items-center sm:items-end text-center sm:text-right">
-              <ul className="space-y-3">
-                {['Servicios', 'Productos', 'Contacto'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sm font-medium text-gray-300 hover:text-amber-500 hover:translate-x-2 inline-block transition-all duration-300 uppercase tracking-widest">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-                <li>
-                  <a href="mailto:softwaredt@outlook.com" className="text-xs font-bold text-amber-500/80 hover:text-amber-500 transition-colors">
-                    softwaredt@outlook.com
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-              <ul className="space-y-3">
-                {['Proyectos', 'Investigacion', 'Sobre Software DT', 'Trabaja con nosotros'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sm font-medium text-gray-300 hover:text-amber-500 hover:-translate-x-2 inline-block transition-all duration-300 uppercase tracking-widest">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Barra Inferior (Metadata) */}
-          <div className="border-t border-white/10 pt-8 flex flex-col items-center justify-center gap-4">
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-500">
-              Codificamos Para Servir
-            </p>
-            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-gray-500 font-medium text-[10px] uppercase tracking-widest">
-              <span>© 2025 Copyright</span>
-              <span className="hidden sm:block text-white/20">|</span>
-              <span>{currentDateTime}</span>
-              <span className="hidden sm:block text-white/20">|</span>
-              <span className="text-gray-400">Bogotá, Colombia</span>
-            </div>
-          </div>
-
         </div>
       </div>
     </footer>
