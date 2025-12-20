@@ -45,32 +45,7 @@ const Home = () => {
 
         /* Animación de entrada al hacer scroll */
         .fade-in-section {
-          opacity: 0;
-          transform: translateY(20px);
-          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in-section.is-visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      `}} />
 
-        <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
-          <Services />
-        </div>
-
-        <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
-          <Guide />
-        </div>
-
-        <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)] mb-10">
-          <Questions />
-        </div>
-      </main>
-
-      <Footer />
-    </div>
-  );
 };
 
 export default Home;
