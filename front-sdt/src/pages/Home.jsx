@@ -25,20 +25,7 @@ const Home = () => {
 
       {/* HERO SECTION - Ajustes de color y hover sutil */}
       <section className="hero_section 2xl:h-[110vh] py-16 lg:py-24 max-w-[1800px] mx-auto px-4 sm:px-8">
-        <div className="container mx-auto">
-          <div className="w-full">
-            <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between text-black group">
-              {/* Los estilos de letras negras y hover gold se heredan a Herosection */}
-              <style dangerouslySetInnerHTML={{ __html: `
-                .hero_section h1, .hero_section p, .hero_section span { color: #000000; }
-                .hero_section button:hover { 
-                  background-color: #f59e0b !important; 
-                  color: #000 !important;
-                  transform: translateY(-3px);
-                  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                }
-              `}} />
-              <Herosection />
+
             </div>
           </div>
         </div>
