@@ -22,17 +22,7 @@ const ServicesList = () => {
       description:
         "Software Actual,  Technologias de Vanguardia.",
       photo: functionalPlaceholder,
-      price: "Desde  $ 5.000.000 COP",
-    },
-    {
-      title: "Mantenimiento y Soporte IT",
-      subtitle: "Continuidad del negocio",
-      description:
-        "Soporte técnico continuo, monitorización de servidores, actualizaciones de seguridad y mantenimiento preventivo para garantizar la operatividad de tus sistemas.",
-      photo: functionalPlaceholder,
-      price: "Desde  $ 8.000.000 COP",
-e: "Desde  $ 8.000.000 COP",
-    },
+
 
 
 
