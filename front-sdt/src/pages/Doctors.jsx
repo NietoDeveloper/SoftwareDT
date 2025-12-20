@@ -75,11 +75,11 @@ const DoctorList = () => {
           <div className="inline-flex items-center gap-2">
             <div className="w-8 h-[2px] bg-amber-500 shadow-[0_0_8px_#f59e0b]"></div>
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">
-              Software Engineering
+              Fabrica De Software
             </span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter">
-            Nuestros <span className="text-amber-500">Servicios</span>
+            Escoje Un <span className="text-amber-500">Servicio</span>
           </h1>
         </div>
 
