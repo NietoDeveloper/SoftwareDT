@@ -14,13 +14,10 @@ const Home = () => {
   return (
     <div className="bg-main antialiased min-h-screen">
       <style dangerouslySetInnerHTML={{ __html: `
-        /* Forzar textos negros excepto los marcados como gold */
         h1, h2, h3, h4, p, span:not(.text-gold) { 
           color: #000000 !important; 
         }
 
-        /* RESET ESPECÍFICO PARA EL MENÚ HAMBURGUESA */
-        /* Esto elimina el cuadrado negro del fondo */
         .nav-toggle, 
         button[aria-label="Menu"], 
         .nav-toggle span {
@@ -29,7 +26,6 @@ const Home = () => {
           border: none !important;
         }
 
-        /* Estilo para botones generales del sitio */
         button:not(.nav-toggle):not([aria-label="Menu"]), .btn, .arrow-icon {
           background-color: #000000 !important;
           color: #ffffff !important;
