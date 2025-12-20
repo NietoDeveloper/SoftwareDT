@@ -13,10 +13,12 @@ const Home = () => {
 
   return (
     <div className="bg-[#fcfcfc] antialiased">
-      {/* ESTILOS GLOBALES (NIETO STYLE) */}
+      {/* ESTILOS GLOBALES (NIETO STYLE) - Aplicados a todos los componentes hijos */}
       <style dangerouslySetInnerHTML={{ __html: `
+        /* Forzar textos negros */
         h1, h2, h3, h4, p, span:not(.text-amber-500) { color: #000000 !important; }
 
+        /* Botones y flechas: Negros con Hover Gold */
         button, .btn, .arrow-icon, svg.arrow {
           background-color: #000000 !important;
           color: #ffffff !important;
@@ -31,6 +33,7 @@ const Home = () => {
           transform: translateY(-2px);
         }
 
+        /* Numeraciones: Negro con Hover Gold */
         .number, .count, .step-number {
           color: #000000 !important;
           transition: color 0.3s ease !important;
@@ -39,10 +42,21 @@ const Home = () => {
         .number:hover, .count:hover, .step-number:hover {
           color: #f59e0b !important;
         }
+
+        /* Animación de entrada al hacer scroll */
+        .fade-in-section {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
       `}} />
 
-      {/* VIDEO SECTION - Ajustada a la derecha y 60px hacia abajo */}
-      <section className="h-[100vh] w-full relative flex flex-col items-end justify-center pr-10 md:pr-32 overflow-hidden">
+      {/* VIDEO SECTION - Con botón de contacto redireccionable */}
+      <section className="h-[100vh] w-full relative flex flex-col items-center justify-center overflow-hidden">
         <video
           autoPlay
           loop
@@ -53,23 +67,15 @@ const Home = () => {
         />
         <div className="absolute inset-0 bg-black/20 z-[1]"></div>
 
-        {/* Bloque de contenido desplazado 60px abajo */}
-        <div className="relative z-[10] flex flex-col items-center translate-y-[60px]">
-          {/* Título Software D T */}
-          <h2 className="text-white text-4xl md:text-6xl font-black uppercase tracking-[0.3em] mb-4 drop-shadow-[2px_2px_10px_rgba(0,0,0,0.8)]">
-            Software <span className="text-amber-500">D T</span>
-          </h2>
-
-          {/* Botón de contacto */}
-          <button 
-            onClick={() => navigate("/contact")}
-            className="px-12 py-5 bg-black text-white font-black uppercase tracking-[0.3em] 
-                       border-[3px] border-black rounded-full hover:bg-amber-500 hover:border-amber-500 
-                       hover:text-black transition-all duration-300 shadow-2xl scale-110"
-          >
-            Contáctanos
-          </button>
-        </div>
+        {/* Botón de contacto sobre el video */}
+        <button 
+          onClick={() => navigate("/contact")}
+          className="relative z-[10] px-12 py-5 bg-black text-white font-black uppercase tracking-[0.3em] 
+                     border-[3px] border-black rounded-full hover:bg-amber-500 hover:border-amber-500 
+                     hover:text-black transition-all duration-300 shadow-2xl scale-110"
+        >
+          Contáctanos
+        </button>
       </section>
 
       {/* HERO SECTION */}
@@ -83,20 +89,23 @@ const Home = () => {
         </div>
       </section>
 
-      {/* MAIN CONTENT */}
       <main className="max-w-[1800px] mx-auto overflow-hidden">
         <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
           <Medcare />
         </div>
+
         <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
           <About />
         </div>
+
         <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
           <Services />
         </div>
+
         <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
           <Guide />
         </div>
+
         <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)] mb-10">
           <Questions />
         </div>
