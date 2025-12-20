@@ -15,13 +15,7 @@ const ServicesList = () => {
         "Creación a la MEDIDA de sitios web dinámicos y responsivos, aplicaciones móviles personalizadas para iOS/Android, y diseño/gestión de bases de datos seguras y escalables.",
       photo: functionalPlaceholder,
       price: "Desde  $ 2.000.000 COP",
-    },
-        {
-      title: "Inteligencia Artificial",
-      subtitle: "Integracion Y Desarrollo para webs, Apps y Servicios Personalizados.  Bots, Robots, Tareas, Guia, Respuesta,  Investigacion, Correos.",
-      description:
-        "Software Actual,  Technologias de Vanguardia.",
-      photo: functionalPlaceholder,
+
 
 
 
