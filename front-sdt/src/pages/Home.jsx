@@ -57,15 +57,7 @@ const Home = () => {
 
 
 
-      {/* HERO SECTION */}
-      <section className="hero_section 2xl:h-[110vh] py-16 lg:py-24 max-w-[1800px] mx-auto px-4 sm:px-8">
-        <div className="container mx-auto">
-          <div className="w-full">
-            <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between">
-              <Herosection />
-            </div>
-          </div>
-        </div>
+
       </section>
 
       {/* MAIN CONTENT - Manteniendo estructura y posiciones originales */}
