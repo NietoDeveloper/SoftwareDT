@@ -55,21 +55,6 @@ const Home = () => {
         }
       `}} />
 
-
-
-
-      </section>
-
-      {/* MAIN CONTENT - Manteniendo estructura y posiciones originales */}
-      <main className="max-w-[1800px] mx-auto overflow-hidden">
-        <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
-          <Medcare />
-        </div>
-
-        <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
-          <About />
-        </div>
-
         <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
           <Services />
         </div>
