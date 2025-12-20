@@ -93,7 +93,6 @@ const Header = () => {
             )}
           </nav>
 
-          {/* Mobile Menu Button: Negro, contorno transparente, hover gold */}
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
