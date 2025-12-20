@@ -17,6 +17,60 @@ const Header = () => {
     window.location.href = "/";
   };
 
+const MenuButton = ({ isOpen, onClick }) => {
+  // Variantes para las animaciones de las barras
+  const variantTop = {
+    closed: { rotate: 0, y: 0 },
+    opened: { rotate: 45, y: 8 },
+  };
+
+  const variantCenter = {
+    closed: { opacity: 1, x: 0 },
+    opened: { opacity: 0, x: -20 },
+  };
+
+  const variantBottom = {
+    closed: { rotate: 0, y: 0 },
+    opened: { rotate: -45, y: -8 },
+  };
+
+  return (
+    <button
+      onClick={onClick}
+      className="relative z-50 p-2 bg-transparent focus:outline-none group transition-colors duration-300"
+      aria-label="Menu"
+    >
+      <div className="w-8 h-6 flex flex-col justify-between items-center relative">
+        {/* Barra Superior */}
+        <motion.span
+          variants={variantTop}
+          animate={isOpen ? "opened" : "closed"}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="w-full h-1 bg-black rounded-full group-hover:bg-gold origin-center"
+        />
+
+        {/* Barra Central */}
+        <motion.span
+          variants={variantCenter}
+          animate={isOpen ? "opened" : "closed"}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="w-full h-1 bg-black rounded-full group-hover:bg-gold"
+        />
+
+        {/* Barra Inferior */}
+        <motion.span
+          variants={variantBottom}
+          animate={isOpen ? "opened" : "closed"}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="w-full h-1 bg-black rounded-full group-hover:bg-gold origin-center"
+        />
+      </div>
+    </button>
+  );
+};
+
+export default MenuButton;
+
   return (
     <header className="bg-white/10 backdrop-blur-2xl shadow-sm sticky top-0 z-50 border-b border-black/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,6 +146,15 @@ const Header = () => {
               </div>
             )}
           </nav>
+
+          {/* Sustituye el bloque del Mobile Menu Button por esto */}
+<div className="flex items-center md:hidden">
+  <MenuButton 
+    isOpen={isMenuOpen} 
+    onClick={() => setIsMenuOpen(!isMenuOpen)} 
+  />
+</div>
+
         </div>
       </div>
 
