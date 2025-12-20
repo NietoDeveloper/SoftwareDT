@@ -67,15 +67,7 @@ const Home = () => {
         />
         <div className="absolute inset-0 bg-black/20 z-[1]"></div>
 
-        {/* Botón de contacto sobre el video */}
-        <button 
-          onClick={() => navigate("/contact")}
-          className="relative z-[10] px-12 py-5 bg-black text-white font-black uppercase tracking-[0.3em] 
-                     border-[3px] border-black rounded-full hover:bg-amber-500 hover:border-amber-500 
-                     hover:text-black transition-all duration-300 shadow-2xl scale-110"
-        >
-          Contáctanos
-        </button>
+
       </section>
 
       {/* HERO SECTION */}
