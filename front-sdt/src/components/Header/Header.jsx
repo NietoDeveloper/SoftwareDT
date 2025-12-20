@@ -100,13 +100,7 @@ const Header = () => {
             )}
           </nav>
 
-          {/* Mobile Menu Button con SVG Animado */}
-          <div className="flex items-center md:hidden">
-            <MenuButton 
-              isOpen={isMenuOpen} 
-              onClick={() => setIsMenuOpen(!isMenuOpen)} 
-            />
-          </div>
+          
 
         </div>
       </div>
