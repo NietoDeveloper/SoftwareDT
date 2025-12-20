@@ -40,14 +40,7 @@ const ServicesList = () => {
       photo: functionalPlaceholder,
       price: "Desde  $ 8.000.000 COP",
     },
-    {
-      title: "Diseño de Interfaz (UI/UX)",
-      subtitle: "Experiencia de usuario inmersiva",
-      description:
-        "Diseño centrado en el usuario, creación de prototipos y pruebas de usabilidad para garantizar que tu producto sea intuitivo, accesible y atractivo.",
-      photo: functionalPlaceholder,
-      price: "Desde  $ 3.000.000 COP",
-    },
+
 
 
   ];
