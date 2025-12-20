@@ -48,14 +48,7 @@ const ServicesList = () => {
       photo: functionalPlaceholder,
       price: "Desde  $ 3.000.000 COP",
     },
-    {
-      title: "Automatización de Procesos",
-      subtitle: "Eficiencia y ahorro",
-      description:
-        "Implementación de scripts y herramientas para automatizar tareas repetitivas, liberando tiempo de tu equipo y reduciendo el margen de error humano.",
-      photo: functionalPlaceholder,
-      price: "Desde  $ 6.000.000 COP",
-    },
+
 
   ];
 
