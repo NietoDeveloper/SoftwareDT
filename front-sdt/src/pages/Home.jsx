@@ -92,15 +92,6 @@ const Home = () => {
 
 
 
-      <main className="max-w-[1800px] mx-auto overflow-hidden">
-
-        <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
-
-          <Medcare />
-
-        </div>
-
-
 
 
 
