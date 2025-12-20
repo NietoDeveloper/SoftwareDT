@@ -55,20 +55,7 @@ const DoctorList = () => {
 
         <div className="flex flex-wrap justify-center gap-8 lg:gap-10">
           {doctors.map((doctor) => (
-            <div
-              key={doctor._id}
-              className="group bg-white border-[4px] border-black rounded-[30px] p-6 transition-all duration-300 ease-out cursor-pointer 
-                         flex flex-col items-center justify-between text-center 
-                         w-full sm:max-w-[340px] h-[400px] overflow-hidden
-                         shadow-[0_10px_20px_rgba(0,0,0,0.05)] 
-                         hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] 
-                         hover:-translate-y-2 hover:border-amber-500"
-              onClick={() => navigateToBooking(doctor)}
-            >
-              <div className="w-full flex flex-col items-center flex-shrink-0">
-                <h3 className="text-xl font-black text-black uppercase tracking-tight group-hover:text-amber-600 transition-colors duration-300 truncate w-full">
-                  {doctor.name}
-                </h3>
+
                 
 
 
