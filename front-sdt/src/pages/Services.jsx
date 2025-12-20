@@ -21,14 +21,7 @@ const ServicesList = () => {
                 style={{ minHeight: '320px' }} 
               >
 
-            ))}
-          </div>
-        </div>
-      </section>
-      <div className="mt-4">
-        <Footer />
-      </div>
-    </div>
+
   );
 };
 
