@@ -13,9 +13,9 @@ const Header = () => {
         navigate('/login');
     };
 
-    // Función para redirigir y recargar la app al oprimir el logo
+    // Función para redirigir y recargar la aplicación al oprimir el logo
     const handleLogoClick = () => {
-        window.location.href = '/';
+        window.location.href = '/'; 
     };
 
     return (
@@ -23,14 +23,16 @@ const Header = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                   
-                    {/* Logo: Redirige y carga la app */}
-                    <div className="flex-shrink-0 flex items-center cursor-pointer group" onClick={handleLogoClick}>
-                        <span className="text-black text-xl sm:text-2xl font-black transition-colors duration-300 group-hover:text-gold uppercase tracking-tighter">
+                    {/* Logo: Hover aplicado a todo el contenedor y su span */}
+                    <div 
+                        className="flex-shrink-0 flex items-center cursor-pointer group transition-all duration-300" 
+                        onClick={handleLogoClick}
+                    >
+                        <span className="text-black text-xl sm:text-2xl font-black uppercase tracking-tighter group-hover:text-gold">
                             Software D T
                         </span>
                     </div>
 
-                    {/* Desktop Navigation */}
                     <nav className="hidden md:flex space-x-6 items-center text-sm">
                         <Link to="/" className="text-black hover:text-gold font-bold transition-colors">Inicio</Link>
                         <Link to="/Services" className="text-black hover:text-gold font-bold transition-colors">Información Servicios</Link>
@@ -58,7 +60,7 @@ const Header = () => {
                         )}
                     </nav>
 
-                    {/* Mobile Menu Button */}
+                    {/* Mobile Menu Button: Negro, contorno transparente, hover gold */}
                     <div className="flex items-center md:hidden">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -79,15 +81,20 @@ const Header = () => {
             {/* Mobile Navigation Menu */}
             {isMenuOpen && (
                 <div className="md:hidden bg-white/20 backdrop-blur-3xl border-t border-black/5 max-h-[80vh] overflow-auto transition-all duration-300">
-                    <div className="px-6 pt-6 pb-10 space-y-4 flex flex-col items-center justify-center">
-                        <Link to="/" className="w-full text-center py-2 text-lg font-black text-black hover:text-gold transition-colors" onClick={() => setIsMenuOpen(false)}>Inicio</Link>
-                        <Link to="/Services" className="w-full text-center py-2 text-lg font-black text-black hover:text-gold transition-colors" onClick={() => setIsMenuOpen(false)}>Información Servicios</Link>
-                        <Link to="/doctors" className="w-full text-center py-2 text-lg font-black text-black hover:text-gold transition-colors" onClick={() => setIsMenuOpen(false)}>Escoje Servicio</Link>
-                        <Link to="/clients" className="w-full text-center py-2 text-lg font-black text-black hover:text-gold transition-colors" onClick={() => setIsMenuOpen(false)}>Nuestros Clientes</Link>
-                        <Link to="/contact" className="w-full text-center py-2 text-lg font-black text-black hover:text-gold transition-colors" onClick={() => setIsMenuOpen(false)}>Contacto</Link>
-                        <Link to="/client-appointments" className="w-full text-center py-2 text-lg font-black text-black hover:text-gold transition-colors" onClick={() => setIsMenuOpen(false)}>Panel Cliente</Link>
+                    <div className="px-6 pt-4 pb-8 space-y-4 flex flex-col items-center justify-center">
+                        {/* Links de navegación estándar */}
+                        {["Inicio", "Información Servicios", "Escoje Servicio", "Nuestros Clientes", "Contacto", "Panel Cliente"].map((item, index) => (
+                            <Link
+                                key={index}
+                                to={item === "Inicio" ? "/" : `/${item.replace(/\s+/g, '')}`}
+                                className="w-full text-center py-2 text-lg font-black text-black hover:text-gold transition-colors"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                {item}
+                            </Link>
+                        ))}
 
-                        <div className="w-full h-[1px] bg-black/10 my-4"></div>
+                        <div className="w-full h-[1px] bg-black/10 my-2"></div>
 
                         {isLoggedIn ? (
                              <button
@@ -97,8 +104,8 @@ const Header = () => {
                                 Cerrar Sesión
                             </button>
                         ) : (
-                            <div className="w-full flex flex-col items-center space-y-5 px-4">
-                                {/* Login y Registro con Contorno Gold, Letra Negra y Efecto Clic */}
+                            <div className="w-full flex flex-col items-center space-y-4 px-4">
+                                {/* Login y Registro con contorno Gold, letra negra y efecto click */}
                                 <Link
                                     to="/login"
                                     className="w-full text-center py-3 text-lg font-black text-black border-2 border-gold rounded-xl transition-all active:scale-95 hover:bg-gold/10"
