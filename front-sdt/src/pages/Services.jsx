@@ -89,7 +89,6 @@ const ServicesList = () => {
                 </span>
               </div>
 
-              {/* Contenedor Medio (Descripción Agrandada) */}
               <div className="flex-1 flex items-center justify-center py-4 w-full px-2">
                 <p className="text-gray-800 text-lg font-bold leading-snug italic line-clamp-3">
                   "{service.description}"
