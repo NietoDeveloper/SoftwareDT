@@ -17,20 +17,7 @@ const ServicesList = () => {
   ];
 
   return (
-    <div>
-      <section className="flex flex-col items-center p-4 min-h-screen bg-gray-50">
-        <h1 className="text-4xl font-extrabold text-black mb-12 text-center mt-5">
-          Servicios 
-        </h1>
-        <div className="w-full max-w-[1400px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-            {services.map((service, index) => (
-              <Link
-                key={index}
-                to="/doctors"
-                className="group w-full max-w-sm flex flex-col items-center bg-white border border-gray-100 rounded-xl shadow-lg 
-                           p-6 transition-all duration-300 ease-in-out cursor-pointer 
-                           hover:shadow-2xl hover:border-yellow-400 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
+:border-yellow-400 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
                 style={{ minHeight: '320px' }} 
               >
                 <div className="flex-shrink-0 w-32 h-32 mb-4">
