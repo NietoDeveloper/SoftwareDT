@@ -23,7 +23,6 @@ const Header = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                   
-                    {/* Logo: Hover aplicado a todo el contenedor y su span */}
                     <div 
                         className="flex-shrink-0 flex items-center cursor-pointer group transition-all duration-300" 
                         onClick={handleLogoClick}
