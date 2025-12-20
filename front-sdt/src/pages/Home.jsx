@@ -61,11 +61,7 @@ const Home = () => {
           autoPlay
           loop
           muted
-          playsInline
-          className="absolute w-full h-full object-cover z-0 opacity-90"
-          src={BogotaAir1}
-        />
-        <div className="absolute inset-0 bg-black/20 z-[1]"></div>
+
 
 
       </section>
