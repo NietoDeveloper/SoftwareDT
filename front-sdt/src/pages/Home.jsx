@@ -13,21 +13,7 @@ const Home = () => {
       {/* VIDEO SECTION - Manteniendo posición y forma */}
         <video
           autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute w-full h-full object-cover z-0 opacity-90"
-          src={BogotaAir1}
-        />
-        {/* Overlay sutil para mejorar legibilidad si hay componentes encima */}
-        <div className="absolute inset-0 bg-black/10 z-[1]"></div>
-      </section>
-
-      {/* HERO SECTION - Ajustes de color y hover sutil */}
-      <section className="hero_section 2xl:h-[110vh] py-16 lg:py-24 max-w-[1800px] mx-auto px-4 sm:px-8">
-
-            </div>
-          </div>
+ 
         </div>
 
     </div>
