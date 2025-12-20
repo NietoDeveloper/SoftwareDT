@@ -125,13 +125,6 @@ const Home = () => {
         </div>
 
 
-
-        <div className="transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
-
-          <Questions />
-
-        </div>
-
       </main>
 
 
