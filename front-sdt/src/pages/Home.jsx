@@ -55,17 +55,6 @@ const Home = () => {
         }
       `}} />
 
-      {/* VIDEO SECTION - Con botón de contacto redireccionable */}
-      <section className="h-[100vh] w-full relative flex flex-col items-center justify-center overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-
-
-
-      </section>
-
       {/* HERO SECTION */}
       <section className="hero_section 2xl:h-[110vh] py-16 lg:py-24 max-w-[1800px] mx-auto px-4 sm:px-8">
         <div className="container mx-auto">
