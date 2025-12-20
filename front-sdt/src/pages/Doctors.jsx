@@ -70,10 +70,7 @@ const DoctorList = () => {
                   {doctor.name}
                 </h3>
                 
-                <span className="mt-2 text-[11px] font-black text-white bg-black group-hover:bg-amber-500 px-4 py-1 rounded-md uppercase tracking-[0.15em] transition-colors duration-300">
-                  {doctor.specialization || "Soporte"}
-                </span>
-              </div>
+
 
               <div className="flex-1 flex items-center justify-center py-4 w-full">
                 <p className="text-gray-800 text-base md:text-lg font-bold leading-snug italic line-clamp-4">
