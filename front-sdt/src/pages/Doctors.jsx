@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -94,7 +95,6 @@ const DoctorList = () => {
                          hover:-translate-y-2 hover:border-amber-500"
               onClick={() => navigateToBooking(doctor)}
             >
-              {/* Contenedor Superior */}
               <div className="w-full flex flex-col items-center flex-shrink-0">
                 {/* h3 con 35px de margin top */}
                 <h3 className="mt-[35px] text-xl font-black text-black uppercase tracking-tight group-hover:text-amber-600 transition-colors duration-300 truncate w-full">
