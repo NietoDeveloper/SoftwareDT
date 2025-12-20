@@ -11,7 +11,6 @@ const Home = () => {
   return (
     <div className="bg-[#fcfcfc] antialiased">
       {/* VIDEO SECTION - Manteniendo posición y forma */}
-      <section className="h-[100vh] w-full relative flex justify-center overflow-hidden">
         <video
           autoPlay
           loop
