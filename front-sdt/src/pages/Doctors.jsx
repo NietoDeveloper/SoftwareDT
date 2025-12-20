@@ -34,22 +34,7 @@ const DoctorList = () => {
     navigate(`/book-appointment/${doctor._id}`, { state: { doctorData: doctor } });
   };
 
-  if (isLoading) return <h1 className="text-center py-20 text-xl font-black text-black animate-pulse uppercase tracking-widest">Cargando Servicios...</h1>;
 
-
-
-              <div className="flex-1 flex items-center justify-center py-4 w-full">
-                <p className="text-gray-800 text-base md:text-lg font-bold leading-snug italic line-clamp-4">
-                  "{doctor.bio}"
-                </p>
-              </div>
-
-              <div className="w-full flex flex-col items-center mt-auto flex-shrink-0">
-        black group-hover:border-black transition-all duration-300
-                                  shadow-[3px_3px_0px_#f59e0b] group-hover:shadow-none">
-                    <ArrowRightIcon className="w-5 h-5 text-black group-hover:text-amber-500 transition-colors" />
-                  </div>
-                </div>
               </div>
             </div>
           ))}
