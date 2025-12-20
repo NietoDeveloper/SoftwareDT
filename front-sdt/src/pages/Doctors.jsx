@@ -79,15 +79,7 @@ const DoctorList = () => {
               </div>
 
               <div className="w-full flex flex-col items-center mt-auto flex-shrink-0">
-                <div className="w-12 h-[2px] bg-amber-500 mb-4 shadow-[0_0_4px_#f59e0b]"></div>
-                
-                <div className="flex items-center justify-between w-full px-4">
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                    Puntaje: <span className="text-black">{doctor.totalRating || "5.0"}</span>
-                  </p>
-                  
-                  <div className="w-10 h-10 rounded-full border-[3px] border-black flex items-center justify-center 
-                                  group-hover:bg-black group-hover:border-black transition-all duration-300
+        black group-hover:border-black transition-all duration-300
                                   shadow-[3px_3px_0px_#f59e0b] group-hover:shadow-none">
                     <ArrowRightIcon className="w-5 h-5 text-black group-hover:text-amber-500 transition-colors" />
                   </div>
