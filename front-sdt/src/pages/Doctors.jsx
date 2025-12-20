@@ -125,16 +125,7 @@ const DoctorList = () => {
                       {doctor.totalRating || "5.0"}
                     </span>
                   </p>
-
-                  <div
-                    className="w-12 h-12 rounded-full border-[3px] border-black flex items-center justify-center 
-                bg-transparent transition-all duration-300 ease-in-out
-                shadow-[0_8px_15px_rgba(0,0,0,0.15)] 
-                group-hover:bg-black group-hover:shadow-[0_10px_25px_rgba(245,158,11,0.4)] 
-                group-hover:scale-110 active:scale-95"
-                  >
-                    <ArrowRightIcon className="w-6 h-6 text-black group-hover:text-amber-500 transition-colors duration-300" />
-                  </div>
+                  
                 </div>
               </div>
             </div>
