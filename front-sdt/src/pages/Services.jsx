@@ -8,13 +8,7 @@ const ServicesList = () => {
     "https://placehold.co/150x150/EEEEEE/313131?text=Servicio";
 
   const services = [
-    {
-      title: "Desarrollo Web, Apps y Bases de Datos",
-      subtitle: "Diseño y Creacion Personalizado:  WebSites, Apps, Bases de Datos; Mantenimiento y Escalamiento",
-      description:
-        "Creación a la MEDIDA de sitios web dinámicos y responsivos, aplicaciones móviles personalizadas para iOS/Android, y diseño/gestión de bases de datos seguras y escalables.",
-      photo: functionalPlaceholder,
-      price: "Desde  $ 2.000.000 COP",
+
 
 
 
