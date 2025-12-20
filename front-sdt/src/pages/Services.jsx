@@ -31,14 +31,7 @@ const ServicesList = () => {
         "Soporte técnico continuo, monitorización de servidores, actualizaciones de seguridad y mantenimiento preventivo para garantizar la operatividad de tus sistemas.",
       photo: functionalPlaceholder,
       price: "Desde  $ 8.000.000 COP",
-    },
-        {
-      title: "Consultoría y Optimización SEO",
-      subtitle: "Aumenta tu visibilidad",
-      description:
-        "Análisis profundo para mejorar el ranking en motores de búsqueda, optimización de contenido y auditorías técnicas para un mejor rendimiento.",
-      photo: functionalPlaceholder,
-      price: "Desde  $ 8.000.000 COP",
+e: "Desde  $ 8.000.000 COP",
     },
 
 
