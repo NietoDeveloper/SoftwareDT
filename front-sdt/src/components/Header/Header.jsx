@@ -22,7 +22,7 @@ const Header = () => {
                     {/* Logo */}
                     <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => navigate('/')}>
                         <span className="text-black text-2xl font-bold hover:text-yellow-500 transition-colors">
-                            Software<span className="text-black hover:text-yellow-500 transition-colors">D T</span>
+                            Software <span className="text-black hover:text-yellow-500 transition-colors">D T</span>
                         </span>
                     </div>
 
