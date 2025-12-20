@@ -55,6 +55,8 @@ const Home = () => {
         }
       `}} />
 
+
+
       {/* HERO SECTION */}
       <section className="hero_section 2xl:h-[110vh] py-16 lg:py-24 max-w-[1800px] mx-auto px-4 sm:px-8">
         <div className="container mx-auto">
