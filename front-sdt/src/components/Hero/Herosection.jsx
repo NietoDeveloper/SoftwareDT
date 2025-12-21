@@ -24,16 +24,13 @@ const Herosection = () => {
             </p>
 
             <Link to="/doctors">
-              {/* BOTÓN CON CORRECCIÓN DE COLOR FORZADA */}
-              <button className="group relative px-12 py-6 text-xl lg:text-2xl font-black uppercase tracking-[0.2em] bg-black rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_rgba(255,215,0,0.3)] hover:-translate-y-2 active:scale-95">
-                
-                {/* Texto: z-20 para estar arriba de todo. !text-white para asegurar blanco inicial */}
-                <span className="relative z-20 !text-white transition-colors duration-500 group-hover:!text-black">
-                  Agenda Tu Cita
-                </span>
-                
-                {/* Fondo Gold: z-10 para estar debajo del texto pero encima del fondo negro */}
-                <div className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-10"></div>
+              {/* BOTÓN IDENTICO AL DE CONTACTO */}
+              <button 
+                className="px-12 py-5 bg-black text-white text-xl lg:text-2xl font-black uppercase tracking-[0.2em] 
+                           border-2 border-white/30 rounded-full hover:bg-gold hover:text-black 
+                           transition-all duration-500 shadow-2xl active:scale-95 scale-110"
+              >
+                Agenda Tu Cita
               </button>
             </Link>
           </div>
