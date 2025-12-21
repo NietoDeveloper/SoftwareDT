@@ -5,29 +5,29 @@ const ServicesCard = ({ item, index }) => {
   const { name, desc } = item;
   
   return (
-    <div className="py-[30px] px-3 lg:px-5 bg-white rounded-3xl border-2 border-transparent hover:border-gold transition-all duration-300 group/card">
-      {/* Título en Negro Heading */}
-      <h2 className="text-[26px] leading-9 text-headingColor font-black uppercase tracking-tight">
+    <div className="py-[35px] px-5 lg:px-8 bg-white rounded-[2.5rem] border-2 border-transparent hover:border-gold transition-all duration-500 group/card shadow-sm hover:shadow-2xl flex flex-col h-full">
+      {/* Título: Software DT Black Style */}
+      <h2 className="text-[24px] md:text-[28px] leading-tight text-headingColor font-black uppercase tracking-tighter group-hover/card:text-gold transition-colors duration-300">
         {name}
       </h2>
       
-      {/* Descripción en Texto Negro suave */}
-      <p className="text-[16px] leading-7 font-medium text-textColor mt-4 opacity-80">
+      {/* Descripción: Alta legibilidad */}
+      <p className="text-[16px] leading-relaxed font-medium text-textColor mt-5 opacity-70 flex-grow">
         {desc}
       </p>
 
-      <div className="flex items-center justify-between mt-[30px]">
-        {/* Botón Circular: Negro a Gold */}
+      <div className="flex items-center justify-between mt-[35px]">
+        {/* Botón Circular: Ajustado a 55px para mejor touch-target */}
         <Link
           to="/contact"
-          className="w-[44px] h-[44px] rounded-full border-2 border-solid border-black flex items-center justify-center group hover:bg-gold hover:border-gold transition-all duration-300 shadow-md"
+          className="w-[55px] h-[55px] rounded-full border-2 border-solid border-headingColor flex items-center justify-center group/btn hover:bg-gold hover:border-gold transition-all duration-300 shadow-md"
         >
-          <BsArrowRight className="text-black group-hover:scale-125 transition-transform h-5 w-6" />
+          <BsArrowRight className="text-headingColor group-hover/btn:scale-125 group-hover/btn:text-black transition-all h-7 w-7" />
         </Link>
 
-        {/* Indicador de Número: Fondo Gainsboro, Texto Negro/Gold */}
+        {/* Indicador de Número: Fondo 'main' (Gainsboro) oficial */}
         <span 
-          className="w-[44px] h-[44px] flex items-center justify-center text-[20px] font-black leading-[30px] bg-main text-black rounded-xl border border-black/10 group-hover/card:bg-gold transition-colors duration-300"
+          className="w-[55px] h-[55px] flex items-center justify-center text-[22px] font-black bg-main text-headingColor rounded-2xl border border-black/5 group-hover/card:bg-gold group-hover/card:text-black transition-all duration-500 transform group-hover/card:rotate-6"
         > 
           {index + 1}
         </span>
