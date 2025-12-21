@@ -1,93 +1,105 @@
-# Software DT - Full-Stack MERN Booking Solution
+# Software DT | Enterprise-Grade MERN Booking Solution
 
-🚀 **Overview**  
-Software DT is a world-class digital flagship engineered in Bogotá. This platform is a full-stack MERN application (MongoDB, Express, React, Node.js) designed to bridge the gap between service providers and clients through a seamless booking and review ecosystem.  
+## 🚀 Engineered by NietoDeveloper
 
-As of late 2025, I am ranked #3 in GitHub contributions in Colombia. This project is the result of 5.5+ years of experience and Hardcore Coding, coding every single day without stopping, maintaining an unwavering streak of technical excellence.  
+**Software DT** is a world-class digital ecosystem designed for high-performance service management. This full-stack application leverages the **MERN** stack and cloud-native infrastructure to provide a seamless, secure, and scalable booking and review environment for global providers and clients.
 
-✨ **Key Features**  
+---
 
-- **Secure Authentication**: Multi-device JWT (JSON Web Tokens) integration. Log out on one device without interrupting sessions on others.  
-- **Role-Based Access Control**: Distinct workflows for Users (Clients) and Employees (Service Providers).  
-- **Provider Profiles**: Employees can showcase expertise, availability, and specializations.  
-- **Booking System**: Real-time appointment scheduling and management.  
-- **Review & Rating**: A transparent community feedback system to drive quality decisions.  
-- **Cloud Integration**: Firebase-powered image storage for ultra-fast profile rendering.  
+## 📈 Technical Engineering & Consistency
 
-🛠️ **Technology Stack**  
-**Backend**  
-- Node.js & Express: Robust RESTful API architecture.  
-- MongoDB: NoSQL database for flexible data modeling.  
-- JWT & Firebase: Advanced security and cloud asset management.  
+Developed with a focus on technical excellence and continuous delivery:
 
-**Frontend**  
-- React & Vite: Optimized for lightning-fast performance.  
-- Redux & React Query: State management and efficient data synchronization.  
-- Tailwind CSS: Custom design system for professional clarity.  
+* **Author:** [NietoDeveloper](https://github.com/NietoDeveloper), currently ranked **#3 Top Committer in Colombia**.
+* **Performance:** Built with a philosophy of daily technical evolution and high-velocity coding.
+* **Reliability:** Successfully managing active clients in production environments.
+* **Global Ready:** Advanced English proficiency (8/10) for international collaboration and remote environments.
 
-🎨 **Design System**  
-Software DT uses a strictly defined visual identity to ensure a high-end corporate feel:  
+---
 
-| Element            | Color / Value                  | Class Name              |
-|--------------------|--------------------------------|-------------------------|
-| Primary Background | #DCDCDC (Gainsboro)            | bg-main                |
-| Cards/Containers   | #FFFFFF (White)                | bg-card                |
-| Accents            | #FFD700 (Gold) / #FEB60D       | text-gold / text-yellowColor |
-| Typography         | #000000 (Pure Black)           | text-textColor         |
+## ✨ System Architecture & Features
 
-⚙️ **Installation & Setup**  
+Software DT is engineered to handle complex business logic through a modular and secure architecture:
 
-1. **Clone & Navigate**:  
-   ```bash  
-   git clone https://github.com/NietoDeveloper/SoftwareDT  
-   cd SoftwareDT  
-   ```  
+### 🔐 1. Advanced Security (JWT)
+Implements a multi-device **JSON Web Token** strategy. This allows users to manage active sessions independently, ensuring that security remains tight across multiple platforms without interrupting the user experience.
 
-2. **Install dependencies**:  
-   ```bash  
-   npm install  
-   ```  
+### 👥 2. Role-Based Access Control (RBAC)
+Distinct, secure workflows for **Clients** and **Employees (Service Providers)**. Each role accesses a specialized interface tailored to their specific operational needs.
 
-3. **Environment Configuration**:  
-   Ensure your `tailwind.config.js` is set to the official Software DT specifications:  
-   ```javascript  
-   /** @type {import('tailwindcss').Config} */  
-   export default {  
-     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],  
-     theme: {  
-       extend: {  
-         colors: {  
-           gainsboro: "#DCDCDC",  
-           gold: "#FFD700",  
-           yellowColor: "#FEB60D",  
-           headingColor: "#000000",  
-           textColor: "#000000",  
-         },  
-         backgroundColor: {  
-           main: "#DCDCDC",  
-           card: "#FFFFFF",  
-         },  
-       },  
-     },  
-     plugins: [],  
-   };  
-   ```  
+### 📅 3. Real-Time Booking Engine
+A high-precision scheduling system designed to manage appointments with zero-latency, preventing conflicts and optimizing provider availability.
 
-4. **Development Mode**:  
-   ```bash  
-   npm run dev  
-   ```  
+### ☁️ 4. Cloud-Native Infrastructure & Data
+* **MongoDB Atlas:** Distributed cloud database for high availability and elastic scaling.
+* **Firebase Storage:** Ultra-fast asset delivery for profile rendering and media management.
 
-📈 **Performance & Commitment**  
-I don't just write code; I build momentum.  
+### 🐳 5. Containerization with Docker
+The entire ecosystem is **Dockerized**, ensuring environment parity between development, staging, and production. This facilitates rapid deployment and architectural consistency.
 
-- **Hardcore Coding**: Coding every day without stopping (140+ day streak).  
-- **Target**: On track to reach #1 in Colombia by Q1 2026. [View Ranking](https://github.com/users/NietoDeveloper/contributions)  
-- **Trust**: Currently managing 3 active clients in production environments.  
+---
 
-🤝 **Contact & Collaboration**  
-I am currently based in Bogotá, Colombia, and available for Remote Opportunities worldwide.  
+## 🛠️ Technology Stack
 
-- **Lead Developer**: Manuel Nieto  
-- **Live Application**: [softwaredt.vercel.app](https://softwaredt.vercel.app)  
-- **GitHub Profile**: [@NietoDeveloper](https://github.com/NietoDeveloper)
+| Layer | Technologies | Implementation |
+| :--- | :--- | :--- |
+| **Backend** | Node.js & Express | Scalable RESTful API with Clean Architecture. |
+| **Database** | **MongoDB Atlas** | Distributed NoSQL cloud hosting. |
+| **Frontend** | React & Vite | Lightning-fast SPAs with optimized build times. |
+| **Infrastructure** | **Docker** | Container-based deployment and orchestration. |
+| **Styling** | Tailwind CSS | Custom-built Corporate Design System. |
+
+---
+
+## 🎨 Design System Specifications
+
+Software DT utilizes a strictly defined visual identity for professional clarity:
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        gainsboro: "#DCDCDC", // bg-main
+        gold: "#FFD700",      // Accent
+        yellowColor: "#FEB60D", 
+        headingColor: "#000000",
+        textColor: "#000000",
+      },
+      backgroundColor: {
+        'main': '#DCDCDC',
+        'card': '#FFFFFF',
+      }
+    },
+  },
+  plugins: [],
+}
+⚙️ Installation & Deployment
+Development Environment
+Clone & Navigate:
+
+Bash
+
+git clone [https://github.com/NietoDeveloper/SoftwareDT](https://github.com/NietoDeveloper/SoftwareDT) && cd SoftwareDT
+Docker Setup (Recommended):
+
+Bash
+
+docker-compose up --build
+Manual Setup: Ensure you have Node.js and MongoDB Atlas credentials configured, then run:
+
+Bash
+
+npm install && npm run dev
+🤝 Collaboration & Contact
+Software DT is maintained by NietoDeveloper, a lead developer based in Bogotá, Colombia, focused on delivering high-impact code 365 days a year.
+
+Lead Developer: Manuel Nieto
+
+GitHub Profile: @NietoDeveloper
+
+Live Application: softwaredt.vercel.app
+
+Ranking: Top Committers Colombia
