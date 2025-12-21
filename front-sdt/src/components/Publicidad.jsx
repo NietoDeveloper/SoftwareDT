@@ -66,7 +66,7 @@ const Publicidad = () => {
                 </p>
 
                 <Link
-                  to="/contact"
+                  to="/services"
                   className="w-[60px] h-[60px] rounded-full border-2 border-headingColor mt-8 mx-auto flex items-center justify-center group/btn hover:bg-gold hover:border-gold transition-all duration-300"
                 >
                   <BsArrowRight className="text-headingColor group-hover/btn:scale-125 transition-transform h-7 w-7" />
