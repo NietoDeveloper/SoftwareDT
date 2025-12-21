@@ -46,6 +46,7 @@ const Home = () => {
         html { scroll-behavior: smooth; }
       `}} />
 
+      {/* SECCIÓN DEL VIDEO */}
       <section className="h-[100vh] w-full relative flex items-end justify-end overflow-hidden">
         <video
           autoPlay
@@ -58,14 +59,16 @@ const Home = () => {
         
         <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/20 z-[1]"></div>
 
-        <div className="relative z-[10] flex flex-col items-end gap-8 pb-44 pr-10 md:pr-24 lg:pr-32">
-          <h2 className="text-white-force text-3xl md:text-5xl font-black uppercase text-right">
+        {/* CONTENIDO FLOTANTE ALINEADO A LA DERECHA */}
+        <div className="relative z-[10] flex flex-col items-end gap-8 pb-44 pr-6 md:pr-24 lg:pr-32">
+          {/* H2: Más pequeño en movil (text-2xl) y más grande en desktop (text-6xl) */}
+          <h2 className="text-white-force text-2xl md:text-5xl lg:text-6xl font-black uppercase text-right leading-none">
             Software D T
           </h2>
           
           <button 
             onClick={() => navigate("/contact")}
-            className="px-12 py-5 bg-black text-white font-black uppercase tracking-[0.2em] 
+            className="px-12 py-5 bg-black text-white text-xl lg:text-2xl font-black uppercase tracking-[0.2em] 
                        border-2 border-white/30 rounded-full hover:bg-gold hover:text-black 
                        transition-all duration-500 shadow-2xl active:scale-95 scale-110"
           >
@@ -74,6 +77,7 @@ const Home = () => {
         </div>
       </section>
 
+      {/* SECCIÓN HERO */}
       <section className="py-10 max-w-[1800px] mx-auto px-4 sm:px-8">
         <Herosection />
       </section>
