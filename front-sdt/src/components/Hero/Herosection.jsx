@@ -11,7 +11,6 @@ const Herosection = () => {
           
           {/* LADO IZQUIERDO: TEXTO DE ALTO IMPACTO */}
           <div className="w-full lg:w-[65%] flex flex-col items-start z-10">
-            {/* H1 con tracking-tighter y leading-none para look editorial */}
             <h1 className="text-[40px] md:text-[60px] lg:text-[75px] xl:text-[90px] leading-[0.95] text-headingColor font-black uppercase tracking-tighter mb-10">
               Construimos Software Que <br />
               <span className="text-gold">Da Solución</span>
@@ -25,18 +24,21 @@ const Herosection = () => {
             </p>
 
             <Link to="/doctors">
-              <button className="group relative px-12 py-6 text-xl lg:text-2xl font-black uppercase tracking-[0.2em] text-white bg-black rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_rgba(255,215,0,0.3)] hover:-translate-y-2 active:scale-95">
-                <span className="relative z-10">Agenda Tu Cita</span>
-                <div className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
-                {/* El span de abajo cambia de color el texto al hacer hover */}
-                <style dangerouslySetInnerHTML={{ __html: `
-                  .group:hover span { color: #000000; transition: color 0.4s; }
-                `}} />
+              {/* BOTÓN CON CORRECCIÓN DE COLOR FORZADA */}
+              <button className="group relative px-12 py-6 text-xl lg:text-2xl font-black uppercase tracking-[0.2em] bg-black rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_rgba(255,215,0,0.3)] hover:-translate-y-2 active:scale-95">
+                
+                {/* Texto: z-20 para estar arriba de todo. !text-white para asegurar blanco inicial */}
+                <span className="relative z-20 !text-white transition-colors duration-500 group-hover:!text-black">
+                  Agenda Tu Cita
+                </span>
+                
+                {/* Fondo Gold: z-10 para estar debajo del texto pero encima del fondo negro */}
+                <div className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-10"></div>
               </button>
             </Link>
           </div>
 
-          {/* LADO DERECHO: COMPOSICIÓN DE IMÁGENES ASIMÉTRICA */}
+          {/* LADO DERECHO: IMÁGENES */}
           <div className="w-full lg:w-[35%] flex justify-center lg:justify-end z-10">
             <div className="flex flex-col gap-6 w-full max-w-[500px]">
               <div className="relative">
@@ -45,7 +47,6 @@ const Herosection = () => {
                   alt="Diseño de Software"
                   className="rounded-[3rem] shadow-2xl w-full border-[8px] border-main transition-all duration-700 hover:rotate-2 hover:scale-105"
                 />
-                {/* Badge flotante decorativo */}
                 <div className="absolute -bottom-6 -left-6 bg-black text-gold font-black p-6 rounded-2xl hidden md:block shadow-xl uppercase tracking-widest text-xs">
                   Software DT <br/> Expertos
                 </div>
