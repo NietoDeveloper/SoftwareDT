@@ -4,7 +4,7 @@ import { BsArrowRight } from 'react-icons/bs';
 const ServicesCard = ({ item, index }) => {
   const { name, desc } = item;
   
-  // Usamos el ID de "Desarrollo Web" que sí existe en tu JSON (Status 200)
+  // ID Real de "Desarrollo Web" en tu base de datos
   const myDoctorId = "6503c1585805561b3693f18e";
 
   return (
@@ -18,7 +18,7 @@ const ServicesCard = ({ item, index }) => {
       </p>
 
       <div className="flex items-center justify-between mt-[35px]">
-        {/* AJUSTE: La ruta 'to' debe coincidir con la de App.jsx */}
+        {/* Enlace hacia BookingPage con ID y State */}
         <Link
           to={`/book-appointment/${myDoctorId}`} 
           state={{ selectedService: item }} 
@@ -27,9 +27,7 @@ const ServicesCard = ({ item, index }) => {
           <BsArrowRight className="text-headingColor group-hover/btn:scale-125 group-hover/btn:text-black transition-all h-7 w-7" />
         </Link>
 
-        <span 
-          className="w-[55px] h-[55px] flex items-center justify-center text-[22px] font-black bg-main text-headingColor rounded-2xl border border-black/5 group-hover/card:bg-gold group-hover/card:text-black transition-all duration-500 transform group-hover/card:rotate-6"
-        > 
+        <span className="w-[55px] h-[55px] flex items-center justify-center text-[22px] font-black bg-main text-headingColor rounded-2xl border border-black/5"> 
           {index + 1}
         </span>
       </div>
