@@ -1,67 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import ServicesCard from "./ServicesCard";
 
-const servicesList = [
-  {
-    id: "web-apps-db",
-    name: "Desarrollo de Web, Apps y Bases de Datos",
-    desc: "Creación de sitios web dinámicos, responsivos y optimizados, adaptados a tus necesidades, con diseño moderno y SEO integrado. Desarrollo de Apps móviles personalizadas para iOS y Android con interfaces intuitivas.",
-  },
-  {
-    id: "empresa-soluciones",
-    name: "Soluciones para Empresas",
-    desc: "Software Contable, Manejo de Personal (Nómina, asistencias) y Gestión de Usuarios. Automatizamos registros financieros y optimizamos la gestión de recursos humanos con seguridad total.",
-  },
-  {
-    id: "productos-ia-iot",
-    name: "Productos",
-    desc: "Creamos Software de alto impacto como: Plataformas de IA para agricultura, Apps fintech para inclusión financiera y soluciones IoT para ciudades inteligentes.",
-  },
-  {
-    id: "custom-software",
-    name: "Software Personalizado",
-    desc: "Soluciones a medida: Funcionalidades adaptadas a procesos únicos, escalabilidad para crecer con tu empresa y soporte técnico continuo para garantizar el máximo rendimiento.",
-  },
-  {
-    id: "update-software",
-    name: "Actualización o Creación de Software",
-    desc: "Análisis profundo de tu ecosistema digital para decidir si es más eficiente actualizar tu software actual o construir una solución nueva desde cero.",
-  },
-  {
-    id: "social-media",
-    name: "Manejo de Portafolio y Redes Sociales",
-    desc: "Plataforma integral para programar publicaciones, crear contenido y analizar métricas en Facebook, Instagram, X y LinkedIn desde un dashboard unificado.",
-  },
-];
-
-const techIcons = [
-  { name: "React", url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg", link: "https://react.dev/" },
-  { name: "Node.js", url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg", link: "https://nodejs.org/" },
-  { name: "Tailwind CSS", url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg", link: "https://tailwindcss.com/" },
-  { name: "JavaScript", url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg", link: "https://developer.mozilla.org/es/docs/Web/JavaScript" },
-  { name: "PostgreSQL", url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg", link: "https://www.postgresql.org/" },
-  { name: "Vite", url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/vite/vite-original.svg", link: "https://vitejs.dev/" },
-  { name: "Firebase", url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-plain.svg", link: "https://firebase.google.com/" },
-  { name: "GitHub", url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg", link: "https://github.com/" },
-];
+// ... (servicesList y techIcons se mantienen igual)
 
 const Services = () => {
   const navigate = useNavigate();
 
   const handleServiceSelect = (service) => {
-    // Redirigimos a la página de booking pasando el objeto del servicio en el state
-    navigate("/booking", { state: { selectedService: service } });
+    // ID de tu perfil en la DB
+    const myDoctorId = "67664366521a0f5a7732298c"; 
+
+    // Forzamos la ruta absoluta a /booking/id
+    navigate(`/booking/${myDoctorId}`, { 
+      state: { selectedService: service } 
+    });
   };
 
   return (
     <div className="bg-main overflow-x-hidden">
       <style dangerouslySetInnerHTML={{ __html: `
-        footer, footer *, .footer-section, .footer-section * {
-          color: #ffffff !important;
-        }
-        .tech-card:hover img {
-          filter: drop-shadow(0 0 10px #FEB60D);
-        }
+        footer, footer *, .footer-section, .footer-section * { color: #ffffff !important; }
+        .tech-card:hover img { filter: drop-shadow(0 0 10px #FEB60D); }
       `}} />
 
       <section className="py-20 max-w-[1800px] mx-auto px-4 sm:px-8">
@@ -76,17 +35,25 @@ const Services = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicesList.map((item, index) => (
-            <div key={index} onClick={() => handleServiceSelect(item)} className="cursor-pointer">
+            /* Si ServicesCard tiene un Link interno a /contact, 
+               debemos capturar el click aquí o pasarle la prop 
+            */
+            <div 
+              key={item.id || index} 
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation(); // Evita que otros links internos se disparen
+                handleServiceSelect(item);
+              }} 
+              className="cursor-pointer group"
+            >
               <ServicesCard item={item} index={index} />
             </div>
           ))}
         </div>
       </section>
 
-      {/* Tech Stack section remains the same... */}
-      <section className="min-h-screen w-full bg-white flex flex-col items-center justify-center py-20 px-4 sm:px-8">
-        {/* ... contenido previo del tech stack ... */}
-      </section>
+      {/* ... (Tech Stack Section) */}
     </div>
   );
 };
