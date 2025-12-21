@@ -19,18 +19,23 @@
 Software DT is engineered for global scalability and enterprise-grade reliability:
 
 ### 🔐 1. Advanced Security & Auth
+
 Utilizing **JWT (JSON Web Tokens)** with a multi-device session strategy. Users can securely manage sessions independently across devices without workflow interruptions.
 
 ### 👥 2. Role-Based Access Control (RBAC)
+
 Dedicated professional workflows:
+
 * **Clients:** Dynamic search, real-time booking, and verified review system.
 * **Employees/Providers:** Expert profile management and availability synchronization.
 
 ### 📊 3. Scalable Data Infrastructure
+
 * **Mongo Atlas:** Hosted on a high-availability cloud cluster.
 * **Double Cluster Architecture:** Implemented with a **dual-cluster strategy** to ensure superior scalability, data redundancy, and zero-downtime performance during peak loads.
 
 ### 🐳 4. Modern Deployment & Containers
+
 * **Dockerized Environment:** Fully containerized using **Docker**, ensuring consistency across development, staging, and production environments.
 * **Firebase Integration:** Specialized cloud storage for ultra-fast asset rendering.
 

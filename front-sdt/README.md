@@ -8,7 +8,7 @@
 
 ## 📈 Technical Momentum & Leadership
 
-* **Daily Excellence:** This project is developed under a strict discipline of **140+ consecutive days of coding**.
+* **Daily Excellence:**
 * **Top Ranking:** Engineered by **NietoDeveloper**, currently ranked **#3 Top Committer in Colombia** (Targeting #1 by Q1 2026).
 * **Clean Architecture:** Implementation of modular, reusable components designed for long-term maintainability and enterprise growth.
 
