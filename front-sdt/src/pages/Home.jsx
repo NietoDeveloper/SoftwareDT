@@ -72,7 +72,7 @@ const Home = () => {
                        border-2 border-white/30 rounded-full hover:bg-gold hover:text-black 
                        transition-all duration-500 shadow-2xl active:scale-95 scale-110"
           >
-            Contáctanos
+            Contácto
           </button>
         </div>
       </section>
