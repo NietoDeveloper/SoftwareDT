@@ -15,7 +15,6 @@ import BookingPage from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import Payment from "./components/Checkout/Payment.jsx";
 import ClientPanel from "./pages/ClientAppointmentsPanel.jsx";
-import UserProfile from "./pages/UserProfile.jsx";
 import OurClients from "./pages/OurClients.jsx";
 
 function App() {
