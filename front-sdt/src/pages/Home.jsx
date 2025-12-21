@@ -99,7 +99,6 @@ const Home = () => {
         </section>
       </main>
 
-      {/* SECCIÓN DE PREGUNTAS: FUERA DEL MAIN PARA FULL WIDTH */}
       <div className="w-full">
         <Questions />
       </div>
