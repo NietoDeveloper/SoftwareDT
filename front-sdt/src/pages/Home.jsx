@@ -12,14 +12,17 @@ const Home = () => {
 
   return (
     <div className="bg-main antialiased min-h-screen">
-      <style dangerouslySetInnerHTML={{ __html: `
-        h1, h2, h3, h4, p, span:not(.text-white-force):not(.text-gold) { 
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+        /* AJUSTE AQUÍ: Agregamos :not(footer *) para que NO afecte al footer */
+        h1:not(footer *), h2:not(footer *), h3:not(footer *), h4:not(footer *), p:not(footer *), span:not(footer *):not(.text-white-force):not(.text-gold) { 
           color: #000000 !important; 
         }
 
         .text-white-force {
           color: #ffffff !important;
-          text-shadow: 0 0 15px rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.2);
+          /* Eliminamos sombras para estilo limpio Software DT */
           letter-spacing: 0.4em !important;
         }
 
@@ -44,7 +47,9 @@ const Home = () => {
         }
 
         html { scroll-behavior: smooth; }
-      `}} />
+      `,
+        }}
+      />
 
       {/* SECCIÓN DEL VIDEO */}
       <section className="h-[100vh] w-full relative flex items-end justify-end overflow-hidden">
@@ -56,17 +61,16 @@ const Home = () => {
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-80"
           src={BogotaAir1}
         />
-        
+
         <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/20 z-[1]"></div>
 
         {/* CONTENIDO FLOTANTE ALINEADO A LA DERECHA */}
         <div className="relative z-[10] flex flex-col items-end gap-8 pb-44 pr-6 md:pr-24 lg:pr-32">
-          {/* H2: Más pequeño en movil (text-2xl) y más grande en desktop (text-6xl) */}
           <h2 className="text-white-force text-2xl md:text-5xl lg:text-6xl font-black uppercase text-right leading-none">
             Software D T
           </h2>
-          
-          <button 
+
+          <button
             onClick={() => navigate("/contact")}
             className="px-12 py-5 bg-black text-white text-xl lg:text-2xl font-black uppercase tracking-[0.2em] 
                        border-2 border-white/30 rounded-full hover:bg-gold hover:text-black 
@@ -99,7 +103,6 @@ const Home = () => {
           <Questions />
         </section>
       </main>
-
       <Footer />
     </div>
   );

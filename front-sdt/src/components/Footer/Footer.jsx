@@ -8,15 +8,18 @@ const Footer = () => {
     timeStyle: 'short',
   });
 
+  // Estilo común para forzar el blanco y quitar sombras
+  const whiteForce = { color: '#FFFFFF', textShadow: 'none' };
+
   return (
     <footer className="relative min-h-screen w-full bg-black flex items-center justify-center overflow-hidden">
-      {/* Background Video - Opacidad ajustada para que el blanco resalte */}
+      {/* Background Video */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-30"
+        className="absolute inset-0 w-full h-full object-cover opacity-40"
         src={BogotaAir2}
       />
       
@@ -31,78 +34,92 @@ const Footer = () => {
 
       <div className="relative z-10 w-full max-w-[1800px] px-6 py-16 flex flex-col items-center text-center mt-20">
         
-        {/* Títulos: Blanco puro, Sin Sombras */}
+        {/* Títulos: Blanco puro forzado */}
         <div className="mb-12">
-          <h1 className="text-4xl sm:text-5xl font-black text-white uppercase tracking-[0.3em] drop-shadow-none">
-            Software <span className="text-white hover:text-gold transition-colors duration-300">D T</span>
+          <h1 style={whiteForce} className="text-4xl sm:text-5xl font-black uppercase tracking-[0.3em]">
+            Software <span className="hover:text-gold transition-colors duration-300 cursor-pointer">D T</span>
           </h1>
-          <h2 className="text-lg sm:text-xl font-bold text-white uppercase tracking-[0.5em] mt-4 drop-shadow-none">
+          <h2 style={whiteForce} className="text-lg sm:text-xl font-bold uppercase tracking-[0.5em] mt-4">
             Dorado Technologies
           </h2>
           <div className="w-24 h-[3px] bg-white mx-auto mt-6"></div>
         </div>
 
-        {/* Eslogan: Blanco puro */}
-        <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-widest mb-16 italic drop-shadow-none">
+        {/* Eslogan: Blanco puro forzado */}
+        <h3 style={whiteForce} className="text-2xl sm:text-3xl font-black uppercase tracking-widest mb-16 italic">
           "Codificamos Para Servir"
         </h3>
 
-        {/* Links Grid: Texto más grande y Blanco Puro */}
+        {/* Links Grid */}
         <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-32 mb-20">
           <div className="flex flex-col items-center md:items-start">
-            <ul className="text-lg sm:text-xl font-bold text-white uppercase tracking-widest space-y-6">
-              <li className="group">
-                <a href="/servicios" className="transition-all duration-300 group-hover:text-gold">
-                  Servicios
-                </a>
-              </li>
-              <li className="group">
-                <a href="/productos" className="transition-all duration-300 group-hover:text-gold">
-                  Productos
-                </a>
-              </li>
-              <li className="group">
-                <a href="/contacto" className="transition-all duration-300 group-hover:text-gold">
-                  Contacto
-                </a>
-              </li>
-              <li className="group">
-                <a href="mailto:softwaredt@outlook.com" className="transition-all duration-300 hover:text-gold font-black text-white">
-                  softwaredt@outlook.com
-                </a>
-              </li>
+            <ul className="text-lg sm:text-xl font-bold uppercase tracking-widest space-y-6">
+              {[
+                { name: 'Servicios', href: '/servicios' },
+                { name: 'Productos', href: '/productos' },
+                { name: 'Contacto', href: '/contacto' },
+                { name: 'softwaredt@outlook.com', href: 'mailto:softwaredt@outlook.com' }
+              ].map((link) => (
+                <li key={link.name} className="group">
+                  <a 
+                    href={link.href} 
+                    style={whiteForce} 
+                    className="transition-all duration-300 group-hover:!text-gold"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Divisor lateral Blanco */}
           <div className="flex flex-col items-center md:items-start border-t md:border-t-0 md:border-l border-white pt-8 md:pt-0 md:pl-16">
-            <ul className="text-lg sm:text-xl font-bold text-white uppercase tracking-widest space-y-6">
-              <li className="group">
-                <a href="https://github.com/NietoDeveloper?tab=repositories" target="_blank" rel="noreferrer" className="transition-all duration-300 group-hover:text-gold">
-                  Proyectos
-                </a>
-              </li>
-              <li className="group">
-                <a href="https://committers.top/colombia#NietoDeveloper" target="_blank" rel="noreferrer" className="transition-all duration-300 group-hover:text-gold">
-                  Investigación
-                </a>
-              </li>
-              <li className="group">
-                <a href="/sobre-nosotros" className="transition-all duration-300 group-hover:text-gold">
-                  Sobre Software DT
-                </a>
-              </li>
-              <li className="group">
-                <a href="/vacantes" className="transition-all duration-300 group-hover:text-gold">
-                  Trabaja con nosotros
-                </a>
-              </li>
+            <ul className="text-lg sm:text-xl font-bold uppercase tracking-widest space-y-6">
+              {[
+                { name: 'Proyectos', href: 'https://github.com/NietoDeveloper?tab=repositories' },
+                { name: 'Investigación', href: 'https://committers.top/colombia#NietoDeveloper' },
+                { name: 'Sobre Software DT', href: '/sobre-nosotros' },
+                { name: 'Trabaja con nosotros', href: '/vacantes' }
+              ].map((link) => (
+                <li key={link.name} className="group">
+                  <a 
+                    href={link.href} 
+                    target={link.href.startsWith('http') ? "_blank" : "_self"}
+                    rel="noreferrer"
+                    style={whiteForce} 
+                    className="transition-all duration-300 group-hover:!text-gold"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
+        {/* Info Inferior: Ajuste de Blanco e Interacción */}
+        <div className="mt-12 pt-10 border-t border-white w-full max-w-5xl flex flex-col items-center">
+          <div className="flex flex-col lg:flex-row items-center gap-10 text-xl sm:text-2xl font-black uppercase tracking-[0.2em]">
+            
+            <p 
+              style={whiteForce} 
+              className="hover:!text-gold transition-colors duration-300 cursor-default"
+            >
+              Copyright 2025 © Software DT
+            </p>
 
-
+            <div className="flex items-center gap-4 py-2 transition-all group">
+              <span className="w-4 h-4 bg-gold rounded-full animate-pulse shadow-none"></span>
+              <p 
+                style={whiteForce} 
+                className="group-hover:!text-gold transition-colors duration-300 font-black tracking-tighter"
+              >
+                {currentDateTime} — BOGOTÁ, COLOMBIA
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );
