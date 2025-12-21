@@ -46,7 +46,6 @@ const Home = () => {
         html { scroll-behavior: smooth; }
       `}} />
 
-      {/* SECCIÓN DEL VIDEO */}
       <section className="h-[100vh] w-full relative flex items-end justify-end overflow-hidden">
         <video
           autoPlay
