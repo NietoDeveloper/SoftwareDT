@@ -101,14 +101,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Info Inferior: Ajuste final de visibilidad blanca */}
-        <div className="mt-12 pt-10 border-t border-white w-full max-w-5xl flex flex-col items-center">
-          <div className="flex flex-col lg:flex-row items-center gap-10 text-lg sm:text-xl font-black uppercase tracking-[0.2em] text-white">
-            
-            <p className="hover:text-gold transition-colors duration-300 cursor-default">
-              Copyright 2025 © Software DT
-            </p>
-
 
 
       </div>
