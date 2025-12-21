@@ -60,23 +60,7 @@ const Questions = () => {
 
           <div className="w-full lg:w-1/2 flex flex-col items-center">
             <div className="w-full max-w-xl space-y-4">
-              
-              <FaqItem
-                question="¿Tiene algún costo la cita?"
-                answer="No. La cita con un programador es de tipo informativo y nos guiará en el servicio requerido para tu proyecto."
-              />
 
-              <FaqItem
-                question="¿Es presencial o virtual la cita?"
-                answer="Virtual. La reunión se llevará a cabo vía Microsoft TEAMS y tiene una duración estimada de 15 minutos."
-              />
-
-              <FaqItem
-                question="¿Tienen Atención en todo el país?"
-                answer="Sí. Antes de iniciar la construcción del software se agendan reuniones estratégicas. De ser necesario, se realizarán de forma presencial en la ciudad del cliente."
-              />
-
-            </div>
           </div>
         </div>
       </div>
