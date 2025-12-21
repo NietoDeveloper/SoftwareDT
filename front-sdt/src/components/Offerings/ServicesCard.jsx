@@ -1,28 +1,34 @@
 import { Link } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
 
-const ServicesCard = ({ item, index}) => {
+const ServicesCard = ({ item, index }) => {
   const { name, desc } = item;
+  
   return (
-    <div className="py-[30px] px-3 lg:px-5">
-      <h2 className=" text-[26px] leading-9 text-gray-900 font-[700]">
+    <div className="py-[30px] px-3 lg:px-5 bg-white rounded-3xl border-2 border-transparent hover:border-gold transition-all duration-300 group/card">
+      {/* Título en Negro Heading */}
+      <h2 className="text-[26px] leading-9 text-headingColor font-black uppercase tracking-tight">
         {name}
       </h2>
-      <p className="text-[16px] leading-7 font-[400] text-gray-800 mt-2">
+      
+      {/* Descripción en Texto Negro suave */}
+      <p className="text-[16px] leading-7 font-medium text-textColor mt-4 opacity-80">
         {desc}
       </p>
 
       <div className="flex items-center justify-between mt-[30px]">
+        {/* Botón Circular: Negro a Gold */}
         <Link
-          to="/doctors"
-          className="w-[40px] h-[40px] rounded-full border 
-            border-solid border-gray-900  flex items-center justify-center group hover:bg-blue-600"
-          >
-          <BsArrowRight className="group-hover:text-white h-5 w-6" />
+          to="/contact"
+          className="w-[44px] h-[44px] rounded-full border-2 border-solid border-black flex items-center justify-center group hover:bg-gold hover:border-gold transition-all duration-300 shadow-md"
+        >
+          <BsArrowRight className="text-black group-hover:scale-125 transition-transform h-5 w-6" />
         </Link>
-        <span className='w-[44px] h-[44px] flex items-center justify-center text-[18px] 
-        font-[600] leading-[30px] bg-purple-400/95 text-yellow-300 rounded-md' style = {{
-        }}> 
+
+        {/* Indicador de Número: Fondo Gainsboro, Texto Negro/Gold */}
+        <span 
+          className="w-[44px] h-[44px] flex items-center justify-center text-[20px] font-black leading-[30px] bg-main text-black rounded-xl border border-black/10 group-hover/card:bg-gold transition-colors duration-300"
+        > 
           {index + 1}
         </span>
       </div>
