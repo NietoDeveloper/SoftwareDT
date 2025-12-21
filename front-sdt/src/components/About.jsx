@@ -47,12 +47,12 @@ const About = () => {
               empresa al siguiente nivel.
             </p>
 
-            {/* REDIRECCIÓN A NUESTROS CLIENTES */}
             <Link to="/clients">
+              {/* BOTÓN: Redimensionado para mobile y redireccionado a Clientes */}
               <button 
-                className="mt-10 px-12 py-5 bg-black text-white text-xl lg:text-2xl font-black uppercase tracking-[0.2em] 
+                className="mt-10 px-8 py-4 lg:px-12 lg:py-5 bg-black text-white text-lg lg:text-2xl font-black uppercase tracking-[0.2em] 
                            border-2 border-white/30 rounded-full hover:bg-gold hover:text-black 
-                           transition-all duration-500 shadow-2xl active:scale-95 scale-110"
+                           transition-all duration-500 shadow-2xl active:scale-95 scale-100 lg:scale-110"
               >
                 Nuestros Clientes
               </button>
