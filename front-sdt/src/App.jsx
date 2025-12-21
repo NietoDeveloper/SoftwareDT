@@ -32,7 +32,10 @@ function App() {
         <Route path="/doctors" element={<DoctorList />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/clients" element={<OurClients />} />
+        
+        {/* AJUSTE REALIZADO: Ahora coincide con el Link de Publicidad */}
+        <Route path="/ourclients" element={<OurClients />} />
+        
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/doctor/signup" element={<Doctorsignup />} />
