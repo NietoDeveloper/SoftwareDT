@@ -5,43 +5,77 @@ import softlive from '../../assets/images/softlive.mp4';
 
 const Questions = () => {
   return (
-    <section className="relative h-[120vh] w-full bg-black text-white flex items-center justify-center">
+    <section className="relative min-h-screen w-full bg-black flex items-center justify-center overflow-hidden questions-section">
+      {/* CSS ESPECÍFICO PARA ESTA SECCIÓN: Esto anula el estilo global del Home */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .questions-section h1, 
+        .questions-section h2, 
+        .questions-section h3, 
+        .questions-section p, 
+        .questions-section span,
+        .questions-section div { 
+          color: #ffffff !important; 
+        }
+        
+        /* El texto en Gold debe seguir siendo Gold */
+        .questions-section .text-gold, 
+        .questions-section .text-gold span {
+          color: #FFD700 !important;
+        }
+
+        /* Ajuste para los items del Dropdown */
+        .questions-section .faq-item {
+          border-color: rgba(255, 255, 255, 0.2) !important;
+        }
+      `}} />
+
       <video
         autoPlay
         loop
         muted
-        className="absolute inset-0 w-full h-full object-cover opacity-50"
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-40 z-0"
         src={softlive}
       />
-      <div className="relative z-10 container mx-auto px-6 py-16 min-[700px]:px-8 min-[700px]:py-20 flex flex-col items-center">
-        <h2 className="text-4xl min-[700px]:text-5xl font-bold tracking-tight text-center mb-8 min-[700px]:mb-12">Preguntas Frecuentes</h2>
-        <div className="flex flex-col min-[700px]:flex-row justify-center items-center gap-8 min-[700px]:gap-16 w-full max-w-6xl">
-          <div className="w-full min-[700px]:w-1/2">
-            <img src={equipo2} alt="faq" className="rounded-2xl w-full h-auto object-cover" />
+      
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black z-[1]"></div>
+
+      <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col items-center">
+        
+        {/* Título forzado a blanco con span Gold */}
+        <h2 className="text-4xl lg:text-5xl font-black tracking-tighter text-center mb-12 uppercase">
+          Preguntas <span className="text-gold">Frecuentes</span>
+        </h2>
+
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-12 lg:gap-20 w-full max-w-7xl">
+          
+          <div className="w-full lg:w-1/2 relative group">
+            <div className="absolute -inset-2 bg-gold/30 rounded-[2.5rem] blur-2xl group-hover:bg-gold/50 transition duration-500"></div>
+            <img 
+              src={equipo2} 
+              alt="faq" 
+              className="relative rounded-[2rem] w-full h-auto object-cover border-4 border-white/20 shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]" 
+            />
           </div>
-          <div className="w-full min-[700px]:w-1/2 flex flex-col items-center">
-            <div className="w-full max-w-lg">
-              <div className="my-4 min-[700px]:my-6">
-                <FaqItem
-                  question="¿Tiene algún costo la cita?"
-                  answer="No;  La cita con un programador, es de tipo informativo y nos guiara en el servicio requerido. "
-                  className="bg-transparent border border-gray-200 rounded-lg text-white"
-                />
-              </div>
-              <div className="my-4 min-[700px]:my-6">
-                <FaqItem
-                  question="¿Es presencial o virtual la cita?"
-                  answer="Virtual. La reunuion se llevara a cabo via TEAMS; y Tiene una duracion de 15 min."
-                  className="bg-transparent border border-gray-200 rounded-lg text-white"
-                />
-              </div>
-              <div className="my-4 min-[700px]:my-6">
-                <FaqItem
-                  question="¿Tienen Atención en todo el país?"
-                  answer="Si. Antes de Iniciar la construccion del Software se tienen reuniones presenciales, las cuales de ser necesario de realizaran en la ciudad del cliente "
-                  className="bg-transparent border border-gray-200 rounded-lg text-white"
-                />
-              </div>
+
+          <div className="w-full lg:w-1/2 flex flex-col items-center">
+            <div className="w-full max-w-xl space-y-4">
+              
+              <FaqItem
+                question="¿Tiene algún costo la cita?"
+                answer="No. La cita con un programador es de tipo informativo y nos guiará en el servicio requerido para tu proyecto."
+              />
+
+              <FaqItem
+                question="¿Es presencial o virtual la cita?"
+                answer="Virtual. La reunión se llevará a cabo vía Microsoft TEAMS y tiene una duración estimada de 15 minutos."
+              />
+
+              <FaqItem
+                question="¿Tienen Atención en todo el país?"
+                answer="Sí. Antes de iniciar la construcción del software se agendan reuniones estratégicas. De ser necesario, se realizarán de forma presencial en la ciudad del cliente."
+              />
+
             </div>
           </div>
         </div>
