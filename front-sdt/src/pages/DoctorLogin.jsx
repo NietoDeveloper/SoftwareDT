@@ -1,10 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios'; // Simulación de axiosAuth
 import { Link, useNavigate } from 'react-router-dom';
-// import { AppContext } from '../context/UserContext'; // Asumo que el contexto existe
+// import { AppContext } from '../context/UserContext'; 
 
-// Componente de Icono de Médico (Estetoscopio)
 const DoctorIcon = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <path d="M12 2a3 3 0 0 0-3 3v2a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
@@ -14,18 +12,15 @@ const DoctorIcon = (props) => (
     </svg>
 );
 
-
 const Doctorlogin = () => {
-    // const { setToken, setUser } = useContext(AppContext); // Descomentar en tu entorno real
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-
     const navigate = useNavigate();
+    
     const {
         register,
         handleSubmit,
-        formState: { errors },
-        reset
+        formState: { errors }
     } = useForm();
 
     const onSubmit = async (data) => {
@@ -33,128 +28,113 @@ const Doctorlogin = () => {
         setIsLoading(true);
 
         try {
-            // Reemplazar axios con tu axiosAuth y la ruta correcta en un entorno real
-            // const response = await axiosAuth.post('/doctor/login', data); 
-
-            await new Promise(resolve => setTimeout(resolve, 1500)); // Simula latencia de red
+            // Simulación de autenticación
+            await new Promise(resolve => setTimeout(resolve, 1500)); 
             const mockResponse = {
                 data: {
                     accessToken: 'mock_doctor_token_12345',
                     doctorData: { name: 'Dr. Ejemplo', email: data.email, role: 'doctor' }
                 }
             };
-            const response = mockResponse;
-
-            localStorage.setItem('accessToken', response.data.accessToken); 
-            // setToken(response.data.accessToken); // Descomentar en tu entorno real
-            // setUser(response.data.doctorData);   // Descomentar en tu entorno real
-            
-            navigate('/doctor/dashboard', { replace: true }); // Navegar a un dashboard de doctor
-
+            localStorage.setItem('accessToken', mockResponse.data.accessToken); 
+            navigate('/doctor/dashboard', { replace: true });
         } catch (processError) {
-            console.error("Doctor Login failed", processError);
-            const errorMessage = processError?.response?.data?.error
-                                 || processError?.message
-                                 || 'Credenciales de especialista inválidas o error de servidor.';
-            
-            setError(
-                errorMessage.includes('Network')
-                ? 'Error de conexión con el servidor (backend). Asegúrate de que esté activo.'
-                : 'Email o Contraseña incorrectos para especialista.'
-            );
+            setError('Credenciales de especialista inválidas o error de servidor.');
         } finally {
             setIsLoading(false);
         }
     };
     
     return (
-        // Contenedor principal: Responsive, limpio y centrado
-        <div className="min-h-screen flex items-center justify-center bg-gray-50/70 p-4 sm:p-8 lg:p-12 font-sans transition-all duration-300">
-            <div className="w-full max-w-5xl flex flex-col md:flex-row bg-white shadow-2xl rounded-2xl p-6 sm:p-10 lg:p-12 transition-all duration-300 overflow-hidden">
+        <div className="min-h-screen flex items-center justify-center bg-main p-4 sm:p-8 transition-all duration-300">
+            <div className="w-full max-w-5xl flex flex-col md:flex-row bg-card shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[2.5rem] overflow-hidden border border-white/50">
                 
-                {/* Lado Izquierdo: Información y Banner */}
-                <div className="w-full md:w-1/2 p-4 flex flex-col justify-center text-center md:text-left">
-                    {/* Título ajustado 60px hacia abajo en dispositivos pequeños (mt-16 ~ 64px) */}
-                    <h1 className="text-4xl sm:text-5xl font-extrabold text-green-700 mb-4 sm:mb-6 mt-16 md:mt-0 transition-colors">
-                        <DoctorIcon className="inline mr-3 h-8 w-8 sm:h-10 sm:w-10 text-green-600"/>
-                        Acceso de Especialistas
-                    </h1>
-                    <p className='text-base sm:text-lg text-gray-700 mb-2'>
-                        ¿No Tienes Una Cuenta de Especialista? 
+                {/* LADO IZQUIERDO: Branding NietoDeveloper Style */}
+                <div className="w-full md:w-1/2 p-10 lg:p-16 flex flex-col justify-center bg-white">
+                    <div className="mb-8">
+                        <h1 className="text-4xl lg:text-6xl font-black text-headingColor uppercase tracking-tighter leading-none mb-4">
+                            Portal <br />
+                            <span className="text-gold">Especialista</span>
+                        </h1>
+                        <div className="h-2 w-20 bg-gold rounded-full"></div>
+                    </div>
+
+                    <p className='text-lg text-textColor font-medium opacity-80 mb-8 leading-relaxed'>
+                        Gestiona tus citas y pacientes con la tecnología de vanguardia de Software DT.
+                    </p>
+
+                    <div className="space-y-4">
+                        <p className='text-sm font-bold uppercase tracking-widest text-gray-400'>
+                            ¿Nuevo en la plataforma?
+                        </p>
                         <Link 
                             to="/doctor/signup" 
-                            className='text-green-600 hover:text-green-800 font-semibold ml-1 transition duration-200 border-b border-green-600/50 hover:border-green-800/80'
+                            className='inline-block text-black hover:text-gold font-black text-xl transition-all duration-300 underline decoration-gold decoration-4 underline-offset-4'
                         >
-                            Regístrate
+                            Crear cuenta de Especialista
                         </Link>
-                    </p>
-                    <p className='mt-8 text-sm text-gray-500'>
-                        ¿Quieres Agendar Una Cita? Inicia sesión como 
-                        <Link 
-                            to="/login" 
-                            className='text-blue-600 hover:text-blue-800 font-semibold ml-1 transition duration-200 border-b border-blue-600/50 hover:border-blue-800/80'
-                        >
-                            Cliente aquí
+                    </div>
+
+                    <div className="mt-12 pt-8 border-t border-main">
+                        <Link to="/login" className="text-sm font-bold text-gray-400 hover:text-black transition-colors uppercase tracking-widest">
+                            ← Iniciar sesión como Cliente
                         </Link>
-                    </p>
+                    </div>
                 </div>
 
-                {/* Lado Derecho: Formulario de Login */}
-                {/* Separador vertical en MD+ y horizontal en XS/SM */}
-                <div className="w-full md:w-1/2 pt-6 md:pt-0 border-t md:border-t-0 md:border-l md:border-l-2 border-green-100/50 md:pl-10 mt-6 md:mt-0">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Iniciar Sesión</h2>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                    
-                        {/* Campo Email */}
-                        <div className="flex flex-col mb-4">
-                            <label htmlFor="email" className="mb-2 font-medium text-gray-700 text-sm">Email</label>
+                {/* LADO DERECHO: Formulario Limpio */}
+                <div className="w-full md:w-1/2 p-10 lg:p-16 bg-main/30 flex flex-col justify-center">
+                    <div className="mb-10 flex items-center gap-3">
+                        <div className="bg-black p-3 rounded-2xl shadow-lg">
+                            <DoctorIcon className="text-gold h-6 w-6"/>
+                        </div>
+                        <h2 className="text-2xl font-black text-headingColor uppercase tracking-tight">Acceso Seguro</h2>
+                    </div>
+
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                        {/* Email */}
+                        <div className="flex flex-col">
+                            <label className="mb-2 font-black text-headingColor text-xs uppercase tracking-widest">Correo Electrónico</label>
                             <input
                                 type="email"
-                                id="email"
-                                className="border border-gray-300/60 p-3 rounded-xl focus:ring-green-500 focus:border-green-500 transition duration-200 shadow-inner hover:border-green-400/50 outline-none w-full"
-                                placeholder="Ingresa tu email de especialista..."
-                                {...register('email', { required: 'Este campo es obligatorio' })}
+                                className="bg-white border-2 border-transparent p-4 rounded-2xl focus:border-gold transition-all duration-300 shadow-sm outline-none w-full font-medium"
+                                placeholder="doctor@softwaredt.com"
+                                {...register('email', { required: 'El email es obligatorio' })}
                             />
-                            {errors.email && <span className="text-red-600 text-sm mt-1 font-medium">{errors.email.message}</span>}
+                            {errors.email && <span className="text-red-500 text-xs mt-2 font-bold uppercase tracking-tighter">{errors.email.message}</span>}
                         </div>
 
-                        {/* Campo Contraseña */}
-                        <div className="flex flex-col mb-6">
-                            <label htmlFor="password" className="mb-2 font-medium text-gray-700 text-sm">Contraseña</label>
+                        {/* Password */}
+                        <div className="flex flex-col">
+                            <label className="mb-2 font-black text-headingColor text-xs uppercase tracking-widest">Contraseña</label>
                             <input
                                 type="password"
-                                id="password"
-                                className="border border-gray-300/60 p-3 rounded-xl focus:ring-green-500 focus:border-green-500 transition duration-200 shadow-inner hover:border-green-400/50 outline-none w-full"
-                                placeholder="Ingresa tu contraseña..."
-                                {...register('password', { required: 'Este campo es obligatorio' })}
+                                className="bg-white border-2 border-transparent p-4 rounded-2xl focus:border-gold transition-all duration-300 shadow-sm outline-none w-full font-medium"
+                                placeholder="••••••••"
+                                {...register('password', { required: 'La contraseña es obligatoria' })}
                             />
-                            {errors.password && <span className="text-red-600 text-sm mt-1 font-medium">{errors.password.message}</span>}
+                            {errors.password && <span className="text-red-500 text-xs mt-2 font-bold uppercase tracking-tighter">{errors.password.message}</span>}
                         </div>
 
-                        {/* Mensaje de Error */}
                         {error && (
-                            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mb-4 font-semibold text-sm">
+                            <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-xl text-sm font-bold">
                                 {error}
                             </div>
                         )}
 
-                        {/* Botón de Envío (Uniforme y Elegante Hover - Color Verde para Especialistas) */}
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className={`w-full py-3.5 bg-green-600 text-white rounded-xl font-bold shadow-lg shadow-green-500/30 transition-all duration-300 flex items-center justify-center ${
+                            className={`w-full py-5 bg-black text-white rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl transition-all duration-500 flex items-center justify-center ${
                                 isLoading 
-                                ? 'opacity-70 cursor-not-allowed' 
-                                : 'hover:bg-green-700 hover:shadow-green-600/50 transform hover:-translate-y-0.5'
+                                ? 'opacity-50 cursor-not-allowed' 
+                                : 'hover:bg-gold hover:text-black hover:shadow-gold/20 transform hover:-translate-y-1'
                             }`}
                         >
                             {isLoading ? (
-                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
+                                <div className="h-6 w-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                             ) : (
-                                'Acceder como Especialista'
+                                'Entrar al Sistema'
                             )}
                         </button>
                     </form>
