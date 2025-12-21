@@ -1,126 +1,108 @@
-import BogotaAir2 from "../../assets/images/MonserrateDron1.mp4";
-import Logo from "../../assets/images/logo.png";
+import { useNavigate } from "react-router-dom";
+import Herosection from "../components/Hero/Herosection";
+import About from "../components/About";
+import Publicidad from "../components/Publicidad";
+import Questions from "../components/Faq/Questions";
+import Guide from "../components/Explainer/Guide";
+import BogotaAir1 from "../assets/images/BogotaAir1.mp4";
+import Footer from "../components/Footer/Footer";
 
-const Footer = () => {
-  const currentDateTime = new Date().toLocaleString('en-US', {
-    timeZone: 'America/Bogota',
-    dateStyle: 'medium',
-    timeStyle: 'short',
-  });
+const Home = () => {
+  const navigate = useNavigate();
 
   return (
-    <footer className="relative min-h-screen w-full bg-black flex items-center justify-center overflow-hidden">
-      {/* Background Video - Opacidad ajustada para que el blanco resalte */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-30"
-        src={BogotaAir2}
-      />
-      
-      {/* Logo superior */}
-      <div className="absolute top-12 left-1/2 transform -translate-x-1/2 z-20">
-        <img 
-          src={Logo} 
-          alt="logo" 
-          className="h-20 w-auto transition-all hover:scale-110 duration-500" 
+    <div className="bg-main antialiased min-h-screen">
+      <style dangerouslySetInnerHTML={{ __html: `
+        h1, h2, h3, h4, p, span:not(.text-white-force):not(.text-gold) { 
+          color: #000000 !important; 
+        }
+
+        .text-white-force {
+          color: #ffffff !important;
+          text-shadow: 0 0 15px rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.2);
+          letter-spacing: 0.4em !important;
+        }
+
+        .nav-toggle, button[aria-label="Menu"], .nav-toggle span {
+          background-color: transparent !important;
+          box-shadow: none !important;
+          border: none !important;
+        }
+
+        button:not(.nav-toggle):not([aria-label="Menu"]), .btn, .arrow-icon {
+          background-color: #000000 !important;
+          color: #ffffff !important;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          border: none !important;
+        }
+
+        button:not(.nav-toggle):not([aria-label="Menu"]):hover, .btn:hover, .arrow-icon:hover {
+          background-color: #FFD700 !important;
+          color: #000000 !important;
+          box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4) !important;
+          transform: translateY(-3px);
+        }
+
+        html { scroll-behavior: smooth; }
+      `}} />
+
+      {/* SECCIÓN DEL VIDEO */}
+      <section className="h-[100vh] w-full relative flex items-end justify-end overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0 opacity-80"
+          src={BogotaAir1}
         />
-      </div>
-
-      <div className="relative z-10 w-full max-w-[1800px] px-6 py-16 flex flex-col items-center text-center mt-20">
         
-        {/* Títulos: Blanco puro, Sin Sombras */}
-        <div className="mb-12">
-          <h1 className="text-4xl sm:text-5xl font-black text-white uppercase tracking-[0.3em] drop-shadow-none">
-            Software <span className="text-white hover:text-gold transition-colors duration-300">D T</span>
-          </h1>
-          <h2 className="text-lg sm:text-xl font-bold text-white uppercase tracking-[0.5em] mt-4 drop-shadow-none">
-            Dorado Technologies
+        <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/20 z-[1]"></div>
+
+        {/* CONTENIDO FLOTANTE ALINEADO A LA DERECHA */}
+        <div className="relative z-[10] flex flex-col items-end gap-8 pb-44 pr-6 md:pr-24 lg:pr-32">
+          {/* H2: Más pequeño en movil (text-2xl) y más grande en desktop (text-6xl) */}
+          <h2 className="text-white-force text-2xl md:text-5xl lg:text-6xl font-black uppercase text-right leading-none">
+            Software D T
           </h2>
-          <div className="w-24 h-[3px] bg-white mx-auto mt-6"></div>
+          
+          <button 
+            onClick={() => navigate("/contact")}
+            className="px-12 py-5 bg-black text-white text-xl lg:text-2xl font-black uppercase tracking-[0.2em] 
+                       border-2 border-white/30 rounded-full hover:bg-gold hover:text-black 
+                       transition-all duration-500 shadow-2xl active:scale-95 scale-110"
+          >
+            Contácto
+          </button>
         </div>
+      </section>
 
-        {/* Eslogan: Blanco puro */}
-        <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-widest mb-16 italic drop-shadow-none">
-          "Codificamos Para Servir"
-        </h3>
+      {/* SECCIÓN HERO */}
+      <section className="py-10 max-w-[1800px] mx-auto px-4 sm:px-8">
+        <Herosection />
+      </section>
 
-        {/* Links Grid: Texto más grande y Blanco Puro */}
-        <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-32 mb-20">
-          <div className="flex flex-col items-center md:items-start">
-            <ul className="text-lg sm:text-xl font-bold text-white uppercase tracking-widest space-y-6">
-              <li className="group">
-                <a href="/servicios" className="transition-all duration-300 group-hover:text-gold">
-                  Servicios
-                </a>
-              </li>
-              <li className="group">
-                <a href="/productos" className="transition-all duration-300 group-hover:text-gold">
-                  Productos
-                </a>
-              </li>
-              <li className="group">
-                <a href="/contacto" className="transition-all duration-300 group-hover:text-gold">
-                  Contacto
-                </a>
-              </li>
-              <li className="group">
-                <a href="mailto:softwaredt@outlook.com" className="transition-all duration-300 hover:text-gold font-black text-white">
-                  softwaredt@outlook.com
-                </a>
-              </li>
-            </ul>
-          </div>
+      <main className="max-w-[1800px] mx-auto overflow-hidden space-y-10 px-4 sm:px-8">
+        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
+          <About />
+        </section>
 
-          {/* Divisor lateral Blanco */}
-          <div className="flex flex-col items-center md:items-start border-t md:border-t-0 md:border-l border-white pt-8 md:pt-0 md:pl-16">
-            <ul className="text-lg sm:text-xl font-bold text-white uppercase tracking-widest space-y-6">
-              <li className="group">
-                <a href="https://github.com/NietoDeveloper?tab=repositories" target="_blank" rel="noreferrer" className="transition-all duration-300 group-hover:text-gold">
-                  Proyectos
-                </a>
-              </li>
-              <li className="group">
-                <a href="https://committers.top/colombia#NietoDeveloper" target="_blank" rel="noreferrer" className="transition-all duration-300 group-hover:text-gold">
-                  Investigación
-                </a>
-              </li>
-              <li className="group">
-                <a href="/sobre-nosotros" className="transition-all duration-300 group-hover:text-gold">
-                  Sobre Software DT
-                </a>
-              </li>
-              <li className="group">
-                <a href="/vacantes" className="transition-all duration-300 group-hover:text-gold">
-                  Trabaja con nosotros
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
+          <Guide />
+        </section>
 
-        {/* Info Inferior: Ajuste final de visibilidad blanca */}
-        <div className="mt-12 pt-10 border-t border-white w-full max-w-5xl flex flex-col items-center">
-          <div className="flex flex-col lg:flex-row items-center gap-10 text-lg sm:text-xl font-black uppercase tracking-[0.2em] text-white">
-            
-            <p className="hover:text-gold transition-colors duration-300 cursor-default">
-              Copyright 2025 © Software DT
-            </p>
+        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
+          <Publicidad />
+        </section>
 
-            <div className="flex items-center gap-4 text-white py-2 transition-all">
-              <span className="w-4 h-4 bg-gold rounded-full animate-pulse shadow-[0_0_15px_#FFD700]"></span>
-              <p className="text-white font-black tracking-tighter">
-                {currentDateTime} — BOGOTÁ, COLOMBIA
-              </p>
-            </div>
-          </div>
-        </div>
+        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card mb-20">
+          <Questions />
+        </section>
+      </main>
 
-      </div>
-    </footer>
+      <Footer />
+    </div>
   );
 };
 
-export default Footer;
+export default Home;
