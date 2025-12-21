@@ -1,51 +1,33 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Sub-componente interno para el botón hamburguesa animado
 const MenuButton = ({ isOpen, onClick }) => {
-  const variantTop = {
-    closed: { rotate: 0, y: 0 },
-    opened: { rotate: 45, y: 8 },
-  };
-
-  const variantCenter = {
-    closed: { opacity: 1, x: 0 },
-    opened: { opacity: 0, x: -20 },
-  };
-
-  const variantBottom = {
-    closed: { rotate: 0, y: 0 },
-    opened: { rotate: -45, y: -8 },
-  };
+  const variantTop = { closed: { rotate: 0, y: 0 }, opened: { rotate: 45, y: 8 } };
+  const variantCenter = { closed: { opacity: 1, x: 0 }, opened: { opacity: 0, x: -20 } };
+  const variantBottom = { closed: { rotate: 0, y: 0 }, opened: { rotate: -45, y: -8 } };
 
   return (
     <button
       onClick={onClick}
-      // CAMBIOS CLAVE: bg-transparent, sin bordes, sin sombras
-      className="relative z-50 p-2 bg-transparent border-none outline-none focus:outline-none group transition-all duration-300 active:scale-90 shadow-none"
+      className="relative z-50 p-2 bg-transparent border-none outline-none focus:outline-none group transition-all duration-300 active:scale-90"
       aria-label="Menu"
-      style={{ WebkitTapHighlightColor: 'transparent', background: 'transparent' }}
     >
-      <div className="w-7 h-5 flex flex-col justify-between items-center relative bg-transparent">
+      <div className="w-7 h-5 flex flex-col justify-between items-center relative">
         <motion.span
           variants={variantTop}
           animate={isOpen ? "opened" : "closed"}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          // Barras Gold que cambian a Negro en Hover
-          className="w-full h-1 bg-gold rounded-full group-hover:bg-black origin-center transition-colors duration-300"
+          className="w-full h-1 bg-[#FEB60D] rounded-full group-hover:bg-black transition-colors duration-300"
         />
         <motion.span
           variants={variantCenter}
           animate={isOpen ? "opened" : "closed"}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="w-full h-1 bg-gold rounded-full group-hover:bg-black transition-colors duration-300"
+          className="w-full h-1 bg-[#FEB60D] rounded-full group-hover:bg-black transition-colors duration-300"
         />
         <motion.span
           variants={variantBottom}
           animate={isOpen ? "opened" : "closed"}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="w-full h-1 bg-gold rounded-full group-hover:bg-black origin-center transition-colors duration-300"
+          className="w-full h-1 bg-[#FEB60D] rounded-full group-hover:bg-black transition-colors duration-300"
         />
       </div>
     </button>
@@ -63,109 +45,83 @@ const Header = () => {
     navigate("/login");
   };
 
+  // CORRECCIÓN: Usar navigate para no recargar la app
   const handleLogoClick = () => {
-    window.location.href = "/";
+    navigate("/");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <header className="bg-white/10 backdrop-blur-2xl shadow-sm sticky top-0 z-50 border-b border-black/5">
+    <header className="bg-white/10 backdrop-blur-2xl shadow-sm sticky top-0 z-[100] border-b border-black/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           
-          {/* Logo con Hover Gold */}
-          <div
-            className="flex-shrink-0 flex items-center cursor-pointer group transition-all duration-300"
-            onClick={handleLogoClick}
-          >
-            <span className="text-black text-xl sm:text-2xl font-black uppercase tracking-tighter transition-colors duration-300 group-hover:text-gold">
+          <div className="flex-shrink-0 flex items-center cursor-pointer group" onClick={handleLogoClick}>
+            <span className="text-black text-xl sm:text-2xl font-black uppercase tracking-tighter transition-colors duration-300 group-hover:text-[#FEB60D]">
               Software D T
             </span>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6 items-center text-sm">
-            <Link to="/" className="text-black hover:text-gold font-bold transition-colors">Inicio</Link>
-            <Link to="/Services" className="text-black hover:text-gold font-bold transition-colors">Información Servicios</Link>
-            <Link to="/doctors" className="text-black hover:text-gold font-bold transition-colors">Escoje Servicio</Link>
-            <Link to="/clients" className="text-black hover:text-gold font-bold transition-colors">Nuestros Clientes</Link>
-            <Link to="/contact" className="text-black hover:text-gold font-bold transition-colors">Contacto</Link>
-            <Link to="/client-appointments" className="text-black hover:text-gold font-bold transition-colors">Panel Cliente</Link>
+            <Link to="/" className="text-black hover:text-[#FEB60D] font-bold transition-colors">Inicio</Link>
+            {/* CORRECCIÓN: /services en minúscula para coincidir con App.jsx */}
+            <Link to="/services" className="text-black hover:text-[#FEB60D] font-bold transition-colors">Información Servicios</Link>
+            <Link to="/doctors" className="text-black hover:text-[#FEB60D] font-bold transition-colors">Escoje Servicio</Link>
+            <Link to="/clients" className="text-black hover:text-[#FEB60D] font-bold transition-colors">Nuestros Clientes</Link>
+            <Link to="/contact" className="text-black hover:text-[#FEB60D] font-bold transition-colors">Contacto</Link>
+            
+            {isLoggedIn && (
+              <Link to="/client-appointments" className="text-black hover:text-[#FEB60D] font-bold transition-colors">Panel Cliente</Link>
+            )}
 
             {isLoggedIn ? (
-              <button onClick={handleLogout} className="text-black hover:text-gold font-black transition-colors">
+              <button 
+                onClick={handleLogout} 
+                className="text-black hover:text-[#FEB60D] font-black transition-colors border-none bg-transparent p-0"
+              >
                 Cerrar Sesión
               </button>
             ) : (
               <div className="flex items-center space-x-4">
-                <Link to="/login" className="text-black font-black hover:text-gold transition-colors">Login</Link>
-                <Link to="/signup" className="text-black font-black hover:text-gold transition-colors">Registro</Link>
+                <Link to="/login" className="text-black font-black hover:text-[#FEB60D]">Login</Link>
+                <Link to="/signup" className="px-4 py-2 bg-black text-white rounded-full hover:bg-[#FEB60D] hover:text-black transition-all">Registro</Link>
               </div>
             )}
           </nav>
 
-          {/* Mobile Menu Button - Transparente con barras Gold */}
-          <div className="flex items-center md:hidden bg-transparent">
-            <MenuButton 
-              isOpen={isMenuOpen} 
-              onClick={() => setIsMenuOpen(!isMenuOpen)} 
-            />
+          <div className="flex items-center md:hidden">
+            <MenuButton isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)} />
           </div>
-
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white/20 backdrop-blur-3xl border-t border-black/5 max-h-[80vh] overflow-auto transition-all duration-300">
-          <div className="px-6 pt-6 pb-10 space-y-4 flex flex-col items-center justify-center">
-            {[
-              { name: "Inicio", path: "/" },
-              { name: "Información Servicios", path: "/Services" },
-              { name: "Escoje Servicio", path: "/doctors" },
-              { name: "Nuestros Clientes", path: "/clients" },
-              { name: "Contacto", path: "/contact" },
-              { name: "Panel Cliente", path: "/client-appointments" },
-            ].map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className="w-full text-center py-2 text-lg font-black text-black hover:text-gold transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-
-            <div className="w-full h-[1px] bg-black/10 my-2"></div>
-
-            {isLoggedIn ? (
-              <button
-                onClick={() => { handleLogout(); setIsMenuOpen(false); }}
-                className="w-full text-center py-3 text-lg font-black text-black hover:text-gold transition-colors"
-              >
-                Cerrar Sesión
-              </button>
-            ) : (
-              <div className="w-full flex flex-col items-center space-y-4 px-4">
-                <Link
-                  to="/login"
-                  className="w-full text-center py-3 text-lg font-black text-black border-2 border-gold rounded-xl transition-all active:scale-95 hover:bg-gold/10"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/signup"
-                  className="w-full text-center py-3 text-lg font-black text-black border-2 border-gold rounded-xl transition-all active:scale-95 hover:bg-gold/10"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Registro
-                </Link>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      {/* Mobile Menu con AnimatePresence para suavidad */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white/95 backdrop-blur-3xl border-t border-black/5 overflow-hidden"
+          >
+            <div className="px-6 py-8 space-y-4 flex flex-col items-center">
+              <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-lg font-black">Inicio</Link>
+              <Link to="/services" onClick={() => setIsMenuOpen(false)} className="text-lg font-black">Información Servicios</Link>
+              <Link to="/doctors" onClick={() => setIsMenuOpen(false)} className="text-lg font-black">Escoje Servicio</Link>
+              <Link to="/clients" onClick={() => setIsMenuOpen(false)} className="text-lg font-black">Nuestros Clientes</Link>
+              <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="text-lg font-black">Contacto</Link>
+              {isLoggedIn ? (
+                <button onClick={() => { handleLogout(); setIsMenuOpen(false); }} className="text-lg font-black text-red-600">Cerrar Sesión</button>
+              ) : (
+                <>
+                  <Link to="/login" onClick={() => setIsMenuOpen(false)} className="text-lg font-black">Login</Link>
+                  <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="text-lg font-black text-[#FEB60D]">Registro</Link>
+                </>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
