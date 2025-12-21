@@ -59,7 +59,6 @@ const Home = () => {
         
         <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/20 z-[1]"></div>
 
-        {/* CONTENIDO FLOTANTE: AJUSTADO MÁS ARRIBA CON pb-44 */}
         <div className="relative z-[10] flex flex-col items-end gap-8 pb-44 pr-10 md:pr-24 lg:pr-32">
           <h2 className="text-white-force text-3xl md:text-5xl font-black uppercase text-right">
             Software D T
