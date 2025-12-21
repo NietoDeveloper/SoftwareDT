@@ -13,13 +13,17 @@ const Home = () => {
   return (
     <div className="bg-main antialiased min-h-screen">
       <style dangerouslySetInnerHTML={{ __html: `
-        h1, h2, h3, h4, p, span:not(.text-gold) { 
+        h1, h2, h3, h4, p, span:not(.text-white-force):not(.text-gold) { 
           color: #000000 !important; 
         }
 
-        .nav-toggle, 
-        button[aria-label="Menu"], 
-        .nav-toggle span {
+        .text-white-force {
+          color: #ffffff !important;
+          text-shadow: 0 0 15px rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.2);
+          letter-spacing: 0.4em !important;
+        }
+
+        .nav-toggle, button[aria-label="Menu"], .nav-toggle span {
           background-color: transparent !important;
           box-shadow: none !important;
           border: none !important;
@@ -39,48 +43,44 @@ const Home = () => {
           transform: translateY(-3px);
         }
 
-        .number, .count, .step-number {
-          color: #000000 !important;
-          transition: color 0.3s ease !important;
-          font-weight: 900;
-        }
-
-        .number:hover, .count:hover, .step-number:hover {
-          color: #FFD700 !important;
-        }
-
         html { scroll-behavior: smooth; }
       `}} />
 
-      <section className="h-[100vh] w-full relative flex flex-col items-center justify-center overflow-hidden">
+      {/* SECCIÓN DEL VIDEO */}
+      <section className="h-[100vh] w-full relative flex items-end justify-end overflow-hidden">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute w-full h-full object-cover z-0 opacity-80"
+          className="absolute inset-0 w-full h-full object-cover z-0 opacity-80"
           src={BogotaAir1}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-main z-[1]"></div>
+        
+        <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/20 z-[1]"></div>
 
-        <button 
-          onClick={() => navigate("/contact")}
-          className="relative z-[10] px-10 py-4 bg-black text-white font-black uppercase tracking-[0.2em] 
-                     border-2 border-white/20 rounded-full hover:bg-gold hover:text-black 
-                     transition-all duration-500 shadow-2xl scale-110 active:scale-95"
-        >
-          Contáctanos
-        </button>
-      </section>
-
-      <section className="py-16 lg:py-24 max-w-[1800px] mx-auto px-4 sm:px-8">
-        <div className="container mx-auto">
-          <Herosection />
+        {/* CONTENIDO FLOTANTE: AJUSTADO MÁS ARRIBA CON pb-44 */}
+        <div className="relative z-[10] flex flex-col items-end gap-8 pb-44 pr-10 md:pr-24 lg:pr-32">
+          <h2 className="text-white-force text-3xl md:text-5xl font-black uppercase text-right">
+            Software D T
+          </h2>
+          
+          <button 
+            onClick={() => navigate("/contact")}
+            className="px-12 py-5 bg-black text-white font-black uppercase tracking-[0.2em] 
+                       border-2 border-white/30 rounded-full hover:bg-gold hover:text-black 
+                       transition-all duration-500 shadow-2xl active:scale-95 scale-110"
+          >
+            Contáctanos
+          </button>
         </div>
       </section>
 
-      <main className="max-w-[1800px] mx-auto overflow-hidden space-y-10">
-        {/* Se eliminó el <about /> duplicado que causaba error */}
+      <section className="py-10 max-w-[1800px] mx-auto px-4 sm:px-8">
+        <Herosection />
+      </section>
+
+      <main className="max-w-[1800px] mx-auto overflow-hidden space-y-10 px-4 sm:px-8">
         <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
           <About />
         </section>
