@@ -105,20 +105,7 @@ const Footer = () => {
         {/* Info Inferior: Blanca, fuente más grande y sin sombras */}
        {/* Info Inferior: Blanco Puro, Sin Sombras y Fuente Grande */}
 <div className="mt-8 pt-10 border-t border-white/40 w-full max-w-4xl flex flex-col items-center gap-8">
-  <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-16 text-base sm:text-lg font-black uppercase tracking-[0.2em] text-white">
-    
-    {/* Copyright con Hover Gold */}
-    <p className="hover:text-gold transition-colors duration-300 cursor-default">
-      Copyright 2025 © Software DT
-    </p>
 
-
-
-  </div>
-</div>
-
-      </div>
-    </footer>
   );
 };
 
