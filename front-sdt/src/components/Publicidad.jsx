@@ -15,7 +15,7 @@ const Publicidad = () => {
             </h2>
             <p className="text-lg text-textColor text-center mt-4 font-medium">
               Ingenieros De Software De Clase Mundial.
-              Talentosos Desarrolladores De Software.
+              Talentosos Y Rankeados Altamente En Colombia.
             </p>
           </div>
 
