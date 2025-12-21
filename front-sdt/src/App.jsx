@@ -44,13 +44,11 @@ function App() {
           <Route path="/client/dashboard" element={<ClientPanel />} />
           <Route path="/client-appointments" element={<ClientPanel />} />
           
-          {/* AJUSTE DE FLUJO: 
-              Esta ruta recibe la info de ServicesCard.jsx.
-              He cambiado el parámetro a :serviceId para que sea más descriptivo
-              aunque el componente BookingPage podrá leer la data completa 
-              desde el objeto 'state' que enviamos.
+          {/* AJUSTE CRÍTICO: 
+            Cambiamos la ruta a /booking/:doctorId para que coincida con ServicesCard.jsx
+            y para que BookingPage pueda extraer el ID y cargar la base de datos sin error 400.
           */}
-          <Route path="/book-appointment/:serviceId" element={<BookingPage />} />
+          <Route path="/booking/:doctorId" element={<BookingPage />} />
           
           <Route path="/checkout" element={<Payment />} />
           
