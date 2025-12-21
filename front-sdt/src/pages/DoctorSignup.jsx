@@ -43,26 +43,17 @@ const DoctorSignup = () => {
 
         try {
             const response = await axiosAuth.post('/doctor/signup', data);
-
-            const successMsg = response.data.message || '¡Registro exitoso! Serás redirigido al login en breve.';
+            const successMsg = response.data.message || '¡Registro exitoso! Redirigiendo...';
             toast.success(successMsg);
-            
             reset();
-            
-            setTimeout(() => {
-                navigate('/doctor/login');
-            }, 2000);
-
+            setTimeout(() => navigate('/doctor/login'), 2000);
         } catch (processError) {
-            console.error("Doctor Signup failed", processError);
-            let errorMessage = 'Error al registrar el especialista. Inténtalo de nuevo.';
-
+            let errorMessage = 'Error al registrar especialista.';
             if (processError.response) {
                 errorMessage = processError.response.data.message || processError.response.data.error || errorMessage;
             } else if (processError.request) {
-                errorMessage = "Fallo de red. El servidor no está disponible.";
+                errorMessage = "Fallo de red. Servidor no disponible.";
             }
-            
             toast.error(errorMessage);
             setError(errorMessage);
         } finally {
@@ -71,70 +62,90 @@ const DoctorSignup = () => {
     };
     
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50/70 p-4 sm:p-8 lg:p-12 font-sans transition-all duration-300">
-            <div className="w-full max-w-5xl flex flex-col md:flex-row bg-white shadow-2xl rounded-2xl p-6 sm:p-10 lg:p-12 transition-all duration-300 overflow-hidden">
+        <div className="min-h-screen flex items-center justify-center bg-main p-4 sm:p-8 transition-all duration-300">
+            <div className="w-full max-w-5xl flex flex-col md:flex-row bg-card shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[2.5rem] overflow-hidden border border-white/50">
                 
-                <div className="w-full md:w-1/2 p-4 flex flex-col justify-center text-center md:text-left">
-                    <h1 className="text-4xl sm:text-5xl font-extrabold text-green-700 mb-4 sm:mb-6 mt-16 md:mt-0 transition-colors">
-                        <RegisterIcon className="inline mr-3 h-8 w-8 sm:h-10 sm:w-10 text-green-600"/>
-                        Registro de Especialistas
-                    </h1>
-                    <p className='text-base sm:text-lg text-gray-700 mb-2'>
-                        Este portal es exclusivo para Empleados/Programadores de Software DT.
+                {/* LADO IZQUIERDO: Branding NietoDeveloper Style */}
+                <div className="w-full md:w-1/2 p-10 lg:p-16 flex flex-col justify-center bg-white">
+                    <div className="mb-8">
+                        <h1 className="text-4xl lg:text-5xl font-black text-headingColor uppercase tracking-tighter leading-none mb-4">
+                            Únete al <br />
+                            <span className="text-gold">Equipo DT</span>
+                        </h1>
+                        <div className="h-2 w-20 bg-gold rounded-full"></div>
+                    </div>
+
+                    <p className='text-lg text-textColor font-medium opacity-80 mb-8 leading-relaxed'>
+                        Portal exclusivo para desarrolladores y especialistas de Software DT. 
                     </p>
-                    <p className='mt-4 text-base text-gray-500'>
-                        ¿Ya tienes una cuenta? 
+
+                    <div className="space-y-4">
+                        <p className='text-sm font-bold uppercase tracking-widest text-gray-400'>
+                            ¿Ya eres parte?
+                        </p>
                         <Link 
                             to="/doctor/login" 
-                            className='text-blue-600 hover:text-blue-800 font-semibold ml-1 transition duration-200 border-b border-blue-600/50 hover:border-blue-800/80'
+                            className='inline-block text-black hover:text-gold font-black text-xl transition-all duration-300 underline decoration-gold decoration-4 underline-offset-4'
                         >
                             Inicia sesión aquí
                         </Link>
-                    </p>
+                    </div>
                 </div>
 
-                <div className="w-full md:w-1/2 pt-6 md:pt-0 border-t md:border-t-0 md:border-l md:border-l-2 border-green-100/50 md:pl-10 mt-6 md:mt-0">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Crear Cuenta</h2>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                {/* LADO DERECHO: Formulario de Registro */}
+                <div className="w-full md:w-1/2 p-10 lg:p-16 bg-main/30 flex flex-col justify-center">
+                    <div className="mb-8 flex items-center gap-3">
+                        <div className="bg-black p-3 rounded-2xl shadow-lg">
+                            <RegisterIcon className="text-gold h-6 w-6"/>
+                        </div>
+                        <h2 className="text-2xl font-black text-headingColor uppercase tracking-tight">Crear Perfil</h2>
+                    </div>
 
-                        <div className="flex flex-col mb-4">
-                            <label htmlFor="name" className="mb-2 font-medium text-gray-700 text-sm">Nombre Completo</label>
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                        {/* Nombre */}
+                        <div className="flex flex-col">
+                            <label className="mb-1.5 font-black text-headingColor text-xs uppercase tracking-widest">Nombre Completo</label>
                             <input
                                 type="text"
-                                id="name"
-                                className="border border-gray-300/60 p-3 rounded-xl focus:ring-green-500 focus:border-green-500 transition duration-200 shadow-inner hover:border-green-400/50 outline-none w-full"
-                                placeholder="Ingresa tu nombre y apellido..."
+                                className="bg-white border-2 border-transparent p-4 rounded-2xl focus:border-gold transition-all duration-300 shadow-sm outline-none w-full font-medium"
+                                placeholder="Tu nombre y apellido"
                                 {...register('name', { required: 'El nombre es obligatorio' })}
                             />
-                            {errors.name && <span className="text-red-600 text-sm mt-1 font-medium">{errors.name.message}</span>}
+                            {errors.name && <span className="text-red-500 text-xs mt-1.5 font-bold uppercase tracking-tighter">{errors.name.message}</span>}
                         </div>
 
-                        <div className="flex flex-col mb-4">
-                            <label htmlFor="email" className="mb-2 font-medium text-gray-700 text-sm">Email Corporativo</label>
+                        {/* Email Corporativo */}
+                        <div className="flex flex-col">
+                            <label className="mb-1.5 font-black text-headingColor text-xs uppercase tracking-widest">Email Corporativo</label>
                             <input
                                 type="email"
-                                id="email"
-                                className="border border-gray-300/60 p-3 rounded-xl focus:ring-green-500 focus:border-green-500 transition duration-200 shadow-inner hover:border-green-400/50 outline-none w-full"
+                                className="bg-white border-2 border-transparent p-4 rounded-2xl focus:border-gold transition-all duration-300 shadow-sm outline-none w-full font-medium"
                                 placeholder="ejemplo@software-dt.com"
-                                {...register('email', { required: 'El email es obligatorio', pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: "Formato de email incorrecto" } })}
+                                {...register('email', { 
+                                    required: 'El email es obligatorio', 
+                                    pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: "Email inválido" } 
+                                })}
                             />
-                            {errors.email && <span className="text-red-600 text-sm mt-1 font-medium">{errors.email.message}</span>}
+                            {errors.email && <span className="text-red-500 text-xs mt-1.5 font-bold uppercase tracking-tighter">{errors.email.message}</span>}
                         </div>
 
-                        <div className="flex flex-col mb-6">
-                            <label htmlFor="password" className="mb-2 font-medium text-gray-700 text-sm">Contraseña</label>
+                        {/* Contraseña */}
+                        <div className="flex flex-col">
+                            <label className="mb-1.5 font-black text-headingColor text-xs uppercase tracking-widest">Contraseña</label>
                             <input
                                 type="password"
-                                id="password"
-                                className="border border-gray-300/60 p-3 rounded-xl focus:ring-green-500 focus:border-green-500 transition duration-200 shadow-inner hover:border-green-400/50 outline-none w-full"
-                                placeholder="Crea una contraseña segura..."
-                                {...register('password', { required: 'La contraseña es obligatoria', minLength: { value: 6, message: 'Mínimo 6 caracteres' } })}
+                                className="bg-white border-2 border-transparent p-4 rounded-2xl focus:border-gold transition-all duration-300 shadow-sm outline-none w-full font-medium"
+                                placeholder="••••••••"
+                                {...register('password', { 
+                                    required: 'La contraseña es obligatoria', 
+                                    minLength: { value: 6, message: 'Mínimo 6 caracteres' } 
+                                })}
                             />
-                            {errors.password && <span className="text-red-600 text-sm mt-1 font-medium">{errors.password.message}</span>}
+                            {errors.password && <span className="text-red-500 text-xs mt-1.5 font-bold uppercase tracking-tighter">{errors.password.message}</span>}
                         </div>
 
                         {error && (
-                            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mb-4 font-semibold text-sm">
+                            <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-xl text-xs font-bold uppercase tracking-tighter">
                                 {error}
                             </div>
                         )}
@@ -142,19 +153,16 @@ const DoctorSignup = () => {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className={`w-full py-3.5 bg-green-600 text-white rounded-xl font-bold shadow-lg shadow-green-500/30 transition-all duration-300 flex items-center justify-center ${
+                            className={`w-full py-5 bg-black text-white rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl transition-all duration-500 flex items-center justify-center ${
                                 isLoading 
-                                ? 'opacity-70 cursor-not-allowed' 
-                                : 'hover:bg-green-700 hover:shadow-green-600/50 transform hover:-translate-y-0.5'
+                                ? 'opacity-50 cursor-not-allowed' 
+                                : 'hover:bg-gold hover:text-black hover:shadow-gold/20 transform hover:-translate-y-1'
                             }`}
                         >
                             {isLoading ? (
-                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
+                                <div className="h-6 w-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                             ) : (
-                                'Registrarse'
+                                'Registrar Especialista'
                             )}
                         </button>
                     </form>
