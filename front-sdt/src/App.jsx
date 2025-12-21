@@ -41,7 +41,6 @@ function App() {
         
         {/* Rutas Privadas / Protegidas */}
         <Route element={<PrivateRoutes />}>
-          <Route path="/user/profile" element={<UserProfile />} /> 
           <Route path="/client/dashboard" element={<ClientPanel />} />
           
           {/* Nueva ruta para el panel de citas que definimos en el botón */}
