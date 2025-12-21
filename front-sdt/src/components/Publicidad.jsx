@@ -1,107 +1,102 @@
-import techs1 from "../../assets/images/techs1.png";
-import techs2 from "../../assets/images/techs2.png";
-import feature from "../../assets/images/softwareempresas.mp4";
+import techs1 from "../assets/images/techs1.png";
+import techs2 from "../assets/images/techs2.png";
+import feature from "../assets/images/softwareempresas.mp4";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 
 const Publicidad = () => {
   return (
     <>
-      <section>
-        <div className="container">
-          <div className="lg:w-[480px] mx-auto pt-10">
-            <h2 className="heading text-center">
-              Ofrecemos el Mejor Software De Colombia
+      <section className="bg-card py-16">
+        <div className="container mx-auto px-4">
+          <div className="lg:w-[580px] mx-auto">
+            <h2 className="text-[36px] leading-[44px] text-headingColor font-black text-center uppercase tracking-tighter">
+              Ofrecemos el Mejor <span className="text-gold">Software De Colombia</span>
             </h2>
-            <p className="text_para text-center">
-              Programadores De Clase Mundial&apos;
-              Talentosos Desarrolladores De Software
+            <p className="text-lg text-textColor text-center mt-4 font-medium">
+              Programadores De Clase Mundial.
+              Talentosos Desarrolladores De Software.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] lg:mt-[55px]">
-            <div className="py-[30px] px-5">
-              <div className="flex items-center justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[55px]">
+            
+            {/* CARD 1 - SERVICIOS (VIDEO) */}
+            <div className="py-[30px] px-5 bg-white rounded-3xl border-2 border-transparent hover:border-gold transition-all duration-300 shadow-sm hover:shadow-xl">
+              <div className="flex items-center justify-center overflow-hidden rounded-2xl border-2 border-black">
                 <video
                   src={feature}
                   autoPlay
                   loop
                   muted
-                  alt="icon"
-                  className="rounded-2xl"
+                  playsInline
+                  className="w-full h-full object-cover"
                 />
               </div>
 
               <div className="mt-[30px]">
-                <h2
-                  className="text-[26px] leading-9 text-gray-900 
-                        font-[700] text-center"
-                >
+                <h2 className="text-[26px] leading-9 text-headingColor font-black text-center uppercase">
                   Servicios
                 </h2>
-                <p className="text-[16px] leading-7 text-gray-800 font-[400] text-center mt-4">
-                  Software De Clase Mundial. Nuestro equipo se compone de desarrolladores de Software de clase mundial.
+                <p className="text-[16px] leading-7 text-textColor font-medium text-center mt-4">
+                  Software De Clase Mundial. Nuestro equipo se compone de desarrolladores de Software altamente calificados.
                 </p>
 
                 <Link
-                  to="/doctors"
-                  className="w-[40px] h-[40px] rounded-full border 
-                        border-solid border-gray-900 mt-[30px] mx-auto flex items-center justify-center group hover:bg-blue-600"
+                  to="/contact"
+                  className="w-[50px] h-[50px] rounded-full border-2 border-solid border-black mt-[30px] mx-auto flex items-center justify-center group hover:bg-gold hover:border-gold transition-all duration-300"
                 >
-                  <BsArrowRight className="group-hover:text-white h-5 w-6" />
+                  <BsArrowRight className="text-black group-hover:scale-125 transition-transform h-6 w-6" />
                 </Link>
               </div>
             </div>
-            <div className="py-[30px] px-5">
-              <div className="flex items-center justify-center">
-                <img src={techs1} alt="icon" className="rounded-2xl" />
+
+            {/* CARD 2 - TECNOLOGÍAS */}
+            <div className="py-[30px] px-5 bg-white rounded-3xl border-2 border-transparent hover:border-gold transition-all duration-300 shadow-sm hover:shadow-xl">
+              <div className="flex items-center justify-center overflow-hidden rounded-2xl border-2 border-black bg-main">
+                <img src={techs1} alt="Tecnologías" className="w-full h-full object-contain p-2" />
               </div>
 
               <div className="mt-[30px]">
-                <h2
-                  className="text-[26px] leading-9 text-gray-900 
-                        font-[700] text-center"
-                >
-                  Las Mejores Technologias
+                <h2 className="text-[26px] leading-9 text-headingColor font-black text-center uppercase">
+                  Tecnologías
                 </h2>
-                <p className="text-[16px] leading-7 text-gray-800 font-[400] text-center mt-4">
-                   Software De Clase Mundial. Nuestro equipo se compone de desarrolladores de Software de clase mundial.
+                <p className="text-[16px] leading-7 text-textColor font-medium text-center mt-4">
+                   Implementamos las mejores herramientas del mercado para garantizar escalabilidad y alto rendimiento.
                 </p>
 
                 <Link
-                  to="/doctors"
-                  className="w-[40px] h-[40px] rounded-full border 
-                        border-solid border-gray-900 mt-[30px] mx-auto flex items-center justify-center group hover:bg-blue-600"
+                  to="/contact"
+                  className="w-[50px] h-[50px] rounded-full border-2 border-solid border-black mt-[30px] mx-auto flex items-center justify-center group hover:bg-gold hover:border-gold transition-all duration-300"
                 >
-                  <BsArrowRight className="group-hover:text-white h-5 w-6" />
+                  <BsArrowRight className="text-black group-hover:scale-125 transition-transform h-6 w-6" />
                 </Link>
               </div>
             </div>
-            <div className="py-[30px] px-5">
-              <div className="flex items-center justify-center">
-                <img src={techs2} alt="icon" className="rounded-2xl" />
+
+            {/* CARD 3 - PRODUCTOS */}
+            <div className="py-[30px] px-5 bg-white rounded-3xl border-2 border-transparent hover:border-gold transition-all duration-300 shadow-sm hover:shadow-xl">
+              <div className="flex items-center justify-center overflow-hidden rounded-2xl border-2 border-black bg-main">
+                <img src={techs2} alt="Productos" className="w-full h-full object-contain p-2" />
               </div>
 
               <div className="mt-[30px]">
-                <h2
-                  className="text-[26px] leading-9 text-gray-900 
-                        font-[700] text-center"
-                >
+                <h2 className="text-[26px] leading-9 text-headingColor font-black text-center uppercase">
                   Productos
                 </h2>
-                <p className="text-[16px] leading-7 text-gray-800 font-[400] text-center mt-4">
-                   Software De Clase Mundial. Nuestro equipo se compone de desarrolladores de Software de clase mundial.
+                <p className="text-[16px] leading-7 text-textColor font-medium text-center mt-4">
+                   Soluciones digitales terminadas y listas para potenciar la eficiencia de tu modelo de negocio actual.
                 </p>
 
                 <Link
-                  to="/doctors"
-                  className="w-[40px] h-[40px] rounded-full border 
-                        border-solid border-gray-900 mt-[30px] mx-auto flex items-center justify-center group hover:bg-blue-600"
+                  to="/contact"
+                  className="w-[50px] h-[50px] rounded-full border-2 border-solid border-black mt-[30px] mx-auto flex items-center justify-center group hover:bg-gold hover:border-gold transition-all duration-300"
                 >
-                  <BsArrowRight className="group-hover:text-white h-5 w-6" />
+                  <BsArrowRight className="text-black group-hover:scale-125 transition-transform h-6 w-6" />
                 </Link>
               </div>
             </div>
+
           </div>
         </div>
       </section>

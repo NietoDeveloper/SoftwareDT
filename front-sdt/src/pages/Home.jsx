@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Herosection from "../components/Hero/Herosection";
 import About from "../components/About";
-import Services from "../components/Offerings/Services";
+import Publicidad from "../components/Publicidad";
 import Questions from "../components/Faq/Questions";
 import Guide from "../components/Explainer/Guide";
 import BogotaAir1 from "../assets/images/BogotaAir1.mp4";
@@ -80,20 +80,17 @@ const Home = () => {
       </section>
 
       <main className="max-w-[1800px] mx-auto overflow-hidden space-y-10">
-        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
-          <about />
-        </section>
-
+        {/* Se eliminó el <about /> duplicado que causaba error */}
         <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
           <About />
         </section>
 
         <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
-          <Services />
+          <Guide />
         </section>
 
         <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
-          <Guide />
+          <Publicidad />
         </section>
 
         <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card mb-20">
