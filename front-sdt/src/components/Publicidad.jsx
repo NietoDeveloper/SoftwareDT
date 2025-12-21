@@ -14,7 +14,7 @@ const Publicidad = () => {
               Ofrecemos el Mejor <span className="text-gold">Software De Colombia</span>
             </h2>
             <p className="text-lg text-textColor text-center mt-4 font-medium">
-              Programadores De Clase Mundial.
+              Ingenieros De Software De Clase Mundial.
               Talentosos Desarrolladores De Software.
             </p>
           </div>
