@@ -45,7 +45,7 @@ const Herosection = () => {
                   className="rounded-[3rem] shadow-2xl w-full border-[8px] border-main transition-all duration-700 hover:rotate-2 hover:scale-105"
                 />
                 <div className="absolute -bottom-6 -left-6 bg-black text-gold font-black p-6 rounded-2xl hidden md:block shadow-xl uppercase tracking-widest text-xs">
-                  Software DT <br/> Expertos
+                  Ingenieros De Software <br/> Talentosos
                 </div>
               </div>
 

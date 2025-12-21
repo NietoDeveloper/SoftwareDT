@@ -15,14 +15,18 @@ const Home = () => {
       <style
         dangerouslySetInnerHTML={{
           __html: `
-        /* AJUSTE AQUÍ: Agregamos :not(footer *) para que NO afecte al footer */
-        h1:not(footer *), h2:not(footer *), h3:not(footer *), h4:not(footer *), p:not(footer *), span:not(footer *):not(.text-white-force):not(.text-gold) { 
+        /* AJUSTE: Excluimos footer y questions-section de la regla del color negro */
+        h1:not(footer *):not(.questions-section *), 
+        h2:not(footer *):not(.questions-section *), 
+        h3:not(footer *):not(.questions-section *), 
+        h4:not(footer *):not(.questions-section *), 
+        p:not(footer *):not(.questions-section *), 
+        span:not(footer *):not(.questions-section *):not(.text-white-force):not(.text-gold) { 
           color: #000000 !important; 
         }
 
         .text-white-force {
           color: #ffffff !important;
-          /* Eliminamos sombras para estilo limpio Software DT */
           letter-spacing: 0.4em !important;
         }
 
@@ -51,7 +55,7 @@ const Home = () => {
         }}
       />
 
-      {/* SECCIÓN DEL VIDEO */}
+      {/* SECCIÓN DEL VIDEO INICIAL */}
       <section className="h-[100vh] w-full relative flex items-end justify-end overflow-hidden">
         <video
           autoPlay
@@ -61,20 +65,14 @@ const Home = () => {
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-80"
           src={BogotaAir1}
         />
-
         <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/20 z-[1]"></div>
-
-        {/* CONTENIDO FLOTANTE ALINEADO A LA DERECHA */}
         <div className="relative z-[10] flex flex-col items-end gap-8 pb-44 pr-6 md:pr-24 lg:pr-32">
           <h2 className="text-white-force text-2xl md:text-5xl lg:text-6xl font-black uppercase text-right leading-none">
             Software D T
           </h2>
-
           <button
             onClick={() => navigate("/contact")}
-            className="px-12 py-5 bg-black text-white text-xl lg:text-2xl font-black uppercase tracking-[0.2em] 
-                       border-2 border-white/30 rounded-full hover:bg-gold hover:text-black 
-                       transition-all duration-500 shadow-2xl active:scale-95 scale-110"
+            className="px-12 py-5 bg-black text-white text-xl lg:text-2xl font-black uppercase tracking-[0.2em] border-2 border-white/30 rounded-full hover:bg-gold hover:text-black transition-all duration-500 shadow-2xl active:scale-95 scale-110"
           >
             Contácto
           </button>
@@ -86,7 +84,8 @@ const Home = () => {
         <Herosection />
       </section>
 
-      <main className="max-w-[1800px] mx-auto overflow-hidden space-y-10 px-4 sm:px-8">
+      {/* CONTENIDO PRINCIPAL LIMITADO */}
+      <main className="max-w-[1800px] mx-auto overflow-hidden space-y-10 px-4 sm:px-8 mb-10">
         <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
           <About />
         </section>
@@ -98,11 +97,13 @@ const Home = () => {
         <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
           <Publicidad />
         </section>
-
-        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card mb-20">
-          <Questions />
-        </section>
       </main>
+
+      {/* SECCIÓN DE PREGUNTAS: FUERA DEL MAIN PARA FULL WIDTH */}
+      <div className="w-full">
+        <Questions />
+      </div>
+
       <Footer />
     </div>
   );
