@@ -6,17 +6,18 @@ import heroimage4 from "../../assets/images/feature-img.png";
 const Herosection = () => {
   return (
     <>
-      {/* Fondo Gainsboro aplicado a la sección principal */}
-      <section className="min-h-screen w-full flex flex-col justify-center items-center relative pt-16 pb-12 lg:pt-0 lg:pb-0 bg-gainsboro">
+      {/* Sección con fondo blanco de la paleta (bg-card) */}
+      <section className="min-h-screen w-full flex flex-col justify-center items-center relative pt-16 pb-12 lg:pt-0 lg:pb-0 bg-card">
         <div className="container mx-auto px-6 flex flex-col lg:flex-row lg:items-center justify-between gap-10 lg:gap-20">
           
           <div className="w-full lg:w-1/2 flex flex-col items-start z-10">
-            {/* Texto forzado a Negro */}
-            <h1 className="text-[36px] leading-[44px] text-black font-[700] lg:text-[56px] lg:leading-[64px] mb-6">
-              Construimos Software Que Da Solucion
+            {/* Título usando headingColor (Negro) */}
+            <h1 className="text-[36px] leading-[44px] text-headingColor font-black lg:text-[56px] lg:leading-[64px] mb-6 uppercase tracking-tight">
+              Construimos Software Que <span className="text-gold">Da Solución</span>
             </h1>
             
-            <p className="mb-8 text-lg text-black font-medium opacity-90">
+            {/* Párrafo usando textColor */}
+            <p className="mb-8 text-lg text-textColor font-medium opacity-90 leading-relaxed">
               Innovamos con software de vanguardia. Transformamos negocios con
               tecnología personalizada. Potenciamos empresas con herramientas
               digitales. Diseñamos apps, web y software a medida. Soluciones
@@ -24,9 +25,9 @@ const Herosection = () => {
               tecnología, resultados reales. Eleva tu negocio con nosotros.
             </p>
 
-            <Link to="/doctors">
-              {/* Botón: Fondo Negro, Texto Blanco -> Hover Gold con Texto Negro */}
-              <button className="px-8 py-3 text-lg font-bold text-white bg-black border-2 border-black rounded-xl transition-all duration-300 hover:bg-gold hover:text-black hover:border-gold shadow-md">
+            <Link to="/contact">
+              {/* Botón: Negro -> Hover Gold con sombra suave */}
+              <button className="px-10 py-4 text-lg font-black uppercase tracking-widest text-white bg-black border-2 border-black rounded-full transition-all duration-300 hover:bg-gold hover:text-black hover:border-gold hover:shadow-[0_10px_20px_rgba(255,215,0,0.3)] hover:-translate-y-1">
                 Agenda Tu Cita
               </button>
             </Link>
@@ -34,22 +35,22 @@ const Herosection = () => {
 
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end z-10">
             <div className="flex flex-col gap-5 max-w-[350px] lg:max-w-full">
-              {/* Imágenes con fondo blanco en el borde (opcional) para resaltar */}
+              {/* Imágenes con bordes redondeados y sombra sutil sobre el fondo blanco */}
               <img
                 src={heroimage4}
                 alt="Diseño de Software"
-                className="rounded-xl shadow-2xl w-full border-4 border-white"
+                className="rounded-[2rem] shadow-2xl w-full border-[6px] border-main transition-transform duration-500 hover:scale-[1.02]"
               />
               <div className="flex gap-5">
                 <img
                   src={heroimage3}
                   alt="Programación"
-                  className="rounded-xl shadow-2xl w-1/2 border-4 border-white"
+                  className="rounded-[1.5rem] shadow-2xl w-1/2 border-[6px] border-main transition-transform duration-500 hover:scale-[1.02]"
                 />
                 <img
                   src={heroimage2}
                   alt="Apps Móviles"
-                  className="rounded-xl shadow-2xl w-1/2 border-4 border-white"
+                  className="rounded-[1.5rem] shadow-2xl w-1/2 border-[6px] border-main transition-transform duration-500 hover:scale-[1.02]"
                 />
               </div>
             </div>

@@ -4,7 +4,7 @@ import feature from "../../assets/images/softwareempresas.mp4";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 
-const Medcare = () => {
+const About = () => {
   return (
     <>
       <section>
@@ -109,4 +109,4 @@ const Medcare = () => {
   );
 };
 
-export default Medcare;
+export default About;
