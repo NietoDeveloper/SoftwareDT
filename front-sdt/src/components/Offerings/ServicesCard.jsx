@@ -17,15 +17,16 @@ const ServicesCard = ({ item, index }) => {
       </p>
 
       <div className="flex items-center justify-between mt-[35px]">
-        {/* Botón Circular: Ajustado a 55px para mejor touch-target */}
+        {/* Botón Circular: Redirige a Booking con la DATA del servicio */}
         <Link
-          to="/contact"
+          to="/book-appointment/consultoria-tecnica" 
+          state={{ serviceSelected: name, serviceDescription: desc }}
           className="w-[55px] h-[55px] rounded-full border-2 border-solid border-headingColor flex items-center justify-center group/btn hover:bg-gold hover:border-gold transition-all duration-300 shadow-md"
         >
           <BsArrowRight className="text-headingColor group-hover/btn:scale-125 group-hover/btn:text-black transition-all h-7 w-7" />
         </Link>
 
-        {/* Indicador de Número: Fondo 'main' (Gainsboro) oficial */}
+        {/* Indicador de Número: Estilo Software DT */}
         <span 
           className="w-[55px] h-[55px] flex items-center justify-center text-[22px] font-black bg-main text-headingColor rounded-2xl border border-black/5 group-hover/card:bg-gold group-hover/card:text-black transition-all duration-500 transform group-hover/card:rotate-6"
         > 

@@ -27,13 +27,11 @@ function App() {
           v7_relativeSplatPath: true,
         }}
       >
-        {/* Rutas Públicas */}
+        {/* --- Rutas Públicas --- */}
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<DoctorList />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<Services />} />
-        
-        {/* AJUSTE REALIZADO: Ahora coincide con el Link de Publicidad */}
         <Route path="/ourclients" element={<OurClients />} />
         
         <Route path="/signup" element={<Signup />} />
@@ -41,17 +39,21 @@ function App() {
         <Route path="/doctor/signup" element={<Doctorsignup />} />
         <Route path="/doctor/login" element={<Doctorlogin />} />
         
-        {/* Rutas Privadas / Protegidas */}
+        {/* --- Rutas Privadas / Protegidas --- */}
         <Route element={<PrivateRoutes />}>
           <Route path="/client/dashboard" element={<ClientPanel />} />
-          
-          {/* Nueva ruta para el panel de citas que definimos en el botón */}
           <Route path="/client-appointments" element={<ClientPanel />} />
           
-          <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
+          {/* AJUSTE DE FLUJO: 
+              Esta ruta recibe la info de ServicesCard.jsx.
+              He cambiado el parámetro a :serviceId para que sea más descriptivo
+              aunque el componente BookingPage podrá leer la data completa 
+              desde el objeto 'state' que enviamos.
+          */}
+          <Route path="/book-appointment/:serviceId" element={<BookingPage />} />
+          
           <Route path="/checkout" element={<Payment />} />
           
-          {/* AJUSTE AQUÍ: Ruta limpia para coincidir con BookingPage navigate */}
           <Route 
             path="/appointment-confirmation" 
             element={<AppointmentConfirmation />} 
