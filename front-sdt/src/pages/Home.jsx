@@ -57,18 +57,7 @@ const Home = () => {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-80"
-          src={BogotaAir1}
-        />
-        <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/20 z-[1]"></div>
 
-        <div className="relative z-[10] flex flex-col items-end gap-8 pb-44 pr-6 md:pr-24 lg:pr-32">
-          {/* h2 con brillo gold aplicado vía .text-white-force */}
-          <h2 className="text-white-force text-3xl md:text-5xl lg:text-6xl font-black uppercase text-right leading-none">
-            Software D T
-          </h2>
-          <button
-            onClick={() => navigate("/contact")}
 
 
 
