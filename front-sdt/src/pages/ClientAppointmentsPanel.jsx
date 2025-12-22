@@ -13,7 +13,6 @@ const ClientAppointmentsPanel = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Estado para mensajes reales (Integración lista para Backend/EmailJS)
   const [messages, setMessages] = useState([
     { id: 1, type: "email", subject: "Protocolo de Despliegue", date: "2025-12-21", status: "Sent", link: "#" },
     { id: 2, type: "whatsapp", subject: "Ajuste de Credenciales", date: "2025-12-22", status: "Read", link: "https://wa.me/..." },
@@ -51,7 +50,7 @@ const ClientAppointmentsPanel = () => {
   return (
     <div className="min-h-screen bg-[#DCDCDC] pb-20 font-sans text-black antialiased">
       
-      {/* HEADER: Sombra Gold Suave */}
+      {/* HEADER */}
       <div className="bg-white border-b-4 border-black pt-12 pb-10 px-6 sm:px-12 shadow-[0_10px_40px_rgba(255,215,0,0.15)]">
         <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <div className="space-y-2">
@@ -64,9 +63,10 @@ const ClientAppointmentsPanel = () => {
             </h1>
           </div>
           
+          {/* Botón Nueva Cita con Sombra Gold */}
           <Link 
             to="/services" 
-            className="group flex items-center gap-3 bg-[#FFD700] text-black border-[3px] border-black px-6 py-3 rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] hover:bg-black hover:text-white hover:shadow-[0_0_25px_rgba(255,215,0,0.7)] transition-all duration-300 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 active:shadow-none"
+            className="group flex items-center gap-3 bg-[#FFD700] text-black border-[3px] border-black px-6 py-3 rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-all duration-300 shadow-[6px_6px_0px_0px_#FFD700] hover:shadow-[0_0_25px_rgba(255,215,0,0.7)] active:translate-x-1 active:translate-y-1 active:shadow-none"
           >
             <PlusCircle size={18} />
             Nueva Cita
@@ -81,7 +81,8 @@ const ClientAppointmentsPanel = () => {
           <section>
             <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 mb-8">
               <h2 className="text-3xl font-black uppercase tracking-tighter">Roadmap de Citas</h2>
-              <div className="flex bg-white border-[3px] border-black p-1.5 rounded-2xl shadow-[5px_5px_0px_0px_rgba(255,215,0,0.3)]">
+              {/* Tabs con Sombra Gold */}
+              <div className="flex bg-white border-[3px] border-black p-1.5 rounded-2xl shadow-[5px_5px_0px_0px_#FFD700]">
                 {["pending", "completed", "cancelled"].map((tab) => (
                   <button
                     key={tab}
@@ -98,12 +99,12 @@ const ClientAppointmentsPanel = () => {
 
             <div className="grid gap-5">
               {filteredAppointments.length === 0 ? (
-                <div className="bg-white border-4 border-black border-dashed p-16 rounded-[2.5rem] text-center italic text-gray-400 font-bold shadow-[0_10px_30px_rgba(0,0,0,0.03)]">
+                <div className="bg-white border-4 border-black border-dashed p-16 rounded-[2.5rem] text-center italic text-gray-400 font-bold">
                   No hay registros en esta categoría
                 </div>
               ) : (
                 filteredAppointments.map((appt) => (
-                  <div key={appt._id} className="bg-white border-[3px] border-black rounded-[2.5rem] p-6 hover:shadow-[0_0_25px_rgba(255,215,0,0.25)] hover:border-[#FFD700] transition-all group shadow-[8px_8px_0px_0px_rgba(0,0,0,0.05)]">
+                  <div key={appt._id} className="bg-white border-[3px] border-black rounded-[2.5rem] p-6 hover:shadow-[0_0_25px_rgba(255,215,0,0.25)] hover:border-[#FFD700] transition-all group shadow-[8px_8px_0px_0px_rgba(255,215,0,0.1)]">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                       <div className="flex items-center gap-6">
                         <div className="w-14 h-14 bg-[#DCDCDC] border-2 border-black rounded-2xl flex items-center justify-center group-hover:bg-[#FFD700] group-hover:shadow-[0_0_15px_#FFD700] transition-all">
@@ -114,7 +115,8 @@ const ClientAppointmentsPanel = () => {
                           <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">{appt.appointmentDetails?.date} — {appt.appointmentDetails?.time}</p>
                         </div>
                       </div>
-                      <Link to="/appointment-confirmation" className="bg-black text-white px-8 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-[#FFD700] hover:text-black hover:shadow-[0_0_15px_rgba(255,215,0,0.5)] transition-all border-2 border-black">
+                      {/* Botón Abrir Ticket con Sombra Gold */}
+                      <Link to="/appointment-confirmation" className="bg-black text-white px-8 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-[#FFD700] hover:text-black hover:shadow-[0_0_20px_rgba(255,215,0,0.6)] transition-all border-2 border-black shadow-[4px_4px_0px_0px_#FFD700]">
                         Abrir Ticket
                       </Link>
                     </div>
@@ -124,17 +126,17 @@ const ClientAppointmentsPanel = () => {
             </div>
           </section>
 
-          {/* LOGS DE COMUNICACIÓN: Actualizado con Hovers y Links */}
+          {/* COMMUNICATION LOGS */}
           <section>
              <h2 className="text-3xl font-black uppercase tracking-tighter mb-8">Communication Logs</h2>
              <div className="bg-white border-[3px] border-black rounded-[2.5rem] overflow-hidden shadow-[10px_10px_40px_rgba(255,215,0,0.1)]">
                 <table className="w-full text-left">
                    <thead className="bg-black text-white text-[10px] font-black uppercase tracking-widest">
-                      <tr>
+                     <tr>
                          <th className="px-8 py-6">Canal</th>
                          <th className="px-8 py-6">Asunto</th>
                          <th className="px-8 py-6 text-right">Acción</th>
-                      </tr>
+                     </tr>
                    </thead>
                    <tbody className="divide-y-2 divide-gray-100 font-bold text-xs uppercase">
                       {messages.map((msg) => (
@@ -147,6 +149,7 @@ const ClientAppointmentsPanel = () => {
                             </td>
                             <td className="px-8 py-5 group-hover:translate-x-1 transition-transform">{msg.subject}</td>
                             <td className="px-8 py-5 text-right">
+                               {/* Link Ver con Sombra Gold */}
                                <a href={msg.link} className="inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-[9px] font-black hover:bg-[#FFD700] hover:text-black transition-all shadow-[3px_3px_0px_0px_#FFD700]">
                                   Ver <ArrowUpRight size={12}/>
                                </a>
@@ -159,19 +162,15 @@ const ClientAppointmentsPanel = () => {
           </section>
         </div>
 
-        {/* ASIDE: Comunicaciones con Sombras Suaves Gold */}
+        {/* ASIDE */}
         <aside className="w-full lg:w-[35%]">
           <div className="bg-white border-[4px] border-black rounded-[3rem] p-10 shadow-[20px_20px_60px_rgba(255,215,0,0.15)] sticky top-10 border-b-[12px]">
             <div className="flex flex-col items-center text-center mb-10">
                <h2 className="text-2xl font-black uppercase tracking-tighter mb-6">Comunicaciones</h2>
-               
                <div className="w-24 h-24 bg-[#FFD700] border-4 border-black rounded-[2rem] flex items-center justify-center mb-6 -rotate-3 overflow-hidden shadow-[0_0_30px_rgba(255,215,0,0.5)] hover:rotate-0 transition-all duration-500 cursor-pointer">
                   <User size={48} strokeWidth={3} />
                </div>
-               
-               <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-2 italic">
-                 Ingeniero De Software Asignado
-               </span>
+               <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-2 italic">Ingeniero Asignado</span>
                <h3 className="text-2xl font-black uppercase tracking-tighter leading-none group-hover:text-[#FFD700]">Manuel Nieto</h3>
             </div>
 
@@ -181,25 +180,24 @@ const ClientAppointmentsPanel = () => {
                   <p className="text-[13px] font-bold leading-relaxed italic text-gray-700 relative z-10">
                     "{user?.adminMessage || "Estatus: Entorno listo para producción. Esperando confirmación de requerimientos."}"
                   </p>
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-[#FFD700]/5 rounded-full -mr-10 -mt-10"></div>
                </div>
 
                <div className="pt-8 space-y-4">
                   <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em] ml-2">Canales Directos</h4>
                   
-                  {/* Botón WhatsApp */}
+                  {/* Botón WhatsApp Sombra Gold */}
                   <a 
-                    href={`https://wa.me/573001234567?text=Hola,%20soy%20${user?.email || 'cliente'}.%20Necesito%20soporte.`} 
-                    className="w-full flex items-center justify-between p-5 bg-[#25D366] text-white border-[3px] border-black rounded-2xl hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-black transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:shadow-none group"
+                    href={`https://wa.me/573001234567?text=Hola,%20soy%20${user?.email || 'cliente'}.`} 
+                    className="w-full flex items-center justify-between p-5 bg-[#25D366] text-white border-[3px] border-black rounded-2xl hover:translate-x-1 hover:translate-y-1 transition-all shadow-[6px_6px_0px_0px_#FFD700] hover:shadow-none hover:bg-black group"
                   >
                      <span className="text-[11px] font-black uppercase tracking-widest group-hover:text-[#FFD700]">WhatsApp</span>
                      <MessageCircle size={22} strokeWidth={2.5} className="group-hover:text-[#FFD700]" />
                   </a>
 
-                  {/* Botón EmailJS Ready */}
+                  {/* Botón Mensaje Directo Sombra Gold */}
                   <button 
                     onClick={() => console.log("Llamando a EmailJS Service...")}
-                    className="w-full flex items-center justify-between p-5 bg-white border-[3px] border-black rounded-2xl hover:bg-black hover:text-white hover:shadow-[0_0_20px_rgba(255,215,0,0.5)] transition-all group shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+                    className="w-full flex items-center justify-between p-5 bg-white border-[3px] border-black rounded-2xl hover:bg-black hover:text-white transition-all group shadow-[6px_6px_0px_0px_#FFD700] hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
                   >
                      <span className="text-[11px] font-black uppercase tracking-widest group-hover:text-[#FFD700]">Mensaje Directo</span>
                      <Mail size={22} className="group-hover:text-[#FFD700]" />
