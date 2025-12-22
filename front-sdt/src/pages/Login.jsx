@@ -55,23 +55,7 @@ const Login = () => {
                             <h2 className="text-xl font-black text-black uppercase tracking-tight">Login</h2>
                             <div className="p-2 bg-amber-500 rounded-lg text-black">
                                 <Lock size={20} strokeWidth={3} />
-                            </div>
-                        </div>
-                        
-                       
-                                    className="w-full bg-gray-50 border-2 border-gray-100 p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black placeholder:text-gray-300 text-sm"
-                                    placeholder="••••••••"
-                                    {...register('password', { required: 'Contraseña requerida' })}
-                                />
-                                {errors.password && <span className="text-red-500 text-[9px] font-black uppercase mt-1 block">{errors.password.message}</span>}
-                            </div>
-
-                            {error && (
-                                <div className="bg-red-50 text-red-600 p-3 rounded-lg text-[9px] font-bold uppercase border border-red-100">
-                                    {error}
-                                </div>
-                            )}
-
+                    
                             <button
                                 type="submit"
                                 disabled={isLoading}
