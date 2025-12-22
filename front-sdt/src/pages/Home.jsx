@@ -26,7 +26,6 @@ const Home = () => {
         .text-white-force {
           color: #ffffff !important;
           letter-spacing: 0.4em !important;
-          /* Brillo gold intenso y definido */
           filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
         }
 
@@ -46,8 +45,6 @@ const Home = () => {
           background-color: #FFD700 !important;
           color: #000000 !important;
           transform: translateY(-3px);
-          /* Resaltado de fuente en hover sin alterar tamaño de botón */
-          letter-spacing: 0.02em;
           font-weight: 900 !important;
         }
 
@@ -74,11 +71,35 @@ const Home = () => {
           </h2>
           <button
             onClick={() => navigate("/contact")}
-            /* Tamaño reducido a w-52 h-14 (antes w-64 h-16) */
-            className="w-52 h-14 rounded-full shadow-2xl active:scale-95 text-lg font-black uppercase tracking-tight"
+            /* text-xl para fuente más grande, tracking-tighter para que no desborde el ancho w-52 */
+            className="w-52 h-14 rounded-full shadow-2xl active:scale-95 text-xl font-black uppercase tracking-tighter"
           >
             Contácto
+          </button>
+        </div>
+      </section>
 
+      <main className="max-w-[1800px] mx-auto overflow-hidden space-y-10 px-4 sm:px-8 mt-10">
+        <section className="py-10">
+          <Herosection />
+        </section>
+
+        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
+          <About />
+        </section>
+
+        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
+          <Guide />
+        </section>
+
+        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
+          <Publicidad />
+        </section>
+
+        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card mb-20">
+          <Questions />
+        </section>
+      </main>
       
       <Footer />
     </div>
