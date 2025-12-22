@@ -58,22 +58,7 @@ const Login = () => {
                             </div>
                         </div>
                         
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                            <div>
-                                <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Client Email</label>
-                                <input
-                                    type="email"
-                                    className="w-full bg-gray-50 border-2 border-gray-100 p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black placeholder:text-gray-300 text-sm"
-                                    placeholder="dev@softwaredt.com"
-                                    {...register('email', { required: 'Email requerido' })}
-                                />
-                                {errors.email && <span className="text-red-500 text-[9px] font-black uppercase mt-1 block">{errors.email.message}</span>}
-                            </div>
-
-                            <div>
-                                <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Password</label>
-                                <input
-                                    type="password"
+                       
                                     className="w-full bg-gray-50 border-2 border-gray-100 p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black placeholder:text-gray-300 text-sm"
                                     placeholder="••••••••"
                                     {...register('password', { required: 'Contraseña requerida' })}
