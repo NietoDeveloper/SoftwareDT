@@ -118,8 +118,7 @@ const Header = () => {
                   <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="text-lg font-black text-[#FEB60D]">Registro</Link>
                 </>
               )}
-            </div>
-          </motion.div>
+   
         )}
       </AnimatePresence>
     </header>
