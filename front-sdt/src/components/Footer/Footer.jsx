@@ -11,26 +11,6 @@ const Footer = () => {
   // Estilo común para forzar el blanco y quitar sombras
   const whiteForce = { color: '#FFFFFF', textShadow: 'none' };
 
-  return (
-  
-          src={Logo} 
-          alt="logo" 
-          className="h-20 w-auto transition-all hover:scale-110 duration-500" 
-        />
-      </div>
-
-      <div className="relative z-10 w-full max-w-[1800px] px-6 py-16 flex flex-col items-center text-center mt-20">
-        
-        {/* Títulos: Blanco puro forzado */}
-        <div className="mb-12">
-          <h1 style={whiteForce} className="text-4xl sm:text-5xl font-black uppercase tracking-[0.3em]">
-            Software <span className="hover:text-gold transition-colors duration-300 cursor-pointer">D T</span>
-          </h1>
-          <h2 style={whiteForce} className="text-lg sm:text-xl font-bold uppercase tracking-[0.5em] mt-4">
-            Dorado Technologies
-          </h2>
-          <div className="w-24 h-[3px] bg-white mx-auto mt-6"></div>
-        </div>
 
         {/* Eslogan: Blanco puro forzado */}
         <h3 style={whiteForce} className="text-2xl sm:text-3xl font-black uppercase tracking-widest mb-16 italic">
