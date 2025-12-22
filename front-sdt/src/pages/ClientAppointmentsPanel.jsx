@@ -50,7 +50,7 @@ const ClientAppointmentsPanel = () => {
   return (
     <div className="min-h-screen bg-[#DCDCDC] pb-20 font-sans text-black antialiased">
       
-      {/* HEADER: Borde más fino y sombra Gold suave */}
+      {/* HEADER: Software DT Style */}
       <div className="bg-white border-b-2 border-black/5 pt-12 pb-10 px-6 sm:px-12 shadow-[0_4px_30px_rgba(255,215,0,0.1)]">
         <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <div className="space-y-2">
@@ -63,11 +63,12 @@ const ClientAppointmentsPanel = () => {
             </h1>
           </div>
           
+          {/* BOTÓN NUEVA CITA: Movimiento y Sombra Gold Suave */}
           <Link 
             to="/services" 
-            className="group flex items-center gap-3 bg-[#FFD700] text-black border-2 border-black px-6 py-3 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all duration-300 shadow-[4px_4px_15px_rgba(255,215,0,0.3)] hover:shadow-[0_0_20px_rgba(255,215,0,0.5)] active:scale-95"
+            className="group flex items-center gap-3 bg-[#FFD700] text-black border-2 border-black px-6 py-3 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all duration-300 shadow-[0_4px_15px_rgba(255,215,0,0.3)] hover:shadow-[0_10px_25px_rgba(255,215,0,0.5)] hover:-translate-y-1 active:scale-95"
           >
-            <PlusCircle size={18} />
+            <PlusCircle size={18} className="group-hover:rotate-90 transition-transform duration-300" />
             Nueva Cita
           </Link>
         </div>
@@ -86,7 +87,7 @@ const ClientAppointmentsPanel = () => {
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     className={`px-5 py-2 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${
-                      activeTab === tab ? "bg-[#FFD700] text-black shadow-[0_4px_10px_rgba(255,215,0,0.3)]" : "text-gray-400 hover:text-black"
+                      activeTab === tab ? "bg-[#FFD700] text-black shadow-[0_4px_10px_rgba(255,215,0,0.2)]" : "text-gray-400 hover:text-black"
                     }`}
                   >
                     {tab === "pending" ? "Pendientes" : tab === "completed" ? "Tomadas" : "Canceladas"}
@@ -102,7 +103,7 @@ const ClientAppointmentsPanel = () => {
                 </div>
               ) : (
                 filteredAppointments.map((appt) => (
-                  <div key={appt._id} className="bg-white border-2 border-black/5 rounded-[2rem] p-6 hover:shadow-[0_10px_30px_rgba(255,215,0,0.15)] transition-all group">
+                  <div key={appt._id} className="bg-white border-2 border-black/5 rounded-[2rem] p-6 hover:shadow-[0_10px_30px_rgba(255,215,0,0.12)] transition-all group">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                       <div className="flex items-center gap-6">
                         <div className="w-12 h-12 bg-[#DCDCDC]/50 border border-black/5 rounded-xl flex items-center justify-center group-hover:bg-[#FFD700] transition-colors">
@@ -113,7 +114,7 @@ const ClientAppointmentsPanel = () => {
                           <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">{appt.appointmentDetails?.date} — {appt.appointmentDetails?.time}</p>
                         </div>
                       </div>
-                      <Link to="/appointment-confirmation" className="bg-black text-white px-6 py-2.5 rounded-lg text-[9px] font-black uppercase tracking-widest hover:bg-[#FFD700] hover:text-black transition-all shadow-[0_4px_10px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_15px_rgba(255,215,0,0.4)]">
+                      <Link to="/appointment-confirmation" className="bg-black text-white px-6 py-2.5 rounded-lg text-[9px] font-black uppercase tracking-widest hover:bg-[#FFD700] hover:text-black transition-all shadow-[0_4px_10px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_15px_rgba(255,215,0,0.3)]">
                         Abrir Ticket
                       </Link>
                     </div>
@@ -123,7 +124,7 @@ const ClientAppointmentsPanel = () => {
             </div>
           </section>
 
-          {/* LOGS: Tabla más limpia */}
+          {/* COMMUNICATION LOGS */}
           <section>
              <h2 className="text-2xl font-black uppercase tracking-tighter mb-8">Communication Logs</h2>
              <div className="bg-white border-2 border-black/5 rounded-[2rem] overflow-hidden shadow-sm">
@@ -138,12 +139,6 @@ const ClientAppointmentsPanel = () => {
                    <tbody className="divide-y divide-gray-50 font-bold text-[11px] uppercase">
                       {messages.map((msg) => (
                          <tr key={msg.id} className="group hover:bg-[#FFD700]/5 transition-colors">
-                            <td className="px-8 py-4">
-                               <div className="flex items-center gap-3">
-                                  {msg.type === 'email' ? <Mail size={14} className="text-[#FFD700]"/> : <MessageCircle size={14} className="text-green-500"/>}
-                                  <span className="text-[9px] text-gray-400">{msg.date}</span>
-                               </div>
-                            </td>
                             <td className="px-8 py-4 text-gray-700">{msg.subject}</td>
                             <td className="px-8 py-4 text-right">
                                <a href={msg.link} className="inline-flex items-center gap-2 text-black hover:text-[#FFD700] transition-colors">
@@ -158,11 +153,11 @@ const ClientAppointmentsPanel = () => {
           </section>
         </div>
 
-        {/* ASIDE: Estilo Software DT más refinado */}
+        {/* ASIDE */}
         <aside className="w-full lg:w-[35%]">
           <div className="bg-white border-2 border-black/5 rounded-[2.5rem] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] sticky top-10">
             <div className="flex flex-col items-center text-center mb-8">
-               <div className="w-20 h-20 bg-[#FFD700] rounded-2xl flex items-center justify-center mb-4 shadow-[0_10px_20px_rgba(255,215,0,0.3)]">
+               <div className="w-20 h-20 bg-[#FFD700] rounded-2xl flex items-center justify-center mb-4 shadow-[0_10px_20px_rgba(255,215,0,0.25)] hover:scale-105 transition-transform duration-500">
                   <User size={35} strokeWidth={2.5} />
                </div>
                <span className="text-[9px] font-black text-gray-400 uppercase tracking-[0.3em] mb-1">Ingeniero Asignado</span>
@@ -172,7 +167,7 @@ const ClientAppointmentsPanel = () => {
             <div className="space-y-4">
                <div className="bg-[#DCDCDC]/30 border border-black/5 p-5 rounded-2xl relative">
                   <div className="text-[#FEB60D] text-[8px] font-black uppercase mb-2 tracking-widest">Dev_Note</div>
-                  <p className="text-[12px] font-medium leading-relaxed italic text-gray-600 italic">
+                  <p className="text-[12px] font-medium leading-relaxed italic text-gray-600">
                     "{user?.adminMessage || "Estatus: Entorno listo. Esperando confirmación."}"
                   </p>
                </div>
@@ -180,15 +175,13 @@ const ClientAppointmentsPanel = () => {
                <div className="pt-4 space-y-3">
                   <a 
                     href={`https://wa.me/573001234567`} 
-                    className="w-full flex items-center justify-between p-4 bg-white border-2 border-black/5 rounded-xl hover:border-[#FFD700] transition-all shadow-sm group"
+                    className="w-full flex items-center justify-between p-4 bg-white border-2 border-black/5 rounded-xl hover:border-[#FFD700] hover:shadow-[0_4px_15px_rgba(255,215,0,0.15)] transition-all group"
                   >
                      <span className="text-[10px] font-black uppercase tracking-widest">WhatsApp</span>
                      <MessageCircle size={18} className="text-[#25D366] group-hover:scale-110 transition-transform" />
                   </a>
 
-                  <button 
-                    className="w-full flex items-center justify-between p-4 bg-black text-white rounded-xl hover:bg-[#FFD700] hover:text-black transition-all shadow-[0_4px_15px_rgba(0,0,0,0.1)]"
-                  >
+                  <button className="w-full flex items-center justify-between p-4 bg-black text-white rounded-xl hover:bg-[#FFD700] hover:text-black transition-all shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:-translate-y-0.5">
                      <span className="text-[10px] font-black uppercase tracking-widest">Mensaje Directo</span>
                      <Mail size={18} />
                   </button>
