@@ -69,19 +69,7 @@ const Home = () => {
           </h2>
           <button
             onClick={() => navigate("/contact")}
-            /* text-xl para agrandar fuente, p-0 y h/w fijos si quisieras control total, 
-               pero manteniendo px-12 py-5 el botón no crece, solo la letra ocupa más espacio interno */
-            className="px-12 py-5 rounded-full shadow-2xl active:scale-95 scale-110 text-xl font-bold uppercase tracking-tight"
-          >
-            Contácto
-          </button>
-        </div>
-      </section>
 
-      <main className="max-w-[1800px] mx-auto overflow-hidden space-y-10 px-4 sm:px-8 mt-10">
-        <section className="py-10">
-          <Herosection />
-        </section>
 
 
       </main>
