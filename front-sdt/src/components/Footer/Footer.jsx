@@ -12,20 +12,7 @@ const Footer = () => {
   const whiteForce = { color: '#FFFFFF', textShadow: 'none' };
 
   return (
-    <footer className="relative min-h-screen w-full bg-black flex items-center justify-center overflow-hidden">
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-40"
-        src={BogotaAir2}
-      />
-      
-      {/* Logo superior */}
-      <div className="absolute top-12 left-1/2 transform -translate-x-1/2 z-20">
-        <img 
+  
           src={Logo} 
           alt="logo" 
           className="h-20 w-auto transition-all hover:scale-110 duration-500" 
