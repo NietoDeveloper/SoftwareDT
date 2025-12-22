@@ -94,8 +94,6 @@ const Home = () => {
           <Publicidad />
         </section>
 
-        {/* FAQ Section: El video de Questions ahora funcionará mejor 
-            porque ya no hay un overlay global tapándolo todo */}
         <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card mb-20">
           <Questions />
         </section>
