@@ -64,16 +64,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/20 z-[1]"></div>
 
         <div className="relative z-[10] flex flex-col items-end gap-8 pb-44 pr-6 md:pr-24 lg:pr-32">
-          <h2 className="text-white-force text-2xl md:text-5xl lg:text-6xl font-black uppercase text-right leading-none">
-            Software D T
-          </h2>
-          <button
-            onClick={() => navigate("/contact")}
-            className="px-12 py-5 rounded-full shadow-2xl active:scale-95 scale-110"
-          >
-            Contácto
-          </button>
-        </div>
+
       </section>
 
       {/* SECCIONES DEL HOME CON CONTENEDORES LIMPIOS */}
