@@ -90,7 +90,7 @@ const Signup = () => {
                     
                     <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter leading-none mb-4">
                         Software<span className="text-amber-500">DT</span> <br />
-                        <span className="text-2xl sm:text-3xl text-gray-800">New Account</span>
+                        <span className="text-2xl sm:text-3xl text-gray-800">Cuenta Nueva</span>
                     </h1>
 
                     <p className="text-gray-600 font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-8">
@@ -175,7 +175,7 @@ const Signup = () => {
                             >
                                 {isLoading ? (
                                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                ) : "Crear Perfil DT"}
+                                ) : "Crear Perfil"}
                             </button>
                         </form>
                     </div>
