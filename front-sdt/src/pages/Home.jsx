@@ -38,25 +38,6 @@ const Home = () => {
           border: none !important;
         }
 
-        #home-wrapper button:hover, 
-        #home-wrapper .btn:hover {
-          background-color: #FFD700 !important;
-          color: #000000 !important;
-          transform: translateY(-3px);
-        }
-
-        html { scroll-behavior: smooth; }
-      `,
-        }}
-      />
-
-      {/* SECCIÓN DEL VIDEO INICIAL */}
-      <section className="h-[100vh] w-full relative flex items-end justify-end overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
 
 
 
