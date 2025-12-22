@@ -15,21 +15,7 @@ const Guide = () => {
                 <br /> <span className="text-gold">Un Ingeniero de Software te Guiará.</span>
               </h2>
               
-              <ul className="space-y-4 mb-10">
-                {[
-                  "Escoge uno de nuestros Servicios",
-                  "Asignación de Ingeniero según tu solicitud",
-                  "Selecciona la Hora y Fecha",
-                  "Mensaje directo al Ingeniero que te asistirá"
-                ].map((step, index) => (
-                  <li key={index} className="flex items-center gap-4 text-lg text-textColor font-medium">
-                    <span className="flex-shrink-0 w-8 h-8 rounded-full bg-black text-gold flex items-center justify-center font-black text-sm">
-                      {index + 1}
-                    </span>
-                    {step}
-                  </li>
-                ))}
-              </ul>
+
 
               <Link to="/doctors">
                 <button className="px-10 py-4 bg-black text-white font-black uppercase tracking-widest rounded-full 
