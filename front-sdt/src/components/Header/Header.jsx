@@ -55,32 +55,29 @@ const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 relative">
           
-          {/* LOGO */}
-          <div className="flex-shrink-0 flex items-center cursor-pointer group" onClick={handleLogoClick}>
+          {/* LOGO + INDICADOR VERDE INTEGRADO */}
+          <div className="flex items-center gap-3 cursor-pointer group" onClick={handleLogoClick}>
             <h2 className="text-black text-2xl font-black uppercase tracking-tighter transition-all duration-300 group-hover:text-[#FEB60D] drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]">
               Software D T
             </h2>
-          </div>
 
-          {/* INDICADOR CENTRAL: PUNTO VERDE (Solo si está logueado) */}
-          {isLoggedIn && (
-            <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+            {/* PUNTO VERDE: Ahora vive junto al logo */}
+            {isLoggedIn && (
               <Link 
                 to="/client-appointments" 
-                className="relative flex items-center justify-center group"
+                className="relative flex items-center justify-center group/dot ml-1"
                 title="Panel Cliente Activo"
+                onClick={(e) => e.stopPropagation()} // Evita que el click en el punto dispare el logo
               >
-                {/* Efecto de Pulso Verde */}
-                <span className="absolute inline-flex h-4 w-4 rounded-full bg-green-400 opacity-75 animate-ping"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white shadow-[0_0_10px_rgba(34,197,94,0.8)] group-hover:scale-125 transition-transform duration-300"></span>
+                <span className="absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75 animate-ping"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 border-2 border-white shadow-[0_0_10px_rgba(34,197,94,0.8)] group-hover/dot:scale-125 transition-transform duration-300"></span>
                 
-                {/* Tooltip pequeño para indicar que es el panel */}
-                <span className="absolute top-6 opacity-0 group-hover:opacity-100 transition-opacity bg-black text-white text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-widest whitespace-nowrap">
-                  Panel Live
+                <span className="absolute left-1/2 -translate-x-1/2 top-6 opacity-0 group-hover/dot:opacity-100 transition-opacity bg-black text-white text-[7px] font-black px-1.5 py-0.5 rounded uppercase tracking-widest whitespace-nowrap z-50">
+                  Live
                 </span>
               </Link>
-            </div>
-          )}
+            )}
+          </div>
 
           {/* DESKTOP NAV */}
           <nav className="hidden md:flex space-x-6 items-center text-sm">
@@ -91,7 +88,7 @@ const Header = () => {
             
             {isLoggedIn ? (
               <div className="flex items-center gap-4">
-                <Link to="/client-appointments" className="text-black hover:text-[#FEB60D] font-black transition-colors bg-main/50 px-3 py-1 rounded-lg border border-black/5">
+                <Link to="/client-appointments" className="text-black hover:text-[#FEB60D] font-black transition-colors bg-[#DCDCDC]/50 px-3 py-1 rounded-lg border border-black/5">
                   Panel Cliente
                 </Link>
                 <button 
