@@ -19,7 +19,7 @@ const Guide = () => {
               <ul className="space-y-6 mb-12">
                 {[
                   "Escoge uno de nuestros Servicios",
-                  "Asignación de Ingeniero De Software según tu solicitud",
+                  "Asignación de Servicio De Software según tu solicitud",
                   "Selecciona la Hora y Fecha",
                   "Mensaje directo al Ingeniero De Software que te asistirá"
                 ].map((step, index) => (
