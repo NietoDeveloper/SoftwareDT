@@ -9,24 +9,6 @@ const Contact = () => {
     email: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [statusMessage, setStatusMessage] = useState(null);
-
-  const whatsappNumber = "+57 300 123 4567";
-  const rawNumber = "573001234567";
-  const whatsappLink = `https://wa.me/${rawNumber}?text=Hola,%20quisiera%20saber%20más%20sobre%20Software%20DT.`;
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setStatusMessage(null);
-  };
-
- 
-    } else {
-      setStatusMessage({
-        type: "error",
-        text: "Por favor, completa todos los campos.",
-      });
     }
     setIsSubmitting(false);
   };
