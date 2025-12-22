@@ -56,23 +56,7 @@ const Login = () => {
                             <div className="p-2 bg-amber-500 rounded-lg text-black">
                                 <Lock size={20} strokeWidth={3} />
                     
-                            <button
-                                type="submit"
-                                disabled={isLoading}
-                                className="w-full mt-4 py-4 bg-black text-white rounded-xl font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-amber-500 hover:text-black hover:shadow-lg flex items-center justify-center"
-                            >
-                                {isLoading ? (
-                                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                ) : "Acceder al Panel"}
-                            </button>
-                        </form>
-
-                        <div className="mt-8 pt-6 border-t border-gray-50 text-center">
-                            <Link to="/" className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] hover:text-amber-600 transition-colors">
-                                Volver a la Home
-                            </Link>
-                        </div>
-                    </div>
+                         
                 </div>
             </div>
         </div>
