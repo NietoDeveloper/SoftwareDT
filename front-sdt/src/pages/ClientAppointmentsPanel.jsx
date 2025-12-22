@@ -2,8 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../context/UserContext.jsx";
 import { Link } from "react-router-dom";
 import { 
-  Calendar, Clock, MessageSquare, ChevronRight, LayoutDashboard, 
-  Bell, User, PlusCircle, ExternalLink, Mail, MessageCircle, XCircle, ArrowUpRight
+  Clock, PlusCircle, User, Mail, MessageCircle, XCircle, ArrowUpRight
 } from "lucide-react";
 
 const ClientAppointmentsPanel = () => {
@@ -17,6 +16,12 @@ const ClientAppointmentsPanel = () => {
     { id: 1, type: "email", subject: "Protocolo de Despliegue", date: "2025-12-21", status: "Sent", link: "#" },
     { id: 2, type: "whatsapp", subject: "Ajuste de Credenciales", date: "2025-12-22", status: "Read", link: "https://wa.me/..." },
   ]);
+
+  // Función preparada para EmailJS (Mismo sistema de la App)
+  const handleMensajeDirecto = () => {
+    console.log("Iniciando EmailJS: Sistema de mensajes Software DT");
+    // Aquí integras la lógica de emailjs.send
+  };
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -50,7 +55,7 @@ const ClientAppointmentsPanel = () => {
   return (
     <div className="min-h-screen bg-[#DCDCDC] pb-20 font-sans text-black antialiased">
       
-      {/* HEADER: Software DT Style */}
+      {/* HEADER */}
       <div className="bg-white border-b-2 border-black/5 pt-12 pb-10 px-6 sm:px-12 shadow-[0_4px_30px_rgba(255,215,0,0.1)]">
         <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <div className="space-y-2">
@@ -63,12 +68,12 @@ const ClientAppointmentsPanel = () => {
             </h1>
           </div>
           
-          {/* BOTÓN NUEVA CITA: Movimiento y Sombra Gold Suave */}
+          {/* BOTÓN NUEVA CITA: Reducido padding (py-2 px-5) sin tocar la fuente */}
           <Link 
-            to="/services" 
-            className="group flex items-center gap-3 bg-[#FFD700] text-black border-2 border-black px-6 py-3 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all duration-300 shadow-[0_4px_15px_rgba(255,215,0,0.3)] hover:shadow-[0_10px_25px_rgba(255,215,0,0.5)] hover:-translate-y-1 active:scale-95"
+            to="/doctors" 
+            className="group flex items-center gap-3 bg-[#FFD700] text-black border-2 border-black px-5 py-2 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all duration-300 shadow-[0_4px_15px_rgba(255,215,0,0.3)] hover:shadow-[0_10px_25px_rgba(255,215,0,0.5)] hover:-translate-y-1 active:scale-95"
           >
-            <PlusCircle size={18} className="group-hover:rotate-90 transition-transform duration-300" />
+            <PlusCircle size={16} className="group-hover:rotate-90 transition-transform duration-300" />
             Nueva Cita
           </Link>
         </div>
@@ -77,7 +82,7 @@ const ClientAppointmentsPanel = () => {
       <div className="max-w-[1800px] mx-auto px-6 sm:px-12 mt-12 flex flex-col lg:flex-row gap-12">
         
         <div className="w-full lg:w-[65%] space-y-12">
-          {/* ROADMAP */}
+          {/* ROADMAP SECCIÓN */}
           <section>
             <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 mb-8">
               <h2 className="text-2xl font-black uppercase tracking-tighter">Roadmap de Citas</h2>
@@ -131,7 +136,6 @@ const ClientAppointmentsPanel = () => {
                 <table className="w-full text-left">
                    <thead className="bg-black text-white text-[9px] font-black uppercase tracking-[0.2em]">
                      <tr>
-                         <th className="px-8 py-5">Canal</th>
                          <th className="px-8 py-5">Asunto</th>
                          <th className="px-8 py-5 text-right">Acción</th>
                      </tr>
@@ -153,19 +157,25 @@ const ClientAppointmentsPanel = () => {
           </section>
         </div>
 
-        {/* ASIDE */}
+        {/* ASIDE (Profile Card) - Título: Comunicaciones */}
         <aside className="w-full lg:w-[35%]">
           <div className="bg-white border-2 border-black/5 rounded-[2.5rem] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] sticky top-10">
+            <h2 className="text-xl font-black uppercase tracking-tighter mb-6 text-center">Comunicaciones</h2>
+            
             <div className="flex flex-col items-center text-center mb-8">
-               <div className="w-20 h-20 bg-[#FFD700] rounded-2xl flex items-center justify-center mb-4 shadow-[0_10px_20px_rgba(255,215,0,0.25)] hover:scale-105 transition-transform duration-500">
-                  <User size={35} strokeWidth={2.5} />
+               {/* Espacio para la foto */}
+               <div className="w-20 h-20 bg-[#DCDCDC] rounded-full flex items-center justify-center mb-4 shadow-sm border-2 border-black/5">
+                  <User size={35} className="text-gray-400" />
                </div>
-               <span className="text-[9px] font-black text-gray-400 uppercase tracking-[0.3em] mb-1">Ingeniero Asignado</span>
-               <h3 className="text-xl font-black uppercase">Manuel Nieto</h3>
+               {/* Letra debajo de la foto ajustada */}
+               <p className="text-[10px] font-black text-gray-800 uppercase tracking-widest">
+                  Ingeniero De Software Asignado
+               </p>
+               <h3 className="text-lg font-black uppercase mt-2">Manuel Nieto</h3>
             </div>
 
             <div className="space-y-4">
-               <div className="bg-[#DCDCDC]/30 border border-black/5 p-5 rounded-2xl relative">
+               <div className="bg-[#DCDCDC]/30 border border-black/5 p-5 rounded-2xl">
                   <div className="text-[#FEB60D] text-[8px] font-black uppercase mb-2 tracking-widest">Dev_Note</div>
                   <p className="text-[12px] font-medium leading-relaxed italic text-gray-600">
                     "{user?.adminMessage || "Estatus: Entorno listo. Esperando confirmación."}"
@@ -173,15 +183,20 @@ const ClientAppointmentsPanel = () => {
                </div>
 
                <div className="pt-4 space-y-3">
+                  {/* Botón WhatsApp con apariencia específica */}
                   <a 
                     href={`https://wa.me/573001234567`} 
-                    className="w-full flex items-center justify-between p-4 bg-white border-2 border-black/5 rounded-xl hover:border-[#FFD700] hover:shadow-[0_4px_15px_rgba(255,215,0,0.15)] transition-all group"
+                    className="w-full flex items-center justify-between p-4 bg-[#25D366] text-white rounded-xl hover:opacity-90 transition-all shadow-md group"
                   >
                      <span className="text-[10px] font-black uppercase tracking-widest">WhatsApp</span>
-                     <MessageCircle size={18} className="text-[#25D366] group-hover:scale-110 transition-transform" />
+                     <MessageCircle size={18} className="group-hover:scale-110 transition-transform" />
                   </a>
 
-                  <button className="w-full flex items-center justify-between p-4 bg-black text-white rounded-xl hover:bg-[#FFD700] hover:text-black transition-all shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:-translate-y-0.5">
+                  {/* Botón Mensaje Directo - Preparado para EmailJS */}
+                  <button 
+                    onClick={handleMensajeDirecto}
+                    className="w-full flex items-center justify-between p-4 bg-black text-white rounded-xl hover:bg-[#FFD700] hover:text-black transition-all shadow-lg"
+                  >
                      <span className="text-[10px] font-black uppercase tracking-widest">Mensaje Directo</span>
                      <Mail size={18} />
                   </button>
