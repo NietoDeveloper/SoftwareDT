@@ -15,12 +15,12 @@ const Home = () => {
       <style
         dangerouslySetInnerHTML={{
           __html: `
-        /* AJUSTE: Excluir explícitamente el contenido del footer para que no se ponga negro */
-        #home-wrapper h1:not(footer *), 
-        #home-wrapper h2:not(.text-white-force):not(footer *), 
-        #home-wrapper h3:not(footer *), 
-        #home-wrapper p:not(footer *), 
-        #home-wrapper span:not(.text-white-force):not(.text-gold-sdt):not(footer *) { 
+        /* SECTOR DE EXCLUSIÓN: No aplica negro al footer ni a la sección de preguntas */
+        #home-wrapper h1:not(footer *):not(#questions-section-unique *), 
+        #home-wrapper h2:not(.text-white-force):not(footer *):not(#questions-section-unique *), 
+        #home-wrapper h3:not(footer *):not(#questions-section-unique *), 
+        #home-wrapper p:not(footer *):not(#questions-section-unique *), 
+        #home-wrapper span:not(.text-white-force):not(.text-gold-sdt):not(footer *):not(#questions-section-unique *) { 
           color: #000000 !important; 
         }
 
@@ -30,8 +30,8 @@ const Home = () => {
           filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
         }
 
-        #home-wrapper button:not(.nav-toggle), 
-        #home-wrapper .btn {
+        #home-wrapper button:not(.nav-toggle):not(#questions-section-unique *), 
+        #home-wrapper .btn:not(#questions-section-unique *) {
           background-color: #000000 !important;
           color: #ffffff !important;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -41,8 +41,8 @@ const Home = () => {
           justify-content: center;
         }
 
-        #home-wrapper button:hover, 
-        #home-wrapper .btn:hover {
+        #home-wrapper button:hover:not(#questions-section-unique *), 
+        #home-wrapper .btn:hover:not(#questions-section-unique *) {
           background-color: #FFD700 !important;
           color: #000000 !important;
           transform: translateY(-3px);
@@ -96,6 +96,7 @@ const Home = () => {
           <Publicidad />
         </section>
 
+        {/* Esta sección ahora es inmune al texto negro gracias al ID questions-section-unique */}
         <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card mb-20">
           <Questions />
         </section>
