@@ -15,11 +15,12 @@ const Home = () => {
       <style
         dangerouslySetInnerHTML={{
           __html: `
-        #home-wrapper h1, 
-        #home-wrapper h2:not(.text-white-force), 
-        #home-wrapper h3, 
-        #home-wrapper p, 
-        #home-wrapper span:not(.text-white-force):not(.text-gold-sdt) { 
+        /* AJUSTE: Excluir explícitamente el contenido del footer para que no se ponga negro */
+        #home-wrapper h1:not(footer *), 
+        #home-wrapper h2:not(.text-white-force):not(footer *), 
+        #home-wrapper h3:not(footer *), 
+        #home-wrapper p:not(footer *), 
+        #home-wrapper span:not(.text-white-force):not(.text-gold-sdt):not(footer *) { 
           color: #000000 !important; 
         }
 
@@ -71,7 +72,6 @@ const Home = () => {
           </h2>
           <button
             onClick={() => navigate("/contact")}
-            /* text-xl para fuente más grande, tracking-tighter para que no desborde el ancho w-52 */
             className="w-52 h-14 rounded-full shadow-2xl active:scale-95 text-xl font-black uppercase tracking-tighter"
           >
             Contácto

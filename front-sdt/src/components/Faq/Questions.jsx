@@ -46,28 +46,7 @@ const Questions = () => {
           Preguntas <span className="text-gold-sdt">Frecuentes</span>
         </h2>
 
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-12 lg:gap-24 w-full max-w-7xl">
-          
-          {/* Lado Izquierdo: Imagen */}
-          <div className="w-full lg:w-5/12 relative group">
-            <div className={`absolute -inset-1 bg-[${sdtYellow}]/30 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition duration-700`}></div>
-            <img 
-              src={equipo2} 
-              alt="equipo software dt" 
-              className="relative rounded-[2rem] w-full h-auto object-cover border border-white/30 shadow-2xl" 
-            />
-          </div>
-
-          {/* Lado Derecho: FaqItems */}
-          <div className="w-full lg:w-7/12 flex flex-col">
-            <div className="w-full space-y-4">
-              <FaqItem
-                question="¿Tiene algún costo la cita?"
-                answer="No. La cita con un programador es de tipo informativo y nos guiará en el servicio requerido para tu proyecto."
-              />
-              <FaqItem
-                question="¿Es presencial o virtual la cita?"
-                answer="Virtual. La reunión se llevará a cabo vía Microsoft TEAMS y tiene una duración estimada de 15 minutos."
+ vará a cabo vía Microsoft TEAMS y tiene una duración estimada de 15 minutos."
               />
               <FaqItem
                 question="¿Tienen Atención en todo el país?"
