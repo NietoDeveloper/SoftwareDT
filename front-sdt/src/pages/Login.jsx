@@ -45,32 +45,7 @@ const Login = () => {
             {/* Contenedor Principal: Ajuste de 320px a 1800px */}
             <div className="w-full max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
                 
-                {/* Lado Izquierdo: Branding mejorado */}
-                <div className="w-full max-w-lg lg:w-1/2 text-center lg:text-left">
-                    <div className="inline-flex items-center gap-2 mb-4">
-                        <div className="w-8 h-[2px] bg-amber-500"></div>
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">Security Access</span>
-                    </div>
-                    
-                    <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter leading-none mb-4">
-                        Software<span className="text-amber-500">DT</span> <br />
-                        <span className="text-2xl sm:text-3xl text-gray-800">Workspace</span>
-                    </h1>
-
-                    <p className="text-gray-600 font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-8">
-                        Ingresa a tu ecosistema de desarrollo y gestión de proyectos de arquitectura de software.
-                    </p>
-
-                    <div className="flex flex-col items-center lg:items-start gap-3">
-                        <p className="text-black font-black uppercase text-[10px] tracking-widest">¿No tienes cuenta?</p>
-                        <Link 
-                            to="/signup" 
-                            className="group relative inline-flex items-center justify-center px-6 py-3 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 hover:bg-amber-500 hover:text-black hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(245,158,11,0.4)]"
-                        >
-                            Registrarse ahora
-                        </Link>
-                    </div>
-                </div>
+                
 
                 {/* Lado Derecho: La Tarjeta (ajustada para pantallas pequeñas) */}
                 <div className="w-full sm:w-[400px] lg:w-[450px]">
