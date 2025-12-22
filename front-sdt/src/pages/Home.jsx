@@ -54,17 +54,7 @@ const Home = () => {
       {/* SECCIÓN DEL VIDEO INICIAL */}
       <section className="h-[100vh] w-full relative flex items-end justify-end overflow-hidden">
         <video
-          autoPlay
-          loop
 
-
-      {/* SECCIONES DEL HOME CON CONTENEDORES LIMPIOS */}
-      <main className="max-w-[1800px] mx-auto overflow-hidden space-y-10 px-4 sm:px-8 mt-10">
-        <section className="py-10">
-          <Herosection />
-        </section>
-
-      </main>
       
       <Footer />
     </div>
