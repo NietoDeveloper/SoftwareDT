@@ -40,16 +40,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Divisor lateral Blanco */}
-          <div className="flex flex-col items-center md:items-start border-t md:border-t-0 md:border-l border-white pt-8 md:pt-0 md:pl-16">
-            <ul className="text-lg sm:text-xl font-bold uppercase tracking-widest space-y-6">
-              {[
-                { name: 'Proyectos', href: 'https://github.com/NietoDeveloper?tab=repositories' },
-                { name: 'Investigación', href: 'https://committers.top/colombia#NietoDeveloper' },
-                { name: 'Sobre Software DT', href: '/sobre-nosotros' },
-                { name: 'Trabaja con nosotros', href: '/vacantes' }
-              ].map((link) => (
-                <li key={link.name} className="group">
+        
                   <a 
                     href={link.href} 
                     target={link.href.startsWith('http') ? "_blank" : "_self"}
