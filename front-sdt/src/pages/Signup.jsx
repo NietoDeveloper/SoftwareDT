@@ -85,7 +85,7 @@ const Signup = () => {
                 <div className="w-full max-w-lg lg:w-1/2 text-center lg:text-left order-2 lg:order-1">
                     <div className="inline-flex items-center gap-2 mb-4">
                         <div className="w-8 h-[2px] bg-amber-500"></div>
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">Join the Network</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">Bienvenido</span>
                     </div>
                     
                     <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter leading-none mb-4">
@@ -94,7 +94,7 @@ const Signup = () => {
                     </h1>
 
                     <p className="text-gray-600 font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-8">
-                        Crea tu perfil corporativo para acceder a servicios de arquitectura de software y consultoría.
+                        Crea tu perfil Interactivo para acceder a servicios de arquitectura de software y consultoría. De esta manera podras consultar servicios y hacerle seguimiento a tu servico contratado.
                     </p>
 
                     <div className="flex flex-col items-center lg:items-start gap-3">
