@@ -16,16 +16,6 @@ const Guide = () => {
               </h2>
               
 
-
-              <Link to="/doctors">
-                <button className="px-10 py-4 bg-black text-white font-black uppercase tracking-widest rounded-full 
-                  hover:bg-gold hover:text-black hover:shadow-[0_10px_25px_rgba(255,215,0,0.4)] 
-                  transition-all duration-300 transform hover:-translate-y-1 active:scale-95">
-                  Agenda una Cita
-                </button>
-              </Link>
-            </div>
-
             {/* IMAGEN DEL EQUIPO */}
             <div className="relative z-10 xl:w-[770px] flex justify-center lg:justify-end order-1 lg:order-2">
               <div className="relative group">
