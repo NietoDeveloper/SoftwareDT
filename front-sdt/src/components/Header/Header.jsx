@@ -80,43 +80,7 @@ const Header = () => {
                 className="text-black hover:text-[#FEB60D] font-black transition-colors border-none bg-transparent p-0"
               >
                 Cerrar Sesión
-              </button>
-            ) : (
-              <div className="flex items-center space-x-4">
-                <Link to="/login" className="text-black font-black hover:text-[#FEB60D]">Login</Link>
-                <Link to="/signup" className="px-4 py-2 bg-black text-white rounded-full hover:bg-[#FEB60D] hover:text-black transition-all">Registro</Link>
-              </div>
-            )}
-          </nav>
 
-          <div className="flex items-center md:hidden">
-            <MenuButton isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)} />
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu con AnimatePresence para suavidad */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 backdrop-blur-3xl border-t border-black/5 overflow-hidden"
-          >
-            <div className="px-6 py-8 space-y-4 flex flex-col items-center">
-              <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-lg font-black">Inicio</Link>
-              <Link to="/services" onClick={() => setIsMenuOpen(false)} className="text-lg font-black">Información Servicios</Link>
-              <Link to="/doctors" onClick={() => setIsMenuOpen(false)} className="text-lg font-black">Escoje Servicio</Link>
-              <Link to="/clients" onClick={() => setIsMenuOpen(false)} className="text-lg font-black">Nuestros Clientes</Link>
-              <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="text-lg font-black">Contacto</Link>
-              {isLoggedIn ? (
-                <button onClick={() => { handleLogout(); setIsMenuOpen(false); }} className="text-lg font-black text-red-600">Cerrar Sesión</button>
-              ) : (
-                <>
-                  <Link to="/login" onClick={() => setIsMenuOpen(false)} className="text-lg font-black">Login</Link>
-                  <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="text-lg font-black text-[#FEB60D]">Registro</Link>
-                </>
               )}
    
         )}
