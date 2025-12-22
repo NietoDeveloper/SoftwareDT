@@ -53,7 +53,7 @@ const Login = () => {
                     
                     <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter leading-none mb-4">
                         Software<span className="text-amber-500">DT</span> <br />
-                        <span className="text-2xl sm:text-3xl text-gray-800">Workspace</span>
+                        <span className="text-2xl sm:text-3xl text-gray-800">Ingresa A Tu Cuenta</span>
                     </h1>
 
                     <p className="text-gray-600 font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-12">
