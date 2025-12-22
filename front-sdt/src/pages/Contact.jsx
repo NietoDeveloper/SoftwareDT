@@ -21,18 +21,7 @@ const Contact = () => {
     setStatusMessage(null);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatusMessage(null);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    if (formData.name && formData.email && formData.message) {
-      setStatusMessage({
-        type: "success",
-        text: "¡Mensaje enviado con éxito!",
-      });
-      setFormData({ name: "", email: "", message: "" });
+ 
     } else {
       setStatusMessage({
         type: "error",
