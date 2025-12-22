@@ -20,18 +20,7 @@ const Contact = () => {
       <section className="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6">
         <div className="w-full max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           
-          {/* Texto de Bienvenida */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
-            <div className="inline-flex items-center gap-2">
-              <div className="w-10 h-1 bg-amber-500"></div>
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Communication Hub</span>
-            </div>
-            <h1 className="text-4xl sm:text-6xl font-black text-black uppercase tracking-tighter leading-none">
-              Ponte en <br />
-              <span className="text-amber-500">Contacto</span>
-            </h1>
-            <p className="text-gray-500 font-medium text-lg max-w-md mx-auto lg:mx-0">
-              Estamos listos para escalar tu infraestructura. Cuéntanos sobre tu próximo gran proyecto.
+        uéntanos sobre tu próximo gran proyecto.
             </p>
           </div>
 
