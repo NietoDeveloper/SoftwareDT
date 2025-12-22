@@ -14,21 +14,7 @@ const Guide = () => {
                 Agenda tu Cita:
                 <br /> <span className="text-gold">Un Ingeniero de Software te Guiará.</span>
               </h2>
-              
 
-            {/* IMAGEN DEL EQUIPO */}
-            <div className="relative z-10 xl:w-[770px] flex justify-center lg:justify-end order-1 lg:order-2">
-              <div className="relative group">
-                {/* Decoración dorada detrás de la foto */}
-                <div className="absolute -inset-4 bg-gold/10 rounded-[2.5rem] blur-xl group-hover:bg-gold/20 transition-all duration-500"></div>
-                
-                <img 
-                  src={equipo1} 
-                  alt="Equipo Software DT" 
-                  className="relative rounded-[2rem] lg:w-4/5 border-4 border-black shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]" 
-                />
-              </div>
-            </div>
 
           </div>
         </div>
