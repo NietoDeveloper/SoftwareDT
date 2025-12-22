@@ -4,32 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import axios from "axios";
 import Footer from "../components/Footer/Footer";
-
-const ArrowRightIcon = (props) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <line x1="5" y1="12" x2="19" y2="12"></line>
-    <polyline points="12 5 19 12 12 19"></polyline>
-  </svg>
-);
+import { ArrowRight } from "lucide-react";
 
 const DoctorList = () => {
   const navigate = useNavigate();
 
   const getDoctors = async () => {
     try {
-      const apiUrl =
-        import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
       const res = await axios.get(`${apiUrl}/doctors`);
       return res.data.doctors || res.data;
     } catch (error) {
@@ -47,6 +29,7 @@ const DoctorList = () => {
     queryFn: getDoctors,
   });
 
+  // FLUJO: Navega a la ruta de agendamiento pasando la data del servicio
   const navigateToBooking = (doctor) => {
     navigate(`/book-appointment/${doctor._id}`, {
       state: { doctorData: doctor },
@@ -55,85 +38,88 @@ const DoctorList = () => {
 
   if (isLoading)
     return (
-      <h1 className="text-center py-20 text-xl font-black text-black animate-pulse uppercase tracking-widest">
-        Cargando Servicios...
-      </h1>
+      <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC]">
+        <h1 className="text-xl font-black text-black animate-pulse uppercase tracking-widest">
+          Sincronizando Servicios...
+        </h1>
+      </div>
     );
 
   if (error)
     return (
-      <h1 className="text-center py-20 text-red-600 text-xl font-black uppercase">
-        Error en la red.
-      </h1>
+      <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC]">
+        <h1 className="text-red-600 text-xl font-black uppercase tracking-tighter">
+          Error de Conexión
+        </h1>
+      </div>
     );
 
   return (
-    <div className="min-h-screen bg-[#fcfcfc] font-sans antialiased">
-      <div className="mx-auto px-4 py-16 max-w-[1800px]">
-        {/* Encabezado */}
-        <div className="text-center mb-16 space-y-2">
-          <div className="inline-flex items-center gap-2">
-            <div className="w-8 h-[2px] bg-amber-500 shadow-[0_0_8px_#f59e0b]"></div>
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">
-              Fabrica De Software
+    <div className="min-h-screen bg-[#DCDCDC] font-sans antialiased">
+      <div className="mx-auto px-6 py-20 max-w-[1800px]">
+        
+        {/* ENCABEZADO ESTILO DT */}
+        <div className="text-center mb-20 space-y-4">
+          <div className="inline-flex items-center gap-3">
+            <div className="w-10 h-1 bg-[#FFD700] shadow-[0_0_12px_rgba(255,215,0,0.6)]"></div>
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-500">
+              Software DT Factory
             </span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter">
-            Escoje Un <span className="text-amber-500">Servicio</span>
+          <h1 className="text-5xl sm:text-7xl font-black text-black uppercase tracking-tighter leading-none">
+            Selecciona un <span className="text-[#FFD700] drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]">Servicio</span>
           </h1>
         </div>
 
+        {/* GRID DE SERVICIOS */}
         <div className="flex flex-wrap justify-center gap-8 lg:gap-10">
           {doctors.map((doctor) => (
             <div
               key={doctor._id}
-              className="group bg-white border-[4px] border-black rounded-[30px] p-6 transition-all duration-300 ease-out cursor-pointer 
-                         flex flex-col items-center justify-between text-center 
-                         w-full sm:max-w-[340px] h-[400px] overflow-hidden
-                         shadow-[0_10px_20px_rgba(0,0,0,0.05)] 
-                         hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] 
-                         hover:-translate-y-2 hover:border-amber-500"
               onClick={() => navigateToBooking(doctor)}
+              className="group bg-white border-2 border-black/5 rounded-[2.5rem] p-8 transition-all duration-500 
+                         flex flex-col items-center justify-between text-center 
+                         w-full sm:max-w-[360px] h-[450px] relative overflow-hidden
+                         shadow-[0_10px_40px_rgba(0,0,0,0.03)] 
+                         hover:shadow-[0_20px_60px_rgba(255,215,0,0.15)] 
+                         hover:-translate-y-3 cursor-pointer"
             >
-              <div className="w-full flex flex-col items-center flex-shrink-0">
-                {/* h3 con 35px de margin top */}
-                <h3 className="mt-[35px] text-xl font-black text-black uppercase tracking-tight group-hover:text-amber-600 transition-colors duration-300 truncate w-full">
+              {/* Badge de Categoría */}
+              <div className="absolute top-8 left-8">
+                <div className="w-2 h-2 bg-[#FFD700] rounded-full animate-ping"></div>
+              </div>
+
+              <div className="w-full flex flex-col items-center">
+                <h3 className="mt-6 text-2xl font-black text-black uppercase tracking-tighter group-hover:text-[#FFD700] transition-colors duration-300">
                   {doctor.name}
                 </h3>
-
-                {/* Span con 35px de margin top respecto al h3 */}
-                <span className="mt-[35px] text-[12px] font-black text-black group-hover:text-amber-500 uppercase tracking-[0.2em] transition-colors duration-300">
-                  {doctor.specialization || "Soporte"}
+                <span className="mt-2 text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">
+                  {doctor.specialization || "Technical Support"}
                 </span>
               </div>
 
-              {/* Contenedor Medio (Bio) */}
-              <div className="flex-1 flex items-center justify-center py-4 w-full">
-                <p className="text-gray-800 text-base md:text-lg font-bold leading-snug italic line-clamp-4">
-                  "{doctor.bio}"
+              {/* Bio / Descripción */}
+              <div className="flex-1 flex items-center justify-center px-4">
+                <p className="text-gray-600 text-lg font-bold leading-relaxed italic">
+                  "{doctor.bio || "Especialista en soluciones escalables para entornos corporativos."}"
                 </p>
               </div>
 
-              {/* Contenedor Inferior */}
-              <div className="w-full flex flex-col items-center mt-auto flex-shrink-0">
-                <div className="w-12 h-[2px] bg-amber-500 mb-4 shadow-[0_0_4px_#f59e0b]"></div>
-
-                <div className="flex items-center justify-between w-full px-4">
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                    Puntaje:{" "}
-                    <span className="text-black">
-                      {doctor.totalRating || "5.0"}
-                    </span>
+              {/* Footer de la Card */}
+              <div className="w-full pt-6 border-t border-gray-50 flex items-center justify-between">
+                <div className="text-left">
+                  <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Rating</p>
+                  <p className="text-lg font-black text-black">
+                    {doctor.totalRating || "5.0"}
                   </p>
-                  <div
-                    className="w-12 h-12 rounded-full border-[3px] border-black flex items-center justify-center 
-                bg-transparent transition-all duration-300 ease-in-out
-                shadow-[0_8px_15px_rgba(0,0,0,0.15)] 
-                group-hover:bg-amber-500 group-hover:border-amber-500 group-hover:shadow-[0_10px_25px_rgba(245,158,11,0.5)] 
-                group-hover:scale-110 active:scale-95"
-                  >
-                    <ArrowRightIcon className="w-6 h-6 text-black group-hover:text-white transition-colors duration-300" />
-                  </div>
+                </div>
+                
+                {/* Botón de Acción Circular */}
+                <div className="w-14 h-14 rounded-2xl bg-black flex items-center justify-center 
+                                transition-all duration-300 shadow-[0_8px_20px_rgba(0,0,0,0.2)]
+                                group-hover:bg-[#FFD700] group-hover:shadow-[0_10px_25px_rgba(255,215,0,0.4)]
+                                group-hover:rotate-12">
+                  <ArrowRight className="w-6 h-6 text-white group-hover:text-black" />
                 </div>
               </div>
             </div>
@@ -141,9 +127,7 @@ const DoctorList = () => {
         </div>
       </div>
 
-      <div className="w-full mt-12">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };
