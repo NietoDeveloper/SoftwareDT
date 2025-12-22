@@ -10,7 +10,7 @@ const MenuButton = ({ isOpen, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="relative z-50 p-2 bg-transparent border-none outline-none focus:outline-none group transition-all duration-300 active:scale-90"
+      className="relative z-50 p-2 bg-transparent border-none outline-none focus:outline-none group transition-all duration-300 active:scale-90 flex items-center justify-center"
       aria-label="Menu"
     >
       <div className="w-7 h-5 flex flex-col justify-between items-center relative">
@@ -53,41 +53,44 @@ const Header = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const navLinks = [
+    { name: "Inicio", path: "/" },
+    { name: "Servicios", path: "/services" },
+    { name: "Escoge Servicio", path: "/doctors" },
+    { name: "Clientes", path: "/clients" },
+    { name: "Contacto", path: "/contact" }
+  ];
+
   return (
-    <header className="bg-white/10 backdrop-blur-2xl shadow-sm sticky top-0 z-[100] border-b border-black/5">
+    <header className="bg-white/10 backdrop-blur-2xl sticky top-0 z-[100] border-b border-black/5">
       <div className="container mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 relative">
           
-          {/* LOGO + INDICADOR VERDE */}
+          {/* LOGO */}
           <div className="flex items-center gap-1.5 sm:gap-3 cursor-pointer group min-w-fit" onClick={handleLogoClick}>
-            <h2 className="text-black text-lg sm:text-2xl font-black uppercase tracking-tighter transition-all duration-300 group-hover:text-[#FEB60D] drop-shadow-[0_0_8px_rgba(255,215,0,0.3)]">
+            <h2 className="text-black text-lg sm:text-2xl font-black uppercase tracking-tighter transition-all duration-300 group-hover:text-[#FEB60D]">
               Software D T
             </h2>
 
             {isLoggedIn && (
               <Link 
                 to="/client-appointments" 
-                className="relative flex items-center justify-center group/dot ml-0.5"
+                className="relative flex items-center justify-center ml-0.5"
                 onClick={(e) => e.stopPropagation()}
               >
                 <span className="absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75 animate-ping"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 border-2 border-white shadow-[0_0_10px_rgba(34,197,94,0.6)] group-hover/dot:scale-125 transition-transform duration-300"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 border-2 border-white transition-transform duration-300"></span>
               </Link>
             )}
           </div>
 
           {/* DESKTOP NAV */}
           <nav className="hidden md:flex space-x-4 lg:space-x-8 items-center text-[10px] lg:text-sm">
-            {[
-              { name: "Inicio", path: "/" },
-              { name: "Servicios", path: "/services" },
-              { name: "Escoje Servicio", path: "/doctors" },
-              { name: "Clientes", path: "/clients" }
-            ].map((link) => (
+            {navLinks.map((link) => (
               <Link 
                 key={link.path}
                 to={link.path} 
-                className={`font-black uppercase tracking-widest transition-all duration-300 relative group py-1 ${
+                className={`font-black uppercase tracking-widest transition-all duration-300 relative group py-1 flex items-center justify-center ${
                   isActive(link.path) ? "text-[#FEB60D]" : "text-black hover:text-[#FEB60D]"
                 }`}
               >
@@ -99,28 +102,28 @@ const Header = () => {
             ))}
             
             {isLoggedIn ? (
-              <div className="flex items-center gap-3 lg:gap-4">
+              <div className="flex items-center gap-3 lg:gap-4 ml-4">
                 <Link 
                   to="/client-appointments" 
-                  className={`px-3 lg:px-4 py-1.5 rounded-lg border-2 border-[#FFD700] font-black uppercase text-[9px] lg:text-[10px] transition-all duration-300 active:translate-x-0.5 active:translate-y-0.5 ${
+                  className={`px-3 lg:px-4 py-1.5 rounded-lg border-2 border-[#FFD700] font-black uppercase text-[9px] lg:text-[10px] transition-all duration-300 flex items-center justify-center ${
                     isActive("/client-appointments") 
-                      ? "bg-[#FFD700] text-black shadow-[3px_3px_0px_0px_rgba(255,215,0,0.6),0_0_15px_rgba(255,215,0,0.4)]" 
-                      : "bg-[#FFD700] text-black hover:bg-[#FEB60D] shadow-[3px_3px_0px_0px_rgba(255,182,13,0.4)]"
+                      ? "bg-[#FFD700] text-black" 
+                      : "bg-[#FFD700] text-black hover:bg-[#FEB60D]"
                   }`}
                 >
                   Panel Cliente
                 </Link>
                 <button 
                   onClick={handleLogout} 
-                  className="text-black hover:text-red-600 font-black transition-colors border-none bg-transparent p-0 uppercase text-[9px] lg:text-[10px] tracking-tighter"
+                  className="text-black hover:text-red-600 font-black transition-colors border-none bg-transparent p-0 uppercase text-[9px] lg:text-[10px] tracking-tighter flex items-center justify-center"
                 >
                   Salir
                 </button>
               </div>
             ) : (
-              <div className="flex items-center space-x-3 lg:space-x-4">
-                <Link to="/login" className="text-black font-black uppercase hover:text-[#FEB60D] transition-colors">Login</Link>
-                <Link to="/signup" className="px-4 py-2 bg-black text-white rounded-full hover:bg-[#FFD700] hover:text-black transition-all font-black text-[10px] uppercase tracking-widest">Registro</Link>
+              <div className="flex items-center space-x-3 lg:space-x-4 ml-4">
+                <Link to="/login" className="text-black font-black uppercase hover:text-[#FEB60D] transition-colors flex items-center justify-center">Login</Link>
+                <Link to="/signup" className="px-4 py-2 bg-black text-white rounded-full hover:bg-[#FFD700] hover:text-black transition-all font-black text-[10px] uppercase tracking-widest flex items-center justify-center">Registro</Link>
               </div>
             )}
           </nav>
@@ -141,17 +144,12 @@ const Header = () => {
             className="md:hidden bg-white/98 backdrop-blur-3xl border-t border-black/10 overflow-hidden"
           >
             <div className="px-6 py-8 space-y-5 flex flex-col items-center">
-              {[
-                { name: "Inicio", path: "/" },
-                { name: "Servicios", path: "/services" },
-                { name: "Escoje Servicio", path: "/doctors" },
-                { name: "Contacto", path: "/contact" }
-              ].map((link) => (
+              {navLinks.map((link) => (
                 <Link 
                   key={link.path}
                   to={link.path} 
                   onClick={() => setIsMenuOpen(false)} 
-                  className={`text-sm font-black uppercase tracking-widest transition-all duration-300 ${
+                  className={`text-sm font-black uppercase tracking-widest transition-all duration-300 flex items-center justify-center ${
                     isActive(link.path) ? "text-[#FFD700]" : "text-black hover:text-[#FFD700]"
                   }`}
                 >
@@ -163,11 +161,7 @@ const Header = () => {
                 <Link 
                   to="/client-appointments" 
                   onClick={() => setIsMenuOpen(false)} 
-                  className={`px-6 py-2 rounded-lg border-2 border-[#FFD700] text-sm font-black transition-all duration-300 uppercase ${
-                    isActive("/client-appointments") 
-                    ? "bg-[#FFD700] text-black shadow-[0_0_15px_rgba(255,215,0,0.4)]" 
-                    : "bg-transparent text-[#FFD700]"
-                  }`}
+                  className="w-full py-3 rounded-xl border-2 border-[#FFD700] bg-[#FFD700] text-black text-xs font-black uppercase tracking-widest flex items-center justify-center"
                 >
                   Panel Activo
                 </Link>
@@ -178,14 +172,14 @@ const Header = () => {
               {isLoggedIn ? (
                 <button 
                   onClick={() => { handleLogout(); setIsMenuOpen(false); }} 
-                  className="text-xs font-black text-red-600 uppercase tracking-widest"
+                  className="text-xs font-black text-red-600 uppercase tracking-widest flex items-center justify-center"
                 >
                   Cerrar Sesión
                 </button>
               ) : (
                 <div className="flex flex-col items-center gap-4 w-full pt-2">
-                  <Link to="/login" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase">Login</Link>
-                  <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="w-full py-3 bg-black text-[#FFD700] text-center rounded-xl text-xs font-black uppercase tracking-widest shadow-lg">Registro</Link>
+                  <Link to="/login" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase flex items-center justify-center">Login</Link>
+                  <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="w-full py-3 bg-black text-[#FFD700] rounded-xl text-xs font-black uppercase tracking-widest flex items-center justify-center">Registro</Link>
                 </div>
               )}
             </div>
