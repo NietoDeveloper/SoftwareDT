@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import ReviewForm from "../features/rating";
 import Footer from "../components/Footer/Footer";
-import { Mail, MessageCircle, MapPin, Send } from "lucide-react";
+import { Mail, MessageCircle, MapPin, Send, Star, ShieldCheck } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,34 +13,57 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState(null);
 
+  // Datos de contacto Software DT
   const whatsappNumber = "+57 300 123 4567";
   const rawNumber = "573001234567";
-  const whatsappLink = `https://wa.me/${rawNumber}?text=Hola,%20quisiera%20saber%20más%20sobre%20Software%20DT.`;
+  
+  // Enlace de WhatsApp dinámico: incluye el nombre del usuario si ya lo escribió
+  const whatsappLink = `https://wa.me/${rawNumber}?text=${encodeURIComponent(
+    `Hola Software DT, soy ${formData.name || "un nuevo cliente"}. Quisiera consultar sobre un proyecto técnico.`
+  )}`;
+
+  // Link de Google Maps corregido para Bogotá (Carrera 72 # 2 - 50)
+  const mapEmbedLink = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.9247413444055!2d-74.1415!3d4.6085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNCszNiczNC43Ik4gNzTCsDA4JzI5LjQiVw!5e0!3m2!1ses!2sco!4v1703180000000!5m2!1ses!2sco";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setStatusMessage(null);
+    if (statusMessage) setStatusMessage(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setStatusMessage(null);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    if (formData.name && formData.email && formData.message) {
+
+    try {
+      // Configuración de EmailJS
+      // Sustituye estos IDs con los tuyos de la consola de EmailJS
+      await emailjs.send(
+        "YOUR_SERVICE_ID", 
+        "YOUR_TEMPLATE_ID", 
+        {
+          from_name: formData.name,
+          reply_to: formData.email,
+          message: formData.message,
+          to_name: "Software DT Admin",
+        },
+        "YOUR_PUBLIC_KEY"
+      );
+
       setStatusMessage({
         type: "success",
-        text: "¡Ticket desplegado con éxito!",
+        text: "¡Ticket desplegado con éxito en el servidor!",
       });
       setFormData({ name: "", email: "", message: "" });
-    } else {
+    } catch (error) {
       setStatusMessage({
         type: "error",
-        text: "Error: Campos incompletos.",
+        text: "Fallo en el despliegue. Reintente o use canal directo.",
       });
+      console.error("EmailJS Error:", error);
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (
@@ -49,7 +73,6 @@ const Contact = () => {
       <section className="min-h-screen flex items-center justify-center py-16 px-4 sm:px-10 lg:px-20">
         <div className="w-full max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
           
-          {/* Lado Izquierdo: Copy de Ingeniería */}
           <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
             <div className="inline-flex items-center gap-3">
               <div className="w-12 h-[2px] bg-amber-500"></div>
@@ -64,19 +87,11 @@ const Contact = () => {
             <p className="text-gray-500 font-bold text-base sm:text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
               Estamos listos para escalar tu infraestructura. Cuéntanos sobre tu próximo gran proyecto.
             </p>
-
-            {/* Punto decorativo discreto */}
-            <div className="hidden lg:flex items-center gap-4">
-               <div className="w-3 h-3 bg-black rounded-full"></div>
-               <div className="w-20 h-[1px] bg-gray-200"></div>
-            </div>
           </div>
 
-          {/* Tarjeta Formulario (Software DT Style) */}
+          {/* Tarjeta Formulario */}
           <div className="w-full max-w-lg lg:w-1/2">
             <div className="bg-white border-[3px] border-black rounded-[2.5rem] p-6 sm:p-12 shadow-[15px_15px_0px_0px_rgba(0,0,0,0.08)] relative">
-              
-              {/* Icono flotante discreto */}
               <div className="absolute -top-5 -right-5 w-14 h-14 bg-black rounded-2xl flex items-center justify-center text-amber-500 shadow-xl hidden sm:flex">
                 <Mail size={24} strokeWidth={3} />
               </div>
@@ -126,9 +141,10 @@ const Contact = () => {
                 </div>
 
                 {statusMessage && (
-                  <div className={`p-4 rounded-xl text-[9px] font-black uppercase border animate-pulse ${
-                    statusMessage.type === "success" ? "bg-green-50 text-green-600 border-green-100" : "bg-red-50 text-red-600 border-red-100"
+                  <div className={`p-4 rounded-xl text-[10px] font-black uppercase border flex items-center gap-2 ${
+                    statusMessage.type === "success" ? "bg-green-50 text-green-600 border-green-200" : "bg-red-50 text-red-600 border-red-200"
                   }`}>
+                    {statusMessage.type === "success" && <ShieldCheck size={16} />}
                     {statusMessage.text}
                   </div>
                 )}
@@ -150,7 +166,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* SECCIÓN 2: UBICACIÓN Y WHATSAPP (Soporte High-Priority) */}
+      {/* SECCIÓN 2: UBICACIÓN Y WHATSAPP */}
       <section className="py-24 bg-black text-white px-6 sm:px-12 lg:px-24">
         <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           
@@ -192,11 +208,11 @@ const Contact = () => {
           </div>
 
           <div className="order-1 lg:order-2">
-             <div className="relative w-full aspect-video rounded-[3rem] overflow-hidden border-2 border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]">
+             <div className="relative w-full aspect-square lg:aspect-video rounded-[3rem] overflow-hidden border-2 border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]">
                 <iframe
                   title="Ubicación de Software DT"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.84!2d-74.13!3d4.62!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMzcnMTIuMCJOIDc0wrAwNyc0OC4wIlc!5e0!3m2!1ses!2sco!4v123456789"
-                  className="absolute inset-0 w-full h-full grayscale invert opacity-70 hover:opacity-100 transition-opacity duration-700"
+                  src={mapEmbedLink}
+                  className="absolute inset-0 w-full h-full grayscale invert opacity-60 hover:opacity-100 transition-opacity duration-700"
                   allowFullScreen=""
                   loading="lazy"
                 ></iframe>
@@ -205,16 +221,22 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* SECCIÓN 3: REVIEWS (Feedback de Clientes) */}
+      {/* SECCIÓN 3: REVIEWS (Feedback de Clientes - Mejorado) */}
       <section className="py-28 bg-[#fcfcfc] px-6 flex flex-col items-center">
-        <div className="w-full max-w-4xl">
-           <div className="text-center mb-16 space-y-4">
-              <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-black">
-                Feedback de <span className="text-amber-500">Clientes</span>
+        <div className="w-full max-w-5xl">
+           <div className="flex flex-col items-center text-center mb-16 space-y-4">
+              <div className="flex gap-1 mb-2">
+                {[...Array(5)].map((_, i) => <Star key={i} size={18} className="fill-amber-500 text-amber-500" />)}
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-black">
+                Technical <span className="text-amber-500">Feedback</span>
               </h2>
-              <div className="w-16 h-[3px] bg-black mx-auto shadow-[0_5px_15px_rgba(0,0,0,0.1)]"></div>
+              <p className="text-gray-400 font-bold uppercase text-[11px] tracking-[0.4em]">Arquitecturas validadas por la comunidad</p>
+              <div className="w-24 h-[4px] bg-black mx-auto mt-4"></div>
            </div>
-          <div className="bg-white border-2 border-black/5 rounded-[3rem] p-2 sm:p-8 shadow-sm">
+          
+          <div className="bg-white border-[3px] border-black rounded-[3rem] p-4 sm:p-10 shadow-[20px_20px_0px_0px_rgba(254,182,13,0.1)]">
+             {/* El componente ReviewForm ahora vive en un contenedor con el estilo de Software DT */}
              <ReviewForm />
           </div>
         </div>
