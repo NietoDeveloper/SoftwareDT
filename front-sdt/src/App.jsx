@@ -20,49 +20,53 @@ import OurClients from "./pages/OurClients.jsx";
 function App() {
   return (
     <UserProvider>
-      {/* El Header ya contiene el link al Panel y a Servicios. 
-        El flujo Software DT: Panel -> Servicios -> Booking -> Confirmation 
-      */}
+      {/* Header global: contiene navegación a Servicios y Panel */}
       <Header />
+      
       <Routes
         future={{
           v7_startTransition: true,
           v7_relativeSplatPath: true,
         }}
       >
-        {/* --- Rutas Públicas --- */}
+        {/* --- SECCIÓN PÚBLICA --- */}
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<DoctorList />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<Services />} />
         <Route path="/clients" element={<OurClients />} />
+        
+        {/* Autenticación Usuarios (Clientes) */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         
-        {/* --- Rutas de Especialistas (Doctor) --- */}
+        {/* Autenticación Especialistas */}
         <Route path="/doctor/signup" element={<Doctorsignup />} />
         <Route path="/doctor/login" element={<Doctorlogin />} />
         
-        {/* --- Rutas Privadas (Requieren Auth) --- */}
+        {/* --- SECCIÓN PROTEGIDA (Solo Logueados) --- */}
         <Route element={<PrivateRoutes />}>
-          {/* Dashboard Principal del Cliente */}
+          {/* Dashboard y Panel de Control */}
           <Route path="/client/dashboard" element={<ClientPanel />} />
-          
-          {/* Alias para compatibilidad con el Header */}
           <Route path="/client-appointments" element={<ClientPanel />} />
           
-          {/* FLUJO CORE: Captura el ID del servicio y recibe el estado desde Services.jsx */}
+          {/* FLUJO DE AGENDAMIENTO: 
+              Captura el :doctorId desde la URL (proviene de ServicesCard.jsx)
+          */}
           <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
           
-          {/* Pasarela de Pago */}
+          {/* Procesamiento de Pago */}
           <Route path="/checkout" element={<Payment />} />
           
-          {/* Confirmación y visualización de Ticket */}
+          {/* Ticket Final de Confirmación */}
           <Route 
             path="/appointment-confirmation" 
             element={<AppointmentConfirmation />} 
           />
         </Route>
+
+        {/* Fallback para rutas no encontradas (Opcional) */}
+        <Route path="*" element={<Home />} />
       </Routes>
     </UserProvider>
   );

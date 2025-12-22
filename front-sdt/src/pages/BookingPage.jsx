@@ -8,13 +8,22 @@ import { UserContext } from "../context/UserContext";
 import { Calendar, Clock, User, Phone, Mail, FileText, ChevronLeft } from "lucide-react";
 
 const BookingPage = () => {
-  const { doctorId } = useParams();
+  const { doctorId: paramId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { user } = useContext(UserContext);
+  const { user, token, loading: userLoading } = useContext(UserContext); // Agregamos token y loading del contexto
 
-  // PRIORIDAD AL FLUJO: Capturamos la data enviada desde Services.jsx
+  // PRIORIDAD 1: SEGURIDAD DE ACCESO
+  // Si no hay usuario ni token tras cargar el contexto, redirigimos a login
+  useEffect(() => {
+    if (!userLoading && (!user || !token)) {
+      toast.error("Debes iniciar sesión para agendar una cita.");
+      navigate("/login", { state: { from: location.pathname } });
+    }
+  }, [user, token, userLoading, navigate, location]);
+
   const serviceFromFlow = location.state?.doctorData;
+  const activeDoctorId = paramId || serviceFromFlow?._id;
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -53,19 +62,18 @@ const BookingPage = () => {
     return times;
   }, [formData.appointmentDate]);
 
-  // Si no viene del flujo, hacemos fetch (Fallback)
   const getDoctor = async () => {
     if (serviceFromFlow) return serviceFromFlow;
     const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-    const res = await axios.get(`${apiUrl}/doctors/${doctorId}`);
+    const res = await axios.get(`${apiUrl}/doctors/${activeDoctorId}`);
     return res.data.doctor || res.data;
   };
 
-  const { data: doctor, isLoading } = useQuery({
-    queryKey: ["doctor", doctorId],
+  const { data: doctor, isLoading: doctorLoading, error } = useQuery({
+    queryKey: ["doctor", activeDoctorId],
     queryFn: getDoctor,
-    enabled: !!doctorId,
-    initialData: serviceFromFlow, // Usamos la data del flujo inmediatamente
+    enabled: !!activeDoctorId && !!user, // Solo corre si hay usuario
+    initialData: serviceFromFlow,
   });
 
   useEffect(() => {
@@ -90,8 +98,14 @@ const BookingPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.appointmentTime || !formData.appointmentDate) {
-      return toast.error("Selecciona fecha y hora.");
+    
+    // PRIORIDAD 2: SEGURIDAD DE ENVÍO
+    if (!token) {
+      return toast.error("Sesión expirada. Por favor ingresa de nuevo.");
+    }
+
+    if (!doctor?._id) {
+      return toast.error("Error: Información del servicio incompleta.");
     }
 
     setIsSubmitting(true);
@@ -99,104 +113,108 @@ const BookingPage = () => {
       const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
       const payload = {
         doctorId: doctor._id,
-        userId: user?._id || null,
-        serviceName: doctor.name, // Importante para el Roadmap del cliente
+        userId: user?._id,
+        serviceName: doctor.name,
         ...formData,
       };
 
-      const res = await axios.post(`${apiUrl}/appointments`, payload);
-      toast.success("Cita agendada correctamente");
-
-      navigate("/appointment-confirmation", { 
-        state: { appointment: res.data, doctorName: doctor.name } 
+      // Incluimos el token en las cabeceras para el backend
+      const res = await axios.post(`${apiUrl}/appointments`, payload, {
+        headers: { Authorization: `Bearer ${token}` }
       });
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Error al procesar la cita");
+      
+      toast.success("¡Cita agendada con éxito!");
+      navigate("/appointment-confirmation", { 
+        state: { 
+          appointment: res.data.appointment || res.data, 
+          doctorName: doctor.name 
+        } 
+      });
+    } catch (err) {
+      toast.error(err.response?.data?.message || "No se pudo procesar la reserva.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (isLoading) return <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC] font-black uppercase tracking-[0.3em] animate-pulse">Sincronizando Entorno...</div>;
+  // Pantalla de carga unificada
+  if (userLoading || (doctorLoading && !serviceFromFlow)) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC]">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-black border-t-[#FFD700] rounded-full animate-spin mb-4 mx-auto"></div>
+          <p className="font-black uppercase tracking-widest text-xs">Sincronizando Entorno Seguro...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Si no hay sesión, no renderizamos el formulario (el useEffect hará el redirect)
+  if (!user || !token) return null;
 
   const todayStr = new Date().toISOString().split("T")[0];
 
   return (
     <div className="min-h-screen bg-[#DCDCDC] pb-20 font-sans text-black antialiased">
-      {/* HEADER DE LA PÁGINA */}
-      <div className="bg-white border-b-2 border-black/5 pt-12 pb-10 px-6 sm:px-12 shadow-[0_4px_30px_rgba(255,215,0,0.05)]">
+      <div className="bg-white border-b-2 border-black/5 pt-12 pb-10 px-6 sm:px-12 shadow-sm">
         <div className="max-w-[1800px] mx-auto">
           <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#FFD700] transition-colors mb-6">
-            <ChevronLeft size={14} /> Volver
+            <ChevronLeft size={14} /> Regresar
           </button>
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-            <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-1 bg-[#FFD700]"></div>
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Booking System</span>
-              </div>
-              <h1 className="text-5xl font-black uppercase tracking-tighter leading-none">
-                Agendar <span className="text-[#FFD700]">Cita</span>
-              </h1>
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-1 bg-[#FFD700]"></div>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Software DT Secure Booking</span>
             </div>
+            <h1 className="text-5xl font-black uppercase tracking-tighter leading-none">
+              Configurar <span className="text-[#FFD700]">Cita</span>
+            </h1>
           </div>
         </div>
       </div>
 
       <main className="max-w-[1800px] mx-auto px-6 sm:px-12 mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
-        {/* RESUMEN DEL SERVICIO */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="bg-white border-2 border-black/5 rounded-[2.5rem] p-8 shadow-sm">
-            <div className="w-16 h-16 bg-[#FFD700] rounded-2xl flex items-center justify-center mb-6 shadow-[0_10px_20px_rgba(255,215,0,0.2)]">
+        <div className="lg:col-span-4">
+          <div className="bg-white border-2 border-black/5 rounded-[2.5rem] p-8 sticky top-12 shadow-sm">
+            <div className="w-16 h-16 bg-[#FFD700] rounded-2xl flex items-center justify-center mb-6 shadow-md">
                <User size={30} strokeWidth={2.5} />
             </div>
             <h2 className="text-2xl font-black uppercase tracking-tight">{doctor?.name}</h2>
             <p className="text-[10px] font-black text-[#FEB60D] uppercase tracking-[0.2em] mt-1 mb-6">{doctor?.specialization}</p>
             <div className="h-[2px] bg-[#DCDCDC] w-12 mb-6"></div>
-            <p className="text-sm font-medium leading-relaxed italic text-gray-600">
-              "{doctor?.bio || "Especialista disponible para tu proyecto."}"
+            <p className="text-sm font-bold leading-relaxed italic text-gray-500">
+              "{doctor?.bio || "Especialista verificado por Software DT."}"
             </p>
           </div>
         </div>
 
-        {/* FORMULARIO DE AGENDAMIENTO */}
         <div className="lg:col-span-8">
           <div className="bg-white border-2 border-black/5 rounded-[2.5rem] p-8 sm:p-12 shadow-sm">
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
-                    <User size={12} className="text-[#FFD700]"/> Nombre Completo
-                  </label>
-                  <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/20 border-2 border-black/5 p-4 rounded-xl focus:border-[#FFD700] outline-none transition-all font-bold" />
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Tu Nombre de Usuario</label>
+                  <input type="text" name="fullName" value={formData.fullName} readOnly className="w-full bg-[#DCDCDC]/50 border-2 border-black/5 p-4 rounded-xl font-bold cursor-not-allowed" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
-                    <Mail size={12} className="text-[#FFD700]"/> Correo Electrónico
-                  </label>
-                  <input type="email" name="email" value={formData.email} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/20 border-2 border-black/5 p-4 rounded-xl focus:border-[#FFD700] outline-none transition-all font-bold" />
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Correo Registrado</label>
+                  <input type="email" name="email" value={formData.email} readOnly className="w-full bg-[#DCDCDC]/50 border-2 border-black/5 p-4 rounded-xl font-bold cursor-not-allowed" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
-                    <Phone size={12} className="text-[#FFD700]"/> Teléfono
-                  </label>
-                  <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/20 border-2 border-black/5 p-4 rounded-xl focus:border-[#FFD700] outline-none transition-all font-bold" />
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Teléfono</label>
+                  <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/30 border-2 border-black/5 p-4 rounded-xl focus:border-[#FFD700] outline-none font-bold" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
-                    <Calendar size={12} className="text-[#FFD700]"/> Fecha
-                  </label>
-                  <input type="date" name="appointmentDate" min={todayStr} value={formData.appointmentDate} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/20 border-2 border-black/5 p-4 rounded-xl focus:border-[#FFD700] outline-none transition-all font-bold" />
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Fecha</label>
+                  <input type="date" name="appointmentDate" min={todayStr} value={formData.appointmentDate} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/30 border-2 border-black/5 p-4 rounded-xl focus:border-[#FFD700] outline-none font-bold" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
-                    <Clock size={12} className="text-[#FFD700]"/> Hora
-                  </label>
-                  <select name="appointmentTime" value={formData.appointmentTime} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/20 border-2 border-black/5 p-4 rounded-xl focus:border-[#FFD700] outline-none transition-all font-bold appearance-none">
-                    <option value="">{formData.appointmentDate ? "Seleccionar..." : "Primero elige fecha"}</option>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Hora</label>
+                  <select name="appointmentTime" value={formData.appointmentTime} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/30 border-2 border-black/5 p-4 rounded-xl focus:border-[#FFD700] outline-none font-bold appearance-none">
+                    <option value="">{formData.appointmentDate ? "Elegir..." : "Primero fecha"}</option>
                     {availableTimes.map((t) => (
                       <option key={t} value={t}>{t}</option>
                     ))}
@@ -205,18 +223,16 @@ const BookingPage = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
-                  <FileText size={12} className="text-[#FFD700]"/> Motivo del Requerimiento
-                </label>
-                <textarea name="reason" value={formData.reason} onChange={handleInputChange} required minLength={10} className="w-full bg-[#DCDCDC]/20 border-2 border-black/5 p-4 rounded-xl focus:border-[#FFD700] outline-none transition-all font-bold h-32 resize-none" placeholder="Describe brevemente el servicio solicitado..." />
+                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Motivo de la Cita</label>
+                <textarea name="reason" value={formData.reason} onChange={handleInputChange} required minLength={10} className="w-full bg-[#DCDCDC]/30 border-2 border-black/5 p-4 rounded-xl focus:border-[#FFD700] outline-none font-bold h-32 resize-none" placeholder="Describe tu requerimiento..." />
               </div>
 
               <button 
                 type="submit" 
-                disabled={isSubmitting} 
-                className="w-full bg-black text-white py-5 rounded-2xl font-black text-xs uppercase tracking-[0.3em] hover:bg-[#FFD700] hover:text-black transition-all shadow-[0_10px_30px_rgba(0,0,0,0.1)] hover:shadow-[0_10px_30px_rgba(255,215,0,0.3)] disabled:opacity-50"
+                disabled={isSubmitting || !formData.appointmentTime} 
+                className="w-full bg-black text-white py-5 rounded-2xl font-black text-xs uppercase tracking-[0.3em] hover:bg-[#FFD700] hover:text-black transition-all shadow-lg disabled:opacity-50"
               >
-                {isSubmitting ? "Sincronizando..." : "Confirmar y Agendar"}
+                {isSubmitting ? "Sincronizando Cita..." : "Confirmar y Agendar"}
               </button>
             </form>
           </div>
