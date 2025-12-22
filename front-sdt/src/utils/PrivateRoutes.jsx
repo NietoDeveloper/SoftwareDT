@@ -6,7 +6,7 @@ const PrivateRoutes = () => {
     const { token, loading } = useContext(UserContext);
     const location = useLocation(); 
     
-    // Estado de carga con estilo Software DT
+    // Estado de carga con estilo Software DT (Sincronizado con tu paleta de colores)
     if (loading) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-[#DCDCDC]">
@@ -19,16 +19,21 @@ const PrivateRoutes = () => {
     }
 
     /**
-     * Si hay token, permitimos el acceso.
-     * Si no, redirigimos a login, pero guardamos 'from' para que, 
-     * tras loguearse, el cliente vuelva exactamente a donde intentó entrar 
-     * (por ejemplo, directamente a la BookingPage del servicio que eligió).
+     * LÓGICA DE PROTECCIÓN:
+     * Si hay token: El Outlet renderiza BookingPage, Dashboard, etc.
+     * Si NO hay token: Redirigimos a Login.
+     * * NOTA: Guardamos 'location' completo en el state. Esto incluye la URL 
+     * actual (/book-appointment/ID) y cualquier state previo (doctorData).
      */
     return (
         token ? (
             <Outlet />
         ) : (
-            <Navigate to="/login" state={{ from: location }} replace />
+            <Navigate 
+                to="/login" 
+                state={{ from: location }} 
+                replace 
+            />
         )
     );
 }

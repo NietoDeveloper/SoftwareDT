@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom'; // Importamos useLocation
 import { UserContext } from '../context/UserContext.jsx';
 import { toast } from 'react-toastify';
 import axios from 'axios'; 
@@ -13,11 +13,18 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const { setToken, setUser } = useContext(UserContext); 
     const navigate = useNavigate();
+    const location = useLocation(); // Capturamos la ubicación actual (y el estado 'from')
+
     const {
         register,
         handleSubmit,
         formState: { errors }, reset
     } = useForm();
+
+    // Determinamos a dónde enviar al usuario:
+    // 1. Si viene de un redirect (PrivateRoutes), 'from' tendrá la ruta previa.
+    // 2. Si entró directamente a login, irá a '/doctors' por defecto.
+    const from = location.state?.from || { pathname: "/doctors" };
 
     const onSubmit = async (data) => {
         setError(null);
@@ -25,11 +32,19 @@ const Login = () => {
         try {
             const response = await axios.post(`${API_BASE_URL}/login`, data);
             const { token, userData } = response.data;
+            
+            // Guardamos sesión
             localStorage.setItem('token', `Bearer ${token}`); 
             setToken(`Bearer ${token}`); 
             setUser(userData); 
-            toast.success(`👋 ¡Bienvenido!`);
-            navigate('/doctors', { replace: true }); 
+            
+            toast.success(`👋 ¡Bienvenido, ${userData.name || 'Usuario'}!`);
+            
+            // REDIRECCIÓN INTELIGENTE:
+            // Usamos 'from' para devolver al usuario a donde intentaba entrar.
+            // Si venía de Services -> Booking, 'from' conserva la URL y el state del doctor.
+            navigate(from, { replace: true }); 
+            
             reset();
         } catch (processError) {
             const errorMessage = processError?.response?.data?.message || 'Error de acceso.';
@@ -60,7 +75,6 @@ const Login = () => {
                         Ingresa a tu ecosistema de desarrollo y gestión de proyectos de arquitectura de software.
                     </p>
 
-                    {/* SECCIÓN REGISTRO: Más pequeña y separada */}
                     <div className="flex flex-col items-center lg:items-start gap-4 pt-4 border-t border-gray-100 lg:border-none">
                         <p className="text-gray-400 font-bold uppercase text-[9px] tracking-[0.2em]">¿No tienes cuenta?</p>
                         <Link 
