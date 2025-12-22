@@ -10,8 +10,6 @@ import Doctorsignup from "./pages/DoctorSignup.jsx";
 import Doctorlogin from "./pages/DoctorLogin.jsx";
 import Services from "./pages/Services.jsx";
 import { UserProvider } from "./context/UserContext.jsx"; 
-// Sugerencia: Importa un contexto para las citas si aún no lo tienes
-// import { AppointmentProvider } from "./context/AppointmentContext.jsx"; 
 import PrivateRoutes from "./utils/PrivateRoutes.jsx";
 import BookingPage from "./pages/BookingPage.jsx";
 import Contact from "./pages/Contact.jsx";
@@ -22,45 +20,50 @@ import OurClients from "./pages/OurClients.jsx";
 function App() {
   return (
     <UserProvider>
-      {/* <AppointmentProvider> <-- Envuelve aquí para persistir la selección de servicios */}
-        <Header />
-        <Routes
-          future={{
-            v7_startTransition: true,
-            v7_relativeSplatPath: true,
-          }}
-        >
-          {/* Rutas Públicas - Todas en minúsculas por estándar */}
-          <Route path="/" element={<Home />} />
-          <Route path="/doctors" element={<DoctorList />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/clients" element={<OurClients />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+      {/* El Header ya contiene el link al Panel y a Servicios. 
+        El flujo Software DT: Panel -> Servicios -> Booking -> Confirmation 
+      */}
+      <Header />
+      <Routes
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
+        {/* --- Rutas Públicas --- */}
+        <Route path="/" element={<Home />} />
+        <Route path="/doctors" element={<DoctorList />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/clients" element={<OurClients />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        
+        {/* --- Rutas de Especialistas (Doctor) --- */}
+        <Route path="/doctor/signup" element={<Doctorsignup />} />
+        <Route path="/doctor/login" element={<Doctorlogin />} />
+        
+        {/* --- Rutas Privadas (Requieren Auth) --- */}
+        <Route element={<PrivateRoutes />}>
+          {/* Dashboard Principal del Cliente */}
+          <Route path="/client/dashboard" element={<ClientPanel />} />
           
-          {/* Rutas de Doctor */}
-          <Route path="/doctor/signup" element={<Doctorsignup />} />
-          <Route path="/doctor/login" element={<Doctorlogin />} />
+          {/* Alias para compatibilidad con el Header */}
+          <Route path="/client-appointments" element={<ClientPanel />} />
           
-          {/* Rutas Privadas / Protegidas */}
-          <Route element={<PrivateRoutes />}>
-            {/* Unificamos el dashboard del cliente */}
-            <Route path="/client/dashboard" element={<ClientPanel />} />
-            
-            {/* Esta ruta es la que usas en el Header corregido */}
-            <Route path="/client-appointments" element={<ClientPanel />} />
-            
-            <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
-            <Route path="/checkout" element={<Payment />} />
-            
-            <Route 
-              path="/appointment-confirmation" 
-              element={<AppointmentConfirmation />} 
-            />
-          </Route>
-        </Routes>
-      {/* </AppointmentProvider> */}
+          {/* FLUJO CORE: Captura el ID del servicio y recibe el estado desde Services.jsx */}
+          <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
+          
+          {/* Pasarela de Pago */}
+          <Route path="/checkout" element={<Payment />} />
+          
+          {/* Confirmación y visualización de Ticket */}
+          <Route 
+            path="/appointment-confirmation" 
+            element={<AppointmentConfirmation />} 
+          />
+        </Route>
+      </Routes>
     </UserProvider>
   );
 }
