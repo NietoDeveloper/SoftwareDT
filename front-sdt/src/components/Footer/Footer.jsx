@@ -42,21 +42,7 @@ const Footer = () => {
 
         
                   <a 
-                    href={link.href} 
-                    target={link.href.startsWith('http') ? "_blank" : "_self"}
-                    rel="noreferrer"
-                    style={whiteForce} 
-                    className="transition-all duration-300 group-hover:!text-gold"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Info Inferior: Ajuste de Blanco e Interacción */}
+           
         <div className="mt-12 pt-10 border-t border-white w-full max-w-5xl flex flex-col items-center">
           <div className="flex flex-col lg:flex-row items-center gap-10 text-xl sm:text-2xl font-black uppercase tracking-[0.2em]">
             
