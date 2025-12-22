@@ -221,26 +221,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* SECCIÓN 3: REVIEWS (Feedback de Clientes - Mejorado) */}
-      <section className="py-28 bg-[#fcfcfc] px-6 flex flex-col items-center">
-        <div className="w-full max-w-5xl">
-           <div className="flex flex-col items-center text-center mb-16 space-y-4">
-              <div className="flex gap-1 mb-2">
-                {[...Array(5)].map((_, i) => <Star key={i} size={18} className="fill-amber-500 text-amber-500" />)}
-              </div>
-              <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-black">
-                Technical <span className="text-amber-500">Feedback</span>
-              </h2>
-              <p className="text-gray-400 font-bold uppercase text-[11px] tracking-[0.4em]">Arquitecturas validadas por la comunidad</p>
-              <div className="w-24 h-[4px] bg-black mx-auto mt-4"></div>
-           </div>
-          
-          <div className="bg-white border-[3px] border-black rounded-[3rem] p-4 sm:p-10 shadow-[20px_20px_0px_0px_rgba(254,182,13,0.1)]">
-             {/* El componente ReviewForm ahora vive en un contenedor con el estilo de Software DT */}
-             <ReviewForm />
-          </div>
-        </div>
-      </section>
+      
 
       <Footer />
     </div>
