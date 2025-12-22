@@ -56,16 +56,7 @@ const Home = () => {
         <video
           autoPlay
           loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-80"
-          src={BogotaAir1}
-        />
-        <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/20 z-[1]"></div>
 
-        <div className="relative z-[10] flex flex-col items-end gap-8 pb-44 pr-6 md:pr-24 lg:pr-32">
-
-      </section>
 
       {/* SECCIONES DEL HOME CON CONTENEDORES LIMPIOS */}
       <main className="max-w-[1800px] mx-auto overflow-hidden space-y-10 px-4 sm:px-8 mt-10">
