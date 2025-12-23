@@ -6,38 +6,29 @@ const {
     getUserAppointments 
 } = require('../controllers/appointmentController');
 
+// Importamos tu middleware de autenticación (ajústalo según tu estructura de archivos)
+// Esto es vital para que 'req.userId' exista y el panel funcione.
+const { authenticate, restrict } = require('../auth/verifyToken'); 
+
 /**
  * @route   POST /api/appointments
  * @desc    Crear una nueva cita
- * @access  Public/Optional
+ * @access  Private/Public (Sugerido: authenticate para vincular al usuario)
  */
-router.post('/', (req, res, next) => {
-    // 1. Simplificamos la validación en ruta. 
-    // Solo validamos lo extremadamente crítico. 
-    // El resto lo maneja el controlador con valores por defecto.
-    const { doctorId, appointmentDate, appointmentTime, fullName, phone } = req.body;
-    
-    if (!doctorId || !appointmentDate || !appointmentTime || !fullName || !phone) {
-        return res.status(400).json({ 
-            message: 'Datos básicos incompletos (Especialista, Fecha, Hora, Nombre o Teléfono).' 
-        });
-    }
-
-    // 2. Pasamos directamente al controlador.
-    // Quitamos el asyncHandler extra de aquí porque el controlador ya lo tiene.
-    return appointmentBooking(req, res, next);
-});
+router.post('/', appointmentBooking); 
 
 /**
  * @route   GET /api/appointments
- * @desc    Listar todas las citas (Admin)
+ * @desc    Listar todas las citas (Solo Admin)
+ * @access  Private (Admin Only)
  */
-router.get('/', getAppointments);
+router.get('/', authenticate, restrict(['admin']), getAppointments);
 
 /**
  * @route   GET /api/appointments/user/:userId
- * @desc    Listar citas de un usuario específico
+ * @desc    Listar citas de un usuario específico para el Panel
+ * @access  Private (Dueño de la cuenta o Admin)
  */
-router.get('/user/:userId', getUserAppointments);
+router.get('/user/:userId', authenticate, getUserAppointments);
 
 module.exports = router;

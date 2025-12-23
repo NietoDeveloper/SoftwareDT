@@ -4,65 +4,59 @@ const asyncHandler = require('express-async-handler');
 
 const handleRefreshToken = asyncHandler(async (req, res) => {
     const cookies = req.cookies;
-    // Buscamos la cookie llamada 'jwt'
-    if (!cookies?.jwt) return res.sendStatus(401);
+    if (!cookies?.jwt) return res.status(401).json({ message: "No session cookie found" });
     
     const refreshToken = cookies.jwt;
     
-    // Limpiamos la cookie vieja para prepararnos para la rotación
+    // 1. Limpiamos la cookie para rotación inmediata
     res.clearCookie('jwt', { 
         httpOnly: true, 
         sameSite: "None", 
         secure: true 
     });
 
-    // Intentamos encontrar al usuario que posea este token específico en su lista
     const foundUser = await User.findOne({ refreshToken }).exec();
 
-    // --- DETECCIÓN DE REÚSO (Posible Hack) ---
+    // --- ESCENARIO: DETECCIÓN DE REÚSO (POSIBLE ROBO DE TOKEN) ---
     if (!foundUser) {
         jwt.verify(
             refreshToken,
             process.env.REFRESH_TOKEN_SECRET,
             async (err, decoded) => {
-                if (err) return res.sendStatus(403); // Token expirado o inválido
+                if (err) return res.sendStatus(403); 
                 
-                // Si el token es válido pero no está en la DB, alguien ya lo usó.
-                // Invalidamos TODA la sesión de ese usuario por seguridad.
+                // Si el token es válido pero no está en la DB, compromiso de seguridad.
                 const hackedUser = await User.findById(decoded.id).exec();
                 if (hackedUser) {
-                    hackedUser.refreshToken = [];
+                    hackedUser.refreshToken = []; // Borramos todas las sesiones activas
                     await hackedUser.save();
-                    console.log(`⚠️ Alerta de seguridad: Sesiones invalidadas para ${hackedUser.email}`);
+                    console.log(`🚨 CRITICAL: Refresh token reuse detected for ${hackedUser.email}`);
                 }
             }
         );
         return res.sendStatus(403);
     }
 
-    // --- PROCESO NORMAL DE ROTACIÓN ---
-    // Filtramos el token actual del arreglo de la base de datos
+    // --- PROCESO NORMAL: ROTACIÓN DE TOKEN ---
     const newRefreshTokenArray = foundUser.refreshToken.filter(rt => rt !== refreshToken);
 
     jwt.verify(
         refreshToken,
-        process.env.REFRESH_TOKEN_SECRET, // Corregido el nombre de la variable
+        process.env.REFRESH_TOKEN_SECRET,
         async (err, decoded) => {
             if (err) {
-                // Si el token expiró, solo guardamos el arreglo filtrado (eliminando el expirado)
                 foundUser.refreshToken = [...newRefreshTokenArray];
                 await foundUser.save();
-                return res.sendStatus(403);
+                return res.sendStatus(403); // Token expirado
             }
 
-            // Validamos que el ID del token coincida con el usuario encontrado
             if (foundUser._id.toString() !== decoded.id) return res.sendStatus(403);
 
-            // Generamos el nuevo par de tokens
+            // Generamos nuevos tokens
             const accessToken = jwt.sign(
-                { id: decoded.id },
+                { id: decoded.id, role: foundUser.role }, // Inyectamos el rol aquí
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: '15m' } // 15 minutos es estándar para Access Tokens
+                { expiresIn: '15m' }
             );
 
             const newRefreshToken = jwt.sign(
@@ -71,20 +65,27 @@ const handleRefreshToken = asyncHandler(async (req, res) => {
                 { expiresIn: '1d' }
             );
 
-            // Guardamos el nuevo token en el arreglo de Atlas (sdt)
+            // Actualizamos DB
             foundUser.refreshToken = [...newRefreshTokenArray, newRefreshToken];
             await foundUser.save();
 
-            // Enviamos la nueva cookie
+            // Enviamos la nueva cookie de larga duración
             res.cookie('jwt', newRefreshToken, {
                 httpOnly: true,
                 sameSite: "None",
-                secure: true, // Requerido para SameSite=None
-                maxAge: 24 * 60 * 60 * 1000 // 1 día en milisegundos
+                secure: true, 
+                maxAge: 24 * 60 * 60 * 1000 
             });
 
-            // Enviamos el Access Token al frontend
-            res.json({ accessToken });
+            // Enviamos el Access Token y datos básicos para que el Front no quede a ciegas
+            res.json({ 
+                accessToken,
+                user: {
+                    id: foundUser._id,
+                    name: foundUser.name,
+                    role: foundUser.role
+                }
+            });
         }
     );
 });
