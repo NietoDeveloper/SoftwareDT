@@ -23,6 +23,7 @@ const BookingPage = () => {
 
   const doctorFromFlow = location.state?.doctorData;
   const serviceFromFlow = location.state?.selectedService; 
+  // Prioridad al ID que viene de la URL o del estado del flujo
   const activeDoctorId = paramId || doctorFromFlow?._id;
 
   // Redirección de seguridad
@@ -33,19 +34,18 @@ const BookingPage = () => {
     }
   }, [user, token, userLoading, navigate, location]);
 
-  // FORMULARIO CON DATOS PRE-LLENADOS
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
-    phone: "3000000000", // Teléfono por defecto
-    appointmentDate: new Date().toISOString().split("T")[0], // Fecha de hoy por defecto
+    phone: "", 
+    appointmentDate: new Date().toISOString().split("T")[0],
     appointmentTime: "",
-    reason: "Requerimiento técnico para implementación de soluciones Software DT.", // Motivo por defecto
+    reason: "Requerimiento técnico para implementación de soluciones Software DT.",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Lógica de horarios Software DT
+  // Lógica de horarios
   const availableTimes = useMemo(() => {
     if (!formData.appointmentDate) return [];
     const times = [];
@@ -79,22 +79,21 @@ const BookingPage = () => {
     queryKey: ["doctor", activeDoctorId],
     queryFn: getDoctor,
     enabled: !!activeDoctorId && !!user,
-    initialData: doctorFromFlow,
   });
 
-  // Sincronizar usuario y seleccionar el primer horario disponible automáticamente
+  // Sincronizar datos del usuario logueado
   useEffect(() => {
     if (user) {
       setFormData((prev) => ({
         ...prev,
-        fullName: user.name || user.fullName || "",
-        email: user.email || "",
-        phone: user.phone || prev.phone,
+        fullName: user.name || user.fullName || prev.fullName,
+        email: user.email || prev.email,
+        phone: user.phone || prev.phone || "3000000000",
       }));
     }
   }, [user]);
 
-  // Auto-seleccionar primer horario disponible si el campo está vacío
+  // Auto-seleccionar primer horario disponible
   useEffect(() => {
     if (availableTimes.length > 0 && !formData.appointmentTime) {
       setFormData(prev => ({ ...prev, appointmentTime: availableTimes[0] }));
@@ -103,50 +102,63 @@ const BookingPage = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === "appointmentDate") {
-      setFormData((prev) => ({ ...prev, [name]: value, appointmentTime: "" }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // VALIDACIÓN CRÍTICA ANTES DE ENVIAR
     if (!token) return toast.error("Sesión expirada.");
-    if (!doctor?._id) return toast.error("Error: Información incompleta.");
+    
+    // Aseguramos que el doctorId exista (Backend lo exige)
+    const finalDoctorId = doctor?._id || activeDoctorId;
+    if (!finalDoctorId) return toast.error("Error: Especialista no identificado.");
 
     setIsSubmitting(true);
+    
     try {
       const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+      
+      // PAYLOAD SINCRONIZADO CON Backend route POST /api/appointments
       const payload = {
-        doctorId: doctor._id,
+        doctorId: finalDoctorId,
         userId: user?._id,
-        serviceName: serviceFromFlow?.title || serviceFromFlow?.name || doctor.specialization,
-        price: serviceFromFlow?.price || "Por definir",
-        ...formData,
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        appointmentDate: formData.appointmentDate,
+        appointmentTime: formData.appointmentTime,
+        reason: formData.reason,
+        // Datos extra para el modelo
+        serviceName: serviceFromFlow?.title || serviceFromFlow?.name || doctor?.specialization || "Consultoría",
+        price: serviceFromFlow?.price || doctor?.ticketPrice || 0
       };
+
       const res = await axios.post(`${apiUrl}/appointments`, payload, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      const appointmentData = res.data.appointment || res.data;
-      toast.success("¡Cita agendada con éxito!");
-      navigate("/appointment-confirmation", { 
-        state: { 
-          appointment: appointmentData, 
-          doctor: doctor,
-          service: serviceFromFlow,
-          userName: formData.fullName,
-          confirmedAt: new Date().toISOString()
-        } 
-      });
+
+      if (res.data.success) {
+        toast.success("¡Cita agendada con éxito!");
+        navigate("/appointment-confirmation", { 
+          state: { 
+            appointment: res.data.appointment || res.data, 
+            doctor: doctor,
+            service: serviceFromFlow,
+            userName: formData.fullName
+          } 
+        });
+      }
     } catch (err) {
+      console.error("Error al agendar:", err.response?.data);
       toast.error(err.response?.data?.message || "Error al procesar la reserva.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (userLoading || (doctorLoading && !doctorFromFlow)) {
+  if (userLoading || (doctorLoading && !doctor)) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC]">
         <div className="text-center">
@@ -159,7 +171,7 @@ const BookingPage = () => {
 
   return (
     <div className="min-h-screen bg-[#DCDCDC] font-sans text-black antialiased flex flex-col">
-      {/* Header - Optimizado 310px a 1800px */}
+      {/* Header */}
       <header className="bg-white border-b-2 border-black/10 pt-6 pb-6 md:pt-10 md:pb-8 px-4 sm:px-6 lg:px-12">
         <div className="max-w-[1800px] mx-auto">
           <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#FEB60D] transition-colors mb-4">
@@ -210,7 +222,7 @@ const BookingPage = () => {
           </div>
         </div>
 
-        {/* FORMULARIO - PRE-LLENADO */}
+        {/* FORMULARIO */}
         <div className="lg:col-span-8">
           <div className="bg-white border-2 border-black rounded-[1.5rem] md:rounded-[2.5rem] p-5 sm:p-8 md:p-12 shadow-sm h-full">
             <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
@@ -232,6 +244,7 @@ const BookingPage = () => {
                   <div className="space-y-1">
                     <label className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-gray-400">Horario</label>
                     <select name="appointmentTime" value={formData.appointmentTime} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/10 border-2 border-black p-3 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm appearance-none">
+                      <option value="" disabled>Seleccione...</option>
                       {availableTimes.map((t) => <option key={t} value={t}>{t}</option>)}
                     </select>
                   </div>
@@ -241,7 +254,7 @@ const BookingPage = () => {
               <div className="space-y-2">
                 <div className="flex items-center gap-2 mb-2">
                   <Info size={18} className="text-[#FEB60D]" />
-                  <h3 className="text-[10px] md:text-xs font-black uppercase tracking-widest">Proyecto</h3>
+                  <h3 className="text-[10px] md:text-xs font-black uppercase tracking-widest">Detalles del Proyecto</h3>
                 </div>
                 <textarea 
                   name="reason" 
@@ -249,6 +262,7 @@ const BookingPage = () => {
                   onChange={handleInputChange} 
                   required 
                   minLength={10} 
+                  placeholder="Describa brevemente su requerimiento..."
                   className="w-full bg-[#DCDCDC]/10 border-2 border-black p-3 rounded-xl focus:border-[#FEB60D] outline-none font-medium text-sm h-32 md:h-40 resize-none" 
                 />
               </div>
@@ -258,7 +272,7 @@ const BookingPage = () => {
                 disabled={isSubmitting || !formData.appointmentTime} 
                 className="w-full bg-black text-white py-4 md:py-6 rounded-xl md:rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-[0.2em] hover:bg-[#FEB60D] hover:text-black transition-all shadow-xl disabled:opacity-50 flex items-center justify-center gap-3"
               >
-                {isSubmitting ? "Sincronizando..." : "Confirmar y Agendar Cita"}
+                {isSubmitting ? "Procesando Reserva..." : "Confirmar y Agendar Cita"}
                 {!isSubmitting && <ArrowRight size={16} />}
               </button>
             </form>
