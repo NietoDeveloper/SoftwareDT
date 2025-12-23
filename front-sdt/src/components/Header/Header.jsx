@@ -77,6 +77,7 @@ const Header = () => {
               Software D T
             </h2>
 
+            {/* PUNTO VERDE: Se apaga/desaparece cuando isLoggedIn es false */}
             {isLoggedIn && (
               <Link 
                 to="/client-appointments" 
@@ -214,7 +215,6 @@ const Header = () => {
                     Panel Activo
                   </Link>
                   
-                  {/* OPCIÓN CERRAR SESIÓN MOBILE */}
                   <button 
                     onClick={handleLogout}
                     className="w-full py-2 text-red-600 font-black uppercase text-[10px] tracking-widest hover:text-red-700 transition-colors"
