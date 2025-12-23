@@ -18,44 +18,31 @@ const ClientAppointmentsPanel = () => {
 
   useEffect(() => {
     const fetchDashboardData = async () => {
-      // AJUSTE 1: Mongoose usa _id, pero tras el login lo normalizamos
       const userId = user?._id || user?.id;
       
-      // Si no hay token o user, no intentamos la petición
       if (!userId || !token) {
-          // Si ya terminó de cargar el contexto y no hay user, redireccionamos
-          return;
+        setIsLoading(false);
+        return;
       }
 
       try {
         setIsLoading(true);
-        
-        // AJUSTE 2: Limpieza del Token. 
-        // Si el token ya viene con "Bearer ", no lo duplicamos.
         const cleanToken = token.startsWith("Bearer ") ? token : `Bearer ${token}`;
+        const headers = { 'Authorization': cleanToken };
 
-        const [apptRes, msgRes] = await Promise.all([
-          fetch(`${apiUrl}/appointments/user/${userId}`, {
-            headers: { 'Authorization': cleanToken }
-          }),
-          fetch(`${apiUrl}/messages/user/${userId}`, { 
-            headers: { 'Authorization': cleanToken }
-          })
-        ]);
+        const apptRes = await fetch(`${apiUrl}/appointments/user/${userId}`, { headers });
 
         if (apptRes.ok) {
           const apptData = await apptRes.json();
-          // Software DT espera la propiedad 'appointments' o 'data'
           setAppointments(apptData.appointments || apptData.data || []);
+        } else {
+          console.error("❌ Error en Datacenter (Citas)");
         }
 
-        if (msgRes.ok) {
-          const msgData = await msgRes.json();
-          setMessages(msgData.messages || msgData.data || []); 
-        }
+        setMessages([]); 
 
       } catch (err) {
-        console.error("❌ Error de sincronización SDT:", err.message);
+        console.error("❌ Error Crítico SDT:", err.message);
       } finally {
         setIsLoading(false);
       }
@@ -64,11 +51,10 @@ const ClientAppointmentsPanel = () => {
     fetchDashboardData();
   }, [user, token, apiUrl]);
 
-  // AJUSTE 3: Formateo de fecha para que sea legible en el Panel
   const formatDate = (dateString) => {
-    if (!dateString) return "Pendiente";
-    const options = { day: '2-digit', month: 'short', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString('es-ES', options).toUpperCase();
+    if (!dateString) return "FECHA PENDIENTE";
+    const date = new Date(dateString);
+    return isNaN(date.getTime()) ? "FECHA INVÁLIDA" : date.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
   };
 
   const handleMensajeDirecto = () => {
@@ -85,8 +71,6 @@ const ClientAppointmentsPanel = () => {
 
   return (
     <div className="min-h-screen bg-main pb-20 font-sans text-black antialiased">
-      
-      {/* HEADER DINÁMICO CON VARIABLE DE COLOR PROPIA */}
       <div className="bg-white border-b-2 border-black/5 pt-12 pb-10 px-4 sm:px-12 shadow-[0_4px_30px_rgba(254,182,13,0.1)]">
         <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div className="space-y-2 w-full md:w-auto">
@@ -97,14 +81,14 @@ const ClientAppointmentsPanel = () => {
               </span>
             </div>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-headingColor uppercase tracking-tighter leading-none break-words">
-              {user?.name || "Cargando..."}<br/>
+              {user?.name || "USUARIO SDT"}<br/>
               <span className="text-yellowColor">Panel Cliente</span>
             </h1>
           </div>
           
           <Link 
             to="/services" 
-            className="w-full md:w-auto group flex items-center justify-center gap-3 bg-yellowColor text-black border-2 border-black px-6 py-3 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all duration-300 hover:-translate-y-1 active:scale-95 shadow-lg"
+            className="w-full md:w-auto group flex items-center justify-center gap-3 bg-yellowColor text-black border-2 border-black px-6 py-3 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(255,215,0,0.4)] active:scale-95 shadow-lg"
           >
             <PlusCircle size={18} className="group-hover:rotate-90 transition-transform duration-300" />
             Nueva Cita
@@ -113,8 +97,6 @@ const ClientAppointmentsPanel = () => {
       </div>
 
       <div className="max-w-[1800px] mx-auto px-4 sm:px-12 mt-8 sm:mt-12 flex flex-col lg:flex-row gap-8 lg:gap-12">
-        
-        {/* COLUMNA PRINCIPAL (CITAS) */}
         <div className="w-full lg:w-[65%] space-y-12">
           <section>
             <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 mb-8">
@@ -124,8 +106,10 @@ const ClientAppointmentsPanel = () => {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`flex-1 xl:flex-none px-3 sm:px-5 py-2.5 rounded-xl text-[8px] sm:text-[9px] font-black uppercase tracking-widest transition-all ${
-                      activeTab === tab ? "bg-yellowColor text-black shadow-inner" : "text-gray-400 hover:text-black hover:bg-gray-50"
+                    className={`flex-1 xl:flex-none px-3 sm:px-5 py-2.5 rounded-xl text-[8px] sm:text-[9px] font-black uppercase tracking-widest transition-all duration-300 ${
+                      activeTab === tab 
+                        ? "bg-yellowColor text-black shadow-inner translate-y-0" 
+                        : "text-gray-400 hover:text-black hover:bg-gray-50 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(255,215,0,0.2)]"
                     }`}
                   >
                     {tab === "pending" ? "Proceso" : tab === "completed" ? "Hechas" : "Cancel"}
@@ -161,7 +145,7 @@ const ClientAppointmentsPanel = () => {
                       </div>
                       <button 
                         onClick={() => navigate("/appointment-confirmation", { state: { appointment: appt } })}
-                        className="w-full sm:w-auto bg-black text-white px-8 py-3 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-yellowColor hover:text-black transition-all"
+                        className="w-full sm:w-auto bg-black text-white px-8 py-3 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-yellowColor hover:text-black hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(255,215,0,0.3)] transition-all"
                       >
                         Ver Detalle
                       </button>
@@ -172,7 +156,6 @@ const ClientAppointmentsPanel = () => {
             </div>
           </section>
 
-          {/* REGISTROS DE ACTIVIDAD DINÁMICOS */}
           <section>
              <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter mb-8">Historial Mensajeria</h2>
              <div className="bg-white border-2 border-black/5 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden shadow-sm">
@@ -230,7 +213,7 @@ const ClientAppointmentsPanel = () => {
                <div className="bg-main/30 border border-black/5 p-4 sm:p-5 rounded-2xl relative">
                   <div className="text-yellowColor text-[8px] font-black uppercase mb-2 tracking-widest">Nota_Sincronización</div>
                   <p className="text-[11px] sm:text-[12px] font-medium leading-relaxed italic text-gray-600">
-                    "{user?.adminMessage || `Bienvenido, ${user?.name}. Tu racha de actividad está siendo monitoreada desde Bogotá.`}"
+                    "{user?.adminMessage || `Bienvenido, ${user?.name || 'Cliente'}. Tu racha de actividad está siendo monitoreada desde Bogotá.`}"
                   </p>
                   <div className="absolute -right-2 -top-2 w-4 h-4 bg-green-500 rounded-full border-4 border-white animate-pulse"></div>
                </div>
@@ -240,7 +223,7 @@ const ClientAppointmentsPanel = () => {
                      <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest">WhatsApp Soporte</span>
                      <MessageCircle size={18} className="group-hover:rotate-12 transition-transform" />
                   </a>
-                  <button onClick={handleMensajeDirecto} className="w-full flex items-center justify-between p-4 bg-black text-white rounded-xl hover:bg-yellowColor hover:text-black transition-all shadow-lg">
+                  <button onClick={handleMensajeDirecto} className="w-full flex items-center justify-between p-4 bg-black text-white rounded-xl transition-all duration-300 hover:bg-yellowColor hover:text-black hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(255,215,0,0.3)] shadow-lg">
                      <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest">E-mail Corporativo</span>
                      <Mail size={18} />
                   </button>
@@ -249,7 +232,6 @@ const ClientAppointmentsPanel = () => {
           </div>
         </aside>
       </div>
-      
     </div>
   );
 };
