@@ -22,10 +22,10 @@ const AppointmentConfirmation = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  // Extraemos la data enviada desde BookingPage
-  const { appointment, doctor, service, userName } = location.state || {};
+  // Extraemos la data enviada desde el backend (vía navigate de BookingPage)
+  const appointment = location.state?.appointment;
 
-  // Redirección de seguridad
+  // Redirección de seguridad si no hay datos
   useEffect(() => {
     if (!location.state) {
       navigate("/");
@@ -36,21 +36,22 @@ const AppointmentConfirmation = () => {
     if (!dateString) return "No disponible";
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     try {
-      return new Date(dateString).toLocaleDateString('es-ES', options);
+      return new Date(dateString).toLocaleDateString('es-CO', options);
     } catch {
       return dateString;
     }
   };
 
-  // Mapeo inteligente de datos basado en el esquema de Software DT
+  // --- MAPEO SINCRONIZADO CON EL BACKEND ---
   const displayData = {
-    _id: appointment?._id || appointment?.appointmentId || "N/A",
-    fullName: userName || appointment?.fullName || "Cliente Software DT",
-    date: appointment?.appointmentDate || "Fecha pendiente",
-    time: appointment?.appointmentTime || "Hora pendiente",
-    reason: appointment?.reason || "Implementación técnica estándar.",
-    serviceName: service?.title || appointment?.serviceName || "Consultoría DT",
-    price: service?.price || appointment?.price || "Cotización en proceso"
+    _id: appointment?._id || "ID Pendiente",
+    fullName: appointment?.userInfo?.fullName || "Cliente Software DT",
+    date: appointment?.appointmentDetails?.date || "Fecha pendiente",
+    time: appointment?.appointmentDetails?.time || "Hora pendiente",
+    reason: appointment?.appointmentDetails?.reason || "Implementación técnica.",
+    serviceName: appointment?.serviceName || "Consultoría DT",
+    price: appointment?.paymentInfo?.price || "Cotización en proceso",
+    specialization: appointment?.specialization || "Ingeniería Senior"
   };
 
   return (
@@ -78,7 +79,7 @@ const AppointmentConfirmation = () => {
              <IconWrapper><Briefcase className="h-8 w-8" /></IconWrapper>
              <div className="ml-6">
                 <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Especialista SDT</p>
-                <h2 className="text-xl font-black uppercase">{doctor?.name || "Ingeniero Senior"}</h2>
+                <h2 className="text-xl font-black uppercase">{displayData.specialization}</h2>
              </div>
           </div>
 
@@ -125,10 +126,10 @@ const AppointmentConfirmation = () => {
         {/* Botones de Navegación */}
         <div className="w-full mt-12 flex flex-col sm:flex-row justify-center gap-5">
           <Link
-            to="/client-appointments"
+            to="/users/profile/me"
             className="group flex items-center justify-center gap-4 py-5 px-10 bg-black text-white font-black rounded-2xl transition-all hover:bg-gold hover:text-black uppercase text-xs tracking-widest w-full sm:w-auto shadow-xl"
           >
-            Mis Servicios
+            Mis Proyectos
             <ArrowRight className="group-hover:translate-x-2 transition-transform" size={18} />
           </Link>
           

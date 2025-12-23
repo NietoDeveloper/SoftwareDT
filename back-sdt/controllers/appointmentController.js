@@ -5,7 +5,10 @@ const asyncHandler = require('express-async-handler');
 
 // --- CREAR CITA ---
 const appointmentBooking = asyncHandler(async (req, res) => {
-    // Extraemos serviceName y price que vienen del frontend (Services.jsx flow)
+    // Depuración: Ver exactamente qué llega del frontend
+    console.log("--- DATOS RECIBIDOS EN EL BACKEND ---");
+    console.log(req.body);
+
     const { 
         doctorId, 
         userId: bodyUserId, 
@@ -19,64 +22,67 @@ const appointmentBooking = asyncHandler(async (req, res) => {
         price 
     } = req.body;
 
-    // Validación: Agregamos flexibilidad por si serviceName viene del body
-    if (!doctorId || !appointmentDate || !appointmentTime || !fullName || !phone || !reason) {
+    // Validación estricta antes de tocar la DB
+    if (!doctorId || !appointmentDate || !appointmentTime || !fullName || !phone) {
         return res.status(400).json({ 
-            message: "Faltan campos obligatorios (Fecha, Hora, Teléfono o Motivo) para procesar la reserva." 
+            message: "Información incompleta: Faltan campos obligatorios." 
         });
     }
 
     const userId = req.userId || bodyUserId || null; 
 
-    // Buscamos al doctor para tener la referencia, pero priorizamos la info del flujo de servicios
     const doctorData = await Doctor.findById(doctorId).lean();
     if (!doctorData) {
-        return res.status(404).json({ message: "El especialista solicitado no existe en nuestra base de datos." });
+        return res.status(404).json({ message: "Especialista no encontrado." });
     }
 
     // CREACIÓN DE LA CITA
-    const newAppointment = await Appointment.create({
-        user: userId,
-        doctor: doctorId,
-        // Si viene serviceName del front lo usamos, si no, usamos el nombre del doctor
-        serviceName: serviceName || doctorData.name,         
-        specialization: doctorData.specialization || "Consultoría Técnica",
-        userInfo: { fullName, email, phone },
-        appointmentDetails: {
-            date: new Date(appointmentDate), 
-            time: appointmentTime,
-            reason: reason,
-            status: "pending"
-        },
-        paymentInfo: {
-            // Si viene el precio formateado del front lo usamos, sino el del doctor
-            price: price || doctorData.ticketPrice || 0,
-            currency: "COP",
-            isPaid: false
-        }
-    });
+    try {
+        const newAppointment = await Appointment.create({
+            user: userId,
+            doctor: doctorId,
+            serviceName: serviceName || doctorData.name,         
+            specialization: doctorData.specialization || "Consultoría Técnica",
+            userInfo: { 
+                fullName: fullName, 
+                email: email || (req.user ? req.user.email : "contacto@softwaredt.com"), // EVITA EL ERROR 400
+                phone: phone 
+            },
+            appointmentDetails: {
+                date: new Date(appointmentDate), 
+                time: appointmentTime,
+                reason: reason || "Sin motivo especificado",
+                status: "pending"
+            },
+            paymentInfo: {
+                // Convertimos a String para que coincida con el nuevo modelo ajustado
+                price: price ? price.toString() : (doctorData.ticketPrice ? doctorData.ticketPrice.toString() : "0"),
+                currency: "COP",
+                isPaid: false
+            }
+        });
 
-    if (newAppointment) {
-        if (userId) {
-            try {
-                // Actualizamos el array de citas del usuario
+        if (newAppointment) {
+            if (userId) {
                 await User.findByIdAndUpdate(
                     userId, 
-                    { $push: { appointments: newAppointment._id } },
-                    { new: true, runValidators: false }
+                    { $push: { appointments: newAppointment._id } }
                 );
-            } catch (error) {
-                console.error(`❌ Error vinculando cita al usuario: ${error.message}`);
             }
+            
+            console.log("✅ Cita creada con éxito:", newAppointment._id);
+            return res.status(201).json({ 
+                success: true,
+                appointment: newAppointment,
+                message: "¡Reserva confirmada exitosamente!" 
+            });
         }
-        
-        return res.status(201).json({ 
-            success: true,
-            appointment: newAppointment, // Enviamos el objeto completo para la confirmación
-            message: "¡Reserva confirmada exitosamente!" 
+    } catch (error) {
+        console.error("❌ ERROR MONGOOSE:", error.message);
+        return res.status(400).json({ 
+            success: false, 
+            message: `Error de validación: ${error.message}` 
         });
-    } else {
-        return res.status(400).json({ message: "No se pudo crear el registro de la cita." });
     }
 });
 
