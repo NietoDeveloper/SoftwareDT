@@ -75,7 +75,7 @@ const DoctorList = () => {
             </span>
           </div>
           <h1 className="text-5xl sm:text-7xl font-black text-black uppercase tracking-tighter leading-none">
-            Asignar <span className="text-[#FFD700] drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]">Especialista</span>
+            Asignar <span className="text-[#FFD700] drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]">Servicio</span>
           </h1>
           {selectedServiceInfo && (
             <p className="text-xs font-black uppercase tracking-widest text-gray-400 mt-4">
