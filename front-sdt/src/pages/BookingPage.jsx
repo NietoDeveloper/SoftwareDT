@@ -20,7 +20,6 @@ const BookingPage = () => {
   const location = useLocation();
   const { user, token, loading: userLoading } = useContext(UserContext);
 
-  // Recuperamos la data enviada desde ServicesList.jsx -> Doctors -> Aquí
   const doctorFromFlow = location.state?.doctorData;
   const serviceFromFlow = location.state?.selectedService; 
   const activeDoctorId = paramId || doctorFromFlow?._id;
@@ -31,13 +30,11 @@ const BookingPage = () => {
     phone: "", 
     appointmentDate: new Date().toISOString().split("T")[0],
     appointmentTime: "",
-    // Sincronización con el título del servicio de ServicesList.jsx
     reason: `Requerimiento para: ${serviceFromFlow?.title || "Consultoría Técnica"}. `,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Redirección de seguridad
   useEffect(() => {
     if (!userLoading && (!user || !token)) {
       toast.error("Acceso denegado. Por favor inicia sesión.");
@@ -45,22 +42,20 @@ const BookingPage = () => {
     }
   }, [user, token, userLoading, navigate, location]);
 
-  // Lógica de horarios Software DT: L-S | 9am-6pm | 30min | 8h Antelación
   const availableTimes = useMemo(() => {
     if (!formData.appointmentDate) return [];
     const times = [];
     const [year, month, day] = formData.appointmentDate.split("-").map(Number);
     const selectedDate = new Date(year, month - 1, day);
     
-    if (selectedDate.getDay() === 0) return []; // Bloqueo de Domingos
+    if (selectedDate.getDay() === 0) return [];
 
     const now = new Date();
-    // REGLA: 8 horas de antelación mínima
     const minTimeAllowed = new Date(now.getTime() + 8 * 60 * 60 * 1000); 
 
     for (let hour = 9; hour <= 18; hour++) {
       for (let min of ["00", "30"]) {
-        if (hour === 18 && min === "30") break; // Cierre 6:00 PM
+        if (hour === 18 && min === "30") break;
         const timeStr = `${hour.toString().padStart(2, "0")}:${min}`;
         const appointmentDateTime = new Date(year, month - 1, day, hour, parseInt(min));
 
@@ -83,24 +78,21 @@ const BookingPage = () => {
     enabled: !!activeDoctorId && !!user,
   });
 
-  // Autocompletar datos del usuario
+  // CORRECCIÓN: Solo autocompletar si los campos están vacíos para permitir escritura
   useEffect(() => {
-    if (user) {
+    if (user && !formData.fullName) {
       setFormData(prev => ({
         ...prev,
         fullName: user.name || user.fullName || "",
         email: user.email || "",
-        phone: user.phone || "",
+        phone: prev.phone || user.phone || "",
       }));
     }
   }, [user]);
 
-  // Selección automática del primer slot disponible
   useEffect(() => {
-    if (availableTimes.length > 0) {
+    if (availableTimes.length > 0 && !formData.appointmentTime) {
       setFormData(prev => ({ ...prev, appointmentTime: availableTimes[0] }));
-    } else {
-      setFormData(prev => ({ ...prev, appointmentTime: "" }));
     }
   }, [availableTimes]);
 
@@ -132,7 +124,6 @@ const BookingPage = () => {
         appointmentDate: formData.appointmentDate,
         appointmentTime: formData.appointmentTime,
         reason: formData.reason,
-        // Usamos la data persistida de ServicesList.jsx
         serviceName: serviceFromFlow?.title || doctor?.specialization || "Consultoría DT",
         price: serviceFromFlow?.price || doctor?.ticketPrice || "Cotización pendiente"
       };
@@ -191,7 +182,6 @@ const BookingPage = () => {
 
       <main className="max-w-[1800px] mx-auto w-full px-4 sm:px-12 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow">
         
-        {/* Info Sidebar - Recupera datos del flujo */}
         <div className="lg:col-span-4 space-y-6 order-2 lg:order-1">
           <div className="bg-white border-2 border-black rounded-[2rem] p-6 sm:p-8 shadow-sm">
             <div className="w-10 h-10 bg-black text-gold rounded-lg flex items-center justify-center mb-4">
@@ -209,7 +199,6 @@ const BookingPage = () => {
               <span className="text-[9px] font-black uppercase tracking-widest text-gold">Producto Seleccionado</span>
               <ShieldCheck className="text-green-500" size={16} />
             </div>
-            {/* Aquí mostramos el servicio que viene de ServicesList.jsx */}
             <h3 className="text-lg font-black uppercase text-white mb-1 truncate">
               {serviceFromFlow?.title || "Consultoría General"}
             </h3>
@@ -223,18 +212,25 @@ const BookingPage = () => {
           </div>
         </div>
 
-        {/* Form Container */}
         <div className="lg:col-span-8 order-1 lg:order-2">
           <div className="bg-white border-2 border-black rounded-[2rem] p-6 sm:p-10 shadow-sm h-full">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-1">
                   <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Nombre del Solicitante</label>
-                  <input type="text" value={formData.fullName} readOnly className="w-full bg-gray-50 border-2 border-black/10 p-3 rounded-xl font-bold text-xs" />
+                  <input type="text" value={formData.fullName} readOnly className="w-full bg-gray-50 border-2 border-black/10 p-3 rounded-xl font-bold text-xs cursor-not-allowed" />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Teléfono Directo</label>
-                  <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required placeholder="Ej: +57 300..." className="w-full bg-white border-2 border-black p-3 rounded-xl focus:border-gold outline-none font-bold text-xs" />
+                  <input 
+                    type="tel" 
+                    name="phone" 
+                    value={formData.phone} 
+                    onChange={handleInputChange} 
+                    required 
+                    placeholder="Ej: +57 300..." 
+                    className="w-full bg-white border-2 border-black p-3 rounded-xl focus:border-gold outline-none font-bold text-xs" 
+                  />
                 </div>
               </div>
 
@@ -262,7 +258,7 @@ const BookingPage = () => {
                       className="w-full bg-white border-2 border-black p-3 rounded-xl focus:border-gold outline-none font-bold text-xs appearance-none"
                     >
                       {availableTimes.length === 0 ? (
-                        <option value="">No hay slots disponibles para hoy</option>
+                        <option value="">No hay slots disponibles</option>
                       ) : (
                         availableTimes.map(t => <option key={t} value={t}>{t}</option>)
                       )}
@@ -282,7 +278,7 @@ const BookingPage = () => {
                   value={formData.reason} 
                   onChange={handleInputChange} 
                   required 
-                  placeholder="Describa brevemente su necesidad..."
+                  placeholder="Describa su necesidad..."
                   className="w-full bg-white border-2 border-black p-4 rounded-xl focus:border-gold outline-none font-medium text-xs h-32 resize-none" 
                 />
               </div>
@@ -292,7 +288,7 @@ const BookingPage = () => {
                 disabled={isSubmitting || availableTimes.length === 0} 
                 className="w-full bg-black text-white py-4 sm:py-5 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-gold hover:text-black transition-all shadow-lg disabled:opacity-40 flex items-center justify-center gap-2 mt-4"
               >
-                {isSubmitting ? "Procesando Datos..." : "Confirmar y Agendar Implementación"}
+                {isSubmitting ? "Procesando..." : "Confirmar y Agendar"}
                 <ArrowRight size={14} />
               </button>
             </form>
