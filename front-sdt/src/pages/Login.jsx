@@ -28,23 +28,12 @@ const Login = () => {
         setIsLoading(true);
         try {
             const response = await axios.post(`${API_BASE_URL}/login`, data);
-            
-            // Extraemos los datos del backend (Software DT Datacenter)
             const { accessToken, userData } = response.data;
-            
-            // 1. Guardamos el Token con el formato Bearer
             const fullToken = `Bearer ${accessToken}`;
-            setToken(fullToken); // El contexto se encarga del localStorage del token
-            
-            // 2. Guardamos el Usuario Completo
-            // Esto activa el useEffect de UserContext que guarda en localStorage 'userData'
+            setToken(fullToken); 
             setUser(userData); 
-            
             toast.success(`👋 ¡Bienvenido al Datacenter, ${userData.name || 'Developer'}!`);
-            
-            // 3. Redirección inteligente
             navigate(from, { replace: true }); 
-            
             reset();
         } catch (processError) {
             console.error("Login Error:", processError);
@@ -73,27 +62,27 @@ const Login = () => {
                     </h1>
 
                     <p className="text-textColor font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-12">
-                        Accede a tu perfil de **NietoDeveloper**. Gestiona tus 5.5 años de experiencia y mantén tu racha de commits desde Bogotá.
+                        Accede a tu perfil de Software DT y gestiona toda la información, citas y comunicación directa desde el Panel de Usuario.
                     </p>
 
-                    <div className="flex flex-col items-center lg:items-start gap-4 pt-4 border-t border-gray-100 lg:border-none">
+                    <div className="flex flex-col items-center lg:items-start gap-4 pt-4 border-t border-gray-200 lg:border-none">
                         <p className="text-gray-400 font-bold uppercase text-[9px] tracking-[0.2em]">¿Nuevo en la plataforma?</p>
                         <Link 
                             to="/signup" 
-                            className="group relative inline-flex items-center justify-center px-5 py-2.5 bg-card border-2 border-headingColor text-headingColor text-[10px] font-black uppercase tracking-widest rounded-lg transition-all duration-300 hover:bg-headingColor hover:text-white hover:-translate-y-1"
+                            className="group relative inline-flex items-center justify-center px-8 py-3 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-full transition-all duration-400 hover:bg-yellowColor hover:text-black hover:-translate-y-1.5 hover:shadow-[0_0_20px_rgba(254,182,13,0.6)]"
                         >
-                            Registrar perfil dev
+                            Registrarse
                         </Link>
                     </div>
                 </div>
 
                 {/* Lado Derecho: La Tarjeta */}
                 <div className="w-full sm:w-[400px] lg:w-[450px]">
-                    <div className="bg-card border-[3px] border-headingColor rounded-[30px] p-6 sm:p-10 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.05)] relative">
+                    <div className="bg-card border-[3px] border-headingColor rounded-[40px] p-6 sm:p-10 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.1)] relative transition-all duration-500 hover:shadow-[30px_30px_0px_0px_rgba(0,0,0,0.15)]">
                         
                         <div className="flex items-center justify-between mb-8">
                             <h2 className="text-xl font-black text-headingColor uppercase tracking-tight">Login</h2>
-                            <div className="p-2 bg-yellowColor rounded-lg text-black">
+                            <div className="p-2.5 bg-yellowColor rounded-xl text-black shadow-[0_0_15px_rgba(254,182,13,0.4)]">
                                 <Lock size={20} strokeWidth={3} />
                             </div>
                         </div>
@@ -103,7 +92,7 @@ const Login = () => {
                                 <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Client Email</label>
                                 <input
                                     type="email"
-                                    className="w-full bg-gray-50 border-2 border-gray-100 p-3.5 rounded-xl focus:border-yellowColor outline-none transition-all font-bold text-headingColor placeholder:text-gray-300 text-sm"
+                                    className="w-full bg-gray-50 border-2 border-gray-100 p-3.5 rounded-xl focus:border-yellowColor focus:bg-white outline-none transition-all font-bold text-headingColor placeholder:text-gray-300 text-sm"
                                     placeholder="nieto@softwaredt.com"
                                     {...register('email', { required: 'Email requerido' })}
                                 />
@@ -114,7 +103,7 @@ const Login = () => {
                                 <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Password</label>
                                 <input
                                     type="password"
-                                    className="w-full bg-gray-50 border-2 border-gray-100 p-3.5 rounded-xl focus:border-yellowColor outline-none transition-all font-bold text-headingColor placeholder:text-gray-300 text-sm"
+                                    className="w-full bg-gray-50 border-2 border-gray-100 p-3.5 rounded-xl focus:border-yellowColor focus:bg-white outline-none transition-all font-bold text-headingColor placeholder:text-gray-300 text-sm"
                                     placeholder="••••••••"
                                     {...register('password', { required: 'Contraseña requerida' })}
                                 />
@@ -130,7 +119,9 @@ const Login = () => {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="w-full mt-4 py-4 bg-headingColor text-white rounded-xl font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-yellowColor hover:text-black hover:shadow-lg flex items-center justify-center"
+                                className="w-full mt-4 py-4 bg-black text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-400 active:scale-95 
+                                           hover:bg-yellowColor hover:text-black hover:-translate-y-1.5 
+                                           hover:shadow-[0_0_25px_rgba(254,182,13,0.7)] flex items-center justify-center"
                             >
                                 {isLoading ? (
                                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -139,7 +130,7 @@ const Login = () => {
                         </form>
 
                         <div className="mt-8 pt-6 border-t border-gray-50 text-center">
-                            <Link to="/" className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] hover:text-yellowColor transition-colors">
+                            <Link to="/" className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] hover:text-yellowColor transition-colors duration-300">
                                 Volver a la Home
                             </Link>
                         </div>
