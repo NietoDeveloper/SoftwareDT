@@ -38,9 +38,13 @@ const Guide = () => {
               </ul>
 
               <Link to="/services">
-                <button className="px-12 py-5 bg-black text-white font-black uppercase tracking-[0.2em] rounded-full 
-                  hover:bg-gold hover:text-black hover:shadow-[0_15px_30px_rgba(255,215,0,0.3)] 
-                  transition-all duration-500 transform hover:-translate-y-1 active:scale-95 text-sm">
+                {/* BOTÓN ESTILO SOFTWARE DT (ESTÁNDAR UNIFICADO) */}
+                <button 
+                  className="w-56 h-14 bg-black text-white text-xl font-black uppercase tracking-tighter 
+                             rounded-full transition-all duration-400 shadow-2xl active:scale-95
+                             hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1.5 
+                             hover:shadow-[0_0_30px_rgba(254,182,13,0.8)]"
+                >
                   Iniciar Proceso
                 </button>
               </Link>
