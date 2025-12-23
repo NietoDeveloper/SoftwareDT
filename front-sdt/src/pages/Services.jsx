@@ -13,36 +13,42 @@ const ArrowRightIcon = (props) => (
 const ServicesList = () => {
   const services = [
     {
+      id: "web-apps", // Añadido ID para consistencia
       title: "Desarrollo Web y Apps",
       subtitle: "Software a Medida",
       description: "Creación de sitios web dinámicos, aplicaciones móviles iOS/Android y gestión de bases de datos seguras.",
       price: "Desde $ 2.000.000 COP",
     },
     {
+      id: "ai",
       title: "Inteligencia Artificial",
       subtitle: "Vanguardia Tecnológica",
       description: "Integración de Bots, Robots y automatización con modelos de IA para servicios personalizados.",
       price: "Desde $ 5.000.000 COP",
     },
     {
+      id: "it-maintenance",
       title: "Mantenimiento IT",
       subtitle: "Continuidad del Negocio",
       description: "Soporte técnico continuo, monitoreo de servidores y actualizaciones de seguridad preventivas.",
       price: "Desde $ 8.000.000 COP",
     },
     {
+      id: "seo",
       title: "Optimización SEO",
       subtitle: "Visibilidad Digital",
       description: "Análisis profundo para mejorar el ranking en motores de búsqueda y auditorías técnicas de rendimiento.",
       price: "Desde $ 8.000.000 COP",
     },
     {
+      id: "ui-ux",
       title: "Diseño UI/UX",
       subtitle: "Experiencia Inmersiva",
       description: "Interfaces centradas en el usuario con prototipos de alta fidelidad y pruebas de usabilidad.",
       price: "Desde $ 3.000.000 COP",
     },
     {
+      id: "automation",
       title: "Automatización",
       subtitle: "Eficiencia y Ahorro",
       description: "Implementación de scripts para automatizar tareas repetitivas reduciendo el error humano.",
@@ -52,7 +58,6 @@ const ServicesList = () => {
 
   return (
     <div className="min-h-screen bg-card font-sans antialiased">
-      {/* CORRECCIÓN: Se añade el prefijo .services-container para que no afecte al Footer */}
       <style dangerouslySetInnerHTML={{ __html: `
         .nav-toggle, button[aria-label="Menu"] {
           background-color: transparent !important;
@@ -60,7 +65,6 @@ const ServicesList = () => {
           border: none !important;
         }
         
-        /* Solo afecta a los elementos dentro de la sección de servicios */
         .services-container h1, 
         .services-container h2, 
         .services-container h3, 
@@ -71,7 +75,6 @@ const ServicesList = () => {
         }
       `}} />
 
-      {/* Se añade la clase 'services-container' para encapsular los estilos anteriores */}
       <section className="services-container flex flex-col items-center py-16 px-4 min-h-screen max-w-[1800px] mx-auto">
         
         <div className="text-center mb-16 space-y-2">
@@ -88,7 +91,15 @@ const ServicesList = () => {
           {services.map((service, index) => (
             <Link
               key={index}
-              to="/contact"
+              /* FLUJO ACTUALIZADO: Lleva a la lista de ingenieros con la info del servicio */
+              to="/doctors"
+              state={{ 
+                selectedService: {
+                  name: service.title,
+                  id: service.id,
+                  price: service.price
+                } 
+              }}
               className="group bg-white border-[4px] border-black rounded-[30px] p-6 transition-all duration-300 ease-out cursor-pointer 
                          flex flex-col items-center justify-between text-center 
                          w-full sm:max-w-[340px] h-[400px] overflow-hidden
@@ -135,7 +146,6 @@ const ServicesList = () => {
         </div>
       </section>
       
-      {/* Ahora el Footer podrá usar sus propios colores (blanco o gris) sin ser sobreescrito por el color negro de arriba */}
       <Footer />
     </div>
   );
