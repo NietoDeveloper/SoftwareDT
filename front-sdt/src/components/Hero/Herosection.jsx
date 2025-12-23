@@ -24,11 +24,12 @@ const Herosection = () => {
             </p>
 
             <Link to="/doctors">
-              {/* BOTÓN IDENTICO AL DE CONTACTO */}
+              {/* BOTÓN AJUSTADO: Más compacto con Hover Gold Explosivo */}
               <button 
-                className="px-12 py-5 bg-black text-white text-xl lg:text-2xl font-black uppercase tracking-[0.2em] 
-                           border-2 border-white/30 rounded-full hover:bg-gold hover:text-black 
-                           transition-all duration-500 shadow-2xl active:scale-95 scale-110"
+                className="w-56 h-14 bg-black text-white text-xl font-black uppercase tracking-tighter 
+                           rounded-full transition-all duration-400 shadow-2xl active:scale-95
+                           hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1.5 
+                           hover:shadow-[0_0_30px_rgba(254,182,13,0.8)]"
               >
                 Agenda Tu Cita
               </button>
