@@ -27,17 +27,21 @@ const Login = () => {
         setError(null);
         setIsLoading(true);
         try {
-            // Usamos la URL base dinámica para evitar fallos en producción
+            // Petición al backend de SoftwareDT
             const response = await axios.post(`${API_BASE_URL}/user/login`, data);
             
             const { accessToken, userData } = response.data;
             
             // --- AJUSTE ESTRATÉGICO SDT ---
-            // Guardamos solo el hash puro. El interceptor en api.js ya agrega el "Bearer "
-            // Esto evita que enviemos accidentalmente "Bearer Bearer [token]"
-            const cleanToken = accessToken.replace(/"/g, "").trim();
+            // 1. Limpiamos comillas accidentales
+            // 2. Quitamos el prefijo "Bearer " si el backend ya lo incluyó
+            const cleanToken = accessToken
+                .replace(/['"]+/g, '')
+                .replace(/Bearer\s+/i, '')
+                .trim();
             
-            setToken(cleanNewToken || cleanToken); // Persistencia limpia
+            // CORRECCIÓN CRÍTICA: Usamos solo cleanToken (eliminamos cleanNewToken que no existe aquí)
+            setToken(cleanToken); 
             setUser(userData); 
             
             toast.success(`👋 ¡Bienvenido al Datacenter, ${userData.name || 'Developer'}!`);
