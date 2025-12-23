@@ -1,13 +1,12 @@
-// IMPORTANTE: Subimos un nivel (..) para llegar a models y config
+// IMPORTANTE: Subimos un nivel (..) para llegar a models
 const Appointment = require('../models/Appointment');
 const User = require('../models/User');
-const Doctor = require('../models/Doctor'); 
+const Doctor = require('../models/Doctor'); // Esto registra el esquema en la instancia de Mongoose
 const asyncHandler = require('express-async-handler');
 
 // --- CREAR CITA ---
 const appointmentBooking = asyncHandler(async (req, res) => {
-    // Depuración en el Datacenter Software DT
-    console.log("--- PROCESANDO RESERVA EN BACKEND ---", req.body);
+    console.log("--- PROCESANDO RESERVA EN DATACENTER SDT ---", req.body);
 
     const { 
         doctorId, 
@@ -15,25 +14,27 @@ const appointmentBooking = asyncHandler(async (req, res) => {
         fullName, 
         email, 
         phone, 
-        appointmentDate, 
-        appointmentTime, 
+        slotDate, // Cambiado para coincidir con el frontend
+        slotTime, // Cambiado para coincidir con el frontend
         reason,
         serviceName,
         price 
     } = req.body;
 
-    // Validación de campos requeridos
-    if (!doctorId || !appointmentDate || !appointmentTime || !fullName || !phone) {
-        return res.status(400).json({ success: false, message: "Información incompleta: Faltan campos obligatorios." });
+    // Validación de campos con los nombres del frontend
+    if (!doctorId || !slotDate || !slotTime || !fullName || !phone) {
+        return res.status(400).json({ 
+            success: false, 
+            message: "Información incompleta: Revisa fecha, hora y datos de contacto." 
+        });
     }
 
-    // El userId puede venir del middleware verifyAccess (req.userId) o del body
     const userId = req.userId || bodyUserId || null; 
     
-    // Buscamos al especialista para denormalizar sus datos básicos
+    // Buscamos al especialista
     const doctorData = await Doctor.findById(doctorId).lean();
     if (!doctorData) {
-        return res.status(404).json({ success: false, message: "Especialista no encontrado." });
+        return res.status(404).json({ success: false, message: "Especialista no encontrado en la DB." });
     }
 
     try {
@@ -48,8 +49,8 @@ const appointmentBooking = asyncHandler(async (req, res) => {
                 phone: phone 
             },
             appointmentDetails: {
-                date: appointmentDate, 
-                time: appointmentTime,
+                date: slotDate, 
+                time: slotTime,
                 reason: reason || "Sin motivo especificado",
                 status: "pending"
             },
@@ -61,18 +62,17 @@ const appointmentBooking = asyncHandler(async (req, res) => {
         });
 
         if (newAppointment) {
-            // Si el usuario está registrado, vinculamos la cita a su perfil en userDB
             if (userId) {
                 await User.findByIdAndUpdate(userId, { $push: { appointments: newAppointment._id } });
             }
             res.status(201).json({ 
                 success: true, 
-                message: "¡Cita agendada con éxito!",
+                message: "¡Cita sincronizada con éxito!",
                 appointment: newAppointment 
             });
         }
     } catch (error) {
-        res.status(400).json({ success: false, message: `Error en Mongoose: ${error.message}` });
+        res.status(400).json({ success: false, message: `Error de Mongoose: ${error.message}` });
     }
 });
 
@@ -81,14 +81,17 @@ const getUserAppointments = asyncHandler(async (req, res) => {
     const userId = req.params.userId || req.userId;
     
     if (!userId) {
-        return res.status(400).json({ message: "ID de usuario requerido para el Dashboard" });
+        return res.status(400).json({ success: false, message: "ID de usuario requerido." });
     }
 
+    // Usamos el modelo Doctor importado arriba para asegurar que el populate funcione
     const appointments = await Appointment.find({ user: userId })
-        .populate('doctor', 'name specialization')
+        .populate({
+            path: 'doctor',
+            model: Doctor // Forzamos el uso del modelo registrado
+        })
         .sort({ createdAt: -1 });
 
-    // Aplanamos la estructura para que el Frontend la use directamente (appt.status, appt.price)
     const formattedAppointments = appointments.map(appt => ({
         _id: appt._id,
         serviceName: appt.serviceName,
@@ -99,7 +102,7 @@ const getUserAppointments = asyncHandler(async (req, res) => {
         reason: appt.appointmentDetails.reason,
         price: appt.paymentInfo.price,
         isPaid: appt.paymentInfo.isPaid,
-        doctorName: appt.doctor?.name || "Especialista SDT"
+        doctorName: appt.doctor?.name || "Especialista SoftwareDT"
     }));
 
     res.status(200).json({ 
@@ -112,8 +115,8 @@ const getUserAppointments = asyncHandler(async (req, res) => {
 // --- OBTENER TODAS LAS CITAS (ADMIN) ---
 const getAppointments = asyncHandler(async (req, res) => {
     const appointments = await Appointment.find({})
-        .populate('user', 'name email')
-        .populate('doctor', 'name specialization')
+        .populate({ path: 'user', model: User, select: 'name email' })
+        .populate({ path: 'doctor', model: Doctor, select: 'name specialization' })
         .sort({ createdAt: -1 });
     res.status(200).json({ success: true, appointments });
 });

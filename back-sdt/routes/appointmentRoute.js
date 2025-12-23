@@ -1,14 +1,18 @@
 const express = require('express');
 const router = express.Router();
+
+// IMPORTANTE: Forzamos la carga de modelos antes que el controlador
+// Esto soluciona el error "Schema hasn't been registered for model Doctor"
+require('../models/Doctor');
+require('../models/User');
+
 const { 
     appointmentBooking, 
     getAppointments, 
     getUserAppointments 
 } = require('../controllers/appointmentController');
 
-// CORRECCIÓN CRÍTICA: 
-// 1. Apuntamos a la carpeta 'middleware' (no 'auth')
-// 2. Importamos 'verifyAccess' (así es como lo exportaste en el middleware)
+// Middleware de acceso
 const verifyAccess = require('../middleware/verifyAccess'); 
 
 /**
