@@ -251,7 +251,6 @@ const ClientAppointmentsPanel = () => {
         </aside>
       </div>
       
-      {/* ... (Footer de Ficha Técnica se mantiene igual) */}
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Home = () => {
       <style
         dangerouslySetInnerHTML={{
           __html: `
-        /* SECTOR DE EXCLUSIÓN: No aplica negro al footer ni a la sección de preguntas */
+        /* SECTOR DE EXCLUSIÓN */
         #home-wrapper h1:not(footer *):not(#questions-section-unique *), 
         #home-wrapper h2:not(.text-white-force):not(footer *):not(#questions-section-unique *), 
         #home-wrapper h3:not(footer *):not(#questions-section-unique *), 
@@ -34,19 +34,21 @@ const Home = () => {
         #home-wrapper .btn:not(#questions-section-unique *) {
           background-color: #000000 !important;
           color: #ffffff !important;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
           border: none !important;
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
+        /* EFECTO HOVER GOLD NOTORIO Y EXPLOSIVO */
         #home-wrapper button:hover:not(#questions-section-unique *), 
         #home-wrapper .btn:hover:not(#questions-section-unique *) {
-          background-color: #FFD700 !important;
+          background-color: #FEB60D !important;
           color: #000000 !important;
-          transform: translateY(-3px);
+          transform: translateY(-5px) scale(1.05);
           font-weight: 900 !important;
+          box-shadow: 0 0 30px rgba(254, 182, 13, 0.8) !important;
         }
 
         html { scroll-behavior: smooth; }
@@ -70,9 +72,10 @@ const Home = () => {
           <h2 className="text-white-force text-3xl md:text-5xl lg:text-6xl font-black uppercase text-right leading-none">
             Software D T
           </h2>
+          {/* BOTÓN AJUSTADO: Más pequeño (w-44 h-12) y con hover más reactivo */}
           <button
             onClick={() => navigate("/contact")}
-            className="w-52 h-14 rounded-full shadow-2xl active:scale-95 text-xl font-black uppercase tracking-tighter"
+            className="w-44 h-12 rounded-full shadow-2xl active:scale-95 text-xl font-black uppercase tracking-tighter"
           >
             Contácto
           </button>
@@ -96,7 +99,6 @@ const Home = () => {
           <Publicidad />
         </section>
 
-        {/* Esta sección ahora es inmune al texto negro gracias al ID questions-section-unique */}
         <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card mb-20">
           <Questions />
         </section>
