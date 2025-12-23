@@ -12,7 +12,7 @@ const Guide = () => {
             <div className="xl:w-[670px] order-2 lg:order-1">
               <h2 className="text-[32px] md:text-[42px] leading-tight text-headingColor font-black uppercase tracking-[0.1em] mb-8">
                 Agenda tu Cita:
-                <br /> <span className="text-gold">Un Ingeniero De Software te Guiará.</span>
+                <br /> <span className="text-gold">Un Ingeniero De Software te Guiará</span>
               </h2>
               
               {/* LISTA DE PASOS CON PUNTOS DISCRETOS */}

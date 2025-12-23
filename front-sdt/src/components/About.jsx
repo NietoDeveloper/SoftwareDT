@@ -20,7 +20,7 @@ const About = () => {
             {/* Elemento decorativo flotante */}
             <div
               className="absolute z-20 bottom-4 w-[200px] md:w-[300px] md:right-[-7px]
-                    lg:right-[22px] bg-white p-4 rounded-2xl shadow-xl border-l-8 border-gold hidden md:block"
+                  lg:right-[22px] bg-white p-4 rounded-2xl shadow-xl border-l-8 border-gold hidden md:block"
             >
               <p className="text-black font-black text-sm uppercase">🚀 +5 Años Innovando</p>
               <p className="text-gray-500 text-[10px] font-bold">Bogotá - Los Angeles - Toronto</p>
@@ -41,18 +41,19 @@ const About = () => {
 
             <p className="text-lg text-textColor font-medium leading-relaxed mt-4 opacity-80">
               Desde nuestra sede en <strong>Bogotá, Colombia</strong>, atendemos mercados en
-              Colombia, Estados Unidos y Canadá. Nuestro equipo apasionado
+              colombia, Estados Unidos y Canadá. Nuestro equipo apasionado
               garantiza calidad, eficiencia y resultados excepcionales en cada
               proyecto, transformando ideas en herramientas que elevan su
               empresa al siguiente nivel.
             </p>
 
             <Link to="/clients">
-              {/* BOTÓN: Redimensionado para mobile y redireccionado a Clientes */}
+              {/* BOTÓN ESTILO SOFTWARE DT (AJUSTADO) */}
               <button 
-                className="mt-10 px-8 py-4 lg:px-12 lg:py-5 bg-black text-white text-lg lg:text-2xl font-black uppercase tracking-[0.2em] 
-                           border-2 border-white/30 rounded-full hover:bg-gold hover:text-black 
-                           transition-all duration-500 shadow-2xl active:scale-95 scale-100 lg:scale-110"
+                className="mt-10 w-56 h-14 bg-black text-white text-xl font-black uppercase tracking-tighter 
+                           rounded-full transition-all duration-400 shadow-2xl active:scale-95
+                           hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1.5 
+                           hover:shadow-[0_0_30px_rgba(254,182,13,0.8)]"
               >
                 Nuestros Clientes
               </button>
