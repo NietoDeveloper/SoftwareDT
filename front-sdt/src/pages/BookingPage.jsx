@@ -3,16 +3,13 @@ import React, { useState, useEffect, useContext, useMemo } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import axios from "axios";
+import { axiosPrivate } from "../API/api.js"; // Inyección de instancia blindada
 import Footer from "../components/Footer/Footer";
 import { UserContext } from "../context/UserContext";
 import { 
   ChevronLeft, 
-  ShieldCheck, 
   Briefcase, 
-  Info, 
-  ArrowRight,
-  Clock
+  ArrowRight
 } from "lucide-react";
 
 const BookingPage = () => {
@@ -36,49 +33,56 @@ const BookingPage = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // 1. Protección de Ruta y Flujo
   useEffect(() => {
     if (!userLoading && (!user || !token)) {
       toast.error("Acceso denegado. Por favor inicia sesión.");
       navigate("/login", { state: { from: location.pathname } });
     }
-  }, [user, token, userLoading, navigate, location]);
+    // Si no hay doctor ni servicio, el flujo está roto
+    if (!activeDoctorId && !doctorFromFlow) {
+      toast.info("Por favor seleccione un especialista primero.");
+      navigate("/doctors");
+    }
+  }, [user, token, userLoading, navigate, location, activeDoctorId, doctorFromFlow]);
 
+  // 2. Cálculo de horarios disponibles (Lógica de Negocio DT)
   const availableTimes = useMemo(() => {
     if (!formData.appointmentDate) return [];
     const times = [];
     const [year, month, day] = formData.appointmentDate.split("-").map(Number);
     const selectedDate = new Date(year, month - 1, day);
     
-    if (selectedDate.getDay() === 0) return [];
+    if (selectedDate.getDay() === 0) return []; // Software DT no opera domingos
 
     const now = new Date();
+    // Margen de 8 horas para agendamiento
     const minTimeAllowed = new Date(now.getTime() + 8 * 60 * 60 * 1000); 
 
     for (let hour = 9; hour <= 18; hour++) {
       for (let min of ["00", "30"]) {
         if (hour === 18 && min === "30") break;
         const timeStr = `${hour.toString().padStart(2, "0")}:${min}`;
-        const appointmentDateTime = new Date(year, month - 1, day, hour, parseInt(min));
+        const apptDT = new Date(year, month - 1, day, hour, parseInt(min));
 
-        if (appointmentDateTime > minTimeAllowed || selectedDate > now) times.push(timeStr);
+        if (apptDT > minTimeAllowed) times.push(timeStr);
       }
     }
     return times;
   }, [formData.appointmentDate]);
 
-  const getDoctor = async () => {
-    if (doctorFromFlow) return doctorFromFlow;
-    const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-    const res = await axios.get(`${apiUrl}/doctors/${activeDoctorId}`);
-    return res.data.doctor || res.data;
-  };
-
+  // 3. Obtención de datos del especialista
   const { data: doctor, isLoading: doctorLoading } = useQuery({
     queryKey: ["doctor", activeDoctorId],
-    queryFn: getDoctor,
+    queryFn: async () => {
+      if (doctorFromFlow) return doctorFromFlow;
+      const res = await axiosPrivate.get(`/doctors/${activeDoctorId}`);
+      return res.data.doctor || res.data;
+    },
     enabled: !!activeDoctorId && !!user,
   });
 
+  // 4. Auto-completado de perfil (Hydration)
   useEffect(() => {
     if (user && !formData.fullName) {
       setFormData(prev => ({
@@ -90,33 +94,15 @@ const BookingPage = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    if (availableTimes.length > 0 && !formData.appointmentTime) {
-      setFormData(prev => ({ ...prev, appointmentTime: availableTimes[0] }));
-    }
-  }, [availableTimes]);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "appointmentDate") {
-      const selected = new Date(value + "T00:00:00");
-      if (selected.getDay() === 0) {
-        toast.warning("Software DT no opera los domingos.");
-        return;
-      }
-    }
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
+  // 5. Manejo de Envío (Sincronización con Datacenter)
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!token) return toast.error("Sesión expirada.");
+    if (!token) return toast.error("Error de sesión. Reintente.");
+    if (!formData.appointmentTime) return toast.warning("Seleccione una hora válida.");
     
     setIsSubmitting(true);
     
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-      
       const payload = {
         doctorId: doctor?._id || activeDoctorId,
         serviceName: serviceFromFlow?.name || serviceFromFlow?.title || "Servicio General",
@@ -129,16 +115,16 @@ const BookingPage = () => {
         price: serviceFromFlow?.price || doctor?.ticketPrice || "Cotización pendiente"
       };
 
-      const res = await axios.post(`${apiUrl}/appointments`, payload, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      // USAMOS axiosPrivate: Esto maneja el token malformado o expirado automáticamente
+      const res = await axiosPrivate.post(`/appointments`, payload);
 
-      if (res.status === 200 || res.data.success) {
-        toast.success("Cita Sincronizada Correctamente.");
+      if (res.data.success) {
+        toast.success("Cita Sincronizada en Datacenter.");
         navigate("/client-appointments"); 
       }
     } catch (err) {
-      toast.error(err.response?.data?.message || "Error al procesar la reserva.");
+      const msg = err.response?.data?.message || "Error al conectar con el servidor de citas.";
+      toast.error(msg);
     } finally {
       setIsSubmitting(false);
     }
@@ -147,9 +133,7 @@ const BookingPage = () => {
   if (userLoading || (doctorLoading && !doctor)) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-main">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-4 border-black border-t-gold rounded-full animate-spin"></div>
-        </div>
+        <div className="w-10 h-10 border-4 border-black border-t-gold rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -169,37 +153,38 @@ const BookingPage = () => {
 
       <main className="max-w-[1800px] mx-auto w-full px-4 sm:px-12 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow">
         
-        {/* Formulario de Reserva - AHORA DE PRIMERO (lg:col-span-8) */}
+        {/* Formulario de Reserva */}
         <div className="lg:col-span-8 order-1">
           <div className="bg-white border border-black/5 rounded-[2rem] p-6 sm:p-10 shadow-sm">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-1">
                   <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Nombre del Solicitante</label>
-                  <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-bold text-sm" />
+                  <input type="text" name="fullName" value={formData.fullName} onChange={(e) => setFormData({...formData, fullName: e.target.value})} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-bold text-sm" />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Teléfono</label>
-                  <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-bold text-sm" />
+                  <input type="tel" name="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-bold text-sm" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Fecha</label>
-                  <input type="date" name="appointmentDate" min={new Date().toISOString().split("T")[0]} value={formData.appointmentDate} onChange={handleInputChange} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-bold text-sm" />
+                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Fecha de Cita</label>
+                  <input type="date" name="appointmentDate" min={new Date().toISOString().split("T")[0]} value={formData.appointmentDate} onChange={(e) => setFormData({...formData, appointmentDate: e.target.value})} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-bold text-sm" />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Hora</label>
-                  <select name="appointmentTime" value={formData.appointmentTime} onChange={handleInputChange} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-bold text-sm appearance-none">
+                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Hora Disponible</label>
+                  <select name="appointmentTime" value={formData.appointmentTime} onChange={(e) => setFormData({...formData, appointmentTime: e.target.value})} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-bold text-sm appearance-none">
+                    <option value="">Seleccione hora</option>
                     {availableTimes.map(t => <option key={t} value={t}>{t}</option>)}
                   </select>
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Detalles Adicionales</label>
-                <textarea name="reason" value={formData.reason} onChange={handleInputChange} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-medium text-sm h-32 resize-none" />
+                <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Notas del Proyecto / Requerimiento</label>
+                <textarea name="reason" value={formData.reason} onChange={(e) => setFormData({...formData, reason: e.target.value})} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-medium text-sm h-32 resize-none" />
               </div>
 
               <button 
@@ -207,34 +192,33 @@ const BookingPage = () => {
                 disabled={isSubmitting} 
                 className="w-full bg-black text-white py-5 rounded-xl font-black text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-black transition-all disabled:opacity-50 flex items-center justify-center gap-2"
               >
-                {isSubmitting ? "Sincronizando..." : "Agendar Ahora"}
+                {isSubmitting ? "Sincronizando Datacenter..." : "Finalizar Agendamiento"}
                 <ArrowRight size={16} />
               </button>
             </form>
           </div>
         </div>
 
-        {/* Resumen Lateral - AHORA DE SEGUNDO (lg:col-span-4) */}
+        {/* Resumen Lateral */}
         <div className="lg:col-span-4 space-y-6 order-2">
           <div className="bg-card border border-black/5 rounded-[2rem] p-8 shadow-sm">
             <Briefcase className="text-gold mb-4" size={24} />
-            <p className="text-[9px] font-black text-gold uppercase tracking-widest mb-1">Especialista DT</p>
+            <p className="text-[9px] font-black text-gold uppercase tracking-widest mb-1">Arquitecto a Cargo</p>
             <h2 className="text-2xl font-black uppercase tracking-tight">{doctor?.name}</h2>
             <p className="text-xs font-bold text-gray-400 uppercase mt-1">{doctor?.specialization}</p>
           </div>
 
           <div className="bg-black text-white rounded-[2rem] p-8 shadow-xl">
-            <span className="text-[9px] font-black uppercase tracking-widest text-gold block mb-4">Servicio Seleccionado</span>
+            <span className="text-[9px] font-black uppercase tracking-widest text-gold block mb-4">Servicio Digital</span>
             <h3 className="text-xl font-black uppercase mb-2">
-              {serviceFromFlow?.name || serviceFromFlow?.title || "Consultoría Especializada"}
+              {serviceFromFlow?.name || serviceFromFlow?.title || "Consultoría Técnica"}
             </h3>
             <div className="h-1 w-12 bg-gold mb-4"></div>
             <p className="text-3xl font-black text-gold tracking-tighter">
-              {serviceFromFlow?.price || "Por definir"}
+              {serviceFromFlow?.price || (doctor?.ticketPrice ? `$${doctor.ticketPrice}` : "Bajo Cotización")}
             </p>
           </div>
         </div>
-
       </main>
       <Footer />
     </div>
