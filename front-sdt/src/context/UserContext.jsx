@@ -4,30 +4,39 @@ import { setupInterceptors } from "../API/api.js";
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-    // 1. Inicialización consistente con las claves de localStorage
+    // 1. Inicialización consistente de Usuario
     const [user, setUser] = useState(() => {
         const savedUser = localStorage.getItem('userData');
-        return savedUser ? JSON.parse(savedUser) : null;
+        try {
+            return savedUser ? JSON.parse(savedUser) : null;
+        } catch (e) {
+            console.error("Error parsing userData", e);
+            return null;
+        }
     });
 
-    // Cambiamos a 'token' para que coincida con lo que el Header y Login esperan
-    const [token, setToken] = useState(localStorage.getItem('token') || null); 
+    // 2. Inicialización consistente de Token (Aseguramos que sea String limpio)
+    const [token, setToken] = useState(() => {
+        const savedToken = localStorage.getItem('token');
+        return (savedToken && savedToken !== "undefined") ? savedToken : null;
+    });
+
     const [loading, setLoading] = useState(true); 
     const [appointmentDetails, setAppointmentDetails] = useState(null);
     
     const tokenRef = useRef(token);
 
-    // Sincronizar la referencia del token para los interceptores y Storage
+    // Sincronizar Token: Referencia -> Storage -> Estado
     useEffect(() => {
         tokenRef.current = token;
-        if (token) {
+        if (token && token !== "undefined") {
             localStorage.setItem('token', token);
         } else {
             localStorage.removeItem('token');
         }
     }, [token]);
 
-    // Sincronizar el objeto usuario
+    // Sincronizar Objeto Usuario
     useEffect(() => {
         if (user) {
             localStorage.setItem('userData', JSON.stringify(user));
@@ -42,21 +51,16 @@ const UserProvider = ({ children }) => {
         setAppointmentDetails(null);
         localStorage.removeItem('token'); 
         localStorage.removeItem('userData');
-        // Opcional: localStorage.removeItem('user'); // Por si acaso usaste esta clave antes
     }, []); 
 
     const getAccessToken = useCallback(() => {
         return tokenRef.current; 
     }, []); 
 
-    // Finalizar carga inicial
-    useEffect(() => {
-        setLoading(false);
-    }, []); 
-
-    // Configuración de interceptores
+    // Configuración de interceptores y finalización de carga
     useEffect(() => {
         setupInterceptors(getAccessToken, setToken, handleLogout); 
+        setLoading(false);
     }, [getAccessToken, setToken, handleLogout]); 
 
     return (
@@ -77,8 +81,8 @@ const UserProvider = ({ children }) => {
                 <div className="flex items-center justify-center h-screen bg-main">
                     <div className="flex flex-col items-center gap-4">
                         <div className="w-12 h-12 border-4 border-gold border-t-transparent rounded-full animate-spin"></div>
-                        <p className="text-headingColor font-black uppercase tracking-widest text-sm">
-                            SoftwareDT Datacenter...
+                        <p className="text-headingColor font-black uppercase tracking-widest text-xs">
+                            SoftwareDT Datacenter Sincronizando...
                         </p>
                     </div>
                 </div>
