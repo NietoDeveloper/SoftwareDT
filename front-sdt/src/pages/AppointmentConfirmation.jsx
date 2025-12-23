@@ -75,7 +75,7 @@ const AppointmentConfirmation = () => {
           </h1>
           <div className="flex items-center justify-center gap-3 text-black font-bold bg-main/50 py-3 px-6 rounded-2xl w-fit mx-auto border border-black/5">
             <Mail size={16} className="text-yellowColor flex-shrink-0" />
-            <p className="text-[9px] sm:text-[11px] uppercase tracking-[0.2em]">Confirmación enviada al Datacenter</p>
+            <p className="text-[9px] sm:text-[11px] uppercase tracking-[0.2em]">Confirmación enviada al Datacenter y a Tu Correo Electronico</p>
           </div>
         </div>
 
@@ -84,7 +84,7 @@ const AppointmentConfirmation = () => {
           <div className="group flex items-center p-6 sm:p-8 bg-main/30 rounded-3xl border-2 border-transparent hover:border-black transition-all">
              <IconWrapper><Briefcase className="h-6 w-6 sm:h-8 sm:w-8" /></IconWrapper>
              <div className="ml-5 min-w-0">
-                <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Responsable Técnico</p>
+                <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Servicio</p>
                 <h2 className="text-lg sm:text-xl font-black uppercase truncate">{displayData.specialization}</h2>
              </div>
           </div>

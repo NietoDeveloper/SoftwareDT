@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext, useCallback } from "react";
 import { UserContext } from "../context/UserContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import { axiosPrivate } from "../API/api.js"; // Cambio clave: Usar la instancia blindada
+import { axiosPrivate } from "../API/api.js";
 import { 
-  Clock, PlusCircle, Mail, MessageCircle, ArrowUpRight, Loader2
+  PlusCircle, Mail, MessageCircle, ArrowUpRight, Loader2
 } from "lucide-react";
 
 const ClientAppointmentsPanel = () => {
-  const { user, token, handleLogout } = useContext(UserContext); // Usamos handleLogout consistente
+  const { user, token, handleLogout } = useContext(UserContext);
   const navigate = useNavigate();
   
   const [appointments, setAppointments] = useState([]);
@@ -17,8 +17,6 @@ const ClientAppointmentsPanel = () => {
 
   const fetchDashboardData = useCallback(async () => {
     const userId = user?._id || user?.id;
-    
-    // Si no hay token o user, evitamos la ejecución
     if (!userId || !token) {
       setIsLoading(false);
       return;
@@ -26,22 +24,13 @@ const ClientAppointmentsPanel = () => {
 
     try {
       setIsLoading(true);
-      
-      // Ya no necesitamos construir headers manualmente, axiosPrivate lo hace por nosotros
       const response = await axiosPrivate.get(`/appointments/user/${userId}`);
-
-      // El manejo de 401/403 ya ocurre en el interceptor global, 
-      // aquí solo procesamos la respuesta exitosa.
       if (response.data) {
         setAppointments(response.data.appointments || response.data.data || []);
       }
-
       setMessages([]); 
     } catch (err) {
-      // Si el error llega aquí es porque falló el refresh o es un error de red
       console.error("❌ Error en Datacenter SDT:", err.response?.data?.message || err.message);
-      
-      // Si el interceptor no redirigió (por ejemplo, error 500), lo manejamos aquí
       if (err.response?.status === 401 || err.response?.status === 403) {
         if (handleLogout) handleLogout();
         navigate("/login");
@@ -125,7 +114,7 @@ const ClientAppointmentsPanel = () => {
               </div>
             </div>
 
-            <div className="grid gap-4">
+            <div className="grid gap-6">
               {isLoading ? (
                 <div className="p-20 flex flex-col items-center justify-center gap-4 bg-white/30 rounded-3xl">
                     <Loader2 className="animate-spin text-yellowColor" size={40} />
@@ -137,24 +126,35 @@ const ClientAppointmentsPanel = () => {
                 </div>
               ) : (
                 filteredAppointments.map((appt) => (
-                  <div key={appt._id} className="bg-white border-2 border-black/5 rounded-[1.2rem] sm:rounded-[1.8rem] p-4 sm:p-6 hover:shadow-xl transition-all group overflow-hidden">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                      <div className="flex items-center gap-4 sm:gap-6 w-full sm:w-auto min-w-0">
-                        <div className="shrink-0 w-12 h-12 bg-main border border-black/5 rounded-xl flex items-center justify-center group-hover:bg-yellowColor transition-colors">
-                          <Clock size={20}/>
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <h3 className="text-sm sm:text-lg font-black uppercase tracking-tight truncate">
-                            {appt.serviceName || "Consultoría Técnica"}
-                          </h3>
-                          <p className="text-[8px] sm:text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-1">
-                            {formatDate(appt.slotDate || appt.appointmentDate)} — {appt.slotTime || appt.appointmentTime}
-                          </p>
+                  <div key={appt._id} className="bg-white border-[3px] border-black/5 rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 hover:border-yellowColor/30 hover:shadow-2xl transition-all duration-400 group relative overflow-hidden">
+                    {/* Barra lateral de estado */}
+                    <div className="absolute left-0 top-0 bottom-0 w-2 bg-yellowColor opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                      <div className="flex-1 space-y-3">
+                        {/* TÍTULO DE SERVICIO MÁS GRANDE */}
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tighter text-headingColor leading-none">
+                          {appt.serviceName || "Consultoría Técnica"}
+                        </h3>
+                        
+                        {/* FECHA Y HORA DESTACADAS */}
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                           <div className="bg-main px-4 py-2 rounded-lg border border-black/5 shadow-sm">
+                              <p className="text-[12px] sm:text-[14px] font-black text-black uppercase tracking-widest">
+                                {formatDate(appt.slotDate || appt.appointmentDate)}
+                              </p>
+                           </div>
+                           <div className="bg-yellowColor/10 px-4 py-2 rounded-lg border border-yellowColor/20 shadow-sm">
+                              <p className="text-[12px] sm:text-[14px] font-black text-yellowColor uppercase tracking-widest">
+                                {appt.slotTime || appt.appointmentTime}
+                              </p>
+                           </div>
                         </div>
                       </div>
+
                       <button 
                         onClick={() => navigate("/appointment-confirmation", { state: { appointment: appt } })}
-                        className="w-full sm:w-auto bg-black text-white px-8 py-3 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all duration-300 hover:bg-yellowColor hover:text-black active:scale-95"
+                        className="w-full md:w-auto bg-black text-white px-10 py-4 rounded-2xl text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-400 hover:bg-yellowColor hover:text-black hover:shadow-[0_10px_20px_rgba(0,0,0,0.1)] active:scale-95"
                       >
                         Ver Detalle
                       </button>
@@ -165,6 +165,7 @@ const ClientAppointmentsPanel = () => {
             </div>
           </section>
 
+          {/* RESTO DEL CONTENIDO (HISTORIAL MENSAJERIA) IGUAL... */}
           <section>
              <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter mb-6 sm:mb-8">Historial Mensajeria</h2>
              <div className="bg-white border-2 border-black/5 rounded-[1.2rem] sm:rounded-[2rem] overflow-hidden shadow-sm">
@@ -200,6 +201,7 @@ const ClientAppointmentsPanel = () => {
           </section>
         </div>
 
+        {/* ASIDE IGUAL... */}
         <aside className="w-full lg:w-[35%]">
           <div className="bg-white border-2 border-black/5 rounded-[1.8rem] sm:rounded-[2.5rem] p-6 sm:p-8 shadow-sm lg:sticky lg:top-10">
             <h2 className="text-lg sm:text-xl font-black uppercase tracking-tighter mb-8 text-center">Contacto Directo</h2>
