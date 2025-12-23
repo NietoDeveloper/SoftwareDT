@@ -6,29 +6,27 @@ const {
     getUserAppointments 
 } = require('../controllers/appointmentController');
 
-// Importamos tu middleware de autenticación (ajústalo según tu estructura de archivos)
-// Esto es vital para que 'req.userId' exista y el panel funcione.
-const { authenticate, restrict } = require('../auth/verifyToken'); 
+// CORRECCIÓN CRÍTICA: 
+// 1. Apuntamos a la carpeta 'middleware' (no 'auth')
+// 2. Importamos 'verifyAccess' (así es como lo exportaste en el middleware)
+const verifyAccess = require('../middleware/verifyAccess'); 
 
 /**
  * @route   POST /api/appointments
- * @desc    Crear una nueva cita
- * @access  Private/Public (Sugerido: authenticate para vincular al usuario)
+ * @desc    Crear una nueva cita vinculada al usuario logueado
  */
-router.post('/', appointmentBooking); 
-
-/**
- * @route   GET /api/appointments
- * @desc    Listar todas las citas (Solo Admin)
- * @access  Private (Admin Only)
- */
-router.get('/', authenticate, restrict(['admin']), getAppointments);
+router.post('/', verifyAccess, appointmentBooking); 
 
 /**
  * @route   GET /api/appointments/user/:userId
- * @desc    Listar citas de un usuario específico para el Panel
- * @access  Private (Dueño de la cuenta o Admin)
+ * @desc    Listar citas de un usuario específico para el Panel de Software DT
  */
-router.get('/user/:userId', authenticate, getUserAppointments);
+router.get('/user/:userId', verifyAccess, getUserAppointments);
+
+/**
+ * @route   GET /api/appointments
+ * @desc    Listar todas las citas (Solo para gestión administrativa)
+ */
+router.get('/', verifyAccess, getAppointments);
 
 module.exports = router;

@@ -1,50 +1,125 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const { citaDB } = require('./config/dbConn'); // Tu conexión personalizada
-const mongoose = require('mongoose');
+// IMPORTANTE: Subimos un nivel (..) para llegar a models y config
+const Appointment = require('../models/Appointment');
+const User = require('../models/User');
+const Doctor = require('../models/Doctor'); 
+const asyncHandler = require('express-async-handler');
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+// --- CREAR CITA ---
+const appointmentBooking = asyncHandler(async (req, res) => {
+    // Depuración en el Datacenter Software DT
+    console.log("--- PROCESANDO RESERVA EN BACKEND ---", req.body);
 
-// 1. CONFIGURACIÓN DE CORS (Software DT Security)
-const allowedOrigins = [
-    'http://localhost:5173', // Tu Vite local
-    'https://softwaredt.vercel.app' // Tu producción
-];
+    const { 
+        doctorId, 
+        userId: bodyUserId, 
+        fullName, 
+        email, 
+        phone, 
+        appointmentDate, 
+        appointmentTime, 
+        reason,
+        serviceName,
+        price 
+    } = req.body;
 
-app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Bloqueado por políticas de CORS de SDT'));
+    // Validación de campos requeridos
+    if (!doctorId || !appointmentDate || !appointmentTime || !fullName || !phone) {
+        return res.status(400).json({ success: false, message: "Información incompleta: Faltan campos obligatorios." });
+    }
+
+    // El userId puede venir del middleware verifyAccess (req.userId) o del body
+    const userId = req.userId || bodyUserId || null; 
+    
+    // Buscamos al especialista para denormalizar sus datos básicos
+    const doctorData = await Doctor.findById(doctorId).lean();
+    if (!doctorData) {
+        return res.status(404).json({ success: false, message: "Especialista no encontrado." });
+    }
+
+    try {
+        const newAppointment = await Appointment.create({
+            user: userId,
+            doctor: doctorId,
+            serviceName: serviceName || "Consultoría Técnica",         
+            specialization: doctorData.specialization || "Software Development",
+            userInfo: { 
+                fullName: fullName, 
+                email: email || "contacto@softwaredt.com",
+                phone: phone 
+            },
+            appointmentDetails: {
+                date: appointmentDate, 
+                time: appointmentTime,
+                reason: reason || "Sin motivo especificado",
+                status: "pending"
+            },
+            paymentInfo: {
+                price: price ? price.toString() : (doctorData.ticketPrice ? doctorData.ticketPrice.toString() : "0"),
+                currency: "COP",
+                isPaid: false
+            }
+        });
+
+        if (newAppointment) {
+            // Si el usuario está registrado, vinculamos la cita a su perfil en userDB
+            if (userId) {
+                await User.findByIdAndUpdate(userId, { $push: { appointments: newAppointment._id } });
+            }
+            res.status(201).json({ 
+                success: true, 
+                message: "¡Cita agendada con éxito!",
+                appointment: newAppointment 
+            });
         }
-    },
-    credentials: true, // Permite el envío de cookies/tokens
-    optionsSuccessStatus: 200
-}));
+    } catch (error) {
+        res.status(400).json({ success: false, message: `Error en Mongoose: ${error.message}` });
+    }
+});
 
-// 2. MIDDLEWARES BÁSICOS
-app.use(express.json());
-app.use(cookieParser()); // ¡INDISPENSABLE para Refresh Tokens!
+// --- OBTENER CITAS DE UN USUARIO (Optimizado para Panel) ---
+const getUserAppointments = asyncHandler(async (req, res) => {
+    const userId = req.params.userId || req.userId;
+    
+    if (!userId) {
+        return res.status(400).json({ message: "ID de usuario requerido para el Dashboard" });
+    }
 
-// 3. RUTAS
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/appointments', require('./routes/appointmentRoute'));
+    const appointments = await Appointment.find({ user: userId })
+        .populate('doctor', 'name specialization')
+        .sort({ createdAt: -1 });
 
-// 4. MANEJO DE ERRORES GLOBAL
-app.use((err, req, res, next) => {
-    console.error(`❌ Error en el Datacenter: ${err.message}`);
-    res.status(err.status || 500).json({
-        success: false,
-        message: err.message || "Error interno del servidor en Software DT"
+    // Aplanamos la estructura para que el Frontend la use directamente (appt.status, appt.price)
+    const formattedAppointments = appointments.map(appt => ({
+        _id: appt._id,
+        serviceName: appt.serviceName,
+        specialization: appt.specialization,
+        appointmentDate: appt.appointmentDetails.date,
+        appointmentTime: appt.appointmentDetails.time,
+        status: appt.appointmentDetails.status,
+        reason: appt.appointmentDetails.reason,
+        price: appt.paymentInfo.price,
+        isPaid: appt.paymentInfo.isPaid,
+        doctorName: appt.doctor?.name || "Especialista SDT"
+    }));
+
+    res.status(200).json({ 
+        success: true, 
+        count: formattedAppointments.length,
+        appointments: formattedAppointments 
     });
 });
 
-// 5. INICIO DEL SERVIDOR TRAS CONEXIÓN A DB
-mongoose.connection.once('open', () => {
-    console.log('✅ Conectado a MongoDB Atlas (Software DT Cluster)');
-    app.listen(PORT, () => console.log(`🚀 Servidor corriendo en puerto ${PORT}`));
+// --- OBTENER TODAS LAS CITAS (ADMIN) ---
+const getAppointments = asyncHandler(async (req, res) => {
+    const appointments = await Appointment.find({})
+        .populate('user', 'name email')
+        .populate('doctor', 'name specialization')
+        .sort({ createdAt: -1 });
+    res.status(200).json({ success: true, appointments });
 });
+
+module.exports = { 
+    appointmentBooking, 
+    getAppointments, 
+    getUserAppointments 
+};

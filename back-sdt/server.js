@@ -5,8 +5,11 @@ const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
 
+// Conexiones a MongoDB Atlas
 const { userDB, citaDB } = require('./config/dbConn'); 
 const corsOptions = require('./config/corsOptions');
+
+// Middleware de Seguridad
 const verifyAccess = require('./middleware/verifyAccess'); 
 const { unknownEndpoint } = require('./middleware/notFound');
 const { errorHandler } = require('./middleware/errorHandler');
@@ -22,12 +25,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Root Endpoint
+// Root Endpoint - Health Check
 app.get('/', (req, res) => {
-    res.status(200).json({ status: 'Operational', message: 'SoftwareDT API v1.0' });
+    res.status(200).json({ 
+        status: 'Operational', 
+        service: 'SoftwareDT Datacenter API',
+        version: '1.0.0' 
+    });
 });
 
-// --- IMPORTACIÓN DE RUTAS ---
+// --- CARGA DINÁMICA DE RUTAS ---
+// Centralizamos para validar que todos los archivos existan antes de montarlos
 const routes = {
     userRegister: require('./routes/userRoutes/userRegister'),
     userLogin: require('./routes/userRoutes/userLogin'),
@@ -57,11 +65,12 @@ app.use('/api/doctor/logout', routes.doctorLogout);
 app.use('/api/doctors', routes.allDoctors); 
 
 // --- CAPA DE PROTECCIÓN (JWT VERIFICATION) ---
-// A partir de aquí, Software DT requiere identidad confirmada
+// El portero de Software DT: verifica el Access Token
 app.use(verifyAccess); 
 
-// --- ASIGNACIÓN DE RUTAS PRIVADAS (User Panel & Booking) ---
-app.use('/api/appointments', routes.appointmentRoutes); // Protegido para asegurar req.userId
+// --- ASIGNACIÓN DE RUTAS PRIVADAS ---
+// Estas rutas solo funcionan si verifyAccess inyecta req.userId
+app.use('/api/appointments', routes.appointmentRoutes); 
 app.use('/api/user/update', routes.userUpdate);
 app.use('/api/user/review', routes.review);
 app.use('/api/doctor/update', routes.doctorUpdate);
@@ -71,14 +80,15 @@ app.use('/api/doctor/profile', routes.booking);
 app.use(unknownEndpoint);
 app.use(errorHandler);
 
-// --- ARRANQUE SINCRONIZADO DE DATACENTER ---
+// --- ARRANQUE SINCRONIZADO ---
+// Garantizamos que el servidor no responda hasta que Atlas esté conectado
 Promise.all([
     new Promise(resolve => userDB.once('open', resolve)),
     new Promise(resolve => citaDB.once('open', resolve))
 ]).then(() => {
-    console.log('✅ Datacenter SoftwareDT: Usuarios y Citas vinculados.');
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+    console.log('✅ Datacenter SoftwareDT: Usuarios y Citas vinculados correctamente.');
+    app.listen(PORT, () => console.log(`🚀 API en línea: Puerto ${PORT}`));
 }).catch(err => {
-    console.error('❌ Error crítico de conexión:', err.message);
+    console.error('❌ Error crítico de infraestructura:', err.message);
     process.exit(1);
 });

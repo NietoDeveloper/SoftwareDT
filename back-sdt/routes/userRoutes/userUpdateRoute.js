@@ -1,22 +1,25 @@
-const User = require('../models/User');
+const User = require('../models/User'); // Asegúrate de que este modelo use userDB
 const asyncHandler = require('express-async-handler');
 
-// @desc    Actualizar detalles del perfil
-// @route   PUT /api/user/update/:id
-// @access  Private
+/**
+ * @desc    Actualizar detalles del perfil en Software DT
+ * @route   PUT /api/user/update/:id
+ * @access  Private (Owner or Admin)
+ */
 const updateUserDetails = asyncHandler(async (req, res) => {
     const { id } = req.params;
 
-    // SEGURIDAD: Solo el dueño del perfil o un admin pueden actualizar
+    // SEGURIDAD: Validamos contra el token decodificado por verifyAccess
+    // Nota: Usamos req.userId (inyectado por el middleware)
     if (req.userId !== id && req.role !== 'admin') {
         return res.status(403).json({ 
             success: false, 
-            message: "No tienes permiso para actualizar este perfil." 
+            message: "Acceso denegado: No tienes permisos para modificar este perfil." 
         });
     }
 
     try {
-        // Filtramos para evitar que el usuario cambie su rol o su password por esta ruta
+        // Extraemos solo los campos permitidos para evitar escalada de privilegios
         const { name, email, phone, gender, photo, bloodType } = req.body;
 
         const updatedUser = await User.findByIdAndUpdate(
@@ -31,23 +34,27 @@ const updateUserDetails = asyncHandler(async (req, res) => {
                     bloodType 
                 } 
             },
-            { new: true, runValidators: true } // new: true devuelve el doc actualizado
-        ).select('-password -refreshToken'); // Seguridad: no devolver datos sensibles
+            { new: true, runValidators: true } 
+        ).select('-password -refreshToken -__v'); // Limpiamos la respuesta
 
         if (!updatedUser) {
-            return res.status(404).json({ success: false, message: "Usuario no encontrado." });
+            return res.status(404).json({ 
+                success: false, 
+                message: "Usuario no encontrado en el Datacenter." 
+            });
         }
 
         res.status(200).json({
             success: true,
-            message: "Perfil actualizado correctamente en el Datacenter.",
+            message: "Perfil actualizado con éxito.",
             data: updatedUser
         });
 
     } catch (error) {
-        res.status(500).json({ 
+        // Manejo específico para errores de validación de MongoDB
+        res.status(error.name === 'ValidationError' ? 400 : 500).json({ 
             success: false, 
-            message: "Error al actualizar los datos.",
+            message: "Error en la actualización de datos.",
             error: error.message 
         });
     }
