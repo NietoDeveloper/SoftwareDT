@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"; // Importamos useLocation
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -8,6 +8,10 @@ import { ArrowRight } from "lucide-react";
 
 const DoctorList = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Recuperamos la información del servicio seleccionado en la fase anterior (Services.jsx)
+  const selectedServiceInfo = location.state?.selectedService || null;
 
   const getDoctors = async () => {
     try {
@@ -29,10 +33,14 @@ const DoctorList = () => {
     queryFn: getDoctors,
   });
 
-  // FLUJO: Navega a la ruta de agendamiento pasando la data del servicio
+  // FLUJO ACTUALIZADO: 
+  // Ahora envía tanto la data del especialista como la del servicio previo al Booking
   const navigateToBooking = (doctor) => {
     navigate(`/book-appointment/${doctor._id}`, {
-      state: { doctorData: doctor },
+      state: { 
+        doctorData: doctor,
+        serviceData: selectedServiceInfo // Aquí se mantiene la cadena de información
+      },
     });
   };
 
@@ -40,7 +48,7 @@ const DoctorList = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC]">
         <h1 className="text-xl font-black text-black animate-pulse uppercase tracking-widest">
-          Sincronizando Servicios...
+          Sincronizando Staff DT...
         </h1>
       </div>
     );
@@ -63,15 +71,20 @@ const DoctorList = () => {
           <div className="inline-flex items-center gap-3">
             <div className="w-10 h-1 bg-[#FFD700] shadow-[0_0_12px_rgba(255,215,0,0.6)]"></div>
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-500">
-              Software DT Factory
+              Software DT Engineering
             </span>
           </div>
           <h1 className="text-5xl sm:text-7xl font-black text-black uppercase tracking-tighter leading-none">
-            Selecciona un <span className="text-[#FFD700] drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]">Servicio</span>
+            Asignar <span className="text-[#FFD700] drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]">Especialista</span>
           </h1>
+          {selectedServiceInfo && (
+            <p className="text-xs font-black uppercase tracking-widest text-gray-400 mt-4">
+              Para: <span className="text-black">{selectedServiceInfo.name}</span>
+            </p>
+          )}
         </div>
 
-        {/* GRID DE SERVICIOS */}
+        {/* GRID DE INGENIEROS/ESPECIALISTAS */}
         <div className="flex flex-wrap justify-center gap-8 lg:gap-10">
           {doctors.map((doctor) => (
             <div
@@ -84,7 +97,6 @@ const DoctorList = () => {
                          hover:shadow-[0_20px_60px_rgba(255,215,0,0.15)] 
                          hover:-translate-y-3 cursor-pointer"
             >
-              {/* Badge de Categoría */}
               <div className="absolute top-8 left-8">
                 <div className="w-2 h-2 bg-[#FFD700] rounded-full animate-ping"></div>
               </div>
@@ -94,27 +106,24 @@ const DoctorList = () => {
                   {doctor.name}
                 </h3>
                 <span className="mt-2 text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">
-                  {doctor.specialization || "Technical Support"}
+                  {doctor.specialization || "Software Engineer"}
                 </span>
               </div>
 
-              {/* Bio / Descripción */}
               <div className="flex-1 flex items-center justify-center px-4">
                 <p className="text-gray-600 text-lg font-bold leading-relaxed italic">
-                  "{doctor.bio || "Especialista en soluciones escalables para entornos corporativos."}"
+                  "{doctor.bio || "Especialista senior en desarrollo de arquitecturas de software."}"
                 </p>
               </div>
 
-              {/* Footer de la Card */}
               <div className="w-full pt-6 border-t border-gray-50 flex items-center justify-between">
                 <div className="text-left">
-                  <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Rating</p>
+                  <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Confianza</p>
                   <p className="text-lg font-black text-black">
                     {doctor.totalRating || "5.0"}
                   </p>
                 </div>
                 
-                {/* Botón de Acción Circular */}
                 <div className="w-14 h-14 rounded-2xl bg-black flex items-center justify-center 
                                 transition-all duration-300 shadow-[0_8px_20px_rgba(0,0,0,0.2)]
                                 group-hover:bg-[#FFD700] group-hover:shadow-[0_10px_25px_rgba(255,215,0,0.4)]
@@ -126,7 +135,6 @@ const DoctorList = () => {
           ))}
         </div>
       </div>
-
       <Footer />
     </div>
   );

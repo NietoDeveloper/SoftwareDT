@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
+// COMPONENTE AUXILIAR PARA EL MENÚ MÓVIL (Definido aquí para evitar el ReferenceError)
 const MenuButton = ({ isOpen, onClick }) => {
   const variantTop = { closed: { rotate: 0, y: 0 }, opened: { rotate: 45, y: 8 } };
   const variantCenter = { closed: { opacity: 1, x: 0 }, opened: { opacity: 0, x: -20 } };
@@ -66,7 +67,7 @@ const Header = () => {
       <div className="container mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 relative">
           
-          {/* LOGO */}
+          {/* LOGO SOFTWARE DT */}
           <div className="flex items-center gap-1.5 sm:gap-3 cursor-pointer group min-w-fit" onClick={handleLogoClick}>
             <h2 className="text-black text-lg sm:text-2xl font-black uppercase tracking-tighter transition-all duration-300 group-hover:text-[#FEB60D]">
               Software D T
@@ -79,7 +80,7 @@ const Header = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <span className="absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75 animate-ping"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 border-2 border-white transition-transform duration-300"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 border-2 border-white"></span>
               </Link>
             )}
           </div>
@@ -90,7 +91,7 @@ const Header = () => {
               <Link 
                 key={link.path}
                 to={link.path} 
-                className={`font-black uppercase tracking-widest transition-all duration-300 relative group py-1 flex items-center justify-center ${
+                className={`font-black uppercase tracking-widest transition-all duration-300 relative group py-1 ${
                   isActive(link.path) ? "text-[#FEB60D]" : "text-black hover:text-[#FEB60D]"
                 }`}
               >
@@ -105,29 +106,26 @@ const Header = () => {
               <div className="flex items-center gap-3 lg:gap-4 ml-4">
                 <Link 
                   to="/client-appointments" 
-                  className={`px-3 lg:px-4 py-1.5 rounded-lg border-2 border-[#FFD700] font-black uppercase text-[9px] lg:text-[10px] transition-all duration-300 flex items-center justify-center ${
-                    isActive("/client-appointments") 
-                      ? "bg-[#FFD700] text-black" 
-                      : "bg-[#FFD700] text-black hover:bg-[#FEB60D]"
-                  }`}
+                  className="px-3 lg:px-4 py-1.5 rounded-lg border-2 border-[#FFD700] bg-[#FFD700] text-black font-black uppercase text-[9px] lg:text-[10px] hover:bg-[#FEB60D] transition-all"
                 >
                   Panel Cliente
                 </Link>
                 <button 
                   onClick={handleLogout} 
-                  className="text-black hover:text-red-600 font-black transition-colors border-none bg-transparent p-0 uppercase text-[9px] lg:text-[10px] tracking-tighter flex items-center justify-center"
+                  className="text-black hover:text-red-600 font-black uppercase text-[9px] lg:text-[10px] transition-colors"
                 >
                   Salir
                 </button>
               </div>
             ) : (
               <div className="flex items-center space-x-3 lg:space-x-4 ml-4">
-                <Link to="/login" className="text-black font-black uppercase hover:text-[#FEB60D] transition-colors flex items-center justify-center">Login</Link>
-                <Link to="/signup" className="px-4 py-2 bg-black text-white rounded-full hover:bg-[#FFD700] hover:text-black transition-all font-black text-[10px] uppercase tracking-widest flex items-center justify-center">Registro</Link>
+                <Link to="/login" className="text-black font-black uppercase hover:text-[#FEB60D]">Login</Link>
+                <Link to="/signup" className="px-4 py-2 bg-black text-white rounded-full hover:bg-[#FFD700] hover:text-black transition-all font-black text-[10px] uppercase tracking-widest">Registro</Link>
               </div>
             )}
           </nav>
 
+          {/* MOBILE BUTTON */}
           <div className="flex items-center md:hidden">
             <MenuButton isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)} />
           </div>
@@ -149,7 +147,7 @@ const Header = () => {
                   key={link.path}
                   to={link.path} 
                   onClick={() => setIsMenuOpen(false)} 
-                  className={`text-sm font-black uppercase tracking-widest transition-all duration-300 flex items-center justify-center ${
+                  className={`text-sm font-black uppercase tracking-widest ${
                     isActive(link.path) ? "text-[#FFD700]" : "text-black hover:text-[#FFD700]"
                   }`}
                 >
@@ -161,26 +159,10 @@ const Header = () => {
                 <Link 
                   to="/client-appointments" 
                   onClick={() => setIsMenuOpen(false)} 
-                  className="w-full py-3 rounded-xl border-2 border-[#FFD700] bg-[#FFD700] text-black text-xs font-black uppercase tracking-widest flex items-center justify-center"
+                  className="w-full py-3 rounded-xl border-2 border-[#FFD700] bg-[#FFD700] text-black text-xs font-black uppercase text-center"
                 >
                   Panel Activo
                 </Link>
-              )}
-
-              <div className="w-full h-px bg-black/5 my-1"></div>
-              
-              {isLoggedIn ? (
-                <button 
-                  onClick={() => { handleLogout(); setIsMenuOpen(false); }} 
-                  className="text-xs font-black text-red-600 uppercase tracking-widest flex items-center justify-center"
-                >
-                  Cerrar Sesión
-                </button>
-              ) : (
-                <div className="flex flex-col items-center gap-4 w-full pt-2">
-                  <Link to="/login" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase flex items-center justify-center">Login</Link>
-                  <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="w-full py-3 bg-black text-[#FFD700] rounded-xl text-xs font-black uppercase tracking-widest flex items-center justify-center">Registro</Link>
-                </div>
               )}
             </div>
           </motion.div>
