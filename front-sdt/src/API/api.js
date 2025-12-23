@@ -1,6 +1,7 @@
 import axios from 'axios';
 import refreshAccessToken from '../utils/refreshAccess';
 
+// Ajuste para Vercel: Prioriza la variable de entorno de producción
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 // Instancias base
@@ -24,14 +25,11 @@ export const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
     // --- INTERCEPTOR DE PETICIÓN (Inyección Blindada) ---
     axiosPrivate.interceptors.request.use(
         (config) => {
-            let token = getAccessToken();
+            const token = getAccessToken();
 
             if (token) {
-                // SANEAMIENTO PROFUNDO:
-                // 1. Eliminar comillas dobles y simples
-                // 2. Eliminar prefijos repetidos por error
-                // 3. Trim de espacios
-                const cleanToken = token
+                // SANEAMIENTO PROFUNDO para evitar el error "jwt malformed" que vimos en tus logs
+                const cleanToken = String(token)
                     .replace(/['"]+/g, '')
                     .replace(/Bearer\s+/i, '')
                     .trim();
@@ -52,7 +50,6 @@ export const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
             const originalRequest = error.config;
 
             // 1. Manejo de Errores Críticos (403 Forbidden / Malformed)
-            // Si el backend lanza 403, el token es estructuralmente inválido o no tiene permisos.
             if (error.response?.status === 403) {
                 console.error("DEBUG [SDT]: Error Crítico 403 - Token Malformado o Prohibido.");
                 if (onLogout) onLogout();
@@ -83,12 +80,13 @@ export const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
                         
                         if (!newAccessToken) throw new Error("No se recibió nuevo token");
 
-                        // Saneamos el nuevo token recibido
-                        const cleanNewToken = newAccessToken.replace(/['"]+/g, '').replace(/Bearer\s+/i, '').trim();
+                        const cleanNewToken = String(newAccessToken)
+                            .replace(/['"]+/g, '')
+                            .replace(/Bearer\s+/i, '')
+                            .trim();
                         
                         setAccessToken(cleanNewToken);
                         
-                        // Actualizamos la petición original y reintentamos
                         originalRequest.headers.Authorization = `Bearer ${cleanNewToken}`;
                         processQueue(null, cleanNewToken);
                         resolve(axiosPrivate(originalRequest));
