@@ -81,7 +81,7 @@ const BookingPage = () => {
     initialData: doctorFromFlow,
   });
 
-  // Sincronizar datos del usuario silenciosamente para el payload
+  // Carga silenciosa de datos del usuario
   useEffect(() => {
     if (user) {
       setFormData((prev) => ({
@@ -110,6 +110,7 @@ const BookingPage = () => {
     setIsSubmitting(true);
     try {
       const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+      
       const payload = {
         doctorId: doctor._id,
         userId: user?._id,
@@ -122,13 +123,18 @@ const BookingPage = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       
+      const appointmentData = res.data.appointment || res.data;
+
       toast.success("¡Cita agendada con éxito!");
+      
+      // Enviamos TODO al Confirmation para que no falte info
       navigate("/appointment-confirmation", { 
         state: { 
-          appointment: res.data.appointment || res.data, 
-          doctorName: doctor.name,
-          serviceName: payload.serviceName,
-          price: payload.price
+          appointment: appointmentData, 
+          doctor: doctor, // Objeto completo del ingeniero
+          service: serviceFromFlow, // Objeto completo del servicio
+          userName: formData.fullName,
+          confirmedAt: new Date().toISOString()
         } 
       });
     } catch (err) {
@@ -151,6 +157,7 @@ const BookingPage = () => {
 
   return (
     <div className="min-h-screen bg-[#DCDCDC] pb-20 font-sans text-black antialiased">
+      {/* Header */}
       <div className="bg-white border-b-2 border-black/10 pt-12 pb-10 px-6 sm:px-12">
         <div className="max-w-[1800px] mx-auto">
           <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#FEB60D] transition-colors mb-6">
@@ -170,7 +177,7 @@ const BookingPage = () => {
 
       <main className="max-w-[1800px] mx-auto px-6 sm:px-12 mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
         
-        {/* SIDEBAR */}
+        {/* SIDEBAR: INFO TÉCNICA */}
         <div className="lg:col-span-4 space-y-6">
           <div className="bg-white border-2 border-black rounded-[2rem] p-8 shadow-sm">
             <div className="w-14 h-14 bg-black text-[#FEB60D] rounded-xl flex items-center justify-center mb-6 shadow-md">
@@ -179,7 +186,7 @@ const BookingPage = () => {
             <p className="text-[9px] font-black text-[#FEB60D] uppercase tracking-widest mb-1">Especialista SDT</p>
             <h2 className="text-2xl font-black uppercase tracking-tight mb-4">{doctor?.name}</h2>
             <div className="h-[2px] bg-[#DCDCDC] w-12 mb-4"></div>
-            <p className="text-sm font-bold leading-relaxed italic text-gray-500 italic">
+            <p className="text-sm font-bold leading-relaxed italic text-gray-500">
               "{doctor?.bio || "Ingeniero verificado para implementación de soluciones DT."}"
             </p>
           </div>
@@ -193,12 +200,12 @@ const BookingPage = () => {
               <div>
                 <p className="text-[9px] uppercase text-gray-400 font-black">Servicio</p>
                 <h3 className="text-xl font-black uppercase text-[#FEB60D]">
-                  {serviceFromFlow?.title || serviceFromFlow?.name || "Consultoría"}
+                  {serviceFromFlow?.title || serviceFromFlow?.name || "Consultoría General"}
                 </h3>
               </div>
               <div className="pt-4 border-t border-white/10">
                 <p className="text-[9px] uppercase text-gray-400 font-black">Inversión Base</p>
-                <p className="text-3xl font-black tracking-tighter">
+                <p className="text-3xl font-black tracking-tighter text-[#FEB60D]">
                   {serviceFromFlow?.price || "A convenir"}
                 </p>
               </div>
@@ -206,7 +213,7 @@ const BookingPage = () => {
           </div>
         </div>
 
-        {/* FORMULARIO SIMPLIFICADO */}
+        {/* FORMULARIO */}
         <div className="lg:col-span-8">
           <div className="bg-white border-2 border-black rounded-[2.5rem] p-8 sm:p-12 shadow-sm">
             <form onSubmit={handleSubmit} className="space-y-10">
@@ -215,19 +222,19 @@ const BookingPage = () => {
               <div className="space-y-6">
                 <div className="flex items-center gap-2">
                   <CreditCard size={18} className="text-[#FEB60D]" />
-                  <h3 className="text-xs font-black uppercase tracking-widest">Planificación de la Cita</h3>
+                  <h3 className="text-xs font-black uppercase tracking-widest">Planificación</h3>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="space-y-2">
-                    <label className="text-[9px] font-black uppercase tracking-widest text-gray-400 ml-1">Teléfono de Contacto</label>
-                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/10 border-2 border-black p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" placeholder="Tu móvil..." />
+                    <label className="text-[9px] font-black uppercase tracking-widest text-gray-400 ml-1">Tu Teléfono</label>
+                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/10 border-2 border-black p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" placeholder="Móvil..." />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[9px] font-black uppercase tracking-widest text-gray-400 ml-1">Fecha Preferente</label>
+                    <label className="text-[9px] font-black uppercase tracking-widest text-gray-400 ml-1">Fecha</label>
                     <input type="date" name="appointmentDate" min={new Date().toISOString().split("T")[0]} value={formData.appointmentDate} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/10 border-2 border-black p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[9px] font-black uppercase tracking-widest text-gray-400 ml-1">Bloque Horario</label>
+                    <label className="text-[9px] font-black uppercase tracking-widest text-gray-400 ml-1">Horario</label>
                     <select name="appointmentTime" value={formData.appointmentTime} onChange={handleInputChange} required className="w-full bg-[#DCDCDC]/10 border-2 border-black p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm appearance-none">
                       <option value="">{formData.appointmentDate ? "Elegir..." : "Pendiente"}</option>
                       {availableTimes.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -236,11 +243,11 @@ const BookingPage = () => {
                 </div>
               </div>
 
-              {/* Sección Motivo */}
+              {/* Sección Requerimiento */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2 mb-4">
                   <Info size={18} className="text-[#FEB60D]" />
-                  <h3 className="text-xs font-black uppercase tracking-widest">Especificaciones Técnicas</h3>
+                  <h3 className="text-xs font-black uppercase tracking-widest">Detalles del Proyecto</h3>
                 </div>
                 <textarea 
                   name="reason" 
@@ -248,8 +255,8 @@ const BookingPage = () => {
                   onChange={handleInputChange} 
                   required 
                   minLength={10} 
-                  className="w-full bg-[#DCDCDC]/10 border-2 border-black p-4 rounded-xl focus:border-[#FEB60D] outline-none font-medium text-sm h-40 resize-none" 
-                  placeholder="Describe brevemente el requerimiento o problema técnico a resolver..." 
+                  className="w-full bg-[#DCDCDC]/10 border-2 border-black p-4 rounded-xl focus:border-[#FEB60D] outline-none font-medium text-sm h-44 resize-none" 
+                  placeholder="Explica qué necesitas implementar o resolver..." 
                 />
               </div>
 
@@ -258,7 +265,7 @@ const BookingPage = () => {
                 disabled={isSubmitting || !formData.appointmentTime} 
                 className="w-full bg-black text-white py-6 rounded-2xl font-black text-xs uppercase tracking-[0.3em] hover:bg-[#FEB60D] hover:text-black transition-all shadow-xl disabled:opacity-50 flex items-center justify-center gap-4"
               >
-                {isSubmitting ? "Sincronizando Entorno..." : "Finalizar y Agendar Servicio"}
+                {isSubmitting ? "Procesando Cita..." : "Confirmar y Finalizar Reserva"}
                 {!isSubmitting && <ArrowRight size={18} />}
               </button>
             </form>
