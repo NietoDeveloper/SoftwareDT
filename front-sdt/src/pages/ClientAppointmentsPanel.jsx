@@ -81,8 +81,8 @@ const ClientAppointmentsPanel = () => {
               <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Software DT Secure ID: {user?._id?.slice(-6)}</span>
             </div>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-black uppercase tracking-tighter leading-none break-words">
-              {user?.name || "Usuario SDT"}<br/>
-              <span className="text-gold">Panel de Gestión</span>
+              {user?.name || "Panel"}<br/>
+              <span className="text-gold">Cliente</span>
             </h1>
           </div>
           
