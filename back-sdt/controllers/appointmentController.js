@@ -5,6 +5,7 @@ const asyncHandler = require('express-async-handler');
 
 // --- CREAR CITA ---
 const appointmentBooking = asyncHandler(async (req, res) => {
+    // Extraemos serviceName y price que vienen del frontend (Services.jsx flow)
     const { 
         doctorId, 
         userId: bodyUserId, 
@@ -13,36 +14,43 @@ const appointmentBooking = asyncHandler(async (req, res) => {
         phone, 
         appointmentDate, 
         appointmentTime, 
-        reason 
+        reason,
+        serviceName,
+        price 
     } = req.body;
 
-    if (!doctorId || !appointmentDate || !appointmentTime || !fullName || !email || !phone || !reason) {
+    // Validación: Agregamos flexibilidad por si serviceName viene del body
+    if (!doctorId || !appointmentDate || !appointmentTime || !fullName || !phone || !reason) {
         return res.status(400).json({ 
-            message: "Faltan campos obligatorios para procesar la reserva." 
+            message: "Faltan campos obligatorios (Fecha, Hora, Teléfono o Motivo) para procesar la reserva." 
         });
     }
 
     const userId = req.userId || bodyUserId || null; 
 
+    // Buscamos al doctor para tener la referencia, pero priorizamos la info del flujo de servicios
     const doctorData = await Doctor.findById(doctorId).lean();
     if (!doctorData) {
-        return res.status(404).json({ message: "El especialista o servicio solicitado no existe." });
+        return res.status(404).json({ message: "El especialista solicitado no existe en nuestra base de datos." });
     }
 
+    // CREACIÓN DE LA CITA
     const newAppointment = await Appointment.create({
         user: userId,
         doctor: doctorId,
-        serviceName: doctorData.name,         
-        specialization: doctorData.specialization,
+        // Si viene serviceName del front lo usamos, si no, usamos el nombre del doctor
+        serviceName: serviceName || doctorData.name,         
+        specialization: doctorData.specialization || "Consultoría Técnica",
         userInfo: { fullName, email, phone },
         appointmentDetails: {
             date: new Date(appointmentDate), 
             time: appointmentTime,
-            reason,
+            reason: reason,
             status: "pending"
         },
         paymentInfo: {
-            price: doctorData.ticketPrice || 0,
+            // Si viene el precio formateado del front lo usamos, sino el del doctor
+            price: price || doctorData.ticketPrice || 0,
             currency: "COP",
             isPaid: false
         }
@@ -51,29 +59,33 @@ const appointmentBooking = asyncHandler(async (req, res) => {
     if (newAppointment) {
         if (userId) {
             try {
+                // Actualizamos el array de citas del usuario
                 await User.findByIdAndUpdate(
                     userId, 
                     { $push: { appointments: newAppointment._id } },
                     { new: true, runValidators: false }
                 );
             } catch (error) {
-                console.error(`❌ Error vinculando cita: ${error.message}`);
+                console.error(`❌ Error vinculando cita al usuario: ${error.message}`);
             }
         }
+        
         return res.status(201).json({ 
             success: true,
-            appointmentId: newAppointment._id, 
-            message: "¡Reserva confirmada!" 
+            appointment: newAppointment, // Enviamos el objeto completo para la confirmación
+            message: "¡Reserva confirmada exitosamente!" 
         });
     } else {
-        res.status(400);
-        throw new Error("Error al registrar la cita.");
+        return res.status(400).json({ message: "No se pudo crear el registro de la cita." });
     }
 });
 
 // --- OBTENER TODAS LAS CITAS (ADMIN) ---
 const getAppointments = asyncHandler(async (req, res) => {
-    const appointments = await Appointment.find({}).sort({ createdAt: -1 });
+    const appointments = await Appointment.find({})
+        .populate('user', 'name email')
+        .populate('doctor', 'name specialization')
+        .sort({ createdAt: -1 });
     res.status(200).json({ success: true, appointments });
 });
 
@@ -85,11 +97,12 @@ const getUserAppointments = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "ID de usuario requerido" });
     }
 
-    const appointments = await Appointment.find({ user: userId }).sort({ createdAt: -1 });
+    const appointments = await Appointment.find({ user: userId })
+        .populate('doctor', 'name specialization')
+        .sort({ createdAt: -1 });
     res.status(200).json({ success: true, appointments });
 });
 
-// CRÍTICO: Exportar las TRES funciones para que coincidan con el archivo de rutas
 module.exports = { 
     appointmentBooking, 
     getAppointments, 
