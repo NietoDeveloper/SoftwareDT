@@ -1,27 +1,25 @@
-// IMPORTANTE: Subimos un nivel (..) para llegar a models
+// back-sdt/controllers/appointmentController.js
 const Appointment = require('../models/Appointment');
 const User = require('../models/User');
-const Doctor = require('../models/Doctor'); // Esto registra el esquema en la instancia de Mongoose
+const Doctor = require('../models/Doctor');
 const asyncHandler = require('express-async-handler');
 
-// --- CREAR CITA ---
+// --- CREAR CITA (RESERVA SDT) ---
 const appointmentBooking = asyncHandler(async (req, res) => {
-    console.log("--- PROCESANDO RESERVA EN DATACENTER SDT ---", req.body);
-
     const { 
         doctorId, 
         userId: bodyUserId, 
         fullName, 
         email, 
         phone, 
-        slotDate, // Cambiado para coincidir con el frontend
-        slotTime, // Cambiado para coincidir con el frontend
+        slotDate, 
+        slotTime, 
         reason,
         serviceName,
         price 
     } = req.body;
 
-    // Validación de campos con los nombres del frontend
+    // Validación estricta para evitar datos corruptos en el Datacenter
     if (!doctorId || !slotDate || !slotTime || !fullName || !phone) {
         return res.status(400).json({ 
             success: false, 
@@ -29,12 +27,12 @@ const appointmentBooking = asyncHandler(async (req, res) => {
         });
     }
 
+    // El userId puede venir del middleware de auth (req.userId) o del cuerpo del request
     const userId = req.userId || bodyUserId || null; 
     
-    // Buscamos al especialista
     const doctorData = await Doctor.findById(doctorId).lean();
     if (!doctorData) {
-        return res.status(404).json({ success: false, message: "Especialista no encontrado en la DB." });
+        return res.status(404).json({ success: false, message: "Especialista no encontrado." });
     }
 
     try {
@@ -44,9 +42,9 @@ const appointmentBooking = asyncHandler(async (req, res) => {
             serviceName: serviceName || "Consultoría Técnica",         
             specialization: doctorData.specialization || "Software Development",
             userInfo: { 
-                fullName: fullName, 
+                fullName, 
                 email: email || "contacto@softwaredt.com",
-                phone: phone 
+                phone 
             },
             appointmentDetails: {
                 date: slotDate, 
@@ -62,9 +60,11 @@ const appointmentBooking = asyncHandler(async (req, res) => {
         });
 
         if (newAppointment) {
+            // Sincronización bidireccional: actualizamos el array de citas del usuario
             if (userId) {
                 await User.findByIdAndUpdate(userId, { $push: { appointments: newAppointment._id } });
             }
+            
             res.status(201).json({ 
                 success: true, 
                 message: "¡Cita sincronizada con éxito!",
@@ -72,37 +72,41 @@ const appointmentBooking = asyncHandler(async (req, res) => {
             });
         }
     } catch (error) {
-        res.status(400).json({ success: false, message: `Error de Mongoose: ${error.message}` });
+        res.status(400).json({ success: false, message: `Error SDT-Datacenter: ${error.message}` });
     }
 });
 
-// --- OBTENER CITAS DE UN USUARIO (Optimizado para Panel) ---
+// --- OBTENER CITAS DE UN USUARIO (OPTIMIZADO PARA PANEL) ---
 const getUserAppointments = asyncHandler(async (req, res) => {
+    // Tomamos el ID de la URL o del token verificado
     const userId = req.params.userId || req.userId;
     
     if (!userId) {
-        return res.status(400).json({ success: false, message: "ID de usuario requerido." });
+        return res.status(400).json({ success: false, message: "Identificador de usuario no detectado." });
     }
 
-    // Usamos el modelo Doctor importado arriba para asegurar que el populate funcione
+    // Buscamos citas vinculadas al clúster del usuario
     const appointments = await Appointment.find({ user: userId })
         .populate({
             path: 'doctor',
-            model: Doctor // Forzamos el uso del modelo registrado
+            model: Doctor,
+            select: 'name specialization image'
         })
-        .sort({ createdAt: -1 });
+        .sort({ 'appointmentDetails.date': -1, 'appointmentDetails.time': -1 });
 
+    // Mapeo preciso para que el Frontend no tenga que procesar lógica extra
     const formattedAppointments = appointments.map(appt => ({
         _id: appt._id,
         serviceName: appt.serviceName,
         specialization: appt.specialization,
-        appointmentDate: appt.appointmentDetails.date,
-        appointmentTime: appt.appointmentDetails.time,
-        status: appt.appointmentDetails.status,
-        reason: appt.appointmentDetails.reason,
-        price: appt.paymentInfo.price,
-        isPaid: appt.paymentInfo.isPaid,
-        doctorName: appt.doctor?.name || "Especialista SoftwareDT"
+        appointmentDate: appt.appointmentDetails?.date,
+        appointmentTime: appt.appointmentDetails?.time,
+        status: appt.appointmentDetails?.status || 'pending',
+        reason: appt.appointmentDetails?.reason,
+        price: appt.paymentInfo?.price,
+        isPaid: appt.paymentInfo?.isPaid,
+        doctorName: appt.doctor?.name || "Especialista SoftwareDT",
+        doctorImage: appt.doctor?.image || ""
     }));
 
     res.status(200).json({ 
@@ -112,12 +116,13 @@ const getUserAppointments = asyncHandler(async (req, res) => {
     });
 });
 
-// --- OBTENER TODAS LAS CITAS (ADMIN) ---
+// --- OBTENER TODAS LAS CITAS (ADMIN / MONITORING) ---
 const getAppointments = asyncHandler(async (req, res) => {
     const appointments = await Appointment.find({})
         .populate({ path: 'user', model: User, select: 'name email' })
         .populate({ path: 'doctor', model: Doctor, select: 'name specialization' })
         .sort({ createdAt: -1 });
+        
     res.status(200).json({ success: true, appointments });
 });
 
