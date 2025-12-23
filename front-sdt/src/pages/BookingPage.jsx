@@ -191,7 +191,7 @@ const BookingPage = () => {
             <div className="w-10 h-10 bg-black text-gold rounded-lg flex items-center justify-center mb-4">
               <Briefcase size={20} />
             </div>
-            <p className="text-[8px] font-black text-gold uppercase tracking-widest mb-1">Ingeniero Asignado</p>
+            <p className="text-[8px] font-black text-gold uppercase tracking-widest mb-1">Servicio Asignado</p>
             <h2 className="text-xl font-black uppercase tracking-tight mb-2">{doctor?.name}</h2>
             <p className="text-xs font-bold leading-relaxed italic text-gray-500 line-clamp-3">
               "{doctor?.bio || "Consultor verificado para despliegues de Software DT."}"

@@ -78,7 +78,7 @@ const ClientAppointmentsPanel = () => {
             className="group flex items-center gap-3 bg-gold text-black border-2 border-black px-5 py-2 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all duration-300 hover:-translate-y-1 active:scale-95 shadow-xl"
           >
             <PlusCircle size={16} className="group-hover:rotate-90 transition-transform duration-300" />
-            Nueva Implementación
+            Nueva Cita
           </Link>
         </div>
       </div>
