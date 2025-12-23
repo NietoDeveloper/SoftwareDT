@@ -1,90 +1,57 @@
 const asyncHandler = require('express-async-handler');
-// La ruta ha sido corregida de '../../models/User' a '../models/User'
 const User = require('../models/User'); 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// ----------------------------------------------------------------------
-// --- 1. Registro de Usuario (userRegister) ---
+// --- 1. Registro de Usuario ---
 const userRegister = asyncHandler(async (req, res) => {
-    const { name, email, password, photo} = req.body;
+    const { name, email, password, photo } = req.body;
     if (!name || !email || !password)
-        return res.status(400).json({ message: 'all credentials are required' });
+        return res.status(400).json({ success: false, message: 'Todos los campos son obligatorios' });
 
     const userexist = await User.findOne({ email });
-    if (userexist) return res.status(409).json({ message: 'User already exists! login instead' });
+    if (userexist) return res.status(409).json({ success: false, message: 'El usuario ya existe' });
 
-    // Hashing de la contraseña
     const hashedpassword = await bcrypt.hash(password, 10);
     
-    //store the user details in the database
     const result = await User.create({
         name,
         email,
-        photo,
+        photo: photo || null,
         password: hashedpassword,
     });
-    console.log(result);
 
     if (result) {
         res.status(201).json({
-            message: 'User created successfully',
-            user: {
-                id: result._id,
-                name: result.name,
-                email: result.email,
-                photo: result.photo,
-            }, });
-    } else return res.status(500).json({ message: 'Something went wrong' });
+            success: true,
+            message: 'Usuario creado con éxito',
+            user: { id: result._id, name: result.name, email: result.email }
+        });
+    } else return res.status(500).json({ message: 'Error al crear usuario' });
 });
 
-// ----------------------------------------------------------------------
-// --- 2. Inicio de Sesión (userLogin) ---
+// --- 2. Inicio de Sesión ---
 const userLogin = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
-    // --- CÓDIGO DE DEPURACIÓN TEMPORAL ---
-    console.log('--- LOGIN ATTEMPT ---');
-    console.log(`Received email: ${email}`);
-    console.log(`Received password (WARNING: Plaintext): ${password}`); 
-    // ---------------------------------------
-
     if (!email || !password) {
-        return res.status(400).json({ message: 'Login credentials required!' });
+        return res.status(400).json({ message: 'Credenciales requeridas' });
     }
 
-    // Encuentra el usuario e incluye explícitamente el hash de la contraseña (select('+password'))
+    // Buscamos usuario incluyendo password para comparar y datos de perfil
     const foundUser = await User.findOne({ email }).select('+password').exec();
     
-    // --- CÓDIGO DE DEPURACIÓN TEMPORAL ---
-    console.log(`User found in DB: ${!!foundUser}`);
-    // ---------------------------------------
-
-    // Si el usuario no existe O las credenciales son inválidas
-    if (!foundUser) {
-        console.log('DEBUG: User not found in database.');
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
-    
-    const match = await bcrypt.compare(password, foundUser.password);
-    
-    // --- CÓDIGO DE DEPURACIÓN TEMPORAL ---
-    console.log(`Password match result: ${match}`);
-    // ---------------------------------------
-
-    if (!match) {
-        console.log('DEBUG: Password mismatch.');
-        return res.status(401).json({ message: 'Unauthorized' });
+    if (!foundUser || !(await bcrypt.compare(password, foundUser.password))) {
+        return res.status(401).json({ message: 'Credenciales inválidas' });
     }
 
-    // Create access token
+    // Generación de Tokens
     const accessToken = jwt.sign(
-        { id: foundUser._id, email: foundUser.email },
+        { id: foundUser._id, email: foundUser.email, role: foundUser.role },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: '1h' }
     );
 
-    // Create refresh token
     const refreshToken = jwt.sign(
         { id: foundUser._id },
         process.env.REFRESH_TOKEN_SECRET,
@@ -94,32 +61,44 @@ const userLogin = asyncHandler(async (req, res) => {
     foundUser.refreshToken = [...(foundUser.refreshToken || []), refreshToken];
     await foundUser.save();
 
-    const userData = await User.findById(foundUser._id).select('-password -refreshToken -email');
+    // AJUSTE PARA EL PANEL: Enviamos la data completa que el frontend espera mostrar
+    const userData = {
+        _id: foundUser._id,
+        name: foundUser.name,
+        email: foundUser.email, // IMPORTANTE: No lo quites, el panel lo usa
+        photo: foundUser.photo,
+        role: foundUser.role,
+        gender: foundUser.gender,
+        bloodType: foundUser.bloodType,
+        phone: foundUser.phone,
+        location: "Bogotá, Colombia", // Dato del perfil NietoDeveloper
+        experience: "5.5 años"
+    };
 
     res.cookie('jwt', refreshToken, {
         httpOnly: true,
         sameSite: 'None', 
-        secure: process.env.NODE_ENV === 'production' || true, 
-        maxAge: 24 * 60 * 60 * 1000, // 1 day
+        secure: true, 
+        maxAge: 24 * 60 * 60 * 1000,
     });
 
-    res.status(200).json({ accessToken, userData, message: 'Login successful' });
+    res.status(200).json({ success: true, accessToken, userData, message: 'Login exitoso' });
 });
 
+// --- 3. Actualizar Detalles ---
 const updateUserDetails = asyncHandler(async (req, res) => {
-    if (!req?.params?.id)
-        return res.status(400).json({ message: 'User id required!' });
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ message: 'ID requerido' });
 
-    const foundUser = await User.findOne({ _id: req.params.id }).exec();
-    if (!foundUser) {
-        return res.status(404).json({ message: 'No user with that ID was found' }) 
-    };
     const { name, email, password, bloodType, gender, phone, photo } = req.body;
-    
-    // Evitar duplicidad de email si el email cambia
+    const foundUser = await User.findById(id);
+
+    if (!foundUser) return res.status(404).json({ message: 'Usuario no encontrado' });
+
+    // Validar email duplicado si se intenta cambiar
     if (email && email !== foundUser.email) {
         const emailExists = await User.findOne({ email });
-        if (emailExists) return res.status(409).json({ message: 'The new email address is already in use' });
+        if (emailExists) return res.status(409).json({ message: 'Email ya en uso' });
         foundUser.email = email;
     }
     
@@ -130,43 +109,30 @@ const updateUserDetails = asyncHandler(async (req, res) => {
     if (phone) foundUser.phone = phone;
     if (photo) foundUser.photo = photo;
 
-    await foundUser.save();
-    res.status(200).json({ message: 'User details updated successfully!' });
-}); // <-- AÑADIDA LLAVE DE CIERRE FALTANTE
+    const updated = await foundUser.save();
+    
+    res.status(200).json({ 
+        success: true, 
+        message: 'Perfil actualizado!',
+        data: updated 
+    });
+});
 
-// ----------------------------------------------------------------------
-// --- 4. Cierre de Sesión (handleUserLogout) ---
+// --- 4. Logout ---
 const handleUserLogout = asyncHandler(async (req, res) => {
     const cookies = req.cookies;
-    if (!cookies?.jwt) {
-        return res.sendStatus(204); // No content
-    }
+    if (!cookies?.jwt) return res.sendStatus(204);
     
     const refreshToken = cookies.jwt;
-    
-    // Check if the refresh token is in the database
     const foundUser = await User.findOne({ refreshToken }).exec();
-    if (!foundUser) {
-        // Limpia la cookie incluso si el token no está en la DB
-        res.clearCookie('jwt', { 
-            httpOnly: true, 
-            sameSite: 'None',
-            secure: process.env.NODE_ENV === 'production' || true,
-        });
-        return res.sendStatus(204);
+    
+    if (foundUser) {
+        foundUser.refreshToken = foundUser.refreshToken.filter(token => token !== refreshToken);
+        await foundUser.save();
     }
 
-    // Delete the refresh token from the database
-    foundUser.refreshToken = foundUser.refreshToken.filter(token => token !== refreshToken);
-    await foundUser.save();
-
-    // Clear the refresh token cookie
-    res.clearCookie('jwt', { 
-        httpOnly: true, 
-        sameSite: 'None',
-        secure: process.env.NODE_ENV === 'production' || true,
-    });
+    res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
     res.sendStatus(204);
-}); // <-- AÑADIDA LLAVE DE CIERRE FALTANTE
+});
 
-module.exports = { userRegister, userLogin, updateUserDetails, handleUserLogout};
+module.exports = { userRegister, userLogin, updateUserDetails, handleUserLogout };
