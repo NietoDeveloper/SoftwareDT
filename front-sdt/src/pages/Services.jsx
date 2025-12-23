@@ -13,7 +13,7 @@ const ArrowRightIcon = (props) => (
 const ServicesList = () => {
   const services = [
     {
-      id: "web-apps", // Añadido ID para consistencia
+      id: "web-apps",
       title: "Desarrollo Web y Apps",
       subtitle: "Software a Medida",
       description: "Creación de sitios web dinámicos, aplicaciones móviles iOS/Android y gestión de bases de datos seguras.",
@@ -57,7 +57,7 @@ const ServicesList = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-card font-sans antialiased">
+    <div className="min-h-screen bg-main font-sans antialiased">
       <style dangerouslySetInnerHTML={{ __html: `
         .nav-toggle, button[aria-label="Menu"] {
           background-color: transparent !important;
@@ -80,7 +80,7 @@ const ServicesList = () => {
         <div className="text-center mb-16 space-y-2">
           <div className="inline-flex items-center gap-2">
             <div className="w-8 h-[2px] bg-gold shadow-[0_0_8px_#FFD700]"></div>
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Informacion De Productos</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Información De Productos</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter">
             Nuestros <span className="text-gold">Servicios</span>
@@ -91,13 +91,16 @@ const ServicesList = () => {
           {services.map((service, index) => (
             <Link
               key={index}
-              /* FLUJO ACTUALIZADO: Lleva a la lista de ingenieros con la info del servicio */
               to="/doctors"
+              /* Persistencia de datos para el flujo de reserva:
+                 Se envía 'selectedService' con la estructura requerida por el backend 
+              */
               state={{ 
                 selectedService: {
-                  name: service.title,
+                  title: service.title, // 'title' es la clave principal usada en el flujo posterior
                   id: service.id,
-                  price: service.price
+                  price: service.price,
+                  subtitle: service.subtitle
                 } 
               }}
               className="group bg-white border-[4px] border-black rounded-[30px] p-6 transition-all duration-300 ease-out cursor-pointer 
