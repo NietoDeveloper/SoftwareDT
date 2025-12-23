@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios'; 
 import { Lock } from "lucide-react";
 
-const API_BASE_URL = "http://localhost:5000/api/user"; 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api"; 
 
 const Login = () => {
     const [error, setError] = useState(null);
@@ -27,11 +27,19 @@ const Login = () => {
         setError(null);
         setIsLoading(true);
         try {
-            const response = await axios.post(`${API_BASE_URL}/login`, data);
+            // Usamos la URL base dinámica para evitar fallos en producción
+            const response = await axios.post(`${API_BASE_URL}/user/login`, data);
+            
             const { accessToken, userData } = response.data;
-            const fullToken = `Bearer ${accessToken}`;
-            setToken(fullToken); 
+            
+            // --- AJUSTE ESTRATÉGICO SDT ---
+            // Guardamos solo el hash puro. El interceptor en api.js ya agrega el "Bearer "
+            // Esto evita que enviemos accidentalmente "Bearer Bearer [token]"
+            const cleanToken = accessToken.replace(/"/g, "").trim();
+            
+            setToken(cleanNewToken || cleanToken); // Persistencia limpia
             setUser(userData); 
+            
             toast.success(`👋 ¡Bienvenido al Datacenter, ${userData.name || 'Developer'}!`);
             navigate(from, { replace: true }); 
             reset();

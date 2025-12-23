@@ -8,7 +8,7 @@ const UserProvider = ({ children }) => {
     const [user, setUser] = useState(() => {
         try {
             const savedUser = localStorage.getItem('userData');
-            if (!savedUser || savedUser === "undefined") return null;
+            if (!savedUser || savedUser === "undefined" || savedUser === "null") return null;
             return JSON.parse(savedUser);
         } catch (e) {
             console.error("DEBUG [SDT]: Error recuperando userData", e);
@@ -20,10 +20,11 @@ const UserProvider = ({ children }) => {
     // 2. Inicialización de Token (Limpieza total de strings basura)
     const [token, setToken] = useState(() => {
         const savedToken = localStorage.getItem('token');
-        // Validamos que no sea un string de error común o vacío
-        return (savedToken && savedToken !== "undefined" && savedToken !== "null" && savedToken !== "") 
-            ? savedToken 
-            : null;
+        if (!savedToken || savedToken === "undefined" || savedToken === "null" || savedToken === "") return null;
+        
+        // --- LIMPIEZA DE SEGURIDAD SDT ---
+        // Eliminamos comillas accidentales y el prefijo Bearer si se guardó mal
+        return savedToken.replace(/"/g, "").replace(/Bearer /g, "").trim();
     });
 
     const [loading, setLoading] = useState(true); 
@@ -36,6 +37,7 @@ const UserProvider = ({ children }) => {
     useEffect(() => {
         tokenRef.current = token;
         if (token) {
+            // Guardamos el hash puro, sin comillas adicionales
             localStorage.setItem('token', token);
         } else {
             localStorage.removeItem('token');
@@ -51,30 +53,27 @@ const UserProvider = ({ children }) => {
         }
     }, [user]);
 
-    // handleLogout estable con useCallback para evitar loops en los interceptores
+    // handleLogout estable
     const handleLogout = useCallback(() => {
         setToken(null);
         setUser(null);
         setAppointmentDetails(null);
-        localStorage.clear(); // Limpieza total preventiva del datacenter
+        localStorage.clear(); 
     }, []); 
 
-    // Función segura para obtener el token en peticiones async
     const getAccessToken = useCallback(() => {
         return tokenRef.current; 
     }, []); 
 
-    // Configuración única de interceptores al montar el componente
+    // Configuración única de interceptores
     useEffect(() => {
         const initAuth = async () => {
             setupInterceptors(getAccessToken, setToken, handleLogout); 
-            // Pequeño delay artificial para asegurar que la animación de carga sea suave
             setTimeout(() => setLoading(false), 500);
         };
         initAuth();
     }, [getAccessToken, handleLogout]); 
 
-    // Memorización del valor del contexto para evitar re-renders innecesarios en la app
     const contextValue = useMemo(() => ({
         user,
         setUser, 
@@ -92,7 +91,6 @@ const UserProvider = ({ children }) => {
             {!loading ? children : (
                 <div className="flex items-center justify-center h-screen bg-main">
                     <div className="flex flex-col items-center gap-6">
-                        {/* Spinner estilo SoftwareDT */}
                         <div className="relative">
                             <div className="w-16 h-16 border-4 border-gainsboro rounded-full"></div>
                             <div className="w-16 h-16 border-4 border-yellowColor border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>

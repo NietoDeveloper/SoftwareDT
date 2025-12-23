@@ -50,7 +50,7 @@ const DoctorList = () => {
         {/* ENCABEZADO RESPONSIVE */}
         <div className="text-center mb-12 sm:mb-20 space-y-4">
           <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-headingColor uppercase tracking-tighter leading-none">
-            Asignar <span className="text-gold">Especialista</span>
+            Asignar <span className="text-gold">Servicio</span>
           </h1>
           {selectedServiceInfo && (
             <div className="inline-block bg-white/50 backdrop-blur-sm border border-gold/30 px-4 py-1.5 rounded-full mx-2">
@@ -108,7 +108,7 @@ const DoctorList = () => {
                     </span>
                   </div>
                   <span className="text-[9px] font-black text-textColor/30 uppercase tracking-widest hidden sm:block">
-                    Confianza DT
+                    Confianza 
                   </span>
                 </div>
                 
