@@ -5,9 +5,7 @@ const asyncHandler = require('express-async-handler');
 
 // --- CREAR CITA ---
 const appointmentBooking = asyncHandler(async (req, res) => {
-    // Depuración: Ver exactamente qué llega del frontend
-    console.log("--- DATOS RECIBIDOS EN EL BACKEND ---");
-    console.log(req.body);
+    console.log("--- DATOS RECIBIDOS EN EL BACKEND ---", req.body);
 
     const { 
         doctorId, 
@@ -22,40 +20,35 @@ const appointmentBooking = asyncHandler(async (req, res) => {
         price 
     } = req.body;
 
-    // Validación estricta antes de tocar la DB
     if (!doctorId || !appointmentDate || !appointmentTime || !fullName || !phone) {
-        return res.status(400).json({ 
-            message: "Información incompleta: Faltan campos obligatorios." 
-        });
+        return res.status(400).json({ message: "Información incompleta: Faltan campos obligatorios." });
     }
 
     const userId = req.userId || bodyUserId || null; 
-
     const doctorData = await Doctor.findById(doctorId).lean();
+
     if (!doctorData) {
         return res.status(404).json({ message: "Especialista no encontrado." });
     }
 
-    // CREACIÓN DE LA CITA
     try {
         const newAppointment = await Appointment.create({
             user: userId,
             doctor: doctorId,
-            serviceName: serviceName || doctorData.name,         
-            specialization: doctorData.specialization || "Consultoría Técnica",
+            serviceName: serviceName || "Consultoría Técnica",         
+            specialization: doctorData.specialization || "Software Development",
             userInfo: { 
                 fullName: fullName, 
-                email: email || (req.user ? req.user.email : "contacto@softwaredt.com"), // EVITA EL ERROR 400
+                email: email || "contacto@softwaredt.com",
                 phone: phone 
             },
             appointmentDetails: {
-                date: new Date(appointmentDate), 
+                date: appointmentDate, // Guardamos como string o Date según tu esquema
                 time: appointmentTime,
                 reason: reason || "Sin motivo especificado",
                 status: "pending"
             },
             paymentInfo: {
-                // Convertimos a String para que coincida con el nuevo modelo ajustado
                 price: price ? price.toString() : (doctorData.ticketPrice ? doctorData.ticketPrice.toString() : "0"),
                 currency: "COP",
                 isPaid: false
@@ -64,38 +57,16 @@ const appointmentBooking = asyncHandler(async (req, res) => {
 
         if (newAppointment) {
             if (userId) {
-                await User.findByIdAndUpdate(
-                    userId, 
-                    { $push: { appointments: newAppointment._id } }
-                );
+                await User.findByIdAndUpdate(userId, { $push: { appointments: newAppointment._id } });
             }
-            
-            console.log("✅ Cita creada con éxito:", newAppointment._id);
-            return res.status(201).json({ 
-                success: true,
-                appointment: newAppointment,
-                message: "¡Reserva confirmada exitosamente!" 
-            });
+            res.status(201).json({ success: true, appointment: newAppointment });
         }
     } catch (error) {
-        console.error("❌ ERROR MONGOOSE:", error.message);
-        return res.status(400).json({ 
-            success: false, 
-            message: `Error de validación: ${error.message}` 
-        });
+        res.status(400).json({ success: false, message: error.message });
     }
 });
 
-// --- OBTENER TODAS LAS CITAS (ADMIN) ---
-const getAppointments = asyncHandler(async (req, res) => {
-    const appointments = await Appointment.find({})
-        .populate('user', 'name email')
-        .populate('doctor', 'name specialization')
-        .sort({ createdAt: -1 });
-    res.status(200).json({ success: true, appointments });
-});
-
-// --- OBTENER CITAS DE UN USUARIO ---
+// --- OBTENER CITAS DE UN USUARIO (Optimizado para el Panel) ---
 const getUserAppointments = asyncHandler(async (req, res) => {
     const { userId } = req.params;
     
@@ -104,6 +75,31 @@ const getUserAppointments = asyncHandler(async (req, res) => {
     }
 
     const appointments = await Appointment.find({ user: userId })
+        .populate('doctor', 'name specialization')
+        .sort({ createdAt: -1 });
+
+    // MAPEAMOS LA DATA para que el Frontend la lea sin buscar dentro de objetos anidados
+    const formattedAppointments = appointments.map(appt => ({
+        _id: appt._id,
+        serviceName: appt.serviceName,
+        appointmentDate: appt.appointmentDetails.date,
+        appointmentTime: appt.appointmentDetails.time,
+        status: appt.appointmentDetails.status,
+        reason: appt.appointmentDetails.reason,
+        price: appt.paymentInfo.price,
+        doctorId: appt.doctor
+    }));
+
+    res.status(200).json({ 
+        success: true, 
+        appointments: formattedAppointments 
+    });
+});
+
+// --- OBTENER TODAS LAS CITAS (ADMIN) ---
+const getAppointments = asyncHandler(async (req, res) => {
+    const appointments = await Appointment.find({})
+        .populate('user', 'name email')
         .populate('doctor', 'name specialization')
         .sort({ createdAt: -1 });
     res.status(200).json({ success: true, appointments });
