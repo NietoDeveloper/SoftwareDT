@@ -1,9 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useLocation, Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react"; // Añadido useContext
+import { UserContext } from "../context/UserContext.jsx"; // Importamos el contexto
 import {
   Calendar,
-  User,
+  CircleUser, 
   Clock,
   CheckCircle,
   Briefcase,
@@ -20,12 +21,12 @@ const IconWrapper = ({ children }) => (
 );
 
 const AppointmentConfirmation = () => {
+  const { user } = useContext(UserContext); // Extraemos el usuario del contexto
   const location = useLocation();
   const navigate = useNavigate();
   
   const appointment = location.state?.appointment;
 
-  // Redirigir si no hay datos (evita crash por acceso directo a la URL)
   useEffect(() => {
     if (!location.state) {
       navigate("/client-appointments");
@@ -43,11 +44,10 @@ const AppointmentConfirmation = () => {
     }
   };
 
-  // Normalización de datos para que coincida con el esquema de la API
   const displayData = {
     _id: appointment?._id || "ID-SYNC-PENDING",
-    fullName: appointment?.fullName || appointment?.userInfo?.fullName || "CLIENTE SDT",
-    // Priorizamos slotDate/Time que viene del backend de Booking
+    // Prioridad: 1. Datos de la cita, 2. Nombre del contexto (Manuel), 3. Fallback
+    fullName: appointment?.fullName || appointment?.userInfo?.fullName || user?.name || "CLIENTE SDT",
     date: appointment?.slotDate || appointment?.appointmentDate || "PENDIENTE",
     time: appointment?.slotTime || appointment?.appointmentTime || "PENDIENTE",
     reason: appointment?.reason || "Implementación técnica solicitada.",
@@ -59,13 +59,10 @@ const AppointmentConfirmation = () => {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-main font-sans text-black p-4 sm:p-8 lg:p-12 overflow-x-hidden">
       
-      {/* Contenedor Principal Estilo SoftwareDT */}
       <div className="w-full max-w-full sm:max-w-2xl lg:max-w-4xl xl:max-w-5xl bg-white p-6 sm:p-10 lg:p-16 rounded-[2rem] sm:rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.08)] border border-black/5 flex flex-col items-center relative overflow-hidden">
         
-        {/* Decoración de fondo sutil */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
 
-        {/* Header de Éxito */}
         <div className="w-full text-center mb-10 sm:mb-14 relative z-10">
           <div className="mx-auto mb-6 w-16 h-16 sm:w-24 sm:h-24 bg-black text-gold rounded-full flex items-center justify-center shadow-2xl border-4 border-white animate-bounce-short">
             <CheckCircle className="w-8 h-8 sm:w-12 sm:h-12" strokeWidth={2.5} />
@@ -79,7 +76,6 @@ const AppointmentConfirmation = () => {
           </div>
         </div>
 
-        {/* Sección Grid Principal */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-8 mb-10">
           <div className="group flex items-center p-6 sm:p-8 bg-main/30 rounded-3xl border-2 border-transparent hover:border-black transition-all">
              <IconWrapper><Briefcase className="h-6 w-6 sm:h-8 sm:w-8" /></IconWrapper>
@@ -101,7 +97,6 @@ const AppointmentConfirmation = () => {
           </div>
         </div>
 
-        {/* Detalles Técnicos */}
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           <DetailItem 
             icon={<Calendar className="h-5 w-5 sm:h-6 sm:w-6" />} 
@@ -110,12 +105,12 @@ const AppointmentConfirmation = () => {
           />
           <DetailItem 
             icon={<Clock className="h-5 w-5 sm:h-6 sm:w-6" />} 
-            title="Slot Asignado" 
+            title="Hora" 
             value={displayData.time} 
           />
           <DetailItem 
-            icon={<User className="h-5 w-5 sm:h-6 sm:w-6" />} 
-            title="Líder de Proyecto" 
+            icon={<CircleUser className="h-5 w-5 sm:h-6 sm:w-6" />} 
+            title="Usuario" 
             value={displayData.fullName} 
           />
           <DetailItem 
@@ -125,7 +120,6 @@ const AppointmentConfirmation = () => {
           />
         </div>
 
-        {/* Bloque de Requerimiento */}
         <div className="w-full mt-10 p-6 sm:p-10 bg-black text-white rounded-[2rem] relative group">
           <div className="absolute top-4 right-6 text-gold/20 font-black text-4xl opacity-20">"</div>
           <p className="text-[9px] font-black text-gold uppercase tracking-[0.3em] mb-4">Especificaciones del Cliente</p>
@@ -134,7 +128,6 @@ const AppointmentConfirmation = () => {
           </p>
         </div>
 
-        {/* Call to Action */}
         <div className="w-full mt-12 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
           <Link
             to="/client-appointments" 
@@ -153,7 +146,6 @@ const AppointmentConfirmation = () => {
         </div>
       </div>
       
-      {/* Footer System */}
       <div className="mt-12 text-center">
         <p className="text-[10px] font-black text-black uppercase tracking-[0.4em] opacity-40">
           SDT-SYSTEM-CONFIRMATION • 2025 • BOGOTÁ D.C.
