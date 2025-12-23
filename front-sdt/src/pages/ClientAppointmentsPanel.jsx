@@ -118,7 +118,7 @@ const ClientAppointmentsPanel = () => {
         <div className="w-full lg:w-[65%] space-y-12">
           <section>
             <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 mb-8">
-              <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter">Historial de Transacciones</h2>
+              <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter">Historial de Citas</h2>
               <div className="flex flex-wrap gap-2 bg-white border-2 border-black/10 p-1.5 rounded-2xl shadow-sm w-full xl:w-auto">
                 {["pending", "completed", "cancelled"].map((tab) => (
                   <button
@@ -142,7 +142,7 @@ const ClientAppointmentsPanel = () => {
                 </div>
               ) : filteredAppointments.length === 0 ? (
                 <div className="bg-white/50 border-2 border-black/5 border-dashed p-10 sm:p-16 rounded-[2rem] text-center italic text-gray-400 font-bold text-sm">
-                  No se registran transacciones en este estado.
+                  No se registran Citas en este estado.
                 </div>
               ) : (
                 filteredAppointments.map((appt) => (
@@ -174,7 +174,7 @@ const ClientAppointmentsPanel = () => {
 
           {/* REGISTROS DE ACTIVIDAD DINÁMICOS */}
           <section>
-             <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter mb-8">Logs de Actividad SDT</h2>
+             <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter mb-8">Historial Mensajeria</h2>
              <div className="bg-white border-2 border-black/5 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden shadow-sm">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left min-w-[300px]">
@@ -208,10 +208,9 @@ const ClientAppointmentsPanel = () => {
           </section>
         </div>
 
-        {/* ASIDE - INFO DEL INGENIERO CON FOTO DINÁMICA */}
         <aside className="w-full lg:w-[35%]">
           <div className="bg-white border-2 border-black/5 rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 shadow-sm sticky top-10">
-            <h2 className="text-lg sm:text-xl font-black uppercase tracking-tighter mb-6 text-center">Canal Directo</h2>
+            <h2 className="text-lg sm:text-xl font-black uppercase tracking-tighter mb-6 text-center">Contacto Directo</h2>
             
             <div className="flex flex-col items-center text-center mb-8">
                 <div className="w-20 h-20 bg-main rounded-full flex items-center justify-center mb-4 border-2 border-black/5 overflow-hidden ring-4 ring-yellowColor/10">
@@ -222,9 +221,9 @@ const ClientAppointmentsPanel = () => {
                     onError={(e) => { e.target.src = "https://via.placeholder.com/150" }}
                   />
                 </div>
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Ingeniero Senior Asignado</p>
-                <h3 className="text-lg font-black uppercase mt-1">Nieto Developer</h3>
-                <p className="text-[9px] font-bold text-yellowColor mt-1">Nivel: #3 Committers Colombia</p>
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Servicio Asignado</p>
+                <h3 className="text-lg font-black uppercase mt-1">Software D T</h3>
+                <p className="text-[9px] font-bold text-yellowColor mt-1">Colombia</p>
             </div>
 
             <div className="space-y-4">
