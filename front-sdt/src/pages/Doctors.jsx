@@ -1,16 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useNavigate, useLocation } from "react-router-dom"; // Importamos useLocation
+import { useNavigate, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { motion } from "framer-motion";
 import Footer from "../components/Footer/Footer";
 import { ArrowRight } from "lucide-react";
 
 const DoctorList = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
-  // Recuperamos la información del servicio seleccionado en la fase anterior (Services.jsx)
   const selectedServiceInfo = location.state?.selectedService || null;
 
   const getDoctors = async () => {
@@ -19,119 +18,106 @@ const DoctorList = () => {
       const res = await axios.get(`${apiUrl}/doctors`);
       return res.data.doctors || res.data;
     } catch (error) {
-      toast.error("Error al conectar con el servidor");
+      toast.error("Error al conectar con el Datacenter");
       throw error;
     }
   };
 
-  const {
-    data: doctors = [],
-    error,
-    isLoading,
-  } = useQuery({
+  const { data: doctors = [], error, isLoading } = useQuery({
     queryKey: ["doctors"],
     queryFn: getDoctors,
   });
 
-  // FLUJO ACTUALIZADO: 
-  // Ahora envía tanto la data del especialista como la del servicio previo al Booking
   const navigateToBooking = (doctor) => {
     navigate(`/book-appointment/${doctor._id}`, {
       state: { 
         doctorData: doctor,
-        serviceData: selectedServiceInfo // Aquí se mantiene la cadena de información
+        serviceData: selectedServiceInfo 
       },
     });
   };
 
-  if (isLoading)
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC]">
-        <h1 className="text-xl font-black text-black animate-pulse uppercase tracking-widest">
-          Sincronizando Staff DT...
-        </h1>
-      </div>
-    );
-
-  if (error)
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC]">
-        <h1 className="text-red-600 text-xl font-black uppercase tracking-tighter">
-          Error de Conexión
-        </h1>
-      </div>
-    );
+  if (isLoading) return (
+    <div className="min-h-screen flex items-center justify-center bg-main">
+      <div className="w-10 h-10 border-4 border-gold border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
 
   return (
-    <div className="min-h-screen bg-[#DCDCDC] font-sans antialiased">
-      <div className="mx-auto px-6 py-20 max-w-[1800px]">
+    <div className="min-h-screen bg-main font-sans antialiased overflow-x-hidden">
+      <div className="mx-auto px-4 sm:px-6 py-12 sm:py-20 max-w-[1800px]">
         
-        {/* ENCABEZADO ESTILO DT */}
-        <div className="text-center mb-20 space-y-4">
-          <div className="inline-flex items-center gap-3">
-            <div className="w-10 h-1 bg-[#FFD700] shadow-[0_0_12px_rgba(255,215,0,0.6)]"></div>
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-500">
-              Software DT Engineering
-            </span>
-          </div>
-          <h1 className="text-5xl sm:text-7xl font-black text-black uppercase tracking-tighter leading-none">
-            Asignar <span className="text-[#FFD700] drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]">Servicio</span>
+        {/* ENCABEZADO RESPONSIVE */}
+        <div className="text-center mb-12 sm:mb-20 space-y-4">
+          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-headingColor uppercase tracking-tighter leading-none">
+            Asignar <span className="text-gold">Especialista</span>
           </h1>
           {selectedServiceInfo && (
-            <p className="text-xs font-black uppercase tracking-widest text-gray-400 mt-4">
-              Para: <span className="text-black">{selectedServiceInfo.name}</span>
-            </p>
+            <div className="inline-block bg-white/50 backdrop-blur-sm border border-gold/30 px-4 py-1.5 rounded-full mx-2">
+              <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-black">
+                PROYECTO: <span className="text-gold">{selectedServiceInfo.name || selectedServiceInfo.title}</span>
+              </p>
+            </div>
           )}
         </div>
 
-        {/* GRID DE INGENIEROS/ESPECIALISTAS */}
-        <div className="flex flex-wrap justify-center gap-8 lg:gap-10">
+        {/* GRID RESPONSIVE: De 310px a 1800px */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 sm:gap-10 justify-items-center">
           {doctors.map((doctor) => (
-            <div
+            <motion.div
               key={doctor._id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               onClick={() => navigateToBooking(doctor)}
-              className="group bg-white border-2 border-black/5 rounded-[2.5rem] p-8 transition-all duration-500 
-                         flex flex-col items-center justify-between text-center 
-                         w-full sm:max-w-[360px] h-[450px] relative overflow-hidden
-                         shadow-[0_10px_40px_rgba(0,0,0,0.03)] 
-                         hover:shadow-[0_20px_60px_rgba(255,215,0,0.15)] 
-                         hover:-translate-y-3 cursor-pointer"
+              className="group bg-card border border-black/5 rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 transition-all duration-500 
+                         flex flex-col justify-between text-center 
+                         w-full max-w-[400px] min-w-[280px] h-[400px] sm:h-[450px] relative
+                         shadow-sm hover:shadow-[0_20px_40px_rgba(255,215,0,0.12)] 
+                         hover:-translate-y-2 cursor-pointer"
             >
-              <div className="absolute top-8 left-8">
-                <div className="w-2 h-2 bg-[#FFD700] rounded-full animate-ping"></div>
+              {/* STATUS INDICATOR */}
+              <div className="absolute top-6 right-6">
+                <div className="w-2 h-2 bg-gold rounded-full shadow-[0_0_8px_rgba(255,215,0,0.6)]"></div>
               </div>
 
-              <div className="w-full flex flex-col items-center">
-                <h3 className="mt-6 text-2xl font-black text-black uppercase tracking-tighter group-hover:text-[#FFD700] transition-colors duration-300">
+              {/* INFO PRINCIPAL (SIN FOTO) */}
+              <div className="w-full flex flex-col items-center pt-4">
+                <h3 className="text-2xl sm:text-3xl font-black text-headingColor uppercase tracking-tighter group-hover:text-gold transition-colors duration-300">
                   {doctor.name}
                 </h3>
-                <span className="mt-2 text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">
-                  {doctor.specialization || "Software Engineer"}
+                <div className="h-1 w-12 bg-gold/30 mt-2 group-hover:w-24 transition-all duration-500"></div>
+                <span className="text-[10px] font-black text-textColor/40 uppercase tracking-[0.2em] mt-4">
+                  {doctor.specialization || "Senior Software Engineer"}
                 </span>
               </div>
 
-              <div className="flex-1 flex items-center justify-center px-4">
-                <p className="text-gray-600 text-lg font-bold leading-relaxed italic">
-                  "{doctor.bio || "Especialista senior en desarrollo de arquitecturas de software."}"
+              {/* BIO CENTRAL */}
+              <div className="px-2 sm:px-4">
+                <p className="text-textColor/70 text-base sm:text-lg font-medium leading-relaxed italic line-clamp-4">
+                  "{doctor.bio || "Especialista en arquitecturas escalables y optimización de procesos dentro del ecosistema Software DT."}"
                 </p>
               </div>
 
-              <div className="w-full pt-6 border-t border-gray-50 flex items-center justify-between">
-                <div className="text-left">
-                  <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Confianza</p>
-                  <p className="text-lg font-black text-black">
-                    {doctor.totalRating || "5.0"}
-                  </p>
+              {/* FOOTER: RATING Y ACCIÓN */}
+              <div className="w-full pt-6 border-t border-black/5 flex items-center justify-between">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-gold/20 flex items-center justify-center bg-gold/5 group-hover:bg-gold/20 transition-colors">
+                    <span className="text-[11px] sm:text-xs font-black text-gold">
+                      {doctor.totalRating || "5.0"}
+                    </span>
+                  </div>
+                  <span className="text-[9px] font-black text-textColor/30 uppercase tracking-widest hidden sm:block">
+                    Confianza DT
+                  </span>
                 </div>
                 
-                <div className="w-14 h-14 rounded-2xl bg-black flex items-center justify-center 
-                                transition-all duration-300 shadow-[0_8px_20px_rgba(0,0,0,0.2)]
-                                group-hover:bg-[#FFD700] group-hover:shadow-[0_10px_25px_rgba(255,215,0,0.4)]
-                                group-hover:rotate-12">
-                  <ArrowRight className="w-6 h-6 text-white group-hover:text-black" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-black flex items-center justify-center 
+                                transition-all duration-500 group-hover:bg-gold shadow-lg shadow-black/10">
+                  <ArrowRight className="w-5 h-5 text-white group-hover:text-black transition-colors" />
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
