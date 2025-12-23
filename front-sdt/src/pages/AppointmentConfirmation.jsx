@@ -25,21 +25,31 @@ const AppointmentConfirmation = () => {
   // Extraemos la data enviada desde el navigate de BookingPage
   const { appointment, doctor, service, userName } = location.state || {};
 
-  // Redirección de seguridad si alguien intenta entrar a esta ruta sin datos de cita
+  // Redirección de seguridad si se accede directamente a la URL sin estado
   useEffect(() => {
     if (!location.state) {
       navigate("/");
     }
   }, [location.state, navigate]);
 
-  // Fallback data en caso de carga o error leve
-  const data = appointment || {
-    _id: "ID-PENDIENTE",
-    fullName: userName || "Usuario Software DT",
-    appointmentDate: "Fecha no disponible",
-    appointmentTime: "Hora no disponible",
-    reason: "Cita agendada",
-    price: "Consultar Tarifa"
+  // Formateo de fecha para que sea legible (opcional)
+  const formatDate = (dateString) => {
+    if (!dateString) return "No disponible";
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    try {
+      return new Date(dateString).toLocaleDateString('es-ES', options);
+    } catch {
+      return dateString;
+    }
+  };
+
+  // Fallback data robusta
+  const displayData = {
+    _id: appointment?._id || appointment?.appointmentId || "PENDIENTE",
+    fullName: userName || appointment?.userInfo?.fullName || "Cliente Software DT",
+    date: appointment?.appointmentDetails?.date || appointment?.appointmentDate || "Fecha no disponible",
+    time: appointment?.appointmentDetails?.time || appointment?.appointmentTime || "Hora no disponible",
+    reason: appointment?.appointmentDetails?.reason || appointment?.reason || "Cita agendada",
   };
 
   return (
@@ -63,7 +73,6 @@ const AppointmentConfirmation = () => {
 
         {/* Card del Especialista y Servicio */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
-          {/* Especialista */}
           <div className="group relative flex items-center p-8 bg-white rounded-3xl border-2 border-black transition-all hover:shadow-lg">
              <IconWrapper><Briefcase className="h-8 w-8" /></IconWrapper>
              <div className="ml-6">
@@ -72,12 +81,11 @@ const AppointmentConfirmation = () => {
              </div>
           </div>
 
-          {/* Servicio y Precio */}
           <div className="group relative flex items-center p-8 bg-black text-white rounded-3xl border-2 border-black transition-all hover:shadow-lg">
              <div className="p-3 rounded-full bg-amber-500 text-black"><ShieldCheck size={24} /></div>
              <div className="ml-6">
                 <p className="text-[9px] font-black text-amber-500 uppercase tracking-widest">Servicio Contratado</p>
-                <h2 className="text-xl font-black uppercase">{service?.title || service?.name || "Consultoría"}</h2>
+                <h2 className="text-xl font-black uppercase truncate max-w-[200px]">{service?.title || service?.name || "Consultoría"}</h2>
                 <p className="text-amber-500 font-bold text-sm">Inversión: {service?.price || "A convenir"}</p>
              </div>
           </div>
@@ -88,29 +96,29 @@ const AppointmentConfirmation = () => {
           <DetailItem 
             icon={<Calendar className="h-6 w-6" />} 
             title="Fecha Programada" 
-            value={data.appointmentDate} 
+            value={formatDate(displayData.date)} 
           />
           <DetailItem 
             icon={<Clock className="h-6 w-6" />} 
             title="Hora de Conexión" 
-            value={data.appointmentTime} 
+            value={displayData.time} 
           />
           <DetailItem 
             icon={<User className="h-6 w-6" />} 
             title="Cliente" 
-            value={data.fullName} 
+            value={displayData.fullName} 
           />
           <DetailItem 
             icon={<CreditCard className="h-6 w-6" />} 
             title="Ticket de Operación" 
-            value={data._id?.substring(0, 12).toUpperCase()} 
+            value={displayData._id.toString().substring(0, 12).toUpperCase()} 
           />
         </div>
 
         {/* Concepto Técnico */}
         <div className="w-full mt-10 p-8 bg-gray-50 rounded-[2rem] border-l-[10px] border-black group">
           <p className="text-[10px] font-black text-black uppercase tracking-[0.3em] mb-4 opacity-40">Especificaciones del Requerimiento</p>
-          <p className="text-black font-bold text-lg leading-relaxed italic">"{data.reason}"</p>
+          <p className="text-black font-bold text-lg leading-relaxed italic">"{displayData.reason}"</p>
         </div>
 
         {/* Botones de Acción */}
@@ -124,7 +132,7 @@ const AppointmentConfirmation = () => {
           </Link>
           
           <Link
-            to="/doctors"
+            to="/services"
             className="py-5 px-10 bg-white text-black border-[3px] border-black font-black rounded-2xl transition-all hover:border-amber-500 hover:text-amber-600 uppercase text-xs tracking-widest w-full sm:w-auto text-center"
           >
             Nuevo Requerimiento
