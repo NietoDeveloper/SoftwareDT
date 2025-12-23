@@ -1,4 +1,5 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import {
   Calendar,
   User,
@@ -19,13 +20,22 @@ const IconWrapper = ({ children }) => (
 
 const AppointmentConfirmation = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   
-  // Extraemos los nuevos datos: serviceName y el precio del state
-  const { appointment, doctorName, serviceName } = location.state || {};
+  // Extraemos la data enviada desde el navigate de BookingPage
+  const { appointment, doctor, service, userName } = location.state || {};
 
+  // Redirección de seguridad si alguien intenta entrar a esta ruta sin datos de cita
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/");
+    }
+  }, [location.state, navigate]);
+
+  // Fallback data en caso de carga o error leve
   const data = appointment || {
     _id: "ID-PENDIENTE",
-    fullName: "Usuario Software DT",
+    fullName: userName || "Usuario Software DT",
     appointmentDate: "Fecha no disponible",
     appointmentTime: "Hora no disponible",
     reason: "Cita agendada",
@@ -58,7 +68,7 @@ const AppointmentConfirmation = () => {
              <IconWrapper><Briefcase className="h-8 w-8" /></IconWrapper>
              <div className="ml-6">
                 <p className="text-[9px] font-black text-amber-600 uppercase tracking-widest">Especialista SDT</p>
-                <h2 className="text-xl font-black uppercase">{doctorName || "Profesional Senior"}</h2>
+                <h2 className="text-xl font-black uppercase">{doctor?.name || "Profesional Senior"}</h2>
              </div>
           </div>
 
@@ -66,9 +76,9 @@ const AppointmentConfirmation = () => {
           <div className="group relative flex items-center p-8 bg-black text-white rounded-3xl border-2 border-black transition-all hover:shadow-lg">
              <div className="p-3 rounded-full bg-amber-500 text-black"><ShieldCheck size={24} /></div>
              <div className="ml-6">
-                <p className="text-[9px] font-black text-amber-500 uppercase tracking-widest">Inversión Estimada</p>
-                <h2 className="text-xl font-black uppercase">{serviceName || "Consultoría"}</h2>
-                <p className="text-amber-500 font-bold text-sm">{data.price || "Desde $ 2.000.000 COP"}</p>
+                <p className="text-[9px] font-black text-amber-500 uppercase tracking-widest">Servicio Contratado</p>
+                <h2 className="text-xl font-black uppercase">{service?.title || service?.name || "Consultoría"}</h2>
+                <p className="text-amber-500 font-bold text-sm">Inversión: {service?.price || "A convenir"}</p>
              </div>
           </div>
         </div>
@@ -99,7 +109,7 @@ const AppointmentConfirmation = () => {
 
         {/* Concepto Técnico */}
         <div className="w-full mt-10 p-8 bg-gray-50 rounded-[2rem] border-l-[10px] border-black group">
-          <p className="text-[10px] font-black text-black uppercase tracking-[0.3em] mb-4 opacity-40">Especificaciones</p>
+          <p className="text-[10px] font-black text-black uppercase tracking-[0.3em] mb-4 opacity-40">Especificaciones del Requerimiento</p>
           <p className="text-black font-bold text-lg leading-relaxed italic">"{data.reason}"</p>
         </div>
 
