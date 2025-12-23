@@ -8,17 +8,25 @@ const verifyAccess = (req, res, next) => {
     // Manejo flexible de encabezados
     const authHeader = req.headers.authorization || req.headers.Authorization;
 
-    // 1. Verificar presencia y formato del token
+    // 1. Verificar presencia y formato inicial del token
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        console.log('DEBUG [SDT]: Access Denied - Missing or Malformed Token (401).');
+        console.log('DEBUG [SDT]: Access Denied - Missing or Malformed Header (401).');
         return res.status(401).json({ 
             success: false, 
             message: "Acceso denegado. Token no proporcionado o formato incorrecto." 
         }); 
     }
 
-    // 2. Extracción limpia
-    const token = authHeader.split(' ')[1];
+    // 2. Extracción limpia y validación de nulidad
+    const token = authHeader.split(' ')[1]?.trim();
+
+    if (!token || token === 'undefined' || token === 'null') {
+        console.log('DEBUG [SDT]: Access Denied - Token value is null or undefined.');
+        return res.status(401).json({ 
+            success: false, 
+            message: "Token inválido. Por favor, inicie sesión de nuevo." 
+        });
+    }
 
     // 3. Verificación criptográfica
     jwt.verify(
@@ -27,11 +35,10 @@ const verifyAccess = (req, res, next) => {
         (err, decoded) => {
             if (err) {
                 let errorMessage;
-                // Clasificación de errores para feedback preciso en el Frontend
                 if (err.name === 'TokenExpiredError') {
                     errorMessage = "Sesión expirada. Por favor, inicia sesión de nuevo.";
                 } else if (err.name === 'JsonWebTokenError') {
-                    errorMessage = "Token inválido (Firma no reconocida).";
+                    errorMessage = "Token inválido (Firma no reconocida o malformada).";
                 } else {
                     errorMessage = "Error de autenticación en el Datacenter.";
                 }
@@ -60,8 +67,6 @@ const verifyAccess = (req, res, next) => {
             req.roles = userInfo.roles || []; 
             req.user = userInfo.username || userInfo.email || null;
             
-            // Lógica de Administrador: Detecta si el rol admin está presente
-            // Ajusta "admin" según cómo lo guardes en tu DB (puede ser "admin", "ADMIN", etc.)
             req.isAdmin = Array.isArray(req.roles) && req.roles.some(role => 
                 role.toLowerCase() === 'admin'
             );
