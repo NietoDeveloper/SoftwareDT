@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react"; 
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+// CORRECCIÓN DE RUTA: Subimos dos niveles para llegar a src/context
+import { UserContext } from "../../context/UserContext"; 
 
 // COMPONENTE AUXILIAR PARA EL MENÚ MÓVIL
 const MenuButton = ({ isOpen, onClick }) => {
@@ -39,13 +41,15 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const isLoggedIn = !!localStorage.getItem("token");
+  
+  // Usamos el contexto centralizado de Software DT
+  const { token, handleLogout: contextLogout } = useContext(UserContext);
+  const isLoggedIn = !!token;
 
   const isActive = (path) => location.pathname === path;
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    contextLogout(); 
     navigate("/login");
   };
 
@@ -67,7 +71,7 @@ const Header = () => {
       <div className="container mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 relative">
           
-          {/* LOGO SOFTWARE DT - EFECTO GOLD REFORZADO */}
+          {/* LOGO SOFTWARE DT */}
           <div className="flex items-center gap-1.5 sm:gap-3 cursor-pointer group min-w-fit" onClick={handleLogoClick}>
             <h2 className="text-black text-lg sm:text-2xl font-black uppercase tracking-tighter transition-all duration-500 group-hover:text-[#FEB60D] drop-shadow-[0_4px_10px_rgba(254,182,13,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(254,182,13,1)] group-hover:-translate-y-1.5 transform-gpu">
               Software D T
@@ -80,7 +84,7 @@ const Header = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <span className="absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75 animate-ping"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 border-2 border-white"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 border-2 border-white shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
               </Link>
             )}
           </div>
@@ -106,8 +110,10 @@ const Header = () => {
               <div className="flex items-center gap-3 lg:gap-4 ml-4">
                 <Link 
                   to="/client-appointments" 
-                  className={`px-3 lg:px-4 py-1.5 rounded-lg border-2 border-[#FFD700] font-black uppercase text-[9px] lg:text-[10px] transition-all ${
-                    isActive("/client-appointments") ? "bg-[#FEB60D] text-black" : "bg-[#FFD700] text-black hover:bg-[#FEB60D]"
+                  className={`px-3 lg:px-4 py-1.5 rounded-lg border-2 border-[#FFD700] font-black uppercase text-[9px] lg:text-[10px] transition-all shadow-sm ${
+                    isActive("/client-appointments") 
+                      ? "bg-[#FEB60D] text-black shadow-[0_0_15px_rgba(254,182,13,0.4)]" 
+                      : "bg-[#FFD700] text-black hover:bg-[#FEB60D] hover:shadow-[0_0_15px_rgba(254,182,13,0.4)]"
                   }`}
                 >
                   Panel Cliente
@@ -132,7 +138,9 @@ const Header = () => {
                 <Link 
                   to="/signup" 
                   className={`px-4 py-2 rounded-full transition-all font-black text-[10px] uppercase tracking-widest ${
-                    isActive("/signup") ? "bg-[#FFD700] text-black" : "bg-black text-white hover:bg-[#FFD700] hover:text-black"
+                    isActive("/signup") 
+                      ? "bg-[#FFD700] text-black shadow-[0_0_15px_rgba(254,182,13,0.4)]" 
+                      : "bg-black text-white hover:bg-[#FFD700] hover:text-black"
                   }`}
                 >
                   Registro
