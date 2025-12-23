@@ -1,12 +1,13 @@
 import { useState, useEffect, useContext, useCallback } from "react";
 import { UserContext } from "../context/UserContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
+import { axiosPrivate } from "../API/api.js"; // Cambio clave: Usar la instancia blindada
 import { 
-  Clock, PlusCircle, User, Mail, MessageCircle, XCircle, ArrowUpRight, Phone, Fingerprint, Loader2
+  Clock, PlusCircle, Mail, MessageCircle, ArrowUpRight, Loader2
 } from "lucide-react";
 
 const ClientAppointmentsPanel = () => {
-  const { user, token, logout } = useContext(UserContext); // Asumiendo que tienes logout en tu Context
+  const { user, token, handleLogout } = useContext(UserContext); // Usamos handleLogout consistente
   const navigate = useNavigate();
   
   const [appointments, setAppointments] = useState([]);
@@ -14,12 +15,10 @@ const ClientAppointmentsPanel = () => {
   const [activeTab, setActiveTab] = useState("pending");
   const [isLoading, setIsLoading] = useState(true);
 
-  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-
   const fetchDashboardData = useCallback(async () => {
     const userId = user?._id || user?.id;
     
-    // Si no hay token o user, no intentamos la petición
+    // Si no hay token o user, evitamos la ejecución
     if (!userId || !token) {
       setIsLoading(false);
       return;
@@ -27,36 +26,30 @@ const ClientAppointmentsPanel = () => {
 
     try {
       setIsLoading(true);
-      const cleanToken = token.startsWith("Bearer ") ? token : `Bearer ${token}`;
-      const headers = { 
-        'Authorization': cleanToken,
-        'Content-Type': 'application/json'
-      };
+      
+      // Ya no necesitamos construir headers manualmente, axiosPrivate lo hace por nosotros
+      const response = await axiosPrivate.get(`/appointments/user/${userId}`);
 
-      const apptRes = await fetch(`${apiUrl}/appointments/user/${userId}`, { headers });
-
-      // GESTIÓN DE ERROR 403 / 401 (TOKEN EXPIRADO)
-      if (apptRes.status === 403 || apptRes.status === 401) {
-        console.error("⚠️ Sesión expirada o inválida. Redirigiendo al Login...");
-        if (logout) logout(); // Limpia el localStorage/Estado
-        navigate("/login");
-        return;
-      }
-
-      if (apptRes.ok) {
-        const apptData = await apptRes.json();
-        setAppointments(apptData.appointments || apptData.data || []);
-      } else {
-        console.error("❌ Error en Datacenter (Citas):", apptRes.statusText);
+      // El manejo de 401/403 ya ocurre en el interceptor global, 
+      // aquí solo procesamos la respuesta exitosa.
+      if (response.data) {
+        setAppointments(response.data.appointments || response.data.data || []);
       }
 
       setMessages([]); 
     } catch (err) {
-      console.error("❌ Error Crítico SDT:", err.message);
+      // Si el error llega aquí es porque falló el refresh o es un error de red
+      console.error("❌ Error en Datacenter SDT:", err.response?.data?.message || err.message);
+      
+      // Si el interceptor no redirigió (por ejemplo, error 500), lo manejamos aquí
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        if (handleLogout) handleLogout();
+        navigate("/login");
+      }
     } finally {
       setIsLoading(false);
     }
-  }, [user?._id, user?.id, token, apiUrl, navigate, logout]);
+  }, [user?._id, user?.id, token, navigate, handleLogout]);
 
   useEffect(() => {
     fetchDashboardData();
@@ -65,7 +58,9 @@ const ClientAppointmentsPanel = () => {
   const formatDate = (dateString) => {
     if (!dateString) return "FECHA PENDIENTE";
     const date = new Date(dateString);
-    return isNaN(date.getTime()) ? "FECHA INVÁLIDA" : date.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+    return isNaN(date.getTime()) 
+      ? "FECHA INVÁLIDA" 
+      : date.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
   };
 
   const handleMensajeDirecto = () => {
@@ -133,8 +128,8 @@ const ClientAppointmentsPanel = () => {
             <div className="grid gap-4">
               {isLoading ? (
                 <div className="p-20 flex flex-col items-center justify-center gap-4 bg-white/30 rounded-3xl">
-                   <Loader2 className="animate-spin text-yellowColor" size={40} />
-                   <div className="font-black uppercase text-[10px] tracking-widest text-gray-400">Sincronizando Datacenter...</div>
+                    <Loader2 className="animate-spin text-yellowColor" size={40} />
+                    <div className="font-black uppercase text-[10px] tracking-widest text-gray-400">Sincronizando Datacenter...</div>
                 </div>
               ) : filteredAppointments.length === 0 ? (
                 <div className="bg-white/50 border-2 border-black/5 border-dashed p-12 sm:p-16 rounded-[1.5rem] sm:rounded-[2rem] text-center italic text-gray-400 font-bold text-xs sm:text-sm">
@@ -153,7 +148,7 @@ const ClientAppointmentsPanel = () => {
                             {appt.serviceName || "Consultoría Técnica"}
                           </h3>
                           <p className="text-[8px] sm:text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-1">
-                            {formatDate(appt.appointmentDate)} — {appt.appointmentTime}
+                            {formatDate(appt.slotDate || appt.appointmentDate)} — {appt.slotTime || appt.appointmentTime}
                           </p>
                         </div>
                       </div>
