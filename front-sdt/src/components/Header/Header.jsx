@@ -67,9 +67,9 @@ const Header = () => {
       <div className="container mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 relative">
           
-          {/* LOGO SOFTWARE DT */}
+          {/* LOGO SOFTWARE DT - EFECTO GOLD REFORZADO */}
           <div className="flex items-center gap-1.5 sm:gap-3 cursor-pointer group min-w-fit" onClick={handleLogoClick}>
-            <h2 className="text-black text-lg sm:text-2xl font-black uppercase tracking-tighter transition-all duration-300 group-hover:text-[#FEB60D]">
+            <h2 className="text-black text-lg sm:text-2xl font-black uppercase tracking-tighter transition-all duration-500 group-hover:text-[#FEB60D] drop-shadow-[0_4px_10px_rgba(254,182,13,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(254,182,13,1)] group-hover:-translate-y-1.5 transform-gpu">
               Software D T
             </h2>
 
@@ -163,8 +163,8 @@ const Header = () => {
                   key={link.path}
                   to={link.path} 
                   onClick={() => setIsMenuOpen(false)} 
-                  className={`text-sm font-black uppercase tracking-widest ${
-                    isActive(link.path) ? "text-[#FFD700]" : "text-black hover:text-[#FFD700]"
+                  className={`text-sm font-black uppercase tracking-widest transition-colors ${
+                    isActive(link.path) ? "text-[#FEB60D]" : "text-black hover:text-[#FEB60D]"
                   }`}
                 >
                   {link.name}
@@ -176,8 +176,8 @@ const Header = () => {
                   <Link 
                     to="/login" 
                     onClick={() => setIsMenuOpen(false)} 
-                    className={`text-sm font-black uppercase tracking-widest ${
-                      isActive("/login") ? "text-[#FFD700]" : "text-black hover:text-[#FFD700]"
+                    className={`text-sm font-black uppercase tracking-widest transition-colors ${
+                      isActive("/login") ? "text-[#FEB60D]" : "text-black hover:text-[#FEB60D]"
                     }`}
                   >
                     Login
@@ -188,7 +188,7 @@ const Header = () => {
                     className={`w-full py-3 rounded-xl border-2 text-xs font-black uppercase text-center transition-all ${
                       isActive("/signup") 
                         ? "bg-[#FEB60D] border-[#FEB60D] text-black" 
-                        : "bg-black border-black text-white"
+                        : "bg-black border-black text-white hover:bg-[#FEB60D] hover:border-[#FEB60D] hover:text-black"
                     }`}
                   >
                     Registro
