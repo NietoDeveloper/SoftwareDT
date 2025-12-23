@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-// COMPONENTE AUXILIAR PARA EL MENÚ MÓVIL (Definido aquí para evitar el ReferenceError)
+// COMPONENTE AUXILIAR PARA EL MENÚ MÓVIL
 const MenuButton = ({ isOpen, onClick }) => {
   const variantTop = { closed: { rotate: 0, y: 0 }, opened: { rotate: 45, y: 8 } };
   const variantCenter = { closed: { opacity: 1, x: 0 }, opened: { opacity: 0, x: -20 } };
@@ -106,7 +106,9 @@ const Header = () => {
               <div className="flex items-center gap-3 lg:gap-4 ml-4">
                 <Link 
                   to="/client-appointments" 
-                  className="px-3 lg:px-4 py-1.5 rounded-lg border-2 border-[#FFD700] bg-[#FFD700] text-black font-black uppercase text-[9px] lg:text-[10px] hover:bg-[#FEB60D] transition-all"
+                  className={`px-3 lg:px-4 py-1.5 rounded-lg border-2 border-[#FFD700] font-black uppercase text-[9px] lg:text-[10px] transition-all ${
+                    isActive("/client-appointments") ? "bg-[#FEB60D] text-black" : "bg-[#FFD700] text-black hover:bg-[#FEB60D]"
+                  }`}
                 >
                   Panel Cliente
                 </Link>
@@ -119,8 +121,22 @@ const Header = () => {
               </div>
             ) : (
               <div className="flex items-center space-x-3 lg:space-x-4 ml-4">
-                <Link to="/login" className="text-black font-black uppercase hover:text-[#FEB60D]">Login</Link>
-                <Link to="/signup" className="px-4 py-2 bg-black text-white rounded-full hover:bg-[#FFD700] hover:text-black transition-all font-black text-[10px] uppercase tracking-widest">Registro</Link>
+                <Link 
+                  to="/login" 
+                  className={`font-black uppercase transition-colors ${
+                    isActive("/login") ? "text-[#FEB60D]" : "text-black hover:text-[#FEB60D]"
+                  }`}
+                >
+                  Login
+                </Link>
+                <Link 
+                  to="/signup" 
+                  className={`px-4 py-2 rounded-full transition-all font-black text-[10px] uppercase tracking-widest ${
+                    isActive("/signup") ? "bg-[#FFD700] text-black" : "bg-black text-white hover:bg-[#FFD700] hover:text-black"
+                  }`}
+                >
+                  Registro
+                </Link>
               </div>
             )}
           </nav>
@@ -155,11 +171,36 @@ const Header = () => {
                 </Link>
               ))}
               
-              {isLoggedIn && (
+              {!isLoggedIn ? (
+                <>
+                  <Link 
+                    to="/login" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`text-sm font-black uppercase tracking-widest ${
+                      isActive("/login") ? "text-[#FFD700]" : "text-black hover:text-[#FFD700]"
+                    }`}
+                  >
+                    Login
+                  </Link>
+                  <Link 
+                    to="/signup" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`w-full py-3 rounded-xl border-2 text-xs font-black uppercase text-center transition-all ${
+                      isActive("/signup") 
+                        ? "bg-[#FEB60D] border-[#FEB60D] text-black" 
+                        : "bg-black border-black text-white"
+                    }`}
+                  >
+                    Registro
+                  </Link>
+                </>
+              ) : (
                 <Link 
                   to="/client-appointments" 
                   onClick={() => setIsMenuOpen(false)} 
-                  className="w-full py-3 rounded-xl border-2 border-[#FFD700] bg-[#FFD700] text-black text-xs font-black uppercase text-center"
+                  className={`w-full py-3 rounded-xl border-2 border-[#FFD700] text-black text-xs font-black uppercase text-center ${
+                    isActive("/client-appointments") ? "bg-[#FEB60D]" : "bg-[#FFD700]"
+                  }`}
                 >
                   Panel Activo
                 </Link>
