@@ -3,48 +3,70 @@ const { Schema } = mongoose;
 const { citaDB } = require('../config/dbConn');
 
 const appointmentSchema = new Schema({
-    // Referencias a los IDs originales
-    user: { type: mongoose.Types.ObjectId, ref: "User", required: false, default: null },
-    doctor: { type: mongoose.Types.ObjectId, ref: "Doctor", required: true },
+    // Referencias a los clústeres originales
+    // 'user' es opcional para permitir citas de invitados (aunque el panel actual requiere login)
+    user: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "User", 
+        required: false, 
+        default: null 
+    },
+    doctor: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "Doctor", 
+        required: true 
+    },
 
-    // Información Denormalizada (Clave para que el Dashboard no dependa de otros fetch)
-    serviceName: { type: String, required: true },
-    specialization: { type: String, required: true },
+    // --- INFORMACIÓN DENORMALIZADA ---
+    // Clave para rendimiento: No necesitamos popular 'Doctor' solo para ver el nombre del servicio
+    serviceName: { 
+        type: String, 
+        required: true, 
+        default: "Consultoría Técnica" 
+    },
+    specialization: { 
+        type: String, 
+        required: true, 
+        default: "Software Development" 
+    },
 
-    // Información del Formulario de Reserva
+    // --- DATOS DEL CLIENTE (Capturados en el formulario) ---
     userInfo: {
         fullName: { type: String, required: true },
         email: { type: String, required: true }, 
         phone: { type: String, required: true }
     },
 
-    // Detalles del Servicio Reservado
+    // --- DETALLES DE LA CITA (Estructura lógica) ---
     appointmentDetails: {
-        // Usamos String temporalmente si el front envía "YYYY-MM-DD" 
-        // o Date si prefieres validación estricta de Mongoose
+        // Almacenamos como String "YYYY-MM-DD" para facilitar filtros directos desde el front
         date: { type: String, required: true }, 
         time: { type: String, required: true },
-        reason: { type: String, required: true },
+        reason: { type: String, default: "Asesoría inicial" },
         status: {
             type: String,
-            // Ampliamos el enum para que coincida con los filtros del Panel
-            enum: ["pending", "approved", "cancelled", "completed", "active", "scheduled", "finished"],
+            // Sincronizado con los filtros de 'ClientAppointmentsPanel.jsx'
+            enum: ["pending", "approved", "cancelled", "completed", "active", "scheduled", "taken", "finished"],
             default: "pending",
         }
     },
 
-    // Información de Pago (Sincronizado con Services.jsx)
+    // --- CAPA FINANCIERA ---
     paymentInfo: {
         price: { type: String, default: "0" }, 
         isPaid: { type: Boolean, default: false },
         currency: { type: String, default: "COP" }
     }
 }, { 
-    timestamps: true // Esto genera createdAt y updatedAt automáticamente
+    // Genera createdAt y updatedAt (útil para el "Historial de Mensajería" del panel)
+    timestamps: true 
 });
 
-// Índices para velocidad de búsqueda en Datacenter
+// --- ÍNDICES DE ALTO RENDIMIENTO (SDT Optimization) ---
+// Optimiza la búsqueda de disponibilidad por especialista y fecha
 appointmentSchema.index({ doctor: 1, 'appointmentDetails.date': 1 });
-appointmentSchema.index({ user: 1 });
+// Optimiza la carga del panel del cliente (el GET /api/appointments/user/:id será instantáneo)
+appointmentSchema.index({ user: 1, createdAt: -1 });
 
+// Exportamos vinculado a la conexión de base de datos de CITAS (citaDB)
 module.exports = citaDB.model('Appointment', appointmentSchema);

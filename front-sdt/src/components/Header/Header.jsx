@@ -42,7 +42,6 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Usamos el contexto centralizado de Software DT
   const { token, handleLogout: contextLogout } = useContext(UserContext);
   const isLoggedIn = !!token;
 
@@ -50,6 +49,7 @@ const Header = () => {
 
   const handleLogout = () => {
     contextLogout(); 
+    setIsMenuOpen(false); // Cerramos el menú al salir
     navigate("/login");
   };
 
@@ -203,15 +203,25 @@ const Header = () => {
                   </Link>
                 </>
               ) : (
-                <Link 
-                  to="/client-appointments" 
-                  onClick={() => setIsMenuOpen(false)} 
-                  className={`w-full py-3 rounded-xl border-2 border-[#FFD700] text-black text-xs font-black uppercase text-center ${
-                    isActive("/client-appointments") ? "bg-[#FEB60D]" : "bg-[#FFD700]"
-                  }`}
-                >
-                  Panel Activo
-                </Link>
+                <div className="w-full space-y-4 flex flex-col items-center">
+                  <Link 
+                    to="/client-appointments" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`w-full py-3 rounded-xl border-2 border-[#FFD700] text-black text-xs font-black uppercase text-center ${
+                      isActive("/client-appointments") ? "bg-[#FEB60D]" : "bg-[#FFD700]"
+                    }`}
+                  >
+                    Panel Activo
+                  </Link>
+                  
+                  {/* OPCIÓN CERRAR SESIÓN MOBILE */}
+                  <button 
+                    onClick={handleLogout}
+                    className="w-full py-2 text-red-600 font-black uppercase text-[10px] tracking-widest hover:text-red-700 transition-colors"
+                  >
+                    Salir
+                  </button>
+                </div>
               )}
             </div>
           </motion.div>
