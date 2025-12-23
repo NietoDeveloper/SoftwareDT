@@ -78,14 +78,14 @@ const BookingPage = () => {
     enabled: !!activeDoctorId && !!user,
   });
 
-  // CORRECCIÓN: Solo autocompletar si los campos están vacíos para permitir escritura
+  // Solo autocompletar una vez cuando el usuario carga
   useEffect(() => {
     if (user && !formData.fullName) {
       setFormData(prev => ({
         ...prev,
         fullName: user.name || user.fullName || "",
         email: user.email || "",
-        phone: prev.phone || user.phone || "",
+        phone: user.phone || prev.phone || "",
       }));
     }
   }, [user]);
@@ -111,6 +111,10 @@ const BookingPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!token) return toast.error("Sesión expirada.");
+    if (!formData.fullName || !formData.phone || !formData.appointmentTime) {
+      return toast.error("Por favor completa todos los campos obligatorios.");
+    }
+
     setIsSubmitting(true);
     
     try {
@@ -171,10 +175,10 @@ const BookingPage = () => {
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <div className="w-6 h-1 bg-gold"></div>
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Protocolo de Reserva v2.1</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Sistema de Reserva v2.1</span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tighter leading-none">
-              Agendar <span className="text-gold">Servicio Técnico</span>
+              Agendar <span className="text-gold">Servicio </span>
             </h1>
           </div>
         </div>
@@ -218,7 +222,16 @@ const BookingPage = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-1">
                   <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Nombre del Solicitante</label>
-                  <input type="text" value={formData.fullName} readOnly className="w-full bg-gray-50 border-2 border-black/10 p-3 rounded-xl font-bold text-xs cursor-not-allowed" />
+                  {/* CAMBIO: Se quitó readOnly para que puedas escribir si falta el dato */}
+                  <input 
+                    type="text" 
+                    name="fullName"
+                    value={formData.fullName} 
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Tu nombre completo"
+                    className="w-full bg-white border-2 border-black p-3 rounded-xl focus:border-gold outline-none font-bold text-xs" 
+                  />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Teléfono Directo</label>
@@ -278,7 +291,6 @@ const BookingPage = () => {
                   value={formData.reason} 
                   onChange={handleInputChange} 
                   required 
-                  placeholder="Describa su necesidad..."
                   className="w-full bg-white border-2 border-black p-4 rounded-xl focus:border-gold outline-none font-medium text-xs h-32 resize-none" 
                 />
               </div>
