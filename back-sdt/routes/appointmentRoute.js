@@ -1,5 +1,4 @@
 const express = require('express');
-const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const { 
     appointmentBooking, 
@@ -9,38 +8,36 @@ const {
 
 /**
  * @route   POST /api/appointments
- * @desc    Crear una nueva cita (Guest o Logueado)
- * @access  Public/Optional (vía optionalAccess en server.js)
+ * @desc    Crear una nueva cita
+ * @access  Public/Optional
  */
-router.post(
-    '/', 
-    asyncHandler(async (req, res, next) => {
-        // 1. Validación rápida de campos obligatorios en la capa de ruta
-        const { doctorId, appointmentDate, appointmentTime, fullName, email, phone, reason } = req.body;
-        
-        if (!doctorId || !appointmentDate || !appointmentTime || !fullName || !email || !phone || !reason) {
-            return res.status(400).json({ 
-                message: 'Información incompleta. Por favor verifique todos los campos.' 
-            });
-        }
+router.post('/', (req, res, next) => {
+    // 1. Simplificamos la validación en ruta. 
+    // Solo validamos lo extremadamente crítico. 
+    // El resto lo maneja el controlador con valores por defecto.
+    const { doctorId, appointmentDate, appointmentTime, fullName, phone } = req.body;
+    
+    if (!doctorId || !appointmentDate || !appointmentTime || !fullName || !phone) {
+        return res.status(400).json({ 
+            message: 'Datos básicos incompletos (Especialista, Fecha, Hora, Nombre o Teléfono).' 
+        });
+    }
 
-        // 2. Ejecutar el controlador directamente
-        // Pasamos el flujo al controlador que ya importamos
-        return appointmentBooking(req, res, next);
-    })
-);
+    // 2. Pasamos directamente al controlador.
+    // Quitamos el asyncHandler extra de aquí porque el controlador ya lo tiene.
+    return appointmentBooking(req, res, next);
+});
 
 /**
  * @route   GET /api/appointments
  * @desc    Listar todas las citas (Admin)
  */
-router.get('/', asyncHandler(getAppointments));
+router.get('/', getAppointments);
 
 /**
  * @route   GET /api/appointments/user/:userId
  * @desc    Listar citas de un usuario específico
  */
-router.get('/user/:userId', asyncHandler(getUserAppointments));
+router.get('/user/:userId', getUserAppointments);
 
-// CRÍTICO: Asegurar la exportación del router
 module.exports = router;

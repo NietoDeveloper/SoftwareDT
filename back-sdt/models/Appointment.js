@@ -3,25 +3,26 @@ const { Schema } = mongoose;
 const { citaDB } = require('../config/dbConn');
 
 const appointmentSchema = new Schema({
-    // Referencias a los IDs originales (Lógica de base de datos)
-    user: { type: mongoose.Types.ObjectId, ref: "User", required: false, default: null }, // Corregido: No required para guests (default null)
-    doctor: { type: mongoose.Types.ObjectId, ref: "Doctor", required: true }, // Mantiene 'doctor' para no romper la relación con la colección
+    // Referencias a los IDs originales
+    user: { type: mongoose.Types.ObjectId, ref: "User", required: false, default: null },
+    doctor: { type: mongoose.Types.ObjectId, ref: "Doctor", required: true },
 
-    // Información Denormalizada del Servicio (Para la "Tarjeta")
-    serviceName: { type: String, required: true },      // Antes: doctorName
+    // Información Denormalizada (Lo que el cliente ve en su dashboard)
+    serviceName: { type: String, required: true },
     specialization: { type: String, required: true },
 
-    // Información del Formulario (Diligenciada por el Usuario)
-    userInfo: {                                         // Antes: patientInfo
+    // Información del Formulario
+    userInfo: {
         fullName: { type: String, required: true },
-        email: { type: String, required: true },
+        // Ajuste: email requerido pero con lógica de seguridad en el controller
+        email: { type: String, required: true }, 
         phone: { type: String, required: true }
     },
 
     // Detalles del Servicio Reservado
     appointmentDetails: {
-        date: { type: Date, required: true },           // Corregido: Type Date para mejor manejo (convierte en controller)
-        time: { type: String, required: true },         // 'HH:MM'
+        date: { type: Date, required: true },
+        time: { type: String, required: true },
         reason: { type: String, required: true },
         status: {
             type: String,
@@ -30,9 +31,10 @@ const appointmentSchema = new Schema({
         }
     },
 
-    // Información de Pago
+    // Información de Pago (Sincronizado con Services.jsx)
     paymentInfo: {
-        price: { type: Number, default: 0 },
+        // Mantenemos String para soportar formatos "$ 100.000"
+        price: { type: String, default: "0" }, 
         isPaid: { type: Boolean, default: false },
         currency: { type: String, default: "COP" }
     }
@@ -40,9 +42,8 @@ const appointmentSchema = new Schema({
     timestamps: true 
 });
 
-// Agregado: Índices para queries eficientes (e.g., buscar citas por doctor y date)
+// Índices para velocidad de búsqueda en Bogotá y reportes
 appointmentSchema.index({ doctor: 1, 'appointmentDetails.date': 1 });
 appointmentSchema.index({ user: 1 });
 
-// Exportación mediante la conexión citaDB (Base de datos sdt2)
 module.exports = citaDB.model('Appointment', appointmentSchema);
