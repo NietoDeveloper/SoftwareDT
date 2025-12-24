@@ -107,23 +107,7 @@ const Signup = () => {
                         <div className="w-8 h-[2px] bg-[#FEB60D]"></div>
                         <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">Bienvenido</span>
                     </div>
-                    
-                    <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter leading-none mb-4">
-                        Software<span className="text-[#FEB60D]">DT</span> <br />
-                        <span className="text-2xl sm:text-3xl text-gray-800">Cuenta Nueva</span>
-                    </h1>
-
-                    <p className="text-gray-600 font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-8">
-                        Crea tu perfil Interactivo para acceder a servicios de arquitectura de software y consultoría.
-                    </p>
-
-                    <div className="flex flex-col items-center lg:items-start gap-3">
-                        <p className="text-black font-black uppercase text-[10px] tracking-widest">¿Ya eres parte de Software DT?</p>
-                        <Link 
-                            to="/login" 
-                            className="group relative inline-flex items-center justify-center px-8 py-3 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1"
-                        >
-                            Ir al Login
+   
                         </Link>
                     </div>
                 </div>
