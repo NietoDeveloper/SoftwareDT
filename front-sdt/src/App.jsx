@@ -17,9 +17,30 @@ import Payment from "./components/Checkout/Payment.jsx";
 import ClientPanel from "./pages/ClientAppointmentsPanel.jsx";
 import OurClients from "./pages/OurClients.jsx";
 
+// 1. IMPORTAR TOASTER
+import { Toaster } from "react-hot-toast";
+
 function App() {
   return (
     <UserProvider>
+      {/* 2. CONFIGURACIÓN GLOBAL DE NOTIFICACIONES ESTILO SDT */}
+      <Toaster 
+        position="top-right"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#000000',
+            color: '#FFD700',
+            border: '2px solid #FEB60D',
+            borderRadius: '12px',
+            fontSize: '12px',
+            fontWeight: '900',
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em'
+          },
+        }}
+      />
+      
       <Header />
       <Routes>
         {/* --- SECCIÓN PÚBLICA --- */}
@@ -33,7 +54,6 @@ function App() {
         
         {/* --- SECCIÓN PROTEGIDA --- */}
         <Route element={<PrivateRoutes />}>
-          {/* AQUÍ ESTÁ EL CAMBIO: Agregamos la ruta que Signup está buscando */}
           <Route path="/users/profile/me" element={<ClientPanel />} />
           <Route path="/client/dashboard" element={<ClientPanel />} />
           <Route path="/client-appointments" element={<ClientPanel />} />
