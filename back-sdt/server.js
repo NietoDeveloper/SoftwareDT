@@ -43,32 +43,31 @@ const routes = {
     booking: require('./routes/bookingRoute')
 };
 
-// --- 1. RUTAS TOTALMENTE PÚBLICAS (Antes del Portero) ---
-
-// Mantenemos /api/user para consistencia
-app.use('/api/user/register', routes.userRegister);
-app.use('/api/user/login', routes.userLogin);
-
-// AÑADIMOS /api/auth para que tu Frontend (que usa /api/auth/register) NO sea bloqueado
-app.use('/api/auth/register', routes.userRegister);
-app.use('/api/auth/login', routes.userLogin);
+// --- 1. RUTAS TOTALMENTE PÚBLICAS ---
+// Soporte doble para /api/user y /api/auth (Evita errores 404 en el Login/Signup)
+app.use(['/api/user/register', '/api/auth/register'], routes.userRegister);
+app.use(['/api/user/login', '/api/auth/login'], routes.userLogin);
 
 app.use('/api/doctor/register', routes.doctorRegister);
 app.use('/api/doctor/login', routes.doctorLogin);
 app.use('/api/doctors', routes.allDoctors); 
 
-// --- 2. RUTAS SEMI-PÚBLICAS (Manejo de Tokens) ---
+// --- 2. RUTAS DE SESIÓN ---
 app.use('/api/user/refresh', routes.userRefresh);
 app.use('/api/user/logout', routes.userLogout);
 
 // --- 3. CAPA DE PROTECCIÓN (EL PORTERO) ---
-// El portero solo vigila lo que viene DESPUÉS de él
+// Todo lo que esté abajo de esta línea requiere cabecera: Authorization: Bearer <token>
 app.use(verifyAccess); 
 
-// --- 4. RUTAS PRIVADAS (Solo con JWT válido) ---
-app.use('/api/appointments', routes.appointmentRoutes); 
+// --- 4. RUTAS PRIVADAS (Sincronizadas con el flujo SDT) ---
+
+// Ajuste para que coincida con lo que el Frontend busca como "Profile"
+app.use('/api/user/profile', routes.booking); 
 app.use('/api/user/update', routes.userUpdate);
 app.use('/api/user/review', routes.review);
+
+app.use('/api/appointments', routes.appointmentRoutes); 
 app.use('/api/doctor/update', routes.doctorUpdate);
 app.use('/api/doctor/profile', routes.booking);
 
@@ -84,6 +83,6 @@ Promise.all([
     console.log('✅ Datacenter SoftwareDT: Infraestructura vinculada.');
     app.listen(PORT, () => console.log(`🚀 API en línea: Puerto ${PORT}`));
 }).catch(err => {
-    console.error('❌ Error crítico:', err.message);
+    console.error('❌ Error crítico de conexión:', err.message);
     process.exit(1);
 });
