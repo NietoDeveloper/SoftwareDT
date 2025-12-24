@@ -95,16 +95,7 @@ const Signup = () => {
 
     
 
-                {/* Lado Derecho: Tarjeta de Registro */}
-                <div className="w-full sm:w-[420px] lg:w-[480px] order-1 lg:order-2">
-                    <div className="bg-white border-[3px] border-black rounded-[30px] p-6 sm:p-10 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.05)] relative">
-                        
-                        <div className="flex items-center justify-between mb-8">
-                            <h2 className="text-xl font-black text-black uppercase tracking-tight">Registro</h2>
-                            <div className="p-2 bg-amber-500 rounded-lg text-black">
-                                <UserPlus size={20} strokeWidth={3} />
-                            </div>
-                        </div>
+
 
                         {successMessage && (
                             <div className="bg-green-50 text-green-700 p-3 rounded-lg text-[9px] font-black uppercase mb-4 border border-green-100">
