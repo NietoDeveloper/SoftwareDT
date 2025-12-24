@@ -19,6 +19,8 @@ const userRegister = asyncHandler(async (req, res) => {
         email,
         photo: photo || null,
         password: hashedpassword,
+        // Inicializamos el mensaje por defecto estilo SDT
+        customMessage: "Hola Software DT, solicito soporte técnico para mi clúster."
     });
 
     if (result) {
@@ -38,14 +40,12 @@ const userLogin = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: 'Credenciales requeridas' });
     }
 
-    // Buscamos usuario incluyendo password para comparar y datos de perfil
     const foundUser = await User.findOne({ email }).select('+password').exec();
     
     if (!foundUser || !(await bcrypt.compare(password, foundUser.password))) {
         return res.status(401).json({ message: 'Credenciales inválidas' });
     }
 
-    // Generación de Tokens
     const accessToken = jwt.sign(
         { id: foundUser._id, email: foundUser.email, role: foundUser.role },
         process.env.ACCESS_TOKEN_SECRET,
@@ -61,17 +61,16 @@ const userLogin = asyncHandler(async (req, res) => {
     foundUser.refreshToken = [...(foundUser.refreshToken || []), refreshToken];
     await foundUser.save();
 
-    // AJUSTE PARA EL PANEL: Enviamos la data completa que el frontend espera mostrar
+    // AJUSTE PARA EL PANEL: Incluimos customMessage para el frontend
     const userData = {
         _id: foundUser._id,
         name: foundUser.name,
-        email: foundUser.email, // IMPORTANTE: No lo quites, el panel lo usa
+        email: foundUser.email,
         photo: foundUser.photo,
         role: foundUser.role,
-        gender: foundUser.gender,
-        bloodType: foundUser.bloodType,
         phone: foundUser.phone,
-        location: "Bogotá, Colombia", // Dato del perfil NietoDeveloper
+        customMessage: foundUser.customMessage, // <--- CRÍTICO PARA EL ASIDE
+        location: "Bogotá, Colombia",
         experience: "5.5 años"
     };
 
@@ -85,17 +84,17 @@ const userLogin = asyncHandler(async (req, res) => {
     res.status(200).json({ success: true, accessToken, userData, message: 'Login exitoso' });
 });
 
-// --- 3. Actualizar Detalles ---
+// --- 3. Actualizar Detalles (Sincronización con Datacenter) ---
 const updateUserDetails = asyncHandler(async (req, res) => {
-    const { id } = req.params;
+    // Aceptamos el ID de params o del token decodificado para mayor seguridad
+    const id = req.params.id || req.id; 
     if (!id) return res.status(400).json({ message: 'ID requerido' });
 
-    const { name, email, password, bloodType, gender, phone, photo } = req.body;
+    const { name, email, password, bloodType, gender, phone, photo, customMessage } = req.body;
     const foundUser = await User.findById(id);
 
     if (!foundUser) return res.status(404).json({ message: 'Usuario no encontrado' });
 
-    // Validar email duplicado si se intenta cambiar
     if (email && email !== foundUser.email) {
         const emailExists = await User.findOne({ email });
         if (emailExists) return res.status(409).json({ message: 'Email ya en uso' });
@@ -108,13 +107,21 @@ const updateUserDetails = asyncHandler(async (req, res) => {
     if (gender) foundUser.gender = gender;
     if (phone) foundUser.phone = phone;
     if (photo) foundUser.photo = photo;
+    
+    // NUEVO: Persistencia de la plantilla de mensaje
+    if (customMessage !== undefined) foundUser.customMessage = customMessage;
 
     const updated = await foundUser.save();
     
     res.status(200).json({ 
         success: true, 
-        message: 'Perfil actualizado!',
-        data: updated 
+        message: 'DATACENTER ACTUALIZADO', // Mensaje estilo Software DT
+        data: {
+            _id: updated._id,
+            name: updated.name,
+            customMessage: updated.customMessage,
+            phone: updated.phone
+        } 
     });
 });
 

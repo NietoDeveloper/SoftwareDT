@@ -14,17 +14,23 @@ const userSchema = new Schema({
     photo: { type: String, default: "https://www.pngarts.com/explore/215296" },
     gender: { type: String, enum: ["male", "female", "trans", "other"] },
     
-    // Campo especial para el Desarrollador/Administrador
+    // Campo especial para el Desarrollador/Administrador (Elon Musk Standard)
     adminMessage: { 
         type: String, 
-        default: "Mensaje De Dev:  Cuentas con los mas competentes y consistentes Ingenieros de Software De Colombia." // Aquí es donde escribirás el contenido exclusivo para el usuario
+        default: "Mensaje De Dev: Cuentas con los mas competentes y consistentes Ingenieros de Software De Colombia." 
+    },
+
+    // NUEVO: Plantilla de WhatsApp personalizable por el cliente
+    customMessage: { 
+        type: String, 
+        default: "Hola Software DT, solicito soporte técnico para mi clúster." 
     },
 
     // Referencias a los servicios contratados
     appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
     
     roles: {
-        usuario: { type: Number, default: 1002 }, // Cambiado de 'patient' a 'usuario'
+        usuario: { type: Number, default: 1002 }, 
         admin: { type: Number } 
     },
 
