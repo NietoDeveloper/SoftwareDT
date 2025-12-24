@@ -93,20 +93,7 @@ const Signup = () => {
                         <span className="text-2xl sm:text-3xl text-gray-800">Cuenta Nueva</span>
                     </h1>
 
-                    <p className="text-gray-600 font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-8">
-                        Crea tu perfil Interactivo para acceder a servicios de arquitectura de software y consultoría. De esta manera podras consultar servicios y hacerle seguimiento a tu servico contratado.
-                    </p>
-
-                    <div className="flex flex-col items-center lg:items-start gap-3">
-                        <p className="text-black font-black uppercase text-[10px] tracking-widest">¿Ya eres parte de Software DT?</p>
-                        <Link 
-                            to="/login" 
-                            className="group relative inline-flex items-center justify-center px-8 py-3 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 hover:bg-amber-500 hover:text-black hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(245,158,11,0.4)]"
-                        >
-                            Ir al Login
-                        </Link>
-                    </div>
-                </div>
+    
 
                 {/* Lado Derecho: Tarjeta de Registro */}
                 <div className="w-full sm:w-[420px] lg:w-[480px] order-1 lg:order-2">
