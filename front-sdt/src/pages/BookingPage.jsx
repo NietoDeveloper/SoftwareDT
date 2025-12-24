@@ -10,7 +10,7 @@ import {
   ChevronLeft, 
   Briefcase, 
   ArrowRight
-} from "lucide-center";
+} from "lucide-react";
 
 const BookingPage = () => {
   const { doctorId: paramId } = useParams();
