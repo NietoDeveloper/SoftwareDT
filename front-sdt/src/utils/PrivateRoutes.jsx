@@ -15,16 +15,7 @@ const PrivateRoutes = () => {
                     Verificando Credenciales...
                 </h1>
             </div>
-        );
-    }
-
-    /**
-     * LÓGICA DE PROTECCIÓN:
-     * Si hay token: El Outlet renderiza BookingPage, Dashboard, etc.
-     * Si NO hay token: Redirigimos a Login.
-     * * NOTA: Guardamos 'location' completo en el state. Esto incluye la URL 
-     * actual (/book-appointment/ID) y cualquier state previo (doctorData).
-     */
+        
     return (
         token ? (
             <Outlet />
