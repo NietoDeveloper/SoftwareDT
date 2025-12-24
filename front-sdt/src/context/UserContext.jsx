@@ -1,13 +1,13 @@
-import { createContext, useState, useEffect, useCallback, useRef, useMemo } from "react";
+import { createContext, useState, useEffect, useCallback, useRef, useMemo, useContext } from "react";
 import { setupInterceptors } from "../API/api.js"; 
 
-const UserContext = createContext();
+// 1. Crear el contexto con un valor inicial null
+export const UserContext = createContext(null);
 
-const UserProvider = ({ children }) => {
-    // 1. Inicialización de Usuario (Sincronizado con Signup/Login)
+export const UserProvider = ({ children }) => {
+    // Inicialización de Usuario
     const [user, setUser] = useState(() => {
         try {
-            // Usamos 'user' para coincidir con lo que guarda Signup.jsx
             const savedUser = localStorage.getItem('user');
             if (!savedUser || savedUser === "undefined" || savedUser === "null") return null;
             return JSON.parse(savedUser);
@@ -18,21 +18,19 @@ const UserProvider = ({ children }) => {
         }
     });
 
-    // 2. Inicialización de Token
+    // Inicialización de Token con limpieza de comillas
     const [token, setToken] = useState(() => {
         const savedToken = localStorage.getItem('token');
         if (!savedToken || savedToken === "undefined" || savedToken === "null" || savedToken === "") return null;
-        
-        // Limpieza de seguridad
         return savedToken.replace(/"/g, "").replace(/Bearer /g, "").trim();
     });
 
     const [loading, setLoading] = useState(true); 
     const [appointmentDetails, setAppointmentDetails] = useState(null);
     
+    // Referencia para los interceptores de Axios
     const tokenRef = useRef(token);
 
-    // Sincronizar Referencia y Storage cuando el token cambia
     useEffect(() => {
         tokenRef.current = token;
         if (token) {
@@ -42,7 +40,6 @@ const UserProvider = ({ children }) => {
         }
     }, [token]);
 
-    // Sincronizar Objeto Usuario con el Storage
     useEffect(() => {
         if (user) {
             localStorage.setItem('user', JSON.stringify(user));
@@ -51,7 +48,6 @@ const UserProvider = ({ children }) => {
         }
     }, [user]);
 
-    // handleLogout estable
     const handleLogout = useCallback(() => {
         setToken(null);
         setUser(null);
@@ -59,20 +55,19 @@ const UserProvider = ({ children }) => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         localStorage.removeItem('role');
+        // Redirección limpia
+        window.location.href = '/login';
     }, []); 
 
     const getAccessToken = useCallback(() => {
         return tokenRef.current; 
     }, []); 
 
-    // Configuración única de interceptores
+    // Configuración de interceptores y fin de carga
     useEffect(() => {
-        const initAuth = async () => {
-            setupInterceptors(getAccessToken, setToken, handleLogout); 
-            // Pequeño delay para asegurar que el DOM esté listo
-            setTimeout(() => setLoading(false), 500);
-        };
-        initAuth();
+        setupInterceptors(getAccessToken, setToken, handleLogout); 
+        const timer = setTimeout(() => setLoading(false), 500);
+        return () => clearTimeout(timer);
     }, [getAccessToken, handleLogout]); 
 
     const contextValue = useMemo(() => ({
@@ -89,6 +84,7 @@ const UserProvider = ({ children }) => {
 
     return (
         <UserContext.Provider value={contextValue}>
+            {/* Si no está cargando, mostramos la app. Si carga, mostramos el splash SDT */}
             {!loading ? children : (
                 <div className="flex items-center justify-center h-screen bg-[#DCDCDC]">
                     <div className="flex flex-col items-center gap-6">
@@ -111,4 +107,11 @@ const UserProvider = ({ children }) => {
     );
 };
 
-export { UserProvider, UserContext };
+// Hook personalizado para evitar errores de destructuring
+export const useUser = () => {
+    const context = useContext(UserContext);
+    if (!context) {
+        throw new Error("useUser debe ser usado dentro de un UserProvider");
+    }
+    return context;
+};
