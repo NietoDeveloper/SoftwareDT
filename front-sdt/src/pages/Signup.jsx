@@ -48,30 +48,9 @@ const Signup = () => {
 
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:5000/api/user/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...formData, photo: 'https://placehold.co/400x400?text=User' }),
-            });
 
-            const result = await response.json();
-            if (!response.ok) throw new Error(result.error || 'Error al registrar');
-
-            setSuccessMessage("¡Cuenta creada! Redirigiendo...");
             
-            // 1. Limpiamos el formulario
-            setFormData({ name: '', email: '', password: '', role: 'PATIENT' });
 
-            // 2. Redirigimos al panel del cliente después de 2 segundos
-            setTimeout(() => {
-                navigate('/users/profile/me'); 
-            }, 2000);
-            
-        } catch (err) {
-            setApiError(err.message);
-        } finally {
-            setIsLoading(false);
-        }
     };
 
     return (
