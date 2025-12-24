@@ -19,52 +19,50 @@ const Login = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors }, reset
+        formState: { errors }
     } = useForm();
 
-    // Redirección inteligente: 
-    // 1. Prioridad a 'state.from' (protección de rutas)
-    // 2. Fallback a 'sdt_return_path' (guardado en el flujo de citas)
-    // 3. Destino final: Perfil
+    // Lógica de redirección mejorada
     const from = location.state?.from?.pathname || localStorage.getItem('sdt_return_path') || "/users/profile/me";
 
     const onSubmit = async (data) => {
         setError(null);
         setIsLoading(true);
         try {
+            // El endpoint debe ser consistente con tu backend ajustado (/api/auth/login)
             const response = await axios.post(`${API_BASE_URL}/auth/login`, data);
             
-            // Ajustamos a la estructura estándar de respuesta del backend
             const result = response.data;
-            const token = result.token || result.accessToken;
-            const userData = result.data || result.userData;
+            // Soporte para diferentes estructuras de respuesta
+            const rawToken = result.token || result.accessToken;
+            const userData = result.data || result.user || result.userData;
             
-            if (!token) throw new Error("No se recibió token del servidor.");
+            if (!rawToken) throw new Error("No se recibió token del servidor.");
 
-            // --- LIMPIEZA ESTRATÉGICA DEL TOKEN ---
-            const cleanToken = token
+            // --- SANEAMIENTO DE TOKEN (Evita errores 401 por formato) ---
+            const cleanToken = String(rawToken)
                 .replace(/['"]+/g, '')
                 .replace(/Bearer\s+/i, '')
                 .trim();
             
-            // 1. Persistencia Física Inmediata (Antes de navegar)
+            // 1. Persistencia Física (Disco)
             localStorage.setItem('token', cleanToken);
             localStorage.setItem('user', JSON.stringify(userData));
             localStorage.setItem('role', userData.role);
 
-            // 2. Sincronización del Estado Global
+            // 2. Sincronización Inmediata del Estado Global (React)
             setToken(cleanToken); 
             setUser(userData); 
 
-            toast.success(`👋 ¡Acceso concedido, ${userData.name || 'Developer'}!`);
+            toast.success(`👋 ¡Sincronizado, ${userData.name || 'Developer'}!`);
             
-            // 3. Limpieza de rutas temporales y navegación
+            // 3. Limpieza de metadatos de flujo y navegación
             localStorage.removeItem('sdt_return_path');
             
-            // Pequeño delay para que el context se asiente
+            // Pequeño delay de 150ms para asegurar que el ContextProvider procesó el cambio
             setTimeout(() => {
                 navigate(from, { replace: true }); 
-            }, 100);
+            }, 150);
 
         } catch (processError) {
             console.error("Login Error:", processError);
@@ -92,7 +90,7 @@ const Login = () => {
                         <span className="text-2xl sm:text-3xl text-gray-800">Ingresa A Tu Cuenta</span>
                     </h1>
 
-                    <p className="text-black font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-12">
+                    <p className="text-black font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-12 opacity-80">
                         Accede a tu perfil de Software DT y gestiona toda la información, citas y comunicación directa desde el Panel de Usuario.
                     </p>
 
