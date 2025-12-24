@@ -62,7 +62,8 @@ const Signup = () => {
         setIsLoading(true);
         try {
             const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-            // Usamos la ruta /api/auth/register que acabamos de habilitar en el backend
+            
+            // 1. PETICIÓN AL BACKEND
             const response = await fetch(`${apiUrl}/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -72,38 +73,41 @@ const Signup = () => {
             const result = await response.json();
             if (!response.ok) throw new Error(result.message || 'Error al registrar');
 
-            if (result.token) {
-                const cleanToken = result.token.replace(/['"]+/g, '').replace(/Bearer\s+/i, '').trim();
-                const userData = result.data || result.user;
+            // 2. EXTRACCIÓN Y SANEAMIENTO DE DATA
+            const rawToken = result.token || result.accessToken;
+            if (rawToken) {
+                const cleanToken = String(rawToken).replace(/['"]+/g, '').replace(/Bearer\s+/i, '').trim();
+                const userData = result.data || result.user || result.doctor;
 
-                // 1. Persistencia Inmediata
+                // 3. PERSISTENCIA ATÓMICA (Disco + Contexto al mismo tiempo)
                 localStorage.setItem('token', cleanToken);
                 localStorage.setItem('user', JSON.stringify(userData));
-                localStorage.setItem('role', userData.role);
-
-                // 2. Sincronización de Contexto
+                
+                // Actualizamos el contexto de una vez
                 setToken(cleanToken);
                 setUser(userData);
 
-                toast.success("🚀 ¡Perfil Software DT Sincronizado!");
+                toast.success("🚀 ¡Datacenter Sincronizado!");
 
-                // 3. Lógica de Redirección Post-Doctor/Servicio
-                setTimeout(() => {
-                    const pendingBooking = localStorage.getItem('sdt_pending_appointment');
-                    const returnPath = localStorage.getItem('sdt_return_path');
+                // 4. LÓGICA DE REDIRECCIÓN INTELIGENTE
+                const returnPath = localStorage.getItem('sdt_return_path');
+                const pendingAppt = localStorage.getItem('sdt_pending_appointment');
 
-                    if (pendingBooking || returnPath) {
-                        // Si el usuario venía de Doctors.jsx o Services.jsx, lo devolvemos al flujo
-                        navigate(returnPath || '/bookings', { replace: true });
-                    } else {
-                        navigate('/users/profile/me', { replace: true });
-                    }
-                }, 800);
+                if (returnPath || pendingAppt) {
+                    // Si el usuario venía de agendar una cita, lo regresamos allá con sus datos listos
+                    navigate(returnPath || '/booking', { replace: true });
+                } else {
+                    navigate('/users/profile/me', { replace: true });
+                }
+            } else {
+                // Si el registro no devuelve token (flujo de confirmación por email), mandamos a login
+                toast.info("Registro exitoso. Por favor inicia sesión.");
+                navigate('/login');
             }
             
         } catch (err) {
             setApiError(err.message);
-            toast.error(err.message);
+            toast.error(`Error de Datacenter: ${err.message}`);
         } finally {
             setIsLoading(false);
         }
@@ -113,7 +117,7 @@ const Signup = () => {
         <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC] p-4 sm:p-6 lg:p-10 font-sans antialiased">
             <div className="w-full max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
                 
-                {/* LADO IZQUIERDO: BRANDING */}
+                {/* LADO IZQUIERDO: BRANDING (SoftwareDT Style) */}
                 <div className="w-full max-w-lg lg:w-1/2 text-center lg:text-left order-2 lg:order-1">
                     <div className="inline-flex items-center gap-2 mb-4">
                         <div className="w-8 h-[2px] bg-[#FEB60D]"></div>
@@ -122,30 +126,30 @@ const Signup = () => {
                     
                     <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter leading-none mb-4">
                         Software<span className="text-[#FEB60D]">DT</span> <br />
-                        <span className="text-2xl sm:text-3xl text-gray-800">Sincronizar Perfil</span>
+                        <span className="text-2xl sm:text-3xl text-gray-800 tracking-tight">Capa de Registro</span>
                     </h1>
 
-                    <p className="text-black font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-8">
-                        Únete a la plataforma con más commits en Colombia. Gestiona tus servicios de arquitectura y citas en tiempo real.
+                    <p className="text-black font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-8 opacity-80">
+                        Sincroniza tu perfil con el Datacenter #1 de commits en Colombia. Gestiona arquitectura y servicios en tiempo real.
                     </p>
 
                     <div className="flex flex-col items-center lg:items-start gap-3">
-                        <p className="text-gray-400 font-black uppercase text-[10px] tracking-widest">¿Ya tienes cuenta?</p>
+                        <p className="text-gray-400 font-black uppercase text-[10px] tracking-widest">¿Ya eres parte?</p>
                         <Link 
                             to="/login" 
                             className="group relative inline-flex items-center justify-center px-8 py-3 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1"
                         >
-                            Acceder al Panel
+                            Acceder al Sistema
                         </Link>
                     </div>
                 </div>
 
                 {/* LADO DERECHO: FORMULARIO */}
                 <div className="w-full sm:w-[420px] lg:w-[480px] order-1 lg:order-2">
-                    <div className="bg-white border-[3px] border-black rounded-[40px] p-6 sm:p-10 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.1)] relative">
+                    <div className="bg-white border-[3px] border-black rounded-[40px] p-6 sm:p-10 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.1)]">
                         
                         <div className="flex items-center justify-between mb-8">
-                            <h2 className="text-xl font-black text-black uppercase tracking-tight">Registro</h2>
+                            <h2 className="text-xl font-black text-black uppercase tracking-tight">Nuevo Usuario</h2>
                             <div className="p-2.5 bg-[#FEB60D] rounded-xl text-black">
                                 <UserPlus size={20} strokeWidth={3} />
                             </div>
@@ -160,20 +164,20 @@ const Signup = () => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     className={`w-full bg-gray-50 border-2 ${validationErrors.name ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-[#FEB60D] focus:bg-white outline-none font-bold text-black text-sm transition-all`}
-                                    placeholder="Nombre de usuario"
+                                    placeholder="Nombre del arquitecto"
                                 />
                                 {validationErrors.name && <p className="text-[8px] text-red-500 font-bold mt-1 uppercase ml-1">{validationErrors.name}</p>}
                             </div>
 
                             <div>
-                                <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Email Profesional</label>
+                                <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Email Datacenter</label>
                                 <input
                                     id="email"
                                     type="email"
                                     value={formData.email}
                                     onChange={handleChange}
                                     className={`w-full bg-gray-50 border-2 ${validationErrors.email ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-[#FEB60D] focus:bg-white outline-none font-bold text-black text-sm transition-all`}
-                                    placeholder="correo@softwaredt.com"
+                                    placeholder="dev@softwaredt.com"
                                 />
                                 {validationErrors.email && <p className="text-[8px] text-red-500 font-bold mt-1 uppercase ml-1">{validationErrors.email}</p>}
                             </div>
@@ -204,7 +208,7 @@ const Signup = () => {
                             >
                                 {isLoading ? (
                                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                ) : "Crear Perfil e Iniciar"}
+                                ) : "Sincronizar y Entrar"}
                             </button>
                         </form>
                     </div>

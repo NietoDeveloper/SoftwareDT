@@ -1,52 +1,54 @@
 import axios from 'axios';
 
-// Configuración de la URL base alineada con el entorno de Software DT
+// URL base alineada con tu backend
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 /**
  * Servicio de Refresco de Token - Core Auth DT
- * Se encarga de mantener la sesión activa sin interrumpir el flujo del cliente.
  */
 const refreshAccessToken = async () => {
   try {
-    const refreshToken = localStorage.getItem('refreshToken');
+    // 1. Intentamos obtener el refreshToken (o el token actual si tu lógica es simple)
+    const refreshToken = localStorage.getItem('token'); 
     
     if (!refreshToken) {
-      // Si no hay token, no hay nada que refrescar. Redirigimos al flujo de login.
-      throw new Error('Sesión inexistente o expirada.');
+      throw new Error('No hay rastro de sesión en el almacenamiento local.');
     }
 
-    // Petición al endpoint de refresco de Software DT
-    const response = await axios.post(`${API_URL}/auth/refresh-token`, { 
-      token: refreshToken // Ajustado a 'token' si tu backend lo espera así
-    }, {
+    // 2. AJUSTE CRÍTICO: El endpoint debe coincidir con tu index.js ( /api/user/refresh )
+    // Usamos axios base para evitar bucles con axiosPrivate
+    const response = await axios.post(`${API_URL}/user/refresh`, {}, {
+      withCredentials: true, // VITAL para que viajen las cookies de HTTP-Only
       headers: {
-        'Content-Type': 'application/json'
-      },
-      withCredentials: true 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${refreshToken.replace(/"/g, "")}`
+      }
     });
 
-    const { accessToken, refreshToken: newRefreshToken } = response.data;
+    // 3. Capturamos la data según la estructura de tu Backend
+    const data = response.data;
+    const newAccessToken = data.token || data.accessToken;
 
-    if (!accessToken) throw new Error('La respuesta del servidor no contiene un token válido.');
-
-    // Persistencia de la nueva sesión
-    localStorage.setItem('token', accessToken);
-    
-    // Si el backend rota los refresh tokens, lo actualizamos también
-    if (newRefreshToken) {
-      localStorage.setItem('refreshToken', newRefreshToken);
+    if (!newAccessToken) {
+      throw new Error('El Datacenter no devolvió un token de acceso.');
     }
 
-    return accessToken;
+    // 4. Limpieza y guardado del nuevo token
+    const cleanToken = String(newAccessToken).replace(/['"]+/g, '').trim();
+    localStorage.setItem('token', cleanToken);
+    
+    return cleanToken;
+
   } catch (error) {
-    // Log técnico para NietoDeveloper (Consola)
-    console.error(' [AUTH_SYSTEM] Fallo en la re-validación:', error.response?.data?.message || error.message);
+    // Log para NietoDeveloper
+    console.error('🚨 [SDT_AUTH] Error en refresco:', error.response?.status, error.response?.data?.message);
     
-    // Limpieza total para forzar re-autenticación en PrivateRoutes
-    localStorage.clear(); 
+    // Si falla el refresco, la sesión ya no es válida
+    // No borramos todo el localStorage (para no perder el flujo de la cita), 
+    // solo lo relacionado a la sesión.
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     
-    // Lanzamos el error para que el interceptor o el componente sepa que debe redirigir a /login
     throw error;
   }
 };
