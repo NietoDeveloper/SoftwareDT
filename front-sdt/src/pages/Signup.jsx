@@ -94,23 +94,7 @@ const Signup = () => {
                     </h1>
 
     
-                                    className={`w-full bg-gray-50 border-2 ${validationErrors.name ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm`}
-                                    placeholder="Ej: Juan Pérez"
-                                />
-                            </div>
-
-
-
-
-                            {apiError && (
-                                <div className="bg-red-50 text-red-600 p-3 rounded-lg text-[9px] font-bold uppercase border border-red-100">
-                                    {apiError}
-                                </div>
-                            )}
-
-                            <button
-                                type="submit"
-                                disabled={isLoading}
+g}
                                 className="w-full mt-4 py-4 bg-black text-white rounded-xl font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-amber-500 hover:text-black hover:-translate-y-1 hover:shadow-lg flex items-center justify-center"
                             >
                                 {isLoading ? (
