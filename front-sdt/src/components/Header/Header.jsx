@@ -185,35 +185,7 @@ const Header = () => {
                   <Link 
                     to="/login" 
                     onClick={() => setIsMenuOpen(false)} 
-                    className={`text-sm font-black uppercase tracking-widest transition-colors ${
-                      isActive("/login") ? "text-[#FEB60D]" : "text-black hover:text-[#FEB60D]"
-                    }`}
-                  >
-                    Login
-                  </Link>
-                  <Link 
-                    to="/signup" 
-                    onClick={() => setIsMenuOpen(false)} 
-                    className={`w-full py-3 rounded-xl border-2 text-xs font-black uppercase text-center transition-all ${
-                      isActive("/signup") 
-                        ? "bg-[#FEB60D] border-[#FEB60D] text-black" 
-                        : "bg-black border-black text-white hover:bg-[#FEB60D] hover:border-[#FEB60D] hover:text-black"
-                    }`}
-                  >
-                    Registro
-                  </Link>
-                </>
-              ) : (
-                <div className="w-full space-y-4 flex flex-col items-center">
-                  <Link 
-                    to="/client-appointments" 
-                    onClick={() => setIsMenuOpen(false)} 
-                    className={`w-full py-3 rounded-xl border-2 border-[#FFD700] text-black text-xs font-black uppercase text-center ${
-                      isActive("/client-appointments") ? "bg-[#FEB60D]" : "bg-[#FFD700]"
-                    }`}
-                  >
-                    Panel Activo
-                  </Link>
+
                   
 
   );
