@@ -6,11 +6,7 @@ import { toast } from "react-toastify";
 import { axiosPrivate } from "../API/api.js"; 
 import Footer from "../components/Footer/Footer";
 import { UserContext } from "../context/UserContext";
-import { 
-  ChevronLeft, 
-  Briefcase, 
-  ArrowRight
-} from "lucide-react";
+import { ChevronLeft, Briefcase, ArrowRight } from "lucide-react";
 
 const BookingPage = () => {
   const { doctorId: paramId } = useParams();
@@ -21,7 +17,6 @@ const BookingPage = () => {
   // --- LÓGICA DE RECUPERACIÓN DE FLUJO SDT ---
   const flowData = useMemo(() => {
     const saved = localStorage.getItem('sdt_pending_appointment');
-    // Priorizamos el estado de la navegación, si no, lo que persistimos en localStorage
     return location.state || (saved ? JSON.parse(saved) : null);
   }, [location.state]);
 
@@ -29,6 +24,7 @@ const BookingPage = () => {
   const serviceFromFlow = flowData?.serviceData; 
   const activeDoctorId = paramId || doctorFromFlow?._id;
 
+  // ESTADO LOCAL DEL FORMULARIO
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -40,33 +36,40 @@ const BookingPage = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 1. Blindaje de Sesión y Flujo
+  // --- 1. BLINDAJE DE SESIÓN (EL AJUSTE CLAVE) ---
   useEffect(() => {
-    if (!userLoading && (!user || !token)) {
+    // Si React aún está cargando el contexto, no hacemos nada
+    if (userLoading) return;
+
+    // Verificamos si hay algo en localStorage por si el contexto está "vacío" momentáneamente
+    const hasToken = token || localStorage.getItem('token');
+    const hasUser = user || localStorage.getItem('user');
+
+    if (!hasToken || !hasUser) {
       localStorage.setItem('sdt_return_path', location.pathname);
-      toast.error("Sesión requerida para agendar.");
-      navigate("/login", { state: { from: location.pathname } });
-      return;
+      toast.error("Identificación requerida para agendar.");
+      navigate("/login", { state: { from: location.pathname }, replace: true });
     }
     
-    // Si llegamos aquí sin un doctor, regresamos al listado
     if (!activeDoctorId && !doctorLoading) {
-      toast.info("Por favor seleccione un especialista.");
+      toast.info("Seleccione un especialista primero.");
       navigate("/doctors");
     }
-  }, [user, token, userLoading, activeDoctorId]);
+  }, [user, token, userLoading, activeDoctorId, navigate, location.pathname]);
 
-  // 2. Hidratación: Datos del Usuario + Datos del Servicio
+  // --- 2. HIDRATACIÓN DE DATOS ---
   useEffect(() => {
-    if (user || serviceFromFlow) {
+    // Intentamos sacar los datos del contexto o del storage
+    const activeUser = user || JSON.parse(localStorage.getItem('user'));
+    
+    if (activeUser) {
       setFormData(prev => ({
         ...prev,
-        fullName: user?.name || user?.fullName || prev.fullName,
-        email: user?.email || prev.email,
-        phone: user?.phone || prev.phone,
-        // Si hay un servicio seleccionado, lo inyectamos en el motivo
-        reason: serviceFromFlow 
-          ? `Requerimiento para: ${serviceFromFlow.name || serviceFromFlow.title}. ${prev.reason}` 
+        fullName: activeUser.name || activeUser.fullName || prev.fullName,
+        email: activeUser.email || prev.email,
+        phone: activeUser.phone || prev.phone,
+        reason: serviceFromFlow && !prev.reason.includes("Requerimiento")
+          ? `Requerimiento para: ${serviceFromFlow.name || serviceFromFlow.title}. `
           : prev.reason
       }));
     }
@@ -76,25 +79,22 @@ const BookingPage = () => {
   const { data: doctor, isLoading: doctorLoading } = useQuery({
     queryKey: ["doctor", activeDoctorId],
     queryFn: async () => {
-      // Si ya los tenemos del flujo anterior, evitamos la petición al API
       if (doctorFromFlow) return doctorFromFlow;
       const res = await axiosPrivate.get(`/doctors/${activeDoctorId}`);
       return res.data.data || res.data.doctor || res.data;
     },
-    enabled: !!activeDoctorId && !!token,
+    enabled: !!activeDoctorId && (!!token || !!localStorage.getItem('token')),
   });
 
-  // 4. Generación de horarios (Lógica de negocio SDT)
+  // 4. Generación de horarios
   const availableTimes = useMemo(() => {
     if (!formData.appointmentDate) return [];
     const times = [];
     const [year, month, day] = formData.appointmentDate.split("-").map(Number);
     const selectedDate = new Date(year, month - 1, day);
-    
-    if (selectedDate.getDay() === 0) return []; // No atendemos domingos
+    if (selectedDate.getDay() === 0) return [];
     
     const now = new Date();
-    // Margen de 8 horas para agendar
     const minTimeAllowed = new Date(now.getTime() + 8 * 60 * 60 * 1000); 
 
     for (let hour = 9; hour <= 18; hour++) {
@@ -108,7 +108,7 @@ const BookingPage = () => {
     return times;
   }, [formData.appointmentDate]);
 
-  // 5. Envío Final al Backend
+  // 5. Envío Final
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.appointmentTime) return toast.warning("Seleccione una hora.");
@@ -117,36 +117,32 @@ const BookingPage = () => {
     try {
       const payload = {
         doctorId: doctor?._id || activeDoctorId,
-        serviceName: serviceFromFlow?.name || serviceFromFlow?.title || "Consultoría General",
+        serviceName: serviceFromFlow?.name || serviceFromFlow?.title || "Consultoría SDT",
         slotDate: formData.appointmentDate,
         slotTime: formData.appointmentTime,
         fullName: formData.fullName,
         email: formData.email,
         phone: formData.phone,
         reason: formData.reason,
-        // Precio del servicio o ticket base del doctor
         amount: serviceFromFlow?.price || doctor?.ticketPrice || 0
       };
 
       const res = await axiosPrivate.post(`/appointments`, payload);
 
       if (res.data) {
-        toast.success("Cita Sincronizada con el Arquitecto.");
-        // LIMPIEZA DE FLUJO: Misión cumplida
+        toast.success("Cita Sincronizada.");
         localStorage.removeItem('sdt_pending_appointment');
         localStorage.removeItem('sdt_return_path');
-        localStorage.removeItem('selectedService');
-        
         navigate("/users/profile/me"); 
       }
     } catch (err) {
-      const msg = err.response?.data?.message || "Error en el Datacenter de citas.";
-      toast.error(msg);
+      toast.error(err.response?.data?.message || "Error en el Datacenter.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  // UI DE CARGA
   if (userLoading || (doctorLoading && !doctor)) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC]">
@@ -178,18 +174,18 @@ const BookingPage = () => {
                   <input type="text" value={formData.fullName} onChange={(e) => setFormData({...formData, fullName: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Teléfono de Contacto</label>
+                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Teléfono</label>
                   <input type="tel" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Fecha de Cita</label>
+                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Fecha</label>
                   <input type="date" min={new Date().toISOString().split("T")[0]} value={formData.appointmentDate} onChange={(e) => setFormData({...formData, appointmentDate: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Hora Disponible</label>
+                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Hora</label>
                   <select value={formData.appointmentTime} onChange={(e) => setFormData({...formData, appointmentTime: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm appearance-none">
                     <option value="">Seleccione hora</option>
                     {availableTimes.map(t => <option key={t} value={t}>{t}</option>)}
@@ -198,12 +194,12 @@ const BookingPage = () => {
               </div>
 
               <div className="space-y-1">
-                <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Notas del Proyecto / Requerimientos</label>
+                <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Notas</label>
                 <textarea value={formData.reason} onChange={(e) => setFormData({...formData, reason: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-medium text-sm h-32 resize-none" />
               </div>
 
-              <button type="submit" disabled={isSubmitting} className="w-full bg-black text-white py-5 rounded-xl font-black text-xs uppercase tracking-[0.2em] hover:bg-[#FEB60D] hover:text-black transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2">
-                {isSubmitting ? "Sincronizando Datacenter..." : "Finalizar Agendamiento"}
+              <button type="submit" disabled={isSubmitting} className="w-full bg-black text-white py-5 rounded-xl font-black text-xs uppercase tracking-[0.2em] hover:bg-[#FEB60D] hover:text-black transition-all flex items-center justify-center gap-2">
+                {isSubmitting ? "Sincronizando..." : "Finalizar Agendamiento"}
                 <ArrowRight size={16} />
               </button>
             </form>
@@ -211,25 +207,16 @@ const BookingPage = () => {
         </div>
 
         <div className="lg:col-span-4 space-y-6 order-2">
-          {/* Card de Especialista */}
           <div className="bg-white border border-black/5 rounded-[2rem] p-8 shadow-sm">
             <Briefcase className="text-[#FEB60D] mb-4" size={24} />
-            <p className="text-[9px] font-black text-[#FEB60D] uppercase tracking-widest mb-1">Especialista Software DT</p>
-            <h2 className="text-2xl font-black uppercase tracking-tight">{doctor?.name || "Cargando..."}</h2>
-            <p className="text-xs font-bold text-gray-400 uppercase mt-1">{doctor?.specialization || "Arquitecto Senior"}</p>
+            <p className="text-[9px] font-black text-[#FEB60D] uppercase tracking-widest mb-1">Especialista</p>
+            <h2 className="text-2xl font-black uppercase tracking-tight">{doctor?.name || "..."}</h2>
           </div>
-
-          {/* Card de Resumen de Pago */}
           <div className="bg-black text-white rounded-[2rem] p-8 shadow-xl">
-            <span className="text-[9px] font-black uppercase tracking-widest text-[#FEB60D] block mb-4">Servicio Seleccionado</span>
-            <h3 className="text-xl font-black uppercase mb-2">
-              {serviceFromFlow?.name || serviceFromFlow?.title || "Consultoría"}
-            </h3>
-            <div className="h-1 w-12 bg-[#FEB60D] mb-4"></div>
+            <span className="text-[9px] font-black uppercase tracking-widest text-[#FEB60D] block mb-4">Servicio</span>
+            <h3 className="text-xl font-black uppercase mb-2">{serviceFromFlow?.name || "Consultoría"}</h3>
             <p className="text-3xl font-black text-[#FEB60D] tracking-tighter">
-              {serviceFromFlow?.price 
-                ? `$${serviceFromFlow.price}` 
-                : (doctor?.ticketPrice ? `$${doctor.ticketPrice}` : "A convenir")}
+              ${serviceFromFlow?.price || doctor?.ticketPrice || 0}
             </p>
           </div>
         </div>

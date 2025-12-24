@@ -1,10 +1,8 @@
 import axios from 'axios';
 import refreshAccessToken from '../utils/refreshAccess';
 
-// Ajuste para Vercel: Prioriza la variable de entorno de producción
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-// Instancias base
 export const axiosPublic = axios.create({ baseURL: BASE_URL });
 export const axiosAuth = axios.create({ baseURL: BASE_URL, withCredentials: true });
 export const axiosPrivate = axios.create({ baseURL: BASE_URL, withCredentials: true });
@@ -20,43 +18,51 @@ const processQueue = (error, token = null) => {
     failedQueue = [];
 };
 
+// Función auxiliar de saneamiento (Reutilizable)
+const getCleanToken = (rawToken) => {
+    if (!rawToken) return null;
+    const clean = String(rawToken)
+        .replace(/['"]+/g, '')
+        .replace(/Bearer\s+/i, '')
+        .trim();
+    return (clean !== "null" && clean !== "undefined" && clean !== "") ? clean : null;
+};
+
 export const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
     
-    // --- INTERCEPTOR DE PETICIÓN (Inyección Blindada) ---
+    // 1. INTERCEPTOR DE PETICIÓN
     axiosPrivate.interceptors.request.use(
         (config) => {
-            const token = getAccessToken();
+            // Intentamos obtener el token del estado de React, si no, del disco duro
+            let token = getAccessToken() || localStorage.getItem('token');
+            const cleanToken = getCleanToken(token);
 
-            if (token) {
-                // SANEAMIENTO PROFUNDO para evitar el error "jwt malformed" que vimos en tus logs
-                const cleanToken = String(token)
-                    .replace(/['"]+/g, '')
-                    .replace(/Bearer\s+/i, '')
-                    .trim();
-
-                if (cleanToken && cleanToken !== "null" && cleanToken !== "undefined") {
-                    config.headers.Authorization = `Bearer ${cleanToken}`;
-                }
+            if (cleanToken) {
+                config.headers.Authorization = `Bearer ${cleanToken}`;
+            } else {
+                // Si no hay token en absoluto, no dejamos que la petición salga "sucia"
+                // Esto evita que el backend responda 401 y el interceptor de respuesta dispare el logout
+                console.warn("⚠️ SDT: Intento de petición privada sin token.");
             }
             return config;
         },
         (error) => Promise.reject(error)
     );
 
-    // --- INTERCEPTOR DE RESPUESTA ---
+    // 2. INTERCEPTOR DE RESPUESTA
     axiosPrivate.interceptors.response.use(
         (response) => response,
         async (error) => {
             const originalRequest = error.config;
 
-            // 1. Manejo de Errores Críticos (403 Forbidden / Malformed)
+            // Error 403: Prohibido o Malformado (No intentamos refrescar)
             if (error.response?.status === 403) {
-                console.error("DEBUG [SDT]: Error Crítico 403 - Token Malformado o Prohibido.");
+                console.error("❌ SDT: Error 403 Crítico.");
                 if (onLogout) onLogout();
                 return Promise.reject(error);
             }
 
-            // 2. Manejo de Expiración (401 Unauthorized)
+            // Error 401: Expirado (Iniciamos flujo de refresh)
             if (error.response?.status === 401 && !originalRequest._retry) {
                 
                 if (isRefreshing) {
@@ -78,21 +84,19 @@ export const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
                         console.log("🔄 SDT Security: Renovando acceso...");
                         const newAccessToken = await refreshAccessToken();
                         
-                        if (!newAccessToken) throw new Error("No se recibió nuevo token");
-
-                        const cleanNewToken = String(newAccessToken)
-                            .replace(/['"]+/g, '')
-                            .replace(/Bearer\s+/i, '')
-                            .trim();
+                        const cleanNewToken = getCleanToken(newAccessToken);
                         
-                        setAccessToken(cleanNewToken);
+                        if (!cleanNewToken) throw new Error("Refresh fallido");
+
+                        setAccessToken(cleanNewToken); // Actualiza Contexto
+                        localStorage.setItem('token', cleanNewToken); // Actualiza Disco
                         
                         originalRequest.headers.Authorization = `Bearer ${cleanNewToken}`;
                         processQueue(null, cleanNewToken);
                         resolve(axiosPrivate(originalRequest));
                     } catch (refreshError) {
                         processQueue(refreshError, null);
-                        console.error("❌ SDT Security: Fallo crítico de renovación.");
+                        console.error("🚨 SDT: Sesión caducada definitivamente.");
                         if (onLogout) onLogout();
                         reject(refreshError);
                     } finally {
