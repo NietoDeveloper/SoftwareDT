@@ -54,15 +54,7 @@ const Signup = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#fcfcfc] p-4 sm:p-6 lg:p-10 font-sans antialiased">
-            <div className="w-full max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
-                
-                {/* Lado Izquierdo: Branding */}
-                <div className="w-full max-w-lg lg:w-1/2 text-center lg:text-left order-2 lg:order-1">
-                    <div className="inline-flex items-center gap-2 mb-4">
-                        <div className="w-8 h-[2px] bg-amber-500"></div>
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">Bienvenido</span>
-                    </div>
+
                     
                     <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter leading-none mb-4">
                         Software<span className="text-amber-500">DT</span> <br />
