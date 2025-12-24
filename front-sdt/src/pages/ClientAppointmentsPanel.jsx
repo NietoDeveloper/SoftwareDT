@@ -3,8 +3,9 @@ import { UserContext } from "../context/UserContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { axiosPrivate } from "../API/api.js";
 import { 
-  PlusCircle, Mail, MessageCircle, ArrowUpRight, Loader2
+  PlusCircle, Mail, MessageCircle, ArrowUpRight, Loader2, Save
 } from "lucide-react";
+import { toast } from "react-hot-toast"; // Asumiendo que usas toast para feedback profesional
 
 const ClientAppointmentsPanel = () => {
   const { user, token, handleLogout } = useContext(UserContext);
@@ -14,6 +15,10 @@ const ClientAppointmentsPanel = () => {
   const [messages, setMessages] = useState([]); 
   const [activeTab, setActiveTab] = useState("pending");
   const [isLoading, setIsLoading] = useState(true);
+  
+  // NUEVO: Estado para controlar plantillas de mensajes (Elon Musk Standard)
+  const [customMessage, setCustomMessage] = useState(user?.customMessage || "");
+  const [isSaving, setIsSaving] = useState(false);
 
   const fetchDashboardData = useCallback(async () => {
     const userId = user?._id || user?.id;
@@ -24,11 +29,18 @@ const ClientAppointmentsPanel = () => {
 
     try {
       setIsLoading(true);
-      const response = await axiosPrivate.get(`/appointments/user/${userId}`);
-      if (response.data) {
-        setAppointments(response.data.appointments || response.data.data || []);
+      // Petición paralela para optimizar carga (Engineering Excellence)
+      const [apptRes, msgRes] = await Promise.all([
+        axiosPrivate.get(`/appointments/user/${userId}`),
+        axiosPrivate.get(`/messages/user/${userId}`).catch(() => ({ data: { messages: [] } }))
+      ]);
+
+      if (apptRes.data) {
+        setAppointments(apptRes.data.appointments || apptRes.data.data || []);
       }
-      setMessages([]); 
+      if (msgRes.data) {
+        setMessages(msgRes.data.messages || []);
+      }
     } catch (err) {
       console.error("❌ Error en Datacenter SDT:", err.response?.data?.message || err.message);
       if (err.response?.status === 401 || err.response?.status === 403) {
@@ -43,6 +55,21 @@ const ClientAppointmentsPanel = () => {
   useEffect(() => {
     fetchDashboardData();
   }, [fetchDashboardData]);
+
+  // NUEVO: Función para guardar mensajes/configuración en el clúster
+  const handleSaveSettings = async () => {
+    try {
+      setIsSaving(true);
+      await axiosPrivate.put(`/users/profile/update`, { customMessage });
+      toast.success("DATACENTER ACTUALIZADO", {
+        style: { background: '#000', color: '#FFD700', fontWeight: 'bold' }
+      });
+    } catch (err) {
+      toast.error("ERROR DE SINCRONIZACIÓN");
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const formatDate = (dateString) => {
     if (!dateString) return "FECHA PENDIENTE";
@@ -65,7 +92,7 @@ const ClientAppointmentsPanel = () => {
 
   return (
     <div className="min-h-screen bg-main pb-20 font-sans text-black antialiased overflow-x-hidden">
-      {/* HEADER RESPONSIVE */}
+      {/* HEADER RESPONSIVE (Sin cambios) */}
       <div className="bg-white border-b-2 border-black/5 pt-8 sm:pt-12 pb-8 sm:pb-10 px-4 sm:px-6 md:px-12 shadow-[0_4px_30px_rgba(254,182,13,0.1)]">
         <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div className="space-y-2 w-full md:w-auto">
@@ -94,6 +121,7 @@ const ClientAppointmentsPanel = () => {
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 mt-8 sm:mt-12 flex flex-col lg:flex-row gap-8 lg:gap-12">
         <div className="w-full lg:w-[65%] space-y-10">
           
+          {/* SECCIÓN CITAS (Estructura Original) */}
           <section>
             <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 mb-6 sm:mb-8">
               <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter">Historial de Citas</h2>
@@ -127,31 +155,25 @@ const ClientAppointmentsPanel = () => {
               ) : (
                 filteredAppointments.map((appt) => (
                   <div key={appt._id} className="bg-white border-[3px] border-black/5 rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 hover:border-yellowColor/30 hover:shadow-2xl transition-all duration-400 group relative overflow-hidden">
-                    {/* Barra lateral de estado */}
                     <div className="absolute left-0 top-0 bottom-0 w-2 bg-yellowColor opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                       <div className="flex-1 space-y-3">
-                        {/* TÍTULO DE SERVICIO MÁS GRANDE */}
                         <h3 className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tighter text-headingColor leading-none">
                           {appt.serviceName || "Consultoría Técnica"}
                         </h3>
-                        
-                        {/* FECHA Y HORA DESTACADAS */}
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                            <div className="bg-main px-4 py-2 rounded-lg border border-black/5 shadow-sm">
-                              <p className="text-[12px] sm:text-[14px] font-black text-black uppercase tracking-widest">
+                             <p className="text-[12px] sm:text-[14px] font-black text-black uppercase tracking-widest">
                                 {formatDate(appt.slotDate || appt.appointmentDate)}
-                              </p>
+                             </p>
                            </div>
                            <div className="bg-yellowColor/10 px-4 py-2 rounded-lg border border-yellowColor/20 shadow-sm">
-                              <p className="text-[12px] sm:text-[14px] font-black text-yellowColor uppercase tracking-widest">
+                             <p className="text-[12px] sm:text-[14px] font-black text-yellowColor uppercase tracking-widest">
                                 {appt.slotTime || appt.appointmentTime}
-                              </p>
+                             </p>
                            </div>
                         </div>
                       </div>
-
                       <button 
                         onClick={() => navigate("/appointment-confirmation", { state: { appointment: appt } })}
                         className="w-full md:w-auto bg-black text-white px-10 py-4 rounded-2xl text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-400 hover:bg-yellowColor hover:text-black hover:shadow-[0_10px_20px_rgba(0,0,0,0.1)] active:scale-95"
@@ -165,7 +187,7 @@ const ClientAppointmentsPanel = () => {
             </div>
           </section>
 
-          {/* RESTO DEL CONTENIDO (HISTORIAL MENSAJERIA) IGUAL... */}
+          {/* HISTORIAL MENSAJERÍA (Funcionalizado) */}
           <section>
              <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter mb-6 sm:mb-8">Historial Mensajeria</h2>
              <div className="bg-white border-2 border-black/5 rounded-[1.2rem] sm:rounded-[2rem] overflow-hidden shadow-sm">
@@ -201,10 +223,10 @@ const ClientAppointmentsPanel = () => {
           </section>
         </div>
 
-        {/* ASIDE IGUAL... */}
+        {/* ASIDE (Ajustado para control de mensajes y estilo SDT) */}
         <aside className="w-full lg:w-[35%]">
           <div className="bg-white border-2 border-black/5 rounded-[1.8rem] sm:rounded-[2.5rem] p-6 sm:p-8 shadow-sm lg:sticky lg:top-10">
-            <h2 className="text-lg sm:text-xl font-black uppercase tracking-tighter mb-8 text-center">Contacto Directo</h2>
+            <h2 className="text-lg sm:text-xl font-black uppercase tracking-tighter mb-8 text-center">Centro de Control</h2>
             
             <div className="flex flex-col items-center text-center mb-8">
                 <div className="w-20 h-20 bg-main rounded-full flex items-center justify-center mb-4 border-2 border-black/5 overflow-hidden ring-4 ring-yellowColor/10">
@@ -221,16 +243,29 @@ const ClientAppointmentsPanel = () => {
             </div>
 
             <div className="space-y-4">
-               <div className="bg-main/30 border border-black/5 p-5 rounded-2xl relative">
-                  <div className="text-yellowColor text-[8px] font-black uppercase mb-2 tracking-widest">Nota_Sincronización</div>
-                  <p className="text-[11px] sm:text-[12px] font-medium leading-relaxed italic text-gray-600">
-                    "{user?.adminMessage || `Bienvenido, ${user?.name || 'Cliente'}. Tu racha de actividad está siendo monitoreada desde Bogotá.`}"
-                  </p>
-                  <div className="absolute -right-1 -top-1 w-4 h-4 bg-green-500 rounded-full border-4 border-white animate-pulse"></div>
+               {/* NUEVO: Área de Configuración de Mensajes (Lo que pediste guardar) */}
+               <div className="bg-main/30 border-2 border-black/5 p-5 rounded-2xl">
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-[8px] font-black text-yellowColor uppercase tracking-widest">Plantilla WhatsApp</span>
+                    {isSaving ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} className="text-gray-400" />}
+                  </div>
+                  <textarea 
+                    value={customMessage}
+                    onChange={(e) => setCustomMessage(e.target.value)}
+                    placeholder="Escribe tu mensaje predefinido aquí..."
+                    className="w-full bg-white border border-black/5 rounded-xl p-3 text-[11px] font-bold focus:ring-2 ring-yellowColor/20 outline-none resize-none h-24"
+                  />
+                  <button 
+                    onClick={handleSaveSettings}
+                    disabled={isSaving}
+                    className="w-full mt-3 bg-black text-white text-[9px] font-black uppercase py-3 rounded-xl hover:bg-yellowColor hover:text-black transition-all"
+                  >
+                    Sincronizar Mensaje
+                  </button>
                </div>
 
                <div className="pt-4 space-y-3">
-                  <a href="https://wa.me/573115456209" target="_blank" rel="noreferrer" className="w-full flex items-center justify-between p-4 bg-[#25D366] text-white rounded-xl hover:scale-[1.02] transition-all shadow-md group">
+                  <a href={`https://wa.me/573115456209?text=${encodeURIComponent(customMessage)}`} target="_blank" rel="noreferrer" className="w-full flex items-center justify-between p-4 bg-[#25D366] text-white rounded-xl hover:scale-[1.02] transition-all shadow-md group">
                      <span className="text-[10px] font-black uppercase tracking-widest">WhatsApp Soporte</span>
                      <MessageCircle size={18} className="group-hover:rotate-12 transition-transform" />
                   </a>
