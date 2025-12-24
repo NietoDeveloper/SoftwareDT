@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserPlus } from "lucide-react";
 import { UserContext } from '../context/UserContext';
+import { toast } from 'react-toastify';
 
 const isRequired = (value) => value && value.trim() !== '';
 const isValidEmail = (email) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email);
@@ -22,19 +23,17 @@ const validateField = (field, value) => {
 
 const Signup = () => {
     const navigate = useNavigate();
-    // Extraemos setToken y setUser para actualizar el estado global inmediatamente
     const { setToken, setUser } = useContext(UserContext);
 
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
-        role: 'patient' // Ajustado a minúsculas para consistencia con la mayoría de backends
+        role: 'patient' 
     });
     
     const [validationErrors, setValidationErrors] = useState({});
     const [apiError, setApiError] = useState(null);
-    const [successMessage, setSuccessMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e) => {
@@ -62,8 +61,8 @@ const Signup = () => {
 
         setIsLoading(true);
         try {
-            // URL apuntando a tu backend de producción o desarrollo
             const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+            // Usamos la ruta /api/auth/register que acabamos de habilitar en el backend
             const response = await fetch(`${apiUrl}/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -73,38 +72,38 @@ const Signup = () => {
             const result = await response.json();
             if (!response.ok) throw new Error(result.message || 'Error al registrar');
 
-            // --- SINCRONIZACIÓN ATÓMICA (EL CORAZÓN DEL PROBLEMA) ---
             if (result.token) {
-                // 1. Limpieza de token
                 const cleanToken = result.token.replace(/['"]+/g, '').replace(/Bearer\s+/i, '').trim();
                 const userData = result.data || result.user;
 
-                // 2. Persistencia Física Inmediata
+                // 1. Persistencia Inmediata
                 localStorage.setItem('token', cleanToken);
                 localStorage.setItem('user', JSON.stringify(userData));
                 localStorage.setItem('role', userData.role);
 
-                // 3. Actualización de Contexto (Reactividad)
+                // 2. Sincronización de Contexto
                 setToken(cleanToken);
                 setUser(userData);
 
-                setSuccessMessage("¡Cuenta activada con éxito!");
+                toast.success("🚀 ¡Perfil Software DT Sincronizado!");
 
-                // 4. Redirección Inteligente SDT
+                // 3. Lógica de Redirección Post-Doctor/Servicio
                 setTimeout(() => {
                     const pendingBooking = localStorage.getItem('sdt_pending_appointment');
-                    if (pendingBooking) {
-                        // Si venía de elegir un doctor/servicio, vuelve al flujo
-                        navigate('/bookings', { replace: true });
+                    const returnPath = localStorage.getItem('sdt_return_path');
+
+                    if (pendingBooking || returnPath) {
+                        // Si el usuario venía de Doctors.jsx o Services.jsx, lo devolvemos al flujo
+                        navigate(returnPath || '/bookings', { replace: true });
                     } else {
-                        // Flujo estándar al Dashboard
                         navigate('/users/profile/me', { replace: true });
                     }
-                }, 600);
+                }, 800);
             }
             
         } catch (err) {
             setApiError(err.message);
+            toast.error(err.message);
         } finally {
             setIsLoading(false);
         }
@@ -126,12 +125,12 @@ const Signup = () => {
                         <span className="text-2xl sm:text-3xl text-gray-800">Sincronizar Perfil</span>
                     </h1>
 
-                    <p className="text-gray-600 font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-8">
+                    <p className="text-black font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-8">
                         Únete a la plataforma con más commits en Colombia. Gestiona tus servicios de arquitectura y citas en tiempo real.
                     </p>
 
                     <div className="flex flex-col items-center lg:items-start gap-3">
-                        <p className="text-black font-black uppercase text-[10px] tracking-widest">¿Ya tienes cuenta?</p>
+                        <p className="text-gray-400 font-black uppercase text-[10px] tracking-widest">¿Ya tienes cuenta?</p>
                         <Link 
                             to="/login" 
                             className="group relative inline-flex items-center justify-center px-8 py-3 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1"
@@ -143,20 +142,14 @@ const Signup = () => {
 
                 {/* LADO DERECHO: FORMULARIO */}
                 <div className="w-full sm:w-[420px] lg:w-[480px] order-1 lg:order-2">
-                    <div className="bg-white border-[3px] border-black rounded-[30px] p-6 sm:p-10 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.05)] relative">
+                    <div className="bg-white border-[3px] border-black rounded-[40px] p-6 sm:p-10 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.1)] relative">
                         
                         <div className="flex items-center justify-between mb-8">
                             <h2 className="text-xl font-black text-black uppercase tracking-tight">Registro</h2>
-                            <div className="p-2 bg-[#FEB60D] rounded-lg text-black">
+                            <div className="p-2.5 bg-[#FEB60D] rounded-xl text-black">
                                 <UserPlus size={20} strokeWidth={3} />
                             </div>
                         </div>
-
-                        {successMessage && (
-                            <div className="bg-green-50 text-green-700 p-3 rounded-lg text-[10px] font-black uppercase mb-4 border border-green-100 animate-pulse">
-                                {successMessage}
-                            </div>
-                        )}
 
                         <form onSubmit={onSubmit} className="space-y-4">
                             <div>
@@ -166,7 +159,7 @@ const Signup = () => {
                                     type="text"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    className={`w-full bg-gray-50 border-2 ${validationErrors.name ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-black text-sm transition-all`}
+                                    className={`w-full bg-gray-50 border-2 ${validationErrors.name ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-[#FEB60D] focus:bg-white outline-none font-bold text-black text-sm transition-all`}
                                     placeholder="Nombre de usuario"
                                 />
                                 {validationErrors.name && <p className="text-[8px] text-red-500 font-bold mt-1 uppercase ml-1">{validationErrors.name}</p>}
@@ -179,7 +172,7 @@ const Signup = () => {
                                     type="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className={`w-full bg-gray-50 border-2 ${validationErrors.email ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-black text-sm transition-all`}
+                                    className={`w-full bg-gray-50 border-2 ${validationErrors.email ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-[#FEB60D] focus:bg-white outline-none font-bold text-black text-sm transition-all`}
                                     placeholder="correo@softwaredt.com"
                                 />
                                 {validationErrors.email && <p className="text-[8px] text-red-500 font-bold mt-1 uppercase ml-1">{validationErrors.email}</p>}
@@ -192,7 +185,7 @@ const Signup = () => {
                                     type="password"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className={`w-full bg-gray-50 border-2 ${validationErrors.password ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-black text-sm transition-all`}
+                                    className={`w-full bg-gray-50 border-2 ${validationErrors.password ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-[#FEB60D] focus:bg-white outline-none font-bold text-black text-sm transition-all`}
                                     placeholder="••••••••"
                                 />
                                 {validationErrors.password && <p className="text-[8px] text-red-500 font-bold mt-1 uppercase ml-1">{validationErrors.password}</p>}
@@ -207,7 +200,7 @@ const Signup = () => {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="w-full mt-4 py-4 bg-black text-white rounded-xl font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1 flex items-center justify-center disabled:opacity-50"
+                                className="w-full mt-4 py-4 bg-black text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-400 hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1.5 hover:shadow-[0_0_20px_rgba(254,182,13,0.4)] flex items-center justify-center disabled:opacity-50"
                             >
                                 {isLoading ? (
                                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
