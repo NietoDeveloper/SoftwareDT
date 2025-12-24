@@ -167,24 +167,7 @@ const Header = () => {
             className="md:hidden bg-white/98 backdrop-blur-3xl border-t border-black/10 overflow-hidden"
           >
             <div className="px-6 py-8 space-y-5 flex flex-col items-center">
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.path}
-                  to={link.path} 
-                  onClick={() => setIsMenuOpen(false)} 
-                  className={`text-sm font-black uppercase tracking-widest transition-colors ${
-                    isActive(link.path) ? "text-[#FEB60D]" : "text-black hover:text-[#FEB60D]"
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
-              
-              {!isLoggedIn ? (
-                <>
-                  <Link 
-                    to="/login" 
-                    onClick={() => setIsMenuOpen(false)} 
+
 
                   
 
