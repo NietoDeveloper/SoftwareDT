@@ -98,21 +98,7 @@ const Signup = () => {
         }
     };
 
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC] p-4 sm:p-6 lg:p-10 font-sans antialiased">
-            <div className="w-full max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
-                
-                <div className="w-full max-w-lg lg:w-1/2 text-center lg:text-left order-2 lg:order-1">
-                    <div className="inline-flex items-center gap-2 mb-4">
-                        <div className="w-8 h-[2px] bg-[#FEB60D]"></div>
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">Bienvenido</span>
-                    </div>
-   
-                        </Link>
-                    </div>
-                </div>
-
-                <div className="w-full sm:w-[420px] lg:w-[480px] order-1 lg:order-2">
+0px] lg:w-[480px] order-1 lg:order-2">
 
                     </div>
                 </div>
