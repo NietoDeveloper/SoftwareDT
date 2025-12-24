@@ -3,10 +3,13 @@ import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { UserContext } from "../context/UserContext"; 
 
 const PrivateRoutes = () => {
-    // Extraemos el token y el estado de carga del contexto global
     const { token, loading } = useContext(UserContext);
     const location = useLocation(); 
-    
+
+    // Verificación de respaldo en LocalStorage
+    // Esto ayuda si el Context aún no ha terminado de actualizarse pero el token ya existe físicamente.
+    const hasStoredToken = localStorage.getItem('token');
+
     // 1. Mientras el Contexto verifica el LocalStorage o refresca el token
     if (loading) {
         return (
@@ -23,11 +26,13 @@ const PrivateRoutes = () => {
     }
 
     /**
-     * 2. LÓGICA DE PROTECCIÓN SDT:
-     * Si hay token: Permitimos el paso al contenido protegido (Booking, Panel, etc.)
-     * Si NO hay token: Redirigimos al Login guardando la ubicación actual para volver después.
+     * 2. LÓGICA DE PROTECCIÓN SDT MEJORADA:
+     * Validamos el token del context O el token del localStorage como fallback.
+     * Esto evita que el login falle en el microsegundo de la redirección.
      */
-    return token ? (
+    const isAuthenticated = token || hasStoredToken;
+
+    return isAuthenticated ? (
         <Outlet />
     ) : (
         <Navigate 
