@@ -1,79 +1,69 @@
 const jwt = require('jsonwebtoken');
 
-/**
- * verifyAccess - Middleware de Seguridad Nivel Senior para SoftwareDT
- * Maneja la verificación de JWT y normalización de identidades.
- */
 const verifyAccess = (req, res, next) => {
-    // Manejo flexible de encabezados
     const authHeader = req.headers.authorization || req.headers.Authorization;
 
-    // 1. Verificar presencia y formato inicial del token
+    // 1. Verificación de formato
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         console.log('DEBUG [SDT]: Access Denied - Missing or Malformed Header (401).');
         return res.status(401).json({ 
             success: false, 
-            message: "Acceso denegado. Token no proporcionado o formato incorrecto." 
+            message: "Acceso denegado. Formato de token incorrecto." 
         }); 
     }
 
-    // 2. Extracción limpia y validación de nulidad
     const token = authHeader.split(' ')[1]?.trim();
 
+    // 2. Validación de nulidad
     if (!token || token === 'undefined' || token === 'null') {
-        console.log('DEBUG [SDT]: Access Denied - Token value is null or undefined.');
         return res.status(401).json({ 
             success: false, 
-            message: "Token inválido. Por favor, inicie sesión de nuevo." 
+            message: "Token inválido o vacío." 
         });
     }
 
+    // --- SEGURIDAD: Validar existencia de la llave secreta ---
+    const secret = process.env.ACCESS_TOKEN_SECRET;
+    if (!secret) {
+        console.error('❌ ERROR CRÍTICO: ACCESS_TOKEN_SECRET no definida en .env');
+        return res.status(500).json({ message: "Error interno de configuración del Datacenter." });
+    }
+
     // 3. Verificación criptográfica
-    jwt.verify(
-        token, 
-        process.env.ACCESS_TOKEN_SECRET, 
-        (err, decoded) => {
-            if (err) {
-                let errorMessage;
-                if (err.name === 'TokenExpiredError') {
-                    errorMessage = "Sesión expirada. Por favor, inicia sesión de nuevo.";
-                } else if (err.name === 'JsonWebTokenError') {
-                    errorMessage = "Token inválido (Firma no reconocida o malformada).";
-                } else {
-                    errorMessage = "Error de autenticación en el Datacenter.";
-                }
-                
-                console.log(`DEBUG [SDT]: Auth failed (${err.name}): ${err.message}`);
-                
-                return res.status(403).json({ 
-                    success: false, 
-                    message: errorMessage
-                });
-            }
-
-            // 4. Normalización del Payload (Compatible con UserInfo y Root)
-            const userInfo = decoded.UserInfo || decoded;
-
-            if (!userInfo || (!userInfo.id && !userInfo._id)) {
-                console.log('DEBUG [SDT]: Token payload is incomplete or corrupt.');
-                return res.status(403).json({ 
-                    success: false, 
-                    message: "Acceso prohibido. Datos de usuario incompletos en el token." 
-                });
-            }
-
-            // 5. Inyección de contexto en el Request (Hydration)
-            req.userId = userInfo.id || userInfo._id;
-            req.roles = userInfo.roles || []; 
-            req.user = userInfo.username || userInfo.email || null;
+    jwt.verify(token, secret, (err, decoded) => {
+        if (err) {
+            let errorMessage = "Error de autenticación.";
+            if (err.name === 'TokenExpiredError') errorMessage = "Sesión expirada.";
+            else if (err.name === 'JsonWebTokenError') errorMessage = "Token malformado.";
             
-            req.isAdmin = Array.isArray(req.roles) && req.roles.some(role => 
-                role.toLowerCase() === 'admin'
-            );
-            
-            next();
+            console.log(`DEBUG [SDT]: Auth failed: ${err.message}`);
+            return res.status(403).json({ success: false, message: errorMessage });
         }
-    );
+
+        // 4. Normalización (Hydration)
+        const userInfo = decoded.UserInfo || decoded;
+
+        // Extraemos el ID asegurando que SoftwareDT reciba siempre un valor
+        const userId = userInfo.id || userInfo._id || userInfo.sub;
+
+        if (!userId) {
+            return res.status(403).json({ 
+                success: false, 
+                message: "Payload del token incompleto." 
+            });
+        }
+
+        // 5. Inyección en el Request
+        req.userId = userId;
+        req.roles = userInfo.roles || userInfo.role || []; // Soporta ambos formatos
+        req.user = userInfo.username || userInfo.email || null;
+        
+        // Verificación de Admin mejorada
+        const rolesArray = Array.isArray(req.roles) ? req.roles : [req.roles];
+        req.isAdmin = rolesArray.some(role => role?.toLowerCase() === 'admin');
+        
+        next();
+    });
 };
 
 module.exports = verifyAccess;
