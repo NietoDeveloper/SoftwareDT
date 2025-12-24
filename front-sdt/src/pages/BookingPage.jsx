@@ -198,18 +198,7 @@ const BookingPage = () => {
             </form>
           </div>
         </div>
-
-        {/* Resumen Lateral */}
-        <div className="lg:col-span-4 space-y-6 order-2">
-          <div className="bg-card border border-black/5 rounded-[2rem] p-8 shadow-sm">
-            <Briefcase className="text-gold mb-4" size={24} />
-            <p className="text-[9px] font-black text-gold uppercase tracking-widest mb-1">Arquitecto a Cargo</p>
-            <h2 className="text-2xl font-black uppercase tracking-tight">{doctor?.name}</h2>
-            <p className="text-xs font-bold text-gray-400 uppercase mt-1">{doctor?.specialization}</p>
-          </div>
-
-          <div className="bg-black text-white rounded-[2rem] p-8 shadow-xl">
-            <span className="text-[9px] font-black uppercase tracking-widest text-gold block mb-4">Servicio Digital</span>
+-[9px] font-black uppercase tracking-widest text-gold block mb-4">Servicio Digital</span>
             <h3 className="text-xl font-black uppercase mb-2">
               {serviceFromFlow?.name || serviceFromFlow?.title || "Consultoría Técnica"}
             </h3>
