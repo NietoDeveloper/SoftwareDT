@@ -47,60 +47,6 @@ const Signup = () => {
         setApiError(null);
         setSuccessMessage(null);
 
-        let newErrors = {};
-        ['name', 'email', 'password'].forEach(key => {
-            const error = validateField(key, formData[key]);
-            if (error) newErrors[key] = error;
-        });
-
-        if (Object.keys(newErrors).length > 0) {
-            setValidationErrors(newErrors);
-            return;
-        }
-
-        setIsLoading(true);
-        try {
-            const response = await fetch('http://localhost:5000/api/user/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...formData, photo: 'https://placehold.co/400x400?text=User' }),
-            });
-
-            const result = await response.json();
-            if (!response.ok) throw new Error(result.error || 'Error al registrar');
-
-            // --- LÓGICA DE AUTO-LOGIN CORREGIDA ---
-            if (result.token) {
-                // Limpieza de token (importante para evitar errores de autenticación)
-                const cleanToken = result.token.replace(/['"]+/g, '').replace(/Bearer\s+/i, '').trim();
-                
-                // Actualizamos Contexto
-                setToken(cleanToken);
-                setUser(result.data);
-                
-                // Persistimos en LocalStorage
-                localStorage.setItem('token', cleanToken);
-                localStorage.setItem('user', JSON.stringify(result.data));
-                localStorage.setItem('role', result.data.role);
-
-                setSuccessMessage("¡Cuenta creada y sesión iniciada!");
-                
-                // Redirección inmediata al perfil
-                setTimeout(() => {
-                    navigate('/users/profile/me');
-                }, 500);
-            }
-            
-        } catch (err) {
-            setApiError(err.message);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-0px] lg:w-[480px] order-1 lg:order-2">
-
-                    </div>
                 </div>
             </div>
         </div>
