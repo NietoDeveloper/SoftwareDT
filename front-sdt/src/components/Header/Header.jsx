@@ -215,19 +215,7 @@ const Header = () => {
                     Panel Activo
                   </Link>
                   
-                  <button 
-                    onClick={handleLogout}
-                    className="w-full py-2 text-red-600 font-black uppercase text-[10px] tracking-widest hover:text-red-700 transition-colors"
-                  >
-                    Salir
-                  </button>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+
   );
 };
 
