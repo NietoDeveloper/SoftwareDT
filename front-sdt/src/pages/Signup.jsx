@@ -58,22 +58,7 @@ const Signup = () => {
                     
 nk>
 
-                                    id="name"
-                                    type="text"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    className={`w-full bg-gray-50 border-2 ${validationErrors.name ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm`}
-                                    placeholder="Ej: Juan Pérez"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Email Cliente</label>
-                                <input
-                                    id="email"
-                                    type="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
+       
                                     className={`w-full bg-gray-50 border-2 ${validationErrors.email ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm`}
                                     placeholder="usuario@dominio.com"
                                 />
