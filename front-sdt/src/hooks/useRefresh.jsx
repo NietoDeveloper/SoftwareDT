@@ -1,30 +1,42 @@
 import { useContext } from "react";
-// Cambiado de AppContext a UserContext para mantener consistencia con el Header
 import { UserContext } from "../context/UserContext"; 
 import refreshAccessToken from "../utils/refreshAccess";
 
 const useRefresh = () => {
-  // Asegúrate de que el Provider de UserContext exponga setToken
-  const { setToken } = useContext(UserContext);
+  // Extraemos setToken y setUser para limpiar la sesión completa si el refresco falla
+  const { setToken, setUser } = useContext(UserContext);
 
   const refresh = async () => {
     try {
       const newAccessToken = await refreshAccessToken();
       
-      // Actualizamos el estado global. 
-      // Esto disparará la reactividad en el Header (punto verde)
-      setToken(newAccessToken);
+      // 1. Validación de seguridad: Si no hay token nuevo, lanzamos error
+      if (!newAccessToken) {
+        throw new Error("No se recibió un nuevo token de acceso");
+      }
 
-      // También es buena práctica asegurar que persista en caso de recarga
-      localStorage.setItem('token', newAccessToken);
+      // 2. Limpieza de caracteres extraños (comillas, prefijos)
+      const cleanToken = newAccessToken.replace(/['"]+/g, '').replace(/Bearer\s+/i, '').trim();
 
-      return newAccessToken;
+      // 3. Persistencia física inmediata
+      localStorage.setItem('token', cleanToken);
+
+      // 4. Actualización del estado global para reactividad (Header/UI)
+      setToken(cleanToken);
+
+      return cleanToken;
 
     } catch (error) {
-      console.error("Error al refrescar token:", error);
-      // Si falla el refresco, es probable que la sesión haya expirado totalmente
+      console.error("Fallo crítico en el refresco de sesión:", error.message);
+      
+      // 5. Limpieza total de seguridad en Software DT
+      // Si el refresh falla, el usuario debe ser tratado como deslogueado
       setToken(null);
+      setUser(null);
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('role');
+
       throw error; 
     }
   };
