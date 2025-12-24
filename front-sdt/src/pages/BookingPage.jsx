@@ -3,14 +3,14 @@ import React, { useState, useEffect, useContext, useMemo } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { axiosPrivate } from "../API/api.js"; // Inyección de instancia blindada
+import { axiosPrivate } from "../API/api.js"; 
 import Footer from "../components/Footer/Footer";
 import { UserContext } from "../context/UserContext";
 import { 
   ChevronLeft, 
   Briefcase, 
   ArrowRight
-} from "lucide-react";
+} from "lucide-center";
 
 const BookingPage = () => {
   const { doctorId: paramId } = useParams();
@@ -18,6 +18,7 @@ const BookingPage = () => {
   const location = useLocation();
   const { user, token, loading: userLoading } = useContext(UserContext);
 
+  // Recuperamos datos del flujo (Service y Doctor)
   const doctorFromFlow = location.state?.doctorData;
   const serviceFromFlow = location.state?.serviceData; 
   const activeDoctorId = paramId || doctorFromFlow?._id;
@@ -28,23 +29,25 @@ const BookingPage = () => {
     phone: "", 
     appointmentDate: new Date().toISOString().split("T")[0],
     appointmentTime: "",
+    // Usamos el nombre del servicio para pre-llenar el motivo
     reason: `Requerimiento para: ${serviceFromFlow?.name || serviceFromFlow?.title || "Consultoría Técnica"}. `,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 1. Protección de Ruta y Flujo
+  // 1. Protección de Ruta y Flujo (Blindaje Software DT)
   useEffect(() => {
     if (!userLoading && (!user || !token)) {
-      toast.error("Acceso denegado. Por favor inicia sesión.");
+      toast.error("Sesión requerida para agendar.");
       navigate("/login", { state: { from: location.pathname } });
+      return;
     }
-    // Si no hay doctor ni servicio, el flujo está roto
-    if (!activeDoctorId && !doctorFromFlow) {
-      toast.info("Por favor seleccione un especialista primero.");
+    
+    if (!activeDoctorId) {
+      toast.info("Por favor seleccione un especialista.");
       navigate("/doctors");
     }
-  }, [user, token, userLoading, navigate, location, activeDoctorId, doctorFromFlow]);
+  }, [user, token, userLoading, navigate, location, activeDoctorId]);
 
   // 2. Cálculo de horarios disponibles (Lógica de Negocio DT)
   const availableTimes = useMemo(() => {
@@ -56,7 +59,6 @@ const BookingPage = () => {
     if (selectedDate.getDay() === 0) return []; // Software DT no opera domingos
 
     const now = new Date();
-    // Margen de 8 horas para agendamiento
     const minTimeAllowed = new Date(now.getTime() + 8 * 60 * 60 * 1000); 
 
     for (let hour = 9; hour <= 18; hour++) {
@@ -71,34 +73,34 @@ const BookingPage = () => {
     return times;
   }, [formData.appointmentDate]);
 
-  // 3. Obtención de datos del especialista
+  // 3. Obtención de datos del especialista (React Query)
   const { data: doctor, isLoading: doctorLoading } = useQuery({
     queryKey: ["doctor", activeDoctorId],
     queryFn: async () => {
       if (doctorFromFlow) return doctorFromFlow;
       const res = await axiosPrivate.get(`/doctors/${activeDoctorId}`);
-      return res.data.doctor || res.data;
+      return res.data.data || res.data.doctor || res.data;
     },
-    enabled: !!activeDoctorId && !!user,
+    enabled: !!activeDoctorId && !!token, // Solo si hay token activo
   });
 
-  // 4. Auto-completado de perfil (Hydration)
+  // 4. Auto-completado (Hydration de datos del usuario logueado)
   useEffect(() => {
-    if (user && !formData.fullName) {
+    if (user) {
       setFormData(prev => ({
         ...prev,
-        fullName: user.name || user.fullName || "",
-        email: user.email || "",
-        phone: user.phone || prev.phone || "",
+        fullName: user.name || user.fullName || prev.fullName,
+        email: user.email || prev.email,
+        phone: user.phone || prev.phone,
       }));
     }
   }, [user]);
 
-  // 5. Manejo de Envío (Sincronización con Datacenter)
+  // 5. Manejo de Envío Sincronizado
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!token) return toast.error("Error de sesión. Reintente.");
-    if (!formData.appointmentTime) return toast.warning("Seleccione una hora válida.");
+    if (!token) return toast.error("Token no válido. Re-inicie sesión.");
+    if (!formData.appointmentTime) return toast.warning("Seleccione una hora.");
     
     setIsSubmitting(true);
     
@@ -112,17 +114,19 @@ const BookingPage = () => {
         email: formData.email,
         phone: formData.phone,
         reason: formData.reason,
-        price: serviceFromFlow?.price || doctor?.ticketPrice || "Cotización pendiente"
+        // Sincronizamos precio desde el servicio seleccionado en Services.jsx
+        amount: serviceFromFlow?.price || doctor?.ticketPrice || 0
       };
 
-      // USAMOS axiosPrivate: Esto maneja el token malformado o expirado automáticamente
+      // Inyección mediante axiosPrivate (maneja interceptores automáticamente)
       const res = await axiosPrivate.post(`/appointments`, payload);
 
-      if (res.data.success) {
-        toast.success("Cita Sincronizada en Datacenter.");
+      if (res.data) {
+        toast.success("Cita Sincronizada con el Arquitecto.");
         navigate("/client-appointments"); 
       }
     } catch (err) {
+      console.error("Booking Error:", err);
       const msg = err.response?.data?.message || "Error al conectar con el servidor de citas.";
       toast.error(msg);
     } finally {
@@ -132,50 +136,50 @@ const BookingPage = () => {
 
   if (userLoading || (doctorLoading && !doctor)) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-main">
-        <div className="w-10 h-10 border-4 border-black border-t-gold rounded-full animate-spin"></div>
+      <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC]">
+        <div className="w-10 h-10 border-4 border-black border-t-[#FFD700] rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-main font-sans text-black antialiased flex flex-col">
+    <div className="min-h-screen bg-[#DCDCDC] font-sans text-black antialiased flex flex-col">
       <header className="bg-white border-b border-black/5 pt-10 pb-6 px-4 sm:px-12">
         <div className="max-w-[1800px] mx-auto">
-          <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-gold transition-all mb-4">
+          <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#FFD700] transition-all mb-4">
             <ChevronLeft size={14} /> Volver a selección
           </button>
           <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tighter">
-            Confirmar <span className="text-gold">Cita</span>
+            Confirmar <span className="text-[#FFD700]">Cita</span>
           </h1>
         </div>
       </header>
 
       <main className="max-w-[1800px] mx-auto w-full px-4 sm:px-12 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow">
         
-        {/* Formulario de Reserva */}
+        {/* Formulario */}
         <div className="lg:col-span-8 order-1">
           <div className="bg-white border border-black/5 rounded-[2rem] p-6 sm:p-10 shadow-sm">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-1">
                   <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Nombre del Solicitante</label>
-                  <input type="text" name="fullName" value={formData.fullName} onChange={(e) => setFormData({...formData, fullName: e.target.value})} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-bold text-sm" />
+                  <input type="text" value={formData.fullName} onChange={(e) => setFormData({...formData, fullName: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FFD700] outline-none font-bold text-sm" />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Teléfono</label>
-                  <input type="tel" name="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-bold text-sm" />
+                  <input type="tel" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FFD700] outline-none font-bold text-sm" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-1">
                   <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Fecha de Cita</label>
-                  <input type="date" name="appointmentDate" min={new Date().toISOString().split("T")[0]} value={formData.appointmentDate} onChange={(e) => setFormData({...formData, appointmentDate: e.target.value})} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-bold text-sm" />
+                  <input type="date" min={new Date().toISOString().split("T")[0]} value={formData.appointmentDate} onChange={(e) => setFormData({...formData, appointmentDate: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FFD700] outline-none font-bold text-sm" />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Hora Disponible</label>
-                  <select name="appointmentTime" value={formData.appointmentTime} onChange={(e) => setFormData({...formData, appointmentTime: e.target.value})} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-bold text-sm appearance-none">
+                  <select value={formData.appointmentTime} onChange={(e) => setFormData({...formData, appointmentTime: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FFD700] outline-none font-bold text-sm appearance-none">
                     <option value="">Seleccione hora</option>
                     {availableTimes.map(t => <option key={t} value={t}>{t}</option>)}
                   </select>
@@ -183,20 +187,44 @@ const BookingPage = () => {
               </div>
 
               <div className="space-y-1">
-                <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Notas del Proyecto / Requerimiento</label>
-                <textarea name="reason" value={formData.reason} onChange={(e) => setFormData({...formData, reason: e.target.value})} required className="w-full bg-main/30 border border-black/10 p-4 rounded-xl focus:border-gold outline-none font-medium text-sm h-32 resize-none" />
+                <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Notas del Proyecto</label>
+                <textarea value={formData.reason} onChange={(e) => setFormData({...formData, reason: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FFD700] outline-none font-medium text-sm h-32 resize-none" />
               </div>
 
               <button 
                 type="submit" 
                 disabled={isSubmitting} 
-                className="w-full bg-black text-white py-5 rounded-xl font-black text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-black transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                className="w-full bg-black text-white py-5 rounded-xl font-black text-xs uppercase tracking-[0.2em] hover:bg-[#FFD700] hover:text-black transition-all disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 {isSubmitting ? "Sincronizando Datacenter..." : "Finalizar Agendamiento"}
+                <ArrowRight size={16} />
+              </button>
+            </form>
+          </div>
+        </div>
 
+        {/* Resumen Lateral */}
+        <div className="lg:col-span-4 space-y-6 order-2">
+          <div className="bg-white border border-black/5 rounded-[2rem] p-8 shadow-sm">
+            <Briefcase className="text-[#FFD700] mb-4" size={24} />
+            <p className="text-[9px] font-black text-[#FFD700] uppercase tracking-widest mb-1">Arquitecto a Cargo</p>
+            <h2 className="text-2xl font-black uppercase tracking-tight">{doctor?.name || "Cargando..."}</h2>
+            <p className="text-xs font-bold text-gray-400 uppercase mt-1">{doctor?.specialization}</p>
+          </div>
+
+          <div className="bg-black text-white rounded-[2rem] p-8 shadow-xl">
+            <span className="text-[9px] font-black uppercase tracking-widest text-[#FFD700] block mb-4">Servicio Seleccionado</span>
+            <h3 className="text-xl font-black uppercase mb-2">
+              {serviceFromFlow?.name || serviceFromFlow?.title || "Consultoría"}
+            </h3>
+            <div className="h-1 w-12 bg-[#FFD700] mb-4"></div>
+            <p className="text-3xl font-black text-[#FFD700] tracking-tighter">
+              {serviceFromFlow?.price || (doctor?.ticketPrice ? `$${doctor.ticketPrice}` : "A convenir")}
+            </p>
+          </div>
         </div>
       </main>
-
+      <Footer />
     </div>
   );
 };
