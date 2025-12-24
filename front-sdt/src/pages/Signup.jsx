@@ -100,17 +100,7 @@ const Signup = () => {
                             </div>
 
 
-                            <div>
-                                <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Password</label>
-                                <input
-                                    id="password"
-                                    type="password"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    className={`w-full bg-gray-50 border-2 ${validationErrors.password ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm`}
-                                    placeholder="••••••••"
-                                />
-                            </div>
+
 
                             {apiError && (
                                 <div className="bg-red-50 text-red-600 p-3 rounded-lg text-[9px] font-bold uppercase border border-red-100">
