@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Añadido useNavigate
 import Footer from "../components/Footer/Footer";
 
 const ArrowRightIcon = (props) => (
@@ -11,6 +11,8 @@ const ArrowRightIcon = (props) => (
 );
 
 const ServicesList = () => {
+  const navigate = useNavigate(); // Hook para navegación programática
+
   const services = [
     {
       id: "web-apps",
@@ -56,6 +58,22 @@ const ServicesList = () => {
     }
   ];
 
+  // Lógica de persistencia antes de navegar a Doctors
+  const handleServiceSelection = (service) => {
+    const serviceData = {
+      title: service.title,
+      id: service.id,
+      price: service.price,
+      subtitle: service.subtitle
+    };
+    
+    // Guardamos en Storage para que Doctors.jsx pueda leerlo aunque se refresque la página
+    localStorage.setItem('selectedService', JSON.stringify(serviceData));
+    
+    // Navegamos a Doctors pasando también el estado por si acaso
+    navigate('/doctors', { state: { selectedService: serviceData } });
+  };
+
   return (
     <div className="min-h-screen bg-main font-sans antialiased">
       <style dangerouslySetInnerHTML={{ __html: `
@@ -89,20 +107,9 @@ const ServicesList = () => {
 
         <div className="flex flex-wrap justify-center gap-8 lg:gap-10 w-full">
           {services.map((service, index) => (
-            <Link
+            <div
               key={index}
-              to="/doctors"
-              /* Persistencia de datos para el flujo de reserva:
-                 Se envía 'selectedService' con la estructura requerida por el backend 
-              */
-              state={{ 
-                selectedService: {
-                  title: service.title, // 'title' es la clave principal usada en el flujo posterior
-                  id: service.id,
-                  price: service.price,
-                  subtitle: service.subtitle
-                } 
-              }}
+              onClick={() => handleServiceSelection(service)}
               className="group bg-white border-[4px] border-black rounded-[30px] p-6 transition-all duration-300 ease-out cursor-pointer 
                          flex flex-col items-center justify-between text-center 
                          w-full sm:max-w-[340px] h-[400px] overflow-hidden
@@ -144,7 +151,7 @@ const ServicesList = () => {
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </section>
