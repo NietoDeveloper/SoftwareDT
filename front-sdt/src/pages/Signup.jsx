@@ -57,22 +57,7 @@ const Signup = () => {
 
                     
 nk>
-                    </div>
-                </div>
 
-                {/* Lado Derecho: Tarjeta de Registro */}
-
-
-                        {successMessage && (
-                            <div className="bg-green-50 text-green-700 p-3 rounded-lg text-[9px] font-black uppercase mb-4 border border-green-100">
-                                {successMessage}
-                            </div>
-                        )}
-
-                        <form onSubmit={onSubmit} className="space-y-4">
-                            <div>
-                                <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Nombre Completo</label>
-                                <input
                                     id="name"
                                     type="text"
                                     value={formData.name}
