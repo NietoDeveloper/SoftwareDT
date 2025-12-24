@@ -5,11 +5,8 @@ const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
 
-// Conexiones a MongoDB Atlas
 const { userDB, citaDB } = require('./config/dbConn'); 
 const corsOptions = require('./config/corsOptions');
-
-// Middleware de Seguridad
 const verifyAccess = require('./middleware/verifyAccess'); 
 const { unknownEndpoint } = require('./middleware/notFound');
 const { errorHandler } = require('./middleware/errorHandler');
@@ -25,17 +22,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Root Endpoint - Health Check
+// Health Check
 app.get('/', (req, res) => {
-    res.status(200).json({ 
-        status: 'Operational', 
-        service: 'SoftwareDT Datacenter API',
-        version: '1.0.0' 
-    });
+    res.status(200).json({ status: 'Operational', service: 'SoftwareDT Datacenter' });
 });
 
-// --- CARGA DINÁMICA DE RUTAS ---
-// Centralizamos para validar que todos los archivos existan antes de montarlos
+// --- CARGA DE RUTAS ---
 const routes = {
     userRegister: require('./routes/userRoutes/userRegister'),
     userLogin: require('./routes/userRoutes/userLogin'),
@@ -43,8 +35,6 @@ const routes = {
     userLogout: require('./routes/userRoutes/userLogout'),
     doctorRegister: require('./routes/doctorRoutes/doctorRegister'),
     doctorLogin: require('./routes/doctorRoutes/doctorLogin'),
-    doctorRefresh: require('./routes/doctorRoutes/doctorRefresh'),
-    doctorLogout: require('./routes/doctorRoutes/doctorLogout'),
     allDoctors: require('./routes/allDoctors'),
     appointmentRoutes: require('./routes/appointmentRoute'),
     userUpdate: require('./routes/userRoutes/userUpdateRoute'),
@@ -53,23 +43,23 @@ const routes = {
     booking: require('./routes/bookingRoute')
 };
 
-// --- ASIGNACIÓN DE RUTAS PÚBLICAS ---
+// --- 1. RUTAS PÚBLICAS (Abiertas para Registro y Login) ---
+// Nota: Asegúrate que tu frontend apunte exactamente a estas URLs
 app.use('/api/user/register', routes.userRegister);
 app.use('/api/user/login', routes.userLogin);
-app.use('/api/user/refresh', routes.userRefresh);
-app.use('/api/user/logout', routes.userLogout);
 app.use('/api/doctor/register', routes.doctorRegister);
 app.use('/api/doctor/login', routes.doctorLogin);
-app.use('/api/doctor/refresh', routes.doctorRefresh);
-app.use('/api/doctor/logout', routes.doctorLogout);
 app.use('/api/doctors', routes.allDoctors); 
 
-// --- CAPA DE PROTECCIÓN (JWT VERIFICATION) ---
-// El portero de Software DT: verifica el Access Token
+// --- 2. RUTAS SEMI-PÚBLICAS (Refresh/Logout) ---
+app.use('/api/user/refresh', routes.userRefresh);
+app.use('/api/user/logout', routes.userLogout);
+
+// --- 3. CAPA DE PROTECCIÓN (EL PORTERO) ---
+// Todo lo que esté debajo de esta línea REQUIERE un Access Token válido
 app.use(verifyAccess); 
 
-// --- ASIGNACIÓN DE RUTAS PRIVADAS ---
-// Estas rutas solo funcionan si verifyAccess inyecta req.userId
+// --- 4. RUTAS PRIVADAS (Solo usuarios autenticados) ---
 app.use('/api/appointments', routes.appointmentRoutes); 
 app.use('/api/user/update', routes.userUpdate);
 app.use('/api/user/review', routes.review);
@@ -81,14 +71,13 @@ app.use(unknownEndpoint);
 app.use(errorHandler);
 
 // --- ARRANQUE SINCRONIZADO ---
-// Garantizamos que el servidor no responda hasta que Atlas esté conectado
 Promise.all([
     new Promise(resolve => userDB.once('open', resolve)),
     new Promise(resolve => citaDB.once('open', resolve))
 ]).then(() => {
-    console.log('✅ Datacenter SoftwareDT: Usuarios y Citas vinculados correctamente.');
+    console.log('✅ Datacenter SoftwareDT: Infraestructura vinculada.');
     app.listen(PORT, () => console.log(`🚀 API en línea: Puerto ${PORT}`));
 }).catch(err => {
-    console.error('❌ Error crítico de infraestructura:', err.message);
+    console.error('❌ Error crítico:', err.message);
     process.exit(1);
 });
