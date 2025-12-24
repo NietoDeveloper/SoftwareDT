@@ -1,9 +1,8 @@
-import { useState, useContext } from 'react'; // Agregamos useContext
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserPlus } from "lucide-react";
-import { UserContext } from '../context/UserContext'; // Importamos tu contexto
+import { UserContext } from '../context/UserContext';
 
-// Validaciones simples
 const isRequired = (value) => value && value.trim() !== '';
 const isValidEmail = (email) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email);
 const isPasswordLongEnough = (password) => password.length >= 6;
@@ -23,7 +22,6 @@ const validateField = (field, value) => {
 
 const Signup = () => {
     const navigate = useNavigate();
-    // Extraemos las funciones para actualizar el estado global
     const { setToken, setUser } = useContext(UserContext);
 
     const [formData, setFormData] = useState({
@@ -71,23 +69,27 @@ const Signup = () => {
             const result = await response.json();
             if (!response.ok) throw new Error(result.error || 'Error al registrar');
 
-            // --- LÓGICA DE AUTO-LOGIN (REACTIVA) ---
+            // --- LÓGICA DE AUTO-LOGIN CORREGIDA ---
             if (result.token) {
-                // 1. Actualizamos el Contexto (Esto enciende el botón verde al instante)
-                setToken(result.token);
+                // Limpieza de token (importante para evitar errores de autenticación)
+                const cleanToken = result.token.replace(/['"]+/g, '').replace(/Bearer\s+/i, '').trim();
+                
+                // Actualizamos Contexto
+                setToken(cleanToken);
                 setUser(result.data);
                 
-                // 2. Persistimos (Para cuando el usuario refresque F5)
-                localStorage.setItem('token', result.token);
+                // Persistimos en LocalStorage
+                localStorage.setItem('token', cleanToken);
                 localStorage.setItem('user', JSON.stringify(result.data));
-            }
+                localStorage.setItem('role', result.data.role);
 
-            setSuccessMessage("¡Cuenta creada! Accediendo al panel...");
-            
-            // Redirigimos a la ruta que existe en App.js
-            setTimeout(() => {
-                navigate('/users/profile/me');
-            }, 1000);
+                setSuccessMessage("¡Cuenta creada y sesión iniciada!");
+                
+                // Redirección inmediata al perfil
+                setTimeout(() => {
+                    navigate('/users/profile/me');
+                }, 500);
+            }
             
         } catch (err) {
             setApiError(err.message);
@@ -97,18 +99,17 @@ const Signup = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#fcfcfc] p-4 sm:p-6 lg:p-10 font-sans antialiased">
+        <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC] p-4 sm:p-6 lg:p-10 font-sans antialiased">
             <div className="w-full max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
                 
-                {/* Branding */}
                 <div className="w-full max-w-lg lg:w-1/2 text-center lg:text-left order-2 lg:order-1">
                     <div className="inline-flex items-center gap-2 mb-4">
-                        <div className="w-8 h-[2px] bg-amber-500"></div>
+                        <div className="w-8 h-[2px] bg-[#FEB60D]"></div>
                         <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">Bienvenido</span>
                     </div>
                     
                     <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter leading-none mb-4">
-                        Software<span className="text-amber-500">DT</span> <br />
+                        Software<span className="text-[#FEB60D]">DT</span> <br />
                         <span className="text-2xl sm:text-3xl text-gray-800">Cuenta Nueva</span>
                     </h1>
 
@@ -120,26 +121,25 @@ const Signup = () => {
                         <p className="text-black font-black uppercase text-[10px] tracking-widest">¿Ya eres parte de Software DT?</p>
                         <Link 
                             to="/login" 
-                            className="group relative inline-flex items-center justify-center px-8 py-3 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 hover:bg-amber-500 hover:text-black hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(245,158,11,0.4)]"
+                            className="group relative inline-flex items-center justify-center px-8 py-3 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1"
                         >
                             Ir al Login
                         </Link>
                     </div>
                 </div>
 
-                {/* Formulario */}
                 <div className="w-full sm:w-[420px] lg:w-[480px] order-1 lg:order-2">
                     <div className="bg-white border-[3px] border-black rounded-[30px] p-6 sm:p-10 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.05)] relative">
                         
                         <div className="flex items-center justify-between mb-8">
                             <h2 className="text-xl font-black text-black uppercase tracking-tight">Registro</h2>
-                            <div className="p-2 bg-amber-500 rounded-lg text-black">
+                            <div className="p-2 bg-[#FEB60D] rounded-lg text-black">
                                 <UserPlus size={20} strokeWidth={3} />
                             </div>
                         </div>
 
                         {successMessage && (
-                            <div className="bg-green-50 text-green-700 p-3 rounded-lg text-[9px] font-black uppercase mb-4 border border-green-100">
+                            <div className="bg-green-50 text-green-700 p-3 rounded-lg text-[10px] font-black uppercase mb-4 border border-green-100">
                                 {successMessage}
                             </div>
                         )}
@@ -152,7 +152,7 @@ const Signup = () => {
                                     type="text"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    className={`w-full bg-gray-50 border-2 ${validationErrors.name ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm`}
+                                    className={`w-full bg-gray-50 border-2 ${validationErrors.name ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-black text-sm`}
                                     placeholder="Ej: Juan Pérez"
                                 />
                             </div>
@@ -164,33 +164,14 @@ const Signup = () => {
                                     type="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className={`w-full bg-gray-50 border-2 ${validationErrors.email ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm`}
+                                    className={`w-full bg-gray-50 border-2 ${validationErrors.email ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-black text-sm`}
                                     placeholder="usuario@dominio.com"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Password</label>
-                                <input
-                                    id="password"
-                                    type="password"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    className={`w-full bg-gray-50 border-2 ${validationErrors.password ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm`}
-                                    placeholder="••••••••"
-                                />
-                            </div>
-
-                            {apiError && (
-                                <div className="bg-red-50 text-red-600 p-3 rounded-lg text-[9px] font-bold uppercase border border-red-100">
-                                    {apiError}
-                                </div>
-                            )}
-
-                            <button
-                                type="submit"
-                                disabled={isLoading}
-                                className="w-full mt-4 py-4 bg-black text-white rounded-xl font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-amber-500 hover:text-black hover:-translate-y-1 hover:shadow-lg flex items-center justify-center"
+             
+                                className="w-full mt-4 py-4 bg-black text-white rounded-xl font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1 flex items-center justify-center"
                             >
                                 {isLoading ? (
                                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
