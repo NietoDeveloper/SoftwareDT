@@ -193,20 +193,7 @@ const BookingPage = () => {
                 className="w-full bg-black text-white py-5 rounded-xl font-black text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-black transition-all disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 {isSubmitting ? "Sincronizando Datacenter..." : "Finalizar Agendamiento"}
-                <ArrowRight size={16} />
-              </button>
-            </form>
-          </div>
-        </div>
--[9px] font-black uppercase tracking-widest text-gold block mb-4">Servicio Digital</span>
-            <h3 className="text-xl font-black uppercase mb-2">
-              {serviceFromFlow?.name || serviceFromFlow?.title || "Consultoría Técnica"}
-            </h3>
-            <div className="h-1 w-12 bg-gold mb-4"></div>
-            <p className="text-3xl font-black text-gold tracking-tighter">
-              {serviceFromFlow?.price || (doctor?.ticketPrice ? `$${doctor.ticketPrice}` : "Bajo Cotización")}
-            </p>
-          </div>
+
         </div>
       </main>
 
