@@ -60,17 +60,7 @@ nk>
 
        
                                     className={`w-full bg-gray-50 border-2 ${validationErrors.email ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm`}
-                                    placeholder="usuario@dominio.com"
-                                />
-                            </div>
-
-                                />
-                            </div>
-
-                            {apiError && (
-                                <div className="bg-red-50 text-red-600 p-3 rounded-lg text-[9px] font-bold uppercase border border-red-100">
-                                    {apiError}
-                                </div>
+            
                             )}
 
                             <button
