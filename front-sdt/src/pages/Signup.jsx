@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react'; // Agregamos useContext
 import { Link, useNavigate } from 'react-router-dom';
 import { UserPlus } from "lucide-react";
+import { UserContext } from '../context/UserContext'; // Importamos tu contexto
 
 // Validaciones simples
 const isRequired = (value) => value && value.trim() !== '';
@@ -22,6 +23,9 @@ const validateField = (field, value) => {
 
 const Signup = () => {
     const navigate = useNavigate();
+    // Extraemos las funciones para actualizar el estado global
+    const { setToken, setUser } = useContext(UserContext);
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -67,24 +71,23 @@ const Signup = () => {
             const result = await response.json();
             if (!response.ok) throw new Error(result.error || 'Error al registrar');
 
-            // --- LÓGICA DE AUTO-LOGIN ---
-            // Guardamos token y datos para que el Navbar se actualice (botón verde)
+            // --- LÓGICA DE AUTO-LOGIN (REACTIVA) ---
             if (result.token) {
+                // 1. Actualizamos el Contexto (Esto enciende el botón verde al instante)
+                setToken(result.token);
+                setUser(result.data);
+                
+                // 2. Persistimos (Para cuando el usuario refresque F5)
                 localStorage.setItem('token', result.token);
                 localStorage.setItem('user', JSON.stringify(result.data));
-                localStorage.setItem('role', result.data.role);
             }
 
-            setSuccessMessage("¡Cuenta creada y sesión iniciada! Redirigiendo...");
+            setSuccessMessage("¡Cuenta creada! Accediendo al panel...");
             
-            setFormData({ name: '', email: '', password: '', role: 'PATIENT' });
-
-            // Redirigimos al perfil específico del usuario
+            // Redirigimos a la ruta que existe en App.js
             setTimeout(() => {
                 navigate('/users/profile/me');
-                // Forzamos recarga para asegurar que el contexto de autenticación lea el localStorage
-                window.location.reload(); 
-            }, 1500);
+            }, 1000);
             
         } catch (err) {
             setApiError(err.message);
@@ -97,7 +100,7 @@ const Signup = () => {
         <div className="min-h-screen flex items-center justify-center bg-[#fcfcfc] p-4 sm:p-6 lg:p-10 font-sans antialiased">
             <div className="w-full max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
                 
-                {/* Lado Izquierdo: Branding */}
+                {/* Branding */}
                 <div className="w-full max-w-lg lg:w-1/2 text-center lg:text-left order-2 lg:order-1">
                     <div className="inline-flex items-center gap-2 mb-4">
                         <div className="w-8 h-[2px] bg-amber-500"></div>
@@ -124,7 +127,7 @@ const Signup = () => {
                     </div>
                 </div>
 
-                {/* Lado Derecho: Tarjeta de Registro */}
+                {/* Formulario */}
                 <div className="w-full sm:w-[420px] lg:w-[480px] order-1 lg:order-2">
                     <div className="bg-white border-[3px] border-black rounded-[30px] p-6 sm:p-10 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.05)] relative">
                         
@@ -152,7 +155,6 @@ const Signup = () => {
                                     className={`w-full bg-gray-50 border-2 ${validationErrors.name ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm`}
                                     placeholder="Ej: Juan Pérez"
                                 />
-                                {validationErrors.name && <p className="text-red-500 text-[8px] mt-1 font-bold">{validationErrors.name}</p>}
                             </div>
 
                             <div>
@@ -165,7 +167,6 @@ const Signup = () => {
                                     className={`w-full bg-gray-50 border-2 ${validationErrors.email ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm`}
                                     placeholder="usuario@dominio.com"
                                 />
-                                {validationErrors.email && <p className="text-red-500 text-[8px] mt-1 font-bold">{validationErrors.email}</p>}
                             </div>
 
                             <div>
@@ -178,7 +179,6 @@ const Signup = () => {
                                     className={`w-full bg-gray-50 border-2 ${validationErrors.password ? 'border-red-500' : 'border-gray-100'} p-3.5 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm`}
                                     placeholder="••••••••"
                                 />
-                                {validationErrors.password && <p className="text-red-500 text-[8px] mt-1 font-bold">{validationErrors.password}</p>}
                             </div>
 
                             {apiError && (
@@ -189,7 +189,19 @@ const Signup = () => {
 
                             <button
                                 type="submit"
-
+                                disabled={isLoading}
+                                className="w-full mt-4 py-4 bg-black text-white rounded-xl font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-amber-500 hover:text-black hover:-translate-y-1 hover:shadow-lg flex items-center justify-center"
+                            >
+                                {isLoading ? (
+                                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                ) : "Crear Perfil"}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default Signup;
