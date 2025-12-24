@@ -20,52 +20,29 @@ import OurClients from "./pages/OurClients.jsx";
 function App() {
   return (
     <UserProvider>
-      {/* Header global: contiene navegación a Servicios y Panel */}
       <Header />
-      
-      <Routes
-        future={{
-          v7_startTransition: true,
-          v7_relativeSplatPath: true,
-        }}
-      >
+      <Routes>
         {/* --- SECCIÓN PÚBLICA --- */}
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<DoctorList />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<Services />} />
         <Route path="/clients" element={<OurClients />} />
-        
-        {/* Autenticación Usuarios (Clientes) */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         
-        {/* Autenticación Especialistas */}
-        <Route path="/doctor/signup" element={<Doctorsignup />} />
-        <Route path="/doctor/login" element={<Doctorlogin />} />
-        
-        {/* --- SECCIÓN PROTEGIDA (Solo Logueados) --- */}
+        {/* --- SECCIÓN PROTEGIDA --- */}
         <Route element={<PrivateRoutes />}>
-          {/* Dashboard y Panel de Control */}
+          {/* AQUÍ ESTÁ EL CAMBIO: Agregamos la ruta que Signup está buscando */}
+          <Route path="/users/profile/me" element={<ClientPanel />} />
           <Route path="/client/dashboard" element={<ClientPanel />} />
           <Route path="/client-appointments" element={<ClientPanel />} />
           
-          {/* FLUJO DE AGENDAMIENTO: 
-              Captura el :doctorId desde la URL (proviene de ServicesCard.jsx)
-          */}
           <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
-          
-          {/* Procesamiento de Pago */}
           <Route path="/checkout" element={<Payment />} />
-          
-          {/* Ticket Final de Confirmación */}
-          <Route 
-            path="/appointment-confirmation" 
-            element={<AppointmentConfirmation />} 
-          />
+          <Route path="/appointment-confirmation" element={<AppointmentConfirmation />} />
         </Route>
 
-        {/* Fallback para rutas no encontradas (Opcional) */}
         <Route path="*" element={<Home />} />
       </Routes>
     </UserProvider>
