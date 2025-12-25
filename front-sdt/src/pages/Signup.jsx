@@ -128,7 +128,7 @@ const Signup = () => {
                     </h1>
 
                     <p className="text-black font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-8 opacity-90 leading-relaxed">
-                        Únete al ecosistema de ingeniería más consistente. 5.5 años de evolución condensados en un solo clúster.
+                        Únete al ecosistema de ingeniería consistente. Evolución condensada en herramientas Technologicas.
                     </p>
 
                     <div className="flex flex-col items-center lg:items-start gap-4">
