@@ -3,7 +3,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// --- 1. Registro de Usuario ---
+// --- 1. Registro de Usuario (Ajustado para Modelo SDT) ---
 const userRegister = asyncHandler(async (req, res) => {
     const { name, email, password, photo } = req.body;
     
@@ -16,22 +16,21 @@ const userRegister = asyncHandler(async (req, res) => {
         return res.status(409).json({ success: false, message: 'El usuario ya existe en el Datacenter' });
     }
 
-    // Nota: Si tu modelo User ya tiene un pre('save') para hash, no lo hagas aquí. 
-    // Si no lo tiene, este paso es correcto:
-    const hashedpassword = await bcrypt.hash(password, 10);
+    // ELIMINADO: const hashedpassword = await bcrypt.hash(password, 10);
+    // El modelo User.js se encarga de esto automáticamente gracias al middleware pre-save.
     
     const result = await User.create({
         name,
         email,
         photo: photo || null,
-        password: hashedpassword,
+        password, // <--- Enviamos texto plano, el modelo lo encripta
         customMessage: "Hola Software DT, solicito soporte técnico para mi clúster."
     });
 
     if (result) {
         res.status(201).json({
             success: true,
-            message: 'Usuario vinculado exitosamente',
+            message: 'Usuario vinculado exitosamente al Datacenter',
             user: { _id: result._id, name: result.name, email: result.email }
         });
     } else {
@@ -47,7 +46,7 @@ const userLogin = asyncHandler(async (req, res) => {
         return res.status(400).json({ success: false, message: 'Credenciales requeridas' });
     }
 
-    // Buscamos usuario incluyendo el password que suele estar oculto por defecto
+    // Obtenemos el usuario y forzamos la selección del password (que tiene select: false)
     const foundUser = await User.findOne({ email }).select('+password').exec();
     
     if (!foundUser) {
@@ -55,15 +54,16 @@ const userLogin = asyncHandler(async (req, res) => {
         return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
     }
 
+    // Comparamos el texto plano con el hash de la DB
     const isMatch = await bcrypt.compare(password, foundUser.password);
     if (!isMatch) {
         console.log(`[AUTH ERROR]: Contraseña incorrecta para: ${email}`);
         return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
     }
 
-    // Generación de Tokens
+    // Generación de Tokens SDT
     const accessToken = jwt.sign(
-        { id: foundUser._id, email: foundUser.email, role: foundUser.role },
+        { id: foundUser._id, email: foundUser.email, role: foundUser.roles?.usuario },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: '1h' }
     );
@@ -74,24 +74,22 @@ const userLogin = asyncHandler(async (req, res) => {
         { expiresIn: '1d' }
     );
 
-    // Persistencia del Refresh Token
+    // Guardar Refresh Token en el array (Soporte multidispositivo)
     foundUser.refreshToken = [...(foundUser.refreshToken || []), refreshToken];
     await foundUser.save();
 
-    // Estructura de Usuario para el Frontend (Software DT Standard)
     const userData = {
         _id: foundUser._id,
         name: foundUser.name,
         email: foundUser.email,
         photo: foundUser.photo,
-        role: foundUser.role || 'user',
+        role: foundUser.roles?.usuario || 1002,
         phone: foundUser.phone || '',
         customMessage: foundUser.customMessage,
-        location: "Bogotá, Colombia", // Datos de tu perfil de experto
+        location: "Bogotá, Colombia",
         experience: "5.5 años"
     };
 
-    // Cookie segura
     res.cookie('jwt', refreshToken, {
         httpOnly: true,
         sameSite: 'None', 
@@ -99,11 +97,10 @@ const userLogin = asyncHandler(async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000,
     });
 
-    // Respuesta unificada que el frontend espera
     res.status(200).json({ 
         success: true, 
         accessToken, 
-        user: userData, // Cambiado de userData a user para match total con el frontend
+        user: userData, 
         message: 'Acceso autorizado al Datacenter' 
     });
 });
@@ -113,20 +110,19 @@ const updateUserDetails = asyncHandler(async (req, res) => {
     const id = req.params.id || req.id; 
     if (!id) return res.status(400).json({ message: 'ID de terminal requerido' });
 
-    const { name, email, password, bloodType, gender, phone, photo, customMessage } = req.body;
-    const foundUser = await User.findById(id);
+    const { name, email, password, phone, photo, customMessage } = req.body;
+    const foundUser = await User.findById(id).select('+password');
 
     if (!foundUser) return res.status(404).json({ message: 'Usuario no encontrado' });
 
-    // Lógica de actualización
     if (email && email !== foundUser.email) {
         const emailExists = await User.findOne({ email });
-        if (emailExists) return res.status(409).json({ message: 'Canal de comunicación (email) ya en uso' });
+        if (emailExists) return res.status(409).json({ message: 'Email ya vinculado a otra terminal' });
         foundUser.email = email;
     }
     
     if (name) foundUser.name = name;
-    if (password) foundUser.password = await bcrypt.hash(password, 10);
+    if (password) foundUser.password = password; // El modelo detectará el cambio y hará el hash
     if (phone) foundUser.phone = phone;
     if (photo) foundUser.photo = photo;
     if (customMessage !== undefined) foundUser.customMessage = customMessage;
@@ -139,10 +135,8 @@ const updateUserDetails = asyncHandler(async (req, res) => {
         data: {
             _id: updated._id,
             name: updated.name,
-            email: updated.email,
             customMessage: updated.customMessage,
-            phone: updated.phone,
-            photo: updated.photo
+            phone: updated.phone
         } 
     });
 });
