@@ -5,10 +5,10 @@ import { UserContext } from '../context/UserContext';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-// Validaciones alineadas con el Backend Standard
+// Validaciones alineadas con el Backend (Mongoose 8 chars)
 const isRequired = (value) => value && value.trim() !== '';
 const isValidEmail = (email) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email);
-const isPasswordLongEnough = (password) => password.length >= 8; // Ajustado a 8 para coincidir con Mongoose
+const isPasswordLongEnough = (password) => password.length >= 8;
 
 const validateField = (field, value) => {
     switch (field) {
@@ -61,10 +61,11 @@ const Signup = () => {
 
         setIsLoading(true);
         try {
+            // Ajuste de URL para evitar "/auth/auth" duplicados
             const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+            const endpoint = `${apiUrl}/auth/register`;
             
-            // Registro con auto-login habilitado en el backend
-            const response = await axios.post(`${apiUrl}/auth/register`, {
+            const response = await axios.post(endpoint, {
                 ...formData,
                 photo: 'https://placehold.co/400x400?text=SDT'
             });
@@ -72,25 +73,27 @@ const Signup = () => {
             const { accessToken, user, success } = response.data;
 
             if (success && accessToken) {
-                // Sincronización atómica con Software DT Context
+                // PERSISTENCIA ATÓMICA
                 localStorage.setItem('token', accessToken);
                 localStorage.setItem('user', JSON.stringify(user));
                 
+                // ACTUALIZACIÓN DE ESTADO GLOBAL
                 setToken(accessToken);
                 setUser(user);
 
                 toast.success(`🚀 ¡Arquitecto ${user.name.split(' ')[0]} Sincronizado!`);
 
-                // Redirección inteligente: Flujo de citas o Panel General
-                const pendingAppt = localStorage.getItem('sdt_selected_service');
+                // FLUJO DE INFORMACIÓN SOFTWARE DT:
+                // Si el usuario eligió un servicio antes de registrarse, lo llevamos a Doctors.jsx
+                const selectedService = localStorage.getItem('selectedService');
                 
-                if (pendingAppt) {
-                    navigate('/doctors', { replace: true }); // Continúa el flujo de citas
+                if (selectedService) {
+                    navigate('/doctors', { replace: true });
                 } else {
                     navigate('/users/profile/me', { replace: true });
                 }
             } else {
-                toast.info("Registro exitoso. Procede al login.");
+                toast.info("Registro capturado. Por favor inicia sesión.");
                 navigate('/login');
             }
             
@@ -128,15 +131,14 @@ const Signup = () => {
                             to="/login" 
                             className="px-10 py-3.5 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-full transition-all duration-300 hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1"
                         >
-                            Ingresa al Panel De Usuario
+                            Ingresar al Panel
                         </Link>
                     </div>
                 </div>
 
-                {/* FORMULARIO ESTILO CARD SDT */}
+                {/* FORMULARIO */}
                 <div className="w-full max-w-[480px]">
                     <div className="bg-white border-[3px] border-black rounded-[40px] p-8 sm:p-12 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.1)]">
-                        
                         <div className="flex items-center justify-between mb-10">
                             <h2 className="text-2xl font-black text-black uppercase tracking-tighter">Registro</h2>
                             <div className="p-3 bg-[#FEB60D] rounded-2xl text-black">
@@ -146,7 +148,7 @@ const Signup = () => {
 
                         <form onSubmit={onSubmit} className="space-y-5">
                             <div>
-                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Nombre Completo</label>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Nombre</label>
                                 <input
                                     id="name"
                                     type="text"
@@ -155,7 +157,6 @@ const Signup = () => {
                                     className={`w-full bg-gray-50 border-2 ${validationErrors.name ? 'border-red-500' : 'border-gray-100'} p-4 rounded-2xl focus:border-[#FEB60D] focus:bg-white outline-none font-bold text-black text-sm transition-all`}
                                     placeholder="Tu Nombre"
                                 />
-                                {validationErrors.name && <p className="text-[10px] text-red-500 font-bold mt-2 uppercase ml-1">{validationErrors.name}</p>}
                             </div>
 
                             <div>
@@ -168,7 +169,6 @@ const Signup = () => {
                                     className={`w-full bg-gray-50 border-2 ${validationErrors.email ? 'border-red-500' : 'border-gray-100'} p-4 rounded-2xl focus:border-[#FEB60D] focus:bg-white outline-none font-bold text-black text-sm transition-all`}
                                     placeholder="@"
                                 />
-                                {validationErrors.email && <p className="text-[10px] text-red-500 font-bold mt-2 uppercase ml-1">{validationErrors.email}</p>}
                             </div>
 
                             <div>
@@ -181,7 +181,6 @@ const Signup = () => {
                                     className={`w-full bg-gray-50 border-2 ${validationErrors.password ? 'border-red-500' : 'border-gray-100'} p-4 rounded-2xl focus:border-[#FEB60D] focus:bg-white outline-none font-bold text-black text-sm transition-all`}
                                     placeholder="Mínimo 8 caracteres"
                                 />
-                                {validationErrors.password && <p className="text-[10px] text-red-500 font-bold mt-2 uppercase ml-1">{validationErrors.password}</p>}
                             </div>
 
                             <button
@@ -191,7 +190,7 @@ const Signup = () => {
                             >
                                 {isLoading ? (
                                     <div className="w-5 h-5 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
-                                ) : "Registrar Y Entrar"}
+                                ) : "Sincronizar Y Entrar"}
                             </button>
                         </form>
                     </div>
