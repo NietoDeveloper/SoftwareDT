@@ -37,19 +37,30 @@ app.get('/', (req, res) => {
     });
 });
 
-// --- 3. DEFINICIÓN DE RUTAS (CORREGIDO) ---
-// Extraemos la función específica de cada objeto exportado
-const { userRegister } = require('./routes/userRoutes/userRegister');
-const { userLogin } = require('./routes/userRoutes/userLogin');
-const { userRefresh } = require('./routes/userRoutes/userRefresh');
-const { userLogout } = require('./routes/userRoutes/userLogout');
-const { doctorRegister } = require('./routes/doctorRoutes/doctorRegister');
-const { doctorLogin } = require('./routes/doctorRoutes/doctorLogin');
-const allDoctors = require('./routes/allDoctors'); // Si estos ya exportan un router, se dejan así
+// --- 3. DEFINICIÓN DE RUTAS (PROTECCIÓN CONTRA UNDEFINED) ---
+const uReg = require('./routes/userRoutes/userRegister');
+const uLog = require('./routes/userRoutes/userLogin');
+const uRef = require('./routes/userRoutes/userRefresh');
+const uOut = require('./routes/userRoutes/userLogout');
+const dReg = require('./routes/doctorRoutes/doctorRegister');
+const dLog = require('./routes/doctorRoutes/doctorLogin');
+const uUpd = require('./routes/userRoutes/userUpdateRoute');
+const dUpd = require('./routes/doctorRoutes/doctorUpdate');
+
+// Extracción segura: busca la propiedad o usa el módulo completo
+const userRegister = uReg.userRegister || uReg;
+const userLogin = uLog.userLogin || uLog;
+const userRefresh = uRef.userRefresh || uRef;
+const userLogout = uOut.userLogout || uOut;
+const doctorRegister = dReg.doctorRegister || dReg;
+const doctorLogin = dLog.doctorLogin || dLog;
+const userUpdate = uUpd.userUpdate || uUpd;
+const doctorUpdate = dUpd.doctorUpdate || dUpd;
+
+// Estos suelen ser Routers ya configurados
+const allDoctors = require('./routes/allDoctors');
 const appointmentRoutes = require('./routes/appointmentRoute');
-const { userUpdate } = require('./routes/userRoutes/userUpdateRoute');
 const review = require('./routes/reviewRoute');
-const { doctorUpdate } = require('./routes/doctorRoutes/doctorUpdate');
 const booking = require('./routes/bookingRoute');
 
 // --- 4. MAPEO DE ENDPOINTS ---
