@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { userDB } = require('../config/dbConn'); // IMPORTANTE: Traer la conexión correcta
+const { userDB } = require('../config/dbConn'); // Conexión específica para Auth
 
 const userSchema = new mongoose.Schema({
     name: { 
@@ -18,10 +18,20 @@ const userSchema = new mongoose.Schema({
     password: { 
         type: String, 
         required: [true, 'La contraseña es obligatoria'], 
-        select: false, // Protege la contraseña de fugas en el API
+        select: false, // Seguridad: no se envía en consultas por defecto
         minlength: 8
     },
-    // Mantengo tus campos de autoridad técnica
+    photo: {
+        type: String,
+        default: 'https://placehold.co/400x400?text=SDT'
+    },
+    roles: {
+        usuario: {
+            type: Number,
+            default: 1002 // Código estándar de Software DT
+        }
+    },
+    // Autoridad Técnica
     adminMessage: { 
         type: String, 
         default: "Software DT: Ingeniería de alto rendimiento." 
@@ -34,14 +44,16 @@ const userSchema = new mongoose.Schema({
         type: [String],
         index: true
     }
-}, { timestamps: true });
+}, { 
+    timestamps: true // Crea createdAt y updatedAt automáticamente
+});
 
 // --- LÓGICA DE SEGURIDAD (PRE-SAVE) ---
 userSchema.pre('save', async function (next) {
-    // 1. Evitar doble hash o re-hasheo innecesario
+    // 1. Solo hashear si el password fue modificado o es nuevo
     if (!this.isModified('password')) return next();
 
-    // 2. Si ya viene hasheada desde el controlador (por error), no tocarla
+    // 2. Blindaje contra doble hash
     if (this.password.startsWith('$2b$')) return next();
 
     try {
@@ -53,8 +65,8 @@ userSchema.pre('save', async function (next) {
     }
 });
 
-// --- EL CAMBIO MAESTRO PARA EVITAR EL TIMEOUT ---
-// No uses mongoose.model, usa la instancia de conexión userDB
+// --- EL CAMBIO MAESTRO PARA MULTI-CONEXIÓN ---
+// Usamos la instancia userDB para vincular el modelo a la base de datos de usuarios
 const User = userDB.model('User', userSchema);
 
 module.exports = User;
