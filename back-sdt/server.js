@@ -37,41 +37,40 @@ app.get('/', (req, res) => {
     });
 });
 
-// --- 3. DEFINICIÓN DE RUTAS ---
-const routes = {
-    userRegister: require('./routes/userRoutes/userRegister'),
-    userLogin: require('./routes/userRoutes/userLogin'),
-    userRefresh: require('./routes/userRoutes/userRefresh'),
-    userLogout: require('./routes/userRoutes/userLogout'),
-    doctorRegister: require('./routes/doctorRoutes/doctorRegister'),
-    doctorLogin: require('./routes/doctorRoutes/doctorLogin'),
-    allDoctors: require('./routes/allDoctors'),
-    appointmentRoutes: require('./routes/appointmentRoute'),
-    userUpdate: require('./routes/userRoutes/userUpdateRoute'),
-    review: require('./routes/reviewRoute'),
-    doctorUpdate: require('./routes/doctorRoutes/doctorUpdate'),
-    booking: require('./routes/bookingRoute')
-};
+// --- 3. DEFINICIÓN DE RUTAS (CORREGIDO) ---
+// Extraemos la función específica de cada objeto exportado
+const { userRegister } = require('./routes/userRoutes/userRegister');
+const { userLogin } = require('./routes/userRoutes/userLogin');
+const { userRefresh } = require('./routes/userRoutes/userRefresh');
+const { userLogout } = require('./routes/userRoutes/userLogout');
+const { doctorRegister } = require('./routes/doctorRoutes/doctorRegister');
+const { doctorLogin } = require('./routes/doctorRoutes/doctorLogin');
+const allDoctors = require('./routes/allDoctors'); // Si estos ya exportan un router, se dejan así
+const appointmentRoutes = require('./routes/appointmentRoute');
+const { userUpdate } = require('./routes/userRoutes/userUpdateRoute');
+const review = require('./routes/reviewRoute');
+const { doctorUpdate } = require('./routes/doctorRoutes/doctorUpdate');
+const booking = require('./routes/bookingRoute');
 
 // --- 4. MAPEO DE ENDPOINTS ---
-app.use(['/api/user/register', '/api/auth/register'], routes.userRegister);
-app.use(['/api/user/login', '/api/auth/login'], routes.userLogin);
-app.use('/api/doctor/register', routes.doctorRegister);
-app.use('/api/doctor/login', routes.doctorLogin);
-app.use('/api/doctors', routes.allDoctors); 
-app.use('/api/user/refresh', routes.userRefresh);
-app.use('/api/user/logout', routes.userLogout);
+app.use(['/api/user/register', '/api/auth/register'], userRegister);
+app.use(['/api/user/login', '/api/auth/login'], userLogin);
+app.use('/api/doctor/register', doctorRegister);
+app.use('/api/doctor/login', doctorLogin);
+app.use('/api/doctors', allDoctors); 
+app.use('/api/user/refresh', userRefresh);
+app.use('/api/user/logout', userLogout);
 
 // --- 5. FILTRO DE ACCESO (PROTECCIÓN) ---
 app.use(verifyAccess); 
 
 // --- 6. RUTAS PRIVADAS ---
-app.use('/api/user/profile', routes.booking); 
-app.use('/api/user/update', routes.userUpdate);
-app.use('/api/user/review', routes.review);
-app.use('/api/appointments', routes.appointmentRoutes); 
-app.use('/api/doctor/update', routes.doctorUpdate);
-app.use('/api/doctor/profile', routes.booking);
+app.use('/api/user/profile', booking); 
+app.use('/api/user/update', userUpdate);
+app.use('/api/user/review', review);
+app.use('/api/appointments', appointmentRoutes); 
+app.use('/api/doctor/update', doctorUpdate);
+app.use('/api/doctor/profile', booking);
 
 // --- 7. MANEJO DE ERRORES ---
 app.use(unknownEndpoint);

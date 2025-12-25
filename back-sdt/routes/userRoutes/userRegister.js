@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User'); 
+// AJUSTE DE RUTA: Subimos dos niveles para llegar a la raíz y entrar a models
+const User = require('../../models/User'); 
 
 // --- INFRAESTRUCTURA DE CLASE MUNDIAL SOFTWARE DT ---
 const userRegister = asyncHandler(async (req, res) => {
