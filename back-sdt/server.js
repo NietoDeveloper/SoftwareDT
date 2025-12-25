@@ -15,30 +15,30 @@ const { errorHandler } = require('./middleware/errorHandler');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// --- 1. CAPA DE SEGURIDAD Y MONITOREO ---
-// Helmet protege contra vulnerabilidades web conocidas
+// --- 1. SEGURIDAD ---
 app.use(helmet({ contentSecurityPolicy: false })); 
 app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev')); 
 app.use(cors(corsOptions));
 
-// --- 2. MIDDLEWARES DE PARSEO ---
+// --- 2. MIDDLEWARES ---
 app.use(express.json({ limit: '10mb' })); 
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Endpoints de Control (Health Checks)
+// Endpoints de Control
 app.get('/health', (req, res) => res.status(200).send('OK'));
 app.get('/', (req, res) => {
     res.status(200).json({ 
         status: 'Operational', 
         service: 'SoftwareDT Datacenter',
-        commit_consistency: '130+ Days',
+        commit_consistency: '141+ Days', // Actualizado a tu racha actual
         env: process.env.NODE_ENV || 'development'
     });
 });
 
 // --- 3. DEFINICIÓN DE RUTAS ---
+// IMPORTANTE: Asegúrate de que cada uno de estos archivos termine en module.exports = router;
 const routes = {
     userRegister: require('./routes/userRoutes/userRegister'),
     userLogin: require('./routes/userRoutes/userLogin'),
@@ -55,8 +55,10 @@ const routes = {
 };
 
 // --- 4. RUTAS PÚBLICAS ---
-app.use(['/api/user/register', '/api/auth/register'], routes.userRegister);
-app.use(['/api/user/login', '/api/auth/login'], routes.userLogin);
+app.use('/api/user/register', routes.userRegister);
+app.use('/api/auth/register', routes.userRegister);
+app.use('/api/user/login', routes.userLogin);
+app.use('/api/auth/login', routes.userLogin);
 app.use('/api/doctor/register', routes.doctorRegister);
 app.use('/api/doctor/login', routes.doctorLogin);
 app.use('/api/doctors', routes.allDoctors); 
@@ -65,10 +67,10 @@ app.use('/api/doctors', routes.allDoctors);
 app.use('/api/user/refresh', routes.userRefresh);
 app.use('/api/user/logout', routes.userLogout);
 
-// --- 6. FILTRO DE ACCESO (PROTECCIÓN) ---
+// --- 6. FILTRO DE ACCESO ---
 app.use(verifyAccess); 
 
-// --- 7. RUTAS PRIVADAS (Solo Usuarios Autenticados) ---
+// --- 7. RUTAS PRIVADAS ---
 app.use('/api/user/profile', routes.booking); 
 app.use('/api/user/update', routes.userUpdate);
 app.use('/api/user/review', routes.review);
@@ -80,10 +82,10 @@ app.use('/api/doctor/profile', routes.booking);
 app.use(unknownEndpoint);
 app.use(errorHandler);
 
-// --- 9. ARRANQUE DEL SISTEMA (Orquestación de DBs) ---
+// --- 9. ARRANQUE ---
 const startServer = async () => {
     try {
-        console.log('⏳ Sincronizando Datacenters...');
+        console.log('⏳ Sincronizando Datacenters Software DT...');
         
         const connectDB = (db, name) => new Promise((resolve, reject) => {
             if (db.readyState === 1) return resolve();
@@ -109,12 +111,11 @@ const startServer = async () => {
             console.log('----------------------------------------------------');
         });
     } catch (err) {
-        console.error('💥 FALLO CRÍTICO EN INFRAESTRUCTURA:', err.message);
+        console.error('💥 FALLO CRÍTICO:', err.message);
         process.exit(1);
     }
 };
 
-// Captura de errores no controlados para evitar caídas del sistema
 process.on('unhandledRejection', (reason, promise) => {
     console.error('Unhandled Rejection at:', promise, 'reason:', reason);
 });
