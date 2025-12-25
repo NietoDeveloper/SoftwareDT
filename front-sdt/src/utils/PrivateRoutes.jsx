@@ -8,13 +8,13 @@ const PrivateRoutes = () => {
     const [isChecking, setIsChecking] = useState(true);
 
     useEffect(() => {
-        // Sincronización con el estado de carga global
+        // Sincronización con el estado de carga global del Datacenter
         if (!loading) {
             setIsChecking(false);
         }
     }, [loading]);
 
-    // 1. Pantalla de carga (Datacenter SDT) - Coherencia visual total
+    // 1. Splash Screen de Clase Mundial (Software DT Standard)
     if (loading || isChecking) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-main">
@@ -31,10 +31,10 @@ const PrivateRoutes = () => {
 
     /**
      * 2. LÓGICA DE PROTECCIÓN SOFTWARE DT:
-     * El token del contexto es la verdad absoluta. 
-     * Si el contexto se reinicia, el UserProvider lo recuperará del localStorage.
+     * Verificamos el token del contexto y, como redundancia de seguridad (SSR/Hydration), 
+     * el localStorage. Esto garantiza que el usuario nunca sea rebotado por un error de estado.
      */
-    const isAuthenticated = !!token;
+    const isAuthenticated = !!token || !!localStorage.getItem('token');
 
     return isAuthenticated ? (
         <Outlet />
