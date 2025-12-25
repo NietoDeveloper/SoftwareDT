@@ -7,10 +7,17 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import './firebaseConfig'; 
 import "react-toastify/dist/ReactToastify.css"; 
 import { ToastContainer } from 'react-toastify';
-// IMPORTACIÓN CLAVE
 import { UserProvider } from './context/UserContext.jsx'; 
 
-const queryClient = new QueryClient()
+// Configuración de QueryClient optimizada para Software DT
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, // Evita recargas innecesarias al cambiar de pestaña
+      retry: 1,
+    },
+  },
+})
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -21,14 +28,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       }}
     >
       <QueryClientProvider client={queryClient}>
-        {/* EL PROVIDER DEBE ENVOLVER AL APP PARA QUE EL CONTEXTO EXISTA */}
+        {/* El UserProvider envuelve la app para gestionar el Datacenter de identidad */}
         <UserProvider>
           <ToastContainer 
-            theme="dark"
+            theme="colored" // "colored" se adapta mejor a los colores Gold/Yellow de SDT
             position="top-right"
-            autoClose={3000}
+            autoClose={2000} // Más rápido para una UX fluida
             closeOnClick
             pauseOnHover={false}
+            draggable
+            hideProgressBar={false}
           />
           <App />
         </UserProvider>

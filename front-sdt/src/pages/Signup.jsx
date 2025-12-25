@@ -132,12 +132,12 @@ const Signup = () => {
                     </p>
 
                     <div className="flex flex-col items-center lg:items-start gap-4">
-                        <p className="text-gray-400 font-bold uppercase text-[9px] tracking-[0.2em]">¿Ya tienes acceso?</p>
+                        <p className="text-gray-400 font-bold uppercase text-[9px] tracking-[0.2em]">¿Ya tienes una Cuenta?</p>
                         <Link 
                             to="/login" 
                             className="px-10 py-3.5 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-full transition-all duration-300 hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1"
                         >
-                            Log In Datacenter
+                            Ingresa al Panel De Usuario
                         </Link>
                     </div>
                 </div>
