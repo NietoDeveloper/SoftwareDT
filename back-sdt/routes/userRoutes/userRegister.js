@@ -1,7 +1,9 @@
 // --- INFRAESTRUCTURA DE CLASE MUNDIAL SOFTWARE DT ---
 const asyncHandler = require('express-async-handler');
-const User = require('../models/User'); // Si falla aquí, usa '../../models/User' dependiendo de tu carpeta
 const jwt = require('jsonwebtoken');
+
+// CORRECCIÓN ATÓMICA: Salimos de userRoutes y de routes para llegar a models
+const User = require('../../models/User'); 
 
 /**
  * @description Registro de Usuario con Inyección de Protocolo Software DT
@@ -18,7 +20,7 @@ const userRegister = asyncHandler(async (req, res) => {
         });
     }
 
-    // 2. Verificación de Nodo Duplicado en Datacenter
+    // 2. Verificación de Nodo en Datacenter (Usando la conexión userDB vinculada al modelo)
     const userexist = await User.findOne({ email });
     if (userexist) {
         return res.status(409).json({ 
@@ -27,7 +29,7 @@ const userRegister = asyncHandler(async (req, res) => {
         });
     }
 
-    // 3. Creación del Usuario (El middleware .pre('save') de User.js maneja el hash)
+    // 3. Creación del Usuario (Mongoose se encarga del hash vía pre-save)
     const result = await User.create({
         name,
         email,
@@ -37,7 +39,6 @@ const userRegister = asyncHandler(async (req, res) => {
     });
 
     if (result) {
-        // Rol Estándar SDT: 1002
         const userRole = result.roles?.usuario || 1002;
 
         // 4. Generación Atómica de Tokens
