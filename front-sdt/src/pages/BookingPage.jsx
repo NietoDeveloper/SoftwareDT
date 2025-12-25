@@ -159,7 +159,7 @@ const BookingPage = () => {
             <ChevronLeft size={14} /> Volver a selección
           </button>
           <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tighter">
-            Confirmar <span className="text-[#FEB60D]">Cita</span>
+            Crear <span className="text-[#FEB60D]">Cita</span>
           </h1>
         </div>
       </header>
