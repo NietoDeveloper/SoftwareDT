@@ -153,20 +153,20 @@ const Signup = () => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     className={`w-full bg-gray-50 border-2 ${validationErrors.name ? 'border-red-500' : 'border-gray-100'} p-4 rounded-2xl focus:border-[#FEB60D] focus:bg-white outline-none font-bold text-black text-sm transition-all`}
-                                    placeholder="Nombre del arquitecto"
+                                    placeholder="Tu Nombre"
                                 />
                                 {validationErrors.name && <p className="text-[10px] text-red-500 font-bold mt-2 uppercase ml-1">{validationErrors.name}</p>}
                             </div>
 
                             <div>
-                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Email Datacenter</label>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Email</label>
                                 <input
                                     id="email"
                                     type="email"
                                     value={formData.email}
                                     onChange={handleChange}
                                     className={`w-full bg-gray-50 border-2 ${validationErrors.email ? 'border-red-500' : 'border-gray-100'} p-4 rounded-2xl focus:border-[#FEB60D] focus:bg-white outline-none font-bold text-black text-sm transition-all`}
-                                    placeholder="dev@softwaredt.com"
+                                    placeholder="@"
                                 />
                                 {validationErrors.email && <p className="text-[10px] text-red-500 font-bold mt-2 uppercase ml-1">{validationErrors.email}</p>}
                             </div>
