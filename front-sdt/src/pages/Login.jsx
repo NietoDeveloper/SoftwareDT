@@ -12,6 +12,7 @@ const Login = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     
+    // Extraemos las funciones del contexto de Software DT
     const { setToken, setUser } = useContext(UserContext); 
     const navigate = useNavigate();
     const location = useLocation();
@@ -22,145 +23,142 @@ const Login = () => {
         formState: { errors }
     } = useForm();
 
-    // Lógica de redirección mejorada
+    // Lógica de redirección: Prioriza el origen del flujo (ej. venía de Booking)
     const from = location.state?.from?.pathname || localStorage.getItem('sdt_return_path') || "/users/profile/me";
 
     const onSubmit = async (data) => {
         setError(null);
         setIsLoading(true);
         try {
-            // El endpoint debe ser consistente con tu backend ajustado (/api/auth/login)
-            const response = await axios.post(`${API_BASE_URL}/auth/login`, data);
+            // Petición al backend unificado de Software DT
+            const response = await axios.post(`${API_BASE_URL}/auth/login`, data, {
+                withCredentials: true // Importante para manejar las cookies del Refresh Token
+            });
             
             const result = response.data;
-            // Soporte para diferentes estructuras de respuesta
-            const rawToken = result.token || result.accessToken;
-            const userData = result.data || result.user || result.userData;
             
-            if (!rawToken) throw new Error("No se recibió token del servidor.");
+            // Consistencia con la respuesta del controlador: result.accessToken y result.user
+            const rawToken = result.accessToken || result.token;
+            const userData = result.user || result.data;
+            
+            if (!rawToken) throw new Error("Acceso denegado: No se generó token de seguridad.");
 
-            // --- SANEAMIENTO DE TOKEN (Evita errores 401 por formato) ---
+            // Saneamiento Pro del Token
             const cleanToken = String(rawToken)
                 .replace(/['"]+/g, '')
                 .replace(/Bearer\s+/i, '')
                 .trim();
             
-            // 1. Persistencia Física (Disco)
+            // 1. Persistencia en Almacenamiento Local
             localStorage.setItem('token', cleanToken);
             localStorage.setItem('user', JSON.stringify(userData));
-            localStorage.setItem('role', userData.role);
 
-            // 2. Sincronización Inmediata del Estado Global (React)
+            // 2. Actualización del Estado Global de React
             setToken(cleanToken); 
             setUser(userData); 
 
-            toast.success(`👋 ¡Sincronizado, ${userData.name || 'Developer'}!`);
+            toast.success(`🚀 ¡Bienvenido, ${userData.name.split(' ')[0]}!`);
             
-            // 3. Limpieza de metadatos de flujo y navegación
+            // 3. Limpieza y Navegación
             localStorage.removeItem('sdt_return_path');
             
-            // Pequeño delay de 150ms para asegurar que el ContextProvider procesó el cambio
+            // Delay estratégico para que el Context se estabilice antes del cambio de ruta
             setTimeout(() => {
                 navigate(from, { replace: true }); 
-            }, 150);
+            }, 100);
 
-        } catch (processError) {
-            console.error("Login Error:", processError);
-            const errorMessage = processError?.response?.data?.message || 'Error de credenciales en Software DT.';
-            setError(errorMessage);
-            toast.error(errorMessage);
+        } catch (err) {
+            console.error("Software DT Login Error:", err);
+            const msg = err.response?.data?.message || 'Error de autenticación. Verifica tus credenciales.';
+            setError(msg);
+            toast.error(msg);
         } finally {
             setIsLoading(false);
         }
     };
     
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC] p-4 sm:p-6 lg:p-10 font-sans antialiased">
-            <div className="w-full max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
+        <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC] p-4 font-sans antialiased">
+            <div className="w-full max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-12">
                 
-                {/* Lado Izquierdo: Branding */}
-                <div className="w-full max-w-lg lg:w-1/2 text-center lg:text-left">
+                {/* Lado Izquierdo: Branding & Status */}
+                <div className="w-full max-w-lg text-center lg:text-left">
                     <div className="inline-flex items-center gap-2 mb-4">
                         <div className="w-8 h-[2px] bg-[#FEB60D]"></div>
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">Security Access</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">Standard de Ingeniería</span>
                     </div>
                     
-                    <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter leading-none mb-4">
+                    <h1 className="text-4xl sm:text-6xl font-black text-black uppercase tracking-tighter leading-none mb-6">
                         Software<span className="text-[#FEB60D]">DT</span> <br />
-                        <span className="text-2xl sm:text-3xl text-gray-800">Ingresa A Tu Cuenta</span>
+                        <span className="text-2xl sm:text-3xl text-gray-800">Control de Acceso</span>
                     </h1>
 
-                    <p className="text-black font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-12 opacity-80">
-                        Accede a tu perfil de Software DT y gestiona toda la información, citas y comunicación directa desde el Panel de Usuario.
+                    <p className="text-black font-medium text-sm sm:text-base max-w-md mx-auto lg:mx-0 mb-8 opacity-90 leading-relaxed">
+                        Accede a la plataforma líder de ingenieros en Colombia. Gestiona tus proyectos y soporte técnico con eficiencia.
                     </p>
 
-                    <div className="flex flex-col items-center lg:items-start gap-4 pt-4 border-t border-gray-200 lg:border-none">
-                        <p className="text-gray-400 font-bold uppercase text-[9px] tracking-[0.2em]">¿Nuevo en la plataforma?</p>
+                    <div className="flex flex-col items-center lg:items-start gap-4">
+                        <p className="text-gray-400 font-bold uppercase text-[9px] tracking-[0.2em]">¿No tienes cuenta?</p>
                         <Link 
                             to="/signup" 
-                            className="group relative inline-flex items-center justify-center px-8 py-3 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-full transition-all duration-400 hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1.5 hover:shadow-[0_0_20px_rgba(254,182,13,0.6)]"
+                            className="group relative inline-flex items-center justify-center px-10 py-3.5 bg-black text-white text-[11px] font-black uppercase tracking-widest rounded-full transition-all duration-300 hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1 hover:shadow-lg"
                         >
-                            Registrarse
+                            Registrarme Ahora
                         </Link>
                     </div>
                 </div>
 
-                {/* Lado Derecho: La Tarjeta */}
-                <div className="w-full sm:w-[400px] lg:w-[450px]">
-                    <div className="bg-white border-[3px] border-black rounded-[40px] p-6 sm:p-10 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.1)] relative transition-all duration-500 hover:shadow-[30px_30px_0px_0px_rgba(0,0,0,0.15)]">
+                {/* Lado Derecho: Formulario Estilizado */}
+                <div className="w-full max-w-[450px]">
+                    <div className="bg-white border-[3px] border-black rounded-[40px] p-8 sm:p-12 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.1)]">
                         
-                        <div className="flex items-center justify-between mb-8">
-                            <h2 className="text-xl font-black text-black uppercase tracking-tight">Login</h2>
-                            <div className="p-2.5 bg-[#FEB60D] rounded-xl text-black shadow-[0_0_15px_rgba(254,182,13,0.4)]">
-                                <Lock size={20} strokeWidth={3} />
+                        <div className="flex items-center justify-between mb-10">
+                            <h2 className="text-2xl font-black text-black uppercase tracking-tighter">Login</h2>
+                            <div className="p-3 bg-[#FEB60D] rounded-2xl text-black">
+                                <Lock size={22} strokeWidth={3} />
                             </div>
                         </div>
                         
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                             <div>
-                                <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Client Email</label>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Email del Cliente</label>
                                 <input
                                     type="email"
-                                    className="w-full bg-gray-50 border-2 border-gray-100 p-3.5 rounded-xl focus:border-[#FEB60D] focus:bg-white outline-none transition-all font-bold text-black placeholder:text-gray-300 text-sm"
-                                    placeholder="nieto@softwaredt.com"
-                                    {...register('email', { required: 'Email requerido' })}
+                                    className="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-2xl focus:border-[#FEB60D] focus:bg-white outline-none transition-all font-bold text-black text-sm"
+                                    placeholder="correo@ejemplo.com"
+                                    {...register('email', { 
+                                        required: 'El email es obligatorio',
+                                        pattern: { value: /^\S+@\S+\.\S+$/, message: 'Formato de email inválido' }
+                                    })}
                                 />
-                                {errors.email && <span className="text-red-500 text-[9px] font-black uppercase mt-1 block">{errors.email.message}</span>}
+                                {errors.email && <span className="text-red-500 text-[10px] font-black uppercase mt-2 block">{errors.email.message}</span>}
                             </div>
 
                             <div>
-                                <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Password</label>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Contraseña</label>
                                 <input
                                     type="password"
-                                    className="w-full bg-gray-50 border-2 border-gray-100 p-3.5 rounded-xl focus:border-[#FEB60D] focus:bg-white outline-none transition-all font-bold text-black placeholder:text-gray-300 text-sm"
+                                    className="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-2xl focus:border-[#FEB60D] focus:bg-white outline-none transition-all font-bold text-black text-sm"
                                     placeholder="••••••••"
-                                    {...register('password', { required: 'Contraseña requerida' })}
+                                    {...register('password', { required: 'La contraseña es obligatoria' })}
                                 />
-                                {errors.password && <span className="text-red-500 text-[9px] font-black uppercase mt-1 block">{errors.password.message}</span>}
+                                {errors.password && <span className="text-red-500 text-[10px] font-black uppercase mt-2 block">{errors.password.message}</span>}
                             </div>
-
-                            {error && (
-                                <div className="bg-red-50 text-red-600 p-3 rounded-lg text-[9px] font-bold uppercase border border-red-100">
-                                    {error}
-                                </div>
-                            )}
 
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="w-full mt-4 py-4 bg-black text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-400 active:scale-95 
-                                           hover:bg-[#FEB60D] hover:text-black hover:-translate-y-1.5 
-                                           hover:shadow-[0_0_25px_rgba(254,182,13,0.7)] flex items-center justify-center"
+                                className="w-full mt-6 py-5 bg-black text-white rounded-full font-black text-[12px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-[#FEB60D] hover:text-black hover:shadow-xl active:scale-95 flex items-center justify-center"
                             >
                                 {isLoading ? (
-                                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                ) : "Acceder al Panel"}
+                                    <div className="w-5 h-5 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
+                                ) : "Autenticar Entrada"}
                             </button>
                         </form>
 
-                        <div className="mt-8 pt-6 border-t border-gray-50 text-center">
-                            <Link to="/" className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] hover:text-[#FEB60D] transition-colors duration-300">
-                                Volver a la Home
+                        <div className="mt-10 pt-6 border-t border-gray-100 text-center">
+                            <Link to="/" className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] hover:text-[#FEB60D] transition-colors">
+                                ← Regresar al Inicio
                             </Link>
                         </div>
                     </div>
