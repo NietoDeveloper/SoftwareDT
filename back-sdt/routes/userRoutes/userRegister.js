@@ -1,18 +1,11 @@
-// --- INFRAESTRUCTURA DE CLASE MUNDIAL SOFTWARE DT ---
 const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
+const User = require('../models/User'); 
 
-// CORRECCIÓN ATÓMICA: Salimos de userRoutes y de routes para llegar a models
-const User = require('../../models/User'); 
-
-/**
- * @description Registro de Usuario con Inyección de Protocolo Software DT
- * @access Public
- */
+// --- INFRAESTRUCTURA DE CLASE MUNDIAL SOFTWARE DT ---
 const userRegister = asyncHandler(async (req, res) => {
     const { name, email, password, photo } = req.body;
     
-    // 1. Fail Fast: Validación Estilo Elon Musk
     if (!name || !email || !password) {
         return res.status(400).json({ 
             success: false, 
@@ -20,7 +13,6 @@ const userRegister = asyncHandler(async (req, res) => {
         });
     }
 
-    // 2. Verificación de Nodo en Datacenter (Usando la conexión userDB vinculada al modelo)
     const userexist = await User.findOne({ email });
     if (userexist) {
         return res.status(409).json({ 
@@ -29,7 +21,6 @@ const userRegister = asyncHandler(async (req, res) => {
         });
     }
 
-    // 3. Creación del Usuario (Mongoose se encarga del hash vía pre-save)
     const result = await User.create({
         name,
         email,
@@ -41,7 +32,6 @@ const userRegister = asyncHandler(async (req, res) => {
     if (result) {
         const userRole = result.roles?.usuario || 1002;
 
-        // 4. Generación Atómica de Tokens
         const accessToken = jwt.sign(
             { UserInfo: { id: result._id, email: result.email, role: userRole } },
             process.env.ACCESS_TOKEN_SECRET,
@@ -54,11 +44,9 @@ const userRegister = asyncHandler(async (req, res) => {
             { expiresIn: '1d' }
         );
 
-        // 5. Persistencia y Rotación (Soporte Multidispositivo)
         result.refreshToken = [refreshToken];
         await result.save();
 
-        // 6. Cookie de Seguridad HTTPOnly
         res.cookie('jwt', refreshToken, {
             httpOnly: true,
             sameSite: 'None', 
@@ -66,7 +54,6 @@ const userRegister = asyncHandler(async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000,
         });
 
-        // 7. Respuesta Sincronizada con Frontend
         res.status(201).json({
             success: true,
             message: 'Nodo vinculado exitosamente a Software DT',
