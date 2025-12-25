@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
+const helmet = require('helmet'); // Seguridad para cabeceras en producción
 
 const { userDB, citaDB } = require('./config/dbConn'); 
 const corsOptions = require('./config/corsOptions');
@@ -14,20 +15,31 @@ const { errorHandler } = require('./middleware/errorHandler');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// --- MIDDLEWARES GLOBALES ---
-app.use(morgan('dev')); 
+// --- 1. SEGURIDAD Y LOGS (Capas iniciales) ---
+app.use(helmet({ contentSecurityPolicy: false })); // Protege la infraestructura
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev')); 
 app.use(cors(corsOptions));
-app.use(express.json());
+
+// --- 2. PARSEADORES ---
+app.use(express.json({ limit: '10mb' })); // Aumentado por si el usuario sube fotos de perfil
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Health Check
-app.get('/', (req, res) => {
-    res.status(200).json({ status: 'Operational', service: 'SoftwareDT Datacenter' });
+// Health Check optimizado para servicios de despliegue (Railway/Render/Vercel)
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
 });
 
-// --- CARGA DE RUTAS ---
+app.get('/', (req, res) => {
+    res.status(200).json({ 
+        status: 'Operational', 
+        service: 'SoftwareDT Datacenter',
+        env: process.env.NODE_ENV 
+    });
+});
+
+// --- 3. CARGA DE RUTAS ---
 const routes = {
     userRegister: require('./routes/userRoutes/userRegister'),
     userLogin: require('./routes/userRoutes/userLogin'),
@@ -43,46 +55,55 @@ const routes = {
     booking: require('./routes/bookingRoute')
 };
 
-// --- 1. RUTAS TOTALMENTE PÚBLICAS ---
-// Soporte doble para /api/user y /api/auth (Evita errores 404 en el Login/Signup)
+// --- 4. RUTAS PÚBLICAS (Registro e Inicio de Sesión) ---
 app.use(['/api/user/register', '/api/auth/register'], routes.userRegister);
 app.use(['/api/user/login', '/api/auth/login'], routes.userLogin);
-
 app.use('/api/doctor/register', routes.doctorRegister);
 app.use('/api/doctor/login', routes.doctorLogin);
 app.use('/api/doctors', routes.allDoctors); 
 
-// --- 2. RUTAS DE SESIÓN ---
+// --- 5. GESTIÓN DE TOKEN ---
 app.use('/api/user/refresh', routes.userRefresh);
 app.use('/api/user/logout', routes.userLogout);
 
-// --- 3. CAPA DE PROTECCIÓN (EL PORTERO) ---
-// Todo lo que esté abajo de esta línea requiere cabecera: Authorization: Bearer <token>
+// --- 6. MIDDLEWARE DE PROTECCIÓN ---
+// Solo protege lo que viene debajo
 app.use(verifyAccess); 
 
-// --- 4. RUTAS PRIVADAS (Sincronizadas con el flujo SDT) ---
-
-// Ajuste para que coincida con lo que el Frontend busca como "Profile"
+// --- 7. RUTAS PRIVADAS (Sincronizadas con Software DT) ---
 app.use('/api/user/profile', routes.booking); 
 app.use('/api/user/update', routes.userUpdate);
 app.use('/api/user/review', routes.review);
-
 app.use('/api/appointments', routes.appointmentRoutes); 
 app.use('/api/doctor/update', routes.doctorUpdate);
 app.use('/api/doctor/profile', routes.booking);
 
-// --- MANEJO DE ERRORES ---
+// --- 8. MANEJO DE FINALES ---
 app.use(unknownEndpoint);
 app.use(errorHandler);
 
-// --- ARRANQUE SINCRONIZADO ---
-Promise.all([
-    new Promise(resolve => userDB.once('open', resolve)),
-    new Promise(resolve => citaDB.once('open', resolve))
-]).then(() => {
-    console.log('✅ Datacenter SoftwareDT: Infraestructura vinculada.');
-    app.listen(PORT, () => console.log(`🚀 API en línea: Puerto ${PORT}`));
-}).catch(err => {
-    console.error('❌ Error crítico de conexión:', err.message);
-    process.exit(1);
-});
+// --- 9. ARRANQUE SINCRONIZADO DE DATACENTERS ---
+const startServer = async () => {
+    try {
+        await Promise.all([
+            new Promise((resolve, reject) => {
+                userDB.once('open', resolve);
+                userDB.on('error', reject);
+            }),
+            new Promise((resolve, reject) => {
+                citaDB.once('open', resolve);
+                citaDB.on('error', reject);
+            })
+        ]);
+        
+        console.log('✅ Datacenter SoftwareDT: Infraestructura vinculada.');
+        app.listen(PORT, () => {
+            console.log(`🚀 API en línea en puerto ${PORT} | Modo: ${process.env.NODE_ENV || 'development'}`);
+        });
+    } catch (err) {
+        console.error('❌ ERROR CRÍTICO SDT:', err.message);
+        process.exit(1);
+    }
+};
+
+startServer();
