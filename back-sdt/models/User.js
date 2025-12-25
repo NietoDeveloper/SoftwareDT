@@ -1,44 +1,85 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const { userDB } = require('../config/dbConn'); 
+const { userDB } = require('../config/dbConn');
 
 const userSchema = new Schema({
-    email: { type: String, required: true, unique: true },
-    name: { type: String, required: true },
+    name: { 
+        type: String, 
+        required: [true, 'El nombre es obligatorio'],
+        trim: true 
+    },
+    email: { 
+        type: String, 
+        required: [true, 'El correo es obligatorio'], 
+        unique: true,
+        lowercase: true,
+        trim: true,
+        match: [/^\S+@\S+\.\S+$/, 'Por favor, use un correo válido']
+    },
     password: { 
         type: String, 
-        required: true, 
-        select: false 
+        required: [true, 'La contraseña es obligatoria'], 
+        select: false, // Protege la contraseña en consultas comunes
+        minlength: 8
     },
-    phone: { type: String },
-    photo: { type: String, default: "https://www.pngarts.com/explore/215296" },
-    gender: { type: String, enum: ["male", "female", "trans", "other"] },
+    phone: { 
+        type: String,
+        trim: true 
+    },
+    photo: { 
+        type: String, 
+        default: "https://www.pngarts.com/explore/215296" 
+    },
+    gender: { 
+        type: String, 
+        enum: {
+            values: ["male", "female", "trans", "other"],
+            message: '{VALUE} no es un género soportado'
+        }
+    },
     
-    // Campo especial para el Desarrollador/Administrador (Elon Musk Standard)
+    // Elon Musk Standard: Mensaje de autoridad técnica
     adminMessage: { 
         type: String, 
-        default: "Mensaje De Dev: Cuentas con los mas competentes y consistentes Ingenieros de Software De Colombia." 
+        default: "Software DT: Ingeniería de Software de alto rendimiento. Compromiso total, 361 días de despliegue continuo." 
     },
 
-    // NUEVO: Plantilla de WhatsApp personalizable por el cliente
+    // Personalización Pro: Plantilla de WhatsApp
     customMessage: { 
         type: String, 
-        default: "Hola Software DT, solicito soporte técnico para mi clúster." 
+        default: "Hola Software DT, solicito soporte técnico especializado para mi proyecto." 
     },
 
-    // Referencias a los servicios contratados
-    appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
+    // Relaciones
+    appointments: [{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "Appointment" 
+    }],
     
+    // RBAC (Role-Based Access Control)
     roles: {
         usuario: { type: Number, default: 1002 }, 
         admin: { type: Number } 
     },
 
+    // Seguridad de Sesiones
     refreshToken: {
         type: [String],
         index: true
     }
-}, { timestamps: true }); 
+}, { 
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
+});
 
-// Usamos la conexión userDB (sdt1 en Atlas)
+// Middleware pre-save (ejemplo para capitalizar nombre)
+userSchema.pre('save', function(next) {
+    if (this.name) {
+        this.name = this.name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+    }
+    next();
+});
+
+// Exportamos usando la conexión específica para Software DT
 module.exports = userDB.model('User', userSchema);
