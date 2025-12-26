@@ -57,45 +57,6 @@ const BookingPage = () => {
     }
   }, [user, token, userLoading, activeDoctorId, navigate, location.pathname]);
 
-  // --- 2. HIDRATACIÓN DE DATOS ---
-  useEffect(() => {
-    // Intentamos sacar los datos del contexto o del storage
-    const activeUser = user || JSON.parse(localStorage.getItem('user'));
-    
-    if (activeUser) {
-      setFormData(prev => ({
-        ...prev,
-        fullName: activeUser.name || activeUser.fullName || prev.fullName,
-        email: activeUser.email || prev.email,
-        phone: activeUser.phone || prev.phone,
-        reason: serviceFromFlow && !prev.reason.includes("Requerimiento")
-          ? `Requerimiento para: ${serviceFromFlow.name || serviceFromFlow.title}. `
-          : prev.reason
-      }));
-    }
-  }, [user, serviceFromFlow]);
-
-  // 3. React Query para datos del doctor
-  const { data: doctor, isLoading: doctorLoading } = useQuery({
-    queryKey: ["doctor", activeDoctorId],
-    queryFn: async () => {
-      if (doctorFromFlow) return doctorFromFlow;
-      const res = await axiosPrivate.get(`/doctors/${activeDoctorId}`);
-      return res.data.data || res.data.doctor || res.data;
-    },
-    enabled: !!activeDoctorId && (!!token || !!localStorage.getItem('token')),
-  });
-
-  // 4. Generación de horarios
-  const availableTimes = useMemo(() => {
-    if (!formData.appointmentDate) return [];
-    const times = [];
-    const [year, month, day] = formData.appointmentDate.split("-").map(Number);
-    const selectedDate = new Date(year, month - 1, day);
-    if (selectedDate.getDay() === 0) return [];
-    
-    const now = new Date();
-    const minTimeAllowed = new Date(now.getTime() + 8 * 60 * 60 * 1000); 
 
 
 
