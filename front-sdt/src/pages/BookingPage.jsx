@@ -143,24 +143,7 @@ const BookingPage = () => {
   };
 
   // UI DE CARGA
-  if (userLoading || (doctorLoading && !doctor)) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC]">
-        <div className="w-10 h-10 border-4 border-black border-t-[#FEB60D] rounded-full animate-spin"></div>
-      </div>
-    );
-  }
 
-
-
-                  </select>
-                </div>
-              </div>
-
-              </button>
-            </form>
-          </div>
-        </div>
 
         <div className="lg:col-span-4 space-y-6 order-2">
           <div className="bg-white border border-black/5 rounded-[2rem] p-8 shadow-sm">
