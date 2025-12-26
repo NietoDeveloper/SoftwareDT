@@ -97,51 +97,6 @@ const BookingPage = () => {
     const now = new Date();
     const minTimeAllowed = new Date(now.getTime() + 8 * 60 * 60 * 1000); 
 
-    for (let hour = 9; hour <= 18; hour++) {
-      for (let min of ["00", "30"]) {
-        if (hour === 18 && min === "30") break;
-        const timeStr = `${hour.toString().padStart(2, "0")}:${min}`;
-        const apptDT = new Date(year, month - 1, day, hour, parseInt(min));
-        if (apptDT > minTimeAllowed) times.push(timeStr);
-      }
-    }
-    return times;
-  }, [formData.appointmentDate]);
 
-  // 5. Envío Final
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!formData.appointmentTime) return toast.warning("Seleccione una hora.");
-    setIsSubmitting(true);
-    
-    try {
-      const payload = {
-        doctorId: doctor?._id || activeDoctorId,
-        serviceName: serviceFromFlow?.name || serviceFromFlow?.title || "Consultoría SDT",
-        slotDate: formData.appointmentDate,
-        slotTime: formData.appointmentTime,
-        fullName: formData.fullName,
-        email: formData.email,
-        phone: formData.phone,
-        reason: formData.reason,
-        amount: serviceFromFlow?.price || doctor?.ticketPrice || 0
-      };
-
-      const res = await axiosPrivate.post(`/appointments`, payload);
-
-      if (res.data) {
-        toast.success("Cita Sincronizada.");
-        localStorage.removeItem('sdt_pending_appointment');
-        localStorage.removeItem('sdt_return_path');
-        navigate("/users/profile/me"); 
-      }
-    } catch (err) {
-      toast.error(err.response?.data?.message || "Error en el Datacenter.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-};
 
 export default BookingPage;
