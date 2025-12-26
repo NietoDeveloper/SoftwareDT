@@ -150,13 +150,7 @@ const BookingPage = () => {
             <Briefcase className="text-[#FEB60D] mb-4" size={24} />
             <p className="text-[9px] font-black text-[#FEB60D] uppercase tracking-widest mb-1">Especialista</p>
             <h2 className="text-2xl font-black uppercase tracking-tight">{doctor?.name || "..."}</h2>
-          </div>
-          <div className="bg-black text-white rounded-[2rem] p-8 shadow-xl">
-            <span className="text-[9px] font-black uppercase tracking-widest text-[#FEB60D] block mb-4">Servicio</span>
-            <h3 className="text-xl font-black uppercase mb-2">{serviceFromFlow?.name || "Consultoría"}</h3>
-            <p className="text-3xl font-black text-[#FEB60D] tracking-tighter">
-              ${serviceFromFlow?.price || doctor?.ticketPrice || 0}
-            </p>
+
           </div>
         </div>
       </main>
