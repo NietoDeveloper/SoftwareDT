@@ -45,18 +45,6 @@ const BookingPage = () => {
     const hasToken = token || localStorage.getItem('token');
     const hasUser = user || localStorage.getItem('user');
 
-    if (!hasToken || !hasUser) {
-      localStorage.setItem('sdt_return_path', location.pathname);
-      toast.error("Identificación requerida para agendar.");
-      navigate("/login", { state: { from: location.pathname }, replace: true });
-    }
-    
-    if (!activeDoctorId && !doctorLoading) {
-      toast.info("Seleccione un especialista primero.");
-      navigate("/doctors");
-    }
-  }, [user, token, userLoading, activeDoctorId, navigate, location.pathname]);
-
 
 
 
