@@ -142,14 +142,6 @@ const BookingPage = () => {
     }
   };
 
-  // UI DE CARGA
-
-
-        <div className="lg:col-span-4 space-y-6 order-2">
-          <div className="bg-white border border-black/5 rounded-[2rem] p-8 shadow-sm">
-            <Briefcase className="text-[#FEB60D] mb-4" size={24} />
-   
-  );
 };
 
 export default BookingPage;
