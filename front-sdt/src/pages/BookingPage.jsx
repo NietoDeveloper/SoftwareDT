@@ -159,13 +159,7 @@ value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.targe
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Fecha</label>
-                  <input type="date" min={new Date().toISOString().split("T")[0]} value={formData.appointmentDate} onChange={(e) => setFormData({...formData, appointmentDate: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Hora</label>
+cking-widest text-gray-400">Hora</label>
                   <select value={formData.appointmentTime} onChange={(e) => setFormData({...formData, appointmentTime: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm appearance-none">
                     <option value="">Seleccione hora</option>
                     {availableTimes.map(t => <option key={t} value={t}>{t}</option>)}
