@@ -148,14 +148,7 @@ const BookingPage = () => {
         <div className="lg:col-span-4 space-y-6 order-2">
           <div className="bg-white border border-black/5 rounded-[2rem] p-8 shadow-sm">
             <Briefcase className="text-[#FEB60D] mb-4" size={24} />
-            <p className="text-[9px] font-black text-[#FEB60D] uppercase tracking-widest mb-1">Especialista</p>
-            <h2 className="text-2xl font-black uppercase tracking-tight">{doctor?.name || "..."}</h2>
-
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </div>
+   
   );
 };
 
