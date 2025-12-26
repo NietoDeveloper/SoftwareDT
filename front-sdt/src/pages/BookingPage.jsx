@@ -152,17 +152,7 @@ const BookingPage = () => {
   }
 
 
-      <main className="max-w-[1800px] mx-auto w-full px-4 sm:px-12 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow">
-        <div className="lg:col-span-8 order-1">
-          <div className="bg-white border border-black/5 rounded-[2rem] p-6 sm:p-10 shadow-sm">
-value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" />
-                </div>
-              </div>
 
-cking-widest text-gray-400">Hora</label>
-                  <select value={formData.appointmentTime} onChange={(e) => setFormData({...formData, appointmentTime: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm appearance-none">
-                    <option value="">Seleccione hora</option>
-                    {availableTimes.map(t => <option key={t} value={t}>{t}</option>)}
                   </select>
                 </div>
               </div>
