@@ -155,15 +155,7 @@ const BookingPage = () => {
       <main className="max-w-[1800px] mx-auto w-full px-4 sm:px-12 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow">
         <div className="lg:col-span-8 order-1">
           <div className="bg-white border border-black/5 rounded-[2rem] p-6 sm:p-10 shadow-sm">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Nombre del Solicitante</label>
-                  <input type="text" value={formData.fullName} onChange={(e) => setFormData({...formData, fullName: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Teléfono</label>
-                  <input type="tel" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" />
+value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" />
                 </div>
               </div>
 
