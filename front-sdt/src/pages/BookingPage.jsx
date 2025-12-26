@@ -157,14 +157,6 @@ const BookingPage = () => {
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Notas</label>
-                <textarea value={formData.reason} onChange={(e) => setFormData({...formData, reason: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-medium text-sm h-32 resize-none" />
-              </div>
-
-              <button type="submit" disabled={isSubmitting} className="w-full bg-black text-white py-5 rounded-xl font-black text-xs uppercase tracking-[0.2em] hover:bg-[#FEB60D] hover:text-black transition-all flex items-center justify-center gap-2">
-                {isSubmitting ? "Sincronizando..." : "Finalizar Agendamiento"}
-                <ArrowRight size={16} />
               </button>
             </form>
           </div>
