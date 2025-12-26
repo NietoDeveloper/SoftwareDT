@@ -151,18 +151,6 @@ const BookingPage = () => {
     );
   }
 
-  return (
-    <div className="min-h-screen bg-[#DCDCDC] font-sans text-black antialiased flex flex-col">
-      <header className="bg-white border-b border-black/5 pt-10 pb-6 px-4 sm:px-12">
-        <div className="max-w-[1800px] mx-auto">
-          <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#FEB60D] transition-all mb-4">
-            <ChevronLeft size={14} /> Volver a selección
-          </button>
-          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tighter">
-            Crear <span className="text-[#FEB60D]">Cita</span>
-          </h1>
-        </div>
-      </header>
 
       <main className="max-w-[1800px] mx-auto w-full px-4 sm:px-12 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow">
         <div className="lg:col-span-8 order-1">
