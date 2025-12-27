@@ -1,13 +1,4 @@
 
-
-| Layer | Technologies | Engineering Focus |
-| :--- | :--- | :--- |
-| **Backend** | Node.js & Express | Scalable RESTful API & Clean Architecture. |
-| **Database** | MongoDB Atlas | Double Cluster strategy for maximum uptime. |
-| **Frontend** | React & Vite | Optimized SPA (Single Page Application). |
-| **DevOps** | Docker | Containerization and standardized deployment. |
-| **Styling** | Tailwind CSS | Custom-built Corporate Design System. |
-
 ---
 
 ## 🎨 Official Design System (Tailwind Config)
