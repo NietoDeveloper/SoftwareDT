@@ -7,10 +7,5 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^3.1.2",
-    "vite-plugin-node-polyfills": "^0.24.0"
+
   },
