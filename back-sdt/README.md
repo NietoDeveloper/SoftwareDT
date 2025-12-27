@@ -81,4 +81,4 @@ This backend is a testament to disciplined software engineering. Its lead develo
 
 - **Lead Developer**: Manuel Nieto (NietoDeveloper)
 - **Location**: Bogotá, Colombia (UTC-5)
-- **Technical Ranking**: #3 Top Committer Colombia
+- **Technical Ranking**: #2 Top Committer Colombia
