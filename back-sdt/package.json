@@ -1,1 +1,31 @@
 
+{
+  "name": "software-dt-server",
+  "version": "1.0.0",
+  "description": "A world-class doctor's appointment booking system",
+  "main": "server.js",
+  "type": "module", 
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "npm install"
+  },
+  "keywords": ["healthtech", "booking-system", "colombia-commits"],
+  "author": "NietoDeveloper",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.1",
+    "morgan": "^1.10.1"
+  }
+}
