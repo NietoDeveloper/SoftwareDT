@@ -17,10 +17,7 @@ Utilizing **JWT (JSON Web Tokens)** with a multi-device session
 
 ### 👥 2. Role-Based Access Control (RBAC)
 
-Dedicated professional workflows:
-
-* **Clients:** Dynamic search, real-time booking, and verified review system.
-* **Employees/Providers:** Expert profile management and availability synchronization.
+e management and availability synchronization.
 
 ### 📊 3. Scalable Data Infrastructure
 
