@@ -1,7 +1,7 @@
 [
   {
     "origin": ["http://localhost:5173", "https://tudominiodeproduccion.com"],
-    "method": ["GET", "PUT", "POST", "DELETE", "HEAD"],
+
 
   
   }
