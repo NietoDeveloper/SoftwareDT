@@ -1,9 +1,3 @@
-# Software DT | Enterprise Full-Stack MERN Booking Solution
-
-## 🚀 High-Performance Engineering by NietoDeveloper
-
-**Software DT** is a world-class digital flagship engineered in Bogotá. This platform is a professional **Full-Stack MERN** ecosystem (MongoDB, Express, React, Node.js) designed to bridge the gap between service providers and clients through a seamless, highly scalable booking and review architecture.
-
 
 
 | Layer | Technologies | Engineering Focus |
