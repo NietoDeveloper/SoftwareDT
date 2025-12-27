@@ -32,8 +32,6 @@ src/
 
 ```
 
----
-
 ## 🛠️ Frontend Tech Stack
 
 | Technology | Purpose |
