@@ -4,19 +4,7 @@
 
 **Software DT** is a world-class digital flagship engineered in Bogotá. This platform is a professional **Full-Stack MERN** ecosystem (MongoDB, Express, React, Node.js) designed to bridge the gap between service providers and clients through a seamless, highly scalable booking and review architecture.
 
----
 
-
-## ✨ Full-Scale App Explanation & Infrastructure
-
-Software DT is engineered for global scalability and enterprise-grade reliability:
-
-### 🔐 1. Advanced Security & Auth
-
-
----
-
-## 🛠️ The Professional Stack
 
 | Layer | Technologies | Engineering Focus |
 | :--- | :--- | :--- |
