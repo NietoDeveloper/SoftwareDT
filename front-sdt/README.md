@@ -54,3 +54,16 @@ export default {
   },
   plugins: [],
 }
+
+
+## 🤝 Remote Collaboration 
+
+- **Lead Developer**: NietoDeveloper
+- **Live App**: [softwaredt.vercel.app](https://softwaredt.vercel.app)
+- **Technical Ranking**: Top Committers Colombia
+
+### Technical Ranking: #2 Top Committer Colombia
+
+## (<https://github.com/NietoDeveloper>)
+
+### NietoDeveloper 2026

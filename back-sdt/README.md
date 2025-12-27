@@ -75,10 +75,14 @@ npm install
 npm start
 ```
 
-## 🤝 Remote Collaboration & Global Hiring
+## 🤝 Remote Collaboration 
 
-This backend is a testament to disciplined software engineering. Its lead developer, NietoDeveloper, is open for Remote Opportunities worldwide, offering 5.5+ years of technical expertise and a professional English proficiency.
+- **Lead Developer**: NietoDeveloper
+- **Live App**: [softwaredt.vercel.app](https://softwaredt.vercel.app)
+- **Technical Ranking**: Top Committers Colombia
 
-- **Lead Developer**: Manuel Nieto (NietoDeveloper)
-- **Location**: Bogotá, Colombia (UTC-5)
-- **Technical Ranking**: #2 Top Committer Colombia
+### Technical Ranking: #2 Top Committer Colombia
+
+## (<https://github.com/NietoDeveloper>)
+
+### NietoDeveloper 2026
