@@ -1,7 +1,3 @@
-Here is the professional `README.md` for your **Frontend** folder. It highlights the React architecture, the specific booking flow you've developed, and your impressive ranking in Colombia.
-
----
-
 # 🖥️ Software DT | Frontend Engineering
 
 ## 🚀 High-Performance UI by NietoDeveloper
