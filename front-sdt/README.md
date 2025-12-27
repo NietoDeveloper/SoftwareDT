@@ -79,20 +79,21 @@ export default {
 ## ⚙️ Installation & Development
 
 1. **Install Dependencies:**
+
 ```bash
 npm install
 
 ```
 
+1. **Start Development Server:**
 
-2. **Start Development Server:**
 ```bash
 npm run dev
 
 ```
 
+1. **Build for Production:**
 
-3. **Build for Production:**
 ```bash
 npm run build
 
@@ -103,4 +104,4 @@ npm run build
 * **Lead Developer**: [NietoDeveloper](https://github.com/NietoDeveloper)
 * **Location**: Bogotá, Colombia
 * **Live App**: [softwaredt.vercel.app](https://softwaredt.vercel.app)
-* **Technical Ranking**: #2 Top Committer Colombia 
+* **Technical Ranking**: #2 Top Committer Colombia
