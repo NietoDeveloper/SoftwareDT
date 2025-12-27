@@ -6,13 +6,6 @@
 
 ---
 
-## 📈 Technical Leadership & Momentum
-
-* **Continuous Delivery:** This project is built under a philosophy of **daily technical excellence**. There is no day without code, ensuring constant optimization and security updates.
-* **Top Ranking:** Developed by **NietoDeveloper**, currently ranked **#3 Top Committer in Colombia** (Targeting #1 by Q1 2026).
-* **Production Ready:** System architecture proven with active clients in production environments.
-
----
 
 ## ✨ Full-Scale App Explanation & Infrastructure
 
