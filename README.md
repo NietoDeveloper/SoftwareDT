@@ -13,7 +13,7 @@ Software DT is engineered for global scalability and enterprise-grade reliabilit
 
 ### 🔐 1. Advanced Security & Auth
 
-Utilizing **JWT (JSON Web Tokens)** with a multi-device session strategy. Users can securely manage sessions independently across devices without workflow interruptions.
+Utilizing **JWT (JSON Web Tokens)** with a multi-device session 
 
 ### 👥 2. Role-Based Access Control (RBAC)
 
