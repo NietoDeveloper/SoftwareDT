@@ -13,10 +13,6 @@ Software DT is engineered for global scalability and enterprise-grade reliabilit
 
 ### 🔐 1. Advanced Security & Auth
 
-ility cloud cluster.
-* **Double Cluster Architecture:** Implemented with a **dual-cluster strategy** to ensure superior scalability, data redundancy, and zero-downtime performance during peak loads.
-
-### 🐳 4. Modern Deployment & Containers
 
 * **Dockerized Environment:** Fully containerized using **Docker**, ensuring consistency across development, staging, and production environments.
 * **Firebase Integration:** Specialized cloud storage for ultra-fast asset rendering.
