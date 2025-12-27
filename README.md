@@ -14,9 +14,6 @@ Software DT is engineered for global scalability and enterprise-grade reliabilit
 ### 🔐 1. Advanced Security & Auth
 
 
-* **Dockerized Environment:** Fully containerized using **Docker**, ensuring consistency across development, staging, and production environments.
-* **Firebase Integration:** Specialized cloud storage for ultra-fast asset rendering.
-
 ---
 
 ## 🛠️ The Professional Stack
