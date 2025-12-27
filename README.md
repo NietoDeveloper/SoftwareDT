@@ -1,10 +1,4 @@
 
----
-
-## 🎨 Official Design System (Tailwind Config)
-
-Professional visual identity implemented via design tokens:
-
 ```javascript
 /** @type {import('tailwindcss').Config} */
 export default {
