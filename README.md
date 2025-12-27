@@ -120,6 +120,8 @@ Software DT is a showcase of high-level software engineering from Bogotá. Nieto
 - **Live App**: [softwaredt.vercel.app](https://softwaredt.vercel.app)
 - **Technical Ranking**: Top Committers Colombia
 
+### Technical Ranking: #2 Top Committer Colombia
+
 ## (<https://github.com/NietoDeveloper>)
 
 ### NietoDeveloper 2026
