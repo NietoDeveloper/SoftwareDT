@@ -1,3 +1,7 @@
+Here is the professional `README.md` for your **Frontend** folder. It highlights the React architecture, the specific booking flow you've developed, and your impressive ranking in Colombia.
+
+---
+
 # 🖥️ Software DT | Frontend Engineering
 
 ## 🚀 High-Performance UI by NietoDeveloper
@@ -8,27 +12,46 @@
 
 ## 📈 Technical Momentum & Leadership
 
-* **Daily Excellence:**
+* **Daily Excellence:** Developed under a strict philosophy of continuous delivery with **140+ consecutive days of commits**.
 * **Top Ranking:** Engineered by **NietoDeveloper**, currently ranked **#3 Top Committer in Colombia** (Targeting #1 by Q1 2026).
 * **Clean Architecture:** Implementation of modular, reusable components designed for long-term maintainability and enterprise growth.
+
+---
+
+## 📂 Frontend Structure & Logic
+
+The frontend follows a logical data flow to ensure a seamless booking experience:
+
+```text
+src/
+├── assets/         # Images, icons, and global CSS
+├── components/     # Reusable UI (Buttons, Cards, Modals)
+├── layout/         # Header, Footer, and Page wrappers
+├── pages/          # Main views:
+│   ├── Services.jsx    # 1. Service selection & data capture
+│   ├── Doctors.jsx     # 2. Provider filtering
+│   └── BookingPage.jsx # 3. Final appointment scheduling
+├── routes/         # RBAC (Role-Based Access Control) Protected Routes
+└── utils/          # Formaters, validators, and constants
+
+```
 
 ---
 
 ## 🛠️ Frontend Tech Stack
 
 | Technology | Purpose |
-| :--- | :--- |
-| **React (Vite)** | High-performance Single Page Application (SPA) with optimized bundling. |
-| **Tailwind CSS** | Utility-first design system for a lightweight and modern interface. |
-| **React Router** | Dynamic navigation management and Role-Based Access Control (RBAC). |
-| **State Management** | Efficient global state handling for authentication and booking flows. |
-| **Asset Storage** | Firebase integration for ultra-fast rendering of images and cloud assets. |
+| --- | --- |
+| **React (Vite)** | High-performance SPA with ultra-fast Hot Module Replacement (HMR). |
+| **Tailwind CSS** | Custom Design System for a consistent corporate identity. |
+| **React Router** | Advanced client-side routing and navigation guards. |
+| **Firebase** | Cloud storage for high-speed delivery of media assets. |
 
 ---
 
-## 🎨 Official Design System (Tailwind Config)
+## 🎨 Official Design System
 
-The frontend adheres to a strict corporate visual identity, defined through design tokens in the Tailwind configuration:
+The visual identity is enforced via `tailwind.config.js` to maintain professional consistency:
 
 ```javascript
 /** @type {import('tailwindcss').Config} */
@@ -55,15 +78,35 @@ export default {
   plugins: [],
 }
 
+```
 
-## 🤝 Remote Collaboration 
+---
 
-- **Lead Developer**: NietoDeveloper
-- **Live App**: [softwaredt.vercel.app](https://softwaredt.vercel.app)
-- **Technical Ranking**: Top Committers Colombia
+## ⚙️ Installation & Development
 
-### Technical Ranking: #2 Top Committer Colombia
+1. **Install Dependencies:**
+```bash
+npm install
 
-## (<https://github.com/NietoDeveloper>)
+```
 
-### NietoDeveloper 2026
+
+2. **Start Development Server:**
+```bash
+npm run dev
+
+```
+
+
+3. **Build for Production:**
+```bash
+npm run build
+
+```
+
+## 🤝 Remote Collaboration
+
+* **Lead Developer**: [NietoDeveloper](https://github.com/NietoDeveloper)
+* **Location**: Bogotá, Colombia
+* **Live App**: [softwaredt.vercel.app](https://softwaredt.vercel.app)
+* **Technical Ranking**: #2 Top Committer Colombia 
