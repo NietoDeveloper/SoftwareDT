@@ -11,11 +11,7 @@ const Questions = () => {
       id="questions-section-unique"
       className="relative w-full overflow-hidden bg-black min-h-screen flex items-center"
     >
-apper #questions-section-unique h2,
 
-          color: ${sdtGold} !important;
-          fill: ${sdtGold} !important;
-        }
 
 
 
