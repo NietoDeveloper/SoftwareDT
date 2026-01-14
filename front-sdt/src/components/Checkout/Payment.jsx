@@ -10,7 +10,7 @@ const Payment = () => {
 
                 <div>
                   <label htmlFor="card-info">Infoarmacion De Tarjeta </label>
-                  <input id="card-info" type="number" required />
+                 
 
                 </div>
 
