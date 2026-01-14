@@ -7,17 +7,7 @@ const Questions = () => {
   const sdtGold = "#FFD700";
 
   return (
-    <section 
-      id="questions-section-unique"
-      className="relative w-full overflow-hidden bg-black min-h-screen flex items-center"
-    >
-
-
-
-
-      <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col items-center">
-        
-        {/* TÍTULO */}
+* TÍTULO */}
         <div className="mb-20 text-center">
           <h2 className="text-4xl lg:text-6xl font-black uppercase leading-tight" style={{color: '#ffffff'}}>
             Preguntas <span style={{color: sdtGold}}>Frecuentes</span>
