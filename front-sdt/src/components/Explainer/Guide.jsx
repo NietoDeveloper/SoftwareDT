@@ -6,9 +6,7 @@ const Guide = () => {
     <>
       <section className="bg-card py-20">
         <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between flex-col lg:flex-row gap-16">
-            
-            {/* TEXTO Y PASOS */}
+       
 
 
            
