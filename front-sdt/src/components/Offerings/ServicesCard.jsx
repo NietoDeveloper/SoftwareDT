@@ -20,9 +20,6 @@ const ServicesCard = ({ item, index }) => {
             2. Pasamos 'item' como 'selectedService' en el state.
         */}
 
-          <BsArrowRight className="text-black group-hover:scale-125 transition-transform h-5 w-6" />
-        </Link>
-
         <span 
           className="w-[44px] h-[44px] flex items-center justify-center text-[20px] font-black leading-[30px] bg-main text-black rounded-xl border border-black/10 group-hover/card:bg-gold transition-colors duration-300"
         > 
