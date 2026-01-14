@@ -20,11 +20,7 @@ const MenuButton = ({ isOpen, onClick }) => {
               Software D T
             </h2>
 
-            {/* PUNTO VERDE REACTIVO AL CONTEXTO */}
-            {isLoggedIn && (
-              <Link 
-                to="/users/profile/me" 
-                className="relative flex items-center justify-center ml-0.5"
+            justify-center ml-0.5"
                 onClick={(e) => e.stopPropagation()}
               >
                 <span className="absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75 animate-ping"></span>
