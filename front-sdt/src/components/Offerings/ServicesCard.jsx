@@ -19,11 +19,7 @@ const ServicesCard = ({ item, index }) => {
             1. El destino es /doctors (para elegir al ingeniero).
             2. Pasamos 'item' como 'selectedService' en el state.
         */}
-        <Link
-          to="/doctors"
-          state={{ selectedService: item }} 
-          className="w-[44px] h-[44px] rounded-full border-2 border-solid border-black flex items-center justify-center group hover:bg-gold hover:border-gold transition-all duration-300 shadow-md"
-        >
+
           <BsArrowRight className="text-black group-hover:scale-125 transition-transform h-5 w-6" />
         </Link>
 
