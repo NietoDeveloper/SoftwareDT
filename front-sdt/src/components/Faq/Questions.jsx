@@ -13,12 +13,6 @@ const Questions = () => {
     >
 apper #questions-section-unique h2,
 
-        /* EXCEPCIÓN PARA EL ORO */
-        #home-wrapper #questions-section-unique .text-gold-sdt,
-        #home-wrapper #questions-section-unique .gold-text,
-        #home-wrapper #questions-section-unique svg,
-        #home-wrapper #questions-section-unique path,
-        #home-wrapper #questions-section-unique summary::-webkit-details-marker {
           color: ${sdtGold} !important;
           fill: ${sdtGold} !important;
         }
