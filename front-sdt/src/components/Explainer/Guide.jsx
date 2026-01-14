@@ -19,15 +19,7 @@ const Guide = () => {
                   "Mensaje directo al Ingeniero De Software que te asistirá"
                 ].map((step, index) => (
                   <li key={index} className="flex items-center gap-6 group">
-                    {/* Punto indicador discreto estilo Software DT */}
-                    <div className="relative flex items-center justify-center">
-                       <div className="w-2 h-2 bg-gold rounded-full group-hover:scale-150 transition-transform duration-300"></div>
-                       <div className="absolute w-4 h-4 border border-gold/20 rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                    </div>
-
-                  </li>
-                ))}
-              </ul>
+       
 
               <Link to="/services">
                 {/* BOTÓN ESTILO SOFTWARE DT (ESTÁNDAR UNIFICADO) */}
