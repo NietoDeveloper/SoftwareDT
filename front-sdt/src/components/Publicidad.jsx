@@ -12,10 +12,6 @@ const Publicidad = () => {
 
 
 
-              <div className="mt-[30px]">
-                <h2 className="text-[26px] leading-9 text-headingColor font-black text-center uppercase">
-                  Productos
-                </h2>
 
               
                   <BsArrowRight className="text-black group-hover:scale-125 transition-transform h-6 w-6" />
