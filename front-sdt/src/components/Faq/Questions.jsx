@@ -17,12 +17,7 @@ apper #questions-section-unique h2,
           fill: ${sdtGold} !important;
         }
 
-        /* FORMATO DE LETRAS SOFTWARE DT */
-        #questions-section-unique h2 {
-          letter-spacing: 0.4em !important;
-          font-weight: 900 !important;
-          text-shadow: 2px 2px 15px rgba(0,0,0,1);
-        }
+
 
         #questions-section-unique .faq-item-container {
           border-bottom: 1px solid rgba(255, 215, 0, 0.4);
