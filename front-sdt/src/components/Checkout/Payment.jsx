@@ -13,7 +13,7 @@ const Payment = () => {
                   <input id="card-info" type="number" required />
 
                     <div className="flex">
-                     <input id="date" type="date" />
+
 
                     </div>
                 </div>
