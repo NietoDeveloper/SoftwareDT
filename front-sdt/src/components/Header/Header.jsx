@@ -27,11 +27,7 @@ const MenuButton = ({ isOpen, onClick }) => {
           animate={isOpen ? "opened" : "closed"}
           className="w-full h-1 bg-[#FEB60D] rounded-full group-hover:bg-black transition-colors duration-300"
         />
-        <motion.span
-          variants={variantBottom}
-          animate={isOpen ? "opened" : "closed"}
-          className="w-full h-1 bg-[#FEB60D] rounded-full group-hover:bg-black transition-colors duration-300"
-        />
+
       </div>
     </button>
   );
