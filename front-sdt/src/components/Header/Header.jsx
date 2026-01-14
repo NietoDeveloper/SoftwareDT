@@ -16,12 +16,7 @@ const MenuButton = ({ isOpen, onClick }) => {
       className="relative z-50 p-2 bg-transparent border-none outline-none focus:outline-none group transition-all duration-300 active:scale-90 flex items-center justify-center"
       aria-label="Menu"
     >
-      <div className="w-7 h-5 flex flex-col justify-between items-center relative">
-        <motion.span
-          variants={variantTop}
-          animate={isOpen ? "opened" : "closed"}
-          className="w-full h-1 bg-[#FEB60D] rounded-full group-hover:bg-black transition-colors duration-300"
-        />
+
         <motion.span
           variants={variantCenter}
           animate={isOpen ? "opened" : "closed"}
