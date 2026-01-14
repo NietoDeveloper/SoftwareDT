@@ -2,20 +2,7 @@ import about1 from "../assets/images/herodoctor4.png";
 import { Link } from "react-router-dom";
 
 const About = () => {
-  return (
-    <section className="bg-card py-16">
-      <div className="container mx-auto px-4 pb-8">
-        <div
-          className="flex justify-between gap-[50px] lg:gap-[130px] xl:gap-0 flex-col
-            lg:flex-row items-center"
 
-            
-
-
-   
-
-
-            <Link to="/clients">
               {/* BOTÓN ESTILO SOFTWARE DT (AJUSTADO) */}
               <button 
                 className="mt-10 w-56 h-14 bg-black text-white text-xl font-black uppercase tracking-tighter 
