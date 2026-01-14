@@ -8,4 +8,4 @@ const servicesList = [
 
 
 
-export default Services;
+
