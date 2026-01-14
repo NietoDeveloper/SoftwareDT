@@ -11,19 +11,6 @@ const MenuButton = ({ isOpen, onClick }) => {
   const variantBottom = { closed: { rotate: 0, y: 0 }, opened: { rotate: -45, y: -8 } };
 
 
-};
-
-
-
-                  to="/sig
-
-          {/* MOBILE BUTTON */}
-          <div className="flex items-center md:hidden">
-            <MenuButton isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)} />
-          </div>
-        </div>
-      </div>
-
       {/* MOBILE MENU */}
       <AnimatePresence>
         {isMenuOpen && (
