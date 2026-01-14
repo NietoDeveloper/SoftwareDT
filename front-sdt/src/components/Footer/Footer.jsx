@@ -9,18 +9,6 @@ const Footer = () => {
     timeStyle: 'short',
   });
 
- 
-  const forceWhite = { color: '#FFFFFF !important', textShadow: 'none' };
-  const forceGold = { color: '#FFD700 !important', textShadow: 'none' };
-
-  // Estado para manejar hovers manualmente ya que el CSS global está bloqueando las clases
-  const [hoveredItem, setHoveredItem] = useState(null);
-
-
-  const getStyle = (id) => (hoveredItem === id ? { color: '#FFD700', textShadow: '0 0 10px #FFD700' } : { color: '#FFFFFF' });
-
-  return (
-  
       <echnologies
           
 
