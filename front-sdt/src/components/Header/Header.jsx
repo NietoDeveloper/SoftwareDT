@@ -16,13 +16,7 @@ const MenuButton = ({ isOpen, onClick }) => {
 
 
   return (
-   xt-black text-lg sm:text-2xl font-black uppercase tracking-tighter transition-all duration-500 group-hover:text-[#FEB60D] drop-shadow-[0_4px_10px_rgba(254,182,13,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(254,182,13,1)] group-hover:-translate-y-1.5 transform-gpu">
-              Software D T
-            </h2>
-
-            justify-center ml-0.5"
-                onClick={(e) => e.stopPropagation()}
-              >
+  
                 <span className="absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75 animate-ping"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 border-2 border-white shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
               </Link>
