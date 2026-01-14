@@ -14,7 +14,7 @@ const Payment = () => {
 
                     <div className="flex">
                      <input id="date" type="date" />
-                     <input id="cvc" type="number"/>
+
                     </div>
                 </div>
 
