@@ -19,19 +19,7 @@ const MenuButton = ({ isOpen, onClick }) => {
   
        
                 
-        Cliente
-                </Link>
-                <button 
-                  onClick={handleLogout} 
-                  className="text-black hover:text-red-600 font-black uppercase text-[9px] lg:text-[10px] transition-colors"
-                >
-                  Salir
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center space-x-3 lg:space-x-4 ml-4">
-                <Link 
-                  to="/login" 
+        
                   className={`font-black uppercase transition-colors ${
                     isActive("/login") ? "text-[#FEB60D]" : "text-black hover:text-[#FEB60D]"
                   }`}
