@@ -6,14 +6,7 @@ const Footer = () => {
   const currentDateTime = new Date().toLocaleString('en-US', {
     timeZone: 'America/Bogota',
     dateStyle: 'medium',
-    timeStyle: 'short',
-  });
-'f5', name: 'Proyectos', href: 'https://github.com/NietoDeveloper' },
-                { id: 'f6', name: 'Investigación', href: 'https://committers.top/colombia' },
-                { id: 'f7', name: 'Sobre Software DT', href: '/sobre-nosotros' },
-                { id: 'f8', name: 'Trabaja con nosotros', href: '/vacantes' }
-              ].map((link) => (
-                <li key={link.id}>
+link.id}>
                   <a href={link.href} target="_blank" rel="noreferrer"
                      onMouseEnter={() => handleMouseEnter(link.id)} onMouseLeave={handleMouseLeave}
                      style={getStyle(link.id)}
