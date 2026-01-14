@@ -22,10 +22,6 @@ const Footer = () => {
   return (
     <footer className="relative min-h-screen w-full bg-black flex items-center justify-center overflow-hidden">
       
-      
-      <div className="absolute top-12 left-1/2 transform -translate-x-1/2 z-20">
-        <img src={Logo} alt="logo" className="h-20 w-auto transition-all hover:scale-110 duration-500 cursor-pointer" />
-      </div>
 
       <div className="relative z-10 w-full max-w-[1800px] px-6 py-16 flex flex-col items-center text-center mt-20">
         
