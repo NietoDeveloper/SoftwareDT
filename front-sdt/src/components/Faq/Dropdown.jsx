@@ -9,12 +9,7 @@ const FaqItem = ({ question, answer }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center border-2">
-       <div className="flex justify-center items-center px-2">
-       
-            <BsCaretUp size={20} className="text-blue-600 cursor-pointer" />
-          )}
-        </div>
+
       </div>
 
       <div>{open && <span className="text-center px-4">{answer}</span>}</div>
