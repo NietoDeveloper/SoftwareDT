@@ -10,12 +10,7 @@
         async (error) => {
             const originalRequest = error.config;
 
-            // Error 403: Prohibido o Malformado (No intentamos refrescar)
-            if (error.response?.status === 403) {
-                console.error("❌ SDT: Error 403 Crítico.");
-                if (onLogout) onLogout();
-                return Promise.reject(error);
-            }
+
 
            
                 
