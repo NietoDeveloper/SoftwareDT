@@ -2,9 +2,7 @@
 
 const Payment = () => {
   return (
-    <div>
 
-    </div>
   )
 }
 
