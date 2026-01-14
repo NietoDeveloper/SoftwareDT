@@ -1,0 +1,120 @@
+import BogotaAir2 from "../../assets/images/MonserrateDron1.mp4";
+import Logo from "../../assets/images/logo.png";
+import { useState } from "react";
+
+const Footer = () => {
+  const currentDateTime = new Date().toLocaleString('en-US', {
+    timeZone: 'America/Bogota',
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  });
+
+  // Estilos fijos para ganar la batalla al CSS global
+  const forceWhite = { color: '#FFFFFF !important', textShadow: 'none' };
+  const forceGold = { color: '#FFD700 !important', textShadow: 'none' };
+
+  // Estado para manejar hovers manualmente ya que el CSS global está bloqueando las clases
+  const [hoveredItem, setHoveredItem] = useState(null);
+
+  const handleMouseEnter = (id) => setHoveredItem(id);
+  const handleMouseLeave = () => setHoveredItem(null);
+
+  const getStyle = (id) => (hoveredItem === id ? { color: '#FFD700', textShadow: '0 0 10px #FFD700' } : { color: '#FFFFFF' });
+
+  return (
+    <footer className="relative min-h-screen w-full bg-black flex items-center justify-center overflow-hidden">
+      <video
+        autoPlay loop muted playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-40"
+        src={BogotaAir2}
+      />
+      
+      <div className="absolute top-12 left-1/2 transform -translate-x-1/2 z-20">
+        <img src={Logo} alt="logo" className="h-20 w-auto transition-all hover:scale-110 duration-500 cursor-pointer" />
+      </div>
+
+      <div className="relative z-10 w-full max-w-[1800px] px-6 py-16 flex flex-col items-center text-center mt-20">
+        
+        <div className="mb-12 group">
+          <h1 style={getStyle('title')} onMouseEnter={() => handleMouseEnter('title')} onMouseLeave={handleMouseLeave}
+              className="text-4xl sm:text-5xl font-black uppercase tracking-[0.3em] cursor-default transition-all duration-300">
+            Software <span style={hoveredItem === 'title' ? {color:'#FFD700'} : {color:'#FFFFFF'}}>D T</span>
+          </h1>
+          <h2 style={getStyle('subtitle')} onMouseEnter={() => handleMouseEnter('subtitle')} onMouseLeave={handleMouseLeave}
+              className="text-lg sm:text-xl font-bold uppercase tracking-[0.5em] mt-4 cursor-default transition-all duration-300">
+            Dorado Technologies
+          </h2>
+          <div className="w-24 h-[3px] mx-auto mt-6 transition-colors duration-300" 
+               style={{ backgroundColor: hoveredItem === 'title' ? '#FFD700' : '#FFFFFF' }}></div>
+        </div>
+
+        <h3 style={getStyle('slogan')} onMouseEnter={() => handleMouseEnter('slogan')} onMouseLeave={handleMouseLeave}
+            className="text-2xl sm:text-3xl font-black uppercase tracking-widest mb-16 italic cursor-default transition-all duration-300">
+          "Codificamos Para Servir"
+        </h3>
+
+        <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-32 mb-20">
+          <div className="flex flex-col items-center md:items-start">
+            <ul className="text-lg sm:text-xl font-bold uppercase tracking-widest space-y-6">
+              {[
+                { id: 'f1', name: 'Servicios', href: '/servicios' },
+                { id: 'f2', name: 'Productos', href: '/productos' },
+                { id: 'f3', name: 'Contacto', href: '/contacto' },
+                { id: 'f4', name: 'softwaredt@outlook.com', href: 'mailto:softwaredt@outlook.com' }
+              ].map((link) => (
+                <li key={link.id}>
+                  <a href={link.href}
+                     onMouseEnter={() => handleMouseEnter(link.id)} onMouseLeave={handleMouseLeave}
+                     style={getStyle(link.id)}
+                     className="transition-all duration-300">
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex flex-col items-center md:items-start border-t md:border-t-0 md:border-l border-white pt-8 md:pt-0 md:pl-16">
+            <ul className="text-lg sm:text-xl font-bold uppercase tracking-widest space-y-6">
+              {[
+                { id: 'f5', name: 'Proyectos', href: 'https://github.com/NietoDeveloper' },
+                { id: 'f6', name: 'Investigación', href: 'https://committers.top/colombia' },
+                { id: 'f7', name: 'Sobre Software DT', href: '/sobre-nosotros' },
+                { id: 'f8', name: 'Trabaja con nosotros', href: '/vacantes' }
+              ].map((link) => (
+                <li key={link.id}>
+                  <a href={link.href} target="_blank" rel="noreferrer"
+                     onMouseEnter={() => handleMouseEnter(link.id)} onMouseLeave={handleMouseLeave}
+                     style={getStyle(link.id)}
+                     className="transition-all duration-300">
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-12 pt-10 border-t border-white/30 w-full max-w-6xl flex flex-col items-center">
+          <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-8 lg:gap-0">
+            <p onMouseEnter={() => handleMouseEnter('copy')} onMouseLeave={handleMouseLeave}
+               style={getStyle('copy')}
+               className="transition-colors duration-300 cursor-default text-lg sm:text-xl font-black uppercase tracking-[0.2em]">
+              Copyright 2025 © Software DT
+            </p>
+
+            <div className="flex items-center gap-4 py-2 cursor-default"
+                 onMouseEnter={() => handleMouseEnter('date')} onMouseLeave={handleMouseLeave}>
+              <span className="w-3 h-3 bg-[#FFD700] rounded-full animate-pulse shadow-[0_0_10px_#FFD700]"></span>
+              <p style={getStyle('date')} className="transition-colors duration-300 text-lg sm:text-xl font-black uppercase tracking-tighter">
+                {currentDateTime} <span style={{opacity: 0.5, color: '#FFF'}}>|</span> BOGOTÁ, COLOMBIA
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
