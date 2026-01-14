@@ -24,10 +24,7 @@ const Guide = () => {
                        <div className="w-2 h-2 bg-gold rounded-full group-hover:scale-150 transition-transform duration-300"></div>
                        <div className="absolute w-4 h-4 border border-gold/20 rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                     </div>
-                    
-                    <span className="text-textColor font-bold tracking-wide uppercase text-sm md:text-base opacity-70 group-hover:opacity-100 transition-all duration-300">
-                      {step}
-                    </span>
+
                   </li>
                 ))}
               </ul>
