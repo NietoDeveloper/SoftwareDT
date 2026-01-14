@@ -6,10 +6,8 @@
 
 ---
 
-## 📈 Technical Momentum & Leadership
+## 📈 Technical
 
-* **Daily Excellence:** Developed under a strict philosophy of continuous delivery with **140+ consecutive days of commits**.
-* **Top Ranking:** Engineered by **NietoDeveloper**, currently ranked **#3 Top Committer in Colombia** (Targeting #1 by Q1 2026).
 * **Clean Architecture:** Implementation of modular, reusable components designed for long-term maintainability and enterprise growth.
 
 ---
@@ -104,4 +102,4 @@ npm run build
 * **Lead Developer**: [NietoDeveloper](https://github.com/NietoDeveloper)
 * **Location**: Bogotá, Colombia
 * **Live App**: [softwaredt.vercel.app](https://softwaredt.vercel.app)
-* **Technical Ranking**: #2 Top Committer Colombia
+* **Technical Ranking**: #1 Top Committer Colombia
