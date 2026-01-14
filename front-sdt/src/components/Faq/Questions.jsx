@@ -15,10 +15,6 @@ const Questions = () => {
 
 
 
-        {/* Overlay sutil para legibilidad sin oscurecer demasiado */}
-        <div className="absolute inset-0 bg-black/30"></div>
-      </div>
-      
       <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col items-center">
         
         {/* TÍTULO */}
