@@ -10,10 +10,7 @@ const Footer = () => {
         </div>
 
       
-            </p>
-
-          Time} <span style={{opacity: 0.5, color: '#FFF'}}>|</span> BOGOTÁ, COLOMBIA
-              </p>
+        
             </div>
           </div>
         </div>
