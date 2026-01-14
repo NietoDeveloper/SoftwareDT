@@ -23,13 +23,7 @@ const Footer = () => {
     <footer className="relative min-h-screen w-full bg-black flex items-center justify-center overflow-hidden">
       
 
-      <div className="relative z-10 w-full max-w-[1800px] px-6 py-16 flex flex-col items-center text-center mt-20">
-        
-        span style={hoveredItem === 'title' ? {color:'#FFD700'} : {color:'#FFFFFF'}}>D T</span>
-          </h1>
-          <h2 style={getStyle('subtitle')} onMouseEnter={() => handleMouseEnter('subtitle')} onMouseLeave={handleMouseLeave}
-              className="text-lg sm:text-xl font-bold uppercase tracking-[0.5em] mt-4 cursor-default transition-all duration-300">
-            Dorado Technologies
+      <echnologies
           </h2>
           <div className="w-24 h-[3px] mx-auto mt-6 transition-colors duration-300" 
                style={{ backgroundColor: hoveredItem === 'title' ? '#FFD700' : '#FFFFFF' }}></div>
