@@ -7,13 +7,6 @@ const Questions = () => {
   const sdtGold = "#FFD700";
 
   return (
-* TÍTULO */}
-        <div className="mb-20 text-center">
-          <h2 className="text-4xl lg:text-6xl font-black uppercase leading-tight" style={{color: '#ffffff'}}>
-            Preguntas <span style={{color: sdtGold}}>Frecuentes</span>
-          </h2>
-          <div className="w-24 h-[3px] bg-[#FFD700] mx-auto mt-6 shadow-[0_0_20px_#FFD700]"></div>
-        </div>
 
         <div className="flex flex-col lg:flex-row justify-center items-center gap-12 lg:gap-24 w-full max-w-7xl">
           
