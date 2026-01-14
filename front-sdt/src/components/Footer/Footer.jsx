@@ -26,8 +26,7 @@ const Footer = () => {
       <echnologies
           
         <h3 style={getStyle('slogan')} onMouseEnter={() => handleMouseEnter('slogan')} onMouseLeave={handleMouseLeave}
-            className="text-2xl sm:text-3xl font-black uppercase tracking-widest mb-16 italic cursor-default transition-all duration-300">
-          "Codificamos Para Servir"
+       mos Para Servir"
         </h3>
 
         <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-32 mb-20">
