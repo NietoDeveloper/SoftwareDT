@@ -25,9 +25,7 @@ const Footer = () => {
 
       <echnologies
           
-        <h3 style={getStyle('slogan')} onMouseEnter={() => handleMouseEnter('slogan')} onMouseLeave={handleMouseLeave}
-       mos Para Servir"
-        </h3>
+
 
         <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-32 mb-20">
           <div className="flex flex-col items-center md:items-start">
