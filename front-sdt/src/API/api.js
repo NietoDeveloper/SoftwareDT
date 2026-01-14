@@ -14,16 +14,7 @@
 
            
                 
-                if (isRefreshing) {
-                    return new Promise((resolve, reject) => {
-                        failedQueue.push({ resolve, reject });
-                    })
-                    .then(token => {
-                        originalRequest.headers.Authorization = `Bearer ${token}`;
-                        return axiosPrivate(originalRequest);
-                    })
-                    .catch(err => Promise.reject(err));
-                }
+              
 
                 originalRequest._retry = true;
                 isRefreshing = true;
