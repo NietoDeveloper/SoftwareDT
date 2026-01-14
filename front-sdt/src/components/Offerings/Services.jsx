@@ -16,10 +16,7 @@ const servicesList = [
     desc: "Creamos Software como: Plataforma de IA para agricultura, App fintech para inclusión financiera, Software de IoT para ciudades inteligentes. ",
   },
 
-  {
-    name: "Actualizacion o creacion de Software",
-    desc: "Analisis de tus Software, para decidir si es mejor, crear un software nuevo o el actual solo necesita ajustes.",
-  },
+
 
   {
     name: "Manejo y creacion de portafolio de redes sociales",
