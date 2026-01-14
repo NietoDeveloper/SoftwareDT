@@ -32,12 +32,7 @@ const About = () => {
             <h2 className="text-[36px] leading-[44px] text-headingColor font-black uppercase tracking-tighter">
               Creamos Software Con <span className="text-gold">Estándares Mundiales</span>
             </h2>
-            
-            <p className="text-lg text-textColor font-medium leading-relaxed mt-6">
-              Desarrollamos software innovador con estándares mundiales,
-              utilizando tecnologías de vanguardia para crear soluciones
-              personalizadas que impulsan el éxito de cada negocio. 
-            </p>
+   
 
             <p className="text-lg text-textColor font-medium leading-relaxed mt-4 opacity-80">
               Desde nuestra sede en <strong>Bogotá, Colombia</strong>, atendemos mercados en
