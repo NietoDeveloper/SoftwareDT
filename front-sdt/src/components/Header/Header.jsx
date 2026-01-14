@@ -15,18 +15,7 @@ const MenuButton = ({ isOpen, onClick }) => {
 
 
 
-                  to="/signup" 
-                  className={`px-4 py-2 rounded-full transition-all font-black text-[10px] uppercase tracking-widest ${
-                    isActive("/signup") 
-                      ? "bg-[#FFD700] text-black shadow-[0_0_15px_rgba(254,182,13,0.4)]" 
-                      : "bg-black text-white hover:bg-[#FFD700] hover:text-black"
-                  }`}
-                >
-                  Registro
-                </Link>
-              </div>
-            )}
-          </nav>
+                  to="/sig
 
           {/* MOBILE BUTTON */}
           <div className="flex items-center md:hidden">
