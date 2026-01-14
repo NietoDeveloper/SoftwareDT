@@ -4,10 +4,4 @@ import { Link } from "react-router-dom";
 const About = () => {
 
 
-        </div>
-      </div>
-    </section>
-  );
-};
-
 export default About;
