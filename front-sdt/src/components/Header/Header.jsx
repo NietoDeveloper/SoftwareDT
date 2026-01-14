@@ -18,16 +18,7 @@ const MenuButton = ({ isOpen, onClick }) => {
   return (
   
        
-                className={`font-black uppercase tracking-widest transition-all duration-300 relative group py-1 ${
-                  isActive(link.path) ? "text-[#FEB60D]" : "text-black hover:text-[#FEB60D]"
-                }`}
-              >
-                {link.name}
-                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#FEB60D] transition-transform duration-300 ${
-                  isActive(link.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                }`}></span>
-              </Link>
-            ))}
+                
             
             {isLoggedIn ? (
               <div className="flex items-center gap-3 lg:gap-4 ml-4">
