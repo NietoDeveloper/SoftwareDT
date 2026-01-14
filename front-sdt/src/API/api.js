@@ -17,8 +17,7 @@
                 return Promise.reject(error);
             }
 
-            // Error 401: Expirado (Iniciamos flujo de refresh)
-            if (error.response?.status === 401 && !originalRequest._retry) {
+           
                 
                 if (isRefreshing) {
                     return new Promise((resolve, reject) => {
