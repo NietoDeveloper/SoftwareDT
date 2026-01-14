@@ -25,12 +25,7 @@ const Footer = () => {
           
 
 
-     ' },
-                { id: 'f4', name: 'softwaredt@outlook.com', href: 'mailto:softwaredt@outlook.com' }
-              ].map((link) => (
-                <li key={link.id}>
-                  <a href={link.href}
-                     onMouseEnter={() => handleMouseEnter(link.id)} onMouseLeave={handleMouseLeave}
+     Enter(link.id)} onMouseLeave={handleMouseLeave}
                      style={getStyle(link.id)}
                      className="transition-all duration-300">
                     {link.name}
