@@ -19,18 +19,7 @@ const MenuButton = ({ isOpen, onClick }) => {
   
        
                 
-            
-            {isLoggedIn ? (
-              <div className="flex items-center gap-3 lg:gap-4 ml-4">
-                <Link 
-                  to="/users/profile/me" 
-                  className={`px-3 lg:px-4 py-1.5 rounded-lg border-2 border-[#FFD700] font-black uppercase text-[9px] lg:text-[10px] transition-all shadow-sm ${
-                    isActive("/users/profile/me") 
-                      ? "bg-[#FEB60D] text-black shadow-[0_0_15px_rgba(254,182,13,0.4)]" 
-                      : "bg-[#FFD700] text-black hover:bg-[#FEB60D] hover:shadow-[0_0_15px_rgba(254,182,13,0.4)]"
-                  }`}
-                >
-                  Panel Cliente
+        Cliente
                 </Link>
                 <button 
                   onClick={handleLogout} 
