@@ -8,12 +8,6 @@ const Questions = () => {
 
   return (
 
-              <FaqItem
-                question="¿Es presencial o virtual la cita?"
-                answer="Virtual. La reunión se llevará a cabo vía Microsoft TEAMS y tiene una duración estimada de 15 minutos."
-              />
-              <FaqItem
-       
         </div>
       </div>
     </section>
