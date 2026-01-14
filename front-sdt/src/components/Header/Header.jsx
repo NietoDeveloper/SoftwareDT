@@ -17,12 +17,6 @@ const MenuButton = ({ isOpen, onClick }) => {
 
   return (
   
-                <span className="absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75 animate-ping"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 border-2 border-white shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
-              </Link>
-            )}
-          </div>
-
           {/* DESKTOP NAV */}
           <nav className="hidden md:flex space-x-4 lg:space-x-8 items-center text-[10px] lg:text-sm">
             {navLinks.map((link) => (
