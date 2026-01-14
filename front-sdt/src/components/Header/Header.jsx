@@ -16,18 +16,7 @@ const MenuButton = ({ isOpen, onClick }) => {
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-  
 
-  const isActive = (path) => location.pathname === path;
-
-te("/login");
-  };
-
-  const handleLogoClick = () => {
-    navigate("/");
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const navLinks = [
     { name: "Inicio", path: "/" },
