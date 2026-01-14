@@ -14,8 +14,7 @@ const Publicidad = () => {
 
 
               
-                  <BsArrowRight className="text-black group-hover:scale-125 transition-transform h-6 w-6" />
-                </Link>
+
               </div>
             </div>
 
