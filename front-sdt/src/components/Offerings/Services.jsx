@@ -10,12 +10,9 @@ const servicesList = [
 const Services = () => {
   return (
     <section>
-      <div className="container">
-        <div className="xl:w-[470px] mx-auto">
 
-        </div>
   
-
+s
       </div>
     </section>
   );
