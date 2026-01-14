@@ -25,8 +25,7 @@ const Footer = () => {
           
 
 
-     Enter(link.id)} onMouseLeave={handleMouseLeave}
-                     style={getStyle(link.id)}
+     Enter(link.id)} 
                      className="transition-all duration-300">
                     {link.name}
                   </a>
