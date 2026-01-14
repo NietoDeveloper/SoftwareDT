@@ -22,10 +22,6 @@ const Publicidad = () => {
                   Software De Clase Mundial. Nuestro equipo se compone de desarrolladores de Software altamente calificados.
                 </p>
 
-                <Link
-                  to="/contact"
-                  className="w-[50px] h-[50px] rounded-full border-2 border-solid border-black mt-[30px] mx-auto flex items-center justify-center group hover:bg-gold hover:border-gold transition-all duration-300"
-                >
                   <BsArrowRight className="text-black group-hover:scale-125 transition-transform h-6 w-6" />
                 </Link>
               </div>
