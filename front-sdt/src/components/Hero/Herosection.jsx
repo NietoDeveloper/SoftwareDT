@@ -11,17 +11,6 @@ const Herosection = () => {
           
           {/* LADO IZQUIERDO: TEXTO DE ALTO IMPACTO */}
           <div className="w-full lg:w-[65%] flex flex-col items-start z-10">
-            <h1 className="text-[40px] md:text-[60px] lg:text-[75px] xl:text-[90px] leading-[0.95] text-headingColor font-black uppercase tracking-tighter mb-10">
-              Construimos Software Que <br />
-              <span className="text-gold">Da Solución</span>
-            </h1>
-            
-           
-            <Link to="/doctors">
-              {/* BOTÓN AJUSTADO: Más compacto con Hover Gold Explosivo */}
-              <button 
-                className="w-56 h-14 bg-black text-white text-xl font-black uppercase tracking-tighter 
-                           rounded-full transition-all duration-400 shadow-2xl active:scale-95
 
 
           {/* LADO DERECHO: IMÁGENES */}
