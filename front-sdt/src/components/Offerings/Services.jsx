@@ -18,11 +18,6 @@ const servicesList = [
 
 
 
-  {
-    name: "Manejo y creacion de portafolio de redes sociales",
-    desc: "Nuestro servicio de manejo de redes sociales es una plataforma integral que permite programar publicaciones, crear contenido, analizar métricas y monitorear interacciones en plataformas como Facebook, Instagram, X y LinkedIn, todo desde un dashboard unificado para optimizar la presencia digital de tu marca.",
-  },
-
 ];
 
 const Services = () => {
