@@ -7,17 +7,7 @@ import { BsArrowRight } from "react-icons/bs";
 const Publicidad = () => {
   return (
     <>
-      <section className="bg-card py-16">
-        <div className="container mx-auto px-4">
-          <div className="lg:w-[580px] mx-auto">
-            <h2 className="text-[36px] leading-[44px] text-headingColor font-black text-center uppercase tracking-tighter">
-              Ofrecemos el Mejor <span className="text-gold">Software De Colombia</span>
-            </h2>
-            <p className="text-lg text-textColor text-center mt-4 font-medium">
-              Ingenieros De Software De Clase Mundial.
-              Talentosos Y Rankeados Altamente En Colombia.
-            </p>
-          </div>
+
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[55px]">
             
