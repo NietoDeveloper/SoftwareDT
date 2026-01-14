@@ -15,9 +15,7 @@ const Questions = () => {
         /* REGLA NUCLEAR: Forzamos blanco a todo lo que esté dentro del wrapper del Home Y de esta sección */
         #home-wrapper #questions-section-unique *,
         #home-wrapper #questions-section-unique h2,
-        #home-wrapper #questions-section-unique p,
-        #home-wrapper #questions-section-unique span,
-        #home-wrapper #questions-section-unique b,
+
 
         #home-wrapper #questions-section-unique button {
           color: #ffffff !important;
