@@ -15,18 +15,7 @@ const ServicesCard = ({ item, index }) => {
       </p>
 
       <div className="flex items-center justify-between mt-[30px]">
-        {/* AJUSTE DE FLUJO SOFTWARE DT:
-            1. El destino es /doctors (para elegir al ingeniero).
-            2. Pasamos 'item' como 'selectedService' en el state.
-        */}
 
-        <span 
-          className="w-[44px] h-[44px] flex items-center justify-center text-[20px] font-black leading-[30px] bg-main text-black rounded-xl border border-black/10 group-hover/card:bg-gold transition-colors duration-300"
-        > 
-          {index + 1}
-        </span>
-      </div>
-    </div>
   );
 };
 
