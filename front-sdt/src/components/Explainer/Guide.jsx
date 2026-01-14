@@ -4,9 +4,7 @@ import equipo1 from '../../assets/images/equipo1.png';
 const Guide = () => {
   return (
 
-        </div>
-      </section>
-    </>
+
   );
 };
 
