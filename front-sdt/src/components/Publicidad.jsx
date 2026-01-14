@@ -16,9 +16,6 @@ const Publicidad = () => {
                 <h2 className="text-[26px] leading-9 text-headingColor font-black text-center uppercase">
                   Productos
                 </h2>
-                <p className="text-[16px] leading-7 text-textColor font-medium text-center mt-4">
-                   Soluciones digitales terminadas y listas para potenciar la eficiencia de tu modelo de negocio actual.
-                </p>
 
                 <Link
                   to="/contact"
