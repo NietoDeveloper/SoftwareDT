@@ -21,15 +21,7 @@
 
                 return new Promise(async (resolve, reject) => {
                     try {
-                        console.log("🔄 SDT Security: Renovando acceso...");
-                        const newAccessToken = await refreshAccessToken();
-                        
-                        const cleanNewToken = getCleanToken(newAccessToken);
-                        
-                        if (!cleanNewToken) throw new Error("Refresh fallido");
-
-                        setAccessToken(cleanNewToken); // Actualiza Contexto
-                        localStorage.setItem('token', cleanNewToken); // Actualiza Disco
+                        oken', cleanNewToken); // Actualiza Disco
                         
                         originalRequest.headers.Authorization = `Bearer ${cleanNewToken}`;
                         processQueue(null, cleanNewToken);
