@@ -14,14 +14,7 @@ const Publicidad = () => {
             {/* CARD 1 - SERVICIOS (VIDEO) */}
 
 
-              <div className="mt-[30px]">
-                <h2 className="text-[26px] leading-9 text-headingColor font-black text-center uppercase">
-                  Servicios
-                </h2>
-                <p className="text-[16px] leading-7 text-textColor font-medium text-center mt-4">
-                  Software De Clase Mundial. Nuestro equipo se compone de desarrolladores de Software altamente calificados.
-                </p>
-
+              
                   <BsArrowRight className="text-black group-hover:scale-125 transition-transform h-6 w-6" />
                 </Link>
               </div>
