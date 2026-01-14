@@ -14,10 +14,7 @@ const Services = () => {
         <div className="xl:w-[470px] mx-auto">
 
         </div>
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px]
-
-        >
+  
           {servicesList.map((item, index) => (
             <ServicesCard key={index} item={item} index={index} />
           ))}
