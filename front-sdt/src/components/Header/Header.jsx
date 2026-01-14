@@ -15,18 +15,6 @@ const MenuButton = ({ isOpen, onClick }) => {
 
 
 
-  return (
-  
-       
-                
-        
-                  className={`font-black uppercase transition-colors ${
-                    isActive("/login") ? "text-[#FEB60D]" : "text-black hover:text-[#FEB60D]"
-                  }`}
-                >
-                  Login
-                </Link>
-                <Link 
                   to="/signup" 
                   className={`px-4 py-2 rounded-full transition-all font-black text-[10px] uppercase tracking-widest ${
                     isActive("/signup") 
