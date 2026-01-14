@@ -1,11 +1,4 @@
-import axios from 'axios';
-import refreshAccessToken from '../utils/refreshAccess';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-
-
-let isRefreshing = false;
-let failedQueue = [];
 
 
 
