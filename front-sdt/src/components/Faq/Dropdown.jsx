@@ -8,11 +8,7 @@ const FaqItem = ({ question, answer }) => {
     setOpen(!open); // Toggle the state for the specific FAQ item
   };
 
-  return (
-    <div className="flex flex-col justify-center items-center border-2">
-       <div className="flex justify-center items-center px-2">
- 
-      </div>
+
 
   );
 };
