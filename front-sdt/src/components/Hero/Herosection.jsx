@@ -15,15 +15,7 @@ const Herosection = () => {
 
 
 
-              <div className="flex gap-6">
-                <img
-                  src={heroimage3}
-                  alt="Programación"
-                  className="rounded-[2.5rem] shadow-2xl w-1/2 border-[8px] border-main transition-all duration-700 hover:-rotate-3 hover:scale-105"
-                />
-                <img
-                  src={heroimage2}
-                  alt="Apps Móviles"
+             
                   className="rounded-[2.5rem] shadow-2xl w-1/2 border-[8px] border-main transition-all duration-700 hover:rotate-3 hover:scale-105"
                 />
               </div>
