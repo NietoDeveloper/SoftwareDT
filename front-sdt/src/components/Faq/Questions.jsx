@@ -8,14 +8,6 @@ const Questions = () => {
 
   return (
 
-
-          {/* CONTENIDO FAQ DERECHA */}
-          <div className="w-full lg:w-7/12">
-            <div className="space-y-4">
-              <FaqItem
-                question="¿Tiene algún costo la cita?"
-                answer="No. La cita con un programador es de tipo informativo y nos guiará en el servicio requerido para tu proyecto."
-              />
               <FaqItem
                 question="¿Es presencial o virtual la cita?"
                 answer="Virtual. La reunión se llevará a cabo vía Microsoft TEAMS y tiene una duración estimada de 15 minutos."
