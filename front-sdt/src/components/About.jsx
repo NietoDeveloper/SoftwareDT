@@ -34,13 +34,6 @@ const About = () => {
             </h2>
    
 
-            <p className="text-lg text-textColor font-medium leading-relaxed mt-4 opacity-80">
-              Desde nuestra sede en <strong>Bogotá, Colombia</strong>, atendemos mercados en
-              colombia, Estados Unidos y Canadá. Nuestro equipo apasionado
-              garantiza calidad, eficiencia y resultados excepcionales en cada
-              proyecto, transformando ideas en herramientas que elevan su
-              empresa al siguiente nivel.
-            </p>
 
             <Link to="/clients">
               {/* BOTÓN ESTILO SOFTWARE DT (AJUSTADO) */}
