@@ -17,11 +17,6 @@ const MenuButton = ({ isOpen, onClick }) => {
       aria-label="Menu"
     >
 
-        <motion.span
-          variants={variantCenter}
-          animate={isOpen ? "opened" : "closed"}
-          className="w-full h-1 bg-[#FEB60D] rounded-full group-hover:bg-black transition-colors duration-300"
-        />
 
       </div>
     </button>
