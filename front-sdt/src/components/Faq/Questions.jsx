@@ -11,10 +11,7 @@ const Questions = () => {
       id="questions-section-unique"
       className="relative w-full overflow-hidden bg-black min-h-screen flex items-center"
     >
-      <style dangerouslySetInnerHTML={{ __html: `
-        /* REGLA NUCLEAR: Forzamos blanco a todo lo que esté dentro del wrapper del Home Y de esta sección */
-        #home-wrapper #questions-section-unique *,
-        #home-wrapper #questions-section-unique h2,
+apper #questions-section-unique h2,
 
         /* EXCEPCIÓN PARA EL ORO */
         #home-wrapper #questions-section-unique .text-gold-sdt,
