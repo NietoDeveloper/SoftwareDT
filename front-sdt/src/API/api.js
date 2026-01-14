@@ -4,27 +4,6 @@
 
 
 
-export const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
-    
-    // 1. INTERCEPTOR DE PETICIÓN
-    axiosPrivate.interceptors.request.use(
-        (config) => {
-            // Intentamos obtener el token del estado de React, si no, del disco duro
-            let token = getAccessToken() || localStorage.getItem('token');
-            const cleanToken = getCleanToken(token);
-
-            if (cleanToken) {
-                config.headers.Authorization = `Bearer ${cleanToken}`;
-            } else {
-                // Si no hay token en absoluto, no dejamos que la petición salga "sucia"
-                // Esto evita que el backend responda 401 y el interceptor de respuesta dispare el logout
-                console.warn("⚠️ SDT: Intento de petición privada sin token.");
-            }
-            return config;
-        },
-        (error) => Promise.reject(error)
-    );
-
     // 2. INTERCEPTOR DE RESPUESTA
     axiosPrivate.interceptors.response.use(
         (response) => response,
