@@ -16,8 +16,6 @@ const Footer = () => {
   // Estado para manejar hovers manualmente ya que el CSS global está bloqueando las clases
   const [hoveredItem, setHoveredItem] = useState(null);
 
-  const handleMouseEnter = (id) => setHoveredItem(id);
-  const handleMouseLeave = () => setHoveredItem(null);
 
   const getStyle = (id) => (hoveredItem === id ? { color: '#FFD700', textShadow: '0 0 10px #FFD700' } : { color: '#FFFFFF' });
 
