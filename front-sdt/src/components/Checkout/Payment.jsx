@@ -9,7 +9,7 @@ const Payment = () => {
                 <input type="email" required/>
 
                 <div>
-                  <label htmlFor="card-info">Infoarmacion De Tarjeta </label>
+                
                  
 
                 </div>
