@@ -12,10 +12,6 @@ const Payment = () => {
                   <label htmlFor="card-info">Infoarmacion De Tarjeta </label>
                   <input id="card-info" type="number" required />
 
-                    <div className="flex">
-
-
-                    </div>
                 </div>
 
                 <input type="text" id="name" />
