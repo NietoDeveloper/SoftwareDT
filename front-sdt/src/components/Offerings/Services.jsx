@@ -9,10 +9,7 @@ const servicesList = [
 
 const Services = () => {
   return (
-    <section>
 
-  
-s
       </div>
     </section>
   );
