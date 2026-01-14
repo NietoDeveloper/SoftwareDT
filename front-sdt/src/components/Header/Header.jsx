@@ -10,17 +10,7 @@ const MenuButton = ({ isOpen, onClick }) => {
   const variantCenter = { closed: { opacity: 1, x: 0 }, opened: { opacity: 0, x: -20 } };
   const variantBottom = { closed: { rotate: 0, y: 0 }, opened: { rotate: -45, y: -8 } };
 
-  return (
-    <button
-      onClick={onClick}
-      className="relative z-50 p-2 bg-transparent border-none outline-none focus:outline-none group transition-all duration-300 active:scale-90 flex items-center justify-center"
-      aria-label="Menu"
-    >
 
-
-      </div>
-    </button>
-  );
 };
 
 const Header = () => {
