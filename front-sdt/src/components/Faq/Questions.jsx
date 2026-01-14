@@ -16,13 +16,6 @@ const Questions = () => {
         #home-wrapper #questions-section-unique *,
         #home-wrapper #questions-section-unique h2,
 
-
-        #home-wrapper #questions-section-unique button {
-          color: #ffffff !important;
-          fill: #ffffff !important;
-          opacity: 1 !important;
-        }
-
         /* EXCEPCIÓN PARA EL ORO */
         #home-wrapper #questions-section-unique .text-gold-sdt,
         #home-wrapper #questions-section-unique .gold-text,
