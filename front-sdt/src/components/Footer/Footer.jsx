@@ -8,15 +8,7 @@ const Footer = () => {
     dateStyle: 'medium',
     timeStyle: 'short',
   });
-
-      <echnologies
-          
-
-
-          <div className="flex flex-col items-center md:items-start border-t md:border-t-0 md:border-l border-white pt-8 md:pt-0 md:pl-16">
-            <ul className="text-lg sm:text-xl font-bold uppercase tracking-widest space-y-6">
-              {[
-                { id: 'f5', name: 'Proyectos', href: 'https://github.com/NietoDeveloper' },
+'f5', name: 'Proyectos', href: 'https://github.com/NietoDeveloper' },
                 { id: 'f6', name: 'Investigación', href: 'https://committers.top/colombia' },
                 { id: 'f7', name: 'Sobre Software DT', href: '/sobre-nosotros' },
                 { id: 'f8', name: 'Trabaja con nosotros', href: '/vacantes' }
