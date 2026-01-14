@@ -18,12 +18,6 @@ apper #questions-section-unique h2,
         }
 
 
-
-        #questions-section-unique .faq-item-container {
-          border-bottom: 1px solid rgba(255, 215, 0, 0.4);
-          padding: 1.5rem 0;
-        }
-
         /* Aseguramos que el video se vea claro */
         #questions-section-unique video {
           opacity: 0.85 !important;
