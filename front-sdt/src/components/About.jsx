@@ -17,15 +17,7 @@ const About = () => {
               className="rounded-[2rem] border-8 border-main shadow-2xl" 
             />
             
-            {/* Elemento decorativo flotante */}
-            <div
-              className="absolute z-20 bottom-4 w-[200px] md:w-[300px] md:right-[-7px]
-                  lg:right-[22px] bg-white p-4 rounded-2xl shadow-xl border-l-8 border-gold hidden md:block"
-            >
-              <p className="text-black font-black text-sm uppercase">🚀 +5 Años Innovando</p>
-              <p className="text-gray-500 text-[10px] font-bold">Bogotá - Los Angeles - Toronto</p>
-            </div>
-          </div>
+
 
    
 
