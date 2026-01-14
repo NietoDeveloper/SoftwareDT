@@ -24,11 +24,7 @@ const Footer = () => {
       
 
       <echnologies
-          </h2>
-          <div className="w-24 h-[3px] mx-auto mt-6 transition-colors duration-300" 
-               style={{ backgroundColor: hoveredItem === 'title' ? '#FFD700' : '#FFFFFF' }}></div>
-        </div>
-
+          
         <h3 style={getStyle('slogan')} onMouseEnter={() => handleMouseEnter('slogan')} onMouseLeave={handleMouseLeave}
             className="text-2xl sm:text-3xl font-black uppercase tracking-widest mb-16 italic cursor-default transition-all duration-300">
           "Codificamos Para Servir"
