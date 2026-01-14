@@ -18,13 +18,7 @@ const Herosection = () => {
             <div className="flex flex-col gap-6 w-full max-w-[500px]">
               <div className="relative">
                 <img
-                  src={heroimage4}
-                  alt="Diseño de Software"
-                  className="rounded-[3rem] shadow-2xl w-full border-[8px] border-main transition-all duration-700 hover:rotate-2 hover:scale-105"
-                />
-                <div className="absolute -bottom-6 -left-6 bg-black text-gold font-black p-6 rounded-2xl hidden md:block shadow-xl uppercase tracking-widest text-xs">
-                  Software DT <br/> Expertos
-                </div>
+
               </div>
 
               <div className="flex gap-6">
