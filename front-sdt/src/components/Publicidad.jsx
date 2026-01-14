@@ -10,11 +10,4 @@ const Publicidad = () => {
 
 
 
-
-
-      </section>
-    </>
-  );
-};
-
 export default Publicidad;
