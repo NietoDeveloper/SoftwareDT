@@ -6,7 +6,7 @@ const Payment = () => {
         <div>
             <h1>Paga Con Tarjetas</h1>
             <form>
-                <input type="email" required/>
+
 
 
               
