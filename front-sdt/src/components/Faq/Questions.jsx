@@ -18,8 +18,7 @@ const Questions = () => {
         #home-wrapper #questions-section-unique p,
         #home-wrapper #questions-section-unique span,
         #home-wrapper #questions-section-unique b,
-        #home-wrapper #questions-section-unique strong,
-        #home-wrapper #questions-section-unique div,
+
         #home-wrapper #questions-section-unique button {
           color: #ffffff !important;
           fill: #ffffff !important;
