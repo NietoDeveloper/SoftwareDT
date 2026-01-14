@@ -10,28 +10,6 @@ const MenuButton = ({ isOpen, onClick }) => {
   const variantCenter = { closed: { opacity: 1, x: 0 }, opened: { opacity: 0, x: -20 } };
   const variantBottom = { closed: { rotate: 0, y: 0 }, opened: { rotate: -45, y: -8 } };
 
-
-      {/* MOBILE MENU */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/98 backdrop-blur-3xl border-t border-black/10 overflow-hidden"
-          >
-            <div className="px-6 py-8 space-y-5 flex flex-col items-center">
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.path}
-                  to={link.path} 
-                  onClick={() => setIsMenuOpen(false)} 
-                  className={`text-sm font-black uppercase tracking-widest transition-colors ${
-                    isActive(link.path) ? "text-[#FEB60D]" : "text-black hover:text-[#FEB60D]"
-                  }`}
-                >
-                  {link.name}
-                </Link>
               ))}
               
               {!isLoggedIn ? (
