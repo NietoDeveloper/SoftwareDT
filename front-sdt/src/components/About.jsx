@@ -27,11 +27,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* LADO DEL TEXTO */}
-          <div className="w-full lg:w-1/2 xl:w-[670px] order-1 lg:order-2">
-            <h2 className="text-[36px] leading-[44px] text-headingColor font-black uppercase tracking-tighter">
-              Creamos Software Con <span className="text-gold">Estándares Mundiales</span>
-            </h2>
    
 
 
