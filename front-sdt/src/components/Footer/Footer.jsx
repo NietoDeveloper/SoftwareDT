@@ -9,7 +9,7 @@ const Footer = () => {
     timeStyle: 'short',
   });
 
-  // Estilos fijos para ganar la batalla al CSS global
+ 
   const forceWhite = { color: '#FFFFFF !important', textShadow: 'none' };
   const forceGold = { color: '#FFD700 !important', textShadow: 'none' };
 
