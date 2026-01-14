@@ -16,13 +16,7 @@ const MenuButton = ({ isOpen, onClick }) => {
 
 
   return (
-    <header className="bg-white/10 backdrop-blur-2xl sticky top-0 z-[100] border-b border-black/5">
-      <div className="container mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 relative">
-          
-          {/* LOGO SOFTWARE DT */}
-          <div className="flex items-center gap-1.5 sm:gap-3 cursor-pointer group min-w-fit" onClick={handleLogoClick}>
-            <h2 className="text-black text-lg sm:text-2xl font-black uppercase tracking-tighter transition-all duration-500 group-hover:text-[#FEB60D] drop-shadow-[0_4px_10px_rgba(254,182,13,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(254,182,13,1)] group-hover:-translate-y-1.5 transform-gpu">
+   xt-black text-lg sm:text-2xl font-black uppercase tracking-tighter transition-all duration-500 group-hover:text-[#FEB60D] drop-shadow-[0_4px_10px_rgba(254,182,13,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(254,182,13,1)] group-hover:-translate-y-1.5 transform-gpu">
               Software D T
             </h2>
 
