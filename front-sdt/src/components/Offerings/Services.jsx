@@ -10,9 +10,6 @@ const servicesList = [
 const Services = () => {
   return (
 
-      </div>
-    </section>
-  );
 };
 
 export default Services;
