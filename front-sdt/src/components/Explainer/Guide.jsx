@@ -19,12 +19,7 @@ const Guide = () => {
                   "Mensaje directo al Ingeniero De Software que te asistirá"
                 ].map((step, index) => (
                   <li key={index} className="flex items-center gap-6 group">
-       
 
-              <Link to="/services">
-                {/* BOTÓN ESTILO SOFTWARE DT (ESTÁNDAR UNIFICADO) */}
-   
-              </Link>
             </div>
 
             {/* IMAGEN DEL EQUIPO CON ESTILO DT */}
