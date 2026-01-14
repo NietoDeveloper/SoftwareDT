@@ -9,18 +9,7 @@ const Guide = () => {
           <div className="flex items-center justify-between flex-col lg:flex-row gap-16">
             
             {/* TEXTO Y PASOS */}
-          
-              {/* LISTA DE PASOS CON PUNTOS DISCRETOS */}
-              <ul className="space-y-6 mb-12">
-                {[
-                  "Escoge uno de nuestros Servicios",
-                  "Asignación de Servicio De Software según tu solicitud",
-                  "Selecciona la Hora y Fecha",
-                  "Mensaje directo al Ingeniero De Software que te asistirá"
-                ].map((step, index) => (
-                  <li key={index} className="flex items-center gap-6 group">
 
-            </div>
 
             {/* IMAGEN DEL EQUIPO CON ESTILO DT */}
             <div className="relative z-10 xl:w-[650px] flex justify-center lg:justify-end order-1 lg:order-2">
