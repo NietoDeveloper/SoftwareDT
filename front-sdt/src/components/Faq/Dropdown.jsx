@@ -16,8 +16,6 @@ const FaqItem = ({ question, answer }) => {
         </div>
       </div>
 
-      <div>{open && <span className="text-center px-4">{answer}</span>}</div>
-    </div>
   );
 };
 
