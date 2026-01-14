@@ -3,9 +3,6 @@ import refreshAccessToken from '../utils/refreshAccess';
 
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-export const axiosPublic = axios.create({ baseURL: BASE_URL });
-export const axiosAuth = axios.create({ baseURL: BASE_URL, withCredentials: true });
-export const axiosPrivate = axios.create({ baseURL: BASE_URL, withCredentials: true });
 
 let isRefreshing = false;
 let failedQueue = [];
