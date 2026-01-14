@@ -19,7 +19,7 @@ const Payment = () => {
                 </div>
 
                 <input type="text" id="name" />
-                <button className="btn">Pago</button>
+
             </form>
 
         </div>
