@@ -20,9 +20,7 @@ const Footer = () => {
   const getStyle = (id) => (hoveredItem === id ? { color: '#FFD700', textShadow: '0 0 10px #FFD700' } : { color: '#FFFFFF' });
 
   return (
-    <footer className="relative min-h-screen w-full bg-black flex items-center justify-center overflow-hidden">
-      
-
+  
       <echnologies
           
 
