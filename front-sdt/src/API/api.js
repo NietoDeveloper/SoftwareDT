@@ -7,13 +7,7 @@ const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 let isRefreshing = false;
 let failedQueue = [];
 
-const processQueue = (error, token = null) => {
-    failedQueue.forEach(prom => {
-        if (error) prom.reject(error);
-        else prom.resolve(token);
-    });
-    failedQueue = [];
-};
+
 
 // Función auxiliar de saneamiento (Reutilizable)
 const getCleanToken = (rawToken) => {
