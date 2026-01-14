@@ -15,12 +15,7 @@ export const UserProvider = ({ children }) => {
         }
     });
 
-    // 2. Estado de Token con limpieza profunda
-    const [token, setToken] = useState(() => {
-        const savedToken = localStorage.getItem('token');
-        if (!savedToken || savedToken === "undefined" || savedToken === "null" || savedToken === "") return null;
-        return savedToken.replace(/"/g, "").replace(/Bearer /g, "").trim();
-    });
+
 
     const [loading, setLoading] = useState(true);
     const [appointmentDetails, setAppointmentDetails] = useState(null);
