@@ -25,9 +25,7 @@ const Footer = () => {
           
 
 
-        <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-32 mb-20">
-          <div className="flex flex-col items-center md:items-start">
-            <ul className="text-lg sm:text-xl font-bold uppercase tracking-widest space-y-6">
+        m:text-xl font-bold uppercase tracking-widest space-y-6">
               {[
                 { id: 'f1', name: 'Servicios', href: '/servicios' },
                 { id: 'f2', name: 'Productos', href: '/productos' },
