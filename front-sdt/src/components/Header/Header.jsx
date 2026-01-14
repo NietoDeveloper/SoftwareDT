@@ -18,11 +18,6 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Extraemos token y handleLogout del contexto
-  const { token, handleLogout: contextLogout } = useContext(UserContext);
-  
-  // El estado de login ahora es reactivo al token del context
-  const isLoggedIn = !!token;
 
   const isActive = (path) => location.pathname === path;
 
