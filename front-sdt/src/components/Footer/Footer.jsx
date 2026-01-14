@@ -25,11 +25,7 @@ const Footer = () => {
           
 
 
-        m:text-xl font-bold uppercase tracking-widest space-y-6">
-              {[
-                { id: 'f1', name: 'Servicios', href: '/servicios' },
-                { id: 'f2', name: 'Productos', href: '/productos' },
-                { id: 'f3', name: 'Contacto', href: '/contacto' },
+     ' },
                 { id: 'f4', name: 'softwaredt@outlook.com', href: 'mailto:softwaredt@outlook.com' }
               ].map((link) => (
                 <li key={link.id}>
