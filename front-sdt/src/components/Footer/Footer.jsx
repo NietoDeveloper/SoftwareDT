@@ -13,15 +13,6 @@ const Footer = () => {
           
 
 
-     Enter(link.id)} 
-                     className="transition-all duration-300">
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           <div className="flex flex-col items-center md:items-start border-t md:border-t-0 md:border-l border-white pt-8 md:pt-0 md:pl-16">
             <ul className="text-lg sm:text-xl font-bold uppercase tracking-widest space-y-6">
               {[
