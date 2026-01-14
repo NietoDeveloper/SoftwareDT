@@ -15,9 +15,7 @@ const Publicidad = () => {
                 <h2 className="text-[26px] leading-9 text-headingColor font-black text-center uppercase">
                   Tecnologías
                 </h2>
-                <p className="text-[16px] leading-7 text-textColor font-medium text-center mt-4">
-                   Implementamos las mejores herramientas del mercado para garantizar escalabilidad y alto rendimiento.
-                </p>
+
 
                 <Link
                   to="/contact"
