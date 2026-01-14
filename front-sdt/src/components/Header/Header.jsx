@@ -21,10 +21,7 @@ const Header = () => {
 
   const isActive = (path) => location.pathname === path;
 
-  const handleLogout = () => {
-    contextLogout(); 
-    setIsMenuOpen(false);
-    navigate("/login");
+te("/login");
   };
 
   const handleLogoClick = () => {
