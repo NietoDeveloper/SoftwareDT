@@ -9,12 +9,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-10 border-t border-white/30 w-full max-w-6xl flex flex-col items-center">
-          <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-8 lg:gap-0">
-            <p onMouseEnter={() => handleMouseEnter('copy')} onMouseLeave={handleMouseLeave}
-               style={getStyle('copy')}
-               className="transition-colors duration-300 cursor-default text-lg sm:text-xl font-black uppercase tracking-[0.2em]">
-              Copyright 2025 © Software DT
+      
             </p>
 
             <div className="flex items-center gap-4 py-2 cursor-default"
