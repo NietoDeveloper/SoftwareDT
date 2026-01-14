@@ -18,12 +18,6 @@ apper #questions-section-unique h2,
         }
 
 
-        /* Aseguramos que el video se vea claro */
-        #questions-section-unique video {
-          opacity: 0.85 !important;
-        }
-      `}} />
-
       {/* VIDEO CLARO */}
       <div className="absolute inset-0 w-full h-full z-0">
         <video
