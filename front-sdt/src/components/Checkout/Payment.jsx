@@ -8,11 +8,6 @@ const Payment = () => {
             <form>
                 <input type="email" required/>
 
-                <div>
-                
-                 
-
-                </div>
 
               
 
