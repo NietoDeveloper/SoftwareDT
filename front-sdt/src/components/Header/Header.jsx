@@ -13,18 +13,7 @@ const MenuButton = ({ isOpen, onClick }) => {
 
 };
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
-
-  const navLinks = [
-    { name: "Inicio", path: "/" },
-    { name: "Servicios", path: "/services" },
-    { name: "Escoge Servicio", path: "/doctors" },
-    { name: "Clientes", path: "/clients" },
-    { name: "Contacto", path: "/contact" }
-  ];
 
   return (
     <header className="bg-white/10 backdrop-blur-2xl sticky top-0 z-[100] border-b border-black/5">
