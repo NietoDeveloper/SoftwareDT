@@ -16,13 +16,7 @@ const Herosection = () => {
               <span className="text-gold">Da Solución</span>
             </h1>
             
-            <p className="mb-12 text-lg md:text-xl lg:text-2xl text-textColor font-medium opacity-80 leading-relaxed max-w-4xl border-l-4 border-gold pl-6">
-              Innovamos con software de vanguardia. Transformamos negocios con
-              tecnología personalizada. Potenciamos empresas con herramientas
-              digitales. Diseñamos apps, web y software a medida. Soluciones
-              escalables, intuitivas y eficientes.
-            </p>
-
+           
             <Link to="/doctors">
               {/* BOTÓN AJUSTADO: Más compacto con Hover Gold Explosivo */}
               <button 
