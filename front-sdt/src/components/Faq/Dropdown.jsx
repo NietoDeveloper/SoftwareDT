@@ -11,12 +11,7 @@ const FaqItem = ({ question, answer }) => {
   return (
     <div className="flex flex-col justify-center items-center border-2">
        <div className="flex justify-center items-center px-2">
-        <p className="text-center font-semibold">{question}</p>
-
-        <div onClick={handleFaq} className="items-center">
-          {open ? (
-            <BsCaretDown size={20} className="text-blue-500 cursor-pointer" />
-          ) : (
+       
             <BsCaretUp size={20} className="text-blue-600 cursor-pointer" />
           )}
         </div>
