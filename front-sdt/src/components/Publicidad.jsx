@@ -12,17 +12,7 @@ const Publicidad = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[55px]">
             
             {/* CARD 1 - SERVICIOS (VIDEO) */}
-            <div className="py-[30px] px-5 bg-white rounded-3xl border-2 border-transparent hover:border-gold transition-all duration-300 shadow-sm hover:shadow-xl">
-              <div className="flex items-center justify-center overflow-hidden rounded-2xl border-2 border-black">
-                <video
-                  src={feature}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
-              </div>
+
 
               <div className="mt-[30px]">
                 <h2 className="text-[26px] leading-9 text-headingColor font-black text-center uppercase">
