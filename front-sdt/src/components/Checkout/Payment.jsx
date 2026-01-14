@@ -14,7 +14,7 @@ const Payment = () => {
 
                 </div>
 
-                <input type="text" id="name" />
+              
 
             </form>
 
