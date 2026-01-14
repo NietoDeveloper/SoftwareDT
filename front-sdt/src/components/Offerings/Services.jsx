@@ -12,10 +12,7 @@ const Services = () => {
     <section>
       <div className="container">
         <div className="xl:w-[470px] mx-auto">
-          <h2 className="heading text-center">Servicios</h2>
-          <p className="text_para text-center">
-            Ofrecemos los siguientes servicios:
-          </p>
+
         </div>
         <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px]
