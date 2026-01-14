@@ -7,9 +7,5 @@ const servicesList = [
   },
 
 
-const Services = () => {
-  return (
-
-};
 
 export default Services;
