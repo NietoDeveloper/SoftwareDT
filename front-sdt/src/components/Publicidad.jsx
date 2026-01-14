@@ -11,10 +11,6 @@ const Publicidad = () => {
 
 
 
-              <div className="mt-[30px]">
-                <h2 className="text-[26px] leading-9 text-headingColor font-black text-center uppercase">
-                  Tecnologías
-                </h2>
 
 
                 <Link
