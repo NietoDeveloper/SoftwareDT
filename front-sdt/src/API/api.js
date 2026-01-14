@@ -9,15 +9,7 @@ let failedQueue = [];
 
 
 
-// Función auxiliar de saneamiento (Reutilizable)
-const getCleanToken = (rawToken) => {
-    if (!rawToken) return null;
-    const clean = String(rawToken)
-        .replace(/['"]+/g, '')
-        .replace(/Bearer\s+/i, '')
-        .trim();
-    return (clean !== "null" && clean !== "undefined" && clean !== "") ? clean : null;
-};
+
 
 export const setupInterceptors = (getAccessToken, setAccessToken, onLogout) => {
     
