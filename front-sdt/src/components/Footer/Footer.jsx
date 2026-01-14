@@ -3,17 +3,7 @@ import Logo from "../../assets/images/logo.png";
 import { useState } from "react";
 
 const Footer = () => {
-  const currentDateTime = new Date().toLocaleString('en-US', {
-    timeZone: 'America/Bogota',
-    dateStyle: 'medium',
-link.id}>
-                  <a href={link.href} target="_blank" rel="noreferrer"
-                     onMouseEnter={() => handleMouseEnter(link.id)} onMouseLeave={handleMouseLeave}
-                     style={getStyle(link.id)}
-                     className="transition-all duration-300">
-                    {link.name}
-                  </a>
-                </li>
+
               ))}
             </ul>
           </div>
