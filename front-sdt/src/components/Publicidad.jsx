@@ -12,13 +12,6 @@ const Publicidad = () => {
 
 
 
-
-            {/* CARD 3 - PRODUCTOS */}
-            <div className="py-[30px] px-5 bg-white rounded-3xl border-2 border-transparent hover:border-gold transition-all duration-300 shadow-sm hover:shadow-xl">
-              <div className="flex items-center justify-center overflow-hidden rounded-2xl border-2 border-black bg-main">
-                <img src={techs2} alt="Productos" className="w-full h-full object-contain p-2" />
-              </div>
-
               <div className="mt-[30px]">
                 <h2 className="text-[26px] leading-9 text-headingColor font-black text-center uppercase">
                   Productos
