@@ -8,17 +8,6 @@ const Questions = () => {
 
   return (
 
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-12 lg:gap-24 w-full max-w-7xl">
-          
-          {/* IMAGEN IZQUIERDA */}
-          <div className="w-full lg:w-5/12 relative group">
-            <div className="absolute -inset-1 bg-gold/10 rounded-[2rem] blur-2xl"></div>
-            <img 
-              src={equipo2} 
-              alt="equipo software dt" 
-              className="relative rounded-[2rem] w-full h-auto border border-white/20 shadow-2xl" 
-            />
-          </div>
 
           {/* CONTENIDO FAQ DERECHA */}
           <div className="w-full lg:w-7/12">
