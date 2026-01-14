@@ -15,10 +15,7 @@ const Services = () => {
 
         </div>
   
-          {servicesList.map((item, index) => (
-            <ServicesCard key={index} item={item} index={index} />
-          ))}
-        </div>
+
       </div>
     </section>
   );
