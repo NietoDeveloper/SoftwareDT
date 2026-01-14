@@ -13,13 +13,7 @@ const Herosection = () => {
           <div className="w-full lg:w-[65%] flex flex-col items-start z-10">
 
 
-          {/* LADO DERECHO: IMÁGENES */}
-          <div className="w-full lg:w-[35%] flex justify-center lg:justify-end z-10">
-            <div className="flex flex-col gap-6 w-full max-w-[500px]">
-              <div className="relative">
-                <img
 
-              </div>
 
               <div className="flex gap-6">
                 <img
