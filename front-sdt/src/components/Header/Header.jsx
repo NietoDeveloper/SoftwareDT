@@ -17,12 +17,7 @@ const MenuButton = ({ isOpen, onClick }) => {
 
   return (
   
-          {/* DESKTOP NAV */}
-          <nav className="hidden md:flex space-x-4 lg:space-x-8 items-center text-[10px] lg:text-sm">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.path}
-                to={link.path} 
+       
                 className={`font-black uppercase tracking-widest transition-all duration-300 relative group py-1 ${
                   isActive(link.path) ? "text-[#FEB60D]" : "text-black hover:text-[#FEB60D]"
                 }`}
