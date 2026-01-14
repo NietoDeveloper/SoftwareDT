@@ -18,13 +18,7 @@ apper #questions-section-unique h2,
         }
 
 
-      {/* VIDEO CLARO */}
-      <div className="absolute inset-0 w-full h-full z-0">
-        <video
-          autoPlay loop muted playsInline
-          className="w-full h-full object-cover" 
-          src={softlive}
-        />
+
         {/* Overlay sutil para legibilidad sin oscurecer demasiado */}
         <div className="absolute inset-0 bg-black/30"></div>
       </div>
