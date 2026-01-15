@@ -27,8 +27,6 @@ const Profile = () => {
         <div className="absolute bg-white shadow-lg rounded-lg p-2 w-48 top-20 right-5 z-10 border border-gray-100">
             <ul className="flex flex-col text-sm">
 
- 
-                    🚪 Cerrar Sesión
                 </li>
             </ul>
         </div>
