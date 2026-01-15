@@ -21,10 +21,7 @@ const Profile = () => {
             handleLogout(); 
             navigate('/login'); 
         }
-    };
 
-
-        </div>
     )
 }
 
