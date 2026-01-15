@@ -14,14 +14,7 @@ const ClientAppointmentsPanel = () => {
 
   return (
     <div className="min-h-screen bg-main pb-20 font-sans text-black antialiased overflow-x-hidden">
-      {/* HEADER RESPONSIVE (Sin cambios) */}
-      <div className="bg-white border-b-2 border-black/5 pt-8 sm:pt-12 pb-8 sm:pb-10 px-4 sm:px-6 md:px-12 shadow-[0_4px_30px_rgba(254,182,13,0.1)]">
 
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-headingColor uppercase tracking-tighter leading-[0.9] break-words">
-              {user?.name || "USUARIO SDT"}<br/>
-              <span className="text-yellowColor">Panel Cliente</span>
-            </h1>
-          </div>
           
           <Link 
             to="/services" 
