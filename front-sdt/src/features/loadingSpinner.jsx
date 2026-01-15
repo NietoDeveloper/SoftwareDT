@@ -7,13 +7,7 @@ const Spinner = () => {
         - border-4: Define el grosor del borde.
         - border-solid: Asegura que el borde es sólido.
         - rounded-full: Hace el div perfectamente circular.
-        
-        Las propiedades de color son clave:
-        - border-gray-200: El color de fondo del círculo (la parte que no gira).
-        - border-t-indigo-500: Define el color del cuarto de círculo superior que girará. 
-                                 Aquí usamos un color de acento vibrante (índigo).
 
-      */}
       <div 
         className="
           w-12 h-12 
