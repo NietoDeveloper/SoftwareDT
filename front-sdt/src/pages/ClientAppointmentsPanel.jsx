@@ -13,21 +13,6 @@ const ClientAppointmentsPanel = () => {
 
 
 
-          {/* SECCIÓN CITAS (Estructura Original) */}
-          <section>
-            <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 mb-6 sm:mb-8">
-              <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter">Historial de Citas</h2>
-              <div className="flex gap-2 bg-white border-2 border-black/10 p-1 rounded-2xl shadow-sm w-full xl:w-auto">
-                {["pending", "completed"].map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`flex-1 xl:flex-none px-4 sm:px-6 py-2.5 rounded-xl text-[8px] sm:text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${
-                      activeTab === tab 
-                        ? "bg-yellowColor text-black shadow-inner" 
-                        : "text-gray-400 hover:text-black hover:bg-gray-50"
-                    }`}
-                  >
                     {tab === "pending" ? "Pendientes" : "Cumplidas"}
                   </button>
                 ))}
