@@ -12,15 +12,7 @@ import {
                 <h2 className="text-lg sm:text-xl font-black uppercase truncate">{displayData.serviceName}</h2>
                 <p className="text-gold font-bold text-xs sm:text-sm mt-1">{displayData.price}</p>
              </div>
- 
-          <DetailItem 
 
-      <div className="mt-12 text-center">
-        <p className="text-[10px] font-black text-black uppercase tracking-[0.4em] opacity-40">
-          SDT-SYSTEM-CONFIRMATION • 2025 • BOGOTÁ D.C.
-        </p>
-      </div>
-    </div>
   );
 };
 
