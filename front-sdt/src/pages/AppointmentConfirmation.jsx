@@ -15,12 +15,7 @@ import {
     // Prioridad: 1. Datos de la cita, 2. Nombre del contexto (Manuel), 3. Fallback
     fullName: appointment?.fullName || appointment?.userInfo?.fullName || user?.name || "CLIENTE SDT",
     date: appointment?.slotDate || appointment?.appointmentDate || "PENDIENTE",
-    time: appointment?.slotTime || appointment?.appointmentTime || "PENDIENTE",
-    reason: appointment?.reason || "Implementación técnica solicitada.",
-    serviceName: appointment?.serviceName || "Consultoría Especializada",
-    price: appointment?.price || "Cotización en proceso",
-    specialization: appointment?.doctorData?.specialization || appointment?.specialization || "INGENIERÍA SENIOR"
-  };
+
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-main font-sans text-black p-4 sm:p-8 lg:p-12 overflow-x-hidden">
