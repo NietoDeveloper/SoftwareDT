@@ -18,12 +18,7 @@ const Profile = () => {
         } catch (error) {
 
                     
-                </li>
-                <hr className="my-1 border-gray-200" />
-                <li 
-                    className="p-2 hover:bg-red-50 rounded-md cursor-pointer transition duration-150 text-red-600 font-medium" 
-                    onClick={logoutFromApiAndState}
-                >
+              
                     🚪 Cerrar Sesión
                 </li>
             </ul>
