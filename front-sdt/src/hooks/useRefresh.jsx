@@ -18,9 +18,6 @@ const useRefresh = () => {
       // 2. Limpieza de caracteres extraños (comillas, prefijos)
       const cleanToken = newAccessToken.replace(/['"]+/g, '').replace(/Bearer\s+/i, '').trim();
 
-      // 3. Persistencia física inmediata
-      localStorage.setItem('token', cleanToken);
-
 
 
       return cleanToken;
