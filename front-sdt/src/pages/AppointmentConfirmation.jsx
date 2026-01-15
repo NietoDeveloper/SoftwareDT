@@ -17,13 +17,6 @@ import {
             icon={<CircleUser className="h-5 w-5 sm:h-6 sm:w-6" />} 
 
 
-        <div className="w-full mt-10 p-6 sm:p-10 bg-black text-white rounded-[2rem] relative group">
-          <div className="absolute top-4 right-6 text-gold/20 font-black text-4xl opacity-20">"</div>
-          <p className="text-[9px] font-black text-gold uppercase tracking-[0.3em] mb-4">Especificaciones del Cliente</p>
-          <p className="text-white font-bold text-base sm:text-xl leading-relaxed italic pr-4">
-            {displayData.reason}
-          </p>
-        </div>
 
         <div className="w-full mt-12 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
           <Link
