@@ -24,24 +24,3 @@ export const UserProvider = ({ children }) => {
     // Sincronizar Referencia para Interceptores
     useEffect(() => {
         tokenRef.current = token;
-    }, [token]);
-
-    // Función Centralizada de Login (Clave para la redirección exitosa)
-    const handleLogin = useCallback((userData, userToken) => {
-        const cleanToken = userToken.replace(/"/g, "").replace(/Bearer /g, "").trim();
-        
-        // Guardar en Storage inmediatamente
-        localStorage.setItem('token', cleanToken);
-        localStorage.setItem('user', JSON.stringify(userData));
-        
-        // Actualizar Estado
-        setToken(cleanToken);
-        setUser(userData);
-    }, []);
-
-    const handleLogout = useCallback(() => {
-        setToken(null);
-        setUser(null);
-        setAppointmentDetails(null);
-        localStorage.clear(); // Limpieza total para seguridad
-        window.location.href = '/login';
