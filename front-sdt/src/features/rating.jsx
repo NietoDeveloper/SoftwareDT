@@ -18,10 +18,7 @@ const ReviewForm = () => {
              
             >
               Submit Review
-   
-            </div>
-           
-          </div>
+
         </form>
       </div>
     </section>
