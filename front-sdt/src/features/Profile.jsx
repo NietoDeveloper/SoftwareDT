@@ -14,9 +14,6 @@ const Profile = () => {
 
             handleLogout(); 
   
-            navigate('/login'); 
-
-            </ul>
         </div>
     )
 }
