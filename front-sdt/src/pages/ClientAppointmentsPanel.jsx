@@ -16,15 +16,7 @@ const ClientAppointmentsPanel = () => {
     <div className="min-h-screen bg-main pb-20 font-sans text-black antialiased overflow-x-hidden">
 
           
-          <Link 
-            to="/services" 
-            className="w-full md:w-auto group flex items-center justify-center gap-3 bg-yellowColor text-black border-2 border-black px-6 py-4 rounded-xl font-black text-[10px] sm:text-[11px] uppercase tracking-widest transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(255,215,0,0.4)] active:scale-95 shadow-lg"
-          >
-            <PlusCircle size={18} className="group-hover:rotate-90 transition-transform duration-300" />
-            Nueva Cita
-          </Link>
-        </div>
-      </div>
+   
 
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 mt-8 sm:mt-12 flex flex-col lg:flex-row gap-8 lg:gap-12">
         <div className="w-full lg:w-[65%] space-y-10">
