@@ -73,7 +73,7 @@ export const UserProvider = ({ children }) => {
         <UserContext.Provider value={contextValue}>
             {!loading ? children : (
                 <div className="flex items-center justify-center h-screen bg-main">
-                    <div className="flex flex-col items-center gap-6">
+
 
 
 
