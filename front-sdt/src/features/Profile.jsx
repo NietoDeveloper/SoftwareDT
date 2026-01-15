@@ -15,7 +15,3 @@ const Profile = () => {
             handleLogout(); 
   
             navigate('/login'); 
-        } catch (error) {
-            console.error('Fallo la llamada al endpoint de logout. Limpiando sesión local.', error); 
-            
-       
