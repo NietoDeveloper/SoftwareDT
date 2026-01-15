@@ -76,11 +76,7 @@ export const UserProvider = ({ children }) => {
                     <div className="flex flex-col items-center gap-6">
                         <div className="relative">
                             <div className="w-16 h-16 border-4 border-gainsboro rounded-full"></div>
-                            <div className="w-16 h-16 border-4 border-yellowColor border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
-                        </div>
-                        <div className="text-center">
-                            <p className="text-headingColor font-black uppercase tracking-[0.2em] text-sm animate-pulse">
-                                Software D T
+
                             </p>
                        
                             </span>
