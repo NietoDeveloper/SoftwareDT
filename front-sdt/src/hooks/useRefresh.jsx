@@ -10,12 +10,7 @@ const useRefresh = () => {
       return cleanToken;
 
     } catch (error) {
-      console.error("Fallo crítico en el refresco de sesión:", error.message);
-      
-      // 5. Limpieza total de seguridad en Software DT
-      // Si el refresh falla, el usuario debe ser tratado como deslogueado
-      setToken(null);
-      setUser(null);
+
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       localStorage.removeItem('role');
