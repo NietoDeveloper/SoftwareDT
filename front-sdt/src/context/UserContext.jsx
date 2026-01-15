@@ -74,8 +74,8 @@ export const UserProvider = ({ children }) => {
             {!loading ? children : (
                 <div className="flex items-center justify-center h-screen bg-main">
                     <div className="flex flex-col items-center gap-6">
-                        <div className="relative">
-                            <div className="w-16 h-16 border-4 border-gainsboro rounded-full"></div>
+
+
 
                             </p>
                        
