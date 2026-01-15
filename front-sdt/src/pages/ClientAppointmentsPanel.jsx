@@ -15,15 +15,7 @@ isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchDashboardData();
-  }, [fetchDashboardData]);
 
- 
-    } catch (err) {
-      toast.error("ERROR DE SINCRONIZACIÓN");
-    } finally {
-      setIsSaving(false);
-    }
-  };
 
   const formatDate = (dateString) => {
     if (!dateString) return "FECHA PENDIENTE";
