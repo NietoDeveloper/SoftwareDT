@@ -16,9 +16,7 @@ isLoading, setIsLoading] = useState(true);
 
 
 
-      if (apptRes.data) {
-        setAppointments(apptRes.data.appointments || apptRes.data.data || []);
-      }
+     
       if (msgRes.data) {
         setMessages(msgRes.data.messages || []);
       }
