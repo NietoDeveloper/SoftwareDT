@@ -12,19 +12,11 @@ const ReviewForm = () => {
     <section className='w-full'>
       <div className='container'>
         
-        <form >
-             
+        <form >             
   
   
             
-            <div>
-                <textarea
-              value={reviewText}
-              onChange={(e) => setReviewText(e.target.value)}
-              placeholder="Write your review..."
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
-            />
-            </div>
+           
             
             <div className=''>
                  <button
