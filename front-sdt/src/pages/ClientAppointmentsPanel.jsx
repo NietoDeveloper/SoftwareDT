@@ -14,15 +14,7 @@ const ClientAppointmentsPanel = () => {
 s>lassName="px-6 sm:px-8 py-5 text-right">Acción</th>
                        </tr>
                      </thead>
-                     <tbody className="divide-y divide-gray-50 font-bold text-[10px] sm:text-[11px] uppercase">
-                        {messages.length > 0 ? messages.map((msg) => (
-                           <tr key={msg._id || msg.id} className="group hover:bg-yellowColor/5 transition-colors">
-                              <td className="px-6 sm:px-8 py-4 text-gray-700">{msg.subject}</td>
-                              <td className="px-6 sm:px-8 py-4 text-gray-400">{new Date(msg.createdAt).toLocaleDateString()}</td>
-                              <td className="px-6 sm:px-8 py-4 text-right">
-                                 <a href={msg.link || "#"} className="inline-flex items-center gap-2 text-black hover:text-yellowColor transition-colors">
-                                    Ver <ArrowUpRight size={14}/>
-                                 </a>
+                     <tbody
                               </td>
                            </tr>
                         )) : (
