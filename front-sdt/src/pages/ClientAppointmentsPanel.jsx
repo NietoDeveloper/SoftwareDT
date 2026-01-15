@@ -17,10 +17,7 @@ isLoading, setIsLoading] = useState(true);
 
 
      
-      if (msgRes.data) {
-        setMessages(msgRes.data.messages || []);
-      }
-    } catch (err) {
+      {
       console.error("❌ Error en Datacenter SDT:", err.response?.data?.message || err.message);
       if (err.response?.status === 401 || err.response?.status === 403) {
         if (handleLogout) handleLogout();
