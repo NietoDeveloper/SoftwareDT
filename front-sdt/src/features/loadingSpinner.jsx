@@ -12,10 +12,7 @@ const Spinner = () => {
         - border-gray-200: El color de fondo del círculo (la parte que no gira).
         - border-t-indigo-500: Define el color del cuarto de círculo superior que girará. 
                                  Aquí usamos un color de acento vibrante (índigo).
-        
-        La animación es lo que le da vida:
-        - animate-spin: Clase predefinida de Tailwind que aplica la animación 'spin' 
-                          (rotación infinita de 360 grados).
+
       */}
       <div 
         className="
