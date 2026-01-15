@@ -15,8 +15,7 @@ const ReviewForm = () => {
         <form >             
             
             <div className=''>
-                 <button
-              type="submit"
+
              
             >
               Submit Review
