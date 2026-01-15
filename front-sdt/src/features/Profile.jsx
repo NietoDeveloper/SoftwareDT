@@ -15,11 +15,7 @@ const Profile = () => {
             handleLogout(); 
   
             navigate('/login'); 
-        } catch (error) {
 
-                    
-              
-                </li>
             </ul>
         </div>
     )
