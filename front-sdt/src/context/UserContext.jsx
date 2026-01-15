@@ -56,10 +56,6 @@ export const UserProvider = ({ children }) => {
         return () => clearTimeout(timer);
     }, [getAccessToken, handleLogout]);
 
-    const contextValue = useMemo(() => ({
-        user,
-        setUser,
-        token,
 
 
 };
