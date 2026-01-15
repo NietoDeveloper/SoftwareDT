@@ -26,9 +26,7 @@ const Profile = () => {
     return (
         <div className="absolute bg-white shadow-lg rounded-lg p-2 w-48 top-20 right-5 z-10 border border-gray-100">
             <ul className="flex flex-col text-sm">
-                <li className="p-2 hover:bg-gray-100 rounded-md cursor-pointer transition duration-150">
- 
-                </li>
+
  
                 <li 
                     className="p-2 hover:bg-red-50 rounded-md cursor-pointer transition duration-150 text-red-600 font-medium" 
