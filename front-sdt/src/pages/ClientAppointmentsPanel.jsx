@@ -11,22 +11,7 @@ const ClientAppointmentsPanel = () => {
   const { user, token, handleLogout } = useContext(UserContext);
   const navigate = useNavigate();
 
-s>
-              ) : (
-                filteredAppointments.map((appt) => (
-                  <div key={appt._id} className="bg-white border-[3px] border-black/5 rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 hover:border-yellowColor/30 hover:shadow-2xl transition-all duration-400 group relative overflow-hidden">
-          
-            HISTORIAL MENSAJERÍA (Funcionalizado) */}
-          <section>
-             <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter mb-6 sm:mb-8">Historial Mensajeria</h2>
-             <div className="bg-white border-2 border-black/5 rounded-[1.2rem] sm:rounded-[2rem] overflow-hidden shadow-sm">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left min-w-[500px]">
-                     <thead className="bg-black text-white text-[9px] font-black uppercase tracking-[0.2em]">
-                       <tr>
-                           <th className="px-6 sm:px-8 py-5">Asunto / Evento</th>
-                           <th className="px-6 sm:px-8 py-5">Fecha</th>
-                           <th className="px-6 sm:px-8 py-5 text-right">Acción</th>
+s>lassName="px-6 sm:px-8 py-5 text-right">Acción</th>
                        </tr>
                      </thead>
                      <tbody className="divide-y divide-gray-50 font-bold text-[10px] sm:text-[11px] uppercase">
