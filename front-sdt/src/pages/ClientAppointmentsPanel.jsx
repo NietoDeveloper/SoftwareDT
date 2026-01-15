@@ -20,12 +20,7 @@ isLoading, setIsLoading] = useState(true);
       {
       console.error("❌ Error en Datacenter SDT:", err.response?.data?.message || err.message);
       if (err.response?.status === 401 || err.response?.status === 403) {
-        if (handleLogout) handleLogout();
-        navigate("/login");
-      }
-    } finally {
-      setIsLoading(false);
-    }
+
   }, [user?._id, user?.id, token, navigate, handleLogout]);
 
   useEffect(() => {
