@@ -17,14 +17,7 @@ isLoading, setIsLoading] = useState(true);
     fetchDashboardData();
   }, [fetchDashboardData]);
 
-  // NUEVO: Función para guardar mensajes/configuración en el clúster
-  const handleSaveSettings = async () => {
-    try {
-      setIsSaving(true);
-      await axiosPrivate.put(`/users/profile/update`, { customMessage });
-      toast.success("DATACENTER ACTUALIZADO", {
-        style: { background: '#000', color: '#FFD700', fontWeight: 'bold' }
-      });
+ 
     } catch (err) {
       toast.error("ERROR DE SINCRONIZACIÓN");
     } finally {
