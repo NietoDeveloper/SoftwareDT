@@ -8,14 +8,7 @@ import {
   Clock,
   CheckCircle,
 
-  Mail,
-  ShieldCheck,
-  CreditCard
-
-);
-rContext); // Extraemos el usuario del contexto
-  const location = useLocation()
-
+  Mail
 
   const displayData = {
     _id: appointment?._id || "ID-SYNC-PENDING",
