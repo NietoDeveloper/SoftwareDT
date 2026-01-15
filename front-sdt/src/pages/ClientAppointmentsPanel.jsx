@@ -12,15 +12,7 @@ const ClientAppointmentsPanel = () => {
   const navigate = useNavigate();
 
 
-  return (
-    <div className="min-h-screen bg-main pb-20 font-sans text-black antialiased overflow-x-hidden">
 
-          
-   
-
-      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 mt-8 sm:mt-12 flex flex-col lg:flex-row gap-8 lg:gap-12">
-        <div className="w-full lg:w-[65%] space-y-10">
-          
           {/* SECCIÓN CITAS (Estructura Original) */}
           <section>
             <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 mb-6 sm:mb-8">
