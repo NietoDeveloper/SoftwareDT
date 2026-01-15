@@ -7,8 +7,7 @@ import {
   CircleUser, 
   Clock,
   CheckCircle,
-  Briefcase,
-  ArrowRight,
+
   Mail,
   ShieldCheck,
   CreditCard
