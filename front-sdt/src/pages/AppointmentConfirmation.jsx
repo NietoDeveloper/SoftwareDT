@@ -16,12 +16,6 @@ import {
 rContext); // Extraemos el usuario del contexto
   const location = useLocation()
 
-  const formatDate = (dateString) => {
-    if (!dateString) return "FECHA POR DEFINIR";
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    try {
-      const date = new Date(dateString);
-
 
   const displayData = {
     _id: appointment?._id || "ID-SYNC-PENDING",
