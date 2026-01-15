@@ -7,13 +7,6 @@ const useRefresh = () => {
   const { setToken, setUser } = useContext(UserContext);
 
 
-      return cleanToken;
-
-      throw error; 
-    }
-  };
-
-  return refresh;
-};
+s
 
 export default useRefresh;
