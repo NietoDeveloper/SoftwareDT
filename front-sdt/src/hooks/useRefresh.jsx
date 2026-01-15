@@ -13,10 +13,7 @@ const useRefresh = () => {
       // 1. Validación de seguridad: Si no hay token nuevo, lanzamos error
       if (!newAccessToken) {
         throw new Error("No se recibió un nuevo token de acceso");
-      }
-
-      // 2. Limpieza de caracteres extraños (comillas, prefijos)
-      const cleanToken = newAccessToken.replace(/['"]+/g, '').replace(/Bearer\s+/i, '').trim();
+nst cleanToken = newAccessToken.replace(/['"]+/g, '').replace(/Bearer\s+/i, '').trim();
 
 
 
