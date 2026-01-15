@@ -45,17 +45,3 @@ export const UserProvider = ({ children }) => {
         setAppointmentDetails(null);
         localStorage.clear(); // Limpieza total para seguridad
         window.location.href = '/login';
-    }, []);
-
-    const getAccessToken = useCallback(() => tokenRef.current, []);
-
-    // Configuración de Interceptores
-    useEffect(() => {
-        setupInterceptors(getAccessToken, setToken, handleLogout);
-        const timer = setTimeout(() => setLoading(false), 800); // Un poco más de tiempo para el splash de clase mundial
-        return () => clearTimeout(timer);
-    }, [getAccessToken, handleLogout]);
-
-
-
-};
