@@ -21,6 +21,3 @@ export const UserProvider = ({ children }) => {
     const [appointmentDetails, setAppointmentDetails] = useState(null);
     const tokenRef = useRef(token);
 
-    // Sincronizar Referencia para Interceptores
-    useEffect(() => {
-        tokenRef.current = token;
