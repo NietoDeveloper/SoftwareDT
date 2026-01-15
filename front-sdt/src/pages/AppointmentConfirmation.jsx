@@ -16,16 +16,7 @@ import {
 
 const AppointmentConfirmation = () => {
   const { user } = useContext(UserContext); // Extraemos el usuario del contexto
-  const location = useLocation();
-  const navigate = useNavigate();
-  
-  const appointment = location.state?.appointment;
-
-  useEffect(() => {
-    if (!location.state) {
-      navigate("/client-appointments");
-    }
-  }, [location.state, navigate]);
+  const location = useLocation()
 
   const formatDate = (dateString) => {
     if (!dateString) return "FECHA POR DEFINIR";
