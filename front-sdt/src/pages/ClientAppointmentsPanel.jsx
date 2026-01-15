@@ -7,24 +7,6 @@ import {
 } from "lucide-react";
 import { toast } from "react-hot-toast"; // Asumiendo que usas toast para feedback profesional
 
-const ClientAppointmentsPanel = () => {
-  const { user, token, handleLogout } = useContext(UserContext);
-  const navigate = useNavigate();
-
-s>lassName="px-6 sm:px-8 py-5 text-right">Acción</th>
-                       </tr>
-                     </thead>
-                     <tbody
-                              </td>
-                           </tr>
-                        )) : (
-                          <tr>
-                            <td colSpan="3" className="px-8 py-10 text-center text-gray-300 italic text-[10px]">No hay registros en el clúster.</td>
-                          </tr>
-                        )}
-                     </tbody>
-                  </table>
-                </div>
              </div>
           </section>
         </div>
