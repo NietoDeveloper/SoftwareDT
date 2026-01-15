@@ -10,18 +10,7 @@ import { toast } from "react-hot-toast"; // Asumiendo que usas toast para feedba
              </div>
           </section>
         </div>
-
-        {/* ASIDE (Ajustado para control de mensajes y estilo SDT) */}
-        <aside className="w-full lg:w-[35%]">
-          <div className="bg-white border-2 border-black/5 rounded-[1.8rem] sm:rounded-[2.5rem] p-6 sm:p-8 shadow-sm lg:sticky lg:top-10">
-            <h2 className="text-lg sm:text-xl font-black uppercase tracking-tighter mb-8 text-center">Centro de Control</h2>
-            
-            <div className="flex flex-col items-center text-center mb-8">
-                <div className="w-20 h-20 bg-main rounded-full flex items-center justify-center mb-4 border-2 border-black/5 overflow-hidden ring-4 ring-yellowColor/10">
-                  <img 
-                    src="https://github.com/NietoDevelooper.png" 
-                    alt="Nieto" 
-                    className="w-full h-full object-cover" 
+-full h-full object-cover" 
                     onError={(e) => { e.target.src = "https://via.placeholder.com/150" }}
                   />
                 </div>
