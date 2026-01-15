@@ -4,21 +4,7 @@ import { useEffect, useContext } from "react"; // Añadido useContext
 import { UserContext } from "../context/UserContext.jsx"; // Importamos el contexto
 import {
   Calendar,
-  CircleUser, 
-  Clock,
-
-
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-8 mb-10">
-          <div className="group flex items-center p-6 sm:p-8 bg-main/30 rounded-3xl border-2 border-transparent hover:border-black transition-all">
-             <IconWrapper><Briefcase className="h-6 w-6 sm:h-8 sm:w-8" /></IconWrapper>
-             <div className="ml-5 min-w-0">
-                <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Servicio</p>
-                <h2 className="text-lg sm:text-xl font-black uppercase truncate">{displayData.specialization}</h2>
-             </div>
-          </div>
-
-          <div className="group flex items-center p-6 sm:p-8 bg-black text-white rounded-3xl border-2 border-black transition-all hover:shadow-2xl">
-             <div className="p-3 rounded-2xl bg-gold text-black transition-all group-hover:rotate-12 flex-shrink-0">
+  C rounded-2xl bg-gold text-black transition-all group-hover:rotate-12 flex-shrink-0">
                <ShieldCheck size={24} className="sm:w-8 sm:h-8" />
              </div>
              <div className="ml-5 min-w-0">
