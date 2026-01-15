@@ -19,7 +19,6 @@ const Profile = () => {
 
                     
               
-                    🚪 Cerrar Sesión
                 </li>
             </ul>
         </div>
