@@ -21,8 +21,7 @@ const useRefresh = () => {
       // 3. Persistencia física inmediata
       localStorage.setItem('token', cleanToken);
 
-      // 4. Actualización del estado global para reactividad (Header/UI)
-      setToken(cleanToken);
+
 
       return cleanToken;
 
