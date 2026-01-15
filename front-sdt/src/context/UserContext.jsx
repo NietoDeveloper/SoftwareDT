@@ -71,8 +71,7 @@ export const UserProvider = ({ children }) => {
 
     return (
         <UserContext.Provider value={contextValue}>
-            {!loading ? children : (
-                <div className="flex items-center justify-center h-screen bg-main">
+            {!loading ? children :
 
 
 
