@@ -14,14 +14,6 @@ const ClientAppointmentsPanel = () => {
 isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchDashboardData();
-
-
-
-
-  const handleMensajeDirecto = () => {
-    window.location.href = `mailto:admin@softwaredt.com?subject=Soporte Software DT - ${user?.name}`;
-  };
 
   const filteredAppointments = appointments.filter(appt => {
     const status = appt.status?.toLowerCase() || 'pending';
