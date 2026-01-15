@@ -16,10 +16,7 @@ s>
                 filteredAppointments.map((appt) => (
                   <div key={appt._id} className="bg-white border-[3px] border-black/5 rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 hover:border-yellowColor/30 hover:shadow-2xl transition-all duration-400 group relative overflow-hidden">
           
-                      <button 
-      
-
-          {/* HISTORIAL MENSAJERÍA (Funcionalizado) */}
+            HISTORIAL MENSAJERÍA (Funcionalizado) */}
           <section>
              <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter mb-6 sm:mb-8">Historial Mensajeria</h2>
              <div className="bg-white border-2 border-black/5 rounded-[1.2rem] sm:rounded-[2rem] overflow-hidden shadow-sm">
