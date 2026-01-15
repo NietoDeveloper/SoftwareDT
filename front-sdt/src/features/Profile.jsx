@@ -11,7 +11,3 @@ const Profile = () => {
         try {
 
             await axiosAuth.post('/user/logout'); 
-
-            handleLogout(); 
-  
-            navigate('/login'); 
