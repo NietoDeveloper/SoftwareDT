@@ -8,9 +8,6 @@ const Profile = () => {
     const navigate = useNavigate();
 
     const logoutFromApiAndState = async () => {
-        try {
 
-    )
-}
 
 export default Profile;
