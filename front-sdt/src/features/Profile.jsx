@@ -7,10 +7,6 @@ const Profile = () => {
     const { setToken, setUser, handleLogout } = useContext(UserContext);
     const navigate = useNavigate();
 
-    const logoutFromApiAndState = async () => {
-        try {
-
-            await axiosAuth.post('/user/logout'); 
 
 
 
