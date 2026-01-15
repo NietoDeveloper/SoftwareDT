@@ -12,14 +12,7 @@ const ClientAppointmentsPanel = () => {
   const navigate = useNavigate();
   
 isLoading, setIsLoading] = useState(true);
-  
-  
-  const fetchDashboardData = useCallback(async () => {
-    const userId = user?._id || user?.id;
-    if (!userId || !token) {
-      setIsLoading(false);
-      return;
-    }
+
 
     try {
       setIsLoading(true);
