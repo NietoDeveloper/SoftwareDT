@@ -60,14 +60,7 @@ export const UserProvider = ({ children }) => {
         user,
         setUser,
         token,
-        setToken,
-        loading,
-        getAccessToken,
-        setAppointmentDetails,
-        appointmentDetails,
 
-    );
-};
 
 export const useUser = () => {
     const context = useContext(UserContext);
