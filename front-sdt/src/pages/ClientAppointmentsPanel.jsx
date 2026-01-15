@@ -13,10 +13,7 @@ const ClientAppointmentsPanel = () => {
   
 isLoading, setIsLoading] = useState(true);
   
-  // NUEVO: Estado para controlar plantillas de mensajes (Elon Musk Standard)
-  const [customMessage, setCustomMessage] = useState(user?.customMessage || "");
-  const [isSaving, setIsSaving] = useState(false);
-
+  
   const fetchDashboardData = useCallback(async () => {
     const userId = user?._id || user?.id;
     if (!userId || !token) {
