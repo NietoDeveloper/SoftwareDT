@@ -12,20 +12,7 @@ import {
                 <h2 className="text-lg sm:text-xl font-black uppercase truncate">{displayData.serviceName}</h2>
                 <p className="text-gold font-bold text-xs sm:text-sm mt-1">{displayData.price}</p>
              </div>
-          </div>
-        </div>
-
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          <DetailItem 
-            icon={<Calendar className="h-5 w-5 sm:h-6 sm:w-6" />} 
-            title="Fecha en Cronograma" 
-            value={formatDate(displayData.date)} 
-          />
-          <DetailItem 
-            icon={<Clock className="h-5 w-5 sm:h-6 sm:w-6" />} 
-            title="Hora" 
-            value={displayData.time} 
-          />
+ 
           <DetailItem 
             icon={<CircleUser className="h-5 w-5 sm:h-6 sm:w-6" />} 
             title="Usuario" 
