@@ -23,11 +23,7 @@ const AppointmentConfirmation = () => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     try {
       const date = new Date(dateString);
-      return isNaN(date.getTime()) ? dateString : date.toLocaleDateString('es-CO', options).toUpperCase();
-    } catch {
-      return dateString;
-    }
-  };
+
 
   const displayData = {
     _id: appointment?._id || "ID-SYNC-PENDING",
