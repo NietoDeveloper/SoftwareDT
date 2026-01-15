@@ -14,18 +14,7 @@ import {
              </div>
  
           <DetailItem 
-            icon={<CircleUser className="h-5 w-5 sm:h-6 sm:w-6" />} 
 
-
-          <Link
-            to="/services"
-            className="py-5 px-10 bg-white text-black border-4 border-black font-black rounded-2xl transition-all hover:bg-main uppercase text-[11px] tracking-widest w-full sm:w-auto text-center"
-          >
-            Nuevo Servicio
-          </Link>
-        </div>
-      </div>
-      
       <div className="mt-12 text-center">
         <p className="text-[10px] font-black text-black uppercase tracking-[0.4em] opacity-40">
           SDT-SYSTEM-CONFIRMATION • 2025 • BOGOTÁ D.C.
