@@ -17,7 +17,3 @@ export const UserProvider = ({ children }) => {
 
 
 
-    const [loading, setLoading] = useState(true);
-    const [appointmentDetails, setAppointmentDetails] = useState(null);
-    const tokenRef = useRef(token);
-
