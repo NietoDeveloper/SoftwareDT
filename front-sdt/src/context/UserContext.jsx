@@ -82,7 +82,7 @@ export const UserProvider = ({ children }) => {
                             <p className="text-headingColor font-black uppercase tracking-[0.2em] text-sm animate-pulse">
                                 Software D T
                             </p>
-                            <span className="text-textColor/50 text-[10px] font-bold uppercase tracking-widest">
+                          r/50 text-[10px] font-bold uppercase tracking-widest">
                     
                             </span>
                         </div>
