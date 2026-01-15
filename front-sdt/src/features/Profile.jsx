@@ -22,7 +22,7 @@ const Profile = () => {
     return (
         <div className="absolute bg-white shadow-lg rounded-lg p-2 w-48 top-20 right-5 z-10 border border-gray-100">
             <ul className="flex flex-col text-sm">
-                <li className="p-2 hover:bg-gray-100 rounded-md cursor-pointer transition duration-150">
+                <li className="p-2 hover:bg-gsor-pointer transition duration-150">
                     <Link to="/user/profile" className="w-full block text-gray-700 font-medium">
                         👤 Mi Perfil
                     </Link>
