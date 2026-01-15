@@ -65,13 +65,7 @@ export const UserProvider = ({ children }) => {
         getAccessToken,
         setAppointmentDetails,
         appointmentDetails,
-        handleLogout,
-        handleLogin, // Nueva función expuesta
-    }), [user, token, loading, appointmentDetails, handleLogout, handleLogin, getAccessToken]);
 
-
-            )}
-        </UserContext.Provider>
     );
 };
 
