@@ -9,9 +9,6 @@ const useRefresh = () => {
   const refresh = async () => {
     try {
       const newAccessToken = await refreshAccessToken();
-      if (!newAccessToken) {
-        throw new Error("No se recibió un nuevo token de acceso");
-nst cleanToken = newAccessToken.replace(/['"]+/g, '').replace(/Bearer\s+/i, '').trim();
 
 
 
