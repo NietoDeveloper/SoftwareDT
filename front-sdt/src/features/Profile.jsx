@@ -29,9 +29,7 @@ const Profile = () => {
                 <li className="p-2 hover:bg-gray-100 rounded-md cursor-pointer transition duration-150">
                     <Link to="/user/profile" className="w-full block text-gray-700 font-medium">
                         👤 Mi Perfil
-                    </Link>
-                </li>
-                <hr className="my-1 border-gray-200" />
+
             
             </ul>
         </div>
