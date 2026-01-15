@@ -17,16 +17,6 @@ import {
             icon={<CircleUser className="h-5 w-5 sm:h-6 sm:w-6" />} 
 
 
-
-        <div className="w-full mt-12 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-          <Link
-            to="/client-appointments" 
-            className="group flex items-center justify-center gap-4 py-5 px-10 bg-black text-white font-black rounded-2xl transition-all hover:bg-gold hover:text-black hover:-translate-y-1 uppercase text-[11px] tracking-widest w-full sm:w-auto shadow-2xl"
-          >
-            Panel de Control
-            <ArrowRight className="group-hover:translate-x-2 transition-transform" size={18} />
-          </Link>
-          
           <Link
             to="/services"
             className="py-5 px-10 bg-white text-black border-4 border-black font-black rounded-2xl transition-all hover:bg-main uppercase text-[11px] tracking-widest w-full sm:w-auto text-center"
