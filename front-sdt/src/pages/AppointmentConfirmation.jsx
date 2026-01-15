@@ -10,15 +10,7 @@ import {
 
   Mail
 
-  const displayData = {
-    _id: appointment?._id || "ID-SYNC-PENDING",
-    // Prioridad: 1. Datos de la cita, 2. Nombre del contexto (Manuel), 3. Fallback
-    fullName: appointment?.fullName || appointment?.userInfo?.fullName || user?.name || "CLIENTE SDT",
-    date: appointment?.slotDate || appointment?.appointmentDate || "PENDIENTE",
-
-
-  return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-main font-sans text-black p-4 sm:p-8 lg:p-12 overflow-x-hidden">
+  const displayDatall flex flex-col items-center justify-center bg-main font-sans text-black p-4 sm:p-8 lg:p-12 overflow-x-hidden">
       
       <div className="w-full max-w-full sm:max-w-2xl lg:max-w-4xl xl:max-w-5xl bg-white p-6 sm:p-10 lg:p-16 rounded-[2rem] sm:rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.08)] border border-black/5 flex flex-col items-center relative overflow-hidden">
         
