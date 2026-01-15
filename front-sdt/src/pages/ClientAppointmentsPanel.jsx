@@ -9,22 +9,7 @@ import { toast } from "react-hot-toast"; // Asumiendo que usas toast para feedba
 
              </div>
           </section>
-        </div>
--full h-full object-cover" 
-                    onError={(e) => { e.target.src = "https://via.placeholder.com/150" }}
-                  />
-                </div>
-                <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Servicio Asignado</p>
-                <h3 className="text-lg font-black uppercase mt-1">Software D T</h3>
-                <p className="text-[9px] font-bold text-yellowColor mt-1">Bogotá, Colombia</p>
-            </div>
-
-            <div className="space-y-4">
-               {/* NUEVO: Área de Configuración de Mensajes (Lo que pediste guardar) */}
-               <div className="bg-main/30 border-2 border-black/5 p-5 rounded-2xl">
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="text-[8px] font-black text-yellowColor uppercase tracking-widest">Plantilla WhatsApp</span>
-                    {isSaving ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} className="text-gray-400" />}
+        </div>g ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} className="text-gray-400" />}
                   </div>
                   <textarea 
                     value={customMessage}
