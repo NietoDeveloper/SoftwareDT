@@ -9,9 +9,7 @@ const ReviewForm = () => {
   };
 
   return (
-    <section className='w-full'>
 
-    </section>
   );
 };
 
