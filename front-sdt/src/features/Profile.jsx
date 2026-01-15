@@ -5,9 +5,6 @@ import { useContext } from 'react';
 
 const Profile = () => {
     const { setToken, setUser, handleLogout } = useContext(UserContext);
-    const navigate = useNavigate();
-
-    const logoutFromApiAndState = async () => {
 
 
 export default Profile;
