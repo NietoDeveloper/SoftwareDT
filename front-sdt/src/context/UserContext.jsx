@@ -70,8 +70,7 @@ export const UserProvider = ({ children }) => {
     }), [user, token, loading, appointmentDetails, handleLogout, handleLogin, getAccessToken]);
 
     return (
-        <UserContext.Provider value={contextValue}>
-            {!loading ? children :
+
 
 
 
