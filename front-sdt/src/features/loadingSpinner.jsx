@@ -4,9 +4,6 @@ const Spinner = () => {
       
       {/* El corazón del Spinner: un div con bordes gruesos y redondeados.
         - w-12 h-12: Define el tamaño (12 = 3rem / 48px por defecto).
-        - border-4: Define el grosor del borde.
-        - border-solid: Asegura que el borde es sólido.
-        - rounded-full: Hace el div perfectamente circular.
 
       <div 
         className="
