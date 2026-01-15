@@ -1,22 +1,22 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect, useContext, useMemo } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { axiosPrivate } from "../API/api.js"; 
+import { axiosPrivate } from "../API/api"; 
 import Footer from "../components/Footer/Footer";
 import { UserContext } from "../context/UserContext";
-import { ChevronLeft, Briefcase, ArrowRight, MessageSquare, Send, Mail } from "lucide-react";
+import { ChevronLeft, Briefcase, ArrowRight, ShieldCheck } from "lucide-react"; 
 
 const BookingPage = () => {
   const { doctorId: paramId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, token, loading: userLoading } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const flowData = useMemo(() => {
     const saved = localStorage.getItem('sdt_pending_appointment');
-    return location.state || (saved ? JSON.parse(saved) : null);
+    const parsedSaved = saved ? JSON.parse(saved) : null;
+    return location.state || parsedSaved;
   }, [location.state]);
 
   const doctorFromFlow = flowData?.doctorData;
@@ -35,229 +35,185 @@ const BookingPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    if (userLoading) return;
-    const hasToken = token || localStorage.getItem('token');
-    const hasUser = user || localStorage.getItem('user');
-
-    if (!hasToken || !hasUser) {
-      localStorage.setItem('sdt_return_path', location.pathname);
-      toast.error("Identificación requerida para agendar.");
-      navigate("/login", { state: { from: location.pathname }, replace: true });
-    }
-    
-    if (!activeDoctorId && !doctorLoading) {
-      toast.info("Seleccione un especialista primero.");
-      navigate("/doctors");
-    }
-  }, [user, token, userLoading, activeDoctorId, navigate, location.pathname]);
-
-  useEffect(() => {
     const activeUser = user || JSON.parse(localStorage.getItem('user'));
-    
     if (activeUser) {
       setFormData(prev => ({
         ...prev,
         fullName: activeUser.name || activeUser.fullName || prev.fullName,
         email: activeUser.email || prev.email,
         phone: activeUser.phone || prev.phone,
-        reason: serviceFromFlow && !prev.reason.includes("Requerimiento")
-          ? `Requerimiento para: ${serviceFromFlow.name || serviceFromFlow.title}. `
+        reason: serviceFromFlow 
+          ? `Solicitud de servicio: ${serviceFromFlow.title}.` 
           : prev.reason
       }));
     }
   }, [user, serviceFromFlow]);
 
-  const { data: doctor, isLoading: doctorLoading } = useQuery({
-    queryKey: ["doctor", activeDoctorId],
-    queryFn: async () => {
-      if (doctorFromFlow) return doctorFromFlow;
-      const res = await axiosPrivate.get(`/doctors/${activeDoctorId}`);
-      return res.data.data || res.data.doctor || res.data;
-    },
-    enabled: !!activeDoctorId && (!!token || !!localStorage.getItem('token')),
-  });
-
-  const availableTimes = useMemo(() => {
-    if (!formData.appointmentDate) return [];
-    const times = [];
-    const [year, month, day] = formData.appointmentDate.split("-").map(Number);
-    const selectedDate = new Date(year, month - 1, day);
-    if (selectedDate.getDay() === 0) return [];
-    
+  const validateDateTime = (date, time) => {
+    const appointmentDate = new Date(`${date}T${time}`);
     const now = new Date();
-    const minTimeAllowed = new Date(now.getTime() + 8 * 60 * 60 * 1000); 
-
-    for (let hour = 9; hour <= 18; hour++) {
-      for (let min of ["00", "30"]) {
-        if (hour === 18 && min === "30") break;
-        const timeStr = `${hour.toString().padStart(2, "0")}:${min}`;
-        const apptDT = new Date(year, month - 1, day, hour, parseInt(min));
-        if (apptDT > minTimeAllowed) times.push(timeStr);
-      }
+    const diffInHours = (appointmentDate - now) / (1000 * 60 * 60);
+    if (diffInHours < 8) {
+      toast.error("La cita debe programarse con al menos 8 horas de antelación.");
+      return false;
     }
-    return times;
-  }, [formData.appointmentDate]);
+    const day = appointmentDate.getDay();
+    if (day === 0) {
+      toast.error("Solo atendemos de Lunes a Sábado.");
+      return false;
+    }
+    return true;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.appointmentTime) return toast.warning("Seleccione una hora.");
+    if (!validateDateTime(formData.appointmentDate, formData.appointmentTime)) return;
+
     setIsSubmitting(true);
     
     try {
+      // Cálculo del precio numérico para el backend y la confirmación
+      const numericPrice = serviceFromFlow?.price 
+        ? Number(serviceFromFlow.price.replace(/[^0-9.-]+/g, "")) 
+        : (doctorFromFlow?.ticketPrice || 0);
+
       const payload = {
-        doctorId: doctor?._id || activeDoctorId,
-        serviceName: serviceFromFlow?.name || serviceFromFlow?.title || "Consultoría SDT",
+        doctorId: activeDoctorId,
+        serviceName: serviceFromFlow?.title || "Servicio SDT",
         slotDate: formData.appointmentDate,
         slotTime: formData.appointmentTime,
         fullName: formData.fullName,
         email: formData.email,
         phone: formData.phone,
         reason: formData.reason,
-        amount: serviceFromFlow?.price || doctor?.ticketPrice || 0
+        amount: numericPrice
       };
 
-      const res = await axiosPrivate.post(`/appointments`, payload);
+      const response = await axiosPrivate.post(`/appointments`, payload);
+      
+      toast.success("Cita Sincronizada.");
+      localStorage.removeItem('sdt_pending_appointment');
 
-      if (res.data) {
-        toast.success("Cita Sincronizada.");
-        localStorage.removeItem('sdt_pending_appointment');
-        localStorage.removeItem('sdt_return_path');
-        navigate("/users/profile/me"); 
-      }
+      // AJUSTE: Redirigir a confirmación enviando el objeto de la cita y el precio
+      navigate("/appointment-confirmation", { 
+        state: { 
+          appointment: {
+            ...response.data.appointment, // Datos del backend
+            amount: numericPrice,        // Aseguramos el envío del valor
+            serviceName: payload.serviceName,
+            specialization: doctorFromFlow?.specialization
+          } 
+        } 
+      });
+
     } catch (err) {
-      toast.error(err.response?.data?.message || "Error en el Datacenter.");
+      toast.error(err.response?.data?.message || "Error de conexión.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (userLoading || (doctorLoading && !doctor)) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#DCDCDC]">
-        <div className="w-10 h-10 border-4 border-black border-t-[#FEB60D] rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-[#DCDCDC] font-sans text-black antialiased flex flex-col">
-      <header className="bg-white border-b border-black/5 pt-10 pb-6 px-4 sm:px-12">
-        <div className="max-w-[1800px] mx-auto">
-          <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#FEB60D] transition-all mb-4">
-            <ChevronLeft size={14} /> Volver a selección
-          </button>
-          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tighter">
-            Crear <span className="text-[#FEB60D]">Cita</span>
-          </h1>
+      <header className="bg-white border-b border-black pt-12 pb-8 px-4 sm:px-12">
+        <div className="max-w-[1800px] mx-auto flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+          <div className="text-center sm:text-left">
+            <button 
+              onClick={() => navigate(-1)} 
+              className="flex items-center justify-center sm:justify-start gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-black/40 hover:text-[#FFD700] mb-4 transition-all hover:scale-105"
+            >
+              <ChevronLeft size={14} /> Consulta con Especialista
+            </button>
+            <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-none">
+              Crear <span className="text-[#FEB60D] drop-shadow-[0_0_15px_rgba(254,182,13,0.4)]"> Cita</span>
+            </h1>
+          </div>
+          <div className="flex items-center justify-center gap-3 bg-black text-white px-6 py-4 rounded-2xl border border-[#FFD700]/30 shadow-[0_10px_20px_rgba(254,182,13,0.2)]">
+            <ShieldCheck className="text-[#FFD700]" size={20} />
+            <span className="text-[10px] font-black uppercase tracking-widest">Pagina Segura Y Privada</span>
+          </div>
         </div>
       </header>
 
-      <main className="max-w-[1800px] mx-auto w-full px-4 sm:px-12 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow">
-        {/* COLUMNA FORMULARIO */}
-        <div className="lg:col-span-8 order-1">
-          <div className="bg-white border border-black/5 rounded-[2rem] p-6 sm:p-10 shadow-sm">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Nombre del Solicitante</label>
-                  <input type="text" value={formData.fullName} onChange={(e) => setFormData({...formData, fullName: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" />
+      <main className="max-w-[1800px] mx-auto w-full px-4 sm:px-12 py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 flex-grow">
+        
+        {/* TARJETA FORMULARIO */}
+        <div className="lg:col-span-8">
+          <div className="bg-white border border-black rounded-[2rem] p-6 sm:p-12 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(254,182,13,0.25)] hover:-translate-y-2">
+            <form onSubmit={handleSubmit} className="space-y-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-black/50 ml-1">Cliente</label>
+                  <input type="text" value={formData.fullName} onChange={(e) => setFormData({...formData, fullName: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-5 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm transition-all focus:bg-white" />
                 </div>
-                <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Teléfono</label>
-                  <input type="tel" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" />
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-black/50 ml-1">Teléfono</label>
+                  <input type="tel" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-5 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm transition-all focus:bg-white" />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Fecha</label>
-                  <input type="date" min={new Date().toISOString().split("T")[0]} value={formData.appointmentDate} onChange={(e) => setFormData({...formData, appointmentDate: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-black/50 ml-1">Fecha (Lunes a Sábado)</label>
+                  <input type="date" value={formData.appointmentDate} onChange={(e) => setFormData({...formData, appointmentDate: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-5 rounded-xl outline-none font-bold text-sm focus:border-[#FEB60D] transition-all" />
                 </div>
-                <div className="space-y-1">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Hora</label>
-                  <select value={formData.appointmentTime} onChange={(e) => setFormData({...formData, appointmentTime: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm appearance-none">
-                    <option value="">Seleccione hora</option>
-                    {availableTimes.map(t => <option key={t} value={t}>{t}</option>)}
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-black/50 ml-1">Hora (9:00 AM - 6:00 PM)</label>
+                  <select value={formData.appointmentTime} onChange={(e) => setFormData({...formData, appointmentTime: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-5 rounded-xl outline-none font-bold text-sm focus:border-[#FEB60D] transition-all">
+                    <option value="">Seleccionar Franja</option>
+                    <option value="09:00">09:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="14:00">02:00 PM</option>
+                    <option value="15:00">03:00 PM</option>
+                    <option value="16:00">04:00 PM</option>
+                    <option value="17:00">05:00 PM</option>
+                    <option value="18:00">06:00 PM</option>
                   </select>
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Notas</label>
-                <textarea value={formData.reason} onChange={(e) => setFormData({...formData, reason: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-4 rounded-xl focus:border-[#FEB60D] outline-none font-medium text-sm h-32 resize-none" />
+              <div className="space-y-3">
+                <label className="text-[10px] font-black uppercase tracking-widest text-black/50 ml-1">Detalles del Proyecto</label>
+                <textarea value={formData.reason} onChange={(e) => setFormData({...formData, reason: e.target.value})} required className="w-full bg-[#DCDCDC]/30 border border-black/10 p-5 rounded-xl focus:border-[#FEB60D] outline-none font-bold text-sm h-32 resize-none transition-all focus:bg-white" />
               </div>
 
-              <button type="submit" disabled={isSubmitting} className="w-full bg-black text-white py-5 rounded-xl font-black text-xs uppercase tracking-[0.2em] hover:bg-[#FEB60D] hover:text-black transition-all flex items-center justify-center gap-2">
+              <button type="submit" disabled={isSubmitting} className="w-full bg-black text-white py-6 rounded-xl font-black text-[11px] uppercase tracking-[0.3em] hover:bg-[#FFD700] hover:text-black transition-all flex items-center justify-center gap-3 active:scale-95 shadow-[0_10px_30px_rgba(0,0,0,0.1)] hover:shadow-[0_15px_30px_rgba(254,182,13,0.4)]">
                 {isSubmitting ? "Sincronizando..." : "Finalizar Agendamiento"}
-                <ArrowRight size={16} />
+                <ArrowRight size={18} />
               </button>
             </form>
           </div>
         </div>
 
-        {/* COLUMNA LATERAL: ESPECIALISTA, SERVICIO Y MENSAJERÍA */}
-        <div className="lg:col-span-4 space-y-6 order-2 min-w-[310px] max-w-[1800px]">
-          {/* Tarjeta Especialista */}
-          <div className="bg-white border border-black/5 rounded-[2rem] p-8 shadow-sm">
+        <aside className="lg:col-span-4 space-y-8">
+          {/* TARJETA ESPECIALISTA */}
+          <div className="bg-white border border-black rounded-[2rem] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(254,182,13,0.2)]">
             <Briefcase className="text-[#FEB60D] mb-4" size={24} />
             <p className="text-[9px] font-black text-[#FEB60D] uppercase tracking-widest mb-1">Especialista</p>
-            <h2 className="text-2xl font-black uppercase tracking-tight">{doctor?.name || "..."}</h2>
+            <h2 className="text-2xl font-black uppercase tracking-tight">{doctorFromFlow?.name || "Arquitecto SDT"}</h2>
+            <p className="text-[10px] text-black/40 font-black uppercase tracking-widest">{doctorFromFlow?.specialization || "Senior Staff"}</p>
           </div>
 
-          {/* Tarjeta Servicio */}
-          <div className="bg-black text-white rounded-[2rem] p-8 shadow-xl">
-            <span className="text-[9px] font-black uppercase tracking-widest text-[#FEB60D] block mb-4">Servicio seleccionado</span>
-            <h3 className="text-xl font-black uppercase mb-2">{serviceFromFlow?.name || "Consultoría"}</h3>
-            <p className="text-3xl font-black text-[#FEB60D] tracking-tighter">
-              ${serviceFromFlow?.price || doctor?.ticketPrice || 0}
-            </p>
-          </div>
-
-          {/* TARJETA UNIFICADA: MENSAJERÍA E HISTORIAL */}
-          <div className="bg-white border border-black/10 rounded-[2rem] overflow-hidden shadow-sm flex flex-col">
-            <div className="p-8 space-y-6">
-              <div className="flex items-center gap-3">
-                <MessageSquare className="text-black" size={20} />
-                <h3 className="text-sm font-black uppercase tracking-widest">Canales de Soporte</h3>
-              </div>
-              
-              {/* Botones de Acción */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <button className="flex items-center justify-center gap-2 bg-[#25D366] text-white py-4 rounded-xl font-bold text-[10px] uppercase tracking-wider hover:opacity-90 transition-all">
-                  <Send size={14} /> WhatsApp
-                </button>
-                <button className="flex items-center justify-center gap-2 bg-black text-white py-4 rounded-xl font-bold text-[10px] uppercase tracking-wider hover:bg-[#FEB60D] hover:text-black transition-all">
-                  <Mail size={14} /> Email
-                </button>
-              </div>
-
-              <div className="pt-6 border-t border-black/5">
-                <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-4">Historial de Mensajería</p>
-                
-                {/* Contenedor de Historial */}
-                <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
-                  <div className="bg-[#DCDCDC]/20 p-4 rounded-2xl border-l-4 border-[#FEB60D]">
-                    <p className="text-[11px] font-bold text-black mb-1">Soporte Software DT</p>
-                    <p className="text-xs text-gray-600 leading-relaxed italic">"Bienvenido al sistema. Su nodo de comunicación está activo."</p>
-                    <span className="text-[8px] font-black text-gray-400 mt-2 block text-right uppercase">25 DIC - 01:55 AM</span>
-                  </div>
-                  
-                  {/* Estado vacío (Placeholder para cuando no hay mensajes) */}
-                  {!user && (
-                    <div className="text-center py-8">
-                      <p className="text-[10px] font-bold text-gray-300 uppercase italic">Inicie sesión para ver su historial</p>
-                    </div>
-                  )}
-                </div>
+          {/* TARJETA COSTO */}
+          <div className="bg-black text-white rounded-[2rem] p-10 relative overflow-hidden border border-black transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(254,182,13,0.3)]">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#FEB60D]/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+            <div className="relative z-10 text-center lg:text-left">
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#FFD700] block mb-6">Costo del Servicio</span>
+              <h3 className="text-2xl font-black uppercase mb-2 leading-none">
+                {serviceFromFlow?.title || "Desarrollo a Medida"}
+              </h3>
+              <div className="mt-10 pt-8 border-t border-white/10 flex flex-col">
+                <span className="text-[9px] font-black uppercase text-white/40 tracking-widest">Desde</span>
+                <p className="text-5xl font-black text-[#FFD700] tracking-tighter mt-2 drop-shadow-[0_0_10px_rgba(255,215,0,0.5)]">
+                  {serviceFromFlow?.price || (doctorFromFlow?.ticketPrice ? `$ ${doctorFromFlow.ticketPrice}` : "$ 0")}
+                </p>
               </div>
             </div>
-            
-            {/* Footer de la tarjeta */}
-            <div className="bg-[#FEB60D] p-4 text-center">
-              <p className="text-[9px] font-black uppercase tracking-[0.2em] text-black">Data Link Operativo</p>
-            </div>
           </div>
-        </div>
+        </aside>
       </main>
       <Footer />
     </div>
