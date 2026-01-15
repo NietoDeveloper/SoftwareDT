@@ -10,12 +10,7 @@ import {
              <div className="ml-5 min-w-0">
                 <p className="text-[9px] font-black text-gold uppercase tracking-widest">Protocolo Activo</p>
                 <h2 className="text-lg sm:text-xl font-black uppercase truncate">{displayData.serviceName}</h2>
-
-    </div>
-    <div className="flex flex-col min-w-0">
-      <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">{title}</p>
-      <p className="text-sm sm:text-base font-black text-black uppercase leading-tight truncate">{value}</p>
-    </div>
+v>
   </div>
 );
 
