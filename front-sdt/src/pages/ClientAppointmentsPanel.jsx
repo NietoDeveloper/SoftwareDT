@@ -15,16 +15,7 @@ s>
               ) : (
                 filteredAppointments.map((appt) => (
                   <div key={appt._id} className="bg-white border-[3px] border-black/5 rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 hover:border-yellowColor/30 hover:shadow-2xl transition-all duration-400 group relative overflow-hidden">
-                    <div className="absolute left-0 top-0 bottom-0 w-2 bg-yellowColor opacity-0 group-hover:opacity-100 transition-opacity"></div>
- 
-                           </div>
-                           <div className="bg-yellowColor/10 px-4 py-2 rounded-lg border border-yellowColor/20 shadow-sm">
-                             <p className="text-[12px] sm:text-[14px] font-black text-yellowColor uppercase tracking-widest">
-                                {appt.slotTime || appt.appointmentTime}
-                             </p>
-                           </div>
-                        </div>
-                      </div>
+          
                       <button 
                         onClick={() => navigate("/appointment-confirmation", { state: { appointment: appt } })}
                         className="w-full md:w-auto bg-black text-white px-10 py-4 rounded-2xl text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-400 hover:bg-yellowColor hover:text-black hover:shadow-[0_10px_20px_rgba(0,0,0,0.1)] active:scale-95"
