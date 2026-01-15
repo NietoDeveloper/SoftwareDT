@@ -19,10 +19,7 @@ const Profile = () => {
             console.error('Fallo la llamada al endpoint de logout. Limpiando sesión local.', error); 
             
             handleLogout(); 
-            navigate('/login'); 
-        }
-
-    )
+s
 }
 
 export default Profile;
