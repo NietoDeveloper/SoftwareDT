@@ -3,8 +3,6 @@ import { axiosAuth } from '../API/api';
 import { UserContext } from '../context/UserContext'; 
 import { useContext } from 'react';
 
-const Profile = () => {
-
 
 
 
