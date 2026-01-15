@@ -10,17 +10,7 @@ import { toast } from "react-hot-toast"; // Asumiendo que usas toast para feedba
 const ClientAppointmentsPanel = () => {
   const { user, token, handleLogout } = useContext(UserContext);
   const navigate = useNavigate();
-  
-isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-
-  const filteredAppointments = appointments.filter(appt => {
-    const status = appt.status?.toLowerCase() || 'pending';
-    if (activeTab === "pending") return ["pending", "active", "scheduled"].includes(status);
-    if (activeTab === "completed") return ["completed", "taken", "finished"].includes(status);
-    return true;
-  });
 
   return (
     <div className="min-h-screen bg-main pb-20 font-sans text-black antialiased overflow-x-hidden">
