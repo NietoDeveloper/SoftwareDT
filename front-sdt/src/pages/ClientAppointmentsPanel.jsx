@@ -14,13 +14,7 @@ const ClientAppointmentsPanel = () => {
 isLoading, setIsLoading] = useState(true);
 
 
-    try {
-      setIsLoading(true);
-      // Petición paralela para optimizar carga (Engineering Excellence)
-      const [apptRes, msgRes] = await Promise.all([
-        axiosPrivate.get(`/appointments/user/${userId}`),
-        axiosPrivate.get(`/messages/user/${userId}`).catch(() => ({ data: { messages: [] } }))
-      ]);
+
 
       if (apptRes.data) {
         setAppointments(apptRes.data.appointments || apptRes.data.data || []);
