@@ -62,7 +62,4 @@ export const UserProvider = ({ children }) => {
         token,
 
 
-export const useUser = () => {
-    const contextUserProvider");
-
 };
