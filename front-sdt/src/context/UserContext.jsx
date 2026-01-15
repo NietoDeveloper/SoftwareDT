@@ -71,10 +71,6 @@ export const UserProvider = ({ children }) => {
 
     return (
 
-
-
-
-                        </div>
                     </div>
                 </div>
             )}
