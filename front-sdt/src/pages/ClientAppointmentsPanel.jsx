@@ -8,23 +8,7 @@ import {
 import { toast } from "react-hot-toast"; // Asumiendo que usas toast para feedback profesional
 
              </div>
-          </section>
-        </div>g ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} className="text-gray-400" />}
-                  </div>
-                  <textarea 
-                    value={customMessage}
-                    onChange={(e) => setCustomMessage(e.target.value)}
-                    placeholder="Escribe tu mensaje predefinido aquí..."
-                    className="w-full bg-white border border-black/5 rounded-xl p-3 text-[11px] font-bold focus:ring-2 ring-yellowColor/20 outline-none resize-none h-24"
-                  />
-                  <button 
-                    onClick={handleSaveSettings}
-                    disabled={isSaving}
-                    className="w-full mt-3 bg-black text-white text-[9px] font-black uppercase py-3 rounded-xl hover:bg-yellowColor hover:text-black transition-all"
-                  >
-                    Sincronizar Mensaje
-                  </button>
-               </div>
+          </sect
 
                <div className="pt-4 space-y-3">
                   <a href={`https://wa.me/573115456209?text=${encodeURIComponent(customMessage)}`} target="_blank" rel="noreferrer" className="w-full flex items-center justify-between p-4 bg-[#25D366] text-white rounded-xl hover:scale-[1.02] transition-all shadow-md group">
