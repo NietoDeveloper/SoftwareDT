@@ -18,8 +18,4 @@ const Profile = () => {
         } catch (error) {
             console.error('Fallo la llamada al endpoint de logout. Limpiando sesión local.', error); 
             
-            handleLogout(); 
-s
-}
-
-export default Profile;
+       
