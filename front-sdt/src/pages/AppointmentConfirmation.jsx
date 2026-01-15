@@ -13,9 +13,7 @@ import {
   CreditCard
 
 );
-
-const AppointmentConfirmation = () => {
-  const { user } = useContext(UserContext); // Extraemos el usuario del contexto
+rContext); // Extraemos el usuario del contexto
   const location = useLocation()
 
   const formatDate = (dateString) => {
