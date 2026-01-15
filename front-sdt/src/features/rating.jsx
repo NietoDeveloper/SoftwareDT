@@ -17,9 +17,7 @@ const ReviewForm = () => {
           <h3 className='text-center text_para'>How would you rate your overall experience?</h3>
             <div className='flex items-center'>
                 
-               {[1, 2, 3, 4, 5].map((star, index) => (
-              <button
-              type='button'
+  
   
             
             <div>
