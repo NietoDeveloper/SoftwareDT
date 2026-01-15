@@ -10,11 +10,6 @@ const Profile = () => {
     const logoutFromApiAndState = async () => {
         try {
 
-            await axiosAuth.post('/user/logout'); 
-
-            handleLogout(); 
-  
-        </div>
     )
 }
 
