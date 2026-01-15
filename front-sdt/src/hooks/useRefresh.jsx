@@ -9,12 +9,6 @@ const useRefresh = () => {
 
       return cleanToken;
 
-    } catch (error) {
-
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      localStorage.removeItem('role');
-
       throw error; 
     }
   };
