@@ -13,10 +13,7 @@ const ReviewForm = () => {
       <div className='container'>
         
         <form >
-          <div className="flex flex-col gap-6 w-1/2">
-          <h3 className='text-center text_para'>How would you rate your overall experience?</h3>
-            <div className='flex items-center'>
-                
+             
   
   
             
