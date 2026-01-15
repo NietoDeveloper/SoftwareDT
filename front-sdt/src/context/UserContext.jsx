@@ -83,7 +83,7 @@ export const UserProvider = ({ children }) => {
                                 Software D T
                             </p>
                             <span className="text-textColor/50 text-[10px] font-bold uppercase tracking-widest">
-                                Sincronizando Datacenter...
+                    
                             </span>
                         </div>
                     </div>
