@@ -11,10 +11,7 @@ const ClientAppointmentsPanel = () => {
   const { user, token, handleLogout } = useContext(UserContext);
   const navigate = useNavigate();
   
-  const [appointments, setAppointments] = useState([]);
-  const [messages, setMessages] = useState([]); 
-  const [activeTab, setActiveTab] = useState("pending");
-  const [isLoading, setIsLoading] = useState(true);
+isLoading, setIsLoading] = useState(true);
   
   // NUEVO: Estado para controlar plantillas de mensajes (Elon Musk Standard)
   const [customMessage, setCustomMessage] = useState(user?.customMessage || "");
