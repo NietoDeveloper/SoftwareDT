@@ -16,16 +16,7 @@ s>
                 filteredAppointments.map((appt) => (
                   <div key={appt._id} className="bg-white border-[3px] border-black/5 rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 hover:border-yellowColor/30 hover:shadow-2xl transition-all duration-400 group relative overflow-hidden">
                     <div className="absolute left-0 top-0 bottom-0 w-2 bg-yellowColor opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                      <div className="flex-1 space-y-3">
-                        <h3 className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tighter text-headingColor leading-none">
-                          {appt.serviceName || "Consultoría Técnica"}
-                        </h3>
-                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                           <div className="bg-main px-4 py-2 rounded-lg border border-black/5 shadow-sm">
-                             <p className="text-[12px] sm:text-[14px] font-black text-black uppercase tracking-widest">
-                                {formatDate(appt.slotDate || appt.appointmentDate)}
-                             </p>
+ 
                            </div>
                            <div className="bg-yellowColor/10 px-4 py-2 rounded-lg border border-yellowColor/20 shadow-sm">
                              <p className="text-[12px] sm:text-[14px] font-black text-yellowColor uppercase tracking-widest">
