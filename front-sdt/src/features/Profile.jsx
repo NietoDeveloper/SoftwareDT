@@ -23,9 +23,7 @@ const Profile = () => {
         <div className="absolute bg-white shadow-lg rounded-lg p-2 w-48 top-20 right-5 z-10 border border-gray-100">
             <ul className="flex flex-col text-sm">
    
-                    <Linkme="w-full block text-gray-700 font-medium">
-                        👤 Mi Perfil
-                    </Link>
+                    
                 </li>
                 <hr className="my-1 border-gray-200" />
                 <li 
