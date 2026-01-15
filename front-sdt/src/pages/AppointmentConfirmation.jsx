@@ -6,17 +6,7 @@ import {
   Calendar,
   CircleUser, 
   Clock,
-  CheckCircle,
 
-  Mail
-
-  conación <span className="text-gold">Exitosa</span>
-          </h1>
-          <div className="flex items-center justify-center gap-3 text-black font-bold bg-main/50 py-3 px-6 rounded-2xl w-fit mx-auto border border-black/5">
-            <Mail size={16} className="text-yellowColor flex-shrink-0" />
-            <p className="text-[9px] sm:text-[11px] uppercase tracking-[0.2em]">Confirmación enviada al Datacenter y a Tu Correo Electronico</p>
-          </div>
-        </div>
 
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-8 mb-10">
           <div className="group flex items-center p-6 sm:p-8 bg-main/30 rounded-3xl border-2 border-transparent hover:border-black transition-all">
