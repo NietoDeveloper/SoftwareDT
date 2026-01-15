@@ -10,18 +10,7 @@ import {
 
   Mail
 
-  const displayDatall flex flex-col items-center justify-center bg-main font-sans text-black p-4 sm:p-8 lg:p-12 overflow-x-hidden">
-      
-      <div className="w-full max-w-full sm:max-w-2xl lg:max-w-4xl xl:max-w-5xl bg-white p-6 sm:p-10 lg:p-16 rounded-[2rem] sm:rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.08)] border border-black/5 flex flex-col items-center relative overflow-hidden">
-        
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-
-        <div className="w-full text-center mb-10 sm:mb-14 relative z-10">
-          <div className="mx-auto mb-6 w-16 h-16 sm:w-24 sm:h-24 bg-black text-gold rounded-full flex items-center justify-center shadow-2xl border-4 border-white animate-bounce-short">
-            <CheckCircle className="w-8 h-8 sm:w-12 sm:h-12" strokeWidth={2.5} />
-          </div>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-black mb-4 uppercase tracking-tighter leading-none italic">
-            Sincronización <span className="text-gold">Exitosa</span>
+  conación <span className="text-gold">Exitosa</span>
           </h1>
           <div className="flex items-center justify-center gap-3 text-black font-bold bg-main/50 py-3 px-6 rounded-2xl w-fit mx-auto border border-black/5">
             <Mail size={16} className="text-yellowColor flex-shrink-0" />
