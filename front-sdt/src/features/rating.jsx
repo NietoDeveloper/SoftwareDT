@@ -8,9 +8,6 @@ const ReviewForm = () => {
     setRating(selectedRating);
   };
 
-  return (
 
-  );
-};
 
 export default ReviewForm;
