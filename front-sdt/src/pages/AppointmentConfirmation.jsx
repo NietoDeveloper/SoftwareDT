@@ -15,15 +15,7 @@ import {
  
           <DetailItem 
             icon={<CircleUser className="h-5 w-5 sm:h-6 sm:w-6" />} 
-            title="Usuario" 
-            value={displayData.fullName} 
-          />
-          <DetailItem 
-            icon={<CreditCard className="h-5 w-5 sm:h-6 sm:w-6" />} 
-            title="Hash de Operación" 
-            value={displayData._id.toString().substring(0, 16).toUpperCase()} 
-          />
-        </div>
+
 
         <div className="w-full mt-10 p-6 sm:p-10 bg-black text-white rounded-[2rem] relative group">
           <div className="absolute top-4 right-6 text-gold/20 font-black text-4xl opacity-20">"</div>
