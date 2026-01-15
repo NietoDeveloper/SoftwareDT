@@ -16,14 +16,7 @@ const ClientAppointmentsPanel = () => {
     <div className="min-h-screen bg-main pb-20 font-sans text-black antialiased overflow-x-hidden">
       {/* HEADER RESPONSIVE (Sin cambios) */}
       <div className="bg-white border-b-2 border-black/5 pt-8 sm:pt-12 pb-8 sm:pb-10 px-4 sm:px-6 md:px-12 shadow-[0_4px_30px_rgba(254,182,13,0.1)]">
-        <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-          <div className="space-y-2 w-full md:w-auto">
-            <div className="flex items-center gap-3">
-              <div className="w-6 sm:w-8 h-1 bg-yellowColor shadow-[0_0_10px_rgba(254,182,13,0.5)]"></div>
-              <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
-                SDT-SECURE-ID: {user?._id ? user._id.slice(-8).toUpperCase() : "INVITADO"}
-              </span>
-            </div>
+
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-headingColor uppercase tracking-tighter leading-[0.9] break-words">
               {user?.name || "USUARIO SDT"}<br/>
               <span className="text-yellowColor">Panel Cliente</span>
