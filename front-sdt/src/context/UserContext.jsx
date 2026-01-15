@@ -69,10 +69,7 @@ export const UserProvider = ({ children }) => {
         handleLogin, // Nueva función expuesta
     }), [user, token, loading, appointmentDetails, handleLogout, handleLogin, getAccessToken]);
 
-    return (
 
-                    </div>
-                </div>
             )}
         </UserContext.Provider>
     );
