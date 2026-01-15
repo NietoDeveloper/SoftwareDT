@@ -24,11 +24,7 @@ const Profile = () => {
     };
 
     return (
-        <div className="absolute bg-white shadow-lg rounded-lg p-2 w-48 top-20 right-5 z-10 border border-gray-100">
-     
 
-            
-            </ul>
         </div>
     )
 }
