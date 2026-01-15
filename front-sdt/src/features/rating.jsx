@@ -20,11 +20,7 @@ const ReviewForm = () => {
                {[1, 2, 3, 4, 5].map((star, index) => (
               <button
               type='button'
-                key={index}
-                onClick={() => handlestarClick(star)}
-                className={`text-2xl ${
-                  star <= rating ? 'text-yellow-400' : 'text-gray-300'
-                }`}
+          
               >
                 ★
               </button>
