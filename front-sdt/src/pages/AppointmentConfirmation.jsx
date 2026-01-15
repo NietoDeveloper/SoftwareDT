@@ -11,12 +11,7 @@ import {
   Mail,
   ShieldCheck,
   CreditCard
-} from "lucide-react";
 
-const IconWrapper = ({ children }) => (
-  <div className="p-3 sm:p-4 rounded-full bg-black text-gold flex-shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:bg-gold group-hover:text-black shadow-xl">
-    {children}
-  </div>
 );
 
 const AppointmentConfirmation = () => {
