@@ -11,24 +11,7 @@ const ClientAppointmentsPanel = () => {
   const { user, token, handleLogout } = useContext(UserContext);
   const navigate = useNavigate();
 
-
-
-                    {tab === "pending" ? "Pendientes" : "Cumplidas"}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid gap-6">
-              {isLoading ? (
-                <div className="p-20 flex flex-col items-center justify-center gap-4 bg-white/30 rounded-3xl">
-                    <Loader2 className="animate-spin text-yellowColor" size={40} />
-                    <div className="font-black uppercase text-[10px] tracking-widest text-gray-400">Sincronizando Datacenter...</div>
-                </div>
-              ) : filteredAppointments.length === 0 ? (
-                <div className="bg-white/50 border-2 border-black/5 border-dashed p-12 sm:p-16 rounded-[1.5rem] sm:rounded-[2rem] text-center italic text-gray-400 font-bold text-xs sm:text-sm">
-                  No se registran Citas en este estado.
-                </div>
+s>
               ) : (
                 filteredAppointments.map((appt) => (
                   <div key={appt._id} className="bg-white border-[3px] border-black/5 rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 hover:border-yellowColor/30 hover:shadow-2xl transition-all duration-400 group relative overflow-hidden">
