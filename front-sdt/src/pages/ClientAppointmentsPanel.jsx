@@ -17,13 +17,7 @@ isLoading, setIsLoading] = useState(true);
     fetchDashboardData();
 
 
-  const formatDate = (dateString) => {
-    if (!dateString) return "FECHA PENDIENTE";
-    const date = new Date(dateString);
-    return isNaN(date.getTime()) 
-      ? "FECHA INVÁLIDA" 
-      : date.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
-  };
+
 
   const handleMensajeDirecto = () => {
     window.location.href = `mailto:admin@softwaredt.com?subject=Soporte Software DT - ${user?.name}`;
