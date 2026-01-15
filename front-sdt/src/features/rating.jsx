@@ -10,10 +10,7 @@ const ReviewForm = () => {
 
   return (
     <section className='w-full'>
-      <div className='container'>
-        
-        
-      </div>
+
     </section>
   );
 };
