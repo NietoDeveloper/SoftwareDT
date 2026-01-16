@@ -17,31 +17,7 @@ const ServicesList = () => {
 
   ];
 }
-              onClick={() => handleServiceSelection(service)}
-              className="group bg-white border-[4px] border-black rounded-[30px] p-6 transition-all duration-300 ease-out cursor-pointer 
 
-              <div className="w-full flex flex-col items-center mt-auto flex-shrink-0">
-                <div className="w-12 h-[2px] bg-gold mb-4 shadow-[0_0_4px_#FFD700]"></div>
-                
-                <div className="flex items-center justify-between w-full px-4 mb-2">
-                  <div className="text-left">
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Inversión</p>
-                    <p className="text-[13px] font-black text-black uppercase">{service.price}</p>
-                  </div>
-                  
-                  <div className="w-12 h-12 rounded-full border-[3px] border-black flex items-center justify-center 
-                                  bg-transparent transition-all duration-300 ease-in-out
-                                  shadow-[0_8px_15px_rgba(0,0,0,0.15)] 
-                                  group-hover:bg-gold group-hover:border-gold group-hover:shadow-[0_10px_25px_rgba(255,215,0,0.4)] 
-                                  group-hover:scale-110">
-                    <ArrowRightIcon className="w-6 h-6 text-black group-hover:text-white transition-colors duration-300" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
       
       <Footer />
     </div>
