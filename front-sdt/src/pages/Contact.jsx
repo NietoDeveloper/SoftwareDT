@@ -23,11 +23,6 @@ const Contact = () => {
           <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
       
             
-          
-            <p className="text-gray-500 font-bold text-base sm:text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
-              Estamos listos para escalar tu infraestructura. Cuéntanos sobre tu próximo gran proyecto.
-            </p>
-          </div>
 
           {/* Tarjeta Formulario */}
           <div className="w-full max-w-lg lg:w-1/2">
