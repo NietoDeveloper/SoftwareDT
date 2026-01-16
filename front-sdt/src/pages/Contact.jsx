@@ -9,13 +9,7 @@ const Contact = () => {
     name: "",
     email: "",
     message: "",
-st [statusMessage, setStatusMessage] = useState(null);
 
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatusMessage(null);
 
     try {
       // Configuración de EmailJS
