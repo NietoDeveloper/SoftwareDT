@@ -10,13 +10,7 @@ const clientData = [
     imageUrl: "https://www.bancoagrario.gov.co/PublishingImages/Logo_Banco_Agrario_2024.png", // Imagen Online Directa
     website: "https://www.bancoagrario.gov.co/",
   },
-  {
-    id: 2,
-    title: "Google",
-    description: "Integración avanzada con ecosistemas de Google Cloud y servicios escalables.",
-    imageUrl: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-    website: "https://www.google.com/",
-  },
+
   {
     id: 3,
     title: "Tejas Ajover",
