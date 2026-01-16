@@ -11,18 +11,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div id="home-wrapper" className="bg-main antialiased min-h-screen">
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        /* SECTOR DE EXCLUSIÓN */
-        #home-wrapper h1:not(footer *):not(#questions-section-unique *), 
-        #home-wrapper h2:not(.text-white-force):not(footer *):not(#questions-section-unique *), 
-        #home-wrapper h3:not(footer *):not(#questions-section-unique *), 
-        #home-wrapper p:not(footer *):not(#questions-section-unique *), 
-        #home-wrapper span:not(.text-white-force):not(.text-gold-sdt):not(footer *):not(#questions-section-unique *) { 
-          color: #000000 !important; 
-        }
+
 
         .text-white-force {
           color: #ffffff !important;
