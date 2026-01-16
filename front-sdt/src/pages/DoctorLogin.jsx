@@ -17,32 +17,7 @@ const Doctorlogin = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm();
-
-    const onSubmit = async (data) => {
-        setError(null);
-        setIsLoading(true);
-
-        try {
-            // Simulación de autenticación
-            await new Promise(resolve => setTimeout(resolve, 1500)); 
-            const mockResponse = {
-                data: {
-                    accessToken: 'mock_doctor_token_12345',
-                    doctorData: { name: 'Dr. Ejemplo', email: data.email, role: 'doctor' }
-                }
-            };
-            localStorage.setItem('accessToken', mockResponse.data.accessToken); 
-            navigate('/doctor/dashboard', { replace: true });
-        } catch (processError) {
-            setError('Credenciales de especialista inválidas o error de servidor.');
-        } finally {
-            setIsLoading(false);
-        }
+   
     };
     
     return (
