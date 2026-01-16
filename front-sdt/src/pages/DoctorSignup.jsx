@@ -84,24 +84,7 @@ import { toast } from 'react-toastify';
                             </div>
                         )}
 
-                        <button
-                            type="submit"
-                            disabled={isLoading}
-                            className={`w-full py-5 bg-black text-white rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl transition-all duration-500 flex items-center justify-center ${
-                                isLoading 
-                                ? 'opacity-50 cursor-not-allowed' 
-                                : 'hover:bg-gold hover:text-black hover:shadow-gold/20 transform hover:-translate-y-1'
-                            }`}
-                        >
-                            {isLoading ? (
-                                <div className="h-6 w-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-                            ) : (
-                                'Registrar Especialista'
-                            )}
-                        </button>
-                    </form>
-                </div>
-            </div>
+                        <
         </div>
     );
 };
