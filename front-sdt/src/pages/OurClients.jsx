@@ -11,13 +11,6 @@ const clientData = [
     website: "https://www.bancoagrario.gov.co/",
   },
 
-  {
-    id: 5,
-    title: "RCN Televisión Colombia",
-    description: "Modernización de plataformas digitales para streaming y gestión de contenidos masivos.",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a3/CanalRCN2023.png",
-    website: "https://www.canalrcn.com/",
-  },
 
 ];
 
