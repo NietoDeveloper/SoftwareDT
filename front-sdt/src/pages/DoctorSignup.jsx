@@ -20,13 +20,7 @@ const DoctorSignup = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null); 
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset
-    } = useForm();
-
+   
     const onSubmit = async (data) => {
         setIsLoading(true);
         setError(null);
