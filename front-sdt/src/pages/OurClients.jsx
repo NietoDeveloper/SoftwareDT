@@ -47,20 +47,6 @@ const OurClients = () => {
                   />
                 </div>
 
-                {/* Texto Negro a Gold */}
-                <h3 className="text-xl font-black text-black uppercase tracking-tighter mb-3 text-center group-hover:text-amber-600 transition-colors duration-300 drop-shadow-[1px_1px_0px_rgba(255,255,255,1)]">
-                  {client.title}
-                </h3>
-
-                <p className="text-gray-500 text-sm font-bold text-center flex-grow leading-snug px-2">
-                  {client.description}
-                </p>
-
-                {/* Footer de Tarjeta con sombra suave */}
-                <div className="mt-8 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-black/40 group-hover:text-amber-500 transition-colors duration-300">
-                   Conexión Segura <span className="group-hover:translate-x-2 transition-transform">&rarr;</span>
-                </div>
-              </a>
             ))}
           </div>
         </div>
