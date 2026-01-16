@@ -11,13 +11,7 @@ const DoctorList = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-
-
-  // 2. FUNCIÓN DE PERSISTENCIA Y NAVEGACIÓN
-  const navigateToBooking = (doctor) => {
-    const fullAppointmentData = {
-      doctorData: doctor,
-      serviceData: selectedServiceInfo
+iceData: selectedServiceInfo
     };
 
     // GUARDAR PARA EL FLUJO DE BOOKING (Persistencia física)
