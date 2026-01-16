@@ -31,14 +31,7 @@ const Contact = () => {
                   </div>
                 )}
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full mt-4 py-5 bg-black text-white rounded-xl font-black text-[11px] uppercase tracking-[0.3em] transition-all duration-500 hover:bg-amber-500 hover:text-black hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(255,215,0,0.3)] flex items-center justify-center gap-3"
-                >
-                  {isSubmitting ? (
-                    <div className="w-5 h-5 border-2 border-white border-t-amber-500 rounded-full animate-spin"></div>
-                  ) : (
+              
                     <>Desplegar Mensaje <Send size={14} /></>
                   )}
                 </button>
