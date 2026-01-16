@@ -32,12 +32,7 @@ const Doctorlogin = () => {
                         <p className='text-sm font-bold uppercase tracking-widest text-gray-400'>
                             ¿Nuevo en la plataforma?
                         </p>
-                        <Link 
-                            to="/doctor/signup" 
-                            className='inline-block text-black hover:text-gold font-black text-xl transition-all duration-300 underline decoration-gold decoration-4 underline-offset-4'
-                        >
-                            Crear cuenta de Especialista
-                        </Link>
+
                     </div>
 
                     <div className="mt-12 pt-8 border-t border-main">
