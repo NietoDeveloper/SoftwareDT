@@ -25,22 +25,7 @@ const Contact = () => {
                 {statusMessage && (
                   <div className={`p-4 rounded-xl text-[10px] font-black uppercase border flex items-center gap-2 ${
                     statusMessage.type === "success" ? "bg-green-50 text-green-600 border-green-200" : "bg-red-50 text-red-600 border-red-200"
-                  }`}>
-                    {statusMessage.type === "success" && <ShieldCheck size={16} />}
-                    {statusMessage.text}
-                  </div>
-                )}
-
-              
-                    <>Desplegar Mensaje <Send size={14} /></>
-                  )}
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      
       {/* SECCIÓN 2: UBICACIÓN Y WHATSAPP */}
       <section className="py-24 bg-black text-white px-6 sm:px-12 lg:px-24">
         <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
