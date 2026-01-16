@@ -31,34 +31,7 @@ const NotFoundPage = () => {
             Ruta no <span className="text-gold">encontrada</span>
           </h2>
           <p className="text-white/60 text-lg md:text-xl font-medium max-w-lg mx-auto mb-10 tracking-wide">
-            Parece que te has desviado del código. La página que buscas no existe o ha sido movida.
-          </p>
-
-          <button 
-            onClick={() => navigate("/")}
-            className="px-12 py-5 bg-gold text-black font-black uppercase tracking-[0.2em] 
-                       rounded-full hover:bg-white transition-all duration-500 
-                       shadow-[0_20px_50px_rgba(255,215,0,0.3)] active:scale-95 scale-110"
-          >
-            Volver al Inicio
-          </button>
-        </div>
-      </div>
-
-      {/* DECORACIÓN LATERAL */}
-      <div className="absolute bottom-10 right-10 z-[10]">
-        <p className="text-white/20 font-black uppercase tracking-[0.5em] text-xs vertical-text">
-          Software DT // 2025
-        </p>
-      </div>
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        .vertical-text {
-          writing-mode: vertical-rl;
-          transform: rotate(180deg);
-        }
-      `}} />
-    </div>
+     
   );
 };
 
