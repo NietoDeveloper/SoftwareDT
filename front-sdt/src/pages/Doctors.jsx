@@ -16,13 +16,6 @@ const DoctorList = () => {
                               JSON.parse(localStorage.getItem('selectedService')) || 
                               null;
 
-  const getDoctors = async () => {
-   .data.data || res.data.doctors || res.data;
-    } catch (error) {
-      toast.error("Error al conectar con el Datacenter");
-      throw error;
-    }
-  };
 
   const { data: doctors = [], isLoading } = useQuery({
     queryKey: ["doctors"],
