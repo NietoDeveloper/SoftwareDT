@@ -19,16 +19,6 @@ const Home = () => {
           filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
         }
 
-        #home-wrapper button:not(.nav-toggle):not(#questions-section-unique *), 
-        #home-wrapper .btn:not(#questions-section-unique *) {
-          background-color: #000000 !important;
-          color: #ffffff !important;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-          border: none !important;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
 
         /* EFECTO HOVER GOLD NOTORIO Y EXPLOSIVO */
         #home-wrapper button:hover:not(#questions-section-unique *), 
