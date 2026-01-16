@@ -20,40 +20,7 @@ import { Lock } from "lucide-react";
                     </div>
                 </div>
 
-                {/* Lado Derecho: Formulario */}
-                <div className="w-full max-w-[450px]">
-                    <div className="bg-card border-[3px] border-headingColor rounded-[40px] p-8 sm:p-12 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.1)]">
-                        
-                        <div className="flex items-center justify-between mb-10">
-                            <h2 className="text-2xl font-black text-headingColor uppercase tracking-tighter">Login</h2>
-                            <div className="p-3 bg-yellowColor rounded-2xl text-headingColor">
-                                <Lock size={22} strokeWidth={3} />
-                            </div>
-                        </div>
-                        
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-                            <div>
-                                <label className="block text-[10px] font-black text-textColor/40 uppercase tracking-widest mb-2 ml-1">Email del Cliente</label>
-                                <input
-                                    type="email"
-                                    className="w-full bg-main/20 border-2 border-gainsboro p-4 rounded-2xl focus:border-yellowColor focus:bg-white outline-none transition-all font-bold text-headingColor text-sm"
-                                    placeholder="correo@ejemplo.com"
-                                    {...register('email', { 
-                                        required: 'El email es obligatorio',
-                                        pattern: { value: /^\S+@\S+\.\S+$/, message: 'Formato de email inválido' }
-                                    })}
-                                />
-                                {errors.email && <span className="text-red-500 text-[10px] font-black uppercase mt-2 block">{errors.email.message}</span>}
-                            </div>
-
-                            <div>
-                                <label className="block text-[10px] font-black text-textColor/40 uppercase tracking-widest mb-2 ml-1">Contraseña</label>
-                                <input
-                                    type="password"
-                                    className="w-full bg-main/20 border-2 border-gainsboro p-4 rounded-2xl focus:border-yellowColor focus:bg-white outline-none transition-all font-bold text-headingColor text-sm"
-                                    placeholder="••••••••"
-                                    {...register('password', { required: 'La contraseña es obligatoria' })}
-                                />
+               
                                 {errors.password && <span className="text-red-500 text-[10px] font-black uppercase mt-2 block">{errors.password.message}</span>}
                             </div>
 
