@@ -17,11 +17,7 @@ const DoctorList = () => {
                               null;
 
   const getDoctors = async () => {
-    try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-      const res = await axios.get(`${apiUrl}/doctors`);
-      // Adaptación flexible según la estructura de tu API
-      return res.data.data || res.data.doctors || res.data;
+   .data.data || res.data.doctors || res.data;
     } catch (error) {
       toast.error("Error al conectar con el Datacenter");
       throw error;
