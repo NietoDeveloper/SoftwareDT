@@ -3,13 +3,7 @@ import React from "react";
 import Footer from "../components/Footer/Footer";
 
 const clientData = [
-  {
-    id: 1,
-    title: "Banco Agrario de Colombia",
-    description: "Desarrollo de infraestructura fintech y banca digital segura para el sector agroindustrial.",
-    imageUrl: "https://www.bancoagrario.gov.co/PublishingImages/Logo_Banco_Agrario_2024.png", // Imagen Online Directa
-    website: "https://www.bancoagrario.gov.co/",
-  },
+
 
 
 ];
