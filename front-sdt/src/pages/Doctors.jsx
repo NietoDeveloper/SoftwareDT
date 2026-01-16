@@ -17,20 +17,7 @@ iceData: selectedServiceInfo
   return (
     <div className="min-h-screen bg-main font-sans antialiased overflow-x-hidden">
       <div className="mx-auto px-4 sm:px-6 py-12 sm:py-20 max-w-[1800px]">
-        
-        {/* ENCABEZADO RESPONSIVE */}
-        <div className="text-center mb-12 sm:mb-20 space-y-4">
-          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-headingColor uppercase tracking-tighter leading-none">
-            Asignar <span className="text-gold">Servicio</span>
-          </h1>
-          {selectedServiceInfo && (
-            <div className="inline-block bg-white/50 backdrop-blur-sm border border-gold/30 px-4 py-1.5 rounded-full mx-2">
-              <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-black">
-                PROYECTO: <span className="text-gold">{selectedServiceInfo.name || selectedServiceInfo.title}</span>
-              </p>
-            </div>
-          )}
-        </div>
+
 
         {/* GRID RESPONSIVE */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 sm:gap-10 justify-items-center">
