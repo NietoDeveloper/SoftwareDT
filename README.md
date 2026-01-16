@@ -11,7 +11,7 @@ SoftwareDT/
 ├── client/ # Frontend: React + Vite + Tailwind CSS (Corporate Design)
 │ ├── src/
 │ │ ├── components/ # Reusable and Atomic UI Components
-│ │ ├── pages/ # Core Flow: Services, Doctors, Booking, Dashboard
+│ │ ├── pages/ # Core Flow: Info Services, Choose Service, Booking, Dashboard, Comunications.
 │ │ └── assets/ # Global Styles and Brand Identity
 │ └── package.json
 ├── server/ # Backend: Node.js + Express + MongoDB (Clean Architecture)
