@@ -27,25 +27,7 @@ const Contact = () => {
         
              
 
-                <div className="space-y-2">
-                  <label className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] ml-1">Corporate Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm"
-                    placeholder="DEV@COMPANY.COM"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] ml-1">Technical Message</label>
-                  <textarea
-                    name="message"
-                    rows="4"
-                    value={formData.message}
+               
                     onChange={handleChange}
                     required
                     className="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black resize-none text-sm"
