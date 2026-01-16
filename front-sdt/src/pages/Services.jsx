@@ -15,13 +15,7 @@ const ServicesList = () => {
 
   const services = [
 
-    {
-      id: "seo",
-      title: "Optimización SEO",
-      subtitle: "Visibilidad Digital",
-      description: "Análisis profundo para mejorar el ranking en motores de búsqueda y auditorías técnicas de rendimiento.",
-      price: "Desde $ 8.000.000 COP",
-    },
+   
     {
       id: "ui-ux",
       title: "Diseño UI/UX",
