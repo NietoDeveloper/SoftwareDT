@@ -16,27 +16,7 @@ const ServicesList = () => {
   const services = [
 
   ];
-
-    
-    // Guardamos en Storage para que Doctors.jsx pueda leerlo aunque se refresque la página
-
-
-      <section className="services-container flex flex-col items-center py-16 px-4 min-h-screen max-w-[1800px] mx-auto">
-        
-        <div className="text-center mb-16 space-y-2">
-          <div className="inline-flex items-center gap-2">
-            <div className="w-8 h-[2px] bg-gold shadow-[0_0_8px_#FFD700]"></div>
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Información De Productos</span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-black text-black uppercase tracking-tighter">
-            Nuestros <span className="text-gold">Servicios</span>
-          </h1>
-        </div>
-
-        <div className="flex flex-wrap justify-center gap-8 lg:gap-10 w-full">
-          {services.map((service, index) => (
-            <div
-              key={index}
+}
               onClick={() => handleServiceSelection(service)}
               className="group bg-white border-[4px] border-black rounded-[30px] p-6 transition-all duration-300 ease-out cursor-pointer 
                          flex flex-col items-center justify-between text-center 
