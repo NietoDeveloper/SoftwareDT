@@ -72,19 +72,7 @@ import { toast } from 'react-toastify';
                                     required: 'El email es obligatorio', 
                                     pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: "Email inválido" } 
                                 })}
-                            />
-                            {errors.email && <span className="text-red-500 text-xs mt-1.5 font-bold uppercase tracking-tighter">{errors.email.message}</span>}
-                        </div>
-
-                        </div>
-
-                        {error && (
-                            <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-xl text-xs font-bold uppercase tracking-tighter">
-                                {error}
-                            </div>
-                        )}
-
-                        <
+              
         </div>
     );
 };
