@@ -28,15 +28,6 @@ const Home = () => {
 
    
 
-      <main className="max-w-[1800px] mx-auto overflow-hidden space-y-10 px-4 sm:px-8 mt-10">
-        <section className="py-10">
-          <Herosection />
-        </section>
-
-        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
-          <About />
-
-    </div>
   );
 };
 
