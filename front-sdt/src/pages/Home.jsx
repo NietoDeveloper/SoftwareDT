@@ -41,14 +41,6 @@ const Home = () => {
           <Guide />
         </section>
 
-        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card">
-          <Publicidad />
-        </section>
-
-        <section className="hover:shadow-xl transition-shadow duration-500 rounded-3xl overflow-hidden bg-card mb-20">
-          <Questions />
-        </section>
-      </main>
       
       <Footer />
     </div>
