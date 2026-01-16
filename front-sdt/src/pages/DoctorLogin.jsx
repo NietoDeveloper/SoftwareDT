@@ -34,27 +34,6 @@ const Doctorlogin = () => {
                 {/* LADO DERECHO: Formulario Limpio */}
                 <div className="w-full md:w-1/2 p-10 lg:p-16 bg-main/30 flex flex-col justify-center">
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                        {/* Email */}
-                        <div className="flex flex-col">
-                            <label className="mb-2 font-black text-headingColor text-xs uppercase tracking-widest">Correo Electrónico</label>
-                            <input
-                                type="email"
-                                className="bg-white border-2 border-transparent p-4 rounded-2xl focus:border-gold transition-all duration-300 shadow-sm outline-none w-full font-medium"
-                                placeholder="doctor@softwaredt.com"
-                                {...register('email', { required: 'El email es obligatorio' })}
-                            />
-                            {errors.email && <span className="text-red-500 text-xs mt-2 font-bold uppercase tracking-tighter">{errors.email.message}</span>}
-                        </div>
-
-                        {/* Password */}
-
-
-                        {error && (
-                            <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-xl text-sm font-bold">
-                                {error}
-                            </div>
-                        )}
 
                         <button
                             type="submit"
