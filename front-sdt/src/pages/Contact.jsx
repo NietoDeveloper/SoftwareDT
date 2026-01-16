@@ -11,9 +11,6 @@ const Contact = () => {
     message: "",
 st [statusMessage, setStatusMessage] = useState(null);
 
-  // Datos de contacto Software DT
-  const whatsappNumber = "+57 300 123 4567";
-  const rawNumber = "573001234567";
   
   // Enlace de WhatsApp dinámico: incluye el nombre del usuario si ya lo escribió
   const whatsappLink = `https://wa.me/${rawNumber}?text=${encodeURIComponent(
