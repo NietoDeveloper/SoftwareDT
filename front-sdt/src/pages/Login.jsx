@@ -14,23 +14,7 @@ const Login = () => {
     
             });
             
-            const result = response.data;
-            
-            // Verificamos la estructura de respuesta del Backend
-            const rawToken = result.accessToken || result.token;
-            const userData = result.user || result.data;
-            
-            if (!rawToken) {
-                throw new Error("El servidor no proporcionó un token de acceso.");
-            }
-
-            // Usamos la función centralizada del Contexto
-            // Esto guarda en localStorage y actualiza el estado de una vez
-            handleLogin(userData, rawToken);
-
-            toast.success(`🚀 ¡Bienvenido al Datacenter, ${userData.name.split(' ')[0]}!`);
-            
-            localStorage.removeItem('sdt_return_path');
+            c
             
             // Navegación inmediata tras el éxito
             navigate(from, { replace: true }); 
