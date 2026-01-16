@@ -14,13 +14,7 @@ const ServicesList = () => {
   const navigate = useNavigate(); // Hook para navegación programática
 
   const services = [
-    {
-      id: "web-apps",
-      title: "Desarrollo Web y Apps",
-      subtitle: "Software a Medida",
-      description: "Creación de sitios web dinámicos, aplicaciones móviles iOS/Android y gestión de bases de datos seguras.",
-      price: "Desde $ 2.000.000 COP",
-    },
+
     {
       id: "ai",
       title: "Inteligencia Artificial",
