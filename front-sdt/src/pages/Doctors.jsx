@@ -11,16 +11,7 @@ const DoctorList = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // 1. Prioridad: State (viniendo directo). Fallback: LocalStorage (viniendo de un refresh/login)
-  const selectedServiceInfo = location.state?.selectedService || 
-                              JSON.parse(localStorage.getItem('selectedService')) || 
-                              null;
 
-
-  const { data: doctors = [], isLoading } = useQuery({
-    queryKey: ["doctors"],
-    queryFn: getDoctors,
-  });
 
   // 2. FUNCIÓN DE PERSISTENCIA Y NAVEGACIÓN
   const navigateToBooking = (doctor) => {
