@@ -16,11 +16,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm();
+
 
     // Lógica de redirección mejorada
     const from = location.state?.from?.pathname || localStorage.getItem('sdt_return_path') || "/users/profile/me";
