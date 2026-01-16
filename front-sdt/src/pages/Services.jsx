@@ -15,14 +15,6 @@ const ServicesList = () => {
 
   const services = [
 
-   
-    {
-      id: "ui-ux",
-      title: "Diseño UI/UX",
-      subtitle: "Experiencia Inmersiva",
-      description: "Interfaces centradas en el usuario con prototipos de alta fidelidad y pruebas de usabilidad.",
-      price: "Desde $ 3.000.000 COP",
-    },
     {
       id: "automation",
       title: "Automatización",
