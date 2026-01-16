@@ -12,16 +12,7 @@ const DoctorList = () => {
   const location = useLocation();
   
 iceData: selectedServiceInfo
-    };
 
-    // GUARDAR PARA EL FLUJO DE BOOKING (Persistencia física)
-    localStorage.setItem('sdt_pending_appointment', JSON.stringify(fullAppointmentData));
-
-    // Navegación programática
-    navigate(`/book-appointment/${doctor._id}`, {
-      state: fullAppointmentData,
-    });
-  };
 
   if (isLoading) return (
     <div className="min-h-screen flex items-center justify-center bg-main">
