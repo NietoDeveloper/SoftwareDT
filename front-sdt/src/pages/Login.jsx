@@ -18,23 +18,7 @@ import { Lock } from "lucide-react";
                             Registrarme Ahora
                         </Link>
                     </div>
-                </div>
-
-               
-                                {errors.password && <span className="text-red-500 text-[10px] font-black uppercase mt-2 block">{errors.password.message}</span>}
-                            </div>
-
-                            <button
-                                type="submit"
-                                disabled={isLoading}
-                                className="w-full mt-6 py-5 bg-headingColor text-white rounded-full font-black text-[12px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-yellowColor hover:text-black hover:shadow-xl active:scale-95 flex items-center justify-center"
-                            >
-
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    
         </div>
     );
 };
