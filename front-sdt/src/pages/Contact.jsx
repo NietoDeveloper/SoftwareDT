@@ -9,9 +9,7 @@ const Contact = () => {
     name: "",
     email: "",
     message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [statusMessage, setStatusMessage] = useState(null);
+st [statusMessage, setStatusMessage] = useState(null);
 
   // Datos de contacto Software DT
   const whatsappNumber = "+57 300 123 4567";
