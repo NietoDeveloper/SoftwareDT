@@ -31,16 +31,7 @@ const Signup = () => {
 
             const { accessToken, user, success } = response.data;
 
-            if (success && accessToken) {
-                // PERSISTENCIA ATÓMICA
-                localStorage.setItem('token', accessToken);
-                localStorage.setItem('user', JSON.stringify(user));
-                
-                // ACTUALIZACIÓN DE ESTADO GLOBAL
-                setToken(accessToken);
-                setUser(user);
-
-                toast.success(`🚀 ¡Arquitecto ${user.name.split(' ')[0]} Sincronizado!`);
+           
 
                 // FLUJO DE INFORMACIÓN SOFTWARE DT:
                 // Si el usuario eligió un servicio antes de registrarse, lo llevamos a Doctors.jsx
