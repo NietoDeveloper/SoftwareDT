@@ -94,18 +94,7 @@ const OurClients = () => {
 
                 {/* Título de Cliente - Fuente Aumentada */}
                 <h3 className="text-2xl sm:text-3xl font-black text-headingColor uppercase tracking-tighter mb-4 text-center group-hover:text-gold transition-colors duration-300">
-                  {client.title}
-                </h3>
 
-                {/* Descripción - Fuente Aumentada y Clara */}
-                <p className="text-textColor/60 text-[16px] font-bold text-center flex-grow leading-relaxed px-2 italic">
-
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Footer />
     </div>
   );
 };
