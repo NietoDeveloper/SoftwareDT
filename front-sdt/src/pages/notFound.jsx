@@ -26,13 +26,6 @@ const NotFoundPage = () => {
           404
         </h1>
         
-        <div className="mt-[-4rem] md:mt-[-8rem]">
-          <h2 className="text-white text-3xl md:text-5xl font-black uppercase tracking-[0.3em] mb-4">
-            Ruta no <span className="text-gold">encontrada</span>
-          </h2>
-          <p className="text-white/60 text-lg md:text-xl font-medium max-w-lg mx-auto mb-10 tracking-wide">
-     
-  );
-};
+
 
 export default NotFoundPage;
