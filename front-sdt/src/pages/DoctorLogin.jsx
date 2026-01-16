@@ -26,14 +26,7 @@ const Doctorlogin = () => {
                 
                 {/* LADO IZQUIERDO: Branding NietoDeveloper Style */}
                 <div className="w-full md:w-1/2 p-10 lg:p-16 flex flex-col justify-center bg-white">
-         
 
-                    <div className="space-y-4">
-                        <p className='text-sm font-bold uppercase tracking-widest text-gray-400'>
-                            ¿Nuevo en la plataforma?
-                        </p>
-
-                    </div>
 
            
                 </div>
