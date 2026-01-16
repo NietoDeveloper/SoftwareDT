@@ -16,13 +16,6 @@ const ServicesList = () => {
   const services = [
 
     {
-      id: "it-maintenance",
-      title: "Mantenimiento IT",
-      subtitle: "Continuidad del Negocio",
-      description: "Soporte técnico continuo, monitoreo de servidores y actualizaciones de seguridad preventivas.",
-      price: "Desde $ 8.000.000 COP",
-    },
-    {
       id: "seo",
       title: "Optimización SEO",
       subtitle: "Visibilidad Digital",
