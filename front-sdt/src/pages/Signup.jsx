@@ -22,16 +22,7 @@ const Signup = () => {
         role: 'usuario' 
     });
     
-    const [validationErrors, setValidationErrors] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
 
-    const handleChange = (e) => {
-        const { id, value } = e.target;
-        setFormData(prev => ({ ...prev, [id]: value }));
-        if (validationErrors[id]) {
-            setValidationErrors(prev => ({ ...prev, [id]: validateField(id, value) }));
-        }
-    };
 
     const onSubmit = async (e) => {
         e.preventDefault();
