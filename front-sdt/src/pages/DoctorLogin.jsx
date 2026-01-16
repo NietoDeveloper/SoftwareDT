@@ -48,16 +48,7 @@ const Doctorlogin = () => {
                         </div>
 
                         {/* Password */}
-                        <div className="flex flex-col">
-                            <label className="mb-2 font-black text-headingColor text-xs uppercase tracking-widest">Contraseña</label>
-                            <input
-                                type="password"
-                                className="bg-white border-2 border-transparent p-4 rounded-2xl focus:border-gold transition-all duration-300 shadow-sm outline-none w-full font-medium"
-                                placeholder="••••••••"
-                                {...register('password', { required: 'La contraseña es obligatoria' })}
-                            />
-                            {errors.password && <span className="text-red-500 text-xs mt-2 font-bold uppercase tracking-tighter">{errors.password.message}</span>}
-                        </div>
+
 
                         {error && (
                             <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-xl text-sm font-bold">
