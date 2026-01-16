@@ -33,15 +33,7 @@ const Signup = () => {
 
            
 
-                // FLUJO DE INFORMACIÓN SOFTWARE DT:
-                // Si el usuario eligió un servicio antes de registrarse, lo llevamos a Doctors.jsx
-                const selectedService = localStorage.getItem('selectedService');
-                
-                if (selectedService) {
-                    navigate('/doctors', { replace: true });
-                } else {
-                    navigate('/users/profile/me', { replace: true });
-                }
+               
             } else {
                 toast.info("Registro capturado. Por favor inicia sesión.");
                 navigate('/login');
