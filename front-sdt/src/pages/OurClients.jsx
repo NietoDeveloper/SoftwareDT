@@ -12,13 +12,6 @@ const clientData = [
   },
 
   {
-    id: 4,
-    title: "Ministerio de Defensa Colombia",
-    description: "Sistemas de gestión segura y protocolos de encriptación para defensa nacional.",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/24/Logo_Ministerio_de_Defensa_%282022-2026%29.png",
-    website: "https://www.mindefensa.gov.co/",
-  },
-  {
     id: 5,
     title: "RCN Televisión Colombia",
     description: "Modernización de plataformas digitales para streaming y gestión de contenidos masivos.",
