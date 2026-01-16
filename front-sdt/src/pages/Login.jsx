@@ -11,21 +11,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api"
 const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     
-    // Extraemos handleLogin del contexto optimizado
-    const { handleLogin } = useContext(UserContext); 
-    const navigate = useNavigate();
-    const location = useLocation();
-
-
-
-    // Lógica de redirección mejorada
-    const from = location.state?.from?.pathname || localStorage.getItem('sdt_return_path') || "/users/profile/me";
-
-    const onSubmit = async (data) => {
-        setIsLoading(true);
-        try {
-            const response = await axios.post(`${API_BASE_URL}/auth/login`, data, {
-                withCredentials: true 
+    
             });
             
             const result = response.data;
