@@ -14,12 +14,6 @@ const DoctorList = () => {
 iceData: selectedServiceInfo
 
 
-  if (isLoading) return (
-    <div className="min-h-screen flex items-center justify-center bg-main">
-      <div className="w-10 h-10 border-4 border-gold border-t-transparent rounded-full animate-spin"></div>
-    </div>
-  );
-
   return (
     <div className="min-h-screen bg-main font-sans antialiased overflow-x-hidden">
       <div className="mx-auto px-4 sm:px-6 py-12 sm:py-20 max-w-[1800px]">
