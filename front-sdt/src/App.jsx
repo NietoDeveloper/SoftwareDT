@@ -15,15 +15,13 @@ import Payment from "./components/Checkout/Payment.jsx";
 import ClientPanel from "./pages/ClientAppointmentsPanel.jsx";
 import OurClients from "./pages/OurClients.jsx";
 
-// 1. IMPORTAR TOASTER (Mantenemos react-hot-toast para notificaciones de sistema)
+// 1. IMPORTAR TOASTER (Protocolo Software DT)
 import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
-      {/* CONFIGURACIÓN GLOBAL DE NOTIFICACIONES ESTILO SOFTWARE DT 
-          Nota: Ya no envolvemos en UserProvider porque está en main.jsx
-      */}
+      {/* CONFIGURACIÓN GLOBAL ESTILO SOFTWARE DT */}
       <Toaster 
         position="top-right"
         toastOptions={{
@@ -53,20 +51,20 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         
-        {/* --- SECCIÓN PROTEGIDA (DATACENTER) --- */}
+        {/* --- SECCIÓN PROTEGIDA (DATACENTER / MVP) --- */}
         <Route element={<PrivateRoutes />}>
-          {/* Mapeo de rutas al Panel de Cliente */}
+          {/* Panel de Control - Punto 1 y 4 del MVP */}
           <Route path="/users/profile/me" element={<ClientPanel />} />
           <Route path="/client/dashboard" element={<ClientPanel />} />
           <Route path="/client-appointments" element={<ClientPanel />} />
           
-          {/* Flujo de Citas */}
+          {/* Flujo de Citas - Punto 1 del MVP */}
           <Route path="/book-appointment/:doctorId" element={<BookingPage />} />
           <Route path="/checkout" element={<Payment />} />
           <Route path="/appointment-confirmation" element={<AppointmentConfirmation />} />
         </Route>
 
-        {/* Fallback de seguridad */}
+        {/* Fallback de seguridad al Home */}
         <Route path="*" element={<Home />} />
       </Routes>
     </>
