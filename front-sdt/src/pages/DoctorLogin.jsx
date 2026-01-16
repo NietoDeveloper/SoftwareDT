@@ -19,24 +19,7 @@ const Doctorlogin = () => {
     
    
     };
-    
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-main p-4 sm:p-8 transition-all duration-300">
-            <div className="w-full max-w-5xl flex flex-col md:flex-row bg-card shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[2.5rem] overflow-hidden border border-white/50">
-                
-                {/* LADO IZQUIERDO: Branding NietoDeveloper Style */}
-                <div className="w-full md:w-1/2 p-10 lg:p-16 flex flex-col justify-center bg-white">
 
-
-           
-                </div>
-
-                {/* LADO DERECHO: Formulario Limpio */}
-                <div className="w-full md:w-1/2 p-10 lg:p-16 bg-main/30 flex flex-col justify-center">
-
-
-                    </form>
-                </div>
             </div>
         </div>
     );
