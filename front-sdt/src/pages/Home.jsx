@@ -20,15 +20,6 @@ const Home = () => {
         }
 
 
-        /* EFECTO HOVER GOLD NOTORIO Y EXPLOSIVO */
-        #home-wrapper button:hover:not(#questions-section-unique *), 
-        #home-wrapper .btn:hover:not(#questions-section-unique *) {
-          background-color: #FEB60D !important;
-          color: #000000 !important;
-          transform: translateY(-5px) scale(1.05);
-          font-weight: 900 !important;
-          box-shadow: 0 0 30px rgba(254, 182, 13, 0.8) !important;
-        }
 
         html { scroll-behavior: smooth; }
       `,
