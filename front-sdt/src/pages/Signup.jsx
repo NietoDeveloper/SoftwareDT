@@ -15,12 +15,7 @@ const Signup = () => {
     const navigate = useNavigate();
     const { setToken, setUser } = useContext(UserContext);
 
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        role: 'usuario' 
-    });
+
 
 
         setIsLoading(true);
