@@ -19,30 +19,7 @@ const ServicesList = () => {
 
     
     // Guardamos en Storage para que Doctors.jsx pueda leerlo aunque se refresque la página
-    localStorage.setItem('selectedService', JSON.stringify(serviceData));
-    
-    // Navegamos a Doctors pasando también el estado por si acaso
-    navigate('/doctors', { state: { selectedService: serviceData } });
-  };
 
-  return (
-    <div className="min-h-screen bg-main font-sans antialiased">
-      <style dangerouslySetInnerHTML={{ __html: `
-        .nav-toggle, button[aria-label="Menu"] {
-          background-color: transparent !important;
-          box-shadow: none !important;
-          border: none !important;
-        }
-        
-        .services-container h1, 
-        .services-container h2, 
-        .services-container h3, 
-        .services-container h4, 
-        .services-container p, 
-        .services-container span:not(.text-gold) { 
-          color: #000000 !important; 
-        }
-      `}} />
 
       <section className="services-container flex flex-col items-center py-16 px-4 min-h-screen max-w-[1800px] mx-auto">
         
