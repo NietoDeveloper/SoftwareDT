@@ -10,30 +10,6 @@ const Contact = () => {
     email: "",
     message: "",
 
-
-
-
-  return (
-    <div className="flex flex-col w-full min-h-screen bg-[#fcfcfc] font-sans antialiased overflow-x-hidden">
-      
-      {/* SECCIÓN 1: FORMULARIO DE CONTACTO */}
-      <section className="min-h-screen flex items-center justify-center py-16 px-4 sm:px-10 lg:px-20">
-        <div className="w-full max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
-          
-
-
-                {statusMessage && (
-                  <div className={`p-4 rounded-xl text-[10px] font-black uppercase border flex items-center gap-2 ${
-                    statusMessage.type === "success" ? "bg-green-50 text-green-600 border-green-200" : "bg-red-50 text-red-600 border-red-200"
-      
-     
-
-          
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-10 py-5 bg-white text-black rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-amber-500 transition-all duration-500 hover:-translate-y-1 text-center"
-              >
-                Abrir Canal de Chat
               </a>
             </div>
 
