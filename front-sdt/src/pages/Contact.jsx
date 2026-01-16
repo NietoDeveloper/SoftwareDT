@@ -20,20 +20,7 @@ const Contact = () => {
       <section className="min-h-screen flex items-center justify-center py-16 px-4 sm:px-10 lg:px-20">
         <div className="w-full max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
           
-          <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
-      
-            
 
-        
-             
-
-               
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black resize-none text-sm"
-                    placeholder="DESCRIBE EL ALCANCE DEL PROYECTO..."
-                  ></textarea>
-                </div>
 
                 {statusMessage && (
                   <div className={`p-4 rounded-xl text-[10px] font-black uppercase border flex items-center gap-2 ${
