@@ -16,13 +16,6 @@ const ServicesList = () => {
   const services = [
 
     {
-      id: "ai",
-      title: "Inteligencia Artificial",
-      subtitle: "Vanguardia Tecnológica",
-      description: "Integración de Bots, Robots y automatización con modelos de IA para servicios personalizados.",
-      price: "Desde $ 5.000.000 COP",
-    },
-    {
       id: "it-maintenance",
       title: "Mantenimiento IT",
       subtitle: "Continuidad del Negocio",
