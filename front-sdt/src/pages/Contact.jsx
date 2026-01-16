@@ -12,21 +12,6 @@ const Contact = () => {
 
 
 
-      setStatusMessage({
-        type: "success",
-        text: "¡Ticket desplegado con éxito en el servidor!",
-      });
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
-      setStatusMessage({
-        type: "error",
-        text: "Fallo en el despliegue. Reintente o use canal directo.",
-      });
-      console.error("EmailJS Error:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-[#fcfcfc] font-sans antialiased overflow-x-hidden">
