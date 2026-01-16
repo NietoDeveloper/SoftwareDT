@@ -35,11 +35,7 @@ const Doctorlogin = () => {
 
                     </div>
 
-                    <div className="mt-12 pt-8 border-t border-main">
-                        <Link to="/login" className="text-sm font-bold text-gray-400 hover:text-black transition-colors uppercase tracking-widest">
-                            ← Iniciar sesión como Cliente
-                        </Link>
-                    </div>
+           
                 </div>
 
                 {/* LADO DERECHO: Formulario Limpio */}
