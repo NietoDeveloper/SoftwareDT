@@ -15,13 +15,6 @@ const ServicesList = () => {
 
   const services = [
 
-    {
-      id: "automation",
-      title: "Automatización",
-      subtitle: "Eficiencia y Ahorro",
-      description: "Implementación de scripts para automatizar tareas repetitivas reduciendo el error humano.",
-      price: "Desde $ 6.000.000 COP",
-    }
   ];
 
   // Lógica de persistencia antes de navegar a Doctors
