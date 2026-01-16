@@ -21,22 +21,7 @@ const Signup = () => {
         password: '',
         role: 'usuario' 
     });
-    
 
-
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        
-        let newErrors = {};
-        ['name', 'email', 'password'].forEach(key => {
-            const error = validateField(key, formData[key]);
-            if (error) newErrors[key] = error;
-        });
-
-        if (Object.keys(newErrors).length > 0) {
-            setValidationErrors(newErrors);
-            return;
-        }
 
         setIsLoading(true);
         try {
