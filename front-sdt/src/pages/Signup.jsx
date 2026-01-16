@@ -34,16 +34,7 @@ const Signup = () => {
            
 
                
-            } else {
-                toast.info("Registro capturado. Por favor inicia sesión.");
-                navigate('/login');
-            }
-            
-        } catch (err) {
-            const msg = err.response?.data?.message || 'Error de conexión con el Datacenter';
-            toast.error(`Error: ${msg}`);
-        } finally {
-            setIsLoading(false);
+         
         }
     };
 
