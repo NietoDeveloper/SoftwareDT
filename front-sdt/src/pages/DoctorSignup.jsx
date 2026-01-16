@@ -22,15 +22,7 @@ const DoctorSignup = () => {
 
    
    
-          ) {
-                errorMessage = "Fallo de red. Servidor no disponible.";
-            }
-            toast.error(errorMessage);
-            setError(errorMessage);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+        
     
     return (
         <div className="min-h-screen flex items-center justify-center bg-main p-4 sm:p-8 transition-all duration-300">
