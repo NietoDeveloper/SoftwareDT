@@ -12,13 +12,6 @@ const clientData = [
   },
 
   {
-    id: 3,
-    title: "Tejas Ajover",
-    description: "Optimización de arquitectura de software y logística para plantas de producción industrial.",
-    imageUrl: "https://ajover.co/wp-content/uploads/2021/05/logo-ajover.png", // Imagen Online Directa
-    website: "https://ajover.co/",
-  },
-  {
     id: 4,
     title: "Ministerio de Defensa Colombia",
     description: "Sistemas de gestión segura y protocolos de encriptación para defensa nacional.",
