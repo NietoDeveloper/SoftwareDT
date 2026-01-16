@@ -19,20 +19,7 @@ iceData: selectedServiceInfo
       <div className="mx-auto px-4 sm:px-6 py-12 sm:py-20 max-w-[1800px]">
 
 
-        {/* GRID RESPONSIVE */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 sm:gap-10 justify-items-center">
-          {doctors.map((doctor) => (
-            <motion.div
-              key={doctor._id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              onClick={() => navigateToBooking(doctor)}
-              className="group bg-card border border-black/5 rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 transition-all duration-500 
-                         flex flex-col justify-between text-center 
-                         w-full max-w-[400px] min-w-[280px] h-[400px] sm:h-[450px] relative
-                         shadow-sm hover:shadow-[0_20px_40px_rgba(255,215,0,0.12)] 
-                         hover:-translate-y-2 cursor-pointer"
+      -y-2 cursor-pointer"
             >
               {/* STATUS INDICATOR */}
               <div className="absolute top-6 right-6">
