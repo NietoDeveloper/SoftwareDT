@@ -26,17 +26,7 @@ const Contact = () => {
                   <div className={`p-4 rounded-xl text-[10px] font-black uppercase border flex items-center gap-2 ${
                     statusMessage.type === "success" ? "bg-green-50 text-green-600 border-green-200" : "bg-red-50 text-red-600 border-red-200"
       
-      {/* SECCIÓN 2: UBICACIÓN Y WHATSAPP */}
-      <section className="py-24 bg-black text-white px-6 sm:px-12 lg:px-24">
-        <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          
-          <div className="space-y-10 order-2 lg:order-1 text-center lg:text-left">
-            <div className="space-y-4">
-              <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tighter">
-                Soporte <span className="text-amber-500">High-Priority</span>
-              </h2>
-              <p className="text-gray-400 font-bold tracking-wide text-sm sm:text-base">LATENCIA MÍNIMA EN COMUNICACIÓN VÍA WHATSAPP.</p>
-            </div>
+     
 
             <div className="bg-zinc-900 border border-white/5 p-8 rounded-[2.5rem] flex flex-col items-center lg:items-start gap-8 transition-transform hover:scale-[1.01]">
               <div className="flex flex-col sm:flex-row items-center gap-6">
