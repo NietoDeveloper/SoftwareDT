@@ -28,18 +28,7 @@ const Contact = () => {
       
      
 
-            <div className="bg-zinc-900 border border-white/5 p-8 rounded-[2.5rem] flex flex-col items-center lg:items-start gap-8 transition-transform hover:scale-[1.01]">
-              <div className="flex flex-col sm:flex-row items-center gap-6">
-                <div className="w-14 h-14 bg-amber-500 rounded-2xl flex items-center justify-center text-black shadow-[0_0_30px_rgba(255,215,0,0.2)] shrink-0">
-                  <MessageCircle size={28} />
-                </div>
-                <div>
-                  <p className="text-[10px] font-black uppercase text-gray-500 tracking-[0.3em]">Canal Directo</p>
-                  <p className="text-2xl sm:text-3xl font-black tracking-tight">{whatsappNumber}</p>
-                </div>
-              </div>
-              <a
-                href={whatsappLink}
+          
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto px-10 py-5 bg-white text-black rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-amber-500 transition-all duration-500 hover:-translate-y-1 text-center"
