@@ -21,10 +21,7 @@ const Contact = () => {
         <div className="w-full max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
           
           <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
-            <div className="inline-flex items-center gap-3">
-              <div className="w-12 h-[2px] bg-amber-500"></div>
-              <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.5em] text-gray-400">Communication Hub</span>
-            </div>
+      
             
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-black uppercase tracking-tighter leading-[0.9] break-words">
               Ponte en <br />
