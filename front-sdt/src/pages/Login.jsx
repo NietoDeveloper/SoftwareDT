@@ -6,26 +6,6 @@ import { toast } from 'react-toastify';
 import axios from 'axios'; 
 import { Lock } from "lucide-react";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api"; 
-
-const Login = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    
-    
-            });
-            
-            c
-            
-            // Navegación inmediata tras el éxito
-            navigate(from, { replace: true }); 
-
-        } catch (err) {
-            console.error("Software DT Login Error:", err);
-            const msg = err.response?.data?.message || 'Credenciales inválidas para Software DT.';
-            toast.error(msg);
-        } finally {
-            setIsLoading(false);
-        }
     };
     
     return (
