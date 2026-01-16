@@ -31,26 +31,7 @@ const OurClients = () => {
               <a
                 key={client.id}
                 href={client.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group w-full flex flex-col items-center bg-white border-[4px] border-black rounded-[35px] p-8 
-                           transition-all duration-300 ease-out cursor-pointer 
-                           hover:shadow-[0_15px_35px_rgba(0,0,0,0.12)] hover:-translate-y-3 hover:border-amber-500"
-                style={{ minHeight: "360px" }}
-              >
-                {/* Contenedor del Logo */}
-                <div className="relative w-32 h-32 mb-6 flex items-center justify-center p-4 bg-gray-50 rounded-2xl group-hover:bg-white transition-colors duration-300">
-                  <img
-                    src={client.imageUrl || "https://placehold.co/200x200?text=DT"}
-                    alt={`Logo de ${client.title}`}
-                    className="w-full h-full object-contain filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110"
-                  />
-                </div>
-
-            ))}
-          </div>
-        </div>
-      </section>
+    
 
       <div className="w-full mt-10">
         <Footer />
