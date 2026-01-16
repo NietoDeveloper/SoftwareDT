@@ -29,15 +29,7 @@ import { Lock } from "lucide-react";
                                 disabled={isLoading}
                                 className="w-full mt-6 py-5 bg-headingColor text-white rounded-full font-black text-[12px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-yellowColor hover:text-black hover:shadow-xl active:scale-95 flex items-center justify-center"
                             >
-                                {isLoading ? (
-                                    <div className="w-5 h-5 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
-                                ) : "Autenticar Entrada"}
-                            </button>
-                        </form>
 
-                        <div className="mt-10 pt-6 border-t border-gainsboro text-center">
-                            <Link to="/" className="text-[10px] font-black text-textColor/40 uppercase tracking-[0.2em] hover:text-yellowColor transition-colors">
-                                ← Regresar al Inicio
                             </Link>
                         </div>
                     </div>
