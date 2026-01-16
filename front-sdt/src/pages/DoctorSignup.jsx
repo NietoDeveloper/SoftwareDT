@@ -4,10 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { axiosAuth } from '../API/api'; 
 import { toast } from 'react-toastify'; 
 
-const RegisterIcon = (props) => (
-    <svg 
-
-
    
    
         
