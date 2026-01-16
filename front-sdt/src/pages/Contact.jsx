@@ -23,11 +23,7 @@ const Contact = () => {
           <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
       
             
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-black uppercase tracking-tighter leading-[0.9] break-words">
-              Ponte en <br />
-              <span className="text-amber-500">Contacto</span>
-            </h1>
-            
+          
             <p className="text-gray-500 font-bold text-base sm:text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
               Estamos listos para escalar tu infraestructura. Cuéntanos sobre tu próximo gran proyecto.
             </p>
