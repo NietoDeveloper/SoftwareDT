@@ -37,12 +37,6 @@ iceData: selectedServiceInfo
                 </span>
               </div>
 
-              {/* BIO CENTRAL */}
-              <div className="px-2 sm:px-4">
-                <p className="text-textColor/70 text-base sm:text-lg font-medium leading-relaxed italic line-clamp-4">
-                  "{doctor.bio || "Especialista en arquitecturas escalables y optimización de procesos."}"
-                </p>
-              </div>
 
               {/* FOOTER */}
               <div className="w-full pt-6 border-t border-black/5 flex items-center justify-between">
