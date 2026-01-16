@@ -26,18 +26,5 @@ const OurClients = () => {
 
         {/* Grid Responsivo (320px a 1800px) */}
         <div className="w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 justify-items-center">
-            {clientData.map((client) => (
-              <a
-                key={client.id}
-                href={client.website}
-    
-
-      <div className="w-full mt-10">
-        <Footer />
-      </div>
-    </div>
-  );
-};
 
 export default OurClients;
