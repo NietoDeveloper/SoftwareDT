@@ -33,12 +33,6 @@ const Doctorlogin = () => {
 
                 {/* LADO DERECHO: Formulario Limpio */}
                 <div className="w-full md:w-1/2 p-10 lg:p-16 bg-main/30 flex flex-col justify-center">
-                    <div className="mb-10 flex items-center gap-3">
-                        <div className="bg-black p-3 rounded-2xl shadow-lg">
-                            <DoctorIcon className="text-gold h-6 w-6"/>
-                        </div>
-                        <h2 className="text-2xl font-black text-headingColor uppercase tracking-tight">Acceso Seguro</h2>
-                    </div>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                         {/* Email */}
