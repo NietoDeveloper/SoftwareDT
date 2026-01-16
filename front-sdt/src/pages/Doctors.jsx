@@ -38,19 +38,7 @@ iceData: selectedServiceInfo
               </div>
 
 
-              {/* FOOTER */}
-              <div className="w-full pt-6 border-t border-black/5 flex items-center justify-between">
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-gold/20 flex items-center justify-center bg-gold/5 group-hover:bg-gold/20 transition-colors">
-                    <span className="text-[11px] sm:text-xs font-black text-gold">
-                      {doctor.totalRating || "5.0"}
-                    </span>
-                  </div>
-                  <span className="text-[9px] font-black text-textColor/30 uppercase tracking-widest hidden sm:block">
-                    Confianza 
-                  </span>
-                </div>
-                
+             
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-black flex items-center justify-center 
                                 transition-all duration-500 group-hover:bg-gold shadow-lg shadow-black/10">
                   <ArrowRight className="w-5 h-5 text-white group-hover:text-black transition-colors" />
