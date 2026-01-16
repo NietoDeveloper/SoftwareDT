@@ -26,11 +26,7 @@ const Doctorlogin = () => {
                 
                 {/* LADO IZQUIERDO: Branding NietoDeveloper Style */}
                 <div className="w-full md:w-1/2 p-10 lg:p-16 flex flex-col justify-center bg-white">
-                    
-
-                    <p className='text-lg text-textColor font-medium opacity-80 mb-8 leading-relaxed'>
-                        Gestiona tus citas y pacientes con la tecnología de vanguardia de Software DT.
-                    </p>
+         
 
                     <div className="space-y-4">
                         <p className='text-sm font-bold uppercase tracking-widest text-gray-400'>
