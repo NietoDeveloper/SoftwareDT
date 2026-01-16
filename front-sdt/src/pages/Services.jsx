@@ -17,14 +17,6 @@ const ServicesList = () => {
 
   ];
 
-  // Lógica de persistencia antes de navegar a Doctors
-  const handleServiceSelection = (service) => {
-    const serviceData = {
-      title: service.title,
-      id: service.id,
-      price: service.price,
-      subtitle: service.subtitle
-    };
     
     // Guardamos en Storage para que Doctors.jsx pueda leerlo aunque se refresque la página
     localStorage.setItem('selectedService', JSON.stringify(serviceData));
