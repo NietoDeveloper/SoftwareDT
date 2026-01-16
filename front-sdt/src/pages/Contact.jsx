@@ -24,15 +24,7 @@ const Contact = () => {
       
             
 
-          {/* Tarjeta Formulario */}
-          <div className="w-full max-w-lg lg:w-1/2">
-            <div className="bg-white border-[3px] border-black rounded-[2.5rem] p-6 sm:p-12 shadow-[15px_15px_0px_0px_rgba(0,0,0,0.08)] relative">
-              <div className="absolute -top-5 -right-5 w-14 h-14 bg-black rounded-2xl flex items-center justify-center text-amber-500 shadow-xl hidden sm:flex">
-                <Mail size={24} strokeWidth={3} />
-              </div>
-
-              <h2 className="text-lg font-black text-black uppercase tracking-widest mb-10 border-b-2 border-gray-50 pb-4">
-                Envía un Ticket
+        
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-5">
