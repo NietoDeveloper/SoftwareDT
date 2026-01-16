@@ -11,20 +11,6 @@ const Contact = () => {
     message: "",
 
 
-    try {
-      // Configuración de EmailJS
-      // Sustituye estos IDs con los tuyos de la consola de EmailJS
-      await emailjs.send(
-        "YOUR_SERVICE_ID", 
-        "YOUR_TEMPLATE_ID", 
-        {
-          from_name: formData.name,
-          reply_to: formData.email,
-          message: formData.message,
-          to_name: "Software DT Admin",
-        },
-        "YOUR_PUBLIC_KEY"
-      );
 
       setStatusMessage({
         type: "success",
