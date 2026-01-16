@@ -19,27 +19,6 @@ const ServicesList = () => {
 }
               onClick={() => handleServiceSelection(service)}
               className="group bg-white border-[4px] border-black rounded-[30px] p-6 transition-all duration-300 ease-out cursor-pointer 
-                         flex flex-col items-center justify-between text-center 
-                         w-full sm:max-w-[340px] h-[400px] overflow-hidden
-                         shadow-[0_10px_20px_rgba(0,0,0,0.05)] 
-                         hover:shadow-[0_20px_40px_rgba(255,215,0,0.2)] 
-                         hover:-translate-y-2 hover:border-gold"
-            >
-              <div className="w-full flex flex-col items-center flex-shrink-0">
-                <h3 className="mt-[35px] text-xl font-black text-black uppercase tracking-tight group-hover:text-gold transition-colors duration-300 truncate w-full">
-                  {service.title}
-                </h3>
-                
-                <span className="mt-[35px] text-[12px] font-black text-black group-hover:text-gold uppercase tracking-[0.2em] transition-colors duration-300">
-                  {service.subtitle}
-                </span>
-              </div>
-
-              <div className="flex-1 flex items-center justify-center py-4 w-full px-2">
-                <p className="text-gray-800 text-lg font-bold leading-snug italic line-clamp-3">
-                  "{service.description}"
-                </p>
-              </div>
 
               <div className="w-full flex flex-col items-center mt-auto flex-shrink-0">
                 <div className="w-12 h-[2px] bg-gold mb-4 shadow-[0_0_4px_#FFD700]"></div>
