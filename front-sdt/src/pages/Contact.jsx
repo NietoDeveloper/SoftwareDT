@@ -1,40 +1,4 @@
-import { useState, useEffect } from "react";
-import emailjs from "@emailjs/browser";
-import ReviewForm from "../features/rating";
-import Footer from "../components/Footer/Footer";
-import { Mail, MessageCircle, MapPin, Send, Star, ShieldCheck } from "lucide-react";
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-
-              </a>
-            </div>
-
-            <div className="flex items-start gap-5 p-6 border-l-4 border-amber-500 bg-white/5 rounded-r-2xl">
-              <MapPin className="text-amber-500 shrink-0 mt-1" size={24} />
-              <div>
-                <p className="text-[10px] font-black uppercase text-gray-500 tracking-[0.3em]">H.Q. Bogota</p>
-                <p className="text-sm font-bold text-gray-200 uppercase tracking-widest">Carrera 72 # 2 - 50, Piso 5, Bogotá, Colombia</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="order-1 lg:order-2">
-             <div className="relative w-full aspect-square lg:aspect-video rounded-[3rem] overflow-hidden border-2 border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]">
-                <iframe
-                  title="Ubicación de Software DT"
-                  src={mapEmbedLink}
-                  className="absolute inset-0 w-full h-full grayscale invert opacity-60 hover:opacity-100 transition-opacity duration-700"
-                  allowFullScreen=""
-                  loading="lazy"
-                ></iframe>
-             </div>
-          </div>
-        </div>
-      </section>
 
       <section className="py-28 bg-main px-6 flex flex-col items-center">
   <div className="w-full max-w-5xl">
