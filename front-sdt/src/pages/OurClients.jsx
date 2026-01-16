@@ -18,13 +18,7 @@ const clientData = [
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a3/CanalRCN2023.png",
     website: "https://www.canalrcn.com/",
   },
-  {
-    id: 6,
-    title: "Software DT Labs",
-    description: "I+D en nuevas tecnologías de inteligencia artificial y desarrollo de microservicios.",
-    imageUrl: "https://softwaredt.vercel.app/logo.png", // URL ejemplo de tu logo
-    website: "https://softwaredt.vercel.app/",
-  },
+
 ];
 
 const OurClients = () => {
