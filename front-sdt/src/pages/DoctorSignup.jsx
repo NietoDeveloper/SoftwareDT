@@ -21,11 +21,7 @@ const DoctorSignup = () => {
     const [error, setError] = useState(null); 
 
    
-    const onSubmit = async (data) => {
-        setIsLoading(true);
-        setError(null);
-
-        try {
+   
             const response = await axiosAuth.post('/doctor/signup', data);
             const successMsg = response.data.message || '¡Registro exitoso! Redirigiendo...';
             toast.success(successMsg);
