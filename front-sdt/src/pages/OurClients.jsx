@@ -99,19 +99,7 @@ const OurClients = () => {
 
                 {/* Descripción - Fuente Aumentada y Clara */}
                 <p className="text-textColor/60 text-[16px] font-bold text-center flex-grow leading-relaxed px-2 italic">
-                  "{client.description}"
-                </p>
 
-                {/* Footer de Tarjeta con Botón Gold Flotante */}
-                <div className="mt-8 flex items-center justify-between w-full pt-6 border-t border-headingColor/5">
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-textColor/30 group-hover:text-headingColor transition-colors">
-                    Visitar Sitio Oficial
-                  </span>
-                  <div className="w-12 h-12 bg-gold rounded-xl flex items-center justify-center shadow-lg shadow-gold/20 group-hover:bg-yellowColor group-hover:rotate-[360deg] transition-all duration-500">
-                    <span className="text-headingColor text-xl font-bold">&rarr;</span>
-                  </div>
-                </div>
-              </a>
             ))}
           </div>
         </div>
