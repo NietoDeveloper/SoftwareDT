@@ -61,17 +61,6 @@ import { toast } from 'react-toastify';
                             {errors.name && <span className="text-red-500 text-xs mt-1.5 font-bold uppercase tracking-tighter">{errors.name.message}</span>}
                         </div>
 
-                        {/* Email Corporativo */}
-                        <div className="flex flex-col">
-                            <label className="mb-1.5 font-black text-headingColor text-xs uppercase tracking-widest">Email Corporativo</label>
-                            <input
-                                type="email"
-                                className="bg-white border-2 border-transparent p-4 rounded-2xl focus:border-gold transition-all duration-300 shadow-sm outline-none w-full font-medium"
-                                placeholder="ejemplo@software-dt.com"
-                                {...register('email', { 
-                                    required: 'El email es obligatorio', 
-                                    pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: "Email inválido" } 
-                                })}
               
         </div>
     );
