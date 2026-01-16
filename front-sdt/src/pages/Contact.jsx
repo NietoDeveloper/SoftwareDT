@@ -8,29 +8,7 @@
       
       <div className="bg-card border-[4px] border-black rounded-[3.5rem] p-6 sm:p-12 overflow-hidden relative shadow-sm">
         {/* Decoración de esquina (Código) */}
-        <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none hidden md:block">
-          <pre className="text-[10px] font-mono font-bold text-black">
-            {`{
-  status: "verified",
-  uptime: "99.9%",
-  secure: true
-}`}
-          </pre>
-        </div>
-
-        <ReviewForm />
-      </div>
-    </div>
-
-    {/* Footer de la sección */}
-    <p className="mt-12 text-center text-[9px] font-black text-gray-400 uppercase tracking-[0.6em]">
-      End-to-End Encrypted Feedback Loop
-    </p>
-  </div>
-</section>
-
-      <Footer />
-    </div>
+        <div clas
   );
 };
 
