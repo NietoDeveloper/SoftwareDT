@@ -25,15 +25,7 @@ const Contact = () => {
             
 
         
-              </h2>
-
-           Data.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-xl focus:border-amber-500 outline-none transition-all font-bold text-black text-sm"
-                    placeholder="NOMBRE DEL LÍDER TÉCNICO"
-                  />
-                </div>
+             
 
                 <div className="space-y-2">
                   <label className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] ml-1">Corporate Email</label>
