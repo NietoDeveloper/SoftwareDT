@@ -22,16 +22,7 @@ const DoctorSignup = () => {
 
    
    
-            const response = await axiosAuth.post('/doctor/signup', data);
-            const successMsg = response.data.message || '¡Registro exitoso! Redirigiendo...';
-            toast.success(successMsg);
-            reset();
-            setTimeout(() => navigate('/doctor/login'), 2000);
-        } catch (processError) {
-            let errorMessage = 'Error al registrar especialista.';
-            if (processError.response) {
-                errorMessage = processError.response.data.message || processError.response.data.error || errorMessage;
-            } else if (processError.request) {
+          ) {
                 errorMessage = "Fallo de red. Servidor no disponible.";
             }
             toast.error(errorMessage);
