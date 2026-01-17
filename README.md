@@ -11,7 +11,7 @@ SoftwareDT/
 ├── client/ # Frontend: React + Vite + Tailwind CSS (Corporate Design)
 │ ├── src/
 │ │ ├── components/ # Reusable and Atomic UI Components
-│ │ ├── pages/ # Core Flow: Services, Doctors, Booking, Dashboard
+│ │ ├── pages/ # Core Flow: Info Services, Choose Service, Booking, Dashboard, Comunications.
 │ │ └── assets/ # Global Styles and Brand Identity
 │ └── package.json
 ├── server/ # Backend: Node.js + Express + MongoDB (Clean Architecture)
@@ -109,7 +109,7 @@ npm install && npm run dev
 
 ## 🤝 Contact and Collaboration
 
-Software DT is a showcase of high-level software engineering. NietoDeveloper (Manuel Nieto) has 5.5+ years of technical experience and is available for global remote opportunities.
+Software DT is a E-Bussines of high-level software engineering. NietoDeveloper (Manuel Nieto) 
 
 - **Lead Developer**: NietoDeveloper
 - **Location**: Bogotá, Colombia 🇨🇴
