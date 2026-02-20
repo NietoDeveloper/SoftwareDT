@@ -114,4 +114,4 @@ Software DT is a E-Bussines of high-level software engineering. NietoDeveloper (
 - **Lead Developer**: NietoDeveloper
 - **Location**: Bogotá, Colombia 🇨🇴
 - **Live App**: softwaredt.vercel.app
-- **🏆**: Committer.top/Colombia 
+- **🏆**: Committers.top/Colombia 
