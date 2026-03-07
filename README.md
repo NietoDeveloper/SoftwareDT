@@ -1,22 +1,6 @@
 ```markdown
 # Software DT | Enterprise Full-Stack MERN Booking Solution 🚀
-lients and Service Providers
 
-### 🖥️ Internal User Dashboard
-- Real-time appointment tracking (no page refresh)  
-- History of completed, cancelled, and in-progress services  
-- Automatic UI updates when provider accepts or completes a service
-
-### 💬 Real-Time Messaging
-- Direct client ↔ provider chat  
-- Persistent conversation history  
-- Quick-action buttons for common requests and support
-
-### 👤 Personalized Profile
-- Management of personal data, preferences, and security settings  
-- Dynamic dashboard highlighting relevant information and pending tasks
-
----
 
 ## 🛠️ Professional Tech Stack
 
