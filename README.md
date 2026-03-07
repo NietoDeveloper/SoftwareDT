@@ -1,24 +1,4 @@
-
-
-## ⚙️ Installation and Setup
-
-### Clone and Navigate
-
-```bash
-git clone https://github.com/NietoDeveloper/SoftwareDT && cd SoftwareDT
-```
-
-### Containerization (Recommended)
-
-```bash
-docker-compose up --build
-```
-
-### Manual Setup
-
-Navigate to the /client and /server folders to install dependencies:
-
-```bash
+sh
 npm install && npm run dev
 ```
 
