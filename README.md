@@ -1,15 +1,4 @@
-# Software DT | Enterprise Full-Stack MERN Booking Solution
-
-
-### 📊 Scalable Data Strategy
-
-- **MongoDB Atlas**: High-availability cloud clustering.
-- **Dual Cluster Architecture**: Implemented for superior redundancy and zero downtime.
-
-## 🛠️ The Professional Stack
-
-| Layer     | Technologies           | Engineering Focus                              |
-|-----------|------------------------|------------------------------------------------|
+---------------------------------------------|
 | Backend   | Node.js & Express      | Clean Architecture & Scalable RESTful APIs     |
 | Database  | MongoDB Atlas          | Dual Cluster Strategy for Maximum Uptime       |
 | Frontend  | React & Vite           | Optimized SPA with the New React Compiler      |
