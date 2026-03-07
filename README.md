@@ -101,7 +101,7 @@ flowchart LR
 ```
 
 - **Service Selection** — Users filter and choose specialized services in `Services.jsx`
-- **Provider Matching** — Data is contextually transferred to `.jsx` to match with specialists
+- **Provider Matching** — Data is contextually transferred to `select.jsx` to match with specialists
 - **Finalization** — Secure hand-off to `BookingPage.jsx` for appointment confirmation and real-time validation
 - **Automation** — Once a service is booked, the system triggers instant notifications via WebSockets to the provider
 
