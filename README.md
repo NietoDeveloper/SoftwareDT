@@ -197,7 +197,7 @@ export default {
 [![Live App](https://img.shields.io/badge/🌐%20Live%20App-softwaredt.vercel.app-FFD700?style=for-the-badge&logoColor=000)](https://softwaredt.vercel.app)
 [![GitHub](https://img.shields.io/badge/📂%20GitHub-NietoDeveloper-000000?style=for-the-badge&logo=github&logoColor=FFD700)](https://github.com/NietoDeveloper)
 [![#1 Colombia](https://img.shields.io/badge/🏆%20%231%20Committer-Colombia-DCDCDC?style=for-the-badge)](https://committers.top/colombia)
-[![#4 LATAM](https://img.shields.io/badge/🏆%20%234%20Committer-South%20%26%20Central%20America-DCDCDC?style=for-the-badge)](https://committers.top)
+[![#3 LATAM](https://img.shields.io/badge/🏆%20%234%20Committer-South%20%26%20Central%20America-DCDCDC?style=for-the-badge)](https://committers.top)
 
 <br/>
 
