@@ -1,6 +1,5 @@
 # Software DT | Enterprise Full-Stack MERN Booking Solution
 
-Software DT is a world-class digital ecosystem designed and developed in Bogotá, Colombia. This platform represents a professional-level Full-Stack MERN (MongoDB, Express, React, Node.js) solution, created to connect service providers and clients through a scalable, secure, and high-performance booking architecture.
 
 ## 🏗️ Project Architecture and Directory Structure
 
