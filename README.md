@@ -88,7 +88,7 @@ SoftwareDT/                     ← Monorepo Root
 ```mermaid
 flowchart LR
     A([🧑 Client]) -->|Filter & Select| B[Services.jsx]
-    B -->|Intelligent Matching| C[Doctors.jsx]
+    B -->|Intelligent Matching| C[Do.jsx]
     C -->|Secure Hand-off| D[BookingPage.jsx]
     D -->|⚡ WebSocket Trigger| E([🔔 Provider Notified])
     D -->|JWT Validation| F[(MongoDB Atlas)]
