@@ -1,52 +1,187 @@
-# Software DT | Enterprise Full-Stack MERN Booking Solution 🚀
+<div align="center">
 
-**Software DT** is a world-class digital ecosystem designed and developed in Bogotá, Colombia.  
-This platform represents a professional-level Full-Stack **MERN** (MongoDB, Express, React, Node.js) solution, engineered to connect service providers and clients through a scalable, secure, and high-performance booking architecture.
+<!-- ANIMATED HEADER -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=200&section=header&text=Software%20DT&fontSize=80&fontColor=FFD700&fontAlignY=38&desc=Enterprise%20Full-Stack%20MERN%20Booking%20Solution&descAlignY=60&descColor=DCDCDC&animation=fadeIn" width="100%"/>
 
-Inspired by the technical excellence of Drone DT, this project follows a modular and robust philosophy to ensure production-ready stability and extreme performance.
+<!-- BADGES -->
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Production%20Ready-FFD700?style=for-the-badge&logo=checkmarx&logoColor=000000"/>
+  <img src="https://img.shields.io/badge/Stack-MERN-000000?style=for-the-badge&logo=mongodb&logoColor=FFD700"/>
+  <img src="https://img.shields.io/badge/Real--Time-Socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=FFD700"/>
+  <img src="https://img.shields.io/badge/Bogotá-Colombia%20🇨🇴-DCDCDC?style=for-the-badge"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=000"/>
+  <img src="https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
+</p>
+
+<br/>
+
+> **Software DT** — Un ecosistema digital de clase mundial diseñado y desarrollado en Bogotá, Colombia.
+> Plataforma Full-Stack de nivel empresarial que conecta proveedores de servicios con clientes a través de una arquitectura de booking escalable, segura y de alto rendimiento.
+
+<br/>
 
 ---
 
-## 🏗️ Project Architecture & Monorepo Structure
+</div>
 
-Software DT is organized as a high-performance monorepo to ensure seamless integration between the client experience and server logic.
+## 🏗️ Arquitectura del Proyecto — Monorepo
 
 ```text
-SoftwareDT/  ← Monorepo Root
-├── client/  ← Frontend (React + Vite + Tailwind CSS)
+SoftwareDT/                     ← Monorepo Root
+├── client/                     ← Frontend (React + Vite + Tailwind CSS)
 │   ├── src/
-│   │   ├── components/  ← Reusable UI & Atomic Components
-│   │   ├── pages/       ← Flow: Services, Doctors, Booking, Communications
-│   │   ├── hooks/       ← Custom React Hooks & WebSocket Listeners
-│   │   ├── store/       ← Global State Management (Zustand)
-│   │   └── assets/      ← Global Styles & Brand Identity (Gainsboro Theme)
+│   │   ├── components/         ← UI Atómicos & Componentes Reutilizables
+│   │   ├── pages/              ← Services → Doctors → Booking → Communications
+│   │   ├── hooks/              ← Custom Hooks & WebSocket Listeners
+│   │   ├── store/              ← Estado Global (Zustand)
+│   │   └── assets/             ← Estilos Globales & Brand Identity (Gainsboro)
 │   ├── tailwind.config.js
 │   └── package.json
-├── server/  ← Backend (Node.js + Express + MongoDB Atlas)
+│
+├── server/                     ← Backend (Node.js + Express + MongoDB Atlas)
 │   ├── src/
-│   │   ├── models/      ← Mongoose Schemas (Users, Bookings, Services)
-│   │   ├── routes/      ← Protected RESTful API Endpoints
-│   │   ├── controllers/ ← Business Logic & Auth Controllers
-│   │   ├── sockets/     ← Socket.io Logic for Real-Time Updates
-│   │   └── config/      ← Database & Cloud Connections
+│   │   ├── models/             ← Mongoose Schemas (Users, Bookings, Services)
+│   │   ├── routes/             ← RESTful API Endpoints Protegidos
+│   │   ├── controllers/        ← Business Logic & Auth Controllers
+│   │   ├── sockets/            ← Socket.io — Sincronización en Tiempo Real
+│   │   └── config/             ← Database & Cloud Connections
 │   ├── .env.example
 │   └── package.json
-├── docker-compose.yml   ← Orchestration for n: Users filter and choose specialized services in Services.jsx.Provider Matching: Data is contextually transferred to Doctors.jsx (or selectservice.jsx) to match with specialists.Finalization: Secure hand-off to BookingPage.jsx for appointment confirmation and real-time validation.Automation: Once a service is booked, the system triggers instant notifications via WebSockets to the provider.🔐 Security & RBACJWT Authentication: Advanced multi-device session management strategy.Role-Based Access Control (RBAC): Differentiated interfaces and permissions for Clients and Service Providers/Admins.🖥️ Internal Client Control Panel (User Experience)Software DT provides a high-end Internal Dashboard where users manage their digital interactions in real-time without refreshing the browser, powered by Socket.io.📅 Booking ManagementReal-Time Tracking: Monitor "Active", "In-Progress", and "Completed" appointments instantly.Appointment History: Centralized archive of past services for audit, reviews, and re-booking.Instant Status Updates: UI components update automatically via WebSockets when a provider changes the status of a service.💬 Messaging & CommunicationReal-Time Chat: Direct, low-latency communication channel between clients and providers.Messaging History: Persistent storage of conversations for service quality tracking.Interactive HUD: Quick-action buttons for common inquiries and support history.🛠️ The Professional StackLayerTechnologiesEngineering FocusFrontendReact • Vite • Tailwind CSSOptimized SPA with the New React CompilerBackendNode.js • ExpressClean Architecture & Scalable RESTful API DesignReal-TimeSocket.io (WebSockets)Instant data synchronization for bookings and messagesDatabaseMongoDB AtlasDual Cluster Architecture for High AvailabilityStateZustandLightweight and performant global state managementInfrastructureDocker ComposeConsistent development and production environments🎨 Official Design System (Software DT Style)The visual identity follows a corporate, minimalist aesthetic defined by our custom Tailwind configuration:JavaScript/** @type {import('tailwindcss').Config} */
+│
+├── docker-compose.yml          ← Orquestación Dev/Prod
+└── README.md
+```
+
+---
+
+## ✨ Flujo Técnico Principal
+
+```mermaid
+flowchart LR
+    A([🧑 Cliente]) -->|Filtra servicios| B[Services.jsx]
+    B -->|Matching inteligente| C[Doctors.jsx]
+    C -->|Confirmación segura| D[BookingPage.jsx]
+    D -->|⚡ WebSocket| E([🔔 Proveedor])
+    D -->|JWT Auth| F[(MongoDB Atlas)]
+    F -->|Dual Cluster| G[🔄 Alta Disponibilidad]
+```
+
+---
+
+## 🔐 Seguridad & Control de Acceso
+
+```mermaid
+graph TD
+    Login([🔑 Login]) --> JWT[JWT Multi-Device]
+    JWT --> RBAC{RBAC Engine}
+    RBAC -->|Cliente| ClientUI[Dashboard Cliente]
+    RBAC -->|Proveedor| ProviderUI[Panel Proveedor]
+    RBAC -->|Admin| AdminUI[Control Total]
+```
+
+---
+
+## ⚡ Features del Dashboard Interno
+
+<div align="center">
+
+| Módulo | Descripción | Tecnología |
+|:---|:---|:---:|
+| 📅 **Booking Manager** | Tracking en tiempo real: Activo → En Progreso → Completado | Socket.io |
+| 📜 **Historial** | Archivo centralizado para auditoría y re-booking | MongoDB |
+| 🔄 **Live Status** | UI se actualiza automáticamente sin recargar | WebSockets |
+| 💬 **Chat en Tiempo Real** | Canal directo cliente ↔ proveedor baja latencia | Socket.io |
+| 🗂️ **Historial de Mensajes** | Persistencia de conversaciones para control de calidad | MongoDB |
+| 🎛️ **HUD Interactivo** | Botones de acción rápida e historial de soporte | React |
+
+</div>
+
+---
+
+## 🛠️ Stack Tecnológico
+
+<div align="center">
+
+| Capa | Tecnologías | Enfoque |
+|:---|:---|:---|
+| 🎨 **Frontend** | React • Vite • Tailwind CSS | SPA optimizada con el New React Compiler |
+| ⚙️ **Backend** | Node.js • Express | Clean Architecture & RESTful API Escalable |
+| ⚡ **Real-Time** | Socket.io (WebSockets) | Sincronización instantánea de bookings y mensajes |
+| 🗄️ **Database** | MongoDB Atlas | Dual Cluster para Alta Disponibilidad |
+| 🧠 **State** | Zustand | Estado global ligero y de alto rendimiento |
+| 🐳 **Infra** | Docker Compose | Entornos de dev y producción consistentes |
+
+</div>
+
+---
+
+## 🎨 Design System Oficial — Software DT
+
+```javascript
+/** @type {import('tailwindcss').Config} */
 export default {
   theme: {
     extend: {
       colors: {
-        gainsboro: "#DCDCDC", // Base background
-        gold: "#FFD700",      // Primary Accents
-        yellowColor: "#FEB60D", 
-        headingColor: "#000000",
-        textColor: "#000000",
+        gainsboro:    "#DCDCDC",  // 🩶 Base Background — Minimalismo Corporativo
+        gold:         "#FFD700",  // 🟡 Primary Accent — Identidad de Marca
+        yellowColor:  "#FEB60D",  // 🟠 Secondary Accent
+        headingColor: "#000000",  // ⚫ Tipografía Principal
+        textColor:    "#000000",  // ⚫ Cuerpo de Texto
       },
       backgroundColor: {
-        'main': '#DCDCDC',
-        'card': '#FFFFFF',
-      }
+        'main': '#DCDCDC',        // Fondo base global
+        'card': '#FFFFFF',        // Cards y paneles
+      },
     },
   },
 }
-🔗 Leadership & ConnectivitySoftware DT is a flagship project by NietoDeveloper (Manuel Nieto).🏆 #1 Committer in Colombia: Committers.top/Colombia🏆 #4 Committer in South & Central America: Committers.top📂 GitHub Portfolio: github.com/NietoDeveloper🌐 Live Application: softwaredt.vercel.app📍 Location: Bogotá, Colombia 🇨🇴
+```
+
+---
+
+## 🚀 Filosofía de Ingeniería
+
+```text
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║   "Every line of code is optimized for performance          ║
+║    and security. Production-ready by default."              ║
+║                                                              ║
+║                              — NietoDeveloper Standard      ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+- 🏆 **NietoDeveloper Standard** — Cada línea de código optimizada para rendimiento y seguridad
+- 🌐 **Infraestructura Escalable** — MongoDB Atlas con estrategia Dual Cluster
+- 🎯 **Production-Ready** — Workflows reales de booking con zero downtime
+- ⚡ **Real-Time First** — Sincronización instantánea como core del sistema
+
+---
+
+## 🔗 Links & Conectividad
+
+<div align="center">
+
+[![Live App](https://img.shields.io/badge/🌐%20Live%20App-softwaredt.vercel.app-FFD700?style=for-the-badge&logoColor=000)](https://softwaredt.vercel.app)
+[![GitHub](https://img.shields.io/badge/📂%20GitHub-NietoDeveloper-000000?style=for-the-badge&logo=github&logoColor=FFD700)](https://github.com/NietoDeveloper)
+[![#1 Colombia](https://img.shields.io/badge/🏆%20%231%20Committer-Colombia-DCDCDC?style=for-the-badge)](https://committers.top/colombia)
+[![#4 LATAM](https://img.shields.io/badge/🏆%20%234%20Committer-South%20%26%20Central%20America-DCDCDC?style=for-the-badge)](https://committers.top)
+
+<br/>
+
+**Manuel Nieto** — NietoDeveloper
+📍 Bogotá, Colombia 🇨🇴
+
+</div>
+
+---
+
+<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=120&section=footer&animation=fadeIn" width="100%"/>
+</div>
