@@ -4,13 +4,7 @@
 
 ## 🛠️ Professional Tech Stack
 
-| Layer             | Main Technologies             | Engineering Focus                              |
-|-------------------|-------------------------------|------------------------------------------------|
-| Frontend          | React • Vite • Tailwind CSS   | Optimized SPA + React Compiler                 |
-| Backend           | Node.js • Express             | Clean architecture + scalable REST API         |
-| Real-Time         | Socket.io                     | Instant sync for bookings & messages           |
-| Database          | MongoDB Atlas                 | High availability (dual cluster)               |
-| State Management  | Zustand                       | Lightweight & performant global state          |
+| Layer             | Main Technologies             | Engineering                    | Lightweight & performant global state          |
 | Infrastructure    | Docker Compose                | Consistent dev / staging / prod environments   |
 
 ---
