@@ -3,17 +3,6 @@
 
 ## 🏗️ Project Architecture and Directory Structure
 
-
-## ✨ Core Features and Infrastructure
-
-### 🔄 Intelligent Booking Flow
-
-The application implements a logical data flow to minimize user friction:
-
-1. **Service Selection**: Users choose specialized services in Services.jsx.
-2. **Provider Matching**: Data is transferred to Doctors.jsx to display relevant specialists.
-3. **Finalization**: Secure data hand-off to BookingPage.jsx for appointment confirmation.
-
 ### 🔐 Advanced Security and RBAC
 
 - **JWT Authentication**: Multi-device session management strategy.
