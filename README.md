@@ -4,9 +4,6 @@ Software DT is a world-class digital ecosystem designed and developed in Bogotá
 
 ## 🏗️ Project Architecture and Directory Structure
 
-The repository uses a monorepo structure to ensure seamless integration between the client experience and server logic.
-
-```
 SoftwareDT/
 ├── client/ # Frontend: React + Vite + Tailwind CSS (Corporate Design)
 │ ├── src/
