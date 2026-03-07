@@ -73,7 +73,7 @@ export default {
 
 - **Lead Developer**: [NietoDeveloper](https://github.com/NietoDeveloper) (Manuel Nieto)  
 - 🏆 #1 Committer in Colombia → [committers.top/Colombia](https://committers.top/colombia.html)  
-- 🏆 #4 Committer in South & Central America → [committers.top](https://committers.top)  
+- 🏆 #3 Committer in South & Central America → [committers.top](https://committers.top)  
 - 🌐 Live Application: https://softwaredt.vercel.app  
 - 📍 Developed in **Bogotá, Colombia** 🇨🇴
 ```
