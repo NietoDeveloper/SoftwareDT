@@ -1,18 +1,6 @@
 ```markdown
 # Software DT | Enterprise Full-Stack MERN Booking Solution 🚀
-
-
-## ✨ Core Features
-
-### 🔄 Intelligent Booking Flow
-1. Service Information → `Services.jsx`  
-2. Provider matching → `selectservice.jsx` (smart context transfer)  
-3. Appointment confirmation → `BookingPage.jsx`  
-4. Automatic real-time notification to provider via **WebSockets**
-
-### 🔐 Security & Access Control
-- **JWT** authentication with multi-device session support  
-- **RBAC** (Role-Based Access Control) for Clients and Service Providers
+lients and Service Providers
 
 ### 🖥️ Internal User Dashboard
 - Real-time appointment tracking (no page refresh)  
