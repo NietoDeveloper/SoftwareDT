@@ -203,7 +203,7 @@ export default {
 
 *Software DT is a flagship project by* **NietoDeveloper — Manuel Nieto**
 
-*Developed with technical rigor to be the best in Colombia.*
+*Developed with technical rigor.*
 
 📍 Bogotá, Colombia 🇨🇴
 
