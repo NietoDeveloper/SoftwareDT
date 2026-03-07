@@ -1,12 +1,4 @@
----------------------------------------------|
-| Backend   | Node.js & Express      | Clean Architecture & Scalable RESTful APIs     |
-| Database  | MongoDB Atlas          | Dual Cluster Strategy for Maximum Uptime       |
-| Frontend  | React & Vite           | Optimized SPA with the New React Compiler      |
-| Styling   | Tailwind CSS           | Custom Corporate Design System                 |
 
-## 🎨 Official Design System (Software DT Style)
-
-The visual identity is governed by the following Tailwind configuration to ensure brand consistency:
 
 ```javascript
 /** @type {import('tailwindcss').Config} */
