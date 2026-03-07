@@ -24,7 +24,7 @@
 > A professional-level Full-Stack **MERN** solution engineered to connect service providers and clients
 > through a scalable, secure, and high-performance booking architecture.
 >
-> *Inspired by the technical excellence of Drone DT — modular, robust, production-ready.*
+> *Inspired by the technical — modular, robust, production-ready.*
 
 <br/>
 
