@@ -20,7 +20,7 @@
 
 <br/>
 
-> **Software DT** is a world-class digital ecosystem designed and developed in Bogotá, Colombia.
+> **Software DT** is a digital ecosystem designed and developed in Bogotá, Colombia.
 > A professional-level Full-Stack **MERN** solution engineered to connect service providers and clients
 > through a scalable, secure, and high-performance booking architecture.
 >
