@@ -3,21 +3,7 @@
 
 ## 🏗️ Project Architecture and Directory Structure
 
-SoftwareDT/
-├── client/ # Frontend: React + Vite + Tailwind CSS (Corporate Design)
-│ ├── src/
-│ │ ├── components/ # Reusable and Atomic UI Components
-│ │ ├── pages/ # Core Flow: Info Services, Choose Service, Booking, Dashboard, Comunications.
-│ │ └── assets/ # Global Styles and Brand Identity
-│ └── package.json
-├── server/ # Backend: Node.js + Express + MongoDB (Clean Architecture)
-│ ├── models/ # Mongoose Schemas (Users, Bookings, Reviews)
-│ ├── routes/ # Protected RESTful API Endpoints
-│ ├── controllers/ # Business Logic and Authentication Controllers
-│ └── package.json
-├── docker-compose.yml # Container Orchestration for Dev/Prod
-└── README.md # Main Documentation (Current)
-```
+
 
 ## 🚀 Engineering Excellence and Vision
 
