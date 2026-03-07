@@ -1,57 +1,12 @@
 ```markdown
 # Software DT | Enterprise Full-Stack MERN Booking Solution 🚀
 
-**Software DT** is a professional digital ecosystem designed and developed in Bogotá, Colombia.  
-A production-grade Full-Stack **MERN** platform (MongoDB, Express, React, Node.js) built to connect service providers and clients through a scalable, secure, and high-performance booking architecture.
-
-Inspired by the technical excellence of Drone DT, this project follows a modular, robust philosophy oriented toward real-world production environments.
-
----
-
-## 🏗️ Monorepo Structure
-
-```
-SoftwareDT/
-├── client/                # Frontend (React + Vite + Tailwind CSS)
-│   ├── src/
-│   │   ├── components/    # Reusable atomic & compound components
-│   │   ├── pages/         # Main flow: Services → Doctors → Booking → Communications
-│   │   ├── hooks/         # Custom React hooks + WebSocket listeners
-│   │   ├── store/         # Zustand global state management
-│   │   └── assets/        # Global styles & brand assets (Gainsboro theme)
-│   ├── tailwind.config.js
-│   └── package.json
-│
-├── server/                # Backend (Node.js + Express + MongoDB Atlas)
-│   ├── src/
-│   │   ├── models/        # Mongoose schemas (Users, Bookings, Services, etc.)
-│   │   ├── routes/        # Protected RESTful API endpoints
-│   │   ├── controllers/   # Business logic & authentication controllers
-│   │   ├── sockets/       # Socket.io real-time update logic
-│   │   └── config/        # DB connection, env vars & cloud services
-│   ├── .env.example
-│   └── package.json
-│
-├── docker-compose.yml     # Orchestration for dev / staging / prod
-└── README.md              # This documentation
-```
-
----
-
-## 🚀 Engineering Philosophy
-
-- Built under **NietoDeveloper** standards — philosophy of the #1 Committer in Colombia  
-- Scalable infrastructure using **MongoDB Atlas** (dual cluster strategy)  
-- Production-ready with zero-downtime real-world booking workflows  
-- Aimed to become a global reference for high-level software engineering
-
----
 
 ## ✨ Core Features
 
 ### 🔄 Intelligent Booking Flow
-1. Service selection → `Services.jsx`  
-2. Provider matching → `Doctors.jsx` (smart context transfer)  
+1. Service Information → `Services.jsx`  
+2. Provider matching → `selectservice.jsx` (smart context transfer)  
 3. Appointment confirmation → `BookingPage.jsx`  
 4. Automatic real-time notification to provider via **WebSockets**
 
