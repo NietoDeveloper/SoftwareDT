@@ -1,13 +1,6 @@
 # Software DT | Enterprise Full-Stack MERN Booking Solution
 
 
-## 🏗️ Project Architecture and Directory Structure
-
-### 🔐 Advanced Security and RBAC
-
-- **JWT Authentication**: Multi-device session management strategy.
-- **Role-Based Access Control (RBAC)**: Differentiated interfaces for Clients (Bookings/Reviews) and Providers/Admins (Control Panel/Availability).
-
 ### 📊 Scalable Data Strategy
 
 - **MongoDB Atlas**: High-availability cloud clustering.
