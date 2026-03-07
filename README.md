@@ -201,7 +201,7 @@ export default {
 
 <br/>
 
-*Software DT is a flagship project by* **NietoDeveloper — Manuel Nieto**
+*Software DT is a fla project by* **NietoDeveloper — Manuel Nieto**
 
 *Developed with technical rigor.*
 
