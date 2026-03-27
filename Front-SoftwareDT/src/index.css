@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .header {
+    @apply bg-no-repeat bg-cover bg-center w-full h-[100px];
+  }
+
+  .container {
+    @apply mx-auto px-4 sm:px-10 lg:px-20 max-w-[1900px] w-full;
+  }
+
+  .heading {
+    @apply text-[32px] md:text-[54px] leading-[40px] md:leading-[64px] font-[900] text-headingColor uppercase tracking-tighter;
+  }
+
+  .text_para {
+    @apply text-[16px] md:text-[18px] leading-[26px] md:leading-[30px] font-[500] text-textColor mt-[18px];
+  }
+
+  .btn {
+    @apply bg-yellowColor py-[12px] px-[30px] rounded-none border-2 border-headingColor text-headingColor font-[900] uppercase text-xs tracking-widest mt-[30px] transition-all duration-300 shadow-[4px_4px_0px_#000000] hover:shadow-[0_0_20px_#FEB60D] hover:-translate-y-1 active:scale-95 inline-block text-center;
+  }
+
+  .btn-blue {
+    @apply bg-[#0000FF] py-[12px] px-[30px] rounded-none border-2 border-black text-white font-[900] uppercase text-xs tracking-widest transition-all duration-300 shadow-[4px_4px_0px_#FEB60D] hover:shadow-[0_0_25px_rgba(0,0,255,0.6)] hover:-translate-y-1 inline-block text-center;
+  }
+
+  .hero_section {
+    @apply bg-main bg-cover bg-no-repeat bg-center min-h-screen flex items-center;
+  }
+
+  .shadow-gold-float {
+    @apply shadow-[0_0_20px_rgba(254,182,13,0.6)];
+  }
+
+  .bg-software-dt {
+    @apply bg-gainsboro;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
