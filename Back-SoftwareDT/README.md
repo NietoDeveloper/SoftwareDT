@@ -191,7 +191,6 @@ npm start
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=120&section=footer&text=Manuel%20Nieto%20%C2%B7%20NietoDeveloper&fontSize=24&fontColor=FFD700&animation=fadeIn&fontAlignY=65" width="100%"/>
 
-![Profile Views](https://komarev.com/ghpvc/?username=NietoDeveloper&color=FFD700&style=for-the-badge)
 [![GitHub](https://img.shields.io/badge/GitHub-NietoDeveloper-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/NietoDeveloper)
 
 **Senior Software Architect & Full-Stack Engineer**
