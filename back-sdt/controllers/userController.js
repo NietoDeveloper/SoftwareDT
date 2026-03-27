@@ -11,15 +11,7 @@ const userRegister = asyncHandler(async (req, res) => {
 const updateUserDetails = asyncHandler(async (req, res) => {
     const id = req.params.id || req.id; 
     const { name, email, password, phone, photo, customMessage } = req.body;
-    
-    const foundUser = await User.findById(id).select('+password');
-    if (!foundUser) return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
 
-    if (email && email !== foundUser.email) {
-        const emailExists = await User.findOne({ email });
-        if (emailExists) return res.status(409).json({ success: false, message: 'Email ya en uso por otro nodo' });
-        foundUser.email = email;
-    }
     
     if (name) foundUser.name = name;
     if (password) foundUser.password = password; 
