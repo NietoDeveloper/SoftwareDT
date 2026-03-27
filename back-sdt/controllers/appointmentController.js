@@ -7,17 +7,6 @@ const asyncHandler = require('express-async-handler');
         return res.status(400).json({ success: false, message: "Identificador de usuario no detectado." });
 
 
-
-// --- OBTENER TODAS LAS CITAS (ADMIN / MONITORING) ---
-const getAppointments = asyncHandler(async (req, res) => {
-    const appointments = await Appointment.find({})
-        .populate({ path: 'user', model: User, select: 'name email' })
-        .populate({ path: 'doctor', model: Doctor, select: 'name specialization' })
-        .sort({ createdAt: -1 });
-        
-    res.status(200).json({ success: true, appointments });
-});
-
 module.exports = { 
     appointmentBooking, 
     getAppointments, 
