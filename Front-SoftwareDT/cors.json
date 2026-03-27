@@ -1,0 +1,18 @@
+[
+  {
+    "origin": ["http://localhost:5173", "https://tu-dominio-vercel.app"],
+    "method": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    "responseHeader": [
+      "Content-Type", 
+      "Access-Control-Allow-Origin", 
+      "Authorization", 
+      "Content-Length", 
+      "User-Agent", 
+      "x-goog-resumable",
+      "x-sdt-access",
+      "getproyectconfig",
+      "*"
+    ],
+    "maxAgeSeconds": 3600
+  }
+]
