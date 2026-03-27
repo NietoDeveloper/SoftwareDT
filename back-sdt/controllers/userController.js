@@ -16,18 +16,6 @@ const userRegister = asyncHandler(async (req, res) => {
     foundUser.refreshToken = [...(foundUser.refreshToken || []), refreshToken];
     await foundUser.save();
 
-    res.status(200).json({ 
-        success: true, 
-        accessToken, 
-        user: {
-            _id: foundUser._id,
-            name: foundUser.name,
-            email: foundUser.email,
-            photo: foundUser.photo,
-            role: userRole,
-            location: "Bogotá, Colombia"
-        }
-    });
 });
 
 // --- 3. Actualizar Detalles (Update) ---
