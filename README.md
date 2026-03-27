@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/badge/🥇_No._1_Committer-Colombia-FFD700?style=for-the-badge&logoColor=000000"/>
   </a>
   <a href="https://committers.top">
-    <img src="https://img.shields.io/badge/🏆_Top_4-South_%26_Central_America-DCDCDC?style=for-the-badge&logoColor=000000"/>
+    <img src="https://img.shields.io/badge/🏆_Top_3-South_%26_Central_America-DCDCDC?style=for-the-badge&logoColor=000000"/>
   </a>
   <img src="https://img.shields.io/badge/Status-Production_Ready-00D26A?style=for-the-badge&logo=checkmarx&logoColor=white"/>
   <img src="https://img.shields.io/badge/Security-Level_S%2B-FF0000?style=for-the-badge&logoColor=white"/>
