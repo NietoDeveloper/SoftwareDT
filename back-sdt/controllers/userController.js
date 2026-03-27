@@ -12,11 +12,6 @@ const userRegister = asyncHandler(async (req, res) => {
     }
 
 
-    const isMatch = await bcrypt.compare(password, foundUser.password);
-    if (!isMatch) {
-        return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
-    }
-
     const userRole = foundUser.roles?.usuario || 1002;
 
     const accessToken = jwt.sign(
