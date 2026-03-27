@@ -8,15 +8,7 @@ const asyncHandler = require('express-async-handler');
 
         .sort({ 'appointmentDetails.date': -1, 'appointmentDetails.time': -1 });
 
-    // Mapeo preciso para que el Frontend no tenga que procesar lógica extra
-    const formattedAppointments = appointments.map(appt => ({
-        _id: appt._id,
-        serviceName: appt.serviceName,
-        specialization: appt.specialization,
-        appointmentDate: appt.appointmentDetails?.date,
-        appointmentTime: appt.appointmentDetails?.time,
-        status: appt.appointmentDetails?.status || 'pending',
-        reason: appt.appointmentDetails?.reason,
+    // Ma.appointmentDetails?.reason,
         price: appt.paymentInfo?.price,
         isPaid: appt.paymentInfo?.isPaid,
         doctorName: appt.doctor?.name || "Especialista SoftwareDT",
