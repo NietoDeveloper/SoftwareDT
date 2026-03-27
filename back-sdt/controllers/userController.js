@@ -12,15 +12,6 @@ const userRegister = asyncHandler(async (req, res) => {
     }
 
 
-    if (result) {
-        const userRole = result.roles?.usuario || 1002;
-
-        const accessToken = jwt.sign(
-            { UserInfo: { id: result._id, email: result.email, role: userRole } },
-            process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: '1h' }
-        );
-
         const refreshToken = jwt.sign(
             { id: result._id },
             process.env.REFRESH_TOKEN_SECRET,
