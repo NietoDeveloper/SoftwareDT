@@ -6,12 +6,6 @@ const verifyAccess = (req, res, next) => {
 
     const token = authHeader.split(' ')[1]?.trim();
 
-    // 2. Validación de nulidad
-    if (!token || token === 'undefined' || token === 'null') {
-        return res.status(401).json({ 
-            success: false, 
-            message: "Token inválido o vacío." 
-        });
     }r('❌ ERROR CRÍTICO: ACCESS_TOKEN_SECRET no definida en .env');
         return res.status(500).json({ message: "Error interno de configuración del Datacenter." });
     }
