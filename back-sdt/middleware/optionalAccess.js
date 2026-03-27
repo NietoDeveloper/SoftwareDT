@@ -1,15 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const optionalAccess = (req, res, next) => {
-    const authHeader = req.headers.authorization || req.headers.Authorization;
 
-    // 1. Si no hay token o no tiene el formato correcto, tratamos como Guest
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        req.user = null;
-        req.userId = null;
-        req.roles = []; 
-        return next();
-    }
 
     const token = authHeader.split(' ')[1];
 
