@@ -10,12 +10,7 @@ const verifyAccess = (req, res, next) => {
         return res.status(500).json({ message: "Error interno de configuración del Datacenter." });
     }
 
-    // 3. Verificación criptográfica
-    jwt.verify(token, secret, (err, decoded) => {
-        if (err) {
-            let errorMessage = "Error de autenticación.";
-            if (err.name === 'TokenExpiredError') errorMessage = "Sesión expirada.";
-            else if (err.name === 'JsonWebTokenError') errorMessage = "Token malformado.";
+ if (err.name === 'JsonWebTokenError') errorMessage = "Token malformado.";
             
             console.log(`DEBUG [SDT]: Auth failed: ${err.message}`);
             return res.status(403).json({ success: false, message: errorMessage });
