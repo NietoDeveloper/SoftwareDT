@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend-dt:
+    build: ./Back-SoftwareDT
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./Back-SoftwareDT/.env
+    networks:
+      - software-dt-network
+
+  frontend-dt:
+    build: ./Front-SoftwareDT
+    ports:
+      - "5173:5173"
+    volumes:
+      # El mapeo de volúmenes permite cambios en tiempo real sin reiniciar Docker
+      - ./Front-SoftwareDT:/app
+      - /app/node_modules
+    env_file:
+      - ./Front-SoftwareDT/.env
+    depends_on:
+      - backend-dt
+    networks:
+      - software-dt-network
+
+networks:
+  software-dt-network:
+    driver: bridge
