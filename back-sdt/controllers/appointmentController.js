@@ -4,14 +4,6 @@ const User = require('../models/User');
 const Doctor = require('../models/Doctor');
 const asyncHandler = require('express-async-handler');
 
-
-
-// --- OBTENER CITAS DE UN USUARIO (OPTIMIZADO PARA PANEL) ---
-const getUserAppointments = asyncHandler(async (req, res) => {
-    // Tomamos el ID de la URL o del token verificado
-    const userId = req.params.userId || req.userId;
-    
-    if (!userId) {
         return res.status(400).json({ success: false, message: "Identificador de usuario no detectado." });
     }
 
