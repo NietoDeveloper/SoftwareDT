@@ -5,12 +5,7 @@ const verifyAccess = (req, res, next) => {
 
 
     const token = adration)
-        const userInfo = decoded.UserInfo || decoded;
-
-        // Extraemos el ID asegurando que SoftwareDT reciba siempre un valor
-        const userId = userInfo.id || userInfo._id || userInfo.sub;
-
-        if (!userId) {
+        c
             return res.status(403).json({ 
                 success: false, 
                 message: "Payload del token incompleto." 
