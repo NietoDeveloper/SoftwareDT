@@ -16,9 +16,6 @@ s
 const userLogin = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
-    if (!email || !password) {
-        return res.status(400).json({ success: false, message: 'Credenciales requeridas' });
-    }
 
     const foundUser = await User.findOne({ email }).select('+password').exec();
     
