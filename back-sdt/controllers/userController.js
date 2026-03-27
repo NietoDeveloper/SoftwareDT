@@ -11,13 +11,6 @@ const userRegister = asyncHandler(async (req, res) => {
         return res.status(400).json({ success: false, message: 'Protocolo incompleto: faltan campos' });
     }
 
-
-        const refreshToken = jwt.sign(
-            { id: result._id },
-            process.env.REFRESH_TOKEN_SECRET,
-            { expiresIn: '1d' }
-        );
-
         result.refreshToken = [refreshToken];
         await result.save();
 
