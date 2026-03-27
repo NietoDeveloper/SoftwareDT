@@ -5,17 +5,7 @@ const Doctor = require('../models/Doctor');
 const asyncHandler = require('express-async-handler');
 
 ,
-            },
-            appointmentDetails: {
-                date: slotDate, 
-                time: slotTime,
-                reason: reason || "Sin motivo especificado",
-                status: "pending"
-            },
-            paymentInfo: {
-                price: price ? price.toString() : (doctorData.ticketPrice ? doctorData.ticketPrice.toString() : "0"),
-                currency: "COP",
-                isPaid: false
+
             }
         });
 
