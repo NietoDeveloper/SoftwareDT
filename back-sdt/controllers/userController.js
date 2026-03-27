@@ -11,18 +11,6 @@ const userRegister = asyncHandler(async (req, res) => {
         return res.status(400).json({ success: false, message: 'Protocolo incompleto: faltan campos' });
     }
 s
-
-        res.status(201).json({
-            success: true,
-            message: 'Nodo vinculado y autenticado exitosamente',
-            accessToken,
-            user: { 
-                _id: result._id, 
-                name: result.name, 
-                email: result.email,
-                role: userRole,
-                location: "Bogotá, Colombia"
-            }
         });
     } else {
         res.status(500).json({ success: false, message: 'Error de infraestructura' });
