@@ -12,15 +12,6 @@ const userRegister = asyncHandler(async (req, res) => {
     }
 
 
-    // El modelo User.js hace el hash automáticamente mediante middleware .pre('save')
-    const result = await User.create({
-        name,
-        email,
-        photo: photo || 'https://placehold.co/400x400?text=SDT',
-        password, 
-        customMessage: "Hola Software DT, solicito soporte técnico para mi clúster."
-    });
-
     if (result) {
         const userRole = result.roles?.usuario || 1002;
 
