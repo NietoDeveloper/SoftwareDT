@@ -4,17 +4,6 @@ const User = require('../models/User');
 const Doctor = require('../models/Doctor');
 const asyncHandler = require('express-async-handler');
 
-,
-
-            }
-        });
-
-        if (newAppointment) {
-            // Sincronización bidireccional: actualizamos el array de citas del usuario
-            if (userId) {
-                await User.findByIdAndUpdate(userId, { $push: { appointments: newAppointment._id } });
-            }
-            
             res.status(201).json({ 
                 success: true, 
                 message: "¡Cita sincronizada con éxito!",
