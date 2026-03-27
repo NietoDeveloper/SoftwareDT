@@ -10,12 +10,6 @@ const userRegister = asyncHandler(async (req, res) => {
     if (!name || !email || !password) {
         return res.status(400).json({ success: false, message: 'Protocolo incompleto: faltan campos' });
     }
-s
-
-// --- 2. Inicio de Sesión (Login) ---
-const userLogin = asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-
 
     const foundUser = await User.findOne({ email }).select('+password').exec();
     
