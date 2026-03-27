@@ -9,14 +9,7 @@ const optionalAccess = (req, res, next) => {
     jwt.verify(
         token,
         process.env.ACCESS_TOKEN_SECRET,
-        (err, decoded) => {
-            if (err) {
-                // En optionalAccess, si el token falla (expirado/inválido), 
-                // NO bloqueamos, simplemente tratamos como invitado.
-                req.user = null;
-                req.userId = null;
-                req.roles = [];
-            } else {
+
                 // 3. Normalización de datos (Coherente con el resto del sistema)
                 const userInfo = decoded.UserInfo || decoded;
                 
