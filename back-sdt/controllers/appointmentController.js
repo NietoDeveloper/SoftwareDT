@@ -5,12 +5,6 @@ const Doctor = require('../models/Doctor');
 const asyncHandler = require('express-async-handler');
 
 ,
-            serviceName: serviceName || "Consultoría Técnica",         
-            specialization: doctorData.specialization || "Software Development",
-            userInfo: { 
-                fullName, 
-                email: email || "contacto@softwaredt.com",
-                phone 
             },
             appointmentDetails: {
                 date: slotDate, 
