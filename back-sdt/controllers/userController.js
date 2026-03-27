@@ -16,14 +16,6 @@ f (customMessage !== undefined) foundUser.customMessage = customMessage;
     const updated = await foundUser.save();
 s
 
-// --- 4. Logout (Cierre de Sesión) ---
-const handleUserLogout = asyncHandler(async (req, res) => {
-    const cookies = req.cookies;
-    if (!cookies?.jwt) return res.sendStatus(204);
-    
-    const refreshToken = cookies.jwt;
-    const foundUser = await User.findOne({ refreshToken }).exec();
-    
     if (foundUser) {
         foundUser.refreshToken = foundUser.refreshToken.filter(token => token !== refreshToken);
         await foundUser.save();
