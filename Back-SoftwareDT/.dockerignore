@@ -1,0 +1,25 @@
+# Dependencias locales (Docker instalará las suyas propias dentro del contenedor)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variables de entorno (No se deben quemar en la imagen de Docker)
+.env
+.env.local
+.env.production
+
+# Git
+.git
+.gitignore
+
+# Archivos de sistema operativo y editores
+.DS_Store
+.vscode/
+.idea/
+
+# Builds y temporales
+dist/
+build/
+logs/
+*.log
