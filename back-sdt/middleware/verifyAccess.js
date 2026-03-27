@@ -8,11 +8,7 @@ const verifyAccess = (req, res, next) => {
 
     }r('❌ ERROR CRÍTICO: ACCESS_TOKEN_SECRET no definida en .env');
         return res.status(500).json({ message: "Error interno de configuración del Datacenter." });
-    }
-
- if (err.name === 'JsonWebTokenError') errorMessage = "Token malformado.";
-            
-            console.log(`DEBUG [SDT]: Auth failed: ${err.message}`);
+    } [SDT]: Auth failed: ${err.message}`);
             return res.status(403).json({ success: false, message: errorMessage });
         }
 
