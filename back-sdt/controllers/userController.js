@@ -11,10 +11,6 @@ const userRegister = asyncHandler(async (req, res) => {
         return res.status(400).json({ success: false, message: 'Protocolo incompleto: faltan campos' });
     }
 
-    const userexist = await User.findOne({ email });
-    if (userexist) {
-        return res.status(409).json({ success: false, message: 'Conflicto: El usuario ya existe en el Datacenter' });
-    }
 
     // El modelo User.js hace el hash automáticamente mediante middleware .pre('save')
     const result = await User.create({
