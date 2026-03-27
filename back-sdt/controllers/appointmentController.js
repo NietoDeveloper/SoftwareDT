@@ -8,14 +8,7 @@ const asyncHandler = require('express-async-handler');
         serviceName,
         price 
     } = req.body;
-
-    // Val
-    }
-
-    // El userId puede venir del middleware de auth (req.userId) o del cuerpo del request
-    const userId = req.userId || bodyUserId || null; 
-    
-    const doctorData = await Doctor.findById(doctorId).lean();
+ await Doctor.findById(doctorId).lean();
     if (!doctorData) {
         return res.status(404).json({ success: false, message: "Especialista no encontrado." });
     }
