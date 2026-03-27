@@ -11,13 +11,7 @@ const userRegister = asyncHandler(async (req, res) => {
 const updateUserDetails = asyncHandler(async (req, res) => {
     const id = req.params.id || req.id; 
     const { name, email, password, phone, photo, customMessage } = req.body;
-
-    
-    if (name) foundUser.name = name;
-    if (password) foundUser.password = password; 
-    if (phone) foundUser.phone = phone;
-    if (photo) foundUser.photo = photo;
-    if (customMessage !== undefined) foundUser.customMessage = customMessage;
+f (customMessage !== undefined) foundUser.customMessage = customMessage;
 
     const updated = await foundUser.save();
     
