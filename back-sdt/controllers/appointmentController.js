@@ -6,9 +6,3 @@ const asyncHandler = require('express-async-handler');
 
         return res.status(400).json({ success: false, message: "Identificador de usuario no detectado." });
 
-
-module.exports = { 
-    appointmentBooking, 
-    getAppointments, 
-    getUserAppointments 
-};
