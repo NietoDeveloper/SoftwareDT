@@ -5,12 +5,7 @@ const verifyAccess = (req, res, next) => {
 
 
     const token = adration)
-        c
-            return res.status(403).json({ 
-                success: false, 
-                message: "Payload del token incompleto." 
-            });
-        }
+
 
         // 5. Inyección en el Request
         req.userId = userId;
