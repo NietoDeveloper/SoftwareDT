@@ -1,168 +1,416 @@
 <div align="center">
 
-<!-- ANIMATED HEADER BANNER -->
-<img src="https://capsule-render.vercel.app/api?type=venom&color=gradient&customColorList=0,2,2,5,30&height=200&section=header&text=Software%20DT%20API&fontSize=60&fontColor=FFD700&animation=twinkling&fontAlignY=55&desc=High-Performance%20MERN%20Backend%20Engine&descSize=18&descAlignY=75&descColor=AAAAAA" width="100%"/>
+<!-- ANIMATED HEADER -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=200&section=header&text=SOFTWARE%20DT&fontSize=72&fontColor=FFD700&animation=fadeIn&fontAlignY=38&desc=High-Performance%20Service%20Management%20Platform&descAlignY=58&descSize=18&descColor=DCDCDC" width="100%"/>
 
-<!-- TYPING ANIMATION -->
-<a href="https://git.io/typing-svg">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=22&pause=1000&color=FFD700&center=true&vCenter=true&width=600&lines=Built+for+Scale.+Built+for+Production.;Clean+Architecture+%E2%80%A2+MERN+Stack;JWT+Security+%E2%80%A2+Real-Time+Sockets;Bogot%C3%A1%2C+Colombia+%F0%9F%87%A8%F0%9F%87%B4" alt="Typing SVG" />
-</a>
+<!-- BADGES ROW -->
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-15-000000?style=for-the-badge&logo=nextdotjs&logoColor=FFD700"/>
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Zustand-State-FFD700?style=for-the-badge&logo=npm&logoColor=black"/>
+</p>
 
-<br/>
+<p align="center">
+  <img src="https://img.shields.io/badge/Docker-Alpine-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
+  <img src="https://img.shields.io/badge/AWS-Cloud-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Vercel-Deploy-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
+  <img src="https://img.shields.io/badge/CI%2FCD-Git-F05032?style=for-the-badge&logo=git&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Status-Production-00D26A?style=for-the-badge"/>
+</p>
 
-<!-- BADGES -->
-![Status](https://img.shields.io/badge/Status-Production%20Ready-FFD700?style=for-the-badge&logo=checkmarx&logoColor=black)
-![Node](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=FFD700)
+---
 
-<!-- ACTIVITY GRAPH -->
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=NietoDeveloper&bg_color=0d1117&color=FFD700&line=FFD700&point=ffffff&area=true&hide_border=true" width="100%" />
+<!-- ANIMATED TYPING -->
+
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=700&size=22&duration=3000&pause=1000&color=FFD700&center=true&vCenter=true&multiline=false&repeat=true&width=700&lines=⚡+Real-Time+Service+Management;🏗️+Production-Grade+Architecture;🔒+Dual-Cluster+Security+Layer;📊+Live+Operational+Metrics;🐳+Fully+Containerized+Infrastructure)](https://git.io/typing-svg)
 
 </div>
 
 ---
 
-## `01` — Overview
+## 📌 Overview
 
-> **Software DT Backend** is the high-performance processing core designed to manage booking and health ecosystems. Built under **Clean Architecture** principles, it guarantees scalability, security, and real-time synchronization across every layer of the stack.
+**Software DT** is a high-performance web platform engineered for service management and process digitization. Built under strict production standards, its architecture fully decouples the client from the server — delivering elastic speed, security, and scalability.
 
-<div align="center">
-<img src="https://github-profile-trophy.vercel.app/?username=NietoDeveloper&theme=darkhub&no-frame=true&no-bg=true&margin-w=4&row=1&column=6" width="100%"/>
-</div>
-
----
-
-## `02` — Elite Technology Stack
-
-<div align="center">
-
-| Component | Technology | Purpose |
-| :---: | :---: | :--- |
-| ⚡ **Runtime** | `Node.js` | Asynchronous and scalable execution |
-| 🚂 **Framework** | `Express.js` | Robust RESTful architecture |
-| 🔷 **Language** | `TypeScript / JS` | Strong typing and data integrity |
-| 🍃 **Database** | `MongoDB Atlas` | NoSQL persistence, high availability |
-| 🔐 **Auth** | `JWT & Bcrypt` | Bank-grade security |
-| 🐳 **DevOps** | `Docker / Vercel` | Orchestration and continuous deployment |
-| ⚡ **Real-Time** | `Socket.io` | Live notifications and events |
-
-</div>
-
----
-
-## `03` — System Architecture
+> _Industrial-grade aesthetics. Dark-first UI. Gold-accented precision. Built to perform._
 
 ```
-┌─────────────────────────────────────────────────┐
-│                   src/                          │
-├── config/       ⚙️  DB Connections & Variables  │
-├── controllers/  🧠  Business Logic              │
-├── middleware/   🛡️  Security (Helmet, CORS)     │
-├── models/       📑  Schemas (Users, Bookings)   │
-├── routes/       🚦  RESTful Endpoints           │
-├── sockets/      ⚡  Real-Time with Socket.io    │
-├── utils/        🧰  Helpers & Error Handling    │
-└── app.js        🚀  Main Entry Point            │
-└─────────────────────────────────────────────────┘
+ ┌─────────────────────────────────────────────────────────────┐
+ │                      SOFTWARE DT                            │
+ │                                                             │
+ │   [ CLIENT CLUSTER ]          [ ADMIN CLUSTER ]            │
+ │   ┌───────────────┐           ┌───────────────┐            │
+ │   │  Next.js App  │ ←──────→  │  Admin Panel  │            │
+ │   │  (App Router) │           │ (Real-Time)   │            │
+ │   └───────┬───────┘           └───────┬───────┘            │
+ │           │  HTTP (Secure)            │                     │
+ │   ┌───────▼───────────────────────────▼──────┐             │
+ │   │         Node.js + Express Backend        │             │
+ │   │         (Modular Services & Controllers) │             │
+ │   └───────────────────┬──────────────────────┘             │
+ │                       │                                     │
+ │        ┌──────────────┴──────────────┐                     │
+ │        ▼                             ▼                      │
+ │   [ MongoDB ]                 [ PostgreSQL / MySQL ]        │
+ └─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## `04` — Core Business Flow
+## 🛠️ Unified Tech Stack
+
+<table>
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>Technology</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🖥️ <strong>Frontend</strong></td>
+      <td>React 18 + Next.js 15 (App Router)</td>
+      <td>SSR, routing, and component architecture</td>
+    </tr>
+    <tr>
+      <td>🔤 <strong>Language</strong></td>
+      <td>TypeScript 5</td>
+      <td>Type-safe, scalable codebase</td>
+    </tr>
+    <tr>
+      <td>🎨 <strong>Styling</strong></td>
+      <td>Tailwind CSS 3</td>
+      <td>Utility-first responsive UI</td>
+    </tr>
+    <tr>
+      <td>⚡ <strong>State</strong></td>
+      <td>Zustand</td>
+      <td>Lightweight global state, zero unnecessary re-renders</td>
+    </tr>
+    <tr>
+      <td>🎭 <strong>UI/UX</strong></td>
+      <td>Dark mode · <code>#FFD700</code> Gold · <code>#DCDCDC</code> Gainsboro</td>
+      <td>High-end industrial aesthetic</td>
+    </tr>
+    <tr>
+      <td>🔧 <strong>Backend</strong></td>
+      <td>Node.js + Express</td>
+      <td>Modular services and independent controllers</td>
+    </tr>
+    <tr>
+      <td>🗄️ <strong>Database</strong></td>
+      <td>MongoDB · PostgreSQL · MySQL</td>
+      <td>Non-relational speed + relational integrity</td>
+    </tr>
+    <tr>
+      <td>🐳 <strong>DevOps</strong></td>
+      <td>Docker Alpine · AWS · Vercel · Git CI/CD</td>
+      <td>Lightweight containers + continuous delivery</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 🔄 Appointment System — Operational Flow
+
+The core engine processes bookings sequentially and cleanly, ensuring data integrity from the client all the way to the admin dashboard.
 
 ```mermaid
 flowchart LR
-    A[🔍 GET /api/services] -->|Dynamic catalog| B[👨‍⚕️ GET /api/doctors]
-    B -->|Smart filtering| C[📅 POST /api/bookings]
-    C -->|Validated booking| D[⚡ Socket.io Trigger]
-    D -->|Instant alert| E[🖥️ Admin Dashboard]
+    A([👤 User]) -->|Service Request| B[Selection & Scheduling]
+    B -->|Consolidated Data| C{Validation Layer}
+    C -->|✅ Valid| D[(Database Persistence)]
+    C -->|❌ Invalid| B
+    D -->|Real-Time Push| E[Admin Control Panel]
+    E --> F[✔️ Mark as Completed]
+    E --> G[📋 Review History]
+    E --> H[🔄 Update UI Sections]
 
-    style A fill:#FFD700,color:#000
-    style B fill:#1a1a2e,color:#FFD700
-    style C fill:#1a1a2e,color:#FFD700
-    style D fill:#FFD700,color:#000
-    style E fill:#1a1a2e,color:#FFD700
+    style A fill:#1a1a1a,color:#FFD700,stroke:#FFD700
+    style B fill:#1a1a1a,color:#DCDCDC,stroke:#333
+    style C fill:#1a1a1a,color:#FFD700,stroke:#FFD700
+    style D fill:#1a1a1a,color:#DCDCDC,stroke:#333
+    style E fill:#1a1a1a,color:#FFD700,stroke:#FFD700
+    style F fill:#1a1a1a,color:#00D26A,stroke:#00D26A
+    style G fill:#1a1a1a,color:#DCDCDC,stroke:#333
+    style H fill:#1a1a1a,color:#DCDCDC,stroke:#333
+```
+
+### Step-by-step
+
+| # | Phase | Description |
+|---|-------|-------------|
+| 1️⃣ | **Selection & Scheduling** | Captures service requirements and consolidates booking data |
+| 2️⃣ | **Database Persistence** | Transmits unified data via secure HTTP, validates before saving |
+| 3️⃣ | **Real-Time Admin Panel** | Administrators see incoming appointments instantly — mark complete, review history, update UI |
+
+---
+
+## 🐳 Docker Infrastructure & Deployment
+
+Software DT runs in isolated containers ensuring **identical behavior** between local development and cloud production servers.
+
+### Development Environment
+
+```dockerfile
+# Node 20 Alpine — Lightweight & Fast
+FROM node:20-alpine
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+# Hot Module Replacement — see changes instantly
+EXPOSE 5173
+CMD ["npm", "run", "dev", "--", "--host"]
+```
+
+```yaml
+# docker-compose.dev.yml
+services:
+  frontend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app                    # HMR volume mount
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+```
+
+> 🔥 **Hot Module Replacement** — Volume mounts enable instant code reflection without container restarts.
+
+---
+
+### Production Environment — Multi-Stage Build
+
+```dockerfile
+# ── Stage 1: Build ──────────────────────────────────
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY . .
+RUN npm run build
+
+# ── Stage 2: Serve ──────────────────────────────────
+FROM nginx:alpine AS production
+
+COPY --from=builder /app/.next/static /usr/share/nginx/html/_next/static
+COPY --from=builder /app/out           /usr/share/nginx/html
+COPY nginx.conf                        /etc/nginx/nginx.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+```nginx
+# nginx.conf — SPA Routing Handler
+server {
+    listen 80;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;   # SPA fallback
+    }
+
+    location /_next/static/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+}
 ```
 
 ---
 
-## `05` — Security & Optimization
-
-<div align="center">
+## 🔒 Dual-Cluster Architecture & Security
 
 ```
-╔══════════════════════════════════════════════════════╗
-║  🔁  DUAL CLUSTER      │  Redundant connectivity     ║
-║  🛡️  HELMET ACTIVE     │  Secure HTTP headers        ║
-║  🧼  NoSQL SANITIZER   │  Anti-injection on inputs   ║
-║  ⏱️  RATE LIMITING     │  Active anti-brute force    ║
-╚══════════════════════════════════════════════════════╝
+┌─────────────────────────────────────────────────────────────┐
+│                    SECURITY PERIMETER                       │
+│                                                             │
+│  ┌──────────────────┐        ┌──────────────────────────┐  │
+│  │  CLIENT CLUSTER  │        │     ADMIN CLUSTER        │  │
+│  │                  │        │                          │  │
+│  │  • Public Routes │        │  • Protected Routes      │  │
+│  │  • Auth Routes   │        │  • Real-Time Dashboard   │  │
+│  │  • Booking Flow  │        │  • Operational Metrics   │  │
+│  └────────┬─────────┘        └────────────┬─────────────┘  │
+│           │                               │                 │
+│           └──────────────┬────────────────┘                 │
+│                          ▼                                  │
+│              ┌───────────────────────┐                      │
+│              │   AUTH MIDDLEWARE     │                      │
+│              │  Role-Based Access    │                      │
+│              │  JWT · Session Mgmt   │                      │
+│              └───────────────────────┘                      │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-</div>
+| Feature | Details |
+|---------|---------|
+| 🏗️ **Layer Segregation** | Frontend and Backend fully decoupled. Admin Panel runs in its own cluster — no client traffic interference |
+| 🔑 **Auth & Roles** | Robust authentication strictly separating public, auth, admin, and internal routes |
+| 📊 **Real-Time Metrics** | Data aggregation components computing daily, monthly, and annual operational totals — instantly |
 
 ---
 
-## `06` — Setup & Configuration
+## 🚀 Getting Started
 
-**① Clone & Install**
+### Prerequisites
 
 ```bash
-git clone https://github.com/NietoDeveloper/softwaredt-backend.git
-cd softwaredt-backend
+node  >= 20.x
+npm   >= 10.x
+docker >= 24.x
+```
+
+### Local Development (Docker)
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-org/software-dt-frontend.git
+cd software-dt-frontend
+
+# 2. Configure environment
+cp .env.example .env.local
+
+# 3. Launch with Docker (HMR enabled)
+docker-compose -f docker-compose.dev.yml up --build
+
+# → App running at http://localhost:5173
+```
+
+### Local Development (Native)
+
+```bash
 npm install
+npm run dev
+# → http://localhost:3000
 ```
 
-**② Environment Variables** — create `.env` from `.env.example`
-
-```env
-PORT=5000
-MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/SoftwareDT
-JWT_SECRET=your_master_secret_dt
-NODE_ENV=production
-```
-
-**③ Run**
+### Production Build
 
 ```bash
-# Development mode
-npm run dev
+# Build & serve via Docker
+docker build -t software-dt-frontend .
+docker run -p 80:80 software-dt-frontend
 
-# Production mode
-npm start
+# Or deploy to Vercel
+vercel --prod
 ```
 
 ---
 
-## `07` — Roadmap MVP · `May 6, 2026`
+## 📁 Project Structure
 
-<div align="center">
+```
+software-dt-frontend/
+├── 📁 app/                      # Next.js App Router
+│   ├── 📁 (public)/             # Public-facing routes
+│   │   ├── page.tsx             # Landing page
+│   │   └── booking/             # Appointment flow
+│   ├── 📁 (admin)/              # Admin cluster routes
+│   │   ├── dashboard/           # Real-time control panel
+│   │   ├── appointments/        # Booking management
+│   │   └── metrics/             # Operational analytics
+│   └── 📁 (auth)/               # Authentication routes
+├── 📁 components/               # Reusable UI components
+│   ├── 📁 ui/                   # Base design system
+│   └── 📁 dashboard/            # Admin-specific widgets
+├── 📁 stores/                   # Zustand state stores
+├── 📁 lib/                      # Utilities & API clients
+├── 📁 types/                    # TypeScript definitions
+├── 📁 public/                   # Static assets
+├── Dockerfile                   # Production multi-stage
+├── Dockerfile.dev               # Development with HMR
+├── docker-compose.dev.yml
+└── nginx.conf
+```
 
-![Roadmap](https://img.shields.io/badge/TARGET-May%206%2C%202026-FF4444?style=for-the-badge)
+---
 
-</div>
+## 🎨 Design System
 
-- [ ] 💬 **Pro Messaging** — Real-time chat history refactor
-- [ ] 🗓️ **Auto-Status** — Automated logic for closing completed appointments
-- [ ] 📊 **Real-Time Dash** — WebSocket optimization for live metrics
-- [ ] 🎛️ **Control Panel** — Final integration of the admin panel
+> Industrial high-end aesthetic · Dark-first · Precision-accented
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-gold` | `#FFD700` | Primary accents, CTAs, highlights |
+| `--color-gainsboro` | `#DCDCDC` | Secondary text, borders, subtle elements |
+| `--color-bg-primary` | `#0A0A0A` | Main background |
+| `--color-bg-surface` | `#111111` | Cards, panels, surfaces |
+| `--color-bg-elevated` | `#1A1A1A` | Elevated components |
+
+---
+
+## 📊 Real-Time Metrics Dashboard
+
+The Admin Panel delivers live operational visibility across all time ranges:
+
+```
+┌──────────────┬──────────────┬──────────────┐
+│  📅 TODAY    │  📆 MONTH    │  📈 ANNUAL   │
+│              │              │              │
+│   ── ──      │   ─── ──     │   ──── ──    │
+│  Appointments│  Appointments│  Appointments│
+│   Completed  │  Completed   │  Completed   │
+│   Pending    │  Revenue     │  Revenue     │
+└──────────────┴──────────────┴──────────────┘
+       ↑ All aggregated and updated in real-time
+```
+
+---
+
+## 🔗 Related Repositories
+
+| Repo | Description |
+|------|-------------|
+| [`software-dt-backend`](https://github.com/your-org/software-dt-backend) | Node.js + Express API — modular services & controllers |
+| [`software-dt-admin`](https://github.com/your-org/software-dt-admin) | Standalone Admin Cluster — real-time control panel |
+| [`software-dt-infra`](https://github.com/your-org/software-dt-infra) | Docker configs, AWS IaC, CI/CD pipelines |
+
+---
+
+## 🤝 Contributing
+
+```bash
+# 1. Fork & clone
+# 2. Create feature branch
+git checkout -b feat/your-feature-name
+
+# 3. Commit with conventional format
+git commit -m "feat: add real-time appointment notifications"
+
+# 4. Push & open Pull Request
+git push origin feat/your-feature-name
+```
+
+> All PRs trigger the CI/CD pipeline automatically via GitHub Actions.
 
 ---
 
 <div align="center">
 
-<!-- WAVE FOOTER -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=120&section=footer&text=Manuel%20Nieto&fontSize=28&fontColor=FFD700&animation=fadeIn&fontAlignY=65" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=120&section=footer&animation=fadeIn" width="100%"/>
 
-<!-- PROFILE VIEWS + SOCIALS -->
-![Profile Views](https://komarev.com/ghpvc/?username=NietoDeveloper&color=FFD700&style=for-the-badge)
-[![GitHub](https://img.shields.io/badge/GitHub-NietoDeveloper-181717?style=for-the-badge&logo=github)](https://github.com/NietoDeveloper)
+**Built with precision. Deployed with confidence.**
 
-**Senior Software Architect & Full-Stack Engineer**
+[![Made with Next.js](https://img.shields.io/badge/Made%20with-Next.js-000?style=flat-square&logo=nextdotjs&logoColor=FFD700)](https://nextjs.org)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000?style=flat-square&logo=vercel&logoColor=white)](https://vercel.com)
+[![Containerized with Docker](https://img.shields.io/badge/Containerized-Docker-2496ED?style=flat-square&logo=docker&logoColor=white)](https://docker.com)
 
-📍 Bogotá, Colombia 🇨🇴
+*© 2025 Software DT — All rights reserved.*
 
 </div>
