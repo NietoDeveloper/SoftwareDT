@@ -9,12 +9,7 @@ const asyncHandler = require('express-async-handler');
         price 
     } = req.body;
 
-    // Validación estricta para evitar datos corruptos en el Datacenter
-    if (!doctorId || !slotDate || !slotTime || !fullName || !phone) {
-        return res.status(400).json({ 
-            success: false, 
-            message: "Información incompleta: Revisa fecha, hora y datos de contacto." 
-        });
+    // Val
     }
 
     // El userId puede venir del middleware de auth (req.userId) o del cuerpo del request
