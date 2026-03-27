@@ -4,19 +4,7 @@ const User = require('../models/User');
 const Doctor = require('../models/Doctor');
 const asyncHandler = require('express-async-handler');
 
-        reason,
-        serviceName,
-        price 
-    } = req.body;
- await Doctor.findById(doctorId).lean();
-    if (!doctorData) {
-        return res.status(404).json({ success: false, message: "Especialista no encontrado." });
-    }
-
-    try {
-        const newAppointment = await Appointment.create({
-            user: userId,
-            doctor: doctorId,
+,
             serviceName: serviceName || "Consultoría Técnica",         
             specialization: doctorData.specialization || "Software Development",
             userInfo: { 
