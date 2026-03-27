@@ -1,16 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const verifyAccess = (req, res, next) => {
-    const authHeader = req.headers.authorization || req.headers.Authorization;
-
-
-    const token = adration)
-
-
-        // 5. Inyección en el Request
-        req.userId = userId;
-        req.roles = userInfo.roles || userInfo.role || []; 
-        req.user = userInfo.username || userInfo.email || null;
+er = usernfo.username || userInfo.email || null;
         
         // --- AJUSTE DE CLASE MUNDIAL: Verificación de Admin Blindada ---
         // Convertimos a Array si es un solo valor y luego convertimos cada rol a String
