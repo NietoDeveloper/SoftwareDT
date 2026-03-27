@@ -4,16 +4,6 @@ const User = require('../models/User');
 const Doctor = require('../models/Doctor');
 const asyncHandler = require('express-async-handler');
 
-// --- CREAR CITA (RESERVA SDT) ---
-const appointmentBooking = asyncHandler(async (req, res) => {
-    const { 
-        doctorId, 
-        userId: bodyUserId, 
-        fullName, 
-        email, 
-        phone, 
-        slotDate, 
-        slotTime, 
         reason,
         serviceName,
         price 
