@@ -3,14 +3,6 @@ const jwt = require('jsonwebtoken');
 const verifyAccess = (req, res, next) => {
     const authHeader = req.headers.authorization || req.headers.Authorization;
 
-    // 1. Verificación de formato
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        console.log('DEBUG [SDT]: Access Denied - Missing or Malformed Header (401).');
-        return res.status(401).json({ 
-            success: false, 
-            message: "Acceso denegado. Formato de token incorrecto." 
-        }); 
-    }
 
     const token = authHeader.split(' ')[1]?.trim();
 
@@ -20,12 +12,7 @@ const verifyAccess = (req, res, next) => {
             success: false, 
             message: "Token inválido o vacío." 
         });
-    }
-
-    // --- SEGURIDAD: Validar existencia de la llave secreta ---
-    const secret = process.env.ACCESS_TOKEN_SECRET;
-    if (!secret) {
-        console.error('❌ ERROR CRÍTICO: ACCESS_TOKEN_SECRET no definida en .env');
+    }r('❌ ERROR CRÍTICO: ACCESS_TOKEN_SECRET no definida en .env');
         return res.status(500).json({ message: "Error interno de configuración del Datacenter." });
     }
 
