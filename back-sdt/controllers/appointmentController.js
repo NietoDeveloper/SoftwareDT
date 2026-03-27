@@ -5,15 +5,7 @@ const Doctor = require('../models/Doctor');
 const asyncHandler = require('express-async-handler');
 
         return res.status(400).json({ success: false, message: "Identificador de usuario no detectado." });
-    }
 
-    // Buscamos citas vinculadas al clúster del usuario
-    const appointments = await Appointment.find({ user: userId })
-        .populate({
-            path: 'doctor',
-            model: Doctor,
-            select: 'name specialization image'
-        })
         .sort({ 'appointmentDetails.date': -1, 'appointmentDetails.time': -1 });
 
     // Mapeo preciso para que el Frontend no tenga que procesar lógica extra
