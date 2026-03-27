@@ -6,14 +6,7 @@ const asyncHandler = require('express-async-handler');
 
         return res.status(400).json({ success: false, message: "Identificador de usuario no detectado." });
 
-        .sort({ 'appointmentDetails.date': -1, 'appointmentDetails.time': -1 });
 
-    res.status(200).json({ 
-        success: true, 
-        count: formattedAppointments.length,
-        appointments: formattedAppointments 
-    });
-});
 
 // --- OBTENER TODAS LAS CITAS (ADMIN / MONITORING) ---
 const getAppointments = asyncHandler(async (req, res) => {
