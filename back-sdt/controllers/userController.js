@@ -5,20 +5,7 @@ const jwt = require('jsonwebtoken');
 
 // --- 1. Registro de Usuario (Con Auto-Login de Clase Mundial) ---
 const userRegister = asyncHandler(async (req, res) => {
-    const { name, email, password, photo } = req.body;
-    
-    if (!name || !email || !password) {
-        return res.status(400).json({ success: false, message: 'Protocolo incompleto: faltan campos' });
-    }
 
-
-    const userRole = foundUser.roles?.usuario || 1002;
-
-    const accessToken = jwt.sign(
-        { UserInfo: { id: foundUser._id, email: foundUser.email, role: userRole } },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: '1h' }
-    );
 
     const refreshToken = jwt.sign(
         { id: foundUser._id },
