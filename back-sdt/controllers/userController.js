@@ -14,12 +14,6 @@ const userRegister = asyncHandler(async (req, res) => {
         result.refreshToken = [refreshToken];
         await result.save();
 
-        res.cookie('jwt', refreshToken, {
-            httpOnly: true,
-            sameSite: 'None', 
-            secure: true, 
-            maxAge: 24 * 60 * 60 * 1000,
-        });
 
         res.status(201).json({
             success: true,
