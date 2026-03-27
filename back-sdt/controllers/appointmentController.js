@@ -8,13 +8,6 @@ const asyncHandler = require('express-async-handler');
 
         .sort({ 'appointmentDetails.date': -1, 'appointmentDetails.time': -1 });
 
-    // Ma.appointmentDetails?.reason,
-        price: appt.paymentInfo?.price,
-        isPaid: appt.paymentInfo?.isPaid,
-        doctorName: appt.doctor?.name || "Especialista SoftwareDT",
-        doctorImage: appt.doctor?.image || ""
-    }));
-
     res.status(200).json({ 
         success: true, 
         count: formattedAppointments.length,
