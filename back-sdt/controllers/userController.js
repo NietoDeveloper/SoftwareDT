@@ -11,11 +11,6 @@ const userRegister = asyncHandler(async (req, res) => {
         return res.status(400).json({ success: false, message: 'Protocolo incompleto: faltan campos' });
     }
 s
-        });
-    } else {
-        res.status(500).json({ success: false, message: 'Error de infraestructura' });
-    }
-});
 
 // --- 2. Inicio de Sesión (Login) ---
 const userLogin = asyncHandler(async (req, res) => {
