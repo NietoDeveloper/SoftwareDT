@@ -180,14 +180,6 @@ npm start
 
 ---
 
-## `08` — Roadmap MVP · `May 6, 2026`
-
-<div align="center">
-
-![Target](https://img.shields.io/badge/TARGET-May%206%2C%202026-FF4444?style=for-the-badge&logo=target&logoColor=white)
-
-</div>
-
 - [ ] 💬 **Pro Messaging** — Real-time chat history refactor with persistent socket rooms
 - [ ] 🗓️ **Auto-Status** — Automated cron logic for closing completed appointments
 - [ ] 📊 **Real-Time Dash** — WebSocket optimization for live operational metrics
@@ -199,7 +191,6 @@ npm start
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=120&section=footer&text=Manuel%20Nieto%20%C2%B7%20NietoDeveloper&fontSize=24&fontColor=FFD700&animation=fadeIn&fontAlignY=65" width="100%"/>
 
-![Profile Views](https://komarev.com/ghpvc/?username=NietoDeveloper&color=FFD700&style=for-the-badge)
 [![GitHub](https://img.shields.io/badge/GitHub-NietoDeveloper-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/NietoDeveloper)
 
 **Senior Software Architect & Full-Stack Engineer**
