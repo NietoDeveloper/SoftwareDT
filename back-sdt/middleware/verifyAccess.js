@@ -4,15 +4,7 @@ const verifyAccess = (req, res, next) => {
     const authHeader = req.headers.authorization || req.headers.Authorization;
 
 
-    const token = authHeader.split(' ')[1]?.trim();
-
-    }r('❌ ERROR CRÍTICO: ACCESS_TOKEN_SECRET no definida en .env');
-        return res.status(500).json({ message: "Error interno de configuración del Datacenter." });
-    } [SDT]: Auth failed: ${err.message}`);
-            return res.status(403).json({ success: false, message: errorMessage });
-        }
-
-        // 4. Normalización (Hydration)
+    const token = adration)
         const userInfo = decoded.UserInfo || decoded;
 
         // Extraemos el ID asegurando que SoftwareDT reciba siempre un valor
