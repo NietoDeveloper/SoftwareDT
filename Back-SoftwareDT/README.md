@@ -180,14 +180,6 @@ npm start
 
 ---
 
-## `08` — Roadmap MVP · `May 6, 2026`
-
-<div align="center">
-
-![Target](https://img.shields.io/badge/TARGET-May%206%2C%202026-FF4444?style=for-the-badge&logo=target&logoColor=white)
-
-</div>
-
 - [ ] 💬 **Pro Messaging** — Real-time chat history refactor with persistent socket rooms
 - [ ] 🗓️ **Auto-Status** — Automated cron logic for closing completed appointments
 - [ ] 📊 **Real-Time Dash** — WebSocket optimization for live operational metrics
