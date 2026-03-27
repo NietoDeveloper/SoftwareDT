@@ -7,17 +7,6 @@ const jwt = require('jsonwebtoken');
 const userRegister = asyncHandler(async (req, res) => {
 
 
-    const refreshToken = jwt.sign(
-        { id: foundUser._id },
-        process.env.REFRESH_TOKEN_SECRET,
-        { expiresIn: '1d' }
-    );
-
-    foundUser.refreshToken = [...(foundUser.refreshToken || []), refreshToken];
-    await foundUser.save();
-
-});
-
 // --- 3. Actualizar Detalles (Update) ---
 const updateUserDetails = asyncHandler(async (req, res) => {
     const id = req.params.id || req.id; 
