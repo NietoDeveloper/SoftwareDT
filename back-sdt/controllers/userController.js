@@ -10,10 +10,7 @@ const userRegister = asyncHandler(async (req, res) => {
     if (!name || !email || !password) {
         return res.status(400).json({ success: false, message: 'Protocolo incompleto: faltan campos' });
     }
-
-        result.refreshToken = [refreshToken];
-        await result.save();
-
+s
 
         res.status(201).json({
             success: true,
