@@ -14,18 +14,7 @@ const updateUserDetails = asyncHandler(async (req, res) => {
 f (customMessage !== undefined) foundUser.customMessage = customMessage;
 
     const updated = await foundUser.save();
-    
-    res.status(200).json({ 
-        success: true, 
-        message: 'DATACENTER ACTUALIZADO',
-        user: { 
-            _id: updated._id, 
-            name: updated.name,
-            email: updated.email,
-            role: updated.roles?.usuario || 1002
-        } 
-    });
-});
+s
 
 // --- 4. Logout (Cierre de Sesión) ---
 const handleUserLogout = asyncHandler(async (req, res) => {
