@@ -11,11 +11,6 @@ const userRegister = asyncHandler(async (req, res) => {
         return res.status(400).json({ success: false, message: 'Protocolo incompleto: faltan campos' });
     }
 
-    const foundUser = await User.findOne({ email }).select('+password').exec();
-    
-    if (!foundUser) {
-        return res.status(401).json({ success: false, message: 'Credenciales inválidas o nodo inexistente' });
-    }
 
     const isMatch = await bcrypt.compare(password, foundUser.password);
     if (!isMatch) {
