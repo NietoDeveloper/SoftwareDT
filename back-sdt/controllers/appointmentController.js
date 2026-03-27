@@ -4,16 +4,7 @@ const User = require('../models/User');
 const Doctor = require('../models/Doctor');
 const asyncHandler = require('express-async-handler');
 
-            res.status(201).json({ 
-                success: true, 
-                message: "¡Cita sincronizada con éxito!",
-                appointment: newAppointment 
-            });
-        }
-    } catch (error) {
-        res.status(400).json({ success: false, message: `Error SDT-Datacenter: ${error.message}` });
-    }
-});
+
 
 // --- OBTENER CITAS DE UN USUARIO (OPTIMIZADO PARA PANEL) ---
 const getUserAppointments = asyncHandler(async (req, res) => {
