@@ -39,7 +39,7 @@
 
 <br/>
 
-> **Software DT** is a high-performance digital ecosystem engineered for industrial asset management
+> 🐳 Software DT: Client Bookings.  A high-performance, enterprise-grade built with MERN stack, JavaScript, and Docker. State-of-the-art architecture for real-time asset monitoring and data orchestration.
 > through **Digital Twin** technology. A production-grade Full-Stack **MERN** monorepo
 > connecting service providers and clients via a scalable, secure, Dockerized architecture.
 >
