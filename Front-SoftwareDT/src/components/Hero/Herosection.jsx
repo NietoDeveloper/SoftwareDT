@@ -23,7 +23,7 @@ const Herosection = () => {
               escalables, intuitivas y eficientes.
             </p>
 
-            <Link to="/doctors">
+            <Link to="/">
               {/* BOTÓN AJUSTADO: Más compacto con Hover Gold Explosivo */}
               <button 
                 className="w-56 h-14 bg-black text-white text-xl font-black uppercase tracking-tighter 
