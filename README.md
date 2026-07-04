@@ -36,22 +36,7 @@ EXPOSE
       - ./Back-SoftwareDT/.env
     depends_on:
       - fron.json ./
-RUN npm ci --omit=dev
-COPY . .
-RUN npm run build
-
-# ── Stage 2: Serve ───────────────────────────────────
-FROM nginx:alpine AS production
-COPY --from=builder /app/dist /usr/share/nginx/html
-COPY nginx.conf       /etc/nginx/nginx.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-```
-
-### 🛑 Operations & Maintenance
-
-```bash
-# Stop ecosystem & release all ports
+RUN npm cease all ports
 docker-compose down
 
 # Rebuild after package.json changes
