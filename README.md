@@ -12,12 +12,7 @@ MONGO_URI_USERS=mongodb+
 
 ```
 🤖 What Docker does automatically:
-   ├── Pulls Node:20-alpine images (lightweight, ~50MB)
-   ├── Installs all npm dependencies in isolation
-   ├── Creates a private virtual network between services
-   ├── Mounts volumes for Hot Module Replacement (dev)
-   └── Spins up both servers simultaneously
-
+S
    🖥️  Frontend  →  http://localhost:5173
    🛰️  Backend   →  http://localhost:8080
 ```
