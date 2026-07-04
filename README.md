@@ -40,17 +40,7 @@ docker-compose logs -f
 /** tailwind.config.js — Software DT Design Tokens */
 export default {
   theme: {
-    extend: {
-      colors: {
-        gainsboro:    "#DCDCDC",   // 🩶 Corporate base background
-        gold:         "#FFD700",   // 🟡 Primary brand accent
-        yellowColor:  "#FEB60D",   // 🟠 Secondary accent
-        headingColor: "#000000",   // ⚫ Display typography
-        textColor:    "#000000",   // ⚫ Body text
-      },
-      backgroundColor: {
-        'main':    '#DCDCDC',      // Global base
-        'card':    '#FFFFFF',      // Cards & panels
+        '#FFFFFF',      // Cards & panels
         'surface': '#111111',      // Dark surfaces
       },
     },
