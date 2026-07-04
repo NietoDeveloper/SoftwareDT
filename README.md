@@ -6,16 +6,6 @@
 │   ├
 ---
 
-## ✨ Core Features & Technical Flow
-
-### 🔄 Intelligent Booking Pipeline
-
-| Module | Cap
-| 🗂️ **Message History** | Persistent conversation storage for quality tracking | MongoDB |
-| 🎛️ **Interactive HUD** | Quick-action controls · Support flow · Inquiry history | React |
-
-</div>
-
 ---
 
 ## 🐳 Docker Infrastructure Guide
