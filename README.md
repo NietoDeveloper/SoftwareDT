@@ -1,43 +1,6 @@
 
 </div>
-                  ← Monorepo Root
-│
-# Frontend — API endpoints
-cp Front-SoftwareDT/.env.example Front-SoftwareDT/.env
-```
-
-```env
-# Back-SoftwareDT/.env  (fill in your values)
-MONGO_URI_USERS=mongodb+
-
-```
-🤖 What Docker does automatically:
-S
-   🖥️  Frontend  →  http://localhost:5173
-   🛰️  Backend   →  http://localhost:8080
-```
-
----
-
-### 🏭 Environment Configurations
-
-#### Development — HMR Enabled
-
-```dockerfile
-# Front-SoftwareDT/Dockerfile.dev
-FROM node:20-alpine
-WORKDIR /app
-COPY package*.js
-docker-compose logs -f
-
-# Logs
-
-## 🎨 Official Design System
-
-> Industrial high-end aesthetic · Dark-first · Gold-accented precision
-surface` | `#111111` | Dark mode                       │
-│       │                                                 │
-│       └──► AWS / Railway (Backend) → Container deploy   │
+     └──► AWS / Railway (Backend) → Container deploy   │
 │            api.softwaredt.com:8080                      │
 └─────────────────────────────────────────────────────────┘
 ```
