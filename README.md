@@ -8,13 +8,6 @@
 ║                               — NietoDeveloper Standard         ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
-
-*Software DT — Built by **NietoDeveloper · Manuel Nieto***
-
-*Developed with technical rigor in* 📍 **Bogotá, Colombia** 🇨🇴
-
-<br/>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=130&section=footer&animation=fadeIn" width="100%"/>
+ight=130&section=footer&animation=fadeIn" width="100%"/>
 
 </div>
