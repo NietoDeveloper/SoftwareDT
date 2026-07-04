@@ -27,22 +27,7 @@ S
 # Front-SoftwareDT/Dockerfile.dev
 FROM node:20-alpine
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 
-      - "8080:8080"
-    env_file:
-      - ./Back-SoftwareDT/.env
-    depends_on:
-      - fron.json ./
-RUN npm cease all ports
-docker-compose down
-
-# Rebuild after package.json changes
-docker-compose up --build --force-recreate
-
-# View live logs (all services)
+COPY package*.js
 docker-compose logs -f
 
 # Logs for a specific service
