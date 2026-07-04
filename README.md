@@ -6,15 +6,7 @@
 │   ├
 ---
 
----
-
-## 🐳 Docker Infrastructure Guide
-
-> **Zero local dependencies.** Docker handles Node.js, installs, networking, and port binding. Identical behavior from your laptop to AWS.
-
-### Prerequisites
-
-Install **[Docker Desktop](https://www.docker.com/products/docker-desktop/)** and ensure the engine is running.
+---Docker Desktop](https://www.docker.com/products/docker-desktop/)** and ensure the engine is running.
 
 ### ⚡ Quick Start — 3 Steps to Full Ecosystem
 
