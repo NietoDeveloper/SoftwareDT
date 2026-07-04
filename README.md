@@ -12,20 +12,7 @@
 
 ```mermaid
 flowchart LR
-    A([👤 Client]) -->|Filter & Select| B[Services.jsx]
-    B -->|Smart Match| C[selectservice.jsx]
-    C -->|Secure Hand-off| D[BookingPage.jsx]
-    D -->|⚡ WebSocket Event| E([🔔 Provider Alert])
-    D -->|JWT Validated| F[(MongoDB Atlas\nBookings Cluster)]
-    F -->|Dual Cluster Sync| G[🔄 High Availability]
-    G -->|Real-Time Push| H[👑 Admin Dashboard]
-
-    style A fill:#FFD700,color:#000,stroke:#FFD700
-    style E fill:#FFD700,co
-
-### 🔐 Security & Role-Based Access Control
-
-```mermaid
+  
 graph TD
     R([🔑 Auth Request]) --> V[Input Validation]
     V --> JWT[JWT Engine · Multi-Device]
