@@ -10,20 +10,6 @@
 
 ### 🔄 Intelligent Booking Pipeline
 
-```mermaid
-flowchart LR
-  
-graph TDRBAC{⚙️lor:#fff
-```
-
----
-
-## 🖥️ Real-Time Admin Control Panel
-
-> Live operational intelligence — **no browser refresh required** — powered by Socket.io and dual-cluster MongoDB Atlas.
-
-<div align="center">
-
 | Module | Capability | Tech |
 |:-------|:-----------|:----:|
 | 📅 **Booking Manager** | Track `Active → In-Progress → Completed` in real-time | Socket.io |
