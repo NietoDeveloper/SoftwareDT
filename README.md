@@ -21,11 +21,7 @@ flowchart LR
     G -->|Real-Time Push| H[👑 Admin Dashboard]
 
     style A fill:#FFD700,color:#000,stroke:#FFD700
-    style E fill:#FFD700,color:#000,stroke:#FFD700
-    style F fill:#47A248,color:#fff,stroke:#47A248
-    style G fill:#DCDCDC,color:#000,stroke:#DCDCDC
-    style H fill:#000,color:#FFD700,stroke:#FFD700
-```
+    style E fill:#FFD700,co
 
 ### 🔐 Security & Role-Based Access Control
 
