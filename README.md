@@ -28,10 +28,6 @@
   <img src="https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
 </p>
 
-<p align="center">
-
-
-</p>
 
 
 ╔══════════════════════════════════════════════════════════════════════╗
