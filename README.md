@@ -1,32 +1,6 @@
 
 </div>
-
----
-
-## 🏗️ System Architecture
-
-```
-╔══════════════════════════════════════════════════════════════════════╗
-║                        SOFTWARE DT ECOSYSTEM                        ║
-╠══════════════════════════════════════════════════════════════════════╣
-║                                                                      ║
-║   ┌─────────────────────┐       ┌──────────────────────────────┐    ║
-     ┌─────────────────┴─────────────────┐                     ║
-║           ▼                                   ▼                     ║
-║   ┌───────────────────┐           ┌───────────────────────┐         ║
-║   │  MongoDB Atlas    │           │  MongoDB Atlas        │         ║
-║   │  Cluster · USERS  │           │  Cluster · BOOKINGS   │         ║
-║   │  High Availability│           │  High Availability    │         ║
-║   └───────────────────┘           └───────────────────────┘         ║
-╚══════════════════════════════════════════════════════════════════════╝
-```
-
----
-
-## 📂 Monorepo Structure
-
-```text
-SoftwareDT/                         ← Monorepo Root
+                  ← Monorepo Root
 │
 ├── 🔵 Front-SoftwareDT/            ← Frontend (React + Vite + Tailwind CSS)
 │   ├── src/
