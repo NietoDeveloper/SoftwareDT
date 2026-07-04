@@ -37,11 +37,6 @@
   </a>
 </p>
 
-<br/>
-
-> *Modular · Robust · Obsessively Production-Ready · Built in Bogotá 🇨🇴*
-
-</div>
 
 ---
 
