@@ -13,10 +13,7 @@
 ```mermaid
 flowchart LR
   
-graph TD
-    R([🔑 Auth Request]) --> V[Input Validation]
-    V --> JWT[JWT Engine · Multi-Device]
-    JWT --> RBAC{⚙️ RBAC Guard}
+graph TDRBAC{⚙️ RBAC Guard}
     RBAC -->|client| C[🧑 Client Dashboard]
     RBAC -->|provider| P[🛠️ Provider Panel]
     RBAC -->|admin| A[👑 Full Admin Control]
