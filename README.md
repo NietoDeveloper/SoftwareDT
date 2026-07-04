@@ -3,19 +3,7 @@
                   ← Monorepo Root
 │
 ├── 🔵 Front-SoftwareDT/            ← Frontend (React + Vite + Tailwind CSS)
-│   ├── src/
-│   │   ├─
-│
-├── 🤖 docker-compose.yml           ← Master Orchestrator (Dev + Prod)
-└── 📖 README.md
-```
-
----
-vOps** | Docker · Docker Compose · Alpine Linux | Container-first · Zero local deps |
-| ☁️ **Cloud** | Vercel · AWS · Railway | CI/CD via Git · Elastic scaling |
-
-</div>
-
+│   ├
 ---
 
 ## ✨ Core Features & Technical Flow
