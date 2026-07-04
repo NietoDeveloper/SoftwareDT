@@ -35,17 +35,7 @@ EXPOSE
     env_file:
       - ./Back-SoftwareDT/.env
     depends_on:
-      - frontend
-```
-
-#### Production — Multi-Stage Nginx Build
-
-```dockerfile
-# Front-SoftwareDT/Dockerfile (production)
-# ── Stage 1: Compile ─────────────────────────────────
-FROM node:20-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
+      - fron.json ./
 RUN npm ci --omit=dev
 COPY . .
 RUN npm run build
