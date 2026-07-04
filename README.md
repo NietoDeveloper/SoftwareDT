@@ -30,28 +30,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 5173
-CMD ["npm", "run", "dev", "--", "--host"]
-```
-
-```yaml
-# docker-compose.yml (dev excerpt)
-services:
-  frontend:
-    build:
-      context: ./Front-SoftwareDT
-      dockerfile: Dockerfile.dev
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./Front-SoftwareDT:/app      # HMR: live code reflection
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-
-  backend:
-    build: ./Back-SoftwareDT
-    ports:
+EXPOSE 
       - "8080:8080"
     env_file:
       - ./Back-SoftwareDT/.env
