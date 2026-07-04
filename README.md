@@ -8,18 +8,7 @@ cp Front-SoftwareDT/.env.example Front-SoftwareDT/.env
 
 ```env
 # Back-SoftwareDT/.env  (fill in your values)
-MONGO_URI_USERS=mongodb+srv://user:pass@cluster-users.mongodb.net/dt_users
-MONGO_URI_BOOKINGS=mongodb+srv://user:pass@cluster-bookings.mongodb.net/dt_bookings
-JWT_SECRET=your_ultra_secure_secret_here
-JWT_EXPIRES_IN=7d
-PORT=8080
-```
-
-**Step 3 — Launch the master orchestrator**
-
-```bash
-docker-compose up --build
-```
+MONGO_URI_USERS=mongodb+
 
 ```
 🤖 What Docker does automatically:
