@@ -9,18 +9,7 @@
 |:------------|:---------|:--------|
 | **Development** | `http://localhost:5173` | `http://localhost:8080` |
 | **Production** | [softwaredt.vercel.app](https://softwaredt.vercel.app) | AWS / Railway |
-
----
-
-## 🔗 Links & Resources
-
-<div align="center">
-
-| Resource | Link |
-|:---------|:-----|
-| 🌐 **Live Application** | [softwaredt.vercel.app](https://softwaredt.vercel.app) |
-| 📂 **GitHub Repository** | [github.com/NietoDeveloper/softwaredt](https://github.com/NietoDeveloper/softwaredt) |
-| 👤 **Developer Profile** | [github.com/NietoDeveloper](https://github.com/NietoDeveloper) |
+) |
 | 🏆 **#1 Colombia Ranking** | [committers.top/colombia](https://committers.top/colombia) |
 | 🌎 **Top LATAM Ranking** | [committers.top](https://committers.top) |
 | 🐳 **Docker Desktop** | [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/) |
