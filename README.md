@@ -11,20 +11,7 @@
 ```
 
 ---
-
-## 🛠️ Unified Technology Stack
-
-<div align="center">
-
-| Layer | Technologies | Engineering Focus |
-|:------|:-------------|:------------------|
-| 🎨 **Frontend** | React 18 · Vite 5 · Tailwind CSS · TypeScript | Optimized SPA · New React Compiler |
-| 🧠 **State** | Zustand | Lightweight global state · Zero re-renders |
-| ⚙️ **Backend** | Node.js 20 LTS · Express | Modular services · Clean Architecture |
-| ⚡ **Real-Time** | Socket.io (WebSockets) | Live booking sync · Instant notifications |
-| 🗄️ **Database** | MongoDB Atlas (Dual Cluster) | Users cluster + Bookings cluster |
-| 🔑 **Auth** | JWT · RBAC | Multi-device sessions · Role isolation |
-| 🐳 **DevOps** | Docker · Docker Compose · Alpine Linux | Container-first · Zero local deps |
+vOps** | Docker · Docker Compose · Alpine Linux | Container-first · Zero local deps |
 | ☁️ **Cloud** | Vercel · AWS · Railway | CI/CD via Git · Elastic scaling |
 
 </div>
