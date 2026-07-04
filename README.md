@@ -13,16 +13,7 @@
 ```mermaid
 flowchart LR
   
-graph TDRBAC{⚙️ RBAC Guard}
-    RBAC -->|client| C[🧑 Client Dashboard]
-    RBAC -->|provider| P[🛠️ Provider Panel]
-    RBAC -->|admin| A[👑 Full Admin Control]
-    RBAC -->|unauthorized| X[403 · Access Denied]
-
-    style R fill:#FFD700,color:#000
-    style RBAC fill:#0a0a0a,color:#FFD700,stroke:#FFD700
-    style A fill:#FFD700,color:#000
-    style X fill:#FF0000,color:#fff
+graph TDRBAC{⚙️lor:#fff
 ```
 
 ---
