@@ -30,18 +30,7 @@ WORKDIR /app
 COPY package*.js
 docker-compose logs -f
 
-# Logs for a specific service
-docker-compose logs -f frontend
-docker-compose logs -f backend
-
-# Check running containers
-docker ps
-
-# Clean up unused images & containers
-docker system prune -f
-```
-
----
+# Logs
 
 ## 🎨 Official Design System
 
