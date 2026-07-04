@@ -29,9 +29,7 @@
 </p>
 
 <p align="center">
-  <a href="https://softwaredt.vercel.app">
-    <img src="https://img.shields.io/badge/🌐_Live_App-softwaredt.vercel.app-FFD700?style=for-the-badge"/>
-  </a>
+
 
 </p>
 
