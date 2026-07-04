@@ -4,27 +4,7 @@
 │
 ├── 🔵 Front-SoftwareDT/            ← Frontend (React + Vite + Tailwind CSS)
 │   ├── src/
-│   │   ├── components/             ← Atomic & Reusable UI Components
-│   │   ├── pages/                  ← Services → Booking → Dashboard → Comms
-│   │   ├── hooks/                  ← Custom React Hooks & WS Listeners
-│   │   ├── store/                  ← Zustand Global State Stores
-│   │   └── assets/                 ← Brand Identity & Global Styles
-│   ├── Dockerfile                  ← Dev: HMR on :5173 · Prod: Nginx Alpine
-│   ├── .dockerignore
-│   ├── tailwind.config.js
-│   └── package.json
-│
-├── 🟢 Back-SoftwareDT/             ← Backend (Node.js + Express + MongoDB)
-│   ├── src/
-│   │   ├── models/                 ← Mongoose Schemas (Users · Bookings · Services)
-│   │   ├── routes/                 ← Protected RESTful API Endpoints
-│   │   ├── controllers/            ← Business Logic & Auth Controllers
-│   │   ├── sockets/                ← Socket.io Real-Time Event Logic
-│   │   └── config/                 ← DB Connections & Cloud Config
-│   ├── Dockerfile                  ← Node:20-Alpine Container
-│   ├── .dockerignore
-│   ├── .env.example
-│   └── package.json
+│   │   ├─
 │
 ├── 🤖 docker-compose.yml           ← Master Orchestrator (Dev + Prod)
 └── 📖 README.md
