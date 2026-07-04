@@ -10,13 +10,7 @@
 
 ### 🔄 Intelligent Booking Pipeline
 
-| Module | Capability | Tech |
-|:-------|:-----------|:----:|
-| 📅 **Booking Manager** | Track `Active → In-Progress → Completed` in real-time | Socket.io |
-| 📊 **Live Metrics** | Daily · Monthly · Annual KPIs aggregated instantly | MongoDB |
-| 📜 **Appointment History** | Full audit trail · Re-booking · Service reviews | MongoDB |
-| 🔄 **Status Sync** | UI updates the moment a provider changes service status | WebSockets |
-| 💬 **Real-Time Chat** | Low-latency direct messaging: client ↔ provider | Socket.io |
+| Module | Cap
 | 🗂️ **Message History** | Persistent conversation storage for quality tracking | MongoDB |
 | 🎛️ **Interactive HUD** | Quick-action controls · Support flow · Inquiry history | React |
 
