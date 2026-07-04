@@ -39,9 +39,6 @@
 
 <br/>
 
-> 🐳 Software DT: Client Bookings.  A high-performance, enterprise-grade built with MERN stack, JavaScript, and Docker. State-of-the-art architecture for real-time asset monitoring and data orchestration.
-> through **Digital Twin** technology. A production-grade Full-Stack **MERN** monor
->
 > *Modular · Robust · Obsessively Production-Ready · Built in Bogotá 🇨🇴*
 
 </div>
