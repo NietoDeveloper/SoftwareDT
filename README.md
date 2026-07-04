@@ -35,38 +35,7 @@ docker-compose logs -f
 ## 🎨 Official Design System
 
 > Industrial high-end aesthetic · Dark-first · Gold-accented precision
-
-```javascript
-/** tailwind.config.js — Software DT Design Tokens */
-export default {
-  theme: {
-        '#FFFFFF',      // Cards & panels
-        'surface': '#111111',      // Dark surfaces
-      },
-    },
-  },
-}
-```
-
-| Token | Hex | Role |
-|:------|:----|:-----|
-| `gold` | `#FFD700` | Primary accent · CTAs · Brand highlights |
-| `gainsboro` | `#DCDCDC` | Base background · Secondary text · Borders |
-| `surface` | `#111111` | Dark mode surfaces · Cards · Panels |
-| `heading` | `#000000` | Display & heading typography |
-
----
-
-## 🚀 Deployment
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                  CI/CD PIPELINE                         │
-│                                                         │
-│  git push origin main                                   │
-│       │                                                 │
-│       ├──► Vercel (Frontend)  → Auto-deploy in ~45s     │
-│       │    softwaredt.vercel.app                        │
+surface` | `#111111` | Dark mode                       │
 │       │                                                 │
 │       └──► AWS / Railway (Backend) → Container deploy   │
 │            api.softwaredt.com:8080                      │
