@@ -2,27 +2,6 @@
 </div>
                   ← Monorepo Root
 │
-├── 🔵 Front-SoftwareDT/            ← Frontend (React + Vite + Tailwind CSS)
-│   ├
----
-
----Docker Desktop](https://www.docker.com/products/docker-desktop/)** and ensure the engine is running.
-
-### ⚡ Quick Start — 3 Steps to Full Ecosystem
-
-**Step 1 — Clone the repository**
-
-```bash
-git clone https://github.com/NietoDeveloper/softwaredt.git
-cd SoftwareDT
-```
-
-**Step 2 — Configure environment variables**
-
-```bash
-# Backend — MongoDB Atlas URIs + JWT secrets
-cp Back-SoftwareDT/.env.example Back-SoftwareDT/.env
-
 # Frontend — API endpoints
 cp Front-SoftwareDT/.env.example Front-SoftwareDT/.env
 ```
