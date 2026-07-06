@@ -1,34 +1,4 @@
-e.json
-│
-├── 🟢 Back-SoftwareDT/             ← Backend (Node.js 22 + Express + MongoDB)
-│   ├── src/
-│   │   ├── models/                 ← Mongoose Schemas (Users · Bookings · Services)
-│   │   ├── routes/                 ← Protected RESTful API Endpoints
-│   │   ├── controllers/            ← Business Logic & Auth Controllers
-│   │   ├── sockets/                ← Socket.io Real-Time Event Logic
-│   │   └── config/                 ← DB Connections & Cloud Config
-│   ├── Dockerfile                  ← Node:22-Alpine Container
-│   ├── .dockerignore
-│   ├── .env.example
-│   └── package.json
-│
-├── 🤖 docker-compose.yml           ← Master Orchestrator (Dev + Prod)
-└── 📖 README.md
-```
-
----
-
-## 🛠️ Unified Technology Stack
-
-<div align="center">
-
-| Layer | Technologies | Engineering Focus |
-|:------|:-------------|:------------------|
-| 🎨 **Frontend** | React 19 · Vite 6 · Tailwind CSS 4 · TypeScript 5.7 | Optimized SPA · React Compiler · Actions |
-| 🧠 **State** | Zustand | Lightweight global state · Zero re-renders |
-| ⚙️ **Backend** | Node.js 22 LTS · Express | Modular services · Clean Architecture · Native Test Runner |
-| ⚡ **Real-Time** | Socket.io (WebSockets) | Live booking sync · Instant notifications |
-| 🗄️ **Database** | MongoDB Atlas (Dual Cluster) | Users cluster + Bookings cluster |
+ter |
 | 🔑 **Auth** | JWT · RBAC | Multi-device sessions · Role isolation |
 | 🐳 **DevOps** | Docker · Docker Build Cloud · Alpine Linux | Container-first · Cached CI/CD builds |
 | ☁️ **Cloud** | Vercel · AWS ECS/Fargate · Railway | CI/CD via Git · Serverless container scaling |
