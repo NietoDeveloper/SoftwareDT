@@ -1,24 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=240&section=header&text=SOFTWARE%20DT&fontSize=90&fontColor=FFD700&fontAlignY=42&desc=⚡%20Enterprise%20MERN%20Ecosystem%20·%20Digital%20Twin%20Architecture%20·%20Docker%20Powered&descAlignY=62&descColor=DCDCDC&animation=fadeIn" width="100%"/>
-="https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
-</p>
-
-<p align="center">
-  <a href="https://softwaredt.vercel.app">
-    <img src="https://img.shields.io/badge/🌐_Live_App-softwaredt.vercel.app-FFD700?style=for-the-badge"/>
-  </a>
-  <a href="https://github.com/NietoDeveloper/softwaredt">
-    <img src="https://img.shields.io/badge/📂_Source-NietoDeveloper%2FSoftwareDT-000000?style=for-the-badge&logo=github&logoColor=FFD700"/>
-  </a>
-</p>
-
-<br/>
-
-> 🐳 Software DT: Client Bookings. A high-performance, enterprise-grade platform built with the MERN stack, TypeScript, and Docker. State-of-the-art architecture for real-time asset monitoring and data orchestration
-> through **Digital Twin** technology. A production-grade Full-Stack **MERN** monorepo
-> connecting service providers and clients via a scalable, secure, Dockerized architecture.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=240&section=header&text=SOFTWARE%20DT&fontSize=90&fontColor=FFD700&fontAlignY=42&dservice providers and clients via a scalable, secure, Dockerized architecture.
 >
 > *Modular · Robust · Obsessively Production-Ready · Built in Bogotá 🇨🇴*
 
