@@ -428,10 +428,10 @@ export default {
 ```
 ╔══════════════════════════════════════════════════════════════════╗
 ║                                                                  ║
-║   "Every line of code is optimized for performance              ║
-║    and security. Production-ready by default."                  ║
+║   "Every line of code is optimized for performance               ║
+║    and security. Production-ready by default."                   ║
 ║                                                                  ║
-║                               — NietoDeveloper Standard         ║
+║                               — NietoDeveloper Standard          ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
