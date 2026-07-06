@@ -57,32 +57,32 @@
 
 ```
 ╔══════════════════════════════════════════════════════════════════════╗
-║                        SOFTWARE DT ECOSYSTEM                        ║
+║                        SOFTWARE DT ECOSYSTEM                         ║
 ╠══════════════════════════════════════════════════════════════════════╣
 ║                                                                      ║
-║   ┌─────────────────────┐       ┌──────────────────────────────┐    ║
-║   │   CLIENT CLUSTER    │       │       ADMIN CLUSTER          │    ║
-║   │                     │       │                              │    ║
-║   │  React 19 + Vite 6  │◄─────►│  Real-Time Dashboard         │    ║
-║   │  Tailwind 4 + Zustand│      │  Socket.io · Live Metrics    │    ║
-║   │  Port: 5173         │       │  RBAC · JWT Guard            │    ║
-║   └──────────┬──────────┘       └─────────────┬────────────────┘    ║
+║   ┌─────────────────────┐       ┌──────────────────────────────┐     ║
+║   │   CLIENT CLUSTER    │       │       ADMIN CLUSTER          │     ║
+║   │                     │       │                              │     ║
+║   │  React 19 + Vite 6  │◄─────►│  Real-Time Dashboard         │     ║
+║   │  Tailwind 4 + Zustand│      │  Socket.io · Live Metrics    │     ║
+║   │  Port: 5173         │       │  RBAC · JWT Guard            │     ║
+║   └──────────┬──────────┘       └─────────────┬────────────────┘     ║
 ║              │                                │                      ║
 ║              └──────────────┬─────────────────┘                      ║
 ║                             ▼                                        ║
-║              ┌──────────────────────────────┐                       ║
+║              ┌──────────────────────────────┐                        ║
 ║              │  Node.js 22 LTS + Express     │                       ║
 ║              │  Modular Services · JWT       │                       ║
 ║              │  Socket.io · Port: 8080       │                       ║
-║              └──────────────┬───────────────┘                       ║
+║              └──────────────┬───────────────┘                        ║
 ║                             │                                        ║
-║           ┌─────────────────┴─────────────────┐                     ║
-║           ▼                                   ▼                     ║
-║   ┌───────────────────┐           ┌───────────────────────┐         ║
-║   │  MongoDB Atlas    │           │  MongoDB Atlas        │         ║
-║   │  Cluster · USERS  │           │  Cluster · BOOKINGS   │         ║
-║   │  High Availability│           │  High Availability    │         ║
-║   └───────────────────┘           └───────────────────────┘         ║
+║           ┌─────────────────┴─────────────────┐                      ║
+║           ▼                                   ▼                      ║
+║   ┌───────────────────┐           ┌───────────────────────┐          ║
+║   │  MongoDB Atlas    │           │  MongoDB Atlas        │          ║
+║   │  Cluster · USERS  │           │  Cluster · BOOKINGS   │          ║
+║   │  High Availability│           │  High Availability    │          ║
+║   └───────────────────┘           └───────────────────────┘          ║
 ╚══════════════════════════════════════════════════════════════════════╝
 ```
 
@@ -390,7 +390,7 @@ export default {
 │       ├──► Vercel (Frontend)  → Auto-deploy in ~45s     │
 │       │    softwaredt.vercel.app                        │
 │       │                                                 │
-│       └──► AWS ECS/Fargate (Backend) → Container deploy  │
+│       └──► AWS ECS/Fargate (Backend) → Container deploy │
 │            api.softwaredt.com:8080                      │
 └─────────────────────────────────────────────────────────┘
 ```
