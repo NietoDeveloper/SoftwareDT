@@ -1,36 +1,4 @@
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColPort: 8080       │                       ║
-║              └──────────────┬───────────────┘                       ║
-║                             │                                        ║
-║           ┌─────────────────┴─────────────────┐                     ║
-║           ▼                                   ▼                     ║
-║   ┌───────────────────┐           ┌───────────────────────┐         ║
-║   │  MongoDB Atlas    │           │  MongoDB Atlas        │         ║
-║   │  Cluster · USERS  │           │  Cluster · BOOKINGS   │         ║
-║   │  High Availability│           │  High Availability    │         ║
-║   └───────────────────┘           └───────────────────────┘         ║
-╚══════════════════════════════════════════════════════════════════════╝
-```
-
----
-
-## 📂 Monorepo Structure
-
-```text
-SoftwareDT/                         ← Monorepo Root
-│
-├── 🔵 Front-SoftwareDT/            ← Frontend (React 19 + Vite 6 + Tailwind CSS 4)
-│   ├── src/
-│   │   ├── components/             ← Atomic & Reusable UI Components
-│   │   ├── pages/                  ← Services → Booking → Dashboard → Comms
-│   │   ├── hooks/                  ← Custom React Hooks & WS Listeners
-│   │   ├── store/                  ← Zustand Global State Stores
-│   │   └── assets/                 ← Brand Identity & Global Styles
-│   ├── Dockerfile                  ← Dev: HMR on :5173 · Prod: Nginx Alpine
-│   ├── .dockerignore
-│   ├── tailwind.config.js
-│   └── package.json
+e.json
 │
 ├── 🟢 Back-SoftwareDT/             ← Backend (Node.js 22 + Express + MongoDB)
 │   ├── src/
