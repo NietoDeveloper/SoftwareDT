@@ -1,34 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=240&section=header&text=SOFTWARE%20DT&fontSize=90&fontColor=FFD700&fontAlignY=42&dservice providers and clients via a scalable, secure, Dockerized architecture.
->
-> *Modular · Robust · Obsessively Production-Ready · Built in Bogotá 🇨🇴*
-
-</div>
-
----
-
-## 🏗️ System Architecture
-
-```
-╔══════════════════════════════════════════════════════════════════════╗
-║                        SOFTWARE DT ECOSYSTEM                        ║
-╠══════════════════════════════════════════════════════════════════════╣
-║                                                                      ║
-║   ┌─────────────────────┐       ┌──────────────────────────────┐    ║
-║   │   CLIENT CLUSTER    │       │       ADMIN CLUSTER          │    ║
-║   │                     │       │                              │    ║
-║   │  React 19 + Vite 6  │◄─────►│  Real-Time Dashboard         │    ║
-║   │  Tailwind + Zustand │       │  Socket.io · Live Metrics    │    ║
-║   │  Port: 5173         │       │  RBAC · JWT Guard            │    ║
-║   └──────────┬──────────┘       └─────────────┬────────────────┘    ║
-║              │                                │                      ║
-║              └──────────────┬─────────────────┘                      ║
-║                             ▼                                        ║
-║              ┌──────────────────────────────┐                       ║
-║              │  Node.js 22 + Express API     │                       ║
-║              │  Modular Services · JWT       │                       ║
-║              │  Socket.io · Port: 8080       │                       ║
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColPort: 8080       │                       ║
 ║              └──────────────┬───────────────┘                       ║
 ║                             │                                        ║
 ║           ┌─────────────────┴─────────────────┐                     ║
