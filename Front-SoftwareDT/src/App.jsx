@@ -103,13 +103,7 @@ function App() {
             <Route path="/users/profile/me" element={<ClientPanel />} />
             <Route path="/client/dashboard" element={<ClientPanel />} />
             <Route path="/client-appointments" element={<ClientPanel />} />
-            
-            {/* 🎯 Ajuste del flujo de agendamiento: /booking simple para enlazar con el dashboard */}
-            <Route path="/booking" element={<BookingPage />} />
-      
 
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
       </main>
 
       {/* 🏁 PIE DE PÁGINA */}
