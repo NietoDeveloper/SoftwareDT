@@ -80,14 +80,6 @@ function App() {
           },
         }}
 ex-grow w-full ${!isHome ? 'pt-16 pb-10' : 'pt-0'}`}>
-        <Routes 
-
-            
-
-
-      
-    </div>
-  );
-}
+ 
 
 export default App;
