@@ -10,10 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import App from './App'; 
 
-/**
- * 🛰️ SOFTWARE DT - OPTIMIZED QUERY CLIENT
- * Configuración de caché y re-intentos para alta disponibilidad.
- */
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
