@@ -107,11 +107,7 @@ function App() {
             
             {/* 🎯 Ajuste del flujo de agendamiento: /booking simple para enlazar con el dashboard */}
             <Route path="/booking" element={<BookingPage />} />
-            <Route path="/book-appointment/:serviceId" element={<BookingPage />} />
-            
-            <Route path="/checkout" element={<Payment />} />
-            <Route path="/appointment-confirmation" element={<AppointmentConfirmation />} />
-          </Route>
+      
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
