@@ -23,12 +23,3 @@ import Payment from "./components/Checkout/Payment.jsx";
 import ClientPanel from "./pages/ClientAppointmentsPanel.jsx";
 import AppointmentConfirmation from "./pages/AppointmentConfirmation.jsx";
 
-import "./App.css";
-
-function App() {
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const { handleLogout, getAccessToken, setToken, loading } = useUser();
-
-  // 🛡️ HANDSHAKE DE RED & INTERCEPTORES
-  useEffect(() => {
