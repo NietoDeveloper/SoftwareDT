@@ -100,13 +100,7 @@ function App() {
             
             {/* Rutas de Dashboard (Todas apuntan al mismo panel unificado) */}
             <Route path="/users/profile/me" element={<ClientPanel />} />
-            <Route path="/client/dashboard" element={<ClientPanel />} />
-            <Route path="/client-appointments" element={<ClientPanel />} />
 
-      </main>
-
-      {/* 🏁 PIE DE PÁGINA */}
-      <Footer />
       
     </div>
   );
