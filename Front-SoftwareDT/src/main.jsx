@@ -30,28 +30,7 @@ ReactDOM.createRoot(rootElement).render(
           }}
         >
           {/* 🔔 SISTEMA DE NOTIFICACIONES INDUSTRIAL */}
-          <ToastContainer 
-            theme="dark"
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            toastStyle={{ 
-              backgroundColor: '#000000',
-              color: '#FFFFFF',
-              border: '1px solid #FEB60D', 
-              borderRadius: '0px',
-              textTransform: 'uppercase', 
-              fontSize: '10px',
-              fontWeight: '900',
-              fontFamily: 'sans-serif'
-            }}
-          />
+
           <App />
         </BrowserRouter>
       </QueryClientProvider>
