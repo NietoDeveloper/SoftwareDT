@@ -29,7 +29,7 @@ ReactDOM.createRoot(rootElement).render(
             v7_relativeSplatPath: true 
           }}
         >
-          {/* 🔔 SISTEMA DE NOTIFICACIONES INDUSTRIAL */}
+
 
           <App />
         </BrowserRouter>
