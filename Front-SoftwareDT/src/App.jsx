@@ -14,12 +14,3 @@ import PrivateRoutes from "./utils/PrivateRoutes.jsx";
 import Home from "./pages/Home.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
-import Products from "./pages/Products.jsx";
-import Investigations from "./pages/Investigations.jsx";
-import Contact from "./pages/Contact.jsx";
-import OurClients from "./pages/OurClients.jsx";
-import BookingPage from "./pages/BookingPage.jsx";
-import Payment from "./components/Checkout/Payment.jsx";
-import ClientPanel from "./pages/ClientAppointmentsPanel.jsx";
-import AppointmentConfirmation from "./pages/AppointmentConfirmation.jsx";
-
