@@ -96,7 +96,7 @@ function App() {
 
 
           
-          {/* 🔒 Rutas Privadas */}
+
           <Route element={<PrivateRoutes />}>
             
             {/* Rutas de Dashboard (Todas apuntan al mismo panel unificado) */}
