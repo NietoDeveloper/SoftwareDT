@@ -79,13 +79,7 @@ function App() {
             letterSpacing: '0.1em'
           },
         }}
-      />
-      
-      {/* 🧭 NAVEGACIÓN SUPERIOR */}
-      <Header />
-      
-      {/* 🏗️ CONTENEDOR DE NODO CENTRAL */}
-      <main className={`flex-grow w-full ${!isHome ? 'pt-16 pb-10' : 'pt-0'}`}>
+ex-grow w-full ${!isHome ? 'pt-16 pb-10' : 'pt-0'}`}>
         <Routes 
 
             
