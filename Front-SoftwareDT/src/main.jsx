@@ -21,8 +21,6 @@ if (!rootElement) {
 
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <UserProvider>
 
-    </UserProvider>
   </React.StrictMode>
 );
