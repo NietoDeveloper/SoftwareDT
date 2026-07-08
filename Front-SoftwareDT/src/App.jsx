@@ -94,7 +94,7 @@ function App() {
           <Route path="/investigations" element={<Investigations />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/clients" element={<OurClients />} />
-          <Route path="/signup" element={<Signup />} />
+
 
           
           {/* 🔒 Rutas Privadas */}
