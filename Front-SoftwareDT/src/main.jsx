@@ -11,15 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import App from './App'; 
 
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false, 
-      retry: 1, 
-      staleTime: 1000 * 60 * 5, 
-    },
-  },
-});
+
 
 const rootElement = document.getElementById('root');
 
