@@ -72,14 +72,3 @@ function App() {
             background: '#000000',
             color: '#FFD700',
             border: '2px solid #FEB60D',
-            borderRadius: '0px', 
-            fontSize: '11px',
-            fontWeight: '900',
-            textTransform: 'uppercase',
-            letterSpacing: '0.1em'
-          },
-        }}
-ex-grow w-full ${!isHome ? 'pt-16 pb-10' : 'pt-0'}`}>
- 
-
-export default App;
