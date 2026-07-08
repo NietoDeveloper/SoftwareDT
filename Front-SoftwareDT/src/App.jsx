@@ -90,13 +90,7 @@ function App() {
           
           {/* 🌐 Rutas Públicas */}
 
-          <Route path="/investigations" element={<Investigations />} />
 
-
-
-          
-
-          <Route element={<PrivateRoutes />}>
             
             {/* Rutas de Dashboard (Todas apuntan al mismo panel unificado) */}
             <Route path="/users/profile/me" element={<ClientPanel />} />
