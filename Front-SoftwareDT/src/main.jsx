@@ -26,12 +26,7 @@ ReactDOM.createRoot(rootElement).render(
         <BrowserRouter 
           future={{ 
             v7_startTransition: true, 
-            v7_relativeSplatPath: true 
-          }}
-        >
 
-
-          <App />
         </BrowserRouter>
       </QueryClientProvider>
     </UserProvider>
