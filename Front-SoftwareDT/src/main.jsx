@@ -22,9 +22,7 @@ if (!rootElement) {
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <UserProvider>
-      <QueryClientProvider client={queryClient}>
 
-      </QueryClientProvider>
     </UserProvider>
   </React.StrictMode>
 );
