@@ -19,10 +19,6 @@ if (!rootElement) {
   throw new Error("SDT CRITICAL ERROR: Nodo 'root' no encontrado en el DOM.");
 }
 
-/**
- * 🚀 MAIN ENTRY POINT - PRODUCTION STABLE
- * Jerarquía de Providers optimizada para el ecosistema Software DT.
- */
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <UserProvider>
