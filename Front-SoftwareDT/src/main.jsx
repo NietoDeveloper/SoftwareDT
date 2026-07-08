@@ -23,11 +23,7 @@ ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <UserProvider>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter 
-          future={{ 
-            v7_startTransition: true, 
 
-        </BrowserRouter>
       </QueryClientProvider>
     </UserProvider>
   </React.StrictMode>
