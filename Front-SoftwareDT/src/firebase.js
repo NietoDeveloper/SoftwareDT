@@ -12,7 +12,3 @@ if (getApps().length === 0) {
 } else {
 
     app = getApp();
-}
-
-const auth = getAuth(app);
-const db = getFirestore(app);
