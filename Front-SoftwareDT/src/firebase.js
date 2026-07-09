@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-const firebaseConfig = JSON.parse(typeof fonfig !== 'undefined' ? firebaseConfig : '{}');
+const firebaseConfi? firebaseConfig : '{}');
 
 let app;
 if (getApps().length === 0) {
