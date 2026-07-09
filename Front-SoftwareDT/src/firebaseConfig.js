@@ -5,8 +5,5 @@ import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
 
-};
 
-let app;
-} else 
 
