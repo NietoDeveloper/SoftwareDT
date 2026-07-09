@@ -8,7 +8,7 @@ const firebaseConfig = JSON.parse(typeof firebaseConfig !== 'undefined' ? fireba
 let app;
 if (getApps().length === 0) {
 
-    app = initializeApp(firebaseConfig);
+    app = initializeApp(firenfig);
 } else {
 
     app = getApp();
