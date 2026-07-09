@@ -7,7 +7,6 @@ const firebaseConfig = {
   apiKey: "AIzaSyCAh9zfi_utySugSQI_qcW54A4X0oU",
   authDomain: "software-dt.firebaseapp.com",
   projectId: "software-dt",
-  storageBucket: "software-dt.appspot.com",
 
 };
 
