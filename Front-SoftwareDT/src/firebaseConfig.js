@@ -9,7 +9,7 @@ const firebaseConfig = {
   projectId: "software-dt",
   storageBucket: "software-dt.appspot.com",
   messagingSenderId: "73979610685",
-  appId: "1:739796107685:web:6652ea0c94a15b6aee684c"
+  appId: "1:7397961076web:6652ea0c94a15b6aee684c"
 };
 
 let app;
