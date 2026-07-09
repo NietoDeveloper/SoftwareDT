@@ -1,1 +1,1 @@
-import { initializeApp, getApps, 
+import { initializeApp,
