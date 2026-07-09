@@ -8,7 +8,6 @@ const firebaseConfig = {
   authDomain: "software-dt.firebaseapp.com",
   projectId: "software-dt",
   storageBucket: "software-dt.appspot.com",
-  messagingSenderId: "73979610685",
 
 };
 
