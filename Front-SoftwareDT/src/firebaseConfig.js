@@ -10,5 +10,3 @@ const firebaseConfig = {
 let app;
 } else 
 
-const auth = getAuth(app);
-const db = getFirestore(app);
