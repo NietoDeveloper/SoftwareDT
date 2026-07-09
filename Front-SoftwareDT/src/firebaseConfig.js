@@ -12,7 +12,7 @@ const firebaseConfig = {
 
 let app;
 if (getApps().length === 0) {
-  app = initializeApp(firebaseConfig);
+
 } else 
 
 const auth = getAuth(app);
