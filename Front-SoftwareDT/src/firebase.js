@@ -5,7 +5,6 @@ import { getStorage } from "firebase/storage";
 let app;
 if (getApps().length === 0) {
 
-    app = initializeApp(firenfig);
 } else {
 
     app = getApp();
