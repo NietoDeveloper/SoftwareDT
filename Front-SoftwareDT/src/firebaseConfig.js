@@ -8,8 +8,6 @@ const firebaseConfig = {
 };
 
 let app;
-if (getApps().length === 0) {
-
 } else 
 
 const auth = getAuth(app);
