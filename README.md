@@ -408,7 +408,7 @@ export default {
 
 | Resource | Link |
 |:---------|:-----|
-| 🌐 **Live Application** | [softwaredt.vercel.app](https://softwaredt.vercel) |
+| 🌐 **Live Application** | [softwaredt.vercel.app](https://softwaredt.verce) |
 | 📂 **GitHub Repository** | [github.com/NietoDeveloper/softwaredt](https://github.com/NietoDeveloper/softwaredt) |
 | 👤 **Developer Profile** | [github.com/NietoDeveloper](https://github.com/NietoDeveloper) |
 | 🏆 **#1 Colombia Ranking** | [committers.top/colombia](https://committers.top/colombia) |
