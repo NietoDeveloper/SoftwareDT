@@ -398,7 +398,7 @@ export default {
 | Environment | Frontend | Backend |
 |:------------|:---------|:--------|
 | **Development** | `http://localhost:5173` | `http://localhost:8080` |
-| **Production** | [softwaredt.vercel.app](https://softwaredt.vercel.app) | AWS ECS/Fargate |
+| **Production** | [softwaredt.com](https://softwaredt.com) | AWS ECS/Fargate |
 
 ---
 
@@ -408,7 +408,7 @@ export default {
 
 | Resource | Link |
 |:---------|:-----|
-| 🌐 **Live Application** | [softwaredt.vercel.app](https://softwaredt.com) |
+| 🌐 **Live Application** | [softwaredt.com](https://softwaredt.com) |
 | 📂 **GitHub Repository** | [github.com/NietoDeveloper/softwaredt](https://github.com/NietoDeveloper/softwaredt) |
 | 👤 **Developer Profile** | [github.com/NietoDeveloper](https://github.com/NietoDeveloper) |
 | 🏆 **#1 Colombia Ranking** | [committers.top/colombia](https://committers.top/colombia) |
