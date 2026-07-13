@@ -442,7 +442,7 @@ export default {
 
 *Developed with technical rigor in* 📍 **Bogotá, Colombia** 🇨🇴
 
-Last Updated: July 1, 2026
+Last Updated: July , 2026
 
 <br/>
 
