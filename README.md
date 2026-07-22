@@ -3,9 +3,6 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=240&section=header&text=SOFTWARE%20DT&fontSize=90&fo
 ### Prerequisites
 
-Install **[Docker Desktop](https://www.docker.com/products/docker-desktop/)** and ensure the engine is running. Recommended: enable **Docker Build Cloud** for accelerated multi-arch image builds in CI/CD.
-
-### ⚡ Quick Start — 3 Steps to Full Ecosystem
 
 **Step 1 — Clone the repository**
 
