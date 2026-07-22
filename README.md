@@ -3,12 +3,7 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=240&section=header&text=SOFTWARE%20DT&fontSize=90&fontColor=FFD700&fontAlignY=42&desc=⚡%20Enterprise%20MERN%20Ecosystem%20·%20Digital%20Twin%20Architecture%20·%20Docker%20Powered&descAlignY=62&descColor=DCDCDC&animation=fadeIn" width="100%"/>
 
 flowchart LR
-    A([👤 Client]) -->|Filter & Select| B[Services.jsx]
-    B -->|Smart Match| C[selectservice.jsx]
-    C -->|Secure Hand-off| D[BookingPage.jsx]
-    D -->|⚡ WebSocket Event| E([🔔 Provider Alert])
-    D -->|JWT Validated| F[(MongoDB Atlas\nBookings Cluster)]
-    F -->|Dual Cluster Sync| G[🔄 High Availability]
+l Cluster Sync| G[🔄 High Availability]
 
 
     style A fill:#FFD700,color:#000,stroke:#FFD700
