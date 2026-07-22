@@ -9,19 +9,7 @@
 
 ```yaml
 es:
-      - ./Front-SoftwareDT:/app      # HMR: live code reflection
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-
-  backend:
-    build: ./Back-SoftwareDT
-    ports:
-      - "8080:8080"
-    env_file:
-      - ./Back-SoftwareDT/.env
-    depends_on:
-      - frontend
+d
 ```
 
 #### Production — Multi-Stage Nginx Build
