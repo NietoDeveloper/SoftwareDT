@@ -9,7 +9,7 @@ flowchart LR
     D -->|⚡ WebSocket Event| E([🔔 Provider Alert])
     D -->|JWT Validated| F[(MongoDB Atlas\nBookings Cluster)]
     F -->|Dual Cluster Sync| G[🔄 High Availability]
-    G -->|Real-Time Push| H[👑 Admin Dashboard]
+
 
     style A fill:#FFD700,color:#000,stroke:#FFD700
     style E fill:#FFD700,color:#000,stroke:#FFD700
