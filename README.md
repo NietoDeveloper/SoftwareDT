@@ -29,11 +29,7 @@
 ║   │                     │       │                              │     ║
 ║   │  React 19 + Vite 6  │◄─────►│  Real-Time Dashboard         │     ║
 ║   │  Tailwind 4 + Zustand│      │  Socket.io · Live Metrics    │     ║
-──────────┐                        ║
-║              │  Node.js 22 LTS + Express     │                       ║
-║              │  Modular Services · JWT       │                       ║
-║              │  Socket.io · Port: 8080       │                       ║
-║              └──────────────┬───────────────┘                        ║
+────┬───────────────┘                        ║
 ║                             │                                        ║
 ║           ┌─────────────────┴─────────────────┐                      ║
 ║           ▼                                   ▼                      ║
