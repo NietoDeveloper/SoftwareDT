@@ -9,18 +9,7 @@
 
 ```yaml
 es:
-d
-```
-
-#### Production — Multi-Stage Nginx Build
-
-```dockerfile
-# Front-SoftwareDT/Dockerfile (production)
-# ── Stage 1: Compile ─────────────────────────────────
-FROM node:22-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --omit=dev
+it=dev
 COPY . .
 RUN npm run build
 
