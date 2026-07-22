@@ -2,7 +2,7 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=240&section=header&text=SOFTWARE%20DT&fontSize=90&fontColor=FFD700&fontAlignY=42&desc=⚡%20Enterprise%20MERN%20Ecosystem%20·%20Digital%20Twin%20Architecture%20·%20Docker%20Powered&descAlignY=62&descColor=DCDCDC&animation=fadeIn" width="100%"/>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&weight=700&size=20&duration=2800&pause=900&color=FFD700&center=true&vCenter=true&width=750&lines=⚡+Production-Grade+MERN+Ecosystem;🐳+Fully+Dockerized+%7C+Zero+Local+Dependencies;🔒+Dual-Cluster+MongoDB+Atlas+Architecture;📊+Real-Time+Admin+Dashboard+%7C+Socket.io;☁️+AWS+S3+Centralized+Media+%7C+Dynamic+Rendering;🚀+AWS+ECS%2FFargate+%2B+Vercel+%7C+CI%2FCD+via+Git;🏆+%231+GitHub+Committer+in+Colombia)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&weight=700&size=20&duration=2800&pause=900&color=FFD700&center=true&vCenter=true&width=760&lines=%E2%9A%A1+Production-Grade+MERN+Ecosystem;%F0%9F%90%B3+Fully+Dockerized+%7C+Zero+Local+Dependencies;%F0%9F%94%92+Dual-Cluster+MongoDB+Atlas+Architecture;%E2%98%81%EF%B8%8F+Centralized+Media+on+AWS+S3;%F0%9F%93%8A+Real-Time+Admin+Dashboard+%7C+Socket.io;%F0%9F%9A%80+AWS+ECS%2FFargate+%2B+Vercel+%7C+CI%2FCD+via+Git;%F0%9F%8F%86+%231+GitHub+Committer+in+Colombia)](https://git.io/typing-svg)
 
 <br/>
 
@@ -27,8 +27,7 @@
   <img src="https://img.shields.io/badge/Socket.io-Real--Time-010101?style=for-the-badge&logo=socket.io&logoColor=white"/>
   <img src="https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white"/>
   <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
-  <img src="https://img.shields.io/badge/AWS-ECS%2FFargate-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"/>
-  <img src="https://img.shields.io/badge/AWS_S3-Media_CDN-FF9900?style=for-the-badge&logo=amazons3&logoColor=white"/>
+  <img src="https://img.shields.io/badge/AWS-S3_%7C_ECS%2FFargate-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"/>
 </p>
 
 <p align="center">
@@ -42,17 +41,33 @@
 
 <br/>
 
-> **Software DT Ecosystem:** *La plataforma de e-commerce, agendamiento y pagos que conecta clientes con asesorías técnicas y productos de software — el motor de transacciones, comunicación y booking detrás de nuestro ecosistema unificado de Digital Twin.*
+> **Software DT Ecosystem:** *The transaction, communication, and client-booking engine powering our unified Digital Twin e-commerce platform.*
 
-> 🐳 Software DT: Client Bookings. A high-performance, enterprise-grade platform built with the MERN stack, TypeScript, and Docker. State-of-the-art architecture for real-time asset monitoring, agendamiento de citas, pago de asesorías y venta de productos de software
-> a través de tecnología **Digital Twin**. Un monorepo Full-Stack **MERN** de nivel productivo
-> que conecta proveedores de servicio y clientes vía una arquitectura escalable, segura y Dockerizada.
+> 🐳 **Software DT: Client Bookings.** A high-performance, enterprise-grade platform built with the MERN stack, TypeScript, and Docker, delivering a full e-commerce experience for scheduling appointments, processing payments for advisory services, and purchasing software products.
+> State-of-the-art architecture for real-time engagement tracking and data orchestration through **Digital Twin** technology. A production-grade Full-Stack **MERN** monorepo connecting service providers and clients via a scalable, secure, Dockerized architecture.
 >
 > *Modular · Robust · Obsessively Production-Ready · Built in Bogotá 🇨🇴*
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=0,2,2,5,30&height=3&width=100%25" width="100%"/>
+</div>
+
+---
+
+## 🆕 Latest Platform Updates
+
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&weight=600&size=16&duration=3200&pause=1200&color=DCDCDC&center=true&vCenter=true&width=820&lines=%E2%98%81%EF%B8%8F+Cloud+Asset+Centralization+on+AWS+S3;%F0%9F%8E%9E%EF%B8%8F+Dynamic+Product+Media%3A+Images+%2B+Looping+Video;%F0%9F%94%93+Public-Read+Bucket+Policy+for+Zero-Latency+Delivery;%F0%9F%94%84+Live+Catalog+Sync+%E2%80%94+No+Redeploys+Required" alt="Recent updates typing animation"/>
 
 </div>
+
+The most recent iteration cycle of the Software DT ecosystem introduced the following architectural and infrastructure improvements:
+
+| Update | Description | Impact |
+|:-------|:-------------|:-------|
+| ☁️ **Cloud Asset Centralization (AWS S3)** | Full migration and restructuring of media assets — corporate `.mp4` video and high-definition imagery — into the centralized bucket `software-dt-assets-2026` | Reduced load times, standardized visual identity across the platform |
+| 🎬 **Dynamic Product Media Rendering** | Extended the MongoDB Atlas data schema and the `Products.jsx` frontend component to intelligently render mixed media types, natively toggling between static imagery and looping background video (e.g., E-commerce Web Apps and Dashboard listings) | Richer, more interactive product presentation without extra tooling |
+| 🔐 **Infrastructure Access Policy** | Configured a public-read **Bucket Policy** at the AWS S3 level to guarantee smooth, unblocked asset delivery to web clients | Zero-latency, CDN-like delivery with no authentication overhead |
+| 🔄 **Full-Stack Architecture Consolidation** | Centralized MongoDB Atlas database kept in sync with the production backend and deployed frontend | Real-time catalog and media updates without requiring code redeployments |
 
 ---
 
@@ -62,34 +77,34 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║                        SOFTWARE DT ECOSYSTEM                         ║
 ╠══════════════════════════════════════════════════════════════════════╣
-║                                                                      ║
+║                                                                        ║
 ║   ┌─────────────────────┐       ┌──────────────────────────────┐     ║
-║   │   CLIENT CLUSTER    │       │       ADMIN CLUSTER          │     ║
-║   │                     │       │                              │     ║
-║   │  React 19 + Vite 6  │◄─────►│  Real-Time Dashboard         │     ║
-║   │  Tailwind 4 + Zustand│      │  Socket.io · Live Metrics    │     ║
-║   │  Port: 5173         │       │  RBAC · JWT Guard            │     ║
-║   └──────────┬──────────┘       └─────────────┬────────────────┘     ║
-║              │                                │                      ║
-║              └──────────────┬─────────────────┘                      ║
-║                             ▼                                        ║
-║              ┌──────────────────────────────┐                        ║
-║              │  Node.js 22 LTS + Express     │                       ║
-║              │  Modular Services · JWT       │                       ║
-║              │  Socket.io · Port: 8080       │                       ║
-║              └──────────────┬───────────────┘                        ║
-║                             │                                        ║
-║           ┌─────────────────┼─────────────────┐                      ║
-║           ▼                 ▼                 ▼                      ║
-║   ┌───────────────────┐ ┌──────────────┐ ┌───────────────────────┐   ║
-║   │  MongoDB Atlas    │ │  MongoDB     │ │  AWS S3               │   ║
-║   │  Cluster · USERS  │ │  Atlas ·     │ │  software-dt-assets   │   ║
-║   │  High Availability│ │  BOOKINGS    │ │  -2026 (Media CDN)    │   ║
-║   └───────────────────┘ └──────────────┘ └───────────────────────┘   ║
+║   │   CLIENT CLUSTER    │       │       ADMIN CLUSTER           │     ║
+║   │                     │       │                                │     ║
+║   │  React 19 + Vite 6  │◄─────►│  Real-Time Dashboard          │     ║
+║   │  Tailwind 4 + Zustand│      │  Socket.io · Live Metrics     │     ║
+║   │  Port: 5173         │       │  RBAC · JWT Guard              │     ║
+║   └──────────┬──────────┘       └─────────────┬──────────────────┘     ║
+║              │                                │                        ║
+║              └──────────────┬─────────────────┘                        ║
+║                             ▼                                          ║
+║              ┌──────────────────────────────┐                          ║
+║              │  Node.js 22 LTS + Express     │                         ║
+║              │  Modular Services · JWT       │                         ║
+║              │  Socket.io · Port: 8080       │                         ║
+║              └──────────────┬───────────────┘                          ║
+║                             │                                          ║
+║           ┌─────────────────┼─────────────────┐                        ║
+║           ▼                 ▼                 ▼                        ║
+║   ┌───────────────────┐ ┌───────────────────────┐ ┌───────────────┐    ║
+║   │  MongoDB Atlas    │ │  MongoDB Atlas         │ │  ☁️ AWS S3     │    ║
+║   │  Cluster · USERS  │ │  Cluster · BOOKINGS     │ │  Media Bucket  │    ║
+║   │  High Availability│ │  High Availability      │ │  Public-Read   │    ║
+║   └───────────────────┘ └───────────────────────┘ └───────────────┘    ║
 ╚══════════════════════════════════════════════════════════════════════╝
 ```
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=0,2,2,5,30&height=3&width=100%25" width="100%"/>
+---
 
 ## 📂 Monorepo Structure
 
@@ -100,7 +115,6 @@ SoftwareDT/                         ← Monorepo Root
 │   ├── src/
 │   │   ├── components/             ← Atomic & Reusable UI Components
 │   │   ├── pages/                  ← Services → Booking → Dashboard → Comms
-│   │   │   └── Products.jsx        ← Renderizado dinámico imagen/video (S3)
 │   │   ├── hooks/                  ← Custom React Hooks & WS Listeners
 │   │   ├── store/                  ← Zustand Global State Stores
 │   │   └── assets/                 ← Brand Identity & Global Styles
@@ -111,11 +125,11 @@ SoftwareDT/                         ← Monorepo Root
 │
 ├── 🟢 Back-SoftwareDT/             ← Backend (Node.js 22 LTS + Express + MongoDB)
 │   ├── src/
-│   │   ├── models/                 ← Mongoose Schemas (Users · Bookings · Services · Media)
+│   │   ├── models/                 ← Mongoose Schemas (Users · Bookings · Services)
 │   │   ├── routes/                 ← Protected RESTful API Endpoints
 │   │   ├── controllers/            ← Business Logic & Auth Controllers
 │   │   ├── sockets/                ← Socket.io Real-Time Event Logic
-│   │   └── config/                 ← DB Connections & AWS S3 Config
+│   │   └── config/                 ← DB Connections & Cloud Config (AWS S3 client)
 │   ├── Dockerfile                  ← Node:22-Alpine Container
 │   ├── .dockerignore
 │   ├── .env.example
@@ -125,7 +139,7 @@ SoftwareDT/                         ← Monorepo Root
 └── 📖 README.md
 ```
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=0,2,2,5,30&height=3&width=100%25" width="100%"/>
+---
 
 ## 🛠️ Unified Technology Stack
 
@@ -138,14 +152,14 @@ SoftwareDT/                         ← Monorepo Root
 | ⚙️ **Backend** | Node.js 22 LTS · Express | Modular services · Clean Architecture |
 | ⚡ **Real-Time** | Socket.io (WebSockets) | Live booking sync · Instant notifications |
 | 🗄️ **Database** | MongoDB Atlas (Dual Cluster) | Users cluster + Bookings cluster |
-| ☁️ **Media CDN** | AWS S3 (`software-dt-assets-2026`) | Video/imagen centralizados · Bucket Policy pública |
+| ☁️ **Media Storage** | AWS S3 (`software-dt-assets-2026`) | Public-read bucket · Centralized video/image delivery |
 | 🔑 **Auth** | JWT · RBAC | Multi-device sessions · Role isolation |
 | 🐳 **DevOps** | Docker · Docker Build Cloud · Alpine Linux | Container-first · Accelerated CI/CD builds |
 | ☁️ **Cloud** | Vercel · AWS ECS/Fargate · Railway | CI/CD via Git · Elastic serverless scaling |
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=0,2,2,5,30&height=3&width=100%25" width="100%"/>
+---
 
 ## ✨ Core Features & Technical Flow
 
@@ -168,6 +182,24 @@ flowchart LR
     style H fill:#000,color:#FFD700,stroke:#FFD700
 ```
 
+### 🎬 Dynamic Product Media Pipeline
+
+```mermaid
+flowchart LR
+    A([🖼️ Product Record]) -->|Media Type Flag| B{Image or Video?}
+    B -->|Static| C[Render Optimized Image]
+    B -->|Motion| D[Render Looping .mp4]
+    C --> E[(☁️ AWS S3\nsoftware-dt-assets-2026)]
+    D --> E
+    E -->|Public-Read Policy| F[Products.jsx]
+    F -->|Instant Render| G([🛒 Storefront])
+
+    style A fill:#FFD700,color:#000,stroke:#FFD700
+    style E fill:#FF9900,color:#000,stroke:#FF9900
+    style F fill:#000,color:#FFD700,stroke:#FFD700
+    style G fill:#DCDCDC,color:#000,stroke:#DCDCDC
+```
+
 ### 🔐 Security & Role-Based Access Control
 
 ```mermaid
@@ -186,45 +218,11 @@ graph TD
     style X fill:#FF0000,color:#fff
 ```
 
-### 🎬 Dynamic Multimedia Pipeline (AWS S3 → MongoDB → UI)
-
-```mermaid
-flowchart LR
-    S3[("☁️ AWS S3\nsoftware-dt-assets-2026\n.mp4 · .png/.jpg")] -->|Bucket Policy\nPublic Read| CDN[🌍 Public Delivery]
-    CDN -->|URL Reference| DB[(MongoDB Atlas\nProducts Schema)]
-    DB -->|mediaType: image | video| API[Back-SoftwareDT API]
-    API -->|JSON Payload| UI[Products.jsx]
-    UI -->|Conditional Render| IMG[🖼️ Static Image]
-    UI -->|Conditional Render| VID[🎥 Looping Video]
-
-    style S3 fill:#FF9900,color:#000,stroke:#FF9900
-    style CDN fill:#DCDCDC,color:#000
-    style DB fill:#47A248,color:#fff
-    style UI fill:#000,color:#FFD700,stroke:#FFD700
-    style IMG fill:#FFD700,color:#000
-    style VID fill:#FFD700,color:#000
-```
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=0,2,2,5,30&height=3&width=100%25" width="100%"/>
-
-## ☁️ Últimas Actualizaciones de la Plataforma
-
-<div align="center">
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&weight=600&size=16&duration=3200&pause=1000&color=DCDCDC&center=true&vCenter=true&width=700&lines=☁️+AWS+S3+Centralized+Assets+Bucket;🎬+Dynamic+Image%2FVideo+Rendering+in+Products.jsx;🔓+Public+Read+Bucket+Policy+%7C+Zero+Blocking;🔄+Live+Catalog+Updates+%7C+No+Redeploy+Required)](https://git.io/typing-svg)
-
-</div>
-
-- ☁️ **Centralización de Assets en la Nube (AWS S3):** migración y estructuración completa de recursos multimedia (videos corporativos `.mp4` e imágenes HD) hacia el bucket centralizado `software-dt-assets-2026`, optimizando tiempos de carga y estandarizando la identidad visual del proyecto.
-- 🎬 **Integración Multimedia Dinámica en Productos:** actualización del esquema de datos en MongoDB Atlas y del componente frontend `Products.jsx` para renderizado inteligente de contenido multimedia, alternando de forma nativa entre imágenes estáticas y video en bucle (ej. App Webs E-commerce y Dashboards).
-- 🔐 **Seguridad y Políticas de Acceso en Infraestructura:** configuración de `Bucket Policy` de lectura pública en AWS S3 para garantizar entrega fluida y sin bloqueos de los recursos hacia los clientes web.
-- 🔄 **Consolidación de Arquitectura Full-Stack:** base de datos centralizada en MongoDB Atlas sincronizada con backend en producción y frontend desplegado, permitiendo actualizar catálogos y multimedia en tiempo real sin redespliegues constantes de código.
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=0,2,2,5,30&height=3&width=100%25" width="100%"/>
+---
 
 ## 🖥️ Real-Time Admin Control Panel
 
-> Live operational intelligence — **no browser refresh required** — powered by Socket.io and dual-cluster MongoDB Atlas.
+> Live operational intelligence — **no browser refresh required** — powered by Socket.io, dual-cluster MongoDB Atlas, and centralized AWS S3 media delivery.
 
 <div align="center">
 
@@ -236,12 +234,12 @@ flowchart LR
 | 🔄 **Status Sync** | UI updates the moment a provider changes service status | WebSockets |
 | 💬 **Real-Time Chat** | Low-latency direct messaging: client ↔ provider | Socket.io |
 | 🗂️ **Message History** | Persistent conversation storage for quality tracking | MongoDB |
+| 🎬 **Catalog Media Manager** | Toggle products between static imagery and looping video without redeploying | AWS S3 |
 | 🎛️ **Interactive HUD** | Quick-action controls · Support flow · Inquiry history | React |
-| 🎬 **Media Manager** | Alta/edición de imágenes y video de producto vía S3 | AWS S3 |
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=0,2,2,5,30&height=3&width=100%25" width="100%"/>
+---
 
 ## 🐳 Docker Infrastructure Guide
 
@@ -280,9 +278,9 @@ PORT=8080
 
 # AWS S3 — Centralized Media Bucket
 AWS_REGION=us-east-1
-AWS_S3_BUCKET=software-dt-assets-2026
 AWS_ACCESS_KEY_ID=your-access-key
 AWS_SECRET_ACCESS_KEY=your-secret-key
+AWS_S3_BUCKET=software-dt-assets-2026
 ```
 
 **Step 3 — Launch the master orchestrator**
@@ -388,7 +386,7 @@ docker ps
 docker system prune -f
 ```
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=0,2,2,5,30&height=3&width=100%25" width="100%"/>
+---
 
 ## 🎨 Official Design System
 
@@ -423,23 +421,24 @@ export default {
 | `surface` | `#111111` | Dark mode surfaces · Cards · Panels |
 | `heading` | `#000000` | Display & heading typography |
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=0,2,2,5,30&height=3&width=100%25" width="100%"/>
+---
 
 ## 🚀 Deployment
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                  CI/CD PIPELINE                         │
-│                                                         │
-│  git push origin main                                   │
-│       │                                                 │
-│       ├──► Vercel (Frontend)  → Auto-deploy in ~45s     │
-│       │    softwaredt.vercel.app                        │
-│       │                                                 │
-│       ├──► AWS ECS/Fargate (Backend) → Container deploy │
-│       │    api.softwaredt.com:8080                      │
-│       │                                                 │
-│       └──► AWS S3 → Sync assets (software-dt-assets-2026)│
+│                  CI/CD PIPELINE                          │
+│                                                           │
+│  git push origin main                                    │
+│       │                                                   │
+│       ├──► Vercel (Frontend)  → Auto-deploy in ~45s       │
+│       │    softwaredt.vercel.app                          │
+│       │                                                   │
+│       ├──► AWS ECS/Fargate (Backend) → Container deploy   │
+│       │    api.softwaredt.com:8080                        │
+│       │                                                   │
+│       └──► AWS S3 (Media)  → Live sync, no redeploy needed│
+│            software-dt-assets-2026                        │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -448,7 +447,7 @@ export default {
 | **Development** | `http://localhost:5173` | `http://localhost:8080` |
 | **Production** | [softwaredt.com](https://softwaredt.com) | AWS ECS/Fargate |
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=0,2,2,5,30&height=3&width=100%25" width="100%"/>
+---
 
 ## 🔗 Links & Resources
 
@@ -478,19 +477,17 @@ export default {
 
 ```
 ╔══════════════════════════════════════════════════════════════════╗
-║                                                                  ║
-║   "Every line of code is optimized for performance               ║
-║    and security. Production-ready by default."                   ║
-║                                                                  ║
-║                               — NietoDeveloper Standard          ║
+║                                                                    ║
+║   "Every line of code is optimized for performance                ║
+║    and security. Production-ready by default."                    ║
+║                                                                    ║
+║                               — NietoDeveloper Standard            ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
 *Software DT — Built by **NietoDeveloper · Manuel Nieto***
 
 *Developed with technical rigor in* 📍 **Bogotá, Colombia** 🇨🇴
-
-Last Updated: July 21, 2026
 
 <br/>
 
