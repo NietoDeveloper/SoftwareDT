@@ -9,11 +9,7 @@
 ```bash
 git clone https://github.com/NietoDeveloper/softwaredt.git
 cd SoftwareDT
-```
 
-**Step 2 — Configure environment variables**
-
-```bash
 # Backend — MongoDB Atlas URIs + JWT secrets
 
 
