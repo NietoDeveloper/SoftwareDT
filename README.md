@@ -19,11 +19,6 @@ JWT_EXPIRES_IN=7d
 PORT=8080
 ```
 
-**Step 3 — Launch the master orchestrator**
-
-```bash
-docker-compose up --build
-```
 
 ```
 🤖 What Docker does automatically:
