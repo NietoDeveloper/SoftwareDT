@@ -6,9 +6,6 @@
 ### 🔐 Security & Role-Based Access Control
 
 
-| Module | Capability | Tech |
-|:-------|:-----------|:----:|
-| 📅 **Booking Manager** | Track `Active → In-Progress → Completed` in real-time | Socket.io |
 | 📊 **Live Metrics** | Daily · Monthly · Annual KPIs aggregated instantly | MongoDB |
 | 📜 **Appointment History** | Full audit trail · Re-booking · Service reviews | MongoDB |
 | 🔄 **Status Sync** | UI updates the moment a provider changes service status | WebSockets |
