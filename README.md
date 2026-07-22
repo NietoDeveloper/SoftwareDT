@@ -15,11 +15,7 @@ cd SoftwareDT
 
 ```bash
 # Backend — MongoDB Atlas URIs + JWT secrets
-cp Back-SoftwareDT/.env.example Back-SoftwareDT/.env
 
-# Frontend — API endpoints
-cp Front-SoftwareDT/.env.example Front-SoftwareDT/.env
-```
 
 ```env
 # Back-SoftwareDT/.env  (fill in your values)
