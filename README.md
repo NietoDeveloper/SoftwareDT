@@ -5,13 +5,6 @@
 
 ### 🔐 Security & Role-Based Access Control
 
-orized| X[403 · Access Denied]
-
-
-
-
-
-<div align="center">
 
 | Module | Capability | Tech |
 |:-------|:-----------|:----:|
