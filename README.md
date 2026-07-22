@@ -17,7 +17,7 @@ orized| X[403 · Access Denied]
 
 ## 🖥️ Real-Time Admin Control Panel
 
-> Live operational intelligence — **no browser refresh required** — powered by Socket.io and dual-cluster MongoDB Atlas.
+
 
 <div align="center">
 
