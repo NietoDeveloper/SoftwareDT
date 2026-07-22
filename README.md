@@ -3,17 +3,6 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=240&section=header&text=SOFTWARE%20DT&fontSize=90&fontColor=FFD700&fontAlignY=42&desc=⚡%20Enterprise%20MERN%20Ecosystem%20·%20Digital%20Twin%20Architecture%20·%20Docker%20Powered&descAlignY=62&descColor=DCDCDC&animation=fadeIn" width="100%"/>
 
 
-### 🔐 Security & Role-Based Access Control
-
-
-| 📊 **Live Metrics** | Daily · Monthly · Annual KPIs aggregated instantly | MongoDB |
-| 📜 **Appointment History** | Full audit trail · Re-booking · Service reviews | MongoDB |
-
-
----
-
-## 🐳 Docker Infrastructure Guide
-
 > **Zero local dependencies.** Docker handles Node.js, installs, networking, and port binding. Identical behavior from your laptop to AWS ECS/Fargate.
 
 ### Prerequisites
