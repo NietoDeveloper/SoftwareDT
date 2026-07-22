@@ -7,21 +7,7 @@
 **Step 1 — Clone the repository**
 
 ```bash
-
-
-
-
-```
-
-
-
----
-
-### 🏭 Environment Configurations
-
-#### Development — HMR Enabled
-
-```dockerfile
+ile
 # Front-SoftwareDT/Dockerfile.dev
 FROM node:22-alpine
 WORKDIR /app
