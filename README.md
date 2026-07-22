@@ -29,13 +29,7 @@
 
 ## 📂 Monorepo Structure
 
-```text
-SoftwareDT/                         ← Monorepo Root
-│
-├── 🔵 Front-SoftwareDT/            ← Frontend (React 19 + Vite 6 + Tailwind 4)
-│   ├── src/
-│   │   ├── components/             ← Atomic & Reusable UI Components
-│   │   ├── pages/                  ← Services → Booking → Dashboard → Comms
+es/                  ← Services → Booking → Dashboard → Comms
 │   │   ├── hooks/                  ← Custom React Hooks & WS Listeners
 │   │   ├── store/                  ← Zustand Global State Stores
 │   │   └── assets/                 ← Brand Identity & Global Styles
