@@ -1,30 +1,4 @@
-
-┌─────────────────────────────────────────────────────────┐
-│                  CI/CD PIPELINE                         │
-│                                                         │
-│  git push origin main                                   │
-│       │                                                 │
-│       ├──► Vercel (Frontend)  → Auto-deploy in ~45s     │
-│       │    softwaredt.vercel.app                        │
-│       │                                                 │
-│       └──► AWS ECS/Fargate (Backend) → Container deploy │
-│            api.softwaredt.com:8080                      │
-└─────────────────────────────────────────────────────────┘
-```
-
-| Environment | Frontend | Backend |
-|:------------|:---------|:--------|
-| **Development** | `http://localhost:5173` | `http://localhost:8080` |
-| **Production** | [softwaredt.com](https://softwaredt.com) | AWS ECS/Fargate |
-
----
-
-## 🔗 Links & Resources
-
-<div align="center">
-
-| Resource | Link |
-|:---------|:-----|
+:-----|
 | 🌐 **Live Application** | [softwaredt.com](https://softwaredt.com) |
 | 📂 **GitHub Repository** | [github.com/NietoDeveloper/softwaredt](https://github.com/NietoDeveloper/softwaredt) |
 | 👤 **Developer Profile** | [github.com/NietoDeveloper](https://github.com/NietoDeveloper) |
