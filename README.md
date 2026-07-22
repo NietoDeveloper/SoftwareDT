@@ -28,10 +28,6 @@
 
 
 
-  <a href="https://github.com/NietoDeveloper/softwaredt">
-    <img src="https://img.shields.io/badge/📂_Source-NietoDeveloper%2FSoftwareDT-000000?style=for-the-badge&logo=github&logoColor=FFD700"/>
-  </a>
-</p>
 
 <br/>
 
