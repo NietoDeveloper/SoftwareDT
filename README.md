@@ -13,18 +13,6 @@
   <a href="https://committers.top">
     <img src="https://img.shields.io/badge/🏆_Top_3-South_%26_Central_America-DCDCDC?style=for-the-badge&logoColor=000000"/>
 
-
-| Layer | Technologies | Engineering Focus |
-|:------|:-------------|:------------------|
-| 🎨 **Frontend** | React 19 · Vite 6 · Tailwind CSS 4 · TypeScript 5.7 | Server Components & Actions · React Compiler |
-| 🧠 **State** | Zustand | Lightweight global state · Zero re-renders |
-| ⚙️ **Backend** | Node.js 22 LTS · Express | Modular services · Clean Architecture |
-| ⚡ **Real-Time** | Socket.io (WebSockets) | Live booking sync · Instant notifications |
-| 🗄️ **Database** | MongoDB Atlas (Dual Cluster) | Users cluster + Bookings cluster |
-| 🔑 **Auth** | JWT · RBAC | Multi-device sessions · Role isolation |
-| 🐳 **DevOps** | Docker · Docker Build Cloud · Alpine Linux | Container-first · Accelerated CI/CD builds |
-| ☁️ **Cloud** | Vercel · AWS ECS/Fargate · Railway | CI/CD via Git · Elastic serverless scaling |
-
 </div>
 
 ---
