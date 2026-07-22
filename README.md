@@ -7,11 +7,7 @@
 
 orized| X[403 · Access Denied]
 
-    style R fill:#FFD700,color:#000
 
-```
-
----
 
 ## 🖥️ Real-Time Admin Control Panel
 
