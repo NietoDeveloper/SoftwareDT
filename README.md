@@ -1,26 +1,4 @@
-<div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=240&section=header&text=SOFTWARE%20DT&fontSize=90&fo
-
-> Industrial high-end aesthetic · Dark-first · Gold-accented precision
-
-    },
-  },
-}
-```
-
-| Token | Hex | Role |
-|:------|:----|:-----|
-| `gold` | `#FFD700` | Primary accent · CTAs · Brand highlights |
-| `gainsboro` | `#DCDCDC` | Base background · Secondary text · Borders |
-| `surface` | `#111111` | Dark mode surfaces · Cards · Panels |
-| `heading` | `#000000` | Display & heading typography |
-
----
-
-## 🚀 Deployment
-
-```
 ┌─────────────────────────────────────────────────────────┐
 │                  CI/CD PIPELINE                         │
 │                                                         │
