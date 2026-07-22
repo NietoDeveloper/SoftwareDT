@@ -11,19 +11,7 @@
 es:
 tions & Maintenance
 
-```bash
-# Stop ecosystem & release all ports
-docker-compose down
-
-# Rebuild after package.json changes
-docker-compose up --build --force-recreate
-
-# View live logs (all services)
-docker-compose logs -f
-
-# Logs for a specific service
-docker-compose logs -f frontend
-docker-compose logs -f backend
+compose logs -f backend
 
 # Check running containers
 docker ps
