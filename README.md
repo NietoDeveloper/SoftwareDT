@@ -1,21 +1,3 @@
-:-----|
-| 🌐 **Live Application** | [softwaredt.com](https://softwaredt.com) |
-| 📂 **GitHub Repository** | [github.com/NietoDeveloper/softwaredt](https://github.com/NietoDeveloper/softwaredt) |
-| 👤 **Developer Profile** | [github.com/NietoDeveloper](https://github.com/NietoDeveloper) |
-| 🏆 **#1 Colombia Ranking** | [committers.top/colombia](https://committers.top/colombia) |
-| 🌎 **Top LATAM Ranking** | [committers.top](https://committers.top) |
-| 🐳 **Docker Desktop** | [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/) |
-
-</div>
-
----
-
-<div align="center">
-
-[![Live App](https://img.shields.io/badge/🌐_Live_App-softwaredt.com-FFD700?style=for-the-badge)](https://softwaredt.com)
-[![GitHub Profile](https://img.shields.io/badge/GitHub-NietoDeveloper-000?style=for-the-badge&logo=github&logoColor=FFD700)](https://github.com/NietoDeveloper)
-[![#1 Colombia](https://img.shields.io/badge/🥇_%231_Committer-Colombia-FFD700?style=for-the-badge)](https://committers.top/colombia)
-[![LATAM Top](https://img.shields.io/badge/🌎_Top_3-South_%26_Central_America-DCDCDC?style=for-the-badge)](https://committers.top)
 
 <br/>
 
