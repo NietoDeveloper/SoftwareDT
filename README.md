@@ -23,32 +23,6 @@
 
 
 
-                                         ║
-                  │                                        ║
-║           ┌─────────────────┴─────────────────┐                      ║
-                 ← Zustand Global State Stores
-│   │   └── assets/                 ← Brand Identity & Global Styles
-│   ├── Dockerfile                  ← Dev: HMR on :5173 · Prod: Nginx Alpine
-│   ├── .dockerignore
-│   ├── tailwind.config.js
-│   └── package.json
-│
-├── 🟢 Back-SoftwareDT/             ← Backend (Node.js 22 LTS + Express + MongoDB)
-│   ├── src/
-│   │   ├── models/                 ← Mongoose Schemas (Users · Bookings · Services)
-│   │   ├── routes/                 ← Protected RESTful API Endpoints
-│   │   ├── controllers/            ← Business Logic & Auth Controllers
-│   │   ├── sockets/                ← Socket.io Real-Time Event Logic
-│   │   └── config/                 ← DB Connections & Cloud Config
-│   ├── Dockerfile                  ← Node:22-Alpine Container
-│   ├── .dockerignore
-│   ├── .env.example
-│   └── package.json
-│
-├── 🤖 docker-compose.yml           ← Master Orchestrator (Dev + Prod)
-└── 📖 README.md
-```
-
 ---
 
 ## 🛠️ Unified Technology Stack
