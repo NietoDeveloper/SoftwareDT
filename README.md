@@ -17,13 +17,6 @@
   <img src="https://img.shields.io/badge/Security-Level_S%2B-FF0000?style=for-the-badge&logoColor=white"/>
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=000"/>
-
-
-
-
----
 
 ## 🛠️ Unified Technology Stack
 
