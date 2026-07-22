@@ -27,7 +27,7 @@
 
 <br/>
 
-> **Software DT Ecosystem:** *The transaction, communication, and client-booking engine powering our unified Digital Twin asset management platform.*
+
 
 
 
