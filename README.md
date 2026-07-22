@@ -1,28 +1,6 @@
 <div align="center">
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=240&section=header&text=SOFTWARE%20DT&fontSize=90&fo
-### Prerequisites
-
-
-**Step 1 — Clone the repository**
-
-
-```yaml
-es:
-tions & Maintenance
-
-compose logs -f backend
-
-# Check running containers
-docker ps
-
-# Clean up unused images & containers
-docker system prune -f
-```
-
----
-
-## 🎨 Official Design System
 
 > Industrial high-end aesthetic · Dark-first · Gold-accented precision
 
