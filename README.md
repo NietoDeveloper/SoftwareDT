@@ -2,16 +2,6 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=240&section=header&text=SOFTWARE%20DT&fontSize=90&fontColor=FFD700&fontAlignY=42&desc=⚡%20Enterprise%20MERN%20Ecosystem%20·%20Digital%20Twin%20Architecture%20·%20Docker%20Powered&descAlignY=62&descColor=DCDCDC&animation=fadeIn" width="100%"/>
 
-flowchart LR
-l Cluster Sync| G[🔄 High Availability]
-
-
-    style A fill:#FFD700,color:#000,stroke:#FFD700
-    style E fill:#FFD700,color:#000,stroke:#FFD700
-    style F fill:#47A248,color:#fff,stroke:#47A248
-    style G fill:#DCDCDC,color:#000,stroke:#DCDCDC
-    style H fill:#000,color:#FFD700,stroke:#FFD700
-```
 
 ### 🔐 Security & Role-Based Access Control
 
