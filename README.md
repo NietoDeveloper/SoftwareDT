@@ -27,8 +27,7 @@
   <img src="https://img.shields.io/badge/Socket.io-Real--Time-010101?style=for-the-badge&logo=socket.io&logoColor=white"/>
   <img src="https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white"/>
   <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
-  <img src="https://img.shields.io/badge/AWS-ECS%2FFargate-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"/>
-</p>
+
 
 <p align="center">
   <a href="https://softwaredt.vercel.app">
