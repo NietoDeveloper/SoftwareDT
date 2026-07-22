@@ -9,8 +9,6 @@ orized| X[403 · Access Denied]
 
 
 
-## 🖥️ Real-Time Admin Control Panel
-
 
 
 <div align="center">
