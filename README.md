@@ -5,15 +5,7 @@
 
 ### 🔐 Security & Role-Based Access Control
 
-```mermaid
-graph TD
-    R([🔑 Auth Request]) --> V[Input Validation]
-    V --> JWT[JWT Engine · Multi-Device]
-    JWT --> RBAC{⚙️ RBAC Guard}
-    RBAC -->|client| C[🧑 Client Dashboard]
-    RBAC -->|provider| P[🛠️ Provider Panel]
-    RBAC -->|admin| A[👑 Full Admin Control]
-    RBAC -->|unauthorized| X[403 · Access Denied]
+orized| X[403 · Access Denied]
 
     style R fill:#FFD700,color:#000
     style RBAC fill:#0a0a0a,color:#FFD700,stroke:#FFD700
