@@ -29,13 +29,9 @@
 
 > **Software DT Ecosystem:** *The transaction, communication, and client-booking engine powering our unified Digital Twin asset management platform.*
 
-> 🐳 Software DT: Client Bookings. A high-performance, enterprise-grade platform built with the MERN stack, TypeScript, and Docker. State-of-the-art architecture for real-time asset monitoring and data orchestration
-> through **Digital Twin** technology. A production-grade Full-Stack **MERN** monorepo
-> connecting service providers and clients via a scalable, secure, Dockerized architecture.
->
-> *Modular · Robust · Obsessively Production-Ready · Built in Bogotá 🇨🇴*
 
-</div>
+
+
 
 ---
 
