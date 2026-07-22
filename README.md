@@ -26,12 +26,7 @@
                                          ║
                   │                                        ║
 ║           ┌─────────────────┴─────────────────┐                      ║
-
-## 📂 Monorepo Structure
-
-es/                  ← Services → Booking → Dashboard → Comms
-│   │   ├── hooks/                  ← Custom React Hooks & WS Listeners
-│   │   ├── store/                  ← Zustand Global State Stores
+                 ← Zustand Global State Stores
 │   │   └── assets/                 ← Brand Identity & Global Styles
 │   ├── Dockerfile                  ← Dev: HMR on :5173 · Prod: Nginx Alpine
 │   ├── .dockerignore
