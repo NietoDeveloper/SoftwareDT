@@ -2,26 +2,6 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=240&section=header&text=SOFTWARE%20DT&fontSize=90&fontColor=FFD700&fontAlignY=42&desc=⚡%20Enterprise%20MERN%20Ecosystem%20·%20Digital%20Twin%20Architecture%20·%20Docker%20Powered&descAlignY=62&descColor=DCDCDC&animation=fadeIn" width="100%"/>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&weight=700&size=20&duration=2800&pause=900&color=FFD700&center=true&vCenter=true&width=750&lines=⚡+Production-Grade+MERN+Ecosystem;🐳+Fully+Dockerized+%7C+Zero+Local+Dependencies;🔒+Dual-Cluster+MongoDB+Atlas+Architecture;📊+Real-Time+Admin+Dashboard+%7C+Socket.io;🚀+AWS+ECS%2FFargate+%2B+Vercel+%7C+CI%2FCD+via+Git;🏆+%231+GitHub+Committer+in+Colombia)](https://git.io/typing-svg)
-
-<br/>
-
-<p align="center">
-  <a href="https://committers.top/colombia">
-    <img src="https://img.shields.io/badge/🥇_No._1_Committer-Colombia-FFD700?style=for-the-badge&logoColor=000000"/>
-  </a>
-  <a href="https://committers.top">
-    <img src="https://img.shields.io/badge/🏆_Top_3-South_%26_Central_America-DCDCDC?style=for-the-badge&logoColor=000000"/>
-
-</div>
-
----
-
-## ✨ Core Features & Technical Flow
-
-### 🔄 Intelligent Booking Pipeline
-
-```mermaid
 flowchart LR
     A([👤 Client]) -->|Filter & Select| B[Services.jsx]
     B -->|Smart Match| C[selectservice.jsx]
