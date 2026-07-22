@@ -8,15 +8,7 @@
 
 
 ```yaml
-# docker-compose.yml (dev excerpt)
-services:
-  frontend:
-    build:
-      context: ./Front-SoftwareDT
-      dockerfile: Dockerfile.dev
-    ports:
-      - "5173:5173"
-    volumes:
+es:
       - ./Front-SoftwareDT:/app      # HMR: live code reflection
       - /app/node_modules
     environment:
