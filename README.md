@@ -14,11 +14,7 @@
     <img src="https://img.shields.io/badge/🏆_Top_3-South_%26_Central_America-DCDCDC?style=for-the-badge&logoColor=000000"/>
   </a>
   <img src="https://img.shields.io/badge/Status-Production_Ready-00D26A?style=for-the-badge&logo=checkmarx&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Security-Level_S%2B-FF0000?style=for-the-badge&logoColor=white"/>
-</p>
-
-
-## 🛠️ Unified Technology Stack
+  <img src="https://img.shields.io/badge/Security-Level_S%2B-FF0000?style=for-the-badge&🛠️ Unified Technology Stack
 
 <div align="center">
 
