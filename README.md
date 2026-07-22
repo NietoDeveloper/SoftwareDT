@@ -19,13 +19,6 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=000"/>
-/badge/Node.js-22_LTS-339933?style=for-the-badge&logo=node.js&logoColor=white"/>
-
-
-
-
-
-
 
 
 
