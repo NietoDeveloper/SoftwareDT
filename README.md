@@ -28,10 +28,6 @@
 
 
 
-<p align="center">
-  <a href="https://softwaredt.vercel.app">
-    <img src="https://img.shields.io/badge/🌐_Live_App-softwaredt.vercel.app-FFD700?style=for-the-badge"/>
-  </a>
   <a href="https://github.com/NietoDeveloper/softwaredt">
     <img src="https://img.shields.io/badge/📂_Source-NietoDeveloper%2FSoftwareDT-000000?style=for-the-badge&logo=github&logoColor=FFD700"/>
   </a>
